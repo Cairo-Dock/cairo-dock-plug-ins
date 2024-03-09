@@ -1672,7 +1672,7 @@ static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 		if (icon->label.iTexture != 0 && (my_diapo_simple_display_all_labels || icon->bPointed))
 		{
 			glPushMatrix ();
-			glLoadIdentity ();
+			// glLoadIdentity ();
 			
 			double fAlpha = (pDock->fFoldingFactor > .5 ? (1 - pDock->fFoldingFactor) / .5 : 1.);  // apparition du texte de 1 a 0.5
 			
@@ -1803,6 +1803,7 @@ void cd_rendering_set_subdock_position_slide (Icon *pPointedIcon, CairoDock *pDo
 	//int iX = pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2 + (pDock->iOffsetForExtend * (pDock->fAlign - .5) * 2);
 	int W = gldi_dock_get_screen_width (pDock);
 	int iScreenOffsetX = gldi_dock_get_screen_offset_x (pDock);
+	if (pDock->container.iWindowPositionX < iScreenOffsetX) iScreenOffsetX = 0; // hack for Wayland: window position is relative to screen
 	int iX = pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2;
 	if (pSubDock->container.bIsHorizontal == pDock->container.bIsHorizontal)
 	{

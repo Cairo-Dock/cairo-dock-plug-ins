@@ -49,10 +49,15 @@ CD_APPLET_DEFINE_BEGIN ("gnome integration",
 		cd_debug ("GNOME");
 		if (pVFSBackend == NULL)
 			pVFSBackend = g_new0 (CairoDockDesktopEnvBackend, 1);
-			
-		pVFSBackend->logout = env_backend_logout;
-		pVFSBackend->shutdown = env_backend_shutdown;
-		pVFSBackend->reboot = env_backend_shutdown;
+		
+		/* calling gnome-session-quit will only work if either
+		 * gnome-shell or gnome-flashback are running */
+		if (cairo_dock_dbus_detect_application ("org.gnome.Shell"))
+		{
+			pVFSBackend->logout = env_backend_logout;
+			pVFSBackend->shutdown = env_backend_shutdown;
+			pVFSBackend->reboot = env_backend_shutdown;
+		}
 		pVFSBackend->lock_screen = env_backend_lock_screen;
 		pVFSBackend->setup_time = env_backend_setup_time;
 		pVFSBackend->show_system_monitor = env_backend_show_system_monitor;

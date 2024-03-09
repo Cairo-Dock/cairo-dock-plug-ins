@@ -29,7 +29,7 @@ add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.svg")
 add_definitions (-DCD_PLUGINS_DIR="${pluginsdir}")
 
-IF (${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD")
+IF (${CMAKE_SYSTEM_NAME} MATCHES ^"FreeBSD")
 	set(kvm "kvm")
 endif()
 

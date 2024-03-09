@@ -11,7 +11,7 @@ include ("${CMAKE_CURRENT_SOURCE_DIR}/cmake_modules/GNUInstallDirs.cmake")
 ########### project ###############
 
 project ("cairo-dock-plugins")
-set (VERSION "3.5.0")
+set (VERSION "3.5.99.alpha1")
 
 add_definitions (-std=gnu99 -Wall -Werror-implicit-function-declaration) # -Wextra -Wwrite-strings -Wuninitialized -Werror-implicit-function-declaration -Wstrict-prototypes -Wreturn-type -Wparentheses -Warray-bounds)
 if (NOT DEFINED CMAKE_BUILD_TYPE)
@@ -545,7 +545,7 @@ if (enable-ruby-interface)
 	message (STATUS " * Ruby:")
 	# find_package(Ruby) found libs of ruby-dev but we only need a directory where we can install ruby libs.
 	find_program (RUBY_EXECUTABLE ruby)
-	EXECUTE_PROCESS(COMMAND ${RUBY_EXECUTABLE} -r rbconfig -e "print RbConfig::CONFIG['rubylibdir']"
+	EXECUTE_PROCESS(COMMAND ${RUBY_EXECUTABLE} -r rbconfig -e "print RbConfig::CONFIG['vendordir']"
 		OUTPUT_VARIABLE RUBY_LIB_DIR)
 	message (STATUS "   Ruby library dir: ${RUBY_LIB_DIR}")
 	if ("${RUBY_LIB_DIR}" STREQUAL "" OR "${RUBY_LIB_DIR}" STREQUAL "nil")
@@ -554,10 +554,6 @@ if (enable-ruby-interface)
 		set (PROGRAMS_MISSING "${PROGRAMS_MISSING} ruby")
 		set (with_ruby no)
 	else()
-		# /usr/lib/ruby/1.8 or /usr/lib/ruby/1.9.1
-		string (REGEX REPLACE "lib/ruby/[0-9].[0-9]?.+" "" RUBY_LIB_DIR_INSTALL "${RUBY_LIB_DIR}")
-		string (REGEX REPLACE "${RUBY_LIB_DIR_INSTALL}" "" RUBY_LIB_DIR_INSTALL "${RUBY_LIB_DIR}")
-		set (RUBY_LIB_DIR "${CMAKE_INSTALL_PREFIX}/${RUBY_LIB_DIR_INSTALL}")
 		message (STATUS "   will be installed in: ${RUBY_LIB_DIR}")
 		set (RUBY_FOUND "TRUE")
 		set (with_ruby yes)
@@ -569,9 +565,9 @@ enable_if_not_defined (enable-mono-interface)
 if (enable-mono-interface)
 	message (STATUS " * Mono:")
 	#find_package (Mono)
-	find_program (GMCS_EXECUTABLE gmcs)
+	find_program (GMCS_EXECUTABLE mcs)
 	if (NOT GMCS_EXECUTABLE OR NOT EXISTS ${GMCS_EXECUTABLE})
-		message (STATUS "Could not find Mono compiler gmcs, won't build Mono interface.")
+		message (STATUS "Could not find Mono compiler mcs, won't build Mono interface.")
 	else()
 		pkg_check_modules (MONO_PACKAGE dbus-sharp-2.0 dbus-sharp-glib-2.0 glib-sharp-2.0)
 		if (NOT MONO_PACKAGE_FOUND)
@@ -978,9 +974,8 @@ set (with_mail no)
 # find the compilation flags
 enable_if_not_defined (enable-mail)
 if (enable-mail)
-	find_program (LIBETPAN_CONFIG_EXECUTABLE libetpan-config)
 	execute_process(
-		COMMAND ${LIBETPAN_CONFIG_EXECUTABLE} --cflags
+		COMMAND pkg-config libetpan --cflags
 		OUTPUT_VARIABLE MAIL_PACKAGE_CFLAGS)
 	if (NOT "${MAIL_PACKAGE_CFLAGS}" STREQUAL "" AND NOT "${MAIL_PACKAGE_CFLAGS}" STREQUAL "\n") # if there is a problem with the previous, we don't want to have a lot of errors
 		STRING (REGEX REPLACE "\n" "" TMP_VARIABLE "${MAIL_PACKAGE_CFLAGS}") # to not skip the last option
@@ -993,7 +988,7 @@ if (enable-mail)
 	endif()
 	# find the link flags
 	execute_process(
-		COMMAND ${LIBETPAN_CONFIG_EXECUTABLE} --libs
+		COMMAND pkg-config libetpan --libs
 		OUTPUT_VARIABLE MAIL_PACKAGE_LIBS)
 	if (NOT "${MAIL_PACKAGE_LIBS}" STREQUAL "")
 		STRING (REGEX REPLACE "\n" "" MAIL_PACKAGE_LIBS "${MAIL_PACKAGE_LIBS}")

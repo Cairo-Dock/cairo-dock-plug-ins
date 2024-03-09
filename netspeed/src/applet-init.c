@@ -30,7 +30,7 @@ CD_APPLET_DEFINITION (N_("netspeed"),
 	2, 0, 5,
 	CAIRO_DOCK_CATEGORY_APPLET_INTERNET,
 	N_("This applet shows you the bit rate of your internet connection and some stats about it.\n"
-	"Left-click on the icon to have the total amount of data transfered\n"
+	"Left-click on the icon to have the total amount of data transferred\n"
 	"Middle-click to (de)activate the network (needs NetworManager)"),
 	"parAdOxxx_ZeRo");
 

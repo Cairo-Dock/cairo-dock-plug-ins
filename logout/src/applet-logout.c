@@ -263,6 +263,44 @@ static void _switch_to_user (GtkMenuItem *menu_item, gchar *cUserName)
 	}
 }
 
+static gboolean _can_logoout ()
+{
+	// if the user set a custom command, assume that it will work
+	if (myConfig.cUserAction != NULL) return TRUE;
+	// original behavior: look for a session manager
+	if (g_getenv ("SESSION_MANAGER") != NULL) return TRUE;
+	// also check whether cairo_dock_fm_logout () would work
+	if (g_iDesktopEnv == CAIRO_DOCK_GNOME && (glib_major_version > 2 || glib_minor_version >= 16)) return TRUE;
+	if (g_iDesktopEnv == CAIRO_DOCK_KDE) return TRUE;
+	if (g_iDesktopEnv == CAIRO_DOCK_XFCE) return TRUE;
+	// new additions in logout.sh
+	// 1. Wayland specific
+	if (g_getenv ("WAYLAND_DISPLAY") != NULL)
+	{
+		// check for wayland-logout and assume that it will work
+		gchar *tmp = cairo_dock_launch_command_sync_with_stderr ("/bin/sh -c 'command -v wayland-logout'", FALSE);
+		if (tmp != NULL)
+		{
+			g_free (tmp);
+			return TRUE;
+		}
+	}
+	// 2. check if we are in a systemd graphical session
+	gchar *tmp2 = cairo_dock_launch_command_sync_with_stderr ("/bin/sh -c 'command -v systemctl'", FALSE);
+	if (tmp2 != NULL)
+	{
+		g_free (tmp2);
+		tmp2 = cairo_dock_launch_command_sync_with_stderr ("systemctl --user is-active graphical-session.target", FALSE);
+		if (tmp2 != NULL)
+		{
+			int r = strcmp(tmp2, "active");
+			g_free (tmp2);
+			if (!r) return TRUE;
+		}
+	}
+	return FALSE;
+}
+
 static GtkWidget *_build_menu (GtkWidget **pShutdownMenuItem)
 {
 	GtkWidget *pMenu = gldi_menu_new (myIcon);
@@ -303,13 +341,12 @@ static GtkWidget *_build_menu (GtkWidget **pShutdownMenuItem)
 	if (!myData.bCanSuspend)
 		gtk_widget_set_sensitive (pMenuItem, FALSE);
 	
-	if (g_getenv ("SESSION_MANAGER") != NULL)  // needs a session manager for this.
-	{
-		cImagePath = cd_logout_check_icon ("system-log-out", myData.iDesiredIconSize);
-		pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Log out"), cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/system-log-out.svg", cd_logout_close_session, pMenu);
-		g_free (cImagePath);
-		gtk_widget_set_tooltip_text (pMenuItem, D_("Close your session and allow to open a new one."));
-	}
+	cImagePath = cd_logout_check_icon ("system-log-out", myData.iDesiredIconSize);
+	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Log out"), cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/system-log-out.svg", cd_logout_close_session, pMenu);
+	g_free (cImagePath);
+	gtk_widget_set_tooltip_text (pMenuItem, D_("Close your session and allow to open a new one."));
+	if (!_can_logoout ())
+		gtk_widget_set_sensitive (pMenuItem, FALSE);
 	
 	if (myData.pUserList != NULL)  // refresh the users list (we could listen for the UserAdded,UserDeleted, UserChanged signals too).
 	{
