@@ -24,7 +24,8 @@ if ("${VALAC_FOUND}" STREQUAL "TRUE")
 		--vapi=${VALA_DIR}/src/${CDAPPLET}.vapi
 		--header=${VALA_DIR}/src/${CDAPPLET}.h
 		-o ${CDAPPLET}.c
-		${CMAKE_CURRENT_SOURCE_DIR}/${CDAPPLET}.vala)
+		${CMAKE_CURRENT_SOURCE_DIR}/${CDAPPLET}.vala
+		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 	# it seems that valac can only produce the output c file into the current directory...
 	execute_process(COMMAND mv ${CMAKE_CURRENT_SOURCE_DIR}/${CDAPPLET}.c ${VALA_DIR}/src/${CDAPPLET}.c)
 	
