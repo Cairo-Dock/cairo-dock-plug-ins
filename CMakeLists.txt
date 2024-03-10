@@ -289,7 +289,7 @@ if (INDICATOR_APPLET_FOUND)
 endif()
 
 if (NOT DBUSMENU_FOUND OR NOT DBUSMENU_GTK_FOUND OR NOT INDICATOR_APPLET_FOUND)
-	message (WARNING "These modules are required to compile Indicators applet (MeMenu, Messaging-Menu, Sound-Control, Status-Notifier and Global-Menu): ${INDICATOR_APPLET_MODULE}(-0.4), ${IDO_MODULE}, ${DBUSMENU_MODULE}(-0.4), ${DBUSMENU_GTK_MODULE}(-0.4)")
+	message (WARNING "These modules are required to compile Indicators applet (Messaging-Menu, Sound-Control, Status-Notifier and Global-Menu): ${INDICATOR_APPLET_MODULE}(-0.4), ${IDO_MODULE}, ${DBUSMENU_MODULE}(-0.4), ${DBUSMENU_GTK_MODULE}(-0.4)")
 	set (MODULES_MISSING "${MODULES_MISSING} ${INDICATOR_APPLET_MODULE}(-0.4) (${IDO_MODULE}) ${DBUSMENU_MODULE}(-0.4) ${DBUSMENU_GTK_MODULE}(-0.4)")
 endif()
 
@@ -1025,21 +1025,6 @@ if (enable-mail)
 	endif()
 endif()
 
-############# MEMENU #################
-set (with_me_menu no)
-if (INDICATOR_NEW_VERSION AND NOT enable-memenu)
-	message (STATUS "> MeMenu: this applet has been automatically merged with Messaging-Menu")  # oneiric or newer
-elseif (with_indicator AND IDO_FOUND)
-	message (STATUS "> MeMenu:")
-	set (GETTEXT_MEMENU ${GETTEXT_PLUGINS})
-	set (VERSION_MEMENU "1.0.6")
-	set (PACKAGE_MEMENU "cd-MeMenu")
-	set (memenudatadir "${pluginsdatadir}/MeMenu")
-	set (with_me_menu yes)
-	configure_file (${CMAKE_CURRENT_SOURCE_DIR}/MeMenu/data/MeMenu.conf.in ${CMAKE_CURRENT_BINARY_DIR}/MeMenu/data/MeMenu.conf)
-	add_subdirectory (MeMenu)
-endif()
-
 ############# MESSAGING_MENU #################
 set (with_messaging_menu no)
 if (with_indicator)
@@ -1503,9 +1488,6 @@ message (STATUS " - with Impulse applet:            ${with_impulse}")
 message (STATUS " - with Indicator-Generic applet:  ${with_indicator_generic}")
 message (STATUS " - with Keyboard-indicator applet: ${with_keyboard_indicator}")
 message (STATUS " - with Mail applet:               ${with_mail}")
-if (NOT INDICATOR_NEW_VERSION OR enable-memenu)  # oneiric or newer
-message (STATUS " - with Me-Menu applet applet:     ${with_me_menu}")
-endif()
 message (STATUS " - with Messaging-Menu applet:     ${with_messaging_menu}")
 message (STATUS " - with Recent-Events applet:      ${with_recent_events}")
 message (STATUS " - with Sound Effects applet:      ${with_sound_effects}")
