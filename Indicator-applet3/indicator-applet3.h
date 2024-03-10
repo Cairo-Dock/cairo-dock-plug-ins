@@ -24,7 +24,7 @@
 #include <gtk/gtk.h>
 #include <libayatana-indicator/indicator-object.h>
 
-#define INDICATOR_SERVICE_DIR "/usr/share/unity/indicators"
+#define INDICATOR_SERVICE_DIR "/usr/share/ayatana/indicators"
 
 typedef void (* CairoDockIndicator3Func ) (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, GldiModuleInstance *myApplet);
 typedef void (* CairoDockIndicator3FuncMenu ) (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, guint32 timestamp, GldiModuleInstance *myApplet);

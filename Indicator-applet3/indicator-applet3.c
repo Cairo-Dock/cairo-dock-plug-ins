@@ -26,11 +26,9 @@
 
 #include "indicator-applet3.h"
 
-#ifdef IS_INDICATOR_NG
-#include <libindicator/indicator-ng.h>
-#include <libido/libido.h>
+#include <libayatana-indicator/indicator-ng.h>
+#include <libayatana-ido/libayatana-ido.h>
 static gboolean bIsIdoInit = FALSE;
-#endif
 
 static void _init_new_entry_menu (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, GldiModuleInstance *myApplet)
 {
@@ -40,13 +38,11 @@ static void _init_new_entry_menu (IndicatorObject *pIndicator, IndicatorObjectEn
 
 IndicatorObject * cd_indicator3_load (const gchar *cName, CairoDockIndicator3Func entry_added, CairoDockIndicator3Func entry_removed, CairoDockIndicator3Func accessible_desc_update, CairoDockIndicator3FuncMenu menu_show, GldiModuleInstance *myApplet)
 {
-	#ifdef IS_INDICATOR_NG
 	if (! bIsIdoInit)
 	{
 		ido_init(); // need to be init ones...
 		bIsIdoInit = TRUE;
 	}
-	#endif
 	cd_debug ("Load: %s", cName);
 	g_return_val_if_fail (cName != NULL, NULL);
 
@@ -61,7 +57,6 @@ IndicatorObject * cd_indicator3_load (const gchar *cName, CairoDockIndicator3Fun
 	}
 	else
 	{
-		#ifdef IS_INDICATOR_NG
 		GError *error = NULL;
 		cFullPath = g_build_filename (INDICATOR_SERVICE_DIR, cName, NULL);
 		pIndicator = INDICATOR_OBJECT (indicator_ng_new_for_profile (cFullPath, "desktop", &error));
@@ -71,9 +66,6 @@ IndicatorObject * cd_indicator3_load (const gchar *cName, CairoDockIndicator3Fun
 			cd_warning ("could not load indicator from '%s': %s", cName, error->message);
 			g_error_free (error);
 		}
-		#else
-		pIndicator = NULL;
-		#endif
 	}
 
 	if (pIndicator == NULL)

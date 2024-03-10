@@ -56,19 +56,15 @@ void cd_indicator_generic_add_monitor_dir (GldiModuleInstance *myApplet)
 {
 	cairo_dock_fm_add_monitor_full (cd_indicator3_get_directory_path (), TRUE,
 		NULL, (CairoDockFMMonitorCallback) _on_file_event, myApplet);
-	#ifdef IS_INDICATOR_NG
 	cairo_dock_fm_add_monitor_full (INDICATOR_SERVICE_DIR, TRUE,
 		NULL, (CairoDockFMMonitorCallback) _on_file_event, myApplet);
-	#endif
 }
 
 void cd_indicator_generic_remove_monitor_dir (void)
 {
 	cairo_dock_fm_remove_monitor_full (cd_indicator3_get_directory_path (),
 		TRUE, NULL);
-	#ifdef IS_INDICATOR_NG
 	cairo_dock_fm_remove_monitor_full (INDICATOR_SERVICE_DIR, TRUE, NULL);
-	#endif
 }
 
 GDir * cd_indicator_generic_open_dir_modules (GldiModuleInstance *myApplet)
@@ -85,7 +81,6 @@ GDir * cd_indicator_generic_open_dir_modules (GldiModuleInstance *myApplet)
 
 GDir * cd_indicator_generic_open_dir_sevices (GldiModuleInstance *myApplet)
 {
-	#ifdef IS_INDICATOR_NG
 	GError *error = NULL;
 	GDir *pDir = g_dir_open (INDICATOR_SERVICE_DIR, 0, &error); // all indicators are on the same dir
 	if (error != NULL)
@@ -94,9 +89,6 @@ GDir * cd_indicator_generic_open_dir_sevices (GldiModuleInstance *myApplet)
 		return NULL;
 	}
 	return pDir;
-	#else
-	return NULL;
-	#endif
 }
 
 static gint _load_all_indicators_in_dir (GldiModuleInstance *myApplet, GDir *pDir, gboolean bIsModule)

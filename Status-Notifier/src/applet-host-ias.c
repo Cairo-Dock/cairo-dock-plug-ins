@@ -28,16 +28,9 @@
 #include "applet-host.h"
 #include "applet-host-ias.h"
 
-// Ubuntu sort-of-high-level-Watcher (new or old address)
-#if (INDICATOR_OLD_NAMES == 0)  // Natty
-#define CD_INDICATOR_APPLICATION_ADDR "com.canonical.indicator.application"
-#define CD_INDICATOR_APPLICATION_OBJ "/com/canonical/indicator/application/service"
-#define CD_INDICATOR_APPLICATION_IFACE "com.canonical.indicator.application.service"
-#else
 #define CD_INDICATOR_APPLICATION_ADDR "org.ayatana.indicator.application"
 #define CD_INDICATOR_APPLICATION_OBJ "/org/ayatana/indicator/application/service"
 #define CD_INDICATOR_APPLICATION_IFACE "org.ayatana.indicator.application.service"
-#endif
 
 // Ubuntu Indicator Service
 #define  CD_INDICATOR_SERVICE_INTERFACE "org.ayatana.indicator.service"
@@ -46,53 +39,6 @@
 
 static DBusGProxyCall *s_pDetectIASCall = NULL;
 
-#if (INDICATOR_OLD_NAMES != 0)  // Maverick
-static void _cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING (GClosure *closure,
-	GValue *return_value G_GNUC_UNUSED,
-	guint n_param_values,
-	const GValue *param_values,
-	gpointer invocation_hint G_GNUC_UNUSED,
-	gpointer marshal_data)
-{
-	//cd_debug ("=== %s ()", __func__);
-	typedef void (*GMarshalFunc_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING) (
-		gpointer     data1,
-		gchar      *arg_1,
-		gint        arg_2,
-		gchar      *arg_3,
-		gchar      *arg_4,
-		gchar      *arg_5,
-		gchar      *arg_6,
-		gchar      *arg_7,
-		gpointer     data2);
-	register GMarshalFunc_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING callback;
-	register GCClosure *cc = (GCClosure*) closure;
-	register gpointer data1, data2;
-	g_return_if_fail (n_param_values == 8);  // return_value est NULL ici, car la callback ne renvoit rien.
-
-	if (G_CCLOSURE_SWAP_DATA (closure))
-	{
-		data1 = closure->data;
-		data2 = g_value_peek_pointer (param_values + 0);
-	}
-	else
-	{
-		data1 = g_value_peek_pointer (param_values + 0);
-		data2 = closure->data;
-	}
-	callback = (GMarshalFunc_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING) (marshal_data ? marshal_data : cc->callback);
-
-	callback (data1,
-		(char*) g_value_get_string (param_values + 1),
-		g_value_get_int (param_values + 2),
-		(char*) g_value_get_string (param_values + 3),
-		(char*) g_value_get_string (param_values + 4),
-		(char*) g_value_get_string (param_values + 5),
-		(char*) g_value_get_string (param_values + 6),
-		(char*) g_value_get_string (param_values + 7),
-		data2);
-}
-#else  // Natty
 #if (INDICATOR_APPLICATIONADDED_HAS_TITLE == 1)
 static void _cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING_STRING_STRING (
 #elif (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
@@ -185,7 +131,7 @@ static void _cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_ST
 		#endif
 		data2);
 }
-#endif
+
 
 static void _cd_cclosure_marshal_VOID__INT_STRING_STRING (GClosure *closure,
 	GValue *return_value G_GNUC_UNUSED,
@@ -266,7 +212,6 @@ static void _cd_cclosure_marshal_VOID__INT_STRING (GClosure *closure,
 ///////////////
 
 static void on_new_application (DBusGProxy *proxy_watcher, const gchar *cIconName, gint iPosition, const gchar *cAddress, const gchar *cObjectPath, const gchar *cIconThemePath, const gchar *cLabel, const gchar *cLabelGuide,
-#if (INDICATOR_OLD_NAMES == 0)  // Natty
 const gchar *cAccessbleDesc,  // WTF is this new param ??
 #if (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
 const gchar *cHint,  // <irony> is this a hint to work around a clumsy API ? </irony>
@@ -274,18 +219,15 @@ const gchar *cHint,  // <irony> is this a hint to work around a clumsy API ? </i
 const gchar *cTitle,
 #endif
 #endif
-#endif
 GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	cd_debug ("=== %s (%s, %s, %s, %s, %d)", __func__, cAddress, cObjectPath, cIconName, cIconThemePath, iPosition);
-	#if (INDICATOR_OLD_NAMES == 0)  // Natty
 	cd_debug ("    %s", cAccessbleDesc);
 	#if (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
 	cd_debug ("    %s", cHint);
 	#if (INDICATOR_APPLICATIONADDED_HAS_TITLE == 1)
 	cd_debug ("    %s", cTitle);
-	#endif
 	#endif
 	#endif
 	
@@ -309,11 +251,9 @@ GldiModuleInstance *myApplet)
 		cIconName,
 		#endif
 		cIconThemePath,
-		#if (INDICATOR_OLD_NAMES == 0)
 		cAccessbleDesc && *cAccessbleDesc != '\0' ? cAccessbleDesc :
 		#if (INDICATOR_APPLICATIONADDED_HAS_TITLE == 1)
 		cTitle && *cTitle != '\0' ? cTitle :
-		#endif
 		#endif
 		cLabel
 		);
@@ -446,13 +386,11 @@ static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall
 			G_TYPE_STRING,  // iconpath
 			G_TYPE_STRING,  // label
 			G_TYPE_STRING,  // labelguide
-			#if (INDICATOR_OLD_NAMES == 0)  // Natty
 			G_TYPE_STRING,  // accessibledesc
 			#if (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
 			G_TYPE_STRING,  // hint
 			#if (INDICATOR_APPLICATIONADDED_HAS_TITLE == 1)
 			G_TYPE_STRING,  // title
-			#endif
 			#endif
 			#endif
 			G_TYPE_INVALID));
@@ -524,7 +462,6 @@ static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall
 		if (v && G_VALUE_HOLDS_STRING (v))
 			cLabelGuide = g_value_get_string (v);
 		
-		#if (INDICATOR_OLD_NAMES == 0)
 		v = g_value_array_get_nth (va, 7);
 		if (v && G_VALUE_HOLDS_STRING (v))
 			cAccessibleDesc = g_value_get_string (v);
@@ -533,7 +470,6 @@ static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall
 		v = g_value_array_get_nth (va, 9);
 		if (v && G_VALUE_HOLDS_STRING (v))
 			cTitle = g_value_get_string (v);
-		#endif
 		#endif
 		
 		cd_debug ("===  + item {%s ; %d ; %s ; %s ; %s ; %s ; %s ; %s ; %s}",
@@ -614,10 +550,6 @@ void cd_satus_notifier_get_items_from_ias (void)
 		G_TYPE_INVALID);
 	
 	// connect to the signals to keep the list of items up-to-date.
-	#if (INDICATOR_OLD_NAMES != 0)  // Maverick
-	dbus_g_object_register_marshaller(_cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING,
-			G_TYPE_NONE, G_TYPE_STRING, G_TYPE_INT, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INVALID);
-	#else  // Natty
 	dbus_g_object_register_marshaller(
 	#if (INDICATOR_APPLICATIONADDED_HAS_TITLE == 1)
 	_cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING_STRING_STRING,
@@ -636,26 +568,19 @@ void cd_satus_notifier_get_items_from_ias (void)
 			#endif
 			#endif
 			G_TYPE_INVALID);
-	#endif
 	dbus_g_proxy_add_signal(myData.pProxyIndicatorApplicationService, "ApplicationAdded",
 		G_TYPE_STRING,  // iconname
 		G_TYPE_INT,  // position
 		G_TYPE_STRING,  // dbusaddress
-		#if (INDICATOR_OLD_NAMES != 0)  // Maverick
-		G_TYPE_STRING,  // dbusobject
-		#else  // Natty
 		DBUS_TYPE_G_OBJECT_PATH,  // dbusobject
-		#endif
 		G_TYPE_STRING,  // iconpath
 		G_TYPE_STRING,  // label
 		G_TYPE_STRING,  // labelguide
-		#if (INDICATOR_OLD_NAMES == 0)  // Natty
 		G_TYPE_STRING,  // accessibledesc
 		#if (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
 		G_TYPE_STRING, // hint => only with indicator-0.4 (Oneiric)
 		#if (INDICATOR_APPLICATIONADDED_HAS_TITLE == 1)
 		G_TYPE_STRING, // title => only with indicator-0.4.90 (Precise)
-		#endif
 		#endif
 		#endif
 		G_TYPE_INVALID);
@@ -743,9 +668,7 @@ static void _on_watch_service (DBusGProxy *proxy, DBusGProxyCall *call, gpointer
 		 *  https://bugs.launchpad.net/bugs/1303731
 		 * TODO: remove this ugly hack...
 		 */
-		#if (INDICATOR_OLD_NAMES == 0)
 		service_api_version = 1;
-		#endif
 	}
 	cd_debug ("=== got indicator service (API: %d, service: %d, broken watcher: %d)", service_api_version, this_service_version, myData.bBrokenWatcher);
 	
