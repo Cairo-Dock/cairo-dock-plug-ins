@@ -41,9 +41,6 @@ add_definitions (-DMY_APPLET_ICON_FILE="icon.png")
 if (INDICATOR_SOUNDMENU_WITH_IND3)
 	message (STATUS "   With Indicator-Applet3")
 	add_definitions (-DINDICATOR_SOUNDMENU_WITH_IND3=1)
-	if (INDICATOR_NG)
-		add_definitions (-DIS_INDICATOR_NG=1)
-	endif()
 	set (EXTRAS_INCLUDE_DIRS ${INDICATOR_APPLET_INCLUDE_DIRS}
 		${CMAKE_SOURCE_DIR}/Indicator-applet3)
 	set (EXTRAS_LIBRARY_DIRS ${INDICATOR_APPLET_LIBRARY_DIRS}
