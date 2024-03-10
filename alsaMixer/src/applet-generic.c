@@ -26,8 +26,6 @@
 #include "applet-backend-alsamixer.h"
 #ifdef INDICATOR_SOUNDMENU_WITH_IND3
 #include "applet-backend-sound-menu.h"
-#elif defined SOUND_SERVICE_SUPPORT // OLD
-#include "applet-backend-sound-menu-old.h"
 #endif
 #include "applet-generic.h"
 
