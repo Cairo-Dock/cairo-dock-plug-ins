@@ -17,8 +17,6 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#define _BSD_SOURCE
-
 #include <unistd.h>
 #include <string.h>
 

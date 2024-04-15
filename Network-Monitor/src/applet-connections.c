@@ -18,8 +18,6 @@
 */
 // http://projects.gnome.org/NetworkManager/developers/spec-08.html
 
-#define _BSD_SOURCE
-
 #include <unistd.h>
 #include <string.h>
 

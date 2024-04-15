@@ -19,7 +19,6 @@
 * Inspired by Imgur Bash Upload Script (http://imgur.com/tools/imgurbash.sh)
 */
 
-#define _BSD_SOURCE
 #include <stdlib.h>
 #include <math.h>
 #include <unistd.h>

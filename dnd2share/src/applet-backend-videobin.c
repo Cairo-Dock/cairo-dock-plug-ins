@@ -17,7 +17,6 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#define _BSD_SOURCE
 #include <stdlib.h>
 #include <math.h>
 #include <unistd.h>
