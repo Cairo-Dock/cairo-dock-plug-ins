@@ -40,6 +40,7 @@ CD_APPLET_ON_MIDDLE_CLICK_END*/
 
 //\___________ Define here the entries you want to add to the menu when the user right-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons. The menu where you can add your entries is available throught the macro CD_APPLET_MY_MENU; you can add sub-menu to it if you want.
 static GtkWidget *s_pMenu = NULL;
+static GtkWidget *s_pSubMenu = NULL;
 static GList *s_pEventList = NULL;
 void cd_recent_events_reset_uri_list (void)
 {
@@ -56,6 +57,7 @@ static gboolean _on_delete_menu (GtkWidget *widget, GdkEvent *event, gpointer us
 {
 	cd_debug ("*** menu deleted");
 	s_pMenu = NULL;
+	s_pSubMenu = NULL;
 	cd_recent_events_reset_uri_list ();
 	return FALSE;
 }
@@ -93,13 +95,13 @@ static void _on_find_related_events (ZeitgeistResultSet *pEvents, Icon *pIcon)
 {
 	cd_debug ("%s ()", __func__);
 	cd_recent_events_reset_uri_list ();
-	if (s_pMenu == NULL)
+	if (s_pMenu == NULL || s_pSubMenu == NULL)
 		return;
 	
 	ZeitgeistEvent     *event;
 	ZeitgeistSubject   *subject;
 	gint                i,n;
-	GtkWidget *pSubMenu = NULL;
+	GtkWidget *pSubMenu = s_pSubMenu;
 	const gchar *cEventURI;
 	gchar *cName = NULL, *cURI = NULL, *cIconName = NULL, *cIconPath;
 	gchar *cCommand;
@@ -109,11 +111,11 @@ static void _on_find_related_events (ZeitgeistResultSet *pEvents, Icon *pIcon)
 	gint iDesiredIconSize = cairo_dock_search_icon_size (GTK_ICON_SIZE_LARGE_TOOLBAR); // 24px
 	GHashTable *pHashTable = g_hash_table_new_full (g_str_hash, g_str_equal, NULL, NULL);  // used to prevent doubles
 	
-	CD_APPLET_ADD_SEPARATOR_IN_MENU (s_pMenu);
-	
-	pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Recent files"), s_pMenu, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);  // GLDI_ICON_NAME_FILE
-	while (zeitgeist_result_set_has_next (pEvents))
+	if (!zeitgeist_result_set_has_next (pEvents))
 	{
+		CD_APPLET_ADD_IN_MENU (_("No related files"), NULL, s_pSubMenu);
+	}
+	else do {
 		#ifdef ZEITGEIST_1_0
 		event = zeitgeist_result_set_next (pEvents);
 		#else
@@ -162,7 +164,7 @@ static void _on_find_related_events (ZeitgeistResultSet *pEvents, Icon *pIcon)
 			
 			g_hash_table_insert (pHashTable, (gchar*)cEventURI, NULL);  // cEventURI stays valid in this function.
 		}
-	}
+	} while (zeitgeist_result_set_has_next (pEvents));
 	g_hash_table_destroy (pHashTable);
 	
 	if (pSubMenu)
@@ -190,8 +192,10 @@ CD_APPLET_ON_BUILD_MENU_PROTO
 		}
 		else if (CD_APPLET_CLICKED_ICON->pMimeTypes != NULL)
 		{
-			cd_find_recent_related_files ((const gchar **)CD_APPLET_CLICKED_ICON->pMimeTypes, (CDOnGetEventsFunc)_on_find_related_events, CD_APPLET_CLICKED_ICON);
 			s_pMenu = pAppletMenu;
+			CD_APPLET_ADD_SEPARATOR_IN_MENU (s_pMenu);
+			s_pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Recent files"), s_pMenu, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);  // GLDI_ICON_NAME_FILE
+			cd_find_recent_related_files ((const gchar **)CD_APPLET_CLICKED_ICON->pMimeTypes, (CDOnGetEventsFunc)_on_find_related_events, CD_APPLET_CLICKED_ICON);
 			g_signal_connect (G_OBJECT (pAppletMenu), "destroy", G_CALLBACK (_on_delete_menu), NULL);
 		}
 	}
