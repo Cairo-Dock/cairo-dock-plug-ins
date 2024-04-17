@@ -144,7 +144,7 @@ CD_APPLET_INIT_BEGIN
 			(GldiUpdateSyncFunc) _unthreaded_task,
 			myApplet);
 	myData.bAcquisitionOK = TRUE;
-	gldi_task_launch_delayed (myData.pPeriodicTask, 0.);  // launch in idle.
+	gldi_task_launch_delayed (myData.pPeriodicTask, 0);  // launch in idle.
 	
 	// On gere l'appli "moniteur systeme".
 	if (myConfig.cSystemMonitorClass)

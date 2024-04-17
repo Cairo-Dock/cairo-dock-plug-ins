@@ -383,7 +383,7 @@ static void _on_change_order (int iClickedButton, GtkWidget *pInteractiveWidget,
 			_cd_sysmonitor_update_top_list (pSharedMemory);  // on redessine.
 		}
 		
-		gldi_task_launch_delayed (myData.pTopTask, 1000. * myConfig.iProcessCheckInterval);  // restart the task with a delay equal to the interval, to keep the measure accurate.
+		gldi_task_launch_delayed (myData.pTopTask, 1000 * myConfig.iProcessCheckInterval);  // restart the task with a delay equal to the interval, to keep the measure accurate.
 	}
 	gldi_object_ref (GLDI_OBJECT (pDialog));  // keep the dialog alive.
 }
