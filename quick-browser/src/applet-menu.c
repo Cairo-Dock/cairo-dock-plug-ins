@@ -348,13 +348,7 @@ static gboolean _on_click_item (GtkWidget *pWidget, GdkEventButton* pButton, CDQ
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Copy the location"), GLDI_ICON_NAME_COPY, _cd_copy_location, pMenu, pItem);
 		
 		gtk_widget_show_all (pMenu);
-		gtk_menu_popup (GTK_MENU (pMenu),
-			NULL,
-			NULL,
-			NULL,  // popup on mouse.
-			NULL,
-			1,
-			gtk_get_current_event_time ());
+		gtk_menu_popup_at_pointer (GTK_MENU (pMenu), (GdkEvent*)pButton);
 		g_free (cUri);
 		CD_APPLET_LEAVE (TRUE); // do not remove quick_browser menu now
 	}
