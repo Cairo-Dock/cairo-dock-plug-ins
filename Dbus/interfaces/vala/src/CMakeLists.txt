@@ -5,6 +5,8 @@ else()
 	set (VALA_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 endif()
 
+add_compile_options (-fPIC -Wno-all -Wno-incompatible-pointer-types)
+
 # now, compile it as any normal C lib.
 add_library (${CDAPPLET} SHARED ${VALA_SRC_DIR}/${CDAPPLET}.c)
 STRING (REGEX REPLACE "\\..*" "" SOVERSION_VALA "${VERSION_VALA}")
@@ -17,8 +19,6 @@ set_target_properties (${CDAPPLET} PROPERTIES
 	# avoid conflicts between library and binary target names
 	#OUTPUT_NAME ${PROJECT_NAME}
 )
-add_definitions (-fPIC -Wno-all)
-
 pkg_check_modules ("CDAPPLET_DEPS" "gobject-2.0" "gio-2.0")
 
 include_directories (
