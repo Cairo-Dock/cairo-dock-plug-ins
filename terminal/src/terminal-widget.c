@@ -449,14 +449,7 @@ static gboolean applet_on_terminal_press_cb(GtkWidget *vterm, GdkEventButton *ev
 		GtkWidget *menu = _terminal_build_menu_tab (vterm);
 
 		gtk_widget_show_all (menu);
-
-		gtk_menu_popup (GTK_MENU (menu),
-			NULL,
-			NULL,
-			NULL,
-			NULL,
-			1,
-			gtk_get_current_event_time ());
+		gtk_menu_popup_at_pointer (GTK_MENU (menu), (GdkEvent*)event);
 	}
 	gtk_window_present (GTK_WINDOW (myContainer->pWidget));
 	return FALSE;
@@ -733,14 +726,7 @@ static gboolean on_button_press_tab (GtkWidget* pWidget,
 			GtkWidget *menu = _terminal_build_menu_tab (vterm);
 			
 			gtk_widget_show_all (menu);
-			
-			gtk_menu_popup (GTK_MENU (menu),
-				NULL,
-				NULL,
-				NULL,
-				NULL,
-				1,
-				gtk_get_current_event_time ());
+			gtk_menu_popup_at_pointer (GTK_MENU (menu), (GdkEvent*)pButton);
 			return TRUE;  // on empeche le menu de cairo-dock d'apparaitre par-dessus dans le cas d'un desklet.
 		}
 	}
