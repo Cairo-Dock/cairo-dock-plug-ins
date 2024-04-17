@@ -273,11 +273,7 @@ static void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cNa
 	if (fOrder)
 	{
 		if (iSortType == CAIRO_DOCK_FM_SORT_BY_DATE)
-		{
-			GTimeVal t;
-			g_file_info_get_modification_time (pFileInfo, &t);
-			*fOrder = t.tv_sec;
-		}
+			*fOrder =  g_file_info_get_attribute_uint64 (pFileInfo, G_FILE_ATTRIBUTE_TIME_MODIFIED);
 		else if (iSortType == CAIRO_DOCK_FM_SORT_BY_ACCESS)
 			*fOrder =  g_file_info_get_attribute_uint64 (pFileInfo, G_FILE_ATTRIBUTE_TIME_ACCESS);
 		else if (iSortType == CAIRO_DOCK_FM_SORT_BY_SIZE)
@@ -567,11 +563,7 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 			if (iSortType == CAIRO_DOCK_FM_SORT_BY_SIZE)
 				icon->fOrder = g_file_info_get_size (pFileInfo);
 			else if (iSortType == CAIRO_DOCK_FM_SORT_BY_DATE)
-			{
-				GTimeVal t;
-				g_file_info_get_modification_time (pFileInfo, &t);
-				icon->fOrder = t.tv_sec;
-			}
+				icon->fOrder = g_file_info_get_attribute_uint64 (pFileInfo, G_FILE_ATTRIBUTE_TIME_MODIFIED);
 			else if (iSortType == CAIRO_DOCK_FM_SORT_BY_TYPE)
 				icon->fOrder = (cMimeType != NULL ? *((int *) cMimeType) : 0);
 			if (icon->fOrder == 0)  // not so good but better than nothing, no?
