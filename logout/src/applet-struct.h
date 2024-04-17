@@ -62,12 +62,14 @@ typedef enum {
 	} CDLoginManager;
 	
 typedef struct {
+	GdkEvent *pEvent;
 	gboolean bCanHibernate;
 	gboolean bCanHybridSleep;
 	gboolean bCanSuspend;
 	gboolean bCanStop;
 	gboolean bCanRestart;
 	gboolean bHasGuestAccount;
+	gboolean bShowMenu;
 	CDLoginManager iLoginManager;
 	} CDSharedMemory;
 

@@ -25,6 +25,7 @@
 #include "applet-reboot-required.h"
 #include "applet-timer.h"
 #include "applet-init.h"
+#include "applet-logout.h"
 
 CD_APPLET_DEFINE_BEGIN ("logout",
 	2, 0, 0,
@@ -80,6 +81,8 @@ CD_APPLET_INIT_BEGIN
 	cairo_dock_fm_add_monitor_full (CD_REBOOT_NEEDED_FILE, FALSE, NULL, (CairoDockFMMonitorCallback) cd_logout_check_reboot_required, NULL);
 	// maybe not very clean to directly use 'CD_REBOOT_NEEDED' but it's just to not use two new variables for this tiny enum ;)
 	cd_logout_check_reboot_required_init ();
+	
+	cd_logout_check_capabilities (2000);
 
 CD_APPLET_INIT_END
 

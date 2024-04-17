@@ -27,5 +27,6 @@ void cd_logout_display_actions (void);
 
 gchar *cd_logout_check_icon (const gchar *cIconStock, gint iIconSize);
 
+void cd_logout_check_capabilities (guint delay);
 
 #endif

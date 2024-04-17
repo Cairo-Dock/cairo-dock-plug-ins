@@ -53,7 +53,7 @@ static void cd_logout_switch_to_guest (void);
 static void _free_user (CDUser *pUser);
 static GList *cd_logout_get_users_list (void);
 
-static void _display_menu (void);
+static void _display_menu (const GdkEvent *pEvent);
 
 
   ////////////////////
@@ -207,7 +207,8 @@ static gboolean _cd_logout_got_capabilities (CDSharedMemory *pSharedMemory)
 		myData.bCanStop, myData.bHasGuestAccount);
 	
 	// display the menu that has been asked beforehand.
-	_display_menu ();
+	if (pSharedMemory->bShowMenu)
+		_display_menu (pSharedMemory->pEvent);
 	
 	// sayonara task-san ^^
 	gldi_task_discard (myData.pTask);
@@ -216,25 +217,44 @@ static gboolean _cd_logout_got_capabilities (CDSharedMemory *pSharedMemory)
 	CD_APPLET_LEAVE (FALSE);
 }
 
+static void _free_memory (CDSharedMemory *pSharedMemory)
+{
+	if (pSharedMemory)
+	{
+		if (pSharedMemory->pEvent) gdk_event_free (pSharedMemory->pEvent);
+		g_free (pSharedMemory);
+	}
+}
+
+void cd_logout_check_capabilities (guint delay)
+{
+	CDSharedMemory *pSharedMemory = g_new0 (CDSharedMemory, 1);
+	pSharedMemory->pEvent = gtk_get_current_event ();
+	myData.pTask = gldi_task_new_full (0,
+		(GldiGetDataAsyncFunc) _cd_logout_check_capabilities_async,
+		(GldiUpdateSyncFunc) _cd_logout_got_capabilities,
+		(GFreeFunc) _free_memory,
+		pSharedMemory);
+	if (delay) gldi_task_launch_delayed (myData.pTask, delay);
+	else gldi_task_launch (myData.pTask);
+}
 
 void cd_logout_display_actions (void)
 {
-	if (myData.pTask != NULL)
-		return;
 	if (! myData.bCapabilitiesChecked)
+		cd_logout_check_capabilities (0);
+	if (myData.pTask != NULL)
 	{
-		CDSharedMemory *pSharedMemory = g_new0 (CDSharedMemory, 1);
-		myData.pTask = gldi_task_new_full (0,
-			(GldiGetDataAsyncFunc) _cd_logout_check_capabilities_async,
-			(GldiUpdateSyncFunc) _cd_logout_got_capabilities,
-			(GFreeFunc) g_free,
-			pSharedMemory);
-		gldi_task_launch (myData.pTask);
+		/**note: pSharedMemory will only be freed in the main thread after pTask
+		 * has been set to NULL, so it is safe to access it. Also, bShowMenu and
+		 * pEvent are only accessed in the main thread (in _cd_logout_got_capabilities ())
+		 * so we can set them here without worry */
+		CDSharedMemory *pSharedMemory = (CDSharedMemory*)myData.pTask->pSharedMemory;
+		pSharedMemory->bShowMenu = TRUE;
+		pSharedMemory->pEvent = gtk_get_current_event ();
+		return;
 	}
-	else
-	{
-		_display_menu ();
-	}
+	_display_menu (NULL);
 }
 
 
@@ -409,12 +429,12 @@ static GtkWidget *_build_menu (GtkWidget **pShutdownMenuItem)
 	return pMenu;
 }
 
-static void _display_menu (void)
+static void _display_menu (const GdkEvent *pEvent)
 {
 	// build and show the menu
 	GtkWidget *pShutdownMenuItem = NULL;
 	GtkWidget *pMenu = _build_menu (&pShutdownMenuItem);
-	CD_APPLET_POPUP_MENU_ON_MY_ICON (pMenu);
+	CD_APPLET_POPUP_MENU_ON_MY_ICON_WITH_EVENT (pMenu, pEvent);
 	
 	// select the first (or last) item, which corresponds to the 'shutdown' action.
 	gtk_menu_shell_select_item (GTK_MENU_SHELL (pMenu), pShutdownMenuItem);  // must be done here, after the menu has been realized.
