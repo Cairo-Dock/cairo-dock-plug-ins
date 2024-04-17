@@ -608,13 +608,7 @@ static gboolean on_button_released_calendar (GtkWidget *widget,
 		g_free (cLabel);
 		
 		gtk_widget_show_all (GTK_WIDGET (pMenu));
-		gtk_menu_popup (GTK_MENU (pMenu),
-			NULL,
-			NULL,
-			NULL,
-			NULL,  // data
-			1,
-			gtk_get_current_event_time ());
+		gtk_menu_popup_at_pointer (GTK_MENU (pMenu), (GdkEvent*)pButton);
 	}
 	return FALSE;
 }
