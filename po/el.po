@@ -2488,7 +2488,7 @@ msgstr "ψευδαίσθηση"
 
 #: ../illusion/src/applet-init.c:33
 msgid ""
-"This plugin provides animations for appearance & disappearance of icons."
+"This plugin provides animations for the appearance &amp; disappearance of icons."
 msgstr ""
 "Αυτό το πρόσθετο παρέχει εφέ κίνησης για την εμφάνιση και απόκρυψη των "
 "εικονιδίων."
@@ -7771,7 +7771,7 @@ msgstr ""
 "εκκινητή στο dock. Αφήστε το κενό για χρήση της προεπιλογής."
 
 #: ../drop-indicator/data/messages:7
-msgid "Image for the drag & drop animation:"
+msgid "Image for the drag &amp; drop animation:"
 msgstr "Εικόνα για το εφέ κίνησης της μετακίνησης και άφεσης:"
 
 #: ../drop-indicator/data/messages:9

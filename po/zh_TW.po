@@ -2414,7 +2414,7 @@ msgstr "幻象"
 
 #: ../illusion/src/applet-init.c:33
 msgid ""
-"This plugin provides animations for appearance & disappearance of icons."
+"This plugin provides animations for the appearance &amp; disappearance of icons."
 msgstr "此插件提供圖示的顯示與消失動畫。"
 
 #: ../keyboard-indicator/src/applet-init.c:32
@@ -7519,7 +7519,7 @@ msgid ""
 msgstr "典型的箭頭，當您試著要 拖-放 一個新的快速啟動進入 Dock 時會顯示出來。要使用預設的圖形請讓它空白。"
 
 #: ../drop-indicator/data/messages:7
-msgid "Image for the drag & drop animation:"
+msgid "Image for the drag &amp; drop animation:"
 msgstr "拖-放 動畫的圖形："
 
 #: ../drop-indicator/data/messages:9

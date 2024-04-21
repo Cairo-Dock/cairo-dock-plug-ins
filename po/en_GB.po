@@ -2553,9 +2553,9 @@ msgstr "Illusion"
 
 #: ../illusion/src/applet-init.c:33
 msgid ""
-"This plugin provides animations for appearance & disappearance of icons."
+"This plugin provides animations for the appearance &amp; disappearance of icons."
 msgstr ""
-"This plugin provides animations for appearance & disappearance of icons."
+"This plugin provides animations for the appearance &amp; disappearance of icons."
 
 #: ../keyboard-indicator/src/applet-init.c:32
 msgid "keyboard indicator"
@@ -7833,8 +7833,8 @@ msgstr ""
 "launcher into the dock. Leave this empty to use the default."
 
 #: ../drop-indicator/data/messages:7
-msgid "Image for the drag & drop animation:"
-msgstr "Image for the drag & drop animation:"
+msgid "Image for the drag &amp; drop animation:"
+msgstr "Image for the drag &amp; drop animation:"
 
 #: ../drop-indicator/data/messages:9
 msgid ""
