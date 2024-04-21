@@ -2483,7 +2483,7 @@ msgstr "Иллюзии"
 
 #: ../illusion/src/applet-init.c:33
 msgid ""
-"This plugin provides animations for appearance & disappearance of icons."
+"This plugin provides animations for the appearance &amp; disappearance of icons."
 msgstr "Этот плагин предлагает эффекты появления и исчезновения значков."
 
 #: ../keyboard-indicator/src/applet-init.c:32
@@ -7724,7 +7724,7 @@ msgstr ""
 "панель новый значок запуска. Оставьте пустым, чтобы использовать стандартный."
 
 #: ../drop-indicator/data/messages:7
-msgid "Image for the drag & drop animation:"
+msgid "Image for the drag &amp; drop animation:"
 msgstr "Изображение для анимации перетаскивания:"
 
 #: ../drop-indicator/data/messages:9

@@ -1054,7 +1054,7 @@ msgstr "有効なURLではないようです。"
 
 #: ../RSSreader/src/applet-notifications.c:124
 msgid "Paste a new RSS Url (drag and drop)"
-msgstr "新しいRSS URLを貼り付け（ドラッグ&ドロップ）"
+msgstr "新しいRSS URLを貼り付け（ドラッグ&amp;ドロップ）"
 
 #: ../RSSreader/src/applet-notifications.c:128
 msgid "Open with your web browser"
@@ -2459,7 +2459,7 @@ msgstr "イリュージョン"
 
 #: ../illusion/src/applet-init.c:33
 msgid ""
-"This plugin provides animations for appearance & disappearance of icons."
+"This plugin provides animations for the appearance &amp; disappearance of icons."
 msgstr "アイコンの出現と消失のアニメーションを提供するプラグイン"
 
 #: ../keyboard-indicator/src/applet-init.c:32
@@ -3253,7 +3253,7 @@ msgid ""
 msgstr ""
 "あらゆるショートカットに素早くアクセスできるアプレット。\n"
 "ディスクやネットワークポイント、Nautilusブックマーク（Nautilusは必須ではありません）を管理できます。\n"
-"ブックマークを追加するには、メインのアイコンまたはサブ・ドックにフォルダをドラッグ&ドロップします。\n"
+"ブックマークを追加するには、メインのアイコンまたはサブ・ドックにフォルダをドラッグ&amp;ドロップします。\n"
 "メイン・アイコンを中クリックすると、ホームフォルダが表示されます。\n"
 "マウントポイント・アイコンの中クリックで、素早く（アン）マウント。\n"
 "アプレットは、空き容量や種類などの有益なディスク情報を表示することもできます。"
@@ -7624,7 +7624,7 @@ msgstr ""
 
 #: ../drop-indicator/data/messages:1
 msgid "Drag and drop indicator"
-msgstr "ドロップ&ドロップ標示"
+msgstr "ドロップ&amp;ドロップ標示"
 
 #: ../drop-indicator/data/messages:5
 msgid ""
@@ -7634,7 +7634,7 @@ msgstr ""
 "ドックに新規ランチャーをドロップしようとするときなどに表示されるもので、典型なのは矢印です。デフォルトの画像を使用するには空欄のままにしてください。"
 
 #: ../drop-indicator/data/messages:7
-msgid "Image for the drag & drop animation:"
+msgid "Image for the drag &amp; drop animation:"
 msgstr "ドラッグ＆ドロップ・アニメーションの画像 :"
 
 #: ../drop-indicator/data/messages:9

@@ -2448,8 +2448,8 @@ msgstr "ilúzie"
 
 #: ../illusion/src/applet-init.c:33
 msgid ""
-"This plugin provides animations for appearance & disappearance of icons."
-msgstr "Tento plug-in umožňuje animácie pre vzhľad & miznutie ikôn."
+"This plugin provides animations for the appearance &amp; disappearance of icons."
+msgstr "Tento plug-in umožňuje animácie pre vzhľad &amp; miznutie ikôn."
 
 #: ../keyboard-indicator/src/applet-init.c:32
 msgid "keyboard indicator"
@@ -7651,7 +7651,7 @@ msgstr ""
 "spúšťačov do docku. Ponechať prázdne pre použitie predvoleného."
 
 #: ../drop-indicator/data/messages:7
-msgid "Image for the drag & drop animation:"
+msgid "Image for the drag &amp; drop animation:"
 msgstr "Obrátok pre animáciu ťahaj a pusti :"
 
 #: ../drop-indicator/data/messages:9

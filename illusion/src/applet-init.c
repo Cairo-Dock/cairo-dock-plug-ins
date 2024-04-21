@@ -30,7 +30,7 @@
 CD_APPLET_DEFINE_BEGIN (N_("illusion"),
 	2, 0, 0,
 	CAIRO_DOCK_CATEGORY_THEME,
-	N_("This plugin provides animations for appearance & disappearance of icons."),
+	N_("This plugin provides animations for the appearance &amp; disappearance of icons."),
 	"Fabounet (Fabrice Rey)")
 	if (! g_bUseOpenGL)
 		return FALSE;

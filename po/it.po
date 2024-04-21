@@ -2576,7 +2576,7 @@ msgstr "Illusione"
 
 #: ../illusion/src/applet-init.c:33
 msgid ""
-"This plugin provides animations for appearance & disappearance of icons."
+"This plugin provides animations for the appearance &amp; disappearance of icons."
 msgstr ""
 "Questo plugin fornisce animazioni per l'apparire/scomparire delle icone."
 
@@ -7913,7 +7913,7 @@ msgstr ""
 "predefinito."
 
 #: ../drop-indicator/data/messages:7
-msgid "Image for the drag & drop animation:"
+msgid "Image for the drag &amp; drop animation:"
 msgstr "Percorso dell'immagine per l'animazione di trascinamento:"
 
 #: ../drop-indicator/data/messages:9

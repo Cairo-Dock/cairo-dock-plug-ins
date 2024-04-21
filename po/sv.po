@@ -2562,7 +2562,7 @@ msgstr "illusion"
 
 #: ../illusion/src/applet-init.c:33
 msgid ""
-"This plugin provides animations for appearance & disappearance of icons."
+"This plugin provides animations for the appearance &amp; disappearance of icons."
 msgstr ""
 "Detta insticksprogram tillhandahåller animeringar för framträdande & "
 "försvinnande av ikoner."
@@ -7860,7 +7860,7 @@ msgstr ""
 "startare i dockan. Lämna detta tomt för att använda standard."
 
 #: ../drop-indicator/data/messages:7
-msgid "Image for the drag & drop animation:"
+msgid "Image for the drag &amp; drop animation:"
 msgstr "Bild för dra-och-släppanimeringen:"
 
 #: ../drop-indicator/data/messages:9
