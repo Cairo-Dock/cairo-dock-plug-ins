@@ -558,23 +558,15 @@ GtkWidget *cd_clipper_build_persistent_items_menu (void)
 	return pMenu;
 }
 
-static void _place_menu (GtkMenu *menu, gint *x, gint *y, gboolean *push_in, gpointer user_data)
-{
-	g_return_if_fail (myContainer != NULL && myIcon != NULL);
-	*x = myContainer->iWindowPositionX + myIcon->fDrawX + myIcon->fWidth * myIcon->fScale/2;
-	*y = myContainer->iWindowPositionY + myIcon->fDrawY + myIcon->fHeight * myIcon->fScale/2;
-	*push_in = TRUE;  // pour que le menu se redimensionne.
-}
 void cd_clipper_popup_menu (GtkWidget *pMenu)
 {
 	gtk_widget_show_all (pMenu);
-	gtk_menu_popup (GTK_MENU (pMenu),
-		NULL,
-		NULL,
-		(GtkMenuPositionFunc) (myConfig.bMenuOnMouse ? NULL : _place_menu),
-		NULL,
-		0,
-		gtk_get_current_event_time ());
+	if (myConfig.bMenuOnMouse)
+	{
+		GldiMenuParams *pParams = g_object_get_data (G_OBJECT(pMenu), "gldi-params");
+		if (pParams) pParams->pIcon = NULL;
+	}
+	CD_APPLET_POPUP_MENU_ON_MY_ICON (pMenu);
 }
 
 gchar *cd_clipper_concat_items_of_type (CDClipperItemType iType, const gchar *cSeparator)

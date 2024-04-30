@@ -457,7 +457,7 @@ void cd_slider_start (GldiModuleInstance *myApplet, gboolean bDelay)
 	
 	// launch the parsing.
 	if (bDelay)
-		gldi_task_launch_delayed (myData.pMeasureDirectory, cairo_dock_is_loading () ? 1500. : 0.);  // launch with a delay or just in the next main loop event.
+		gldi_task_launch_delayed (myData.pMeasureDirectory, cairo_dock_is_loading () ? 1500 : 0);  // launch with a delay or just in the next main loop event.
 	else
 		gldi_task_launch (myData.pMeasureDirectory);
 }

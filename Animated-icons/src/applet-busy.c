@@ -31,7 +31,7 @@ static void init (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, double 
 	
 	// copy the image buffer on the icon, because we'll update the frame number for each icon.
 	g_free (pData->pBusyImage);
-	pData->pBusyImage = g_memdup (myData.pBusyImage, sizeof (CairoDockImageBuffer));
+	pData->pBusyImage = g_memdup2 (myData.pBusyImage, sizeof (CairoDockImageBuffer));
 	cairo_dock_image_buffer_set_timelength (pData->pBusyImage, 1.e-3 * myConfig.iBusyDuration);
 	cairo_dock_image_buffer_rewind (pData->pBusyImage);
 }

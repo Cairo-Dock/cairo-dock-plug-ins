@@ -1585,7 +1585,7 @@ msgid ""
 "This applet shows you the CPU load, RAM usage, graphic card temperature, "
 "etc.\n"
 "Middle click on the icon to get some valuable info.\n"
-"Left click on the icon to get a list of the most ressources using programs.\n"
+"Left click on the icon to get a list of the most resources using programs.\n"
 "You can instanciate this applet several times to show different values each "
 "time."
 msgstr ""
@@ -2486,7 +2486,7 @@ msgstr ""
 
 #: ../illusion/src/applet-init.c:33
 msgid ""
-"This plugin provides animations for appearance & disappearance of icons."
+"This plugin provides animations for the appearance &amp; disappearance of icons."
 msgstr ""
 
 #: ../keyboard-indicator/src/applet-init.c:32
@@ -2780,7 +2780,7 @@ msgstr ""
 msgid ""
 "This applet is very useful to warn you when you get new e-mails\n"
 "It can check in any kind of mailbox (yahoo, gmail, etc)\n"
-"Left-click to launch the prefered mail application,\n"
+"Left-click to launch the preferred mail application,\n"
 "Middle-click to refresh all the mailboxes."
 msgstr ""
 
@@ -2972,7 +2972,7 @@ msgstr ""
 msgid ""
 "This applet shows you the bit rate of your internet connection and some "
 "stats about it.\n"
-"Left-click on the icon to have the total amount of data transfered\n"
+"Left-click on the icon to have the total amount of data transferred\n"
 "Middle-click to (de)activate the network (needs NetworManager)"
 msgstr ""
 
@@ -7526,7 +7526,7 @@ msgid ""
 msgstr ""
 
 #: ../drop-indicator/data/messages:7
-msgid "Image for the drag & drop animation:"
+msgid "Image for the drag &amp; drop animation:"
 msgstr ""
 
 #: ../drop-indicator/data/messages:9

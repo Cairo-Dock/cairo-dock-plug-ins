@@ -130,13 +130,7 @@ void on_terminal_drag_data_received (GtkWidget *pWidget, GdkDragContext *dc, gin
 
 	gtk_widget_show_all (menu);
 
-	gtk_menu_popup (GTK_MENU (menu),
-		NULL,
-		NULL,
-		NULL,
-		NULL,
-		1,
-		gtk_get_current_event_time ());
+	gtk_menu_popup_at_pointer (GTK_MENU (menu), NULL);
 	
 	gtk_drag_finish (dc, TRUE, FALSE, time);
 }

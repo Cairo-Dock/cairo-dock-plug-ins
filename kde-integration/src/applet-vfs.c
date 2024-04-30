@@ -315,11 +315,7 @@ void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cU
 	GFileType iFileType = g_file_info_get_file_type (pFileInfo);
 	
 	if (iSortType == CAIRO_DOCK_FM_SORT_BY_DATE)
-	{
-		GTimeVal t;
-		g_file_info_get_modification_time (pFileInfo, &t);
-		*fOrder = t.tv_sec;
-	}
+		*fOrder = g_file_info_get_attribute_uint64 (pFileInfo, G_FILE_ATTRIBUTE_TIME_MODIFIED);
 	else if (iSortType == CAIRO_DOCK_FM_SORT_BY_SIZE)
 		*fOrder = g_file_info_get_size (pFileInfo);
 	else if (iSortType == CAIRO_DOCK_FM_SORT_BY_TYPE)
@@ -733,11 +729,7 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 			if (iSortType == CAIRO_DOCK_FM_SORT_BY_SIZE)
 				icon->fOrder = g_file_info_get_size (pFileInfo);
 			else if (iSortType == CAIRO_DOCK_FM_SORT_BY_DATE)
-			{
-				GTimeVal t;
-				g_file_info_get_modification_time (pFileInfo, &t);
-				icon->fOrder = t.tv_sec;
-			}
+				icon->fOrder = g_file_info_get_attribute_uint64 (pFileInfo, G_FILE_ATTRIBUTE_TIME_MODIFIED);
 			else if (iSortType == CAIRO_DOCK_FM_SORT_BY_TYPE)
 				icon->fOrder = (cMimeType != NULL ? *((int *) cMimeType) : 0);
 			if (icon->fOrder == 0)  // un peu moyen mais mieux que rien non ?

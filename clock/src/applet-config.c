@@ -425,13 +425,11 @@ static void _cd_clock_search_for_location (GtkButton *pButton, GtkWidget *pLocat
 		G_CALLBACK (_cd_clock_delete_menu),
 		NULL);
 	
-	gtk_menu_popup (GTK_MENU (pMenu),
-		NULL,
-		NULL,
-		NULL,
-		NULL,
-		1,
-		gtk_get_current_event_time ());
+	gtk_menu_popup_at_widget (GTK_MENU (pMenu),
+		pLocationEntry,
+		GDK_GRAVITY_SOUTH,
+		GDK_GRAVITY_NORTH,
+		NULL);
 }
 
 void cd_clock_free_timezone_list (void)

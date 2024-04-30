@@ -320,13 +320,7 @@ static gboolean _on_click_module_tree_view (GtkTreeView *pTreeView, GdkEventButt
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Delete this event"), GLDI_ICON_NAME_REMOVE, _cd_delete_event, pMenu, GUINT_TO_POINTER (id));
 			
 			gtk_widget_show_all (pMenu);
-			gtk_menu_popup (GTK_MENU (pMenu),
-				NULL,
-				NULL,
-				NULL,  // popup on mouse.
-				NULL,
-				1,
-				gtk_get_current_event_time ());
+			gtk_menu_popup_at_pointer (GTK_MENU (pMenu), (GdkEvent*)pButton);
 		}
 	}
 	return FALSE;

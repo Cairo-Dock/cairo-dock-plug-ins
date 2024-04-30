@@ -153,24 +153,30 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 	GList *pOldBookmarkList;
 	Icon *icon;
 	GList *ic;
+	double fCurrentOrder = 1.;
 	// optimization: skip the disks and networks, and point on the first bookmark.
 	for (ic = pIconsList; ic != NULL; ic = ic->next)
 	{
 		icon = ic->data;
+		icon->fOrder = fCurrentOrder++;
 		if (icon->iGroup == (CairoDockIconGroup) CD_BOOKMARK_GROUP)
 			break;
 	}
 	/* Note that since the first bookmark is always the Home Folder,
 	 * 'pIconsList' will never change when inserting/removing a bookmark.
 	 */
-	pIconsList = ic;
 	GldiContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 	CD_APPLET_LEAVE_IF_FAIL (pContainer != NULL);
 
-	// split the list: items can have been removed
-	pOldBookmarkList = pIconsList->next;
-	pIconsList->next = NULL;
-	pOldBookmarkList->prev = NULL;
+	// make a copy of a sublist that can be manipulated independently
+	// of pIconsList which is part of our subdock's icons
+	pOldBookmarkList = ic->next;
+	if (pOldBookmarkList)
+	{
+		pOldBookmarkList->prev = NULL;
+		pOldBookmarkList = g_list_copy (pOldBookmarkList);
+		ic->next->prev = ic;
+	}
 
 	// Bookmarks file has been modified
 	if (iEventType == CAIRO_DOCK_FILE_CREATED || iEventType == CAIRO_DOCK_FILE_MODIFIED)
@@ -197,7 +203,6 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 			 * reorder each icon in case a bookmark has changed its place, or
 			 * if a new one appeared (the first one is always the Home Folder).
 			 */
-			double fCurrentOrder = 1.;
 			gchar *cOneBookmark;
 			Icon *pNewIcon, *pExistingIcon;
 			GList *pExistingIconNode;
@@ -222,7 +227,6 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 					pExistingIcon = pExistingIconNode->data;
 					// move this node to the subdock icons list
 					pOldBookmarkList = g_list_delete_link (pOldBookmarkList, pExistingIconNode);
-					pIconsList = g_list_insert (pIconsList, pExistingIcon, 1); // after the home, will be sorted later
 					if (cUserName && g_strcmp0 (pExistingIcon->cName, cUserName) != 0)
 					{
 						CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (pExistingIcon); // will destroy it
@@ -230,7 +234,7 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 					}
 					else
 					{
-						fCurrentOrder++;
+						pExistingIcon->fOrder = fCurrentOrder++;
 						g_free (cOneBookmark);
 					}
 				}
@@ -255,8 +259,6 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 			}
 			g_free (cBookmarksList);
 
-			_remove_old_icons_and_free_list (pOldBookmarkList);
-
 			/* Again, since 'Home Folder' is always the first bookmark,
 			 * the head of the list won't change even if there are only bookmarks
 			 * (so we don't need to re-assigne it to the container).
@@ -264,6 +266,7 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 			cairo_dock_sort_icons_by_order (pIconsList);
 		}
 	}
+	_remove_old_icons_and_free_list (pOldBookmarkList);
 	CD_APPLET_LEAVE();
 }
 

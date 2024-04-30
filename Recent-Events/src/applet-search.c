@@ -242,8 +242,7 @@ static void on_related_events_received (ZeitgeistLog  *log, GAsyncResult *res, g
 	}
 	cd_debug ("Got %i events:", zeitgeist_result_set_size (events));
 	
-	if (zeitgeist_result_set_has_next (events))
-		pCallback (events, data);
+	pCallback (events, data);
 	g_object_unref (events);
 }
 void cd_find_recent_related_files (const gchar **cMimeTypes, CDOnGetEventsFunc pCallback, gpointer data)  // right-click on a launcher/appli

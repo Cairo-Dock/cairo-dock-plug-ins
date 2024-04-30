@@ -1,6 +1,6 @@
 ########### requirements ###############
 
-cmake_minimum_required (VERSION 2.6)
+cmake_minimum_required (VERSION 3.16.0)
 find_package (PkgConfig)
 include (CheckLibraryExists)
 include (CheckIncludeFiles)
@@ -11,7 +11,7 @@ include ("${CMAKE_CURRENT_SOURCE_DIR}/cmake_modules/GNUInstallDirs.cmake")
 ########### project ###############
 
 project ("cairo-dock-plugins")
-set (VERSION "3.5.0")
+set (VERSION "3.5.99.beta1")
 
 add_definitions (-std=gnu99 -Wall -Werror-implicit-function-declaration) # -Wextra -Wwrite-strings -Wuninitialized -Werror-implicit-function-declaration -Wstrict-prototypes -Wreturn-type -Wparentheses -Warray-bounds)
 if (NOT DEFINED CMAKE_BUILD_TYPE)
@@ -197,30 +197,15 @@ endif()
 ## Indicator
 enable_if_not_defined (enable-indicator-support)
 if (enable-indicator-support)
-	set (INDICATOR_APPLET_MODULE indicator3-0.4)
+	set (INDICATOR_APPLET_MODULE ayatana-indicator3-0.4)
 	pkg_check_modules (INDICATOR_APPLET ${INDICATOR_APPLET_MODULE})
-	if (INDICATOR_APPLET_FOUND)
-		set (INDICATOR_NEW_VERSION TRUE)  # oneiric and newer
-	else()
-		set (INDICATOR_APPLET_MODULE indicator3)
-		pkg_check_modules (INDICATOR_APPLET ${INDICATOR_APPLET_MODULE})
-	endif()
 endif()
 
 ## libido
 enable_if_not_defined (enable-libido-support)
 if (enable-libido-support)
-	set (IDO_MODULE libido3-0.1)
+	set (IDO_MODULE libayatana-ido3-0.4)
 	pkg_check_modules (IDO ${IDO_MODULE})
-	if (IDO_FOUND)
-		STRING (REGEX REPLACE "\\..*" "" IDO_MAJOR "${IDO_VERSION}")
-		STRING (REGEX REPLACE "[0-9]*\\.([^ ]+)" "\\1" IDO_MINOR "${IDO_VERSION}")  # 0.1.7 => 1.7
-		STRING (REGEX REPLACE "\\.[0-9]*" "" IDO_MINOR "${IDO_MINOR}")
-		if (${IDO_MAJOR} GREATER 13
-		    OR ${IDO_MAJOR} EQUAL 13 AND ${IDO_MINOR} GREATER 9)
-			set (INDICATOR_NG 1)
-		endif()
-	endif()
 endif()
 
 ## Extract versions of DBusMenu
@@ -262,21 +247,16 @@ if (INDICATOR_APPLET_FOUND)
 		set (INDICATOR_MESSAGES_HAS_LOZENGE 0)
 	endif()
 
-	if (INDICATOR_NEW_VERSION)  # oneiric and newer
-		execute_process(
-			COMMAND pkg-config --variable=iconsdir indicator3-0.4
-			OUTPUT_VARIABLE INDICATORICONSDIR)
-		execute_process(
-			COMMAND pkg-config --variable=indicatordir indicator3-0.4
-			OUTPUT_VARIABLE INDICATORDIR)
-		STRING (REGEX REPLACE "\n" "" INDICATORDIR ${INDICATORDIR})
-		set (with_indicator3 yes)
-		message (STATUS "  Indicators: with Indicator3 support")
-	else()
-		execute_process(
-			COMMAND pkg-config --variable=iconsdir indicator3
-			OUTPUT_VARIABLE INDICATORICONSDIR)
-	endif()
+	execute_process(
+		COMMAND pkg-config --variable=iconsdir ayatana-indicator3-0.4
+		OUTPUT_VARIABLE INDICATORICONSDIR)
+	execute_process(
+		COMMAND pkg-config --variable=indicatordir ayatana-indicator3-0.4
+		OUTPUT_VARIABLE INDICATORDIR)
+	STRING (REGEX REPLACE "\n" "" INDICATORDIR ${INDICATORDIR})
+	set (with_indicator3 yes)
+	message (STATUS "  Indicators: with Indicator3 support")
+
 	STRING (REGEX REPLACE "\n" "" INDICATORICONSDIR "${INDICATORICONSDIR}")  # la commande rajoute un retour chariot ...
 	if (with_indicator3)
 		add_subdirectory (Indicator-applet3)
@@ -289,28 +269,8 @@ if (INDICATOR_APPLET_FOUND)
 endif()
 
 if (NOT DBUSMENU_FOUND OR NOT DBUSMENU_GTK_FOUND OR NOT INDICATOR_APPLET_FOUND)
-	message (WARNING "These modules are required to compile Indicators applet (MeMenu, Messaging-Menu, Sound-Control, Status-Notifier and Global-Menu): ${INDICATOR_APPLET_MODULE}(-0.4), ${IDO_MODULE}, ${DBUSMENU_MODULE}(-0.4), ${DBUSMENU_GTK_MODULE}(-0.4)")
+	message (WARNING "These modules are required to compile Indicators applet (Messaging-Menu, Sound-Control, Status-Notifier and Global-Menu): ${INDICATOR_APPLET_MODULE}(-0.4), ${IDO_MODULE}, ${DBUSMENU_MODULE}(-0.4), ${DBUSMENU_GTK_MODULE}(-0.4)")
 	set (MODULES_MISSING "${MODULES_MISSING} ${INDICATOR_APPLET_MODULE}(-0.4) (${IDO_MODULE}) ${DBUSMENU_MODULE}(-0.4) ${DBUSMENU_GTK_MODULE}(-0.4)")
-endif()
-
-############# INDICATOR-NAME #################
-message (STATUS "> Indicator Names:")
-set (INDICATOR_OLD_NAMES 0)
-if (force_old_indicator_names)
-	set (INDICATOR_OLD_NAMES 1)
-	message (STATUS "  Indicators: use old Ayatana Dbus names (forced)")
-#~ elseif ("${DISTRO_ID}" STREQUAL "Ubuntu")
-	#~ STRING (REGEX REPLACE "\\..*" "" DISTRO_RELEASE_MAJOR ${DISTRO_RELEASE})
-	#~ # message (STATUS "DISTRO_RELEASE_MAJOR: ${DISTRO_RELEASE_MAJOR}")
-	#~ if (${DISTRO_RELEASE_MAJOR} LESS 11)  # from 11.04, new names are used.
-		#~ set (INDICATOR_OLD_NAMES 1)
-		#~ message (STATUS "  Indicators: use old Ayatana Dbus names")
-	#~ endif()
-elseif (INDICATOR_APPLET_FOUND)
-	if (NOT (${INDICATOR_MAJOR} GREATER 0 OR ${INDICATOR_MINOR} GREATER 3 OR (${INDICATOR_MINOR} EQUAL 3 AND ${INDICATOR_NANO} GREATER 20)))
-		set (INDICATOR_OLD_NAMES 1)  # maverick or older
-		message (STATUS "  Indicators: use old Ayatana Dbus names")
-	endif()
 endif()
 
 ############# UPOWER #####################
@@ -417,10 +377,7 @@ if (enable-alsa-mixer)
 		set (alsa_mixerdatadir "${pluginsdatadir}/AlsaMixer")
 		configure_file (${CMAKE_CURRENT_SOURCE_DIR}/alsaMixer/data/AlsaMixer.conf.in ${CMAKE_CURRENT_BINARY_DIR}/alsaMixer/data/AlsaMixer.conf)
 		if (with_indicator3)
-			set (INDICATOR_SOUNDMENU_WITH_IND3 TRUE) # If it's supported, it's maybe better to use it
-			set (with_soundmenu yes)
-		elseif (with_indicator AND IDO_FOUND
-			AND "${INDICATOR_OLD_NAMES}" STREQUAL "0")
+			set (INDICATOR_SOUNDMENU_WITH_IND3 TRUE)
 			set (with_soundmenu yes)
 		endif()
 		add_subdirectory ("alsaMixer")
@@ -545,7 +502,7 @@ if (enable-ruby-interface)
 	message (STATUS " * Ruby:")
 	# find_package(Ruby) found libs of ruby-dev but we only need a directory where we can install ruby libs.
 	find_program (RUBY_EXECUTABLE ruby)
-	EXECUTE_PROCESS(COMMAND ${RUBY_EXECUTABLE} -r rbconfig -e "print RbConfig::CONFIG['rubylibdir']"
+	EXECUTE_PROCESS(COMMAND ${RUBY_EXECUTABLE} -r rbconfig -e "print RbConfig::CONFIG['vendordir']"
 		OUTPUT_VARIABLE RUBY_LIB_DIR)
 	message (STATUS "   Ruby library dir: ${RUBY_LIB_DIR}")
 	if ("${RUBY_LIB_DIR}" STREQUAL "" OR "${RUBY_LIB_DIR}" STREQUAL "nil")
@@ -554,10 +511,6 @@ if (enable-ruby-interface)
 		set (PROGRAMS_MISSING "${PROGRAMS_MISSING} ruby")
 		set (with_ruby no)
 	else()
-		# /usr/lib/ruby/1.8 or /usr/lib/ruby/1.9.1
-		string (REGEX REPLACE "lib/ruby/[0-9].[0-9]?.+" "" RUBY_LIB_DIR_INSTALL "${RUBY_LIB_DIR}")
-		string (REGEX REPLACE "${RUBY_LIB_DIR_INSTALL}" "" RUBY_LIB_DIR_INSTALL "${RUBY_LIB_DIR}")
-		set (RUBY_LIB_DIR "${CMAKE_INSTALL_PREFIX}/${RUBY_LIB_DIR_INSTALL}")
 		message (STATUS "   will be installed in: ${RUBY_LIB_DIR}")
 		set (RUBY_FOUND "TRUE")
 		set (with_ruby yes)
@@ -569,9 +522,9 @@ enable_if_not_defined (enable-mono-interface)
 if (enable-mono-interface)
 	message (STATUS " * Mono:")
 	#find_package (Mono)
-	find_program (GMCS_EXECUTABLE gmcs)
+	find_program (GMCS_EXECUTABLE mcs)
 	if (NOT GMCS_EXECUTABLE OR NOT EXISTS ${GMCS_EXECUTABLE})
-		message (STATUS "Could not find Mono compiler gmcs, won't build Mono interface.")
+		message (STATUS "Could not find Mono compiler mcs, won't build Mono interface.")
 	else()
 		pkg_check_modules (MONO_PACKAGE dbus-sharp-2.0 dbus-sharp-glib-2.0 glib-sharp-2.0)
 		if (NOT MONO_PACKAGE_FOUND)
@@ -737,7 +690,7 @@ add_subdirectory (Folders)
 
 ############# GLOBAL-MENU #################
 set (with_global_menu no) # unstable
-if (enable-global-menu AND "${INDICATOR_OLD_NAMES}" STREQUAL "0" AND DBUSMENU_FOUND AND DBUSMENU_GTK_FOUND)  # currently only supported with new name of the indicator module and with newer version of dbusmenu
+if (enable-global-menu AND DBUSMENU_FOUND AND DBUSMENU_GTK_FOUND)  # currently only supported with new name of the indicator module and with newer version of dbusmenu
 	message (STATUS "> Global-Menu:")
 	set (GETTEXT_GLOBAL_MENU ${GETTEXT_PLUGINS})
 	set (VERSION_GLOBAL_MENU "0.1.3")
@@ -978,9 +931,8 @@ set (with_mail no)
 # find the compilation flags
 enable_if_not_defined (enable-mail)
 if (enable-mail)
-	find_program (LIBETPAN_CONFIG_EXECUTABLE libetpan-config)
 	execute_process(
-		COMMAND ${LIBETPAN_CONFIG_EXECUTABLE} --cflags
+		COMMAND pkg-config libetpan --cflags
 		OUTPUT_VARIABLE MAIL_PACKAGE_CFLAGS)
 	if (NOT "${MAIL_PACKAGE_CFLAGS}" STREQUAL "" AND NOT "${MAIL_PACKAGE_CFLAGS}" STREQUAL "\n") # if there is a problem with the previous, we don't want to have a lot of errors
 		STRING (REGEX REPLACE "\n" "" TMP_VARIABLE "${MAIL_PACKAGE_CFLAGS}") # to not skip the last option
@@ -993,7 +945,7 @@ if (enable-mail)
 	endif()
 	# find the link flags
 	execute_process(
-		COMMAND ${LIBETPAN_CONFIG_EXECUTABLE} --libs
+		COMMAND pkg-config libetpan --libs
 		OUTPUT_VARIABLE MAIL_PACKAGE_LIBS)
 	if (NOT "${MAIL_PACKAGE_LIBS}" STREQUAL "")
 		STRING (REGEX REPLACE "\n" "" MAIL_PACKAGE_LIBS "${MAIL_PACKAGE_LIBS}")
@@ -1028,21 +980,6 @@ if (enable-mail)
 		configure_file (${CMAKE_CURRENT_SOURCE_DIR}/mail/data/mail.conf.in ${CMAKE_CURRENT_BINARY_DIR}/mail/data/mail.conf)
 		add_subdirectory ("mail")
 	endif()
-endif()
-
-############# MEMENU #################
-set (with_me_menu no)
-if (INDICATOR_NEW_VERSION AND NOT enable-memenu)
-	message (STATUS "> MeMenu: this applet has been automatically merged with Messaging-Menu")  # oneiric or newer
-elseif (with_indicator AND IDO_FOUND)
-	message (STATUS "> MeMenu:")
-	set (GETTEXT_MEMENU ${GETTEXT_PLUGINS})
-	set (VERSION_MEMENU "1.0.6")
-	set (PACKAGE_MEMENU "cd-MeMenu")
-	set (memenudatadir "${pluginsdatadir}/MeMenu")
-	set (with_me_menu yes)
-	configure_file (${CMAKE_CURRENT_SOURCE_DIR}/MeMenu/data/MeMenu.conf.in ${CMAKE_CURRENT_BINARY_DIR}/MeMenu/data/MeMenu.conf)
-	add_subdirectory (MeMenu)
 endif()
 
 ############# MESSAGING_MENU #################
@@ -1292,7 +1229,6 @@ else()
 	elseif (DEFINED force_indicator_applicationadded_have_hint)
 		set (INDICATOR_APPLICATIONADDED_HAS_HINT 0)
 	endif()
-	message (STATUS "  Used old DBus name = ${INDICATOR_OLD_NAMES}")
 	message (STATUS "  ApplicationAdded signal has 'Hint' = ${INDICATOR_APPLICATIONADDED_HAS_HINT}")
 	message (STATUS "  ApplicationAdded signal has 'Title' = ${INDICATOR_APPLICATIONADDED_HAS_TITLE}")
 	set (GETTEXT_STATUS_NOTIFIER ${GETTEXT_PLUGINS})
@@ -1508,9 +1444,6 @@ message (STATUS " - with Impulse applet:            ${with_impulse}")
 message (STATUS " - with Indicator-Generic applet:  ${with_indicator_generic}")
 message (STATUS " - with Keyboard-indicator applet: ${with_keyboard_indicator}")
 message (STATUS " - with Mail applet:               ${with_mail}")
-if (NOT INDICATOR_NEW_VERSION OR enable-memenu)  # oneiric or newer
-message (STATUS " - with Me-Menu applet applet:     ${with_me_menu}")
-endif()
 message (STATUS " - with Messaging-Menu applet:     ${with_messaging_menu}")
 message (STATUS " - with Recent-Events applet:      ${with_recent_events}")
 message (STATUS " - with Sound Effects applet:      ${with_sound_effects}")

@@ -20,6 +20,21 @@
 # if one of them is used, then it has launched either the session-manager, or the stand-alone script, both blocking.
 # so just take this one, and kill it so that we return to GDM.
 
+if test -x "$(command -v systemctl)"; then
+	if systemctl --user status graphical-session.target; then
+		if systemctl --user stop graphical-session.target; then
+			exit 0
+		fi
+	fi
+fi
+
+if test -n "$WAYLAND_DISPLAY"; then
+	if test -x "$(command -v wayland-logout)"; then
+		wayland-logout
+		exit $?
+	fi
+fi
+
 gdm_proc=`pgrep "gdm|kdm|ldm|xdm|lightdm|mdm" | tail -1`
 if test -n "$gdm_proc"; then
 	last_process=`ps -ef | grep $gdm_proc | grep $USER | grep -v grep | tail -1 | tr -s " " | cut -d " " -f 2`

@@ -222,9 +222,7 @@ static void _cd_sysmonitor_get_top_list (CDTopSharedMemory *pSharedMemory)
 	}
 	
 	// get the current time.
-	GTimeVal time_val;
-	g_get_current_time (&time_val);  // on pourrait aussi utiliser un compteur statique a la fonction ...
-	double fTime = time_val.tv_sec + time_val.tv_usec * 1e-6;
+	double fTime = g_get_monotonic_time () * 1e-6;
 	
 	// get the data for all processes.
 	_cd_sysmonitor_get_process_data (pSharedMemory, fTime, fTimeElapsed);
@@ -383,7 +381,7 @@ static void _on_change_order (int iClickedButton, GtkWidget *pInteractiveWidget,
 			_cd_sysmonitor_update_top_list (pSharedMemory);  // on redessine.
 		}
 		
-		gldi_task_launch_delayed (myData.pTopTask, 1000. * myConfig.iProcessCheckInterval);  // restart the task with a delay equal to the interval, to keep the measure accurate.
+		gldi_task_launch_delayed (myData.pTopTask, 1000 * myConfig.iProcessCheckInterval);  // restart the task with a delay equal to the interval, to keep the measure accurate.
 	}
 	gldi_object_ref (GLDI_OBJECT (pDialog));  // keep the dialog alive.
 }

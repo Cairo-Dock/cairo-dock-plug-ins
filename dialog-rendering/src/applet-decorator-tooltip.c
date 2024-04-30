@@ -97,12 +97,27 @@ void cd_decorator_draw_decorations_tooltip (cairo_t *pCairoContext, CairoDialog 
 		0, sens * fRadius,
 		-fRadius, sens * fRadius);
 	
-	// La pointe.
+	// La pointe -- ensure that it is inside the side
 	int iDeltaIconX = pDialog->container.iWindowPositionX + pDialog->container.iWidth - fRadius - fLineWidth/2 - pDialog->iAimedX;
-	cairo_rel_line_to (pCairoContext, - iDeltaIconX + _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH/2, 0);
-	cairo_rel_line_to (pCairoContext, - _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH/2, sens * CD_ARROW_HEIGHT);
-	cairo_rel_line_to (pCairoContext, - _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH/2, -sens * CD_ARROW_HEIGHT);
-	cairo_rel_line_to (pCairoContext, - iWidth + 2*fRadius + fLineWidth + iDeltaIconX + _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH/2, 0);
+	int iSideWidth = iWidth - 2*fRadius - fLineWidth;
+	int iArrowPos = _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH/2;
+	if (iDeltaIconX < _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH/2)
+	{
+		iArrowPos = MAX(iDeltaIconX, 0);
+		iDeltaIconX = _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH/2;
+	}
+	else
+	{
+		if (iDeltaIconX > iSideWidth - _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH/2)
+		{
+			iArrowPos = _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH - MAX(iSideWidth - iDeltaIconX, 0);
+			iDeltaIconX = iSideWidth - _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH/2;
+		}
+		cairo_rel_line_to (pCairoContext, - iDeltaIconX + _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH/2, 0);
+	}
+	cairo_rel_line_to (pCairoContext, - iArrowPos, sens * CD_ARROW_HEIGHT);
+	cairo_rel_line_to (pCairoContext, - _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH + iArrowPos, -sens * CD_ARROW_HEIGHT);
+	cairo_rel_line_to (pCairoContext, - iSideWidth + iDeltaIconX + _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH/2, 0);
 	
 	// Coin bas gauche.
 	cairo_rel_curve_to (pCairoContext,

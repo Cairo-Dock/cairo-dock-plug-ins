@@ -26,9 +26,6 @@
 
 #ifdef INDICATOR_SOUNDMENU_WITH_IND3
 #include "indicator-applet3.h"
-#elif defined SOUND_SERVICE_SUPPORT // OLD
-#include "indicator-applet.h"
-#include "mute-widget.h"
 #endif
 
 // Info display types
@@ -107,13 +104,6 @@ struct _AppletData {
 	#ifdef INDICATOR_SOUNDMENU_WITH_IND3
 	IndicatorObject *pIndicator;
 	IndicatorObjectEntry *pEntry;
-	#elif defined SOUND_SERVICE_SUPPORT // OLD
-	CDAppletIndicator *pIndicator;
-	GtkWidget* volume_widget;
-	GList *transport_widgets_list;
-	GtkWidget* voip_widget;
-	MuteWidget* mute_widget;
-	gint iCurrentState;
 	#endif
 	// other
 	gboolean bIsMute;

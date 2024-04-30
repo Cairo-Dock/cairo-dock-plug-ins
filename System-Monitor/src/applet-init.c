@@ -37,7 +37,7 @@ CD_APPLET_DEFINITION (N_("System Monitor"),
 	CAIRO_DOCK_CATEGORY_APPLET_SYSTEM,
 	N_("This applet shows you the CPU load, RAM usage, graphic card temperature, etc.\n"
 	"Middle click on the icon to get some valuable info.\n"
-	"Left click on the icon to get a list of the most ressources using programs.\n"
+	"Left click on the icon to get a list of the most resources using programs.\n"
 	"You can instanciate this applet several times to show different values each time."),
 	"parAdOxxx_ZeRo and Fabounet")
 
@@ -144,7 +144,7 @@ CD_APPLET_INIT_BEGIN
 			(GldiUpdateSyncFunc) _unthreaded_task,
 			myApplet);
 	myData.bAcquisitionOK = TRUE;
-	gldi_task_launch_delayed (myData.pPeriodicTask, 0.);  // launch in idle.
+	gldi_task_launch_delayed (myData.pPeriodicTask, 0);  // launch in idle.
 	
 	// On gere l'appli "moniteur systeme".
 	if (myConfig.cSystemMonitorClass)

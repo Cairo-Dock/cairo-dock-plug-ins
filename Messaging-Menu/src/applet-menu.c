@@ -46,20 +46,12 @@ static GtkSizeGroup * indicator_right_group = NULL;  /// TODO: check if it needs
 
 /* Sets the icon when it changes. */
 static void
-#if (INDICATOR_OLD_NAMES == 0)
 application_icon_change_cb (DbusmenuMenuitem * mi, gchar * prop, GVariant * value, gpointer user_data)
-#else
-application_icon_change_cb (DbusmenuMenuitem * mi, gchar * prop, GValue * value, gpointer user_data)
-#endif
 {
 	if (!g_strcmp0(prop, APPLICATION_MENUITEM_PROP_ICON)) {
 		/* Set the main icon */
 		if (GTK_IS_IMAGE(user_data)) {
-#if (INDICATOR_OLD_NAMES == 0)
 			gtk_image_set_from_icon_name(GTK_IMAGE(user_data), g_variant_get_string(value, NULL), GTK_ICON_SIZE_MENU);
-#else
-			gtk_image_set_from_icon_name(GTK_IMAGE(user_data), g_value_get_string(value), GTK_ICON_SIZE_MENU);
-#endif
 		}
 	}
 
@@ -68,20 +60,12 @@ application_icon_change_cb (DbusmenuMenuitem * mi, gchar * prop, GValue * value,
 
 /* Sets the label when it changes. */
 static void
-#if (INDICATOR_OLD_NAMES == 0)
 application_prop_change_cb (DbusmenuMenuitem * mi, gchar * prop, GVariant * value, gpointer user_data)
-#else
-application_prop_change_cb (DbusmenuMenuitem * mi, gchar * prop, GValue * value, gpointer user_data)
-#endif
 {
 	if (!g_strcmp0(prop, APPLICATION_MENUITEM_PROP_NAME)) {
 		/* Set the main label */
 		if (GTK_IS_LABEL(user_data)) {
-#if (INDICATOR_OLD_NAMES == 0)
 			gtk_label_set_text(GTK_LABEL(user_data), g_variant_get_string(value, NULL));
-#else
-			gtk_label_set_text(GTK_LABEL(user_data), g_value_get_string(value));
-#endif
 		}
 	}
 
@@ -228,7 +212,6 @@ new_application_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbu
 	cd_debug ("%s (\"%s\")", __func__, cName);
 
 #ifdef FORCE_REMOVE_DOUBLE_ENTRIES
-#if (INDICATOR_OLD_NAMES == 0)
 	if (newitem == NULL || !dbusmenu_menuitem_property_get_bool(newitem, DBUSMENU_MENUITEM_PROP_VISIBLE)
 		#if INDICATOR_MESSAGES_HAS_LOZENGE == 1
 		&& sIconName != NULL && *sIconName != '\0' // these menu 
@@ -240,7 +223,6 @@ new_application_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbu
 		g_free (cName);
 		return TRUE;
 	}
-#endif
 #endif
 
 	GtkMenuItem * gmi = GTK_MENU_ITEM(gtk_image_menu_item_new());
@@ -302,32 +284,16 @@ struct _indicator_item_t {
 /* Whenever we have a property change on a DbusmenuMenuitem
    we need to be responsive to that. */
 static void
-#if (INDICATOR_OLD_NAMES == 0)
 indicator_prop_change_cb (DbusmenuMenuitem * mi, gchar * prop, GVariant * value, indicator_item_t * mi_data)
-#else
-indicator_prop_change_cb (DbusmenuMenuitem * mi, gchar * prop, GValue * value, indicator_item_t * mi_data)
-#endif
 {
-#if (INDICATOR_OLD_NAMES == 0)
 	cd_debug ("%s (\"%s\": %s)", __func__, prop, g_variant_get_string(value, NULL));
-#else
-	cd_debug ("%s (\"%s\": %s)", __func__, prop, g_value_get_string(value));
-#endif
 
 	if (!g_strcmp0(prop, INDICATOR_MENUITEM_PROP_LABEL)) {
 		/* Set the main label */
-#if (INDICATOR_OLD_NAMES == 0)
 		gtk_label_set_text(GTK_LABEL(mi_data->label), g_variant_get_string(value, NULL));
-#else
-		gtk_label_set_text(GTK_LABEL(mi_data->label), g_value_get_string(value));
-#endif
 	} else if (!g_strcmp0(prop, INDICATOR_MENUITEM_PROP_RIGHT)) {
 		/* Set the right label */
-#if (INDICATOR_OLD_NAMES == 0)
 		gtk_label_set_text(GTK_LABEL(mi_data->right), g_variant_get_string(value, NULL));
-#else
-		gtk_label_set_text(GTK_LABEL(mi_data->right), g_value_get_string(value));
-#endif
 #if (INDICATOR_MESSAGES_HAS_LOZENGE == 1)
 	} else if (!g_strcmp0(prop, INDICATOR_MENUITEM_PROP_RIGHT_IS_LOZENGE)) {
 		g_object_set_data (G_OBJECT (mi_data->right), "is-lozenge", GINT_TO_POINTER (TRUE));
@@ -383,13 +349,11 @@ new_indicator_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbusm
 
 	cd_debug ("%s (\"%s\")", __func__, dbusmenu_menuitem_property_get(newitem, INDICATOR_MENUITEM_PROP_LABEL));
 
-#if (INDICATOR_OLD_NAMES == 0)
 	if (newitem == NULL || !dbusmenu_menuitem_property_get_bool(newitem, DBUSMENU_MENUITEM_PROP_VISIBLE))
 	{
 		cd_debug ("Not visible: %s", dbusmenu_menuitem_property_get(newitem, INDICATOR_MENUITEM_PROP_LABEL));
 		return TRUE;
 	}
-#endif
 
 	indicator_item_t * mi_data = g_new0(indicator_item_t, 1);
 
