@@ -21,7 +21,7 @@
 // Make your own class derive from a CDApplet, and override the functions you need (the ones which don't start with an underscore).
 
 // Compile it with the following command, then rename 'demo_mono.exe' to 'demo_mono'.
-// gmcs /target:library CDApplet.cs ISubApplet.cs IApplet.cs -pkg:dbus-sharp-2.0 -pkg:dbus-sharp-glib-2.0 -pkg:glib-sharp-2.0
+// gmcs /target:library CDApplet.cs ISubApplet.cs IApplet.cs -pkg:dbus-sharp-2.0 -pkg:dbus-sharp-glib-2.0 -pkg:glib-sharp-3.0
   //////////////////////////
  ////// dependancies //////
 //////////////////////////
