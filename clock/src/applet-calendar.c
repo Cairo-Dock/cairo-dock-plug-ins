@@ -195,9 +195,7 @@ gchar *cd_clock_get_tasks_for_today (GldiModuleInstance *myApplet)
 	if (sTaskString == NULL)
 		return NULL;
 	
-	gchar *cTasks = sTaskString->str;
-	g_string_free (sTaskString, FALSE);
-	return cTasks;
+	return g_string_free (sTaskString, FALSE);
 }
 
 gchar *cd_clock_get_tasks_for_this_week (GldiModuleInstance *myApplet)
@@ -281,9 +279,7 @@ gchar *cd_clock_get_tasks_for_this_week (GldiModuleInstance *myApplet)
 	if (sTaskString == NULL)
 		return NULL;
 	
-	gchar *cTasks = sTaskString->str;
-	g_string_free (sTaskString, FALSE);
-	return cTasks;
+	return g_string_free (sTaskString, FALSE);
 }
 
 #define _compute_index(y,m,d,h,mi) ((((y*12+m)*32+d)*24+h)*60+mi)
@@ -536,10 +532,7 @@ static gchar * _on_display_task_detail (GtkCalendar *calendar, guint iYear, guin
 	
 	if (sDetail == NULL)
 		return NULL;
-	gchar *cDetail= sDetail->str;
-	g_string_free (sDetail, FALSE);
-	//g_print ("* detail : %s\n", cDetail);
-	return cDetail;
+	return g_string_free (sDetail, FALSE);
 }
 
 static void _on_day_selected_double_click (GtkCalendar *pCalendar, GldiModuleInstance *myApplet)
