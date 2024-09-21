@@ -134,23 +134,27 @@ class SNWatcher(dbus.service.Object):
 	
 	@dbus.service.signal(dbus_interface=bus_name_str, signature='s')
 	def StatusNotifierItemRegistered(self, service):
+		pass
 		# print("%s registered" % (service))
-		sys.stdout.flush()
+		# sys.stdout.flush()
 	
 	@dbus.service.signal(dbus_interface=bus_name_str, signature='s')
 	def StatusNotifierItemUnregistered(self, service):
+		pass
 		# print("%s unregistered" % (service))
-		sys.stdout.flush()
+		# sys.stdout.flush()
 	
 	@dbus.service.signal(dbus_interface=bus_name_str, signature=None)
 	def StatusNotifierHostRegistered(self):
+		pass
 		# print("a host has been registered")
-		sys.stdout.flush()
+		# sys.stdout.flush()
 	
 	@dbus.service.signal(dbus_interface=bus_name_str, signature=None)
 	def StatusNotifierHostUnregistered(self):
+		pass
 		# print("a host has been unregistered")
-		sys.stdout.flush()
+		# sys.stdout.flush()
 	
 	
 if __name__ == '__main__':

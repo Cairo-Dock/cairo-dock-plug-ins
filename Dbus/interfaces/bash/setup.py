@@ -13,7 +13,7 @@
 # GNU General Public License for more details.
 # http://www.gnu.org/licenses/licenses.html#GPL
 
-from distutils.core import setup
+from setuptools import setup
 setup(name='CDBashApplet',
 		version='1.0',
 		license='GPL-3',

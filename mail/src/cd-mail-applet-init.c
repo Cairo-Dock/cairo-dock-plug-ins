@@ -35,7 +35,7 @@ CD_APPLET_DEFINE_BEGIN (N_("mail"),
 	CAIRO_DOCK_CATEGORY_APPLET_INTERNET,
 	N_("This applet is very useful to warn you when you get new e-mails\n"
 	"It can check in any kind of mailbox (yahoo, gmail, etc)\n"
-	"Left-click to launch the prefered mail application,\n"
+	"Left-click to launch the preferred mail application,\n"
 	"Middle-click to refresh all the mailboxes."),
 	"Tofe (Christophe Chapuis) &amp; Fabounet (Fabrice Rey)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE

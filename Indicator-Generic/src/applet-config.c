@@ -23,17 +23,11 @@
 #include "applet-struct.h"
 #include "applet-config.h"
 
-#ifdef IS_INDICATOR_NG
-#define IND_GEN_EXCEPTIONS_HARD "libapplication.so;libappmenu.so;" \
-	"libdatetime.so;libmessaging.so;libsoundmenu.so;libpower.so;libsession.so;" \
-	"com.canonical.indicator.sound;com.canonical.indicator.messages;" \
-	"com.canonical.indicator.datetime;com.canonical.indicator.power;" \
-	"com.canonical.indicator.session;com.canonical.indicator.application;" \
-	"com.canonical.indicator.appmenu"
-#else
-#define IND_GEN_EXCEPTIONS_HARD "libapplication.so;libappmenu.so;" \
-	"libdatetime.so;libmessaging.so;libsoundmenu.so;libpower.so;libsession.so"
-#endif
+#define IND_GEN_EXCEPTIONS_HARD "libayatana-application.so;" \
+	"org.ayatana.indicator.sound;org.ayatana.indicator.messages;" \
+	"org.ayatana.indicator.datetime;org.ayatana.indicator.power;" \
+	"org.ayatana.indicator.session;org.ayatana.indicator.application;" \
+	"org.ayatana.indicator.appmenu"
 
 //\_________________ Here you have to get all your parameters from the conf file. Use the macros CD_CONFIG_GET_BOOLEAN, CD_CONFIG_GET_INTEGER, CD_CONFIG_GET_STRING, etc. myConfig has been reseted to 0 at this point. This function is called at the beginning of init and reload.
 CD_APPLET_GET_CONFIG_BEGIN

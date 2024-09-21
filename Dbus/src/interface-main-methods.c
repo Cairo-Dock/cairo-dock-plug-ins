@@ -120,7 +120,7 @@ gboolean cd_dbus_main_show_desklet (dbusMainObject *pDbusCallback, gboolean *wid
 	}
 	else
 	{
-		gldi_desklets_set_visible (widgetLayer != NULL ? *widgetLayer : FALSE);
+		gldi_desklets_set_visible (!!widgetLayer);
 	}
 	dbus_deskletVisible = !dbus_deskletVisible;
 	return TRUE;
