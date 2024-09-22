@@ -126,8 +126,8 @@ static gboolean on_style_changed (G_GNUC_UNUSED gpointer data)
 	return GLDI_NOTIFICATION_LET_PASS;
 }
 
-CD_APPLET_DEFINE_BEGIN ("dock rendering",
-	2, 0, 0,
+CD_APPLET_DEFINE2_BEGIN ("dock rendering",
+	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_THEME,
 	"This module adds different views to your dock.\n"
 	"Any dock or sub-dock can be displayed with the view of your choice.\n"
@@ -158,7 +158,7 @@ CD_APPLET_DEFINE_BEGIN ("dock rendering",
 	
 	cd_rendering_register_panel_renderer (CD_RENDERING_PANEL_VIEW_NAME);
 	s_fPreviousPanelRatio = my_fPanelRatio;
-CD_APPLET_DEFINE_END
+CD_APPLET_DEFINE2_END
 
 
 CD_APPLET_INIT_BEGIN
