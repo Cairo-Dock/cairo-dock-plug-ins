@@ -29,8 +29,8 @@
 #include "systray-init.h"
 
 
-CD_APPLET_DEFINE_BEGIN ("systray",
-	2, 2, 0,
+CD_APPLET_DEFINE2_BEGIN ("systray",
+	CAIRO_DOCK_MODULE_SUPPORTS_X11,
 	CAIRO_DOCK_CATEGORY_APPLET_DESKTOP,
 	N_("Add a systray to your dock.\n"
 	"Left-click to show/hide the systray in a dialog (you can bind a keyboard shortcut for it.)\n"
@@ -39,7 +39,7 @@ CD_APPLET_DEFINE_BEGIN ("systray",
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	CD_APPLET_SET_UNRESIZABLE_DESKLET
 	CD_APPLET_REDEFINE_TITLE (N_("Notification Area Old"))
-CD_APPLET_DEFINE_END
+CD_APPLET_DEFINE2_END
 
 
 CD_APPLET_INIT_BEGIN

@@ -38,8 +38,8 @@
 static gboolean s_bVideoExtensionChecked = FALSE;
 
 
-CD_APPLET_DEFINE_BEGIN ("Xgamma",
-	1, 6, 2,
+CD_APPLET_DEFINE2_BEGIN ("Xgamma",
+	CAIRO_DOCK_MODULE_SUPPORTS_X11,
 	CAIRO_DOCK_CATEGORY_APPLET_SYSTEM,
 	N_("Setup the luminosity of your screen directly from your dock.\n"
 	"Scroll up/down to increase/decrease the luminosity\n"
@@ -50,7 +50,7 @@ CD_APPLET_DEFINE_BEGIN ("Xgamma",
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	CD_APPLET_ALLOW_EMPTY_TITLE
 	CD_APPLET_REDEFINE_TITLE (N_("Screen Luminosity"))
-CD_APPLET_DEFINE_END
+CD_APPLET_DEFINE2_END
 
 
 CD_APPLET_INIT_BEGIN

@@ -24,8 +24,8 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION (N_("Composite-Manager"),
-	2, 3, 0,
+CD_APPLET_DEFINITION2 (N_("Composite-Manager"),
+	CAIRO_DOCK_MODULE_SUPPORTS_X11,
 	CAIRO_DOCK_CATEGORY_APPLET_DESKTOP,
 	N_("This applet allows you to <b>toggle the composite ON/OFF</b>.\n"
 	"The composite is what allows transparency on the desktop, but it can slow down your PC, especially during games.\n"

@@ -25,8 +25,8 @@
 #include "applet-screenshot.h"
 #include "applet-init.h"
 
-CD_APPLET_DEFINITION ("Screenshot",
-	3, 0, 0,
+CD_APPLET_DEFINITION2 ("Screenshot",
+	CAIRO_DOCK_MODULE_SUPPORTS_X11,
 	CAIRO_DOCK_CATEGORY_APPLET_DESKTOP,
 	N_("A simple applet to quickly take screenshots.\n"
 	"<b>Click</b> to take a screenshot.\n"
