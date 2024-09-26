@@ -25,7 +25,9 @@
 #include "applet-rame.h"
 #include "applet-nvidia.h"
 #include "applet-top.h"
+#ifdef HAVE_SENSORS
 #include "applet-sensors.h"
+#endif
 #include "applet-notifications.h"
 
 
@@ -63,7 +65,9 @@ static void _pop_up_dialog_info (GldiModuleInstance *myApplet)
 	cd_sysmonitor_get_nivdia_info (myApplet, pInfo);
 	
 	// sensors
+#ifdef HAVE_SENSORS
 	cd_sysmonitor_get_sensors_info (myApplet, pInfo);
+#endif
 	
 	// On affiche tout ca.
 	gldi_dialog_show_temporary_with_icon (pInfo->str,

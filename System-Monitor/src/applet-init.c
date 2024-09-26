@@ -19,15 +19,13 @@
 
 #include <stdlib.h>
 
-#ifdef HAVE_SENSORS
-#include <sensors/sensors.h>
-#endif
-
 #include "applet-config.h"
 #include "applet-notifications.h"
 #include "applet-struct.h"
 #include "applet-top.h"
+#ifdef HAVE_SENSORS
 #include "applet-sensors.h"
+#endif
 #include "applet-monitor.h"
 #include "applet-init.h"
 
