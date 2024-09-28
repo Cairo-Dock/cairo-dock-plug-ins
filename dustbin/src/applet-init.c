@@ -27,8 +27,8 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION (N_("dustbin"),
-	2, 2, 0,
+CD_APPLET_DEFINITION2 (N_("dustbin"),
+	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_APPLET_FILES,
 	N_("This applet manages the dustbin\n"
 	"You can threw files and unmount disks by drag-and-dropping them on the icon.\n"

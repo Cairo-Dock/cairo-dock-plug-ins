@@ -27,8 +27,8 @@
 #include "applet-init.h"
 #include "applet-logout.h"
 
-CD_APPLET_DEFINE_BEGIN ("logout",
-	2, 0, 0,
+CD_APPLET_DEFINE2_BEGIN ("logout",
+	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_APPLET_DESKTOP,
 	N_("This applet lets you manage the current session. You can either:\n"
 	"shut down, restart, hibernate, suspend, log out, lock the screen, switch to another user, or program an automatic shutdown\n"
@@ -38,7 +38,7 @@ CD_APPLET_DEFINE_BEGIN ("logout",
 	"Fabounet (Fabrice Rey)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	CD_APPLET_REDEFINE_TITLE (N_("Log out"))
-CD_APPLET_DEFINE_END
+CD_APPLET_DEFINE2_END
 
 
 CD_APPLET_INIT_BEGIN

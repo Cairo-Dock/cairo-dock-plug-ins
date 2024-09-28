@@ -32,8 +32,8 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINE_BEGIN (N_("clock"),
-	2, 0, 0,
+CD_APPLET_DEFINE2_BEGIN (N_("clock"),
+	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_APPLET_ACCESSORY,
 	N_("This applet displays time, date and a calandar.\n"
 	"2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
@@ -47,7 +47,7 @@ CD_APPLET_DEFINE_BEGIN (N_("clock"),
 	CD_APPLET_ALLOW_EMPTY_TITLE
 	pInterface->load_custom_widget = cd_clock_load_custom_widget;
 	pInterface->save_custom_widget = cd_clock_save_custom_widget;
-CD_APPLET_DEFINE_END
+CD_APPLET_DEFINE2_END
 
 static gboolean _cd_check_new_minute (GldiModuleInstance *myApplet)
 {

@@ -31,8 +31,8 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINE_BEGIN (N_("icon effects"),
-	2, 0, 0,
+CD_APPLET_DEFINE2_BEGIN (N_("icon effects"),
+	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_THEME,
 	N_("This plugin adds many special effects to your icons."),
 	"Fabounet (Fabrice Rey)")
@@ -40,7 +40,7 @@ CD_APPLET_DEFINE_BEGIN (N_("icon effects"),
 		return FALSE;
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE;
 	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_IS_PLUGIN);
-CD_APPLET_DEFINE_END
+CD_APPLET_DEFINE2_END
 
 static inline void _set_effects_duration (void)
 {

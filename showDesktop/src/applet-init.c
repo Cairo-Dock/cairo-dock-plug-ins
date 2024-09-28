@@ -25,8 +25,8 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION (N_("showDesktop"),
-	2, 2, 0,
+CD_APPLET_DEFINITION2 (N_("showDesktop"),
+	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_APPLET_DESKTOP,
 	N_("This applet adds an icon to show your desktop,\n"
 	" and also : the desklets, the Widget Layer, or all the desktops at once.\n"

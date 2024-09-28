@@ -30,8 +30,8 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION (N_("System Monitor"),
-	2, 0, 5,
+CD_APPLET_DEFINITION2 (N_("System Monitor"),
+	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_APPLET_SYSTEM,
 	N_("This applet shows you the CPU load, RAM usage, graphic card temperature, etc.\n"
 	"Middle click on the icon to get some valuable info.\n"

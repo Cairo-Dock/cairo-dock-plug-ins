@@ -26,8 +26,8 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINE_BEGIN ("xfce integration",
-	1, 6, 2,
+CD_APPLET_DEFINE2_BEGIN ("xfce integration",
+	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_APPLET_SYSTEM,
 	"This applet provides functions for a better integration into a XFCE environnement.\n"
 	"It is auto-activated, so you don't need to activate it.",
@@ -75,4 +75,4 @@ CD_APPLET_DEFINE_BEGIN ("xfce integration",
 	else
 		return FALSE;
 	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_IS_PLUGIN);
-CD_APPLET_DEFINE_END
+CD_APPLET_DEFINE2_END

@@ -26,8 +26,8 @@
 #include "cairo-dock-wayland-manager.h"
 
 
-CD_APPLET_DEFINE_BEGIN ("GMenu",
-	2, 0, 0,
+CD_APPLET_DEFINE2_BEGIN ("GMenu",
+	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_APPLET_DESKTOP,
 	N_("Displays the common Applications menu and the Recently used files.\n"
 	"It is compatible with any XDG compliant menu (Gnome, XFCE, KDE, ...)\n"
@@ -36,7 +36,7 @@ CD_APPLET_DEFINE_BEGIN ("GMenu",
 	"Fabounet (Fabrice Rey)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	CD_APPLET_REDEFINE_TITLE (N_("Applications Menu"))
-CD_APPLET_DEFINE_END
+CD_APPLET_DEFINE2_END
 
 static gboolean _menu_request (gpointer, GldiManager*)
 {

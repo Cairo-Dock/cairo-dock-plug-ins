@@ -26,8 +26,8 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION (N_("slider"),
-	2, 0, 0,
+CD_APPLET_DEFINITION2 (N_("slider"),
+	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_APPLET_ACCESSORY,
 	N_("This applet is a basic image slider\n"
 	" You just have to select a directory and a display effect and you're done\n"

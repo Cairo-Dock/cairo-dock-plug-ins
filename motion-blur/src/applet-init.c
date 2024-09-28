@@ -25,8 +25,8 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINE_BEGIN (N_("motion blur"),
-	2, 0, 0,
+CD_APPLET_DEFINE2_BEGIN (N_("motion blur"),
+	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_APPLET_FUN,
 	N_("This plugin adds a motion blur effect to docks."),
 	"Fabounet (Fabrice Rey)")
@@ -34,7 +34,7 @@ CD_APPLET_DEFINE_BEGIN (N_("motion blur"),
 		return FALSE;
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_IS_PLUGIN);
-CD_APPLET_DEFINE_END
+CD_APPLET_DEFINE2_END
 
 
 

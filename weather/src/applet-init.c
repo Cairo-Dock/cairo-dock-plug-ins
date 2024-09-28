@@ -26,8 +26,8 @@
 #include "applet-read-data.h"
 #include "applet-init.h"
 
-CD_APPLET_DEFINE_BEGIN (N_("weather"),
-	2, 0, 0,
+CD_APPLET_DEFINE2_BEGIN (N_("weather"),
+	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_APPLET_ACCESSORY,
 	N_("This applet displays weather into your dock.\n"
 	"Data are provided by yahoo.com, you can find your location in the config panel.\n"
@@ -39,7 +39,7 @@ CD_APPLET_DEFINE_BEGIN (N_("weather"),
 	#ifdef CD_WEATHER_HAS_CODE_LOCATION
 	pInterface->load_custom_widget = cd_weather_load_custom_widget;
 	#endif
-CD_APPLET_DEFINE_END
+CD_APPLET_DEFINE2_END
 
 
 CD_APPLET_INIT_BEGIN

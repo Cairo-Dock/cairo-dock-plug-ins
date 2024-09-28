@@ -29,8 +29,8 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION (N_("shortcuts"),
-	2, 0, 0,
+CD_APPLET_DEFINITION2 (N_("shortcuts"),
+	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_APPLET_FILES,
 	N_("An applet that let you access quickly to all of your shortcuts.\n"
 	"It can manage disks, network points, and Nautilus bookmarks (even if you don't have Nautilus).\n"

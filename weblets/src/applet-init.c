@@ -25,8 +25,8 @@
 #include "applet-widget.h"
 #include "applet-init.h"
 
-CD_APPLET_DEFINITION (N_("weblets"),
-	2, 0, 0,
+CD_APPLET_DEFINITION2 (N_("weblets"),
+	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_APPLET_INTERNET,
 	N_("The weblets applet allows you to show an interactive web page on your desktop.\n"
 	"You can select your web page, set the desired scrolling,\n"

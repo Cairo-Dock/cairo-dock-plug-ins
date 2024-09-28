@@ -27,8 +27,8 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINE_BEGIN (N_("Global Menu"),
-	3, 0, 0,
+CD_APPLET_DEFINE2_BEGIN (N_("Global Menu"),
+	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_APPLET_DESKTOP,
 	N_("This applet allows you to control the current active window:\n"
 	"  close, minimize, maximize, and display the application menu."
@@ -37,7 +37,7 @@ CD_APPLET_DEFINE_BEGIN (N_("Global Menu"),
 	"Fabounet")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	CD_APPLET_ALLOW_EMPTY_TITLE
-CD_APPLET_DEFINE_END
+CD_APPLET_DEFINE2_END
 
 static gboolean _reversed_buttons_order (void)
 {	// TRUE: on the left (close, min, max) || FALSE: on the right (min, max, close)

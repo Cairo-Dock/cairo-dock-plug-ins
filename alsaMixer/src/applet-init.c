@@ -26,8 +26,8 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINE_BEGIN ("AlsaMixer",
-	2, 1, 0,
+CD_APPLET_DEFINE2_BEGIN ("AlsaMixer",
+	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_APPLET_SYSTEM,
 	N_("This applet lets you control the sound volume from the dock.\n"
 	"Scroll up/down on the icon to increase/decrease the volume.\n"
@@ -39,7 +39,7 @@ CD_APPLET_DEFINE_BEGIN ("AlsaMixer",
 	CD_APPLET_ALLOW_EMPTY_TITLE
 	CD_APPLET_REDEFINE_TITLE (N_("Sound Control"))
 	pInterface->load_custom_widget = cd_mixer_load_custom_widget;
-CD_APPLET_DEFINE_END
+CD_APPLET_DEFINE2_END
 
 
 static gboolean _cd_mixer_on_enter (GtkWidget* pWidget,
