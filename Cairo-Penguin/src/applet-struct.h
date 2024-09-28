@@ -75,7 +75,6 @@ struct _AppletData {
 	gint iNbRestAnimations;
 	gint *pRestAnimations;
 	guint iSidRestartDelayed;
-	CairoDialog *pDialog;
 	gboolean bHasBeenStarted;
 	gint iCountStep;
 	gint iSleepingTime;
