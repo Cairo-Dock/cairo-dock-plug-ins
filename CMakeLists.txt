@@ -11,7 +11,9 @@ include ("${CMAKE_CURRENT_SOURCE_DIR}/cmake_modules/GNUInstallDirs.cmake")
 ########### project ###############
 
 project ("cairo-dock-plugins")
-set (VERSION "3.5.99.beta1")
+set (VERSION "3.5.99.beta2")
+# can be different from VERSION, e.g. if a new version of plugins does not depend on things added to core
+set (CORE_REQUIRED_VERSION "3.5.99.beta2")
 
 add_definitions (-std=gnu99 -Wall -Werror-implicit-function-declaration) # -Wextra -Wwrite-strings -Wuninitialized -Werror-implicit-function-declaration -Wstrict-prototypes -Wreturn-type -Wparentheses -Warray-bounds)
 if (NOT DEFINED CMAKE_BUILD_TYPE)
@@ -49,16 +51,7 @@ set (GETTEXT_PACKAGE ${PACKAGE})
 
 if ("${PACKAGEMENT}" STREQUAL "") ## do not check if we're using the same version when packaging the application (e.g. if we just want to generate a tarball of a previous version)
 	# we need GLDI which contains most global var: check it now to avoid many errors with regex
-	pkg_check_modules (GLDI REQUIRED gldi=${VERSION})
-	if (NOT GLDI_FOUND)
-		execute_process(
-			COMMAND pkg-config --modversion gldi  # 2.2.0-3
-			OUTPUT_VARIABLE dock_version)
-		if (NOT "${PACKAGEMENT}" STREQUAL "")
-			STRING (REGEX REPLACE "\n" "" dock_version ${dock_version})
-		endif ()
-		MESSAGE (FATAL_ERROR "Error: version mismatch with the core: ${VERSION} <> ${dock_version}")
-	endif ()
+	pkg_check_modules (GLDI REQUIRED gldi>=${CORE_REQUIRED_VERSION})
 endif ()
 
 set (dock_version ${VERSION}) # should be the same except if PACKAGEMENT is set
