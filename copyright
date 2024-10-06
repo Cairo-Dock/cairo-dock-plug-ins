@@ -1,6 +1,6 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: cairo-dock-plugins
-Source: https://launchpad.net/cairo-dock-plug-ins
+Source: https://github.com/Cairo-Dock/cairo-dock-plug-ins
 
 Files: *
  */*
