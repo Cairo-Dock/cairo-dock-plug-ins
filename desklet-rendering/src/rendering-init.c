@@ -32,8 +32,8 @@
 #include "rendering-init.h"
 
 
-CD_APPLET_DEFINE_BEGIN ("desklet rendering",
-	2,1,0,
+CD_APPLET_DEFINE2_BEGIN ("desklet rendering",
+	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_THEME,
 	"This module provides different views for your desklets.",
 	"Fabounet (Fabrice Rey)")
@@ -57,7 +57,7 @@ CD_APPLET_DEFINE_BEGIN ("desklet rendering",
 	
 	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_IS_PLUGIN);
 	CD_APPLET_EXTEND_MANAGER ("Desklets");
-CD_APPLET_DEFINE_END
+CD_APPLET_DEFINE2_END
 
 
 /*CD_APPLET_RELOAD_BEGIN

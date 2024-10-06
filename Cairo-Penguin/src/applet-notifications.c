@@ -169,19 +169,12 @@ gboolean CD_APPLET_ON_MIDDLE_CLICK_FUNC (GldiModuleInstance *myApplet, Icon *pCl
 	
 	if ((myConfig.bFree && pClickedContainer == myContainer && myDock->container.iMouseX > (myDock->container.iWidth - myDock->fFlatDockWidth) / 2 + myData.iCurrentPositionX && myDock->container.iMouseX < (myDock->container.iWidth - myDock->fFlatDockWidth) / 2 +  myData.iCurrentPositionX + pAnimation->iFrameWidth && myDock->container.iMouseY > myContainer->iHeight - myData.iCurrentPositionY - pAnimation->iFrameHeight && myDock->container.iMouseY < myContainer->iHeight - myData.iCurrentPositionY) || (! myConfig.bFree && pClickedIcon == myIcon))
 	{
-		if (myData.pDialog != NULL)
-		{
-			gldi_object_unref (GLDI_OBJECT(myData.pDialog));
-			myData.pDialog = NULL;
-		}
 		PenguinAnimation *pAnimation = penguin_get_current_animation ();
 		if (penguin_is_resting (pAnimation))
 		{
 			Icon *pIcon = cairo_dock_get_pointed_icon (myDock->icons);
-			if (pIcon != NULL)
-				myData.pDialog = gldi_dialog_show_temporary (D_("Zzzzz"), pIcon, myContainer, 2000);
-			else
-				myData.pDialog = gldi_dialog_show_general_message (D_("Zzzzz"), 2000);
+			if (pIcon != NULL) gldi_dialog_show_temporary (D_("Zzzzz"), pIcon, myContainer, 2000);
+			else gldi_dialog_show_general_message (D_("Zzzzz"), 2000);
 		}
 		else if (! pAnimation->bEnding && myData.iSidRestartDelayed == 0)
 		{
@@ -194,7 +187,7 @@ gboolean CD_APPLET_ON_MIDDLE_CLICK_FUNC (GldiModuleInstance *myApplet, Icon *pCl
 			else if (iRandom == 1 && ! myConfig.bFree)
 			{
 				CD_APPLET_ANIMATE_MY_ICON ("bounce", 3);
-				myData.pDialog = gldi_dialog_show_temporary ("Olll����� !", myIcon, myContainer, 2500);
+				gldi_dialog_show_temporary ("Ollléééé !", myIcon, myContainer, 2500);
 			}
 			else
 			{
@@ -202,10 +195,8 @@ gboolean CD_APPLET_ON_MIDDLE_CLICK_FUNC (GldiModuleInstance *myApplet, Icon *pCl
 				Icon *pIcon = cairo_dock_get_pointed_icon (myDock->icons);
 				const gchar *cMessage = D_(s_pMessage[iRandom]);
 				int iDuration = 2000 + 25 * g_utf8_strlen (cMessage, -1);
-				if (pIcon != NULL)
-					myData.pDialog = gldi_dialog_show_temporary (cMessage, pIcon, myContainer, iDuration);
-				else
-					myData.pDialog = gldi_dialog_show_general_message (cMessage, iDuration);
+				if (pIcon != NULL) gldi_dialog_show_temporary (cMessage, pIcon, myContainer, iDuration);
+				else gldi_dialog_show_general_message (cMessage, iDuration);
 			}
 		}
 CD_APPLET_ON_MIDDLE_CLICK_END

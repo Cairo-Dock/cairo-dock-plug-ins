@@ -29,8 +29,8 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION (N_("keyboard indicator"),
-	2, 0, 0,
+CD_APPLET_DEFINITION2 (N_("keyboard indicator"),
+	CAIRO_DOCK_MODULE_SUPPORTS_X11,
 	CAIRO_DOCK_CATEGORY_APPLET_SYSTEM,
 	N_("This applet lets you control the keyboard layout.\n\
 	It can also display the current num and caps lock.\n\

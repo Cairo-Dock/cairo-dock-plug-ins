@@ -29,8 +29,8 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINE_BEGIN (N_("switcher"),
-	2, 0, 9,
+CD_APPLET_DEFINE2_BEGIN (N_("switcher"),
+	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_APPLET_DESKTOP,
 	N_("This applet allows you to interact with your workspaces :\n"
 	" - switch between your workspaces (scroll up/down with the mouse),\n"
@@ -42,7 +42,7 @@ CD_APPLET_DEFINE_BEGIN (N_("switcher"),
 	"Cchumi &amp; Fabounet")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	CD_APPLET_ALLOW_EMPTY_TITLE
-CD_APPLET_DEFINE_END
+CD_APPLET_DEFINE2_END
 
 
 static gboolean _get_desktop_names (G_GNUC_UNUSED gpointer data)

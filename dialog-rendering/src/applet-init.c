@@ -29,8 +29,8 @@
 #include "applet-struct.h"
 #include "applet-init.h"
 
-CD_APPLET_DEFINE_BEGIN ("dialog rendering",
-	2,0,0,
+CD_APPLET_DEFINE2_BEGIN ("dialog rendering",
+	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_THEME,
 	"This plug-in provides some decorators for dialog bubbles.",
 	"Fabrice Rey (Fabounet)")
@@ -47,7 +47,7 @@ CD_APPLET_DEFINE_BEGIN ("dialog rendering",
 
 	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_IS_PLUGIN);
 	CD_APPLET_EXTEND_MANAGER ("Dialogs");
-CD_APPLET_DEFINE_END
+CD_APPLET_DEFINE2_END
 
 
 CD_APPLET_INIT_BEGIN

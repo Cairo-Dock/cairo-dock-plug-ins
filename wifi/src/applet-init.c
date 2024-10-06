@@ -27,8 +27,8 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINE_BEGIN ("wifi",
-	3, 0, 2,
+CD_APPLET_DEFINE2_BEGIN ("wifi",
+	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_APPLET_INTERNET,
 	N_("This applet shows you the signal strength of the first active wifi connection\n"
 	"Left-click to pop-up some info,"
@@ -37,7 +37,7 @@ CD_APPLET_DEFINE_BEGIN ("wifi",
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	CD_APPLET_ALLOW_EMPTY_TITLE
 	CD_APPLET_REDEFINE_TITLE (N_("Wifi"))
-CD_APPLET_DEFINE_END
+CD_APPLET_DEFINE2_END
 
 
 static void _set_data_renderer (GldiModuleInstance *myApplet, gboolean bReload)

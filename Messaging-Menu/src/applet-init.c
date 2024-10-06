@@ -31,8 +31,8 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINE_BEGIN (N_("Messaging Menu"),
-	2, 2, 0,
+CD_APPLET_DEFINE2_BEGIN (N_("Messaging Menu"),
+	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_APPLET_INTERNET,
 	N_("A menu that notices you about new messages from Mail or Chat applications.\n"
 	"It handles Evolution, Pidgin, Empathy, etc\n"
@@ -40,7 +40,7 @@ CD_APPLET_DEFINE_BEGIN (N_("Messaging Menu"),
 	"Fabounet &amp; Matthieu Baerts")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	CD_APPLET_ALLOW_EMPTY_TITLE
-CD_APPLET_DEFINE_END
+CD_APPLET_DEFINE2_END
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN

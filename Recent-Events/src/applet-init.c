@@ -26,8 +26,8 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION (N_("Recent-Events"),
-	2, 2, 0,
+CD_APPLET_DEFINITION2 (N_("Recent-Events"),
+	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_APPLET_ACCESSORY,
 	("This applet lists your recent actions (opened/created files, launched programs, etc).\n"
 	"It also adds the list of recent actions in the menu of launchers that can handle them.\n"

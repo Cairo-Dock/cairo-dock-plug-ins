@@ -24,10 +24,8 @@
 #include "applet-struct.h"
 #include "applet-init.h"
 
-#define MINIMAL_VERSION 2, 2, 0
-
-CD_APPLET_DEFINITION (N_("CD_APPLET_NAME"),
-	MINIMAL_VERSION,
+CD_APPLET_DEFINITION2 (N_("CD_APPLET_NAME"),
+	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_APPLET_ACCESSORY,
 	N_("Useful description\n"
 	"and manual"),

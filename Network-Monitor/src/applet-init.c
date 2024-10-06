@@ -28,8 +28,8 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINE_BEGIN ("Network-Monitor",
-	2, 1, 4,
+CD_APPLET_DEFINE2_BEGIN ("Network-Monitor",
+	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_APPLET_INTERNET,
 	N_("This applet allows you to monitor your network connection(s).\n"
 	"It can display the download/upload speeds and the wifi signal quality.\n"
@@ -40,7 +40,7 @@ CD_APPLET_DEFINE_BEGIN ("Network-Monitor",
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	CD_APPLET_REDEFINE_TITLE (N_("Network Monitor"))
 	pInterface->load_custom_widget = cd_netmonitor_load_custom_widget;
-CD_APPLET_DEFINE_END
+CD_APPLET_DEFINE2_END
 
 
 static CairoDataRendererAttribute *make_data_renderer_attribute (Icon *myIcon, CDRenderer *pRendererParams)

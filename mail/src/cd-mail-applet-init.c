@@ -30,8 +30,8 @@
 #include "cd-mail-applet-init.h"
 
 
-CD_APPLET_DEFINE_BEGIN (N_("mail"),
-	2, 0, 0,
+CD_APPLET_DEFINE2_BEGIN (N_("mail"),
+	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_APPLET_INTERNET,
 	N_("This applet is very useful to warn you when you get new e-mails\n"
 	"It can check in any kind of mailbox (yahoo, gmail, etc)\n"
@@ -41,7 +41,7 @@ CD_APPLET_DEFINE_BEGIN (N_("mail"),
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	pInterface->load_custom_widget = cd_mail_load_custom_widget;
 	pInterface->save_custom_widget = cd_mail_save_custom_widget;
-CD_APPLET_DEFINE_END
+CD_APPLET_DEFINE2_END
 
 
 GLuint cd_mail_load_cube_calllist (void)

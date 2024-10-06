@@ -26,8 +26,8 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINE_BEGIN ("Remote-Control",
-	2, 2, 0,
+CD_APPLET_DEFINE2_BEGIN ("Remote-Control",
+	CAIRO_DOCK_MODULE_SUPPORTS_X11,
 	CAIRO_DOCK_CATEGORY_APPLET_SYSTEM,
 	N_("This plug-in lets you control your dock from the keyboard\n"
 	"Press the shortcut (by default Super + Return), then either:\n"
@@ -40,7 +40,7 @@ CD_APPLET_DEFINE_BEGIN ("Remote-Control",
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_IS_PLUGIN);
 	CD_APPLET_REDEFINE_TITLE (N_("Control from keyboard"))
-CD_APPLET_DEFINE_END
+CD_APPLET_DEFINE2_END
 
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).

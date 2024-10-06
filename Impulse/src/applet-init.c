@@ -26,8 +26,8 @@
 #include "applet-impulse.h"
 
 
-CD_APPLET_DEFINE_BEGIN ("Impulse",
-	2, 4, 0,
+CD_APPLET_DEFINE2_BEGIN ("Impulse",
+	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_APPLET_FUN,
 	N_("Did you know that your dock can dance? :)\n"
 	"If you click on this icon, the dock will dance!\n"
@@ -37,7 +37,7 @@ CD_APPLET_DEFINE_BEGIN ("Impulse",
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	// CD_APPLET_REDEFINE_TITLE (N_("Impulse")); do we have to translate it?
 	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_CAN_DOCK);
-CD_APPLET_DEFINE_END
+CD_APPLET_DEFINE2_END
 
 void _init_shared_memory (void)
 {

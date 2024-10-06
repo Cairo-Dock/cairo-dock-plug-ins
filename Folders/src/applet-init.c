@@ -26,8 +26,8 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINE_BEGIN (N_("Folders"),
-	2, 2, 0,
+CD_APPLET_DEFINE2_BEGIN (N_("Folders"),
+	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_APPLET_FILES,
 	N_("This applet imports folders inside the Dock\n"
 	"You can have as many instances of this applet as you want, each one with a different folder.\n"
@@ -42,7 +42,7 @@ CD_APPLET_DEFINE_BEGIN (N_("Folders"),
 		NOTIFICATION_DROP_DATA,
 		(GldiNotificationFunc) cd_folders_on_drop_data,
 		GLDI_RUN_FIRST, NULL);
-CD_APPLET_DEFINE_END
+CD_APPLET_DEFINE2_END
 
 
 static inline void _set_comparaison_func (GldiModuleInstance *myApplet)

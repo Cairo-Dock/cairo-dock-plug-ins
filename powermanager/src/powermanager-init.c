@@ -29,8 +29,8 @@
 #include "powermanager-init.h"
 
 
-CD_APPLET_DEFINITION (N_("PowerManager"),
-	2, 3, 0,
+CD_APPLET_DEFINITION2 (N_("PowerManager"),
+	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_APPLET_SYSTEM,
 	N_("This applet displays the current state of your <b>laptop battery</b>: charge, time remaining, etc\n"
 	"<b>Click</b> on the icon to have useful inforamtion,\n"

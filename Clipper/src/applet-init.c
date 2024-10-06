@@ -26,8 +26,8 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINE_BEGIN ("Clipper",
-	1, 6, 3,
+CD_APPLET_DEFINE2_BEGIN ("Clipper",
+	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_APPLET_ACCESSORY,
 	N_("This applet keeps a trace of the clipboard and mouse selection,\n"
 	"so that you can recall them quickly. It's a clone of the well-know Klipper.\n"
@@ -37,7 +37,7 @@ CD_APPLET_DEFINE_BEGIN ("Clipper",
 	"Fabrice Rey (Fabounet)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	CD_APPLET_REDEFINE_TITLE (N_("Clipboard history"))
-CD_APPLET_DEFINE_END
+CD_APPLET_DEFINE2_END
 
 static gboolean _on_shutdown (GldiModuleInstance *myApplet)
 {

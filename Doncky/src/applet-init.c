@@ -29,8 +29,8 @@
 #include "applet-xml.h"
 
 
-CD_APPLET_DEFINITION ("Doncky",
-	2, 0, 0,
+CD_APPLET_DEFINITION2 ("Doncky",
+	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_APPLET_SYSTEM,
 	N_("This applet allows you to write texts and monitor your system\n"
 	"with a \"text style desklet\".\n"

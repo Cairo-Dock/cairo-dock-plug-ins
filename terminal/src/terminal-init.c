@@ -28,8 +28,8 @@
 #include "terminal-init.h"
 
 
-CD_APPLET_DEFINITION (N_("terminal"),
-	2, 0, 7,
+CD_APPLET_DEFINITION2 (N_("terminal"),
+	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_APPLET_SYSTEM,
 	N_("Add a terminal to your dock!\n"
 	"Left-click to show/hide terminal (you can bind a keyboard shortcut for it).\n"

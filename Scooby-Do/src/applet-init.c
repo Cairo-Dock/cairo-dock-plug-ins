@@ -33,8 +33,8 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINE_BEGIN ("Scooby-Do",
-	2, 1, 4,
+CD_APPLET_DEFINE2_BEGIN ("Scooby-Do",
+	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_APPLET_SYSTEM,
 	("This plug-in allows you to make different actions directly from the keyboard.\n"
 	"It is triggered by a keyboard shortcut (by default: CTRL + Enter):\n"
@@ -49,7 +49,7 @@ CD_APPLET_DEFINE_BEGIN ("Scooby-Do",
 	"Fabounet (Fabrice Rey)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_IS_PLUGIN);
-CD_APPLET_DEFINE_END
+CD_APPLET_DEFINE2_END
 
 #define _register_backends(...) do {\
 	if (myConfig.bUseFiles)\
@@ -69,6 +69,7 @@ CD_APPLET_INIT_BEGIN
 		(GldiNotificationFunc) cd_do_key_pressed,
 		GLDI_RUN_AFTER, NULL);
 	
+	//!! TODO: allow activating by Wayfire's menu signal !!
 	myData.cKeyBinding = CD_APPLET_BIND_KEY (myConfig.cShortkeySearch,
 		D_("Enable/disable the Finder"),
 		"Configuration", "shortkey search",

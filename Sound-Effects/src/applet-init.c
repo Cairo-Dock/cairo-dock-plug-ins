@@ -26,15 +26,15 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINE_BEGIN (N_("Sound Effects"),
-	3, 1, 0,
+CD_APPLET_DEFINE2_BEGIN (N_("Sound Effects"),
+	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_APPLET_FUN,
 	N_("This plug-in add sound effects on various events in the dock:\n"
 	" When clicking an icon, when hovering an icon, etc"),
 	"Fabounet (Fabrice Rey)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE;	
 	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_IS_PLUGIN);
-CD_APPLET_DEFINE_END
+CD_APPLET_DEFINE2_END
 
 
 static void _register_notifications (void)

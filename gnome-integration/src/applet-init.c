@@ -25,8 +25,8 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINE_BEGIN ("gnome integration",
-	1, 6, 2,
+CD_APPLET_DEFINE2_BEGIN ("gnome integration",
+	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_APPLET_SYSTEM,
 	"This applet provides functions for a better integration into a GNOME environnement.\n"
 	"It is auto-activated, so you don't need to activate it.\n"
@@ -68,4 +68,4 @@ CD_APPLET_DEFINE_BEGIN ("gnome integration",
 	else
 		return FALSE;
 	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_IS_PLUGIN);
-CD_APPLET_DEFINE_END
+CD_APPLET_DEFINE2_END

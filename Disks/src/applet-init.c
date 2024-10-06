@@ -26,8 +26,8 @@
 #include "applet-disks.h"
 
 
-CD_APPLET_DEFINITION (N_("Disks"),
-	2, 0, 5,
+CD_APPLET_DEFINITION2 (N_("Disks"),
+	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_APPLET_SYSTEM,
 	N_("<b><i>Monitors disks speed and space</i></b>.\n"
 	"\n"
