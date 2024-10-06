@@ -64,8 +64,7 @@ void cd_stack_check_local (GldiModuleInstance *myApplet, GKeyFile *pKeyFile)
 			cd_debug ("stack : test de %s", sDirPath->str);
 		} while (g_file_test (sDirPath->str, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_EXECUTABLE));
 		
-		myConfig.cStackDir = sDirPath->str;
-		g_string_free (sDirPath, FALSE);
+		myConfig.cStackDir = g_string_free (sDirPath, FALSE);
 		g_key_file_set_string (pKeyFile, "Configuration", "stack dir", myConfig.cStackDir);
 		cairo_dock_write_keys_to_file (pKeyFile, myApplet->cConfFilePath);
 	}

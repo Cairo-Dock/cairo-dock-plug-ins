@@ -428,14 +428,13 @@ static GList *_cd_do_list_bookmarks_folder (CDEntry *pEntry, int *iNbEntries)
 	if (pEntries != NULL)
 	{
 		pSubEntry = g_new0 (CDEntry, 1);
-		pSubEntry->cPath = sAllUrls->str;
+		pSubEntry->cPath = g_string_free (sAllUrls, FALSE);
 		pSubEntry->cName = g_strdup (D_("Open file"));
 		pSubEntry->cIconName = g_strdup (GLDI_ICON_NAME_OPEN);
 		pSubEntry->fill = cd_do_fill_default_entry;
 		pSubEntry->execute = _cd_do_launch_all_url;
 		pEntries = g_list_prepend (pEntries, pSubEntry);
 		i ++;
-		g_string_free (sAllUrls, FALSE);
 	}
 	else
 		g_string_free (sAllUrls, TRUE);

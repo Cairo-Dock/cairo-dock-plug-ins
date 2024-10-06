@@ -584,9 +584,7 @@ gchar *cd_clipper_concat_items_of_type (CDClipperItemType iType, const gchar *cS
 			g_string_prepend (sText, cSeparator);
 		// g_string_append_printf (sText, "%s%s", pItem->cText, it->next ? cSeparator : "");
 	}
-	gchar *cText = sText->str;
-	g_string_free (sText, FALSE);
-	return cText;
+	return g_string_free (sText, FALSE);
 }
 
 void cd_clipper_load_items (const gchar *cItems)

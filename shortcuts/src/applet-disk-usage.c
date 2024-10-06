@@ -257,7 +257,5 @@ gchar *cd_shortcuts_get_disk_info (const gchar *cDiskURI, const gchar *cDiskName
 			D_("URL:"), cDiskURI);
 	}
 	
-	gchar *cInfo = sInfo->str;
-	g_string_free (sInfo, FALSE);
-	return cInfo;
+	return g_string_free (sInfo, FALSE);
 }
