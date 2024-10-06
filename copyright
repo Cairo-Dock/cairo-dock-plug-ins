@@ -5,7 +5,7 @@ Source: https://github.com/Cairo-Dock/cairo-dock-plug-ins
 Files: *
  */*
 Copyright: 2007-2011 Fabrice Rey <fabounet@glx-dock.org>
-Commnet: Icons inspired of the Humanity Icons theme and recolorized by
+Comment: Icons inspired of the Humanity Icons theme and recolorized by
          Matthieu Baerts. Copyright: Daniel Fore, Jonian Guveli and
          K.Vishnoo Charan Reddy. under GPL-2+
 License: GPL-3+
