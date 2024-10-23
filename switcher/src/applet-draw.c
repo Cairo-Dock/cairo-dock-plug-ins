@@ -54,11 +54,21 @@ static void _cd_switcher_draw_windows_on_viewport (Icon *pIcon, CDSwitcherDeskto
 	
 	// On calcule les coordonnees en repere absolu.
 	int x = actor->windowGeometry.x;  // par rapport au viewport courant.
-	x += myData.switcher.iCurrentViewportX * g_desktopGeometry.Xscreen.width;  // repere absolu
+	int y = actor->windowGeometry.y;
+	
+	if (gldi_window_manager_is_position_relative_to_current_viewport ())
+	{
+		x += myData.switcher.iCurrentViewportX * g_desktopGeometry.Xscreen.width;  // repere absolu
+		y += myData.switcher.iCurrentViewportY * g_desktopGeometry.Xscreen.height;
+	}
+	else
+	{
+		x += actor->iViewPortX * g_desktopGeometry.Xscreen.width;  // repere absolu
+		y += actor->iViewPortY * g_desktopGeometry.Xscreen.height;
+	}
+	
 	if (x < 0)
 		x += g_desktopGeometry.iNbViewportX * g_desktopGeometry.Xscreen.width;
-	int y = actor->windowGeometry.y;
-	y += myData.switcher.iCurrentViewportY * g_desktopGeometry.Xscreen.height;
 	if (y < 0)
 		y += g_desktopGeometry.iNbViewportY * g_desktopGeometry.Xscreen.height;
 	int w = actor->windowGeometry.width, h = actor->windowGeometry.height;
