@@ -284,7 +284,8 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			_cd_switcher_rename_desktop,
 			CD_APPLET_MY_MENU,
 			GINT_TO_POINTER (iIndex));
-		if (iNumDesktop != myData.switcher.iCurrentDesktop || iNumViewportX != myData.switcher.iCurrentViewportX || iNumViewportY != myData.switcher.iCurrentViewportY)
+		if (gldi_window_manager_can_move_to_desktop () && iNumDesktop != myData.switcher.iCurrentDesktop
+			|| iNumViewportX != myData.switcher.iCurrentViewportX || iNumViewportY != myData.switcher.iCurrentViewportY)
 		{
 			GtkWidget *pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Move current workspace to this workspace"),
 				GLDI_ICON_NAME_JUMP_TO,
