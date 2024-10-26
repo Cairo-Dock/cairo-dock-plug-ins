@@ -252,33 +252,6 @@ void cd_switcher_compute_coordinates_from_index (int iIndex, int *iNumLine, int 
 }
 
 
-static void cd_switcher_change_nb_desktops (int iDeltaNbDesktops)
-{
-	if (g_desktopGeometry.iNbDesktops >= g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY)
-	{
-		gldi_desktop_set_nb_desktops (g_desktopGeometry.iNbDesktops + iDeltaNbDesktops, -1, -1);  // -1 = don't udpdate viewports number
-	}
-	else
-	{
-		// Try to keep a square: (delta > 0 && X <= Y) || (delta < 0 && X > Y)
-		if ((iDeltaNbDesktops > 0) == (g_desktopGeometry.iNbViewportX <= g_desktopGeometry.iNbViewportY))
-			gldi_desktop_set_nb_desktops (-1, g_desktopGeometry.iNbViewportX + iDeltaNbDesktops, g_desktopGeometry.iNbViewportY);  // -1 = don't update desktops number
-		else
-			gldi_desktop_set_nb_desktops (-1, g_desktopGeometry.iNbViewportX, g_desktopGeometry.iNbViewportY + iDeltaNbDesktops);
-	}
-}
-
-void cd_switcher_add_a_desktop (void)
-{
-	cd_switcher_change_nb_desktops (+1);
-}
-
-void cd_switcher_remove_last_desktop (void)
-{
-	cd_switcher_change_nb_desktops (-1);
-}
-
-
 static gboolean _update_idle (gpointer data)
 {
 	//\___________________ On calcule la geometrie de l'icone en mode compact.

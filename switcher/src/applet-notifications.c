@@ -191,11 +191,11 @@ CD_APPLET_ON_SCROLL_END
 
 static void _cd_switcher_add_desktop (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
-	cd_switcher_add_a_desktop ();
+	gldi_desktop_add_workspace ();
 }
 static void _cd_switcher_remove_last_desktop (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
-	cd_switcher_remove_last_desktop ();
+	gldi_desktop_remove_last_workspace ();
 }
 static void _cd_switcher_refresh (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
