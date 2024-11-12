@@ -91,23 +91,35 @@ static void _cd_switcher_get_best_agencement (int iNbViewports, int *iBestNbLine
 }
 void cd_switcher_compute_nb_lines_and_columns (void)
 {
-	if (myConfig.iDesktopsLayout == SWICTHER_LAYOUT_AUTO)
+	if (myConfig.iDesktopsLayout == SWICTHER_LAYOUT_AUTO || myConfig.iDesktopsLayout == SWITCHER_LAYOUT_STRICT)
 	{
 		if (g_desktopGeometry.iNbDesktops > 1)  // plusieurs bureaux simples (Metacity) ou etendus (Compiz avec 2 cubes).
 		{
-			if (g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY > 1)  // plusieurs bureaux etendus (Compiz avec N cubes).
+			if (g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY > 1)
 			{
+				/* complex cases (not expected):
+				    -- Compiz avec N cubes -- should not happen on newer versions
+				    -- Wayland compositor with multiple workspace sets and multiple workspaces (no known case)
+				    -- X11 WM with both _NET_NUMBER_OF_DESKTOPS and _NET_DESKTOP_GEOMETRY > 1 (no known case, could be possible to set)
+				   in these cases, we ignore SWITCHER_LAYOUT_STRICT
+				*/
 				myData.switcher.iNbLines = g_desktopGeometry.iNbDesktops;  // on respecte l'agencement de l'utilisateur (groupement par bureau).
 				myData.switcher.iNbColumns = g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY;
 			}
-			else  // plusieurs bureaux simples (Metacity)
+			else  // plusieurs bureaux simples (e.g. Metacity, Openbox, Labwc)
 			{
-				_cd_switcher_get_best_agencement (g_desktopGeometry.iNbDesktops, &myData.switcher.iNbLines, &myData.switcher.iNbColumns);
+				if (myConfig.iDesktopsLayout == SWITCHER_LAYOUT_STRICT)
+				{
+					myData.switcher.iNbLines = 1;
+					myData.switcher.iNbColumns = g_desktopGeometry.iNbDesktops;
+				}
+				else _cd_switcher_get_best_agencement (g_desktopGeometry.iNbDesktops,
+					&myData.switcher.iNbLines, &myData.switcher.iNbColumns);
 			}
 		}
 		else  // un seul bureau etendu.
 		{
-			if (g_desktopGeometry.iNbViewportY > 1)  // desktop wall.
+			if (g_desktopGeometry.iNbViewportY > 1 || myConfig.iDesktopsLayout == SWITCHER_LAYOUT_STRICT)  // desktop wall.
 			{
 				myData.switcher.iNbLines = g_desktopGeometry.iNbViewportY;  // on respecte l'agencement de l'utilisateur.
 				myData.switcher.iNbColumns = g_desktopGeometry.iNbViewportX;

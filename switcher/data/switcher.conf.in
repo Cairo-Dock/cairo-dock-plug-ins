@@ -104,7 +104,7 @@ frame_conf =
 #Y-[A sub-dock with all desktops;2;3;All desktops drawn on the main icon;0;5] How to display all desktops?
 view = 1
 
-#l+[Automatic;On a single line] Desktops layout
+#l+[Automatic;On a single line;Keep the original arrangement] Desktops layout
 layout = 0
 
 #b Preserve the ratio of the screen?

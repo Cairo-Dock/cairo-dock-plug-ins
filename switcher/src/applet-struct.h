@@ -52,6 +52,7 @@ typedef enum {
 	typedef enum {
 	SWICTHER_LAYOUT_AUTO,
 	SWICTHER_LAYOUT_SINGLE_LINE,
+	SWITCHER_LAYOUT_STRICT,
 	SWICTHER_NB_LAYOUTS
 	} SwitcherDesktopsLayout;
 
