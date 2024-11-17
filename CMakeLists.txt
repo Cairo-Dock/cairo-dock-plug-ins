@@ -11,9 +11,9 @@ include ("${CMAKE_CURRENT_SOURCE_DIR}/cmake_modules/GNUInstallDirs.cmake")
 ########### project ###############
 
 project ("cairo-dock-plugins")
-set (VERSION "3.5.99.beta3")
+set (VERSION "3.5.99.beta4")
 # can be different from VERSION, e.g. if a new version of plugins does not depend on things added to core
-set (CORE_REQUIRED_VERSION "3.5.99.beta3")
+set (CORE_REQUIRED_VERSION "3.5.99.beta4")
 
 add_definitions (-std=gnu99 -Wall -Werror-implicit-function-declaration) # -Wextra -Wwrite-strings -Wuninitialized -Werror-implicit-function-declaration -Wstrict-prototypes -Wreturn-type -Wparentheses -Warray-bounds)
 if (NOT DEFINED CMAKE_BUILD_TYPE)
@@ -1232,7 +1232,7 @@ endif()
 ############# SWITCHER #################
 message (STATUS "> Switcher:")
 set (GETTEXT_SWITCHER ${GETTEXT_PLUGINS})
-set (VERSION_SWITCHER "2.2.1")
+set (VERSION_SWITCHER "2.3.0")
 set (PACKAGE_SWITCHER "cd-switcher")
 set (switcherdatadir "${pluginsdatadir}/switcher")
 configure_file (${CMAKE_CURRENT_SOURCE_DIR}/switcher/data/switcher.conf.in ${CMAKE_CURRENT_BINARY_DIR}/switcher/data/switcher.conf)

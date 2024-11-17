@@ -53,25 +53,50 @@ static void _cd_switcher_draw_windows_on_viewport (Icon *pIcon, CDSwitcherDeskto
 	cairo_t *pCairoContext = data->pCairoContext;
 	
 	// On calcule les coordonnees en repere absolu.
-	int x = actor->windowGeometry.x;  // par rapport au viewport courant.
-	int y = actor->windowGeometry.y;
+	int x, y, w, h;
 	
-	if (gldi_window_manager_is_position_relative_to_current_viewport ())
+	if (gldi_window_manager_have_coordinates ())
 	{
-		x += myData.switcher.iCurrentViewportX * g_desktopGeometry.Xscreen.width;  // repere absolu
-		y += myData.switcher.iCurrentViewportY * g_desktopGeometry.Xscreen.height;
+		// use the real coordinates
+		x = actor->windowGeometry.x;
+		y = actor->windowGeometry.y;
+		w = actor->windowGeometry.width;
+		h = actor->windowGeometry.height;
+		// note: zero width / height causes weird problems with drawing later (icon not updating)
+		if (!(w && h)) return;
+		
+		// convert to absolute coordinates
+		if (gldi_window_manager_is_position_relative_to_current_viewport ())
+		{
+			x += myData.switcher.iCurrentViewportX * g_desktopGeometry.Xscreen.width;
+			y += myData.switcher.iCurrentViewportY * g_desktopGeometry.Xscreen.height;
+			if (x < 0) x += g_desktopGeometry.iNbViewportX * g_desktopGeometry.Xscreen.width;
+			if (y < 0) y += g_desktopGeometry.iNbViewportY * g_desktopGeometry.Xscreen.height;
+		}
+		else
+		{
+			x += actor->iViewPortX * g_desktopGeometry.Xscreen.width;
+			y += actor->iViewPortY * g_desktopGeometry.Xscreen.height;
+		}
 	}
 	else
 	{
-		x += actor->iViewPortX * g_desktopGeometry.Xscreen.width;  // repere absolu
-		y += actor->iViewPortY * g_desktopGeometry.Xscreen.height;
+		// come up with "fake" coordinates, relative to the currently drawn viewport
+		// (in this case, we know that the window is on this viewport, otherwise
+		//  gldi_window_is_on_desktop () would have returned FALSE earlier)
+		int w3 = g_desktopGeometry.Xscreen.width / 3;
+		int h3 = g_desktopGeometry.Xscreen.height / 3;
+		if (!w3) w3 = 1; // unlikely, but we should take care to
+		if (!h3) h3 = 1; // avoid 0 width / height
+		
+		x = g_random_int_range (0, w3);
+		y = g_random_int_range (0, h3);
+		w = g_random_int_range (w3, 2*w3);
+		h = g_random_int_range (h3, 2*h3);
+		
+		x += iNumViewportX * g_desktopGeometry.Xscreen.width;
+		y += iNumViewportY * g_desktopGeometry.Xscreen.height;
 	}
-	
-	if (x < 0)
-		x += g_desktopGeometry.iNbViewportX * g_desktopGeometry.Xscreen.width;
-	if (y < 0)
-		y += g_desktopGeometry.iNbViewportY * g_desktopGeometry.Xscreen.height;
-	int w = actor->windowGeometry.width, h = actor->windowGeometry.height;
 	
 	// on dessine ses traits.
 	cairo_save (pCairoContext);
@@ -285,7 +310,7 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 				cairo_restore (myDrawContext);
 			}
 			
-			if (myConfig.bDrawWindows)
+			if (myConfig.bDrawWindows && gldi_window_manager_can_track_workspaces ())
 			{
 				cairo_save (myDrawContext);
 				

@@ -40,11 +40,6 @@ int cd_switcher_compute_index_from_desktop (int iNumDesktop, int iNumViewportX, 
 void cd_switcher_compute_desktop_from_index (int iIndex, int *iNumDesktop, int *iNumViewportX, int *iNumViewportY);
 
 
-void cd_switcher_add_a_desktop (void);
-
-void cd_switcher_remove_last_desktop (void);
-
-
 void cd_switcher_trigger_update_from_screen_geometry (gboolean bNow);
 
 void cd_switcher_trigger_update_from_wallpaper (void);
