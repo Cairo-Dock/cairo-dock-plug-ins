@@ -41,7 +41,7 @@ CD_APPLET_DEFINE2_BEGIN (N_("Folders"),
 	gldi_object_register_notification (&myDockObjectMgr,
 		NOTIFICATION_DROP_DATA,
 		(GldiNotificationFunc) cd_folders_on_drop_data,
-		GLDI_RUN_FIRST, NULL);
+		GLDI_RUN_AFTER, NULL);
 CD_APPLET_DEFINE2_END
 
 
