@@ -705,9 +705,11 @@ static void cairo_dock_gio_vfs_launch_uri (const gchar *cURI)
 	cURI= (cTargetURI ? cTargetURI : cValidUri);
 	
 	// now, try to launch it with the default program know by gvfs.
+	GdkAppLaunchContext *context = gdk_display_get_app_launch_context (gdk_display_get_default ());
 	gboolean bSuccess = g_app_info_launch_default_for_uri (cURI,
-		NULL,
+		G_APP_LAUNCH_CONTEXT (context),
 		&erreur);
+	g_object_unref (context);
 	if (erreur != NULL || ! bSuccess)  // error can happen (for instance, opening 'trash:/' on XFCE with a previous installation of nautilus) => try with another method.
 	{
 		cd_debug ("gvfs-integration : couldn't launch '%s' [%s]", cURI, erreur->message);
@@ -715,7 +717,8 @@ static void cairo_dock_gio_vfs_launch_uri (const gchar *cURI)
 		erreur = NULL;
 		
 		// get the mime-type.
-		GFile *pFile = (*cURI == '/' ? g_file_new_for_path (cURI) : g_file_new_for_uri (cURI));
+		gboolean bIsURI = (*cURI != '/');
+		GFile *pFile = (bIsURI ? g_file_new_for_uri (cURI) : g_file_new_for_path (cURI));
 		const gchar *cQuery = G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE;
 		GFileInfo *pFileInfo = g_file_query_info (pFile,
 			cQuery,
@@ -738,14 +741,22 @@ static void cairo_dock_gio_vfs_launch_uri (const gchar *cURI)
 			for (a = pAppsList; a != NULL; a = a->next)
 			{
 				pAppInfo = a->data;
-				cExec = g_app_info_get_executable (pAppInfo);
-				if (cExec)  // use the first available. it is supposed to be the most suitable, but the default method doesn't seem to use it.
+				GList *list = NULL;
+				context = gdk_display_get_app_launch_context (gdk_display_get_default ());
+				if (g_app_info_supports_uris (pAppInfo) && bIsURI)
 				{
-					gchar *cPath = g_filename_from_uri (cURI, NULL, NULL);
-					cairo_dock_launch_command_printf ("%s \"%s\"", NULL, cExec, cPath?cPath:cURI);  // in case the program doesn't handle URI (geeqie, etc).
-					g_free (cPath);
-					break;
+					list = g_list_append (list, cURI);
+					g_app_info_launch_uris (pAppInfo, list, G_APP_LAUNCH_CONTEXT (context), NULL);
+					
 				}
+				else
+				{
+					list = g_list_append (list, pFile);
+					g_app_info_launch (pAppInfo, list, G_APP_LAUNCH_CONTEXT (context), NULL);
+				}
+				g_object_unref (context);
+				g_list_free (list);
+				break;
 			}
 			g_list_free (pAppsList);
 		}
