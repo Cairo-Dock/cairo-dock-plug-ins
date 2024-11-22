@@ -44,8 +44,12 @@ static void _on_tree_changed (GMenuTree *tree, G_GNUC_UNUSED gpointer data)
 
 static void _on_activate_entry (GtkWidget *menuitem, GMenuTreeEntry *entry)
 {
+	// GdkAppLaunchContext will automatically use startup notify / xdg-activation,
+	// allowing e.g. the app to raise itself if necessary
+	GdkAppLaunchContext *context = gdk_display_get_app_launch_context (gdk_display_get_default ());
 	GDesktopAppInfo *pAppInfo = gmenu_tree_entry_get_app_info (entry);
-	g_app_info_launch (G_APP_INFO (pAppInfo), NULL, NULL, NULL);
+	g_app_info_launch (G_APP_INFO (pAppInfo), NULL, G_APP_LAUNCH_CONTEXT (context), NULL);
+	g_object_unref (context); // will be kept by GIO if necessary (and we don't care about the "launched" signal in this case)
 }
 
 static void _on_drag_data_get (GtkWidget *widget,
