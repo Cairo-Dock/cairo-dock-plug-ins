@@ -56,7 +56,9 @@ static inline void _fill_handler_properties (const gchar *cDesktopFileName, gcha
 	g_free ((gchar*)myData.pCurrentHandler->appclass);
 	myData.pCurrentHandler->appclass = cAppClass;
 	g_free ((gchar*)myData.pCurrentHandler->launch);
-	myData.pCurrentHandler->launch = g_strdup (cairo_dock_get_class_command (myData.pCurrentHandler->appclass));
+	GDesktopAppInfo *app = cairo_dock_get_class_app_info (myData.pCurrentHandler->appclass);
+	//!! TODO: potentially use g_app_info_get_executable() instead ??
+	if (app) myData.pCurrentHandler->launch = g_strdup (g_app_info_get_commandline (G_APP_INFO (app)));
 	if (myData.pCurrentHandler->launch == NULL)  // we really need a command to launch it on click, so insist a little
 		myData.pCurrentHandler->launch = g_strdup (cDesktopFileName);
 	g_free ((gchar*)myData.pCurrentHandler->cDisplayedName);
