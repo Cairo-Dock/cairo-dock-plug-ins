@@ -54,9 +54,9 @@ static void _load_html_icon (Icon *pIcon)
 				iHeight);
 			cairo_dock_load_image_buffer_from_surface (&pIcon->image, pSurface, iWidth, iHeight);
 			
-			if (pIcon->image.pSurface != NULL && pIcon->cWorkingDirectory != NULL)
+			if (pIcon->image.pSurface != NULL && pIcon->cBaseURI != NULL)
 			{
-				cairo_dock_print_overlay_on_icon_from_image (pIcon, pIcon->cWorkingDirectory, CAIRO_OVERLAY_LOWER_RIGHT);
+				cairo_dock_print_overlay_on_icon_from_image (pIcon, pIcon->cBaseURI, CAIRO_OVERLAY_LOWER_RIGHT);
 			}
 		}
 		g_free (cIconPath);
@@ -157,7 +157,7 @@ Icon *cd_stack_build_one_icon (GldiModuleInstance *myApplet, GKeyFile *pKeyFile)
 		}
 	}
 	
-	pIcon->cWorkingDirectory = g_key_file_get_string (pKeyFile, "Desktop Entry", "Favicon", NULL);  // we use this parameter to store the favicon path; it's quite dirty, but easier than allocating our own data.
+	pIcon->cBaseURI = g_key_file_get_string (pKeyFile, "Desktop Entry", "Favicon", NULL);  // we use this parameter to store the favicon path; it's quite dirty, but easier than allocating our own data.
 	
 	pIcon->pAppletOwner = myApplet;
 	
