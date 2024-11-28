@@ -46,16 +46,19 @@ static void _gio_vfs_free_monitor_data (gpointer *data)
 	}
 }
 
-gboolean cairo_dock_gio_vfs_init (void)
+GVfs *cairo_dock_gio_vfs_init (gboolean bNeedDbus)
 {
 	// first, check that the session has gvfs on DBus
-	if( !cairo_dock_dbus_is_enabled() ||
-	    !cairo_dock_dbus_detect_application (G_VFS_DBUS_DAEMON_NAME) )
+	if (bNeedDbus)
 	{
-		cd_warning("VFS Daemon NOT found on DBus !");
-	  return FALSE;
+		if( !cairo_dock_dbus_is_enabled() ||
+			!cairo_dock_dbus_detect_application (G_VFS_DBUS_DAEMON_NAME) )
+		{
+			cd_warning("VFS Daemon NOT found on DBus !");
+		  return FALSE;
+		}
+		cd_message("VFS Daemon found on DBus.");
 	}
-	cd_message("VFS Daemon found on DBus.");
 	
 	
 	if (s_hMonitorHandleTable != NULL)
@@ -66,8 +69,7 @@ gboolean cairo_dock_gio_vfs_init (void)
 		g_free,
 		(GDestroyNotify) _gio_vfs_free_monitor_data);
 	
-	GVfs *vfs = g_vfs_get_default ();
-	return (vfs != NULL && g_vfs_is_active (vfs));  // useful?
+	return g_vfs_get_default ();
 }
 
 /**
@@ -1326,6 +1328,8 @@ static gchar *cairo_dock_gio_vfs_get_desktop_path (void)
 	GFile *pFile = g_file_new_for_uri ("desktop://");
 	gchar *cPath = g_file_get_path (pFile);
 	g_object_unref (pFile);
+	if (cPath == NULL)
+		cPath = g_strdup_printf ("%s/Desktop", g_getenv ("HOME"));
 	return cPath;
 }
 
