@@ -177,7 +177,7 @@ static void _on_find_related_events (ZeitgeistResultSet *pEvents, Icon *pIcon)
 }
 CD_APPLET_ON_BUILD_MENU_PROTO
 {
-	cd_debug ("%s (%s...)", __func__, CD_APPLET_CLICKED_ICON && CD_APPLET_CLICKED_ICON->pMimeTypes ?CD_APPLET_CLICKED_ICON->pMimeTypes[0] : "");
+	cd_debug ("...");
 	CD_APPLET_ENTER;
 	
 	if (CD_APPLET_CLICKED_ICON != NULL)
@@ -190,13 +190,18 @@ CD_APPLET_ON_BUILD_MENU_PROTO
 			
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Delete all events"), GLDI_ICON_NAME_DELETE, _clear_all_events, CD_APPLET_MY_MENU, myApplet);
 		}
-		else if (CD_APPLET_CLICKED_ICON->pMimeTypes != NULL)
+		else if (CD_APPLET_CLICKED_ICON->pClassApp != NULL)
 		{
-			s_pMenu = pAppletMenu;
-			CD_APPLET_ADD_SEPARATOR_IN_MENU (s_pMenu);
-			s_pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Recent files"), s_pMenu, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);  // GLDI_ICON_NAME_FILE
-			cd_find_recent_related_files ((const gchar **)CD_APPLET_CLICKED_ICON->pMimeTypes, (CDOnGetEventsFunc)_on_find_related_events, CD_APPLET_CLICKED_ICON);
-			g_signal_connect (G_OBJECT (pAppletMenu), "destroy", G_CALLBACK (_on_delete_menu), NULL);
+			GDesktopAppInfo *app = CD_APPLET_CLICKED_ICON->pClassApp;
+			const gchar **types = app ? g_app_info_get_supported_types (G_APP_INFO (app)) : NULL;
+			if (types)
+			{
+				s_pMenu = pAppletMenu;
+				CD_APPLET_ADD_SEPARATOR_IN_MENU (s_pMenu);
+				s_pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Recent files"), s_pMenu, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);  // GLDI_ICON_NAME_FILE
+				cd_find_recent_related_files (types, (CDOnGetEventsFunc)_on_find_related_events, CD_APPLET_CLICKED_ICON);
+				g_signal_connect (G_OBJECT (pAppletMenu), "destroy", G_CALLBACK (_on_delete_menu), NULL);
+			}
 		}
 	}
 	CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);

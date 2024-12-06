@@ -44,8 +44,12 @@ static void _on_tree_changed (GMenuTree *tree, G_GNUC_UNUSED gpointer data)
 
 static void _on_activate_entry (GtkWidget *menuitem, GMenuTreeEntry *entry)
 {
+	// GdkAppLaunchContext will automatically use startup notify / xdg-activation,
+	// allowing e.g. the app to raise itself if necessary
+	GdkAppLaunchContext *context = gdk_display_get_app_launch_context (gdk_display_get_default ());
 	GDesktopAppInfo *pAppInfo = gmenu_tree_entry_get_app_info (entry);
-	g_app_info_launch (G_APP_INFO (pAppInfo), NULL, NULL, NULL);
+	g_app_info_launch (G_APP_INFO (pAppInfo), NULL, G_APP_LAUNCH_CONTEXT (context), NULL);
+	g_object_unref (context); // will be kept by GIO if necessary (and we don't care about the "launched" signal in this case)
 }
 
 static void _on_drag_data_get (GtkWidget *widget,
@@ -57,11 +61,8 @@ static void _on_drag_data_get (GtkWidget *widget,
 {
 	const char *cDesktopFile = gmenu_tree_entry_get_desktop_file_path (entry);
 	gchar *cUri = g_filename_to_uri (cDesktopFile, NULL, NULL);
-	gchar *uri_list = g_strconcat (cUri, "\r\n", NULL);
-	gtk_selection_data_set (selection_data,
-		gtk_selection_data_get_target (selection_data), 8, (guchar *)uri_list,
-		strlen (uri_list));
-	g_free (uri_list);
+	gchar *uri_list[] = {cUri, NULL};
+	gtk_selection_data_set_uris (selection_data, uri_list);
 	g_free (cUri);
 }
 
@@ -200,13 +201,12 @@ static gboolean create_menuitem (GtkWidget *menu,
 		NULL);
 	
 	// Drag and drop
-	static GtkTargetEntry menu_item_targets[] = {
-		{ (gchar*)"text/uri-list", 0, 0 }
-	};
 	gtk_drag_source_set (menuitem,
 		GDK_BUTTON1_MASK | GDK_BUTTON2_MASK,
-		menu_item_targets, 1,
+		NULL, 0,
 		GDK_ACTION_COPY);
+	gtk_drag_source_add_uri_targets (menuitem);
+	
 	if (pIcon != NULL)
 	{
 		gchar *cIcon = g_icon_to_string (pIcon);

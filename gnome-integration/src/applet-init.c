@@ -36,7 +36,9 @@ CD_APPLET_DEFINE2_BEGIN ("gnome integration",
 	CairoDockDesktopEnvBackend *pVFSBackend = NULL;
 	if (! cairo_dock_fm_vfs_backend_is_defined ())  // the Gnome backend will register the GVFS functions, even if it's not a Gnome environment. It will not overwrite the other functions of the backend, and if another backend comes later, it can set its own functions.
 	{
-		if (cairo_dock_gio_vfs_init ())
+		GVfs *vfs = cairo_dock_gio_vfs_init (TRUE);
+		// not sure if this check is necessary, moved this here from cairo-dock-gio-vfs.c
+		if (vfs && g_vfs_is_active (vfs))
 		{
 			cd_debug ("GVFS");
 			pVFSBackend = g_new0 (CairoDockDesktopEnvBackend, 1);

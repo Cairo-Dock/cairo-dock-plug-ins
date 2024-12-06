@@ -35,7 +35,9 @@ CD_APPLET_DEFINE2_BEGIN ("xfce integration",
 	if (g_iDesktopEnv == CAIRO_DOCK_XFCE)
 	{
 		CairoDockDesktopEnvBackend *pVFSBackend = NULL;
-		if (cairo_dock_gio_vfs_init ())
+		GVfs *vfs = cairo_dock_gio_vfs_init (TRUE);
+		// not sure if this check is necessary, moved this here from cairo-dock-gio-vfs.c
+		if (vfs && g_vfs_is_active (vfs))
 		{
 			pVFSBackend = g_new0 (CairoDockDesktopEnvBackend, 1);
 

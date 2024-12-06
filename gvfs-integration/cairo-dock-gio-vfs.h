@@ -22,8 +22,13 @@
 #define  __CAIRO_DOCK_GIO_VFS__
 
 #include "cairo-dock-file-manager.h"
+#include <gio/gio.h>
 
-gboolean cairo_dock_gio_vfs_init (void);
+/** Init the GVfs backend.
+ *@param  bNeedDbus check if the "org.gtk.vfs.Daemon" service is running and fail if it is not
+ *@return the default GVfs instance as per g_vfs_get_default () (no need to free this)
+ */
+GVfs *cairo_dock_gio_vfs_init (gboolean bNeedDbus);
 
 /** Fill the backend with gio/gvfs fonctions, if possible.
  *@param  pVFSBackend The backend structure to fill up 
