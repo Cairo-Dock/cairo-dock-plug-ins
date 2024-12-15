@@ -40,35 +40,46 @@ enum    KWorkSpace::ShutdownMode {
 	KWorkSpace::ShutdownModeTryNow = 1,
 	KWorkSpace::ShutdownModeForceNow = 2,
 	KWorkSpace::ShutdownModeInteractive = 3}*/
+
+static const gchar *logout_args[] = {"qdbus", "org.kde.ksmserver", "/KSMServer", "logout",
+	// ShutdownConfirm; ShutdownType; ShutdownMode
+	"1", "1", "-1", NULL};
+// usr/bin/dbus-send --session --type=method_call --dest=org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout int32:1 int32:2 int32:0
+
 void env_backend_logout (void)
 {
-	cairo_dock_launch_command ("qdbus org.kde.ksmserver /KSMServer logout 1 3 -1");  // ShutdownConfirm; ShutdownType; ShutdownMode
-	// usr/bin/dbus-send --session --type=method_call --dest=org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout int32:1 int32:2 int32:0
+	logout_args[5] = "3";
+	cairo_dock_launch_command_argv (logout_args);
 }
 
 void env_backend_shutdown (void)
 {
-	cairo_dock_launch_command ("qdbus org.kde.ksmserver /KSMServer logout 1 2 -1"); // or should we display other options too? => ShutdownTypeDefault?
+	logout_args[5] = "2"; // or should we display other options too? => ShutdownTypeDefault?
+	cairo_dock_launch_command_argv (logout_args);
 }
 
 void env_backend_reboot (void)
 {
-	cairo_dock_launch_command ("qdbus org.kde.ksmserver /KSMServer logout 1 1 -1");
+	logout_args[5] = "1";
+	cairo_dock_launch_command_argv (logout_args);
 }
 
 void env_backend_lock_screen (void)
 {
-	cairo_dock_launch_command ("qdbus org.freedesktop.ScreenSaver /ScreenSaver Lock");
+	const char * const args[] = {"qdbus", "org.freedesktop.ScreenSaver", "/ScreenSaver", "Lock", NULL};
+	cairo_dock_launch_command_argv_full (args, NULL, TRUE);
 }
 
 void env_backend_setup_time (void)
 {
-	cairo_dock_launch_command_printf ("kcmshell%d clock", NULL, get_kde_version());  // from KDE4
+	char *kcmshell = g_strdup_printf ("kcmshell%d clock", get_kde_version());
+	const char * const args[] = {kcmshell, "clock", NULL};
+	cairo_dock_launch_command_argv_full (args, NULL, TRUE);
 }
 
 void env_backend_show_system_monitor (void)
 {
-	cairo_dock_launch_command ("ksysguard");
+	cairo_dock_launch_command_single_gui ("ksysguard");
 }
 
 int get_kde_version (void)
@@ -76,9 +87,13 @@ int get_kde_version (void)
 	static int s_iKdeVersion = 0;
 	if (s_iKdeVersion == 0)
 	{
-		gchar *version = cairo_dock_launch_command_sync ("plasmashell --version");  // KDE5 or above
+		const gchar *args[] = {"plasmashell", "--version", NULL};
+		gchar *version = cairo_dock_launch_command_argv_sync_with_stderr (args, FALSE);  // KDE5 or above
 		if (! version)
-			version = cairo_dock_launch_command_sync ("plasma-desktop --version");  // KDE4
+		{
+			args[0] = "plasma-desktop";
+			version = cairo_dock_launch_command_argv_sync_with_stderr (args, FALSE);  // KDE4
+		}
 		if (version)
 		{
 			gchar *major = version;

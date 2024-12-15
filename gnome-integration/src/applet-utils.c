@@ -26,18 +26,31 @@
 void env_backend_logout (void)
 {
 	// since Gnome 3, gnome-session-save has been replaced by gnome-session-quit
-	gchar *cResult = cairo_dock_launch_command_sync ("which gnome-session-quit");
+	const gchar *args[] = {"which", "gnome-session-quit", NULL, NULL};
+	gchar *cResult = cairo_dock_launch_command_argv_sync_with_stderr (args, FALSE);
 	if (cResult != NULL && *cResult == '/')
-		cairo_dock_launch_command ("gnome-session-quit --logout");
+	{
+		args[2] = "--logout";
+		cairo_dock_launch_command_argv_full (args + 1, NULL, TRUE); // i.e. gnome-session-quit --logout
+	}
 	else
 	{
 		g_free (cResult);
+		args[1] = "cinnamon-session-quit";
 		// Cinnamon?
-		cResult = cairo_dock_launch_command_sync ("which cinnamon-session-quit");
+		cResult = cairo_dock_launch_command_argv_sync_with_stderr (args, FALSE);
 		if (cResult != NULL && *cResult == '/')
-			cairo_dock_launch_command ("cinnamon-session-quit --logout");
+		{
+			args[2] = "--logout";
+			cairo_dock_launch_command_argv_full (args + 1, NULL, TRUE);
+		}
 		else
-			cairo_dock_launch_command ("gnome-session-save --kill --gui");
+		{
+			args[0] = "gnome-session-save";
+			args[1] = "--kill";
+			args[2] = "--gui";
+			cairo_dock_launch_command_argv_full (args, NULL, TRUE);
+		}
 	}
 	g_free (cResult);
 }
@@ -45,55 +58,76 @@ void env_backend_logout (void)
 void env_backend_shutdown (void)
 {
 	// since Gnome 3, gnome-session-save has been replaced by gnome-session-quit
-	gchar *cResult = cairo_dock_launch_command_sync ("which gnome-session-quit");
+	const gchar *args[] = {"which", "gnome-session-quit", NULL, NULL};
+	gchar *cResult = cairo_dock_launch_command_argv_sync_with_stderr (args, FALSE);
 	if (cResult != NULL && *cResult == '/')
-		cairo_dock_launch_command ("gnome-session-quit --power-off");
+	{
+		args[2] = "--power-off";
+		cairo_dock_launch_command_argv_full (args + 1, NULL, TRUE); // i.e. gnome-session-quit --logout
+	}
 	else
 	{
 		g_free (cResult);
+		args[1] = "cinnamon-session-quit";
 		// Cinnamon?
-		cResult = cairo_dock_launch_command_sync ("which cinnamon-session-quit");
+		cResult = cairo_dock_launch_command_argv_sync_with_stderr (args, FALSE);
 		if (cResult != NULL && *cResult == '/')
-			cairo_dock_launch_command ("cinnamon-session-quit --power-off");
+		{
+			args[2] = "--power-off";
+			cairo_dock_launch_command_argv_full (args + 1, NULL, TRUE);
+		}
 		else
-			cairo_dock_launch_command ("gnome-session-save --shutdown-dialog");
+		{
+			args[0] = "gnome-session-save";
+			args[1] = "--shutdown-dialog";
+			cairo_dock_launch_command_argv_full (args, NULL, TRUE);
+		}
 	}
 	g_free (cResult);
 }
 
 void env_backend_lock_screen (void)
 {
-	cairo_dock_launch_command (MY_APPLET_SHARE_DATA_DIR"/../shared-files/scripts/lock-screen.sh");
+	cairo_dock_launch_command_single (MY_APPLET_SHARE_DATA_DIR"/../shared-files/scripts/lock-screen.sh");
 }
 
 void env_backend_setup_time (void)
 {
 	static gboolean bChecked = FALSE;
-	static const gchar *cCmd = NULL;
+	static const gchar *args[] = {NULL, NULL, NULL};
 	if (!bChecked)
 	{
 		bChecked = TRUE;
-		gchar *cResult = cairo_dock_launch_command_sync ("which gnome-control-center");  // Gnome3
+		args[0] = "which";
+		args[1] = "gnome-control-center";
+		gchar *cResult = cairo_dock_launch_command_argv_sync_with_stderr (args, FALSE);  // Gnome3
 		if (cResult != NULL && *cResult == '/')
 		{
-			cCmd = "gnome-control-center datetime";
+			args[0] = "gnome-control-center";
+			args[1] = "datetime";
 		}
 		else
 		{
 			g_free (cResult);
-			cResult = cairo_dock_launch_command_sync ("which time-admin");  // Gnome2
+			args[1] = "time-admin";
+			cResult = cairo_dock_launch_command_argv_sync_with_stderr (args, FALSE);  // Gnome2
 			if (cResult != NULL && *cResult == '/')
-				cCmd = "time-admin";  // it uses PolicyKit => no gksudo.
+			{
+				args[0] = "time-admin";
+				args[1] = NULL;
+			}
 		}
 		g_free (cResult);
 	}
-	if (cCmd)
-		cairo_dock_launch_command (cCmd);
+	if (args[0])
+		cairo_dock_launch_command_argv_full (args, NULL, TRUE);
 	else
 		cd_warning ("couldn't guess what program to use to setup the time and date.");
 }
 
 void env_backend_show_system_monitor (void)
 {
-	cairo_dock_launch_command ("gnome-system-monitor");
+	const gchar * const args[] = {"gnome-system-monitor", NULL};
+	cairo_dock_launch_command_argv_full (args, NULL, TRUE);
 }
+
