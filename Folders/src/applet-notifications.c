@@ -327,17 +327,6 @@ static void _cd_folders_open_folder (GtkMenuItem *pMenuItem, GldiModuleInstance 
 	cairo_dock_fm_launch_uri (myConfig.cDirPath);
 }
 
-static void _cd_folders_launch_with (GtkMenuItem *pMenuItem, gpointer *app)
-{
-	Icon *icon = app[0];
-	gchar *cExec = app[3];
-	gchar *cUri = NULL;
-	if (icon->cBaseURI && *icon->cBaseURI == '/')
-		cUri = g_filename_from_uri (icon->cBaseURI, NULL, NULL);
-	cairo_dock_launch_command_printf ("%s \"%s\"", NULL, cExec, cUri?cUri:icon->cBaseURI);  // in case the program doesn't handle URI (geeqie, etc).
-	g_free (cUri);
-}
-
 static void _cd_folders_sort_by_name (GtkMenuItem *pMenuItem, GldiModuleInstance *myApplet)
 {
 	cd_folders_sort_icons (myApplet, CAIRO_DOCK_FM_SORT_BY_NAME);
@@ -401,36 +390,9 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		if (pApps != NULL)
 		{
 			CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
-			GtkWidget *pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Open with"), CD_APPLET_MY_MENU, GLDI_ICON_NAME_OPEN);
-			
-			cd_folders_free_apps_list (myApplet);
-			
-			GList *a;
-			gchar **pAppInfo;
-			gchar *cIconPath;
-			gpointer *app;
-			gint iDesiredIconSize = cairo_dock_search_icon_size (GTK_ICON_SIZE_LARGE_TOOLBAR); // 24px
-			for (a = pApps; a != NULL; a = a->next)
-			{
-				pAppInfo = a->data;
-				
-				app = g_new0 (gpointer, 4);
-				app[0] = CD_APPLET_CLICKED_ICON;
-				app[1] = CD_APPLET_CLICKED_CONTAINER;
-				app[2] = myApplet;
-				app[3] = g_strdup (pAppInfo[1]);
-				//g_print (" + %s (%s ; %s)\n", pAppInfo[0], pAppInfo[1], pAppInfo[2]);
-				myData.pAppList = g_list_prepend (myData.pAppList, app);
-				
-				if (pAppInfo[2] != NULL)
-					cIconPath = cairo_dock_search_icon_s_path (pAppInfo[2], iDesiredIconSize);
-				else
-					cIconPath = NULL;
-				CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (pAppInfo[0], cIconPath, _cd_folders_launch_with, pSubMenu, app);
-				g_free (cIconPath);
-				g_strfreev (pAppInfo);
-			}
-			g_list_free (pApps);
+			cairo_dock_fm_add_open_with_submenu (pApps, CD_APPLET_CLICKED_ICON->cBaseURI, CD_APPLET_MY_MENU,
+				D_("Open with"), GLDI_ICON_NAME_OPEN, NULL, NULL);
+			g_list_free_full (pApps, g_object_unref);
 		}
 		
 		CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);

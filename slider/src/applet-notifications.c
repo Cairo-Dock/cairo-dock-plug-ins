@@ -174,12 +174,6 @@ static void _cd_slider_open_selected (GtkMenuItem *menu_item, GldiModuleInstance
 	cairo_dock_fm_launch_uri (myData.cSelectedImagePath);
 	CD_APPLET_LEAVE();
 }
-static void _cd_slider_launch_with (GtkMenuItem *pMenuItem, gpointer *app)
-{
-	GldiModuleInstance *myApplet = app[0];
-	gchar *cExec = app[1];
-	cairo_dock_launch_command_printf ("%s \"%s\"", NULL, cExec, myData.cSelectedImagePath);  // en esperant que l'appli gere les URI.
-}
 static void _cd_slider_run_dir (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
@@ -235,34 +229,9 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		GList *pApps = cairo_dock_fm_list_apps_for_file (myData.cSelectedImagePath);
 		if (pApps != NULL)
 		{
-			GtkWidget *pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Open with"), CD_APPLET_MY_MENU, GLDI_ICON_NAME_OPEN);
-			
-			cd_slider_free_apps_list (myApplet);
-
-			gint iDesiredIconSize = cairo_dock_search_icon_size (GTK_ICON_SIZE_LARGE_TOOLBAR); // 24px
-			GList *a;
-			gchar **pAppInfo;
-			gchar *cIconPath;
-			gpointer *app;
-			for (a = pApps; a != NULL; a = a->next)
-			{
-				pAppInfo = a->data;
-				
-				app = g_new0 (gpointer, 2);
-				app[0] = myApplet;
-				app[1] = g_strdup (pAppInfo[1]);
-				//g_print (" + %s (%s ; %s)\n", pAppInfo[0], pAppInfo[1], pAppInfo[2]);
-				myData.pAppList = g_list_prepend (myData.pAppList, app);
-				
-				if (pAppInfo[2] != NULL)
-					cIconPath = cairo_dock_search_icon_s_path (pAppInfo[2], iDesiredIconSize);
-				else
-					cIconPath = NULL;
-				CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (pAppInfo[0], cIconPath, _cd_slider_launch_with, pSubMenu, app);
-				g_free (cIconPath);
-				g_strfreev (pAppInfo);
-			}
-			g_list_free (pApps);
+			cairo_dock_fm_add_open_with_submenu (pApps, myData.cSelectedImagePath, CD_APPLET_MY_MENU, D_("Open with"),
+				GLDI_ICON_NAME_OPEN, NULL, NULL);
+			g_list_free_full (pApps, g_object_unref);
 		}
 	}
 	

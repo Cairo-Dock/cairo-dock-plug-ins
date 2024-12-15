@@ -113,11 +113,6 @@ static void _cd_open (GtkMenuItem *pMenuItem, gpointer data)
 	cairo_dock_fm_launch_uri (myData.cCurrentUri);
 }
 
-static void _cd_launch_with (GtkMenuItem *pMenuItem, const gchar *cExec)
-{
-	cairo_dock_launch_command_printf ("%s \"%s\"", NULL, cExec, myData.cCurrentUri);
-}
-
 static void _cd_open_parent (GtkMenuItem *pMenuItem, gpointer data)
 {
 	gchar *cFolder = g_path_get_dirname (myData.cCurrentUri);
@@ -306,14 +301,8 @@ static void _take_screenshot (CDScreenshotOptions *pOptions)
 		}
 		if (myData.pAppList)
 		{
-			GtkWidget *pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Open with"), pMenu, GLDI_ICON_NAME_OPEN);
-			GList *pItem;
-			gchar **pAppInfo;
-			for (pItem = myData.pAppList; pItem != NULL; pItem = g_list_next (pItem))
-			{
-				pAppInfo = pItem->data;
-				CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (pAppInfo[0], pAppInfo[2], _cd_launch_with, pSubMenu, pAppInfo[1]);
-			}
+			cairo_dock_fm_add_open_with_submenu (myData.pAppList, myData.cCurrentUri, pMenu, D_("Open with"),
+				GLDI_ICON_NAME_OPEN, NULL, NULL);
 		}
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Open parent folder"), GLDI_ICON_NAME_DIRECTORY, _cd_open_parent, pMenu, NULL);
 		

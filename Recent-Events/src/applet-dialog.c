@@ -211,13 +211,6 @@ void cd_folders_free_apps_list (GldiModuleInstance *myApplet)
 	}
 }
 
-static void _cd_launch_with (GtkMenuItem *pMenuItem, const gchar *cExec)
-{
-	gchar *cPath = g_filename_from_uri (myData.cCurrentUri, NULL, NULL);
-	cairo_dock_launch_command_printf ("%s \"%s\"", NULL, cExec, cPath);  // in case the program doesn't handle URI (geeqie, etc).
-	g_free (cPath);
-}
-
 static void _cd_open_parent (GtkMenuItem *pMenuItem, gpointer data)
 {
 	gchar *cFolder = g_path_get_dirname (myData.cCurrentUri);
@@ -288,33 +281,13 @@ static gboolean _on_click_module_tree_view (GtkTreeView *pTreeView, GdkEventButt
 				GList *pApps = cairo_dock_fm_list_apps_for_file (cUri);
 				if (pApps != NULL)
 				{
-					GtkWidget *pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Open with"), pMenu, GLDI_ICON_NAME_OPEN);
-					
-					cd_folders_free_apps_list (myApplet);
-					
-					GList *a;
-					gchar **pAppInfo;
-					gchar *cIconPath;
-					for (a = pApps; a != NULL; a = a->next)
-					{
-						pAppInfo = a->data;
-						myData.pAppList = g_list_prepend (myData.pAppList, pAppInfo[1]);
-						
-						if (pAppInfo[2] != NULL)
-							cIconPath = cairo_dock_search_icon_s_path (pAppInfo[2], cairo_dock_search_icon_size (GTK_ICON_SIZE_MENU));
-						else
-							cIconPath = NULL;
-						CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (pAppInfo[0], cIconPath, _cd_launch_with, pSubMenu, pAppInfo[1]);
-						g_free (cIconPath);
-						g_free (pAppInfo[0]);
-						g_free (pAppInfo[2]);
-						g_free (pAppInfo);
-					}
-					g_list_free (pApps);
+					cairo_dock_fm_add_open_with_submenu (pApps, cUri, pMenu, D_("Open with"),
+						GLDI_ICON_NAME_OPEN, NULL, NULL);
+					g_list_free_full (pApps, g_object_unref);
 				}
 				CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Open parent folder"), GLDI_ICON_NAME_DIRECTORY, _cd_open_parent, pMenu, NULL);
-				
 				CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Copy the location"), GLDI_ICON_NAME_COPY, _cd_copy_location, pMenu, NULL);
+
 			}
 			
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Delete this event"), GLDI_ICON_NAME_REMOVE, _cd_delete_event, pMenu, GUINT_TO_POINTER (id));
