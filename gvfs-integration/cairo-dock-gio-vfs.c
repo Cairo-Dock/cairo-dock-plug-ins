@@ -738,7 +738,6 @@ static void cairo_dock_gio_vfs_launch_uri (const gchar *cURI)
 			const gchar *cMimeType = g_file_info_get_content_type (pFileInfo);
 			GList *pAppsList = g_app_info_get_all_for_type (cMimeType);
 			GAppInfo *pAppInfo;
-			const char *cExec;
 			GList *a;
 			for (a = pAppsList; a != NULL; a = a->next)
 			{
@@ -747,7 +746,7 @@ static void cairo_dock_gio_vfs_launch_uri (const gchar *cURI)
 				context = gdk_display_get_app_launch_context (gdk_display_get_default ());
 				if (g_app_info_supports_uris (pAppInfo) && bIsURI)
 				{
-					list = g_list_append (list, cURI);
+					list = g_list_append (list, (gpointer)cURI);
 					g_app_info_launch_uris (pAppInfo, list, G_APP_LAUNCH_CONTEXT (context), NULL);
 					
 				}
@@ -1538,39 +1537,7 @@ static GList *cairo_dock_gio_vfs_list_apps_for_file (const gchar *cBaseURI)
 	
 	const gchar *cMimeType = g_file_info_get_content_type (pFileInfo);
 	
-	GList *pAppsList = g_app_info_get_all_for_type (cMimeType);
-	GList *a;
-	GList *pList = NULL;
-	gchar **pData;
-	GAppInfo *pAppInfo;
-	GIcon *pIcon;
-	for (a = pAppsList; a != NULL; a = a->next)
-	{
-		pAppInfo = a->data;
-		pIcon = g_app_info_get_icon (pAppInfo);
-		
-		pData = g_new0 (gchar*, 4);
-		#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 24)
-			pData[0] = g_strdup (g_app_info_get_display_name (pAppInfo));
-		#else
-			pData[0] = g_strdup (g_app_info_get_name (pAppInfo));
-		#endif
-		pData[1] = g_strdup (g_app_info_get_executable (pAppInfo));
-		if (pIcon)
-		#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 20)
-			pData[2] = g_icon_to_string (pIcon);
-		#else
-			pData[2] = _cd_get_icon_path (pIcon, NULL);
-		#endif
-		pList = g_list_prepend (pList, pData);
-	}
-	pList = g_list_reverse (pList);
-	
-	g_free (cValidUri);
-	g_object_unref (pFile);
-	g_list_free (pAppsList);
-	g_object_unref (pFileInfo);
-	return pList;
+	return g_app_info_get_all_for_type (cMimeType);
 }
 
 static void cairo_dock_gio_vfs_lock_screen (void) {
