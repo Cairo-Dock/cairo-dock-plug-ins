@@ -44,7 +44,9 @@ static gint _compare_apps (const EntryInfo *a, const EntryInfo *b)
 static gboolean _on_button_release_menu (GtkWidget *pMenu, GdkEventButton *pEvent,
 	GAppInfo *pAppInfo)
 {
-	g_app_info_launch (pAppInfo, NULL, NULL, NULL);
+	GdkAppLaunchContext *context = gdk_display_get_app_launch_context (gdk_display_get_default ());
+	g_app_info_launch (pAppInfo, NULL, G_APP_LAUNCH_CONTEXT (context), NULL);
+	g_object_unref (context);
 	return FALSE; // pass the signal: hide the menu
 }
 
@@ -374,10 +376,13 @@ static void _launch_app_of_selected_item (GtkWidget *pMenu)
 	if (pMenuItem != NULL && pMenuItem != s_pLaunchCommand)
 	{
 		GAppInfo *pAppInfo = g_object_get_data (G_OBJECT (pMenuItem), "info");
-		g_app_info_launch (pAppInfo, NULL, NULL, NULL);
+		GdkAppLaunchContext *context = gdk_display_get_app_launch_context (gdk_display_get_default ());
+		g_app_info_launch (pAppInfo, NULL, G_APP_LAUNCH_CONTEXT (context), NULL);
+		g_object_unref (context);
 	}
 	else // no item or s_pLaunchCommand, we launch the command
 	{
+		// note: we have to parse this as a command line, since there could be arguments given
 		cairo_dock_launch_command (gtk_entry_get_text (GTK_ENTRY (myData.pEntry)));
 		gtk_widget_hide (myData.pMenu);
 	}
@@ -387,14 +392,6 @@ static void _launch_app_of_selected_item (GtkWidget *pMenu)
 static gboolean _on_key_pressed_menu (GtkWidget *pMenu, GdkEventKey *pEvent,
 	GldiModuleInstance *myApplet)
 {
-	/* redirect the signal to the entry:
-	 * with GTK 3.10, it seems that this redirection is no longer needed and
-	 * cause a bug: each character is doubled...
-	 */
-	#if ! GTK_CHECK_VERSION (3, 10, 0)
-	g_signal_emit_by_name (myData.pEntry, "key-press-event", pEvent, myApplet);
-	#endif
-
 	if (s_pOtherEntries != NULL)
 	{
 		switch (pEvent->keyval)
