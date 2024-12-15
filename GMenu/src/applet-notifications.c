@@ -44,29 +44,17 @@ CD_APPLET_ON_CLICK_END
 static void _cd_menu_configure_menu (GtkMenuItem *menu_item, gpointer data)
 {
 	CD_APPLET_ENTER;
-	GError *error = NULL;
 	if (myConfig.cConfigureMenuCommand != NULL)
-	{
-		g_spawn_command_line_async (myConfig.cConfigureMenuCommand, &error);
-	}
+		cairo_dock_launch_command (myConfig.cConfigureMenuCommand);
 	else if (s_cEditMenuCmd != NULL)
-	{
-		g_spawn_command_line_async (s_cEditMenuCmd, &error);
-	}
-	
-	if (error != NULL)
-	{
-		cd_warning ("Attention : when trying to execute '%s' : %s",
-			myConfig.cConfigureMenuCommand ? myConfig.cConfigureMenuCommand : s_cEditMenuCmd,
-			error->message);
-		g_error_free (error);
-	}
+		cairo_dock_launch_command_single_gui (s_cEditMenuCmd);
 	CD_APPLET_LEAVE();
 }
 
-static gboolean _cd_check_edit_menu_cmd (const gchar *cWhich)
+static gboolean _cd_check_edit_menu_cmd (const gchar *cCommand)
 {
-	gchar *cResult = cairo_dock_launch_command_sync (cWhich);  // Gnome (2 + 3(?)) + XFCE(?)
+	const char * const args[] = {"which", cCommand, NULL};
+	gchar *cResult = cairo_dock_launch_command_argv_sync_with_stderr (args, FALSE);  // Gnome (2 + 3(?)) + XFCE(?)
 	gboolean bResult = (cResult != NULL && *cResult == '/');
 	g_free (cResult);
 	return bResult;
@@ -82,16 +70,14 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	if (!myConfig.cConfigureMenuCommand && !bEditMenuCmdChecked)
 	{
 		bEditMenuCmdChecked = TRUE;
-		if (_cd_check_edit_menu_cmd ("which alacarte"))
-			s_cEditMenuCmd = "alacarte";
-		else if (_cd_check_edit_menu_cmd ("which kmenuedit"))
-			s_cEditMenuCmd = "kmenuedit";
-		else if (_cd_check_edit_menu_cmd ("which menulibre"))
-			s_cEditMenuCmd = "menulibre";
-		else if (_cd_check_edit_menu_cmd ("which ezame"))
-			s_cEditMenuCmd = "ezame";
-		else if (_cd_check_edit_menu_cmd ("which cinnamon-menu-editor"))
-			s_cEditMenuCmd = "cinnamon-menu-editor";
+		const char *cmds[] = {"alacarte", "kmenuedit", "menulibre", "ezame", "cinnamon-menu-editor", NULL};
+		const char **tmp;
+		for (tmp = cmds; *tmp; ++tmp)
+			if (_cd_check_edit_menu_cmd (*tmp))
+			{
+				s_cEditMenuCmd = *tmp;
+				break;
+			}
 	}
 
 	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Configure menu"),
