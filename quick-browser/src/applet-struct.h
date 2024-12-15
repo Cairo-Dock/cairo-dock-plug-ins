@@ -50,7 +50,6 @@ struct _AppletData {
 	CDQuickBrowserItem *pRootItem;
 	gint iSidFillDirIdle;
 	GldiShortkey *cKeyBinding;
-	GList *pAppList;
 	} ;
 
 

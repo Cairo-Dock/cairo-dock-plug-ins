@@ -29,4 +29,6 @@ gchar *cd_logout_check_icon (const gchar *cIconStock, gint iIconSize);
 
 void cd_logout_check_capabilities (guint delay);
 
+void cd_logout_timer_shutdown (void); // called from applet-timer.c
+
 #endif

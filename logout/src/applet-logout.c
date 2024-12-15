@@ -40,6 +40,7 @@ typedef struct {
 	gchar *cRealName;
 } CDUser;
 
+static void cd_logout_shut_down_full (gboolean bDemandConfirmation);
 static void cd_logout_shut_down (void);
 static void cd_logout_restart (void);
 static void cd_logout_suspend (void);
@@ -293,12 +294,16 @@ static gboolean _can_logoout ()
 	if (g_iDesktopEnv == CAIRO_DOCK_GNOME && (glib_major_version > 2 || glib_minor_version >= 16)) return TRUE;
 	if (g_iDesktopEnv == CAIRO_DOCK_KDE) return TRUE;
 	if (g_iDesktopEnv == CAIRO_DOCK_XFCE) return TRUE;
+	
+	const char *args[] = {"/bin/sh", "-c", NULL, NULL, NULL};
+		
 	// new additions in logout.sh
 	// 1. Wayland specific
 	if (g_getenv ("WAYLAND_DISPLAY") != NULL)
 	{
 		// check for wayland-logout and assume that it will work
-		gchar *tmp = cairo_dock_launch_command_sync_with_stderr ("/bin/sh -c 'command -v wayland-logout'", FALSE);
+		args[2] = "command -v wayland-logout";
+		gchar *tmp = cairo_dock_launch_command_argv_sync_with_stderr (args, FALSE);
 		if (tmp != NULL)
 		{
 			g_free (tmp);
@@ -306,11 +311,16 @@ static gboolean _can_logoout ()
 		}
 	}
 	// 2. check if we are in a systemd graphical session
-	gchar *tmp2 = cairo_dock_launch_command_sync_with_stderr ("/bin/sh -c 'command -v systemctl'", FALSE);
+	args[2] = "command -v systemctl";
+	gchar *tmp2 = cairo_dock_launch_command_argv_sync_with_stderr (args, FALSE);
 	if (tmp2 != NULL)
 	{
 		g_free (tmp2);
-		tmp2 = cairo_dock_launch_command_sync_with_stderr ("systemctl --user is-active graphical-session.target", FALSE);
+		args[0] = "systemctl";
+		args[1] = "--user";
+		args[2] = "is-active";
+		args[3] = "graphical-session.target";
+		tmp2 = cairo_dock_launch_command_argv_sync_with_stderr (args, FALSE);
 		if (tmp2 != NULL)
 		{
 			int r = strcmp(tmp2, "active");
@@ -582,9 +592,9 @@ static gboolean _auto_shot_down (gpointer data)
 		return TRUE;
 	}
 }
-void cd_logout_shut_down (void)
+void cd_logout_shut_down_full (gboolean bDemandConfirmation)
 {
-	if (myConfig.bConfirmAction)
+	if (bDemandConfirmation)
 	{
 		myData.iCountDown = 60;
 		gchar *cMessage = _info_msg ();
@@ -599,6 +609,15 @@ void cd_logout_shut_down (void)
 	{
 		_shut_down ();
 	}
+}
+
+void cd_logout_shut_down (void)
+{
+	cd_logout_shut_down_full (myConfig.bConfirmAction);
+}
+void cd_logout_timer_shutdown (void)
+{
+	cd_logout_shut_down_full (FALSE);
 }
 
 static void _restart (void)
@@ -666,7 +685,7 @@ static void _logout (void)
 	if (myConfig.cUserAction != NULL)
 		cairo_dock_launch_command (myConfig.cUserAction);
 	else  // SwitchToGreeter will only show the greeter, we want to close the session
-		cairo_dock_launch_command (MY_APPLET_SHARE_DATA_DIR"/logout.sh");
+		cairo_dock_launch_command_single (MY_APPLET_SHARE_DATA_DIR"/logout.sh");
 }
 
 static void cd_logout_close_session (void)  // could use org.gnome.SessionManager.Logout

@@ -55,11 +55,16 @@ static void _cd_show_desktop (void)
 }
 static void _cd_expose_windows (void)
 {
-	gldi_desktop_present_windows ();
+	// note: myDock will be NULL if we are not in a dock (i.e. we are in a desklet)
+	// but it is not needed in that case (the parameter is only used on Wayfire to
+	// lose keyboard focus from layer-shell surfaces)
+	gldi_desktop_present_windows (myDock ? &myDock->container : NULL);
 }
-static gboolean _cd_expose_windows_idle (gpointer data)
+static unsigned int _expose_windows_timeout = 0;
+static gboolean _cd_expose_windows_idle (gpointer)
 {
 	_cd_expose_windows ();
+	_expose_windows_timeout = 0;
 	return FALSE;
 }
 static void _cd_expose_desktops (void)
@@ -98,7 +103,8 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 		case CD_EXPOSE_WINDOWS:
 		{
 			// ok this is just crazy: if you call the Scale dbus method of Compiz before the middle button is released, it doesn't work.
-			g_timeout_add (300, _cd_expose_windows_idle, NULL);
+			if (!_expose_windows_timeout)
+				_expose_windows_timeout = g_timeout_add (300, _cd_expose_windows_idle, pClickedContainer);
 		}
 		break;
 		case CD_SHOW_WIDGET_LAYER:
@@ -111,7 +117,6 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 		break;
 	}
 CD_APPLET_ON_MIDDLE_CLICK_END
-
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	gchar *cLabel;

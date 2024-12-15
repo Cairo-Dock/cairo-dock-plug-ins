@@ -29,14 +29,20 @@
 #include "applet-utils.h"
 #include "applet-vfs.h"
 
+static gchar *s_kioclient = NULL;
+static const gchar *_get_kioclient (void)
+{
+	if (!s_kioclient) s_kioclient = g_strdup_printf ("kioclient%s", get_kioclient_number());
+	return s_kioclient;
+}
+
 void vfs_backend_launch_uri (const gchar *cURI)
 {
 	g_return_if_fail (cURI != NULL);
 
 	cd_debug ("%s (%s)", __func__, cURI);
-	gchar *cCommand = g_strdup_printf ("kioclient%s exec \"%s\"", get_kioclient_number(), cURI);
-	cairo_dock_launch_command (cCommand);
-	g_free (cCommand);
+	const gchar * const args[] = {_get_kioclient (), "exec", cURI, NULL};
+	cairo_dock_launch_command_argv_full (args, NULL, TRUE);
 
 	/// tester ca :
 	//KURL url(cURI);
@@ -58,16 +64,14 @@ gboolean vfs_backend_delete_file (const gchar *cURI, gboolean bNoTrash)
 			g_error_free (erreur);
 			return FALSE;
 		}
-		gchar *cCommand = g_strdup_printf ("rm -rf \"%s\"", cFilePath);
-		cairo_dock_launch_command (cCommand);
-		g_free (cCommand);
+		const gchar * const args[] = {"rm", "-rf", cFilePath, NULL};
+		cairo_dock_launch_command_argv (args);
 		g_free (cFilePath);
 	}
 	else
 	{
-		gchar *cCommand = g_strdup_printf ("kioclient%s move \"%s\" trash:/", get_kioclient_number(), cURI);
-		cairo_dock_launch_command (cCommand);
-		g_free (cCommand);
+		const gchar * const args[] = {_get_kioclient (), "move", cURI, "trash:/", NULL};
+		cairo_dock_launch_command_argv (args);
 	}
 	return TRUE;
 }
@@ -81,9 +85,8 @@ gboolean vfs_backend_rename_file (const gchar *cOldURI, const gchar *cNewName)
 	if (cPath)
 	{
 		gchar *cNewURI = g_strdup_printf ("%s/%s", cPath, cNewName);
-		gchar *cCommand = g_strdup_printf ("kioclient%s move \"%s\" \"%s\"", get_kioclient_number(), cOldURI, cNewURI);
-		cairo_dock_launch_command (cCommand);
-		g_free (cCommand);
+		const gchar * const args[] = {_get_kioclient (), "move", cOldURI, cNewURI, NULL};
+		cairo_dock_launch_command_argv (args);
 		g_free (cNewURI);
 		bSuccess = TRUE;
 	}
@@ -98,9 +101,8 @@ gboolean vfs_backend_move_file (const gchar *cURI, const gchar *cDirectoryURI)
 	
 	gchar *cFileName = g_path_get_basename (cURI);
 	gchar *cNewFileURI = g_strconcat (cDirectoryURI, "/", cFileName, NULL);
-	gchar *cCommand = g_strdup_printf ("kioclient%s move \"%s\" \"%s\"", get_kioclient_number(), cURI, cNewFileURI);
-	cairo_dock_launch_command (cCommand);
-	g_free (cCommand);
+	const gchar * const args[] = {_get_kioclient (), "move", cURI, cNewFileURI, NULL};
+	cairo_dock_launch_command_argv (args);
 	g_free (cNewFileURI);
 	g_free (cFileName);
 	return TRUE;
@@ -108,12 +110,13 @@ gboolean vfs_backend_move_file (const gchar *cURI, const gchar *cDirectoryURI)
 
 void vfs_backend_empty_trash (void)
 {
-	static char *cmd = NULL;
-	if (!cmd)
+	static char *ktrash = NULL;
+	if (!ktrash)
 	{
 		// ktrash gets a postfix with version number similarly to kioclient
-		cmd = g_strdup_printf ("ktrash%s --empty", get_kioclient_number());
+		ktrash = g_strdup_printf ("ktrash%s", get_kioclient_number ());
 	}
-	cairo_dock_launch_command (cmd);
+	const gchar * const args[] = {ktrash, "--empty", NULL};
+	cairo_dock_launch_command_argv (args);
 }
 

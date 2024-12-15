@@ -269,44 +269,32 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	_cd_action (myConfig.iActionOnMiddleClick);
 CD_APPLET_ON_MIDDLE_CLICK_END
 
-
-static gchar *_get_desktop_path (void)
-{
-	gchar *cDesktopDir = cairo_dock_launch_command_sync ("xdg-user-dir DESKTOP");
-	if (cDesktopDir == NULL)
-		cDesktopDir = g_strdup_printf ("%s/Desktop", g_getenv ("HOME"));
-	return cDesktopDir;
-}
 static void _move_to_desktop (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
-	gchar *cDesktopDir = _get_desktop_path ();
+	gchar *cDesktopDir = cairo_dock_fm_get_desktop_path ();
 	if (cDesktopDir != NULL)
-	{
-		cairo_dock_launch_command_printf ("mv \"%s\" \"%s\"", NULL, myData.cPendingFile, cDesktopDir);
-		g_free (cDesktopDir);
-	}
+		cairo_dock_fm_move_file (myData.cPendingFile, cDesktopDir);
 }
 static void _copy_to_desktop (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
-	gchar *cDesktopDir = _get_desktop_path ();
+	gchar *cDesktopDir = cairo_dock_fm_get_desktop_path ();
 	if (cDesktopDir != NULL)
-	{
-		cairo_dock_launch_command_printf ("cp -r \"%s\" \"%s\"", NULL, myData.cPendingFile, cDesktopDir);
-		g_free (cDesktopDir);
-	}
+		cairo_dock_copy_file (myData.cPendingFile, cDesktopDir);
 }
 static void _link_to_desktop (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
-	gchar *cDesktopDir = _get_desktop_path ();
+	gchar *cDesktopDir = cairo_dock_fm_get_desktop_path ();
 	if (cDesktopDir != NULL)
 	{
-		cairo_dock_launch_command_printf ("ln -s \"%s\" \"%s\"", NULL, myData.cPendingFile, cDesktopDir);
+		// TODO: use the FM backend for this too?
+		const gchar * const args[] = {"ln", "-s", myData.cPendingFile, cDesktopDir, NULL};
+		cairo_dock_launch_command_argv (args);
 		g_free (cDesktopDir);
 	}
 }
 static void _make_link_to_desktop (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
-	gchar *cDesktopDir = _get_desktop_path ();
+	gchar *cDesktopDir = cairo_dock_fm_get_desktop_path ();
 	if (cDesktopDir != NULL)
 	{
 		gchar *cName = g_path_get_basename (myData.cPendingFile);
@@ -336,7 +324,7 @@ static void _dl_finished (gpointer data)
 }
 static void _download_to_desktop (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
-	gchar *cDesktopDir = _get_desktop_path ();
+	gchar *cDesktopDir = cairo_dock_fm_get_desktop_path ();
 	if (cDesktopDir != NULL)
 	{
 		cairo_dock_download_file_async (myData.cPendingFile, NULL, (GFunc)_dl_finished, myApplet);

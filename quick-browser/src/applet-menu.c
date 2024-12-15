@@ -251,33 +251,6 @@ static void _on_activate_item (GtkWidget *pMenuItem, CDQuickBrowserItem *pItem)
 	CD_APPLET_LEAVE ();
 }
 
-static void _free_app_list_data (gpointer *data)
-{
-	gchar *cExec = data[1];
-	g_free (cExec);
-	g_free (data);
-}
-
-void cd_quick_browser_free_apps_list (GldiModuleInstance *myApplet)
-{
-	if (myData.pAppList != NULL)
-	{
-		g_list_foreach (myData.pAppList, (GFunc) _free_app_list_data, NULL);
-		g_list_free (myData.pAppList);
-		myData.pAppList = NULL;
-	}
-}
-
-static void _cd_launch_with (GtkMenuItem *pMenuItem, gpointer *data)
-{
-	CDQuickBrowserItem *pItem = data[0];
-	const gchar *cExec = data[1];
-
-	cairo_dock_launch_command_printf ("%s \"%s\"", NULL, cExec, pItem->cPath);  // in case the program doesn't handle URI (geeqie, etc).
-
-	cd_quick_browser_destroy_menu (pItem->pApplet);
-}
-
 static void _cd_open_parent (GtkMenuItem *pMenuItem, CDQuickBrowserItem *pItem)
 {
 	gchar *cUri = g_filename_to_uri (pItem->cPath, NULL, NULL);
@@ -311,37 +284,11 @@ static gboolean _on_click_item (GtkWidget *pWidget, GdkEventButton* pButton, CDQ
 		GtkWidget *pMenu = gldi_menu_new (NULL);
 		
 		GList *pApps = cairo_dock_fm_list_apps_for_file (cUri);
-		if (pApps != NULL)
+		if (pApps)
 		{
-			GtkWidget *pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Open with"), pMenu, GLDI_ICON_NAME_OPEN);
-
-			cd_quick_browser_free_apps_list (myApplet);
-
-			GList *a;
-			gchar **pAppInfo;
-			gchar *cIconPath;
-			for (a = pApps; a != NULL; a = a->next)
-			{
-				pAppInfo = a->data;
-
-				if (pAppInfo[2] != NULL)
-					cIconPath = cairo_dock_search_icon_s_path (pAppInfo[2], cairo_dock_search_icon_size (GTK_ICON_SIZE_MENU));
-				else
-					cIconPath = NULL;
-
-				gpointer *data = g_new (gpointer, 2);
-				data[0] = pItem;
-				data[1] = pAppInfo[1];
-				myData.pAppList = g_list_prepend (myData.pAppList, data); // to save the exec command
-
-				CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (pAppInfo[0], cIconPath, _cd_launch_with, pSubMenu, data);
-
-				g_free (cIconPath);
-				g_free (pAppInfo[0]);
-				g_free (pAppInfo[2]);
-				g_free (pAppInfo);
-			}
-			g_list_free (pApps);
+			cairo_dock_fm_add_open_with_submenu (pApps, pItem->cPath, pMenu, D_("Open with"), GLDI_ICON_NAME_OPEN,
+				(GDestroyNotify)cd_quick_browser_destroy_menu, pItem->pApplet);
+			g_list_free_full (pApps, g_object_unref);
 		}
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Open parent folder"), GLDI_ICON_NAME_DIRECTORY, _cd_open_parent, pMenu, pItem);
 		

@@ -72,7 +72,11 @@ static void _on_answer_launch_recent (int iClickedButton, GtkWidget *pInteractiv
 			pAppInfo = myData.pNewApps->data;
 		}
 		g_return_if_fail (pAppInfo != NULL);
-		g_app_info_launch (pAppInfo, NULL, NULL, NULL);
+		// GdkAppLaunchContext will automatically use startup notify / xdg-activation,
+		// allowing e.g. the app to raise itself if necessary
+		GdkAppLaunchContext *context = gdk_display_get_app_launch_context (gdk_display_get_default ());
+		g_app_info_launch (pAppInfo, NULL, G_APP_LAUNCH_CONTEXT (context), NULL);
+		g_object_unref (context); // will be kept by GIO if necessary (and we don't care about the "launched" signal in this case)
 	}
 	
 	g_list_free (myData.pNewApps);  // the content elongs to pKnownApplications

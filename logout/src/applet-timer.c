@@ -21,6 +21,7 @@
 
 #include "applet-struct.h"
 #include "applet-timer.h"
+#include "applet-logout.h"
 
   ////////////////////
  /// REBOOT TIMER ///
@@ -33,11 +34,7 @@ static gboolean _timer (gpointer data)
 	if (t_cur >= myConfig.iShutdownTime)
 	{
 		cd_debug ("shutdown !\n");
-		if (g_iDesktopEnv == CAIRO_DOCK_KDE)
-			cairo_dock_launch_command ("dbus-send --session --type=method_call --dest=org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout int32:0 int32:2 int32:2");
-		else
-			cairo_dock_launch_command ("dbus-send --system --print-reply --dest=org.freedesktop.ConsoleKit /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop");
-		
+		cd_logout_timer_shutdown ();
 		myData.iSidTimer = 0;
 		CD_APPLET_LEAVE (FALSE);  // inutile de faire quoique ce soit d'autre, puisque l'ordi s'eteint.
 	}

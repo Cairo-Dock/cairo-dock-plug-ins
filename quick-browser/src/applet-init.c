@@ -73,7 +73,6 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 
-	cd_quick_browser_free_apps_list (myApplet);
 	gldi_object_unref (GLDI_OBJECT(myData.cKeyBinding));
 CD_APPLET_STOP_END
 
