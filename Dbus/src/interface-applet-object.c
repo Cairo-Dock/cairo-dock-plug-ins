@@ -245,16 +245,15 @@ void cd_dbus_launch_applet_process (GldiModuleInstance *pModuleInstance, dbusApp
 	const gchar *cDirPath = pModuleInstance->pModule->pVisitCard->cShareDataDir;
 	cd_message ("%s (%s)", __func__, cModuleName);
 	
- 	gchar *cCommand = g_strdup_printf ("cd \"%s\" && ./\"%s\" %d \"%s\" \"%s\" \"%s\" %s %d",
- 		cDirPath,
- 		cModuleName,
- 		pDbusApplet->id,
- 		pDbusApplet->cBusPath,
- 		pModuleInstance->cConfFilePath,
-		g_cCairoDockDataDir,
- 		myData.cProgName,
- 		getpid());
-	cd_debug ("launching distant applet with: '%s'", cCommand);
-	cairo_dock_launch_command (cCommand);
-	g_free (cCommand);
+	gchar *cExec = g_strdup_printf ("./%s", cModuleName);
+	gchar *cID = g_strdup_printf ("%d", pDbusApplet->id);
+	gchar *cPid = g_strdup_printf ("%d", getpid ());
+	const gchar * const args[] = {cExec, cID, pDbusApplet->cBusPath,
+		pModuleInstance->cConfFilePath, g_cCairoDockDataDir,
+		myData.cProgName, cPid, NULL};
+	cd_debug ("launching distant applet: %s/%s", cDirPath, cModuleName);
+	cairo_dock_launch_command_argv_full (args, cDirPath, FALSE);
+	g_free (cExec);
+	g_free (cID);
+	g_free (cPid);
 }
