@@ -60,7 +60,9 @@ CD_APPLET_DEFINE2_BEGIN ("gnome integration",
 			pVFSBackend->shutdown = env_backend_shutdown;
 			pVFSBackend->reboot = env_backend_shutdown;
 		}
-		pVFSBackend->lock_screen = env_backend_lock_screen;
+		// this calls shared-files/scripts/lock-screen.sh which will not work on Wayland
+		if (! gldi_container_is_wayland_backend ())
+			pVFSBackend->lock_screen = env_backend_lock_screen;
 		pVFSBackend->setup_time = env_backend_setup_time;
 		pVFSBackend->show_system_monitor = env_backend_show_system_monitor;
 	}
