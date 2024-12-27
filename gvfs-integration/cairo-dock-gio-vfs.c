@@ -1541,11 +1541,28 @@ static GList *cairo_dock_gio_vfs_list_apps_for_file (const gchar *cBaseURI)
 }
 
 static void cairo_dock_gio_vfs_lock_screen (void) {
-	gchar *cResult = cairo_dock_launch_command_sync ("which xdg-screensaver");
-	if (cResult != NULL && *cResult == '/')
-		cairo_dock_launch_command ("xdg-screensaver lock");
-
-	g_free (cResult);
+	const char *args[] = {NULL, NULL, NULL};
+	if (gldi_container_is_wayland_backend ())
+	{
+		// xdg-screensaver does not work on (most) Wayland compositors
+		// we use loginctl and hope it works
+		args[0] = "loginctl";
+		args[1] = "lock-session";
+		cairo_dock_launch_command_argv (args);
+	}
+	else
+	{
+		args[0] = "which";
+		args[1] = "xdg-screensaver";
+		gchar *cResult = cairo_dock_launch_command_argv_sync_with_stderr (args, FALSE);
+		if (cResult != NULL && *cResult == '/')
+		{
+			args[0] = "xdg-screensaver";
+			args[1] = "lock";
+			cairo_dock_launch_command_argv (args);
+		}
+		g_free (cResult);
+	}
 }
 
 gboolean cairo_dock_gio_vfs_fill_backend(CairoDockDesktopEnvBackend *pVFSBackend)
