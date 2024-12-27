@@ -914,7 +914,7 @@ endif()
 ############# LOGOUT #################
 message (STATUS "> Logout:")
 set (GETTEXT_LOGOUT ${GETTEXT_PLUGINS})
-set (VERSION_LOGOUT "2.0.4")
+set (VERSION_LOGOUT "2.1.0")
 set (PACKAGE_LOGOUT "cd-logout")
 set (logoutdatadir "${pluginsdatadir}/logout")
 configure_file (${CMAKE_CURRENT_SOURCE_DIR}/logout/data/logout.conf.in ${CMAKE_CURRENT_BINARY_DIR}/logout/data/logout.conf)

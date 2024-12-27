@@ -43,6 +43,7 @@ struct _AppletConfig {
 	gchar *cUserAction;  // custom logout command
 	gchar *cUserActionShutdown;  // custom shutdown command
 	gchar *cUserActionSwitchUser;  // custom switch-user command
+	gchar *cUserActionLock;  // custom screen lock command
 	CDActionsEnum iActionOnMiddleClick;
 	gint iShutdownTime;  // time_t
 	gchar *cEmblemPath;

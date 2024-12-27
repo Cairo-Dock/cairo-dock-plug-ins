@@ -143,5 +143,8 @@ user action2 =
 #{Leave empty to execute the default command. If not empty, it will execute this command with the name of the user (or nothing for guest session)}
 user action switch =
 
+#s Custom command to lock the screen:
+#{Leave empty to execute the default command (if not empty, this is preferred).}
+user action lock =
 
 shutdown time = 0
