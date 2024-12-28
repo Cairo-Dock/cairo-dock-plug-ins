@@ -18,10 +18,6 @@
 
 import sys
 
-from gi.repository import GLib as glib
-from gi.repository import GObject as gobject
-g_bMainLoopInGObject = False
-
 import re
 from os import popen, getpid
 import dbus, dbus.service
@@ -161,12 +157,8 @@ class ULWatcher:
 		self.bus.add_signal_receiver (self.on_launcher_entry_signal, dbus_interface=self.bus_iface_str, member_keyword='member', sender_keyword='sender')
 		
 		self.dock = CairoDock()
-		
-		if g_bMainLoopInGObject:
-			self.loop = gobject.MainLoop()
-		else:
-			self.loop = glib.MainLoop()
-		self.loop.run()
+		if self.dock.iface:
+			self.dock.loop.run()
 	
 	def on_launcher_entry_signal(self, val1=None, val2=None, member=None, sender=None):  # application://evolution.desktop, dictionnary (sv)
 		if (member == 'Update'):
