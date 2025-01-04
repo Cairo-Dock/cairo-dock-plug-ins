@@ -49,6 +49,7 @@ static void cd_logout_hybridSleep (void);
 static void cd_logout_close_session (void);
 static void cd_logout_switch_to_user (const gchar *cUser);
 static void cd_logout_switch_to_guest (void);
+static void cd_logoout_lock_screen (void);
 //static gboolean cd_logout_switch_to_greeter (void);
 
 static void _free_user (CDUser *pUser);
@@ -414,7 +415,7 @@ static GtkWidget *_build_menu (GtkWidget **pShutdownMenuItem)
 	CD_APPLET_ADD_SEPARATOR_IN_MENU (pMenu);
 	
 	cImagePath = cd_logout_check_icon ("system-lock-screen", myData.iDesiredIconSize);
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Lock screen"), cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/locked.svg", cairo_dock_fm_lock_screen, pMenu);  /// TODO: same question...
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Lock screen"), cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/locked.svg", cd_logoout_lock_screen, pMenu);  /// TODO: same question...
 	g_free (cImagePath);
 	if (myData.bCanStop)
 	{
@@ -801,6 +802,15 @@ static void cd_logout_switch_to_guest (void)
 		g_object_unref (pProxy);
 	}
 }
+
+static void cd_logoout_lock_screen (void)
+{
+	if (myConfig.cUserActionLock != NULL)
+		cairo_dock_launch_command (myConfig.cUserActionLock);
+	else
+		cairo_dock_fm_lock_screen ();
+}
+
 /*
 static gboolean cd_logout_switch_to_greeter (void)  // not really sure how to use it.
 {

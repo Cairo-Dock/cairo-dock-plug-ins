@@ -32,6 +32,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cUserAction = CD_CONFIG_GET_STRING ("Configuration", "user action");
 	myConfig.cUserActionShutdown = CD_CONFIG_GET_STRING ("Configuration", "user action2");
 	myConfig.cUserActionSwitchUser = CD_CONFIG_GET_STRING ("Configuration", "user action switch");
+	myConfig.cUserActionLock = CD_CONFIG_GET_STRING ("Configuration", "user action lock");
 	myConfig.iShutdownTime = CD_CONFIG_GET_INTEGER ("Configuration", "shutdown time");
 	myConfig.cEmblemPath = CD_CONFIG_GET_STRING ("Configuration", "emblem");
 	myConfig.cDefaultLabel = CD_CONFIG_GET_STRING ("Icon", "name");

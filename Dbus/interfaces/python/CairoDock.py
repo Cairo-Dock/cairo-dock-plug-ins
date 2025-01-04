@@ -21,6 +21,8 @@
 import os.path
 import dbus
 import re
+import gi
+from gi.repository import GLib as glib
 from dbus.mainloop.glib import DBusGMainLoop
 
 USER_CONFIG_DIR = os.path.expanduser("~/.config")
@@ -113,6 +115,7 @@ class CairoDock:
 		self.cObjectPath = '/org/'+name1+'/'+name2
 		
 		## connect to the dock
+		self.loop = glib.MainLoop()
 		self.bus = dbus.SessionBus()
 		self._connect()
 		
@@ -125,6 +128,7 @@ class CairoDock:
 			if self.iface != None:
 				self.iface = None
 				print("-> no more connection to "+self.cAppName)
+				self.loop.quit()
 		elif self.iface == None:
 			self._connect()
 	
