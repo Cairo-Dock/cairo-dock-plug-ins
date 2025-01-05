@@ -3827,8 +3827,8 @@ msgid "Show current conditions (middle-click)"
 msgstr "Zobraziť aktuálne počasie (stredné kliknutie)"
 
 #: ../weather/src/applet-notifications.c:109
-msgid "Open weather.com (double-click)"
-msgstr "Otvoriť weather.com (dvoj-klik)"
+msgid "Open open-meteo.com (double-click)"
+msgstr "Otvoriť open-meteo.com (dvoj-klik)"
 
 #: ../weather/src/applet-notifications.c:111
 msgid "Reload now"

@@ -3837,8 +3837,8 @@ msgid "Show current conditions (middle-click)"
 msgstr "現在の気象条件の表示（中クリック）"
 
 #: ../weather/src/applet-notifications.c:109
-msgid "Open weather.com (double-click)"
-msgstr "weather.comを開く（ダブルクリック）"
+msgid "Open open-meteo.com (double-click)"
+msgstr "open-meteo.comを開く（ダブルクリック）"
 
 #: ../weather/src/applet-notifications.c:111
 msgid "Reload now"
