@@ -45,20 +45,7 @@ static int _get_num_day_from_icon (GldiModuleInstance *myApplet, Icon *pIcon)
 }
 static inline void _go_to_site (GldiModuleInstance *myApplet, int iNumDay)
 {
-	//~ gchar *cURI;
-	//~ if (iNumDay == -1)
-		//~ cURI = g_strdup_printf ("http://www.weather.com/weather/hourbyhour/graph/%s", myConfig.cLocationCode);
-	//~ else if (iNumDay == 0)
-		//~ cURI = g_strdup_printf ("http://www.weather.com/weather/today/%s", myConfig.cLocationCode);
-	//~ else if (iNumDay == 1)
-		//~ cURI = g_strdup_printf ("http://www.weather.com/weather/tomorrow/%s", myConfig.cLocationCode);
-	//~ else
-		//~ cURI = g_strdup_printf ("http://www.weather.com/weather/wxdetail%d/%s", iNumDay, myConfig.cLocationCode);  // ?dayNum=%d
-	//~ cairo_dock_fm_launch_uri (cURI);
-	//~ g_free (cURI);
-	g_print("url: %s\n", myData.wdata.cLink);
-	if (myData.wdata.cLink != NULL)
-		cairo_dock_fm_launch_uri ((const gchar *)myData.wdata.cLink);
+	cairo_dock_fm_launch_uri ("https://open-meteo.com/en/docs");
 }
 
 static inline void _reload (GldiModuleInstance *myApplet)
@@ -109,7 +96,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	if (pClickedIcon != NULL)
 	{
 		myData.iClickedDay = _get_num_day_from_icon (myApplet, pClickedIcon);
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Open weather.com (double-click)"), GLDI_ICON_NAME_JUMP_TO, _cd_weather_show_site, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Open open-meteo.com (double-click)"), GLDI_ICON_NAME_JUMP_TO, _cd_weather_show_site, CD_APPLET_MY_MENU);
 	}
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Reload now"), GLDI_ICON_NAME_REFRESH, _cd_weather_reload, CD_APPLET_MY_MENU);
 CD_APPLET_ON_BUILD_MENU_END
@@ -141,29 +128,19 @@ void cd_weather_show_forecast_dialog (GldiModuleInstance *myApplet, Icon *pIcon)
 	else
 		gldi_dialogs_remove_on_icon (myIcon);
 	
-	// if we never got any result, show an error message. If we lost the connection, but could get some data beforehand, we'll just present the old data, since they are not likely to change very often.
-	if (myData.wdata.cCity == NULL)
-	{
-		gldi_dialog_show_temporary_with_icon (D_("No data available\n is your connection alive?"), 
-			(myDock ? pIcon : myIcon),
-			(myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer),
-			myConfig.cDialogDuration,
-			"same icon");
-		return ;
-	}
-	
 	// present the day's forecast.
 	int iNumDay = ((int) pIcon->fOrder) / 2;
 	g_return_if_fail (iNumDay < myConfig.iNbDays);
 	
 	Day *day = &myData.wdata.days[iNumDay];
-	gldi_dialog_show_temporary_with_icon_printf ("%s (%s) : %s\n %s : %s%s -> %s%s",
+	gldi_dialog_show_temporary_with_icon_printf ("%s (%s) : %s\n %s : %s%s -> %s%s\n %s : %s",
 		(myDock ? pIcon : myIcon),
 		(myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer),
 		myConfig.cDialogDuration,
 		"same icon",
 		day->cName, day->cDate, day->cWeatherDescription,
-		D_("Temperature"), _display (day->cTempMin), myData.wdata.units.cTemp, _display (day->cTempMax), myData.wdata.units.cTemp);
+		D_("Temperature"), _display (day->cTempMin), myData.wdata.units.cTemp, _display (day->cTempMax), myData.wdata.units.cTemp,
+		D_("Rain or snow"), _display (day->cPrecipProb));
 }
 
 void cd_weather_show_current_conditions_dialog (GldiModuleInstance *myApplet)
@@ -194,11 +171,12 @@ void cd_weather_show_current_conditions_dialog (GldiModuleInstance *myApplet)
 	
 	// show a dialog with the current conditions.
 	CurrentContitions *cc = &myData.wdata.currentConditions;
-	gldi_dialog_show_temporary_with_icon_printf ("%s:\n %s : %s%s\n %s : %s%s\n %s : %s - %s : %s%s\n %s : %s  %s %s",
+	gldi_dialog_show_temporary_with_icon_printf ("%s:\n %s : %s%s\n %s : %s%s\n %s : %s%s \n %s : %s%s\n %s : %s  %s : %s",
 		myIcon, myContainer, myConfig.cDialogDuration, myIcon->cFileName,
-		cc->cDataAcquisitionDate,
+		cc->now.cDate,
 		D_("Temperature"), _display (cc->now.cTempMax), myData.wdata.units.cTemp,
 		D_("Wind"), _display (cc->cWindSpeed), myData.wdata.units.cSpeed,
-		D_("Humidity"), _display (cc->cHumidity), D_("Pressure"), _display (cc->cPressure), myData.wdata.units.cPressure,
+		D_("Humidity"), _display (cc->cHumidity), myData.wdata.units.cHumidity,
+		D_("Pressure"), _display (cc->cPressure), myData.wdata.units.cPressure,
 		D_("Sunrise"), _display (cc->cSunRise), D_("Sunset"), _display (cc->cSunSet));
 }

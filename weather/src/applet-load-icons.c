@@ -23,15 +23,13 @@
 #include "applet-read-data.h"
 #include "applet-load-icons.h"
 
-const char *cMonthsWeeks[19] = { N_("Monday") , N_("Tuesday") , N_("Wednesday") , N_("Thursday") , N_("Friday") , N_("Saturday") , N_("Sunday") , N_("Jan") , N_("Feb") , N_("Mar") , N_("Apr") , N_("May") ,N_("Jun") , N_("Jui") , N_("Aug") , N_("Sep") , N_("Oct") , N_("Nov") , N_("Dec") };  // pour qu'ils soient listes dans le .pot.
-
 #define _add_icon(i, j)\
 	if (myData.wdata.days[i].cName != NULL)\
 	{\
 		pIcon = cairo_dock_create_dummy_launcher (g_strdup ((gchar *)myData.wdata.days[i].cName),\
 			g_strdup_printf ("%s/%s.png", myConfig.cThemePath, myData.wdata.days[i].cIconNumber),\
 			NULL,\
-			(myConfig.bDisplayTemperature ? g_strdup_printf ("%s/%s", _display (myData.wdata.days[i].cTempMin), _display (myData.wdata.days[i].cTempMax)) : NULL),\
+			(myConfig.bDisplayTemperature ? g_strdup_printf ("%s%s/%s%s", _display (myData.wdata.days[i].cTempMin), myData.wdata.units.cTemp, _display (myData.wdata.days[i].cTempMax), myData.wdata.units.cTemp) : NULL),\
 			2*i+j);\
 		if (! g_file_test (pIcon->cFileName, G_FILE_TEST_EXISTS))\
 		{\
@@ -126,8 +124,15 @@ gboolean cd_weather_update_from_data (CDSharedMemory *pSharedMemory)
 			
 			_weather_draw_current_conditions (myApplet);  // draw the icon, in case we never drawn the icon before.
 			
-			// retry in 20s, in case it's just a temporary network loss, or a slow connection on startup.
-			if (myData.pTask->iPeriod > 20)
+			// if there are no coordinates, stop the updates (we have to retry when the user has set them)
+			if (isnan (myConfig.lat) || isnan (myConfig.lon))
+			{
+				gldi_task_discard (myData.pTask);
+				myData.pTask = NULL;
+			}
+			
+			// otherwise retry in 20s, in case it's just a temporary network loss, or a slow connection on startup.
+			else if (myData.pTask->iPeriod > 20)
 			{
 				cd_message ("no data, will re-try in 20s");
 				gldi_task_change_frequency (myData.pTask, 20);

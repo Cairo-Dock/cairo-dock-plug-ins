@@ -29,15 +29,14 @@
 
 #define WEATHER_DEFAULT_NAME "weather"
 
-// yahoo weather has no code location API
-// it's possible to get a code (woeid) in the 'link' of the response, but that means that you already got a valid location
-// so it's pretty useless
+// https://geocoding-api.open-meteo.com/v1/search should work to retrieve location data, but not implemented for now
 #undef CD_WEATHER_HAS_CODE_LOCATION
 
 #define _display(cValue) ((cValue) == NULL || *((gchar*)cValue) == 'N' ? "?" : (const gchar*)(cValue))
 
 struct _AppletConfig {
-	gchar *cLocationCode;
+	double lat;
+	double lon;
 	gboolean bISUnits;
 	gboolean bCurrentConditions;
 	gboolean bDisplayTemperature;
@@ -50,29 +49,30 @@ struct _AppletConfig {
 	} ;
 
 typedef struct {
-	xmlChar *cTemp;
-	xmlChar *cSpeed;
-	xmlChar *cPressure;
+	char *cTemp;
+	char *cSpeed;
+	char *cPressure;
+	char *cHumidity;
 	} Unit;
 
 typedef struct {
-	xmlChar *cIconNumber;
-	xmlChar *cDate;
-	xmlChar *cName;
-	xmlChar *cTempMax;
-	xmlChar *cTempMin;
-	xmlChar *cWeatherDescription;
+	const char *cIconNumber;
+	char *cDate;
+	char *cName;
+	char *cTempMax;
+	char *cTempMin;
+	char *cPrecipProb;
+	char *cWeatherDescription;
 	} Day;
 
 typedef struct {
-	xmlChar *cWindSpeed;
-	xmlChar *cWindDirection;
-	xmlChar *cPressure;
-	xmlChar *cHumidity;
-	xmlChar *cSunRise;
-	xmlChar *cSunSet;
+	char *cWindSpeed;
+	char *cWindDirection;
+	char *cPressure;
+	char *cHumidity;
+	char *cSunRise;
+	char *cSunSet;
 	int ttl;  // in mn;
-	xmlChar *cDataAcquisitionDate;
 	Day now;
 	} CurrentContitions;
 
@@ -80,13 +80,14 @@ typedef struct {
 	Unit units;
 	CurrentContitions currentConditions;
 	Day days[WEATHER_NB_DAYS_MAX];
-	xmlChar *cCountry;
-	xmlChar *cCity;
-	xmlChar *cLink;
+	char *cCountry;
+	char *cCity;
+	char *cLink;
 	} CDWeatherData;
 
 typedef struct {
-	gchar *cLocationCode;
+	double lat; // location
+	double lon;
 	gboolean bISUnits;
 	gboolean bCurrentConditions;
 	CDWeatherData wdata;

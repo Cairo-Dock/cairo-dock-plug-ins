@@ -30,7 +30,7 @@ CD_APPLET_DEFINE2_BEGIN (N_("weather"),
 	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_APPLET_ACCESSORY,
 	N_("This applet displays weather into your dock.\n"
-	"Data are provided by yahoo.com, you can find your location in the config panel.\n"
+	"Data are provided by open-meteo.com; you have to input your coordinates in the config panel for it to work.\n"
 	"It can detach itself to be a totally eye-candy 3D deskelt.\n"
 	"Middle-click on the main icon to have current conditions information, left-click on a sub-icon to have forcast information.\n"),
 	"Fabounet (Fabrice Rey)")
@@ -66,8 +66,6 @@ CD_APPLET_STOP_END
 
 CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
-	g_return_val_if_fail (myConfig.cLocationCode != NULL, FALSE);
-	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
 		if (myConfig.bSetName)

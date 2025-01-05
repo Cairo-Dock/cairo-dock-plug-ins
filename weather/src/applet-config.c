@@ -28,7 +28,8 @@ GList *s_pLocationsList = NULL;
 
 CD_APPLET_GET_CONFIG_BEGIN
 	//\_________________ On recupere toutes les valeurs de notre fichier de conf.
-	myConfig.cLocationCode = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "location code", "FRXX0076");
+	myConfig.lat = CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "latitude", NAN);
+	myConfig.lon = CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "longitude", NAN);
 	myConfig.bISUnits = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "IS units", TRUE);
 	myConfig.bCurrentConditions = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "display cc", TRUE);
 	myConfig.iNbDays = MIN (CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nb days", WEATHER_NB_DAYS_MAX), WEATHER_NB_DAYS_MAX);
@@ -48,7 +49,6 @@ CD_APPLET_GET_CONFIG_END
 
 
 CD_APPLET_RESET_CONFIG_BEGIN
-	g_free (myConfig.cLocationCode);
 	g_free (myConfig.cRenderer);
 	g_free (myConfig.cThemePath);
 CD_APPLET_RESET_CONFIG_END
