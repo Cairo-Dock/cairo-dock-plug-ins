@@ -117,7 +117,7 @@ static const char *_cd_weather_get_icon_number (int	code, gboolean bNight)
 }
 
 
-static void _cd_weather_parse_data (CDSharedMemory *pSharedMemory, const gchar *cData, gboolean bParseHeader, GError **erreur)
+static gboolean _cd_weather_parse_data (CDSharedMemory *pSharedMemory, const gchar *cData)
 {
 	struct json_object *obj = json_tokener_parse (cData);
 	GTimeZone *tz = NULL;
@@ -285,12 +285,13 @@ static void _cd_weather_parse_data (CDSharedMemory *pSharedMemory, const gchar *
 	
 	json_object_put (obj);
 	if (tz) g_time_zone_unref (tz);
-	return;
+	return TRUE;
 	
 json_error:
 	cd_warning ("Error parsing weather data!");
 	if (obj) json_object_put (obj);
 	if (tz) g_time_zone_unref (tz);
+	return FALSE;
 }
 
 const gchar *cBaseUrl = "https://api.open-meteo.com/v1/forecast";
@@ -335,12 +336,9 @@ static void cd_weather_get_distant_data (CDSharedMemory *pSharedMemory)
 	}
 	
 	//\____________________ On extrait les donnees des conditions courantes.
-	_cd_weather_parse_data (pSharedMemory, cCCData, TRUE, &erreur);
-	if (erreur != NULL)
+	if (!_cd_weather_parse_data (pSharedMemory, cCCData))
 	{
-		cd_warning ("weather : %s", erreur->message);
-		g_error_free (erreur);
-		erreur = NULL;
+		cd_warning ("weather : error parsing forecast data");
 		pSharedMemory->bErrorInThread = TRUE;
 	}
 	g_free (cCCData);
