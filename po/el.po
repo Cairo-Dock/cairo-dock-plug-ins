@@ -3896,8 +3896,8 @@ msgid "Show current conditions (middle-click)"
 msgstr "Εμφάνιση τρεχουσών συνθηκών (μεσαίο κλικ)"
 
 #: ../weather/src/applet-notifications.c:109
-msgid "Open weather.com (double-click)"
-msgstr "Άνοιγμα του weather.com (διπλό κλικ)"
+msgid "Open open-meteo.com (double-click)"
+msgstr "Άνοιγμα του open-meteo.com (διπλό κλικ)"
 
 #: ../weather/src/applet-notifications.c:111
 msgid "Reload now"

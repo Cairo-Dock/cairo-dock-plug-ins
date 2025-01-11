@@ -3989,8 +3989,8 @@ msgid "Show current conditions (middle-click)"
 msgstr "Visa aktuella förhållanden (mittenklick)"
 
 #: ../weather/src/applet-notifications.c:109
-msgid "Open weather.com (double-click)"
-msgstr "Öppna weather.com (dubbelklick)"
+msgid "Open open-meteo.com (double-click)"
+msgstr "Öppna open-meteo.com (dubbelklick)"
 
 #: ../weather/src/applet-notifications.c:111
 msgid "Reload now"

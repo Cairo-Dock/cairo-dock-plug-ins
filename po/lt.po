@@ -3590,7 +3590,7 @@ msgid "Show current conditions (middle-click)"
 msgstr ""
 
 #: ../weather/src/applet-notifications.c:109
-msgid "Open weather.com (double-click)"
+msgid "Open open-meteo.com (double-click)"
 msgstr ""
 
 #: ../weather/src/applet-notifications.c:111

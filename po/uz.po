@@ -3619,8 +3619,8 @@ msgid "Show current conditions (middle-click)"
 msgstr ""
 
 #: ../weather/src/applet-notifications.c:109
-msgid "Open weather.com (double-click)"
-msgstr "weather.com ни очиш (икки марта босиш)"
+msgid "Open open-meteo.com (double-click)"
+msgstr "open-meteo.com ни очиш (икки марта босиш)"
 
 #: ../weather/src/applet-notifications.c:111
 msgid "Reload now"

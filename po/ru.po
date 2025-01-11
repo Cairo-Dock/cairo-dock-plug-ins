@@ -3880,8 +3880,8 @@ msgid "Show current conditions (middle-click)"
 msgstr "Показать текущую погоду (средний щелчок)"
 
 #: ../weather/src/applet-notifications.c:109
-msgid "Open weather.com (double-click)"
-msgstr "Открыть weather.com (двойной щелчок)"
+msgid "Open open-meteo.com (double-click)"
+msgstr "Открыть open-meteo.com (двойной щелчок)"
 
 #: ../weather/src/applet-notifications.c:111
 msgid "Reload now"

@@ -11,7 +11,7 @@ include ("${CMAKE_CURRENT_SOURCE_DIR}/cmake_modules/GNUInstallDirs.cmake")
 ########### project ###############
 
 project ("cairo-dock-plugins")
-set (VERSION "3.5.99.beta6")
+set (VERSION "3.5.99.beta7")
 # can be different from VERSION, e.g. if a new version of plugins does not depend on things added to core
 set (CORE_REQUIRED_VERSION "3.5.99.beta6")
 
@@ -1325,7 +1325,7 @@ add_subdirectory (Toons)
 ############# WEATHER #################
 message (STATUS "> Weather:")
 set (with_weather no)
-set (WEATHER_MODULE openssl)
+set (WEATHER_MODULE json-c)
 pkg_check_modules (WEATHER ${WEATHER_MODULE})
 if (NOT WEATHER_FOUND)
 	message (STATUS "Could not find ${WEATHER_MODULE}; Cairo-Dock won't be built with Weather applet.")
@@ -1333,7 +1333,7 @@ if (NOT WEATHER_FOUND)
 	set (MODULES_MISSING "${MODULES_MISSING} ${WEATHER_MODULE}")
 else()
 	set (GETTEXT_WEATHER ${GETTEXT_PLUGINS})
-	set (VERSION_WEATHER "2.1.0")
+	set (VERSION_WEATHER "3.0.0")
 	set (PACKAGE_WEATHER "cd-weather")
 	set (weatherdatadir "${pluginsdatadir}/weather")
 	set (weatheruserdirname "weather")

@@ -3861,8 +3861,8 @@ msgid "Show current conditions (middle-click)"
 msgstr "Jelenlegi körülmények mutatása (középső egérgomb)"
 
 #: ../weather/src/applet-notifications.c:109
-msgid "Open weather.com (double-click)"
-msgstr "Weather.com megnyitása (dupla kattintás)"
+msgid "Open open-meteo.com (double-click)"
+msgstr "open-meteo.com megnyitása (dupla kattintás)"
 
 #: ../weather/src/applet-notifications.c:111
 msgid "Reload now"

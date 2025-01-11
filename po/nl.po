@@ -4003,8 +4003,8 @@ msgid "Show current conditions (middle-click)"
 msgstr "Huidige weersomstandigheden tonen (middelklik)"
 
 #: ../weather/src/applet-notifications.c:109
-msgid "Open weather.com (double-click)"
-msgstr "weather.com openen (dubbelklikken)"
+msgid "Open open-meteo.com (double-click)"
+msgstr "open-meteo.com openen (dubbelklikken)"
 
 #: ../weather/src/applet-notifications.c:111
 msgid "Reload now"
