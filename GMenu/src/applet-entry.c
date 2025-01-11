@@ -403,7 +403,12 @@ static gboolean _on_key_pressed_menu (GtkWidget *pMenu, GdkEventKey *pEvent,
 			break ;
 			// space key when searching, do not deactivate the menu: command or desc.
 			case GDK_KEY_space :
+			{
+				int pos = gtk_editable_get_position (GTK_EDITABLE (myData.pEntry));
+				gtk_editable_insert_text (GTK_EDITABLE (myData.pEntry), " ", 1, &pos);
+				gtk_editable_set_position (GTK_EDITABLE (myData.pEntry), pos);
 				return TRUE;
+			}
 		}
 	}
 
