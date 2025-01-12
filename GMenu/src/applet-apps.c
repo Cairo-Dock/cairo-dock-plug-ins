@@ -61,7 +61,7 @@ static void _on_answer_launch_recent (int iClickedButton, GtkWidget *pInteractiv
 {
 	if (iClickedButton == 0 || iClickedButton == -1)  // ok ou entree.
 	{
-		GAppInfo *pAppInfo = NULL;
+		GDesktopAppInfo *pAppInfo = NULL;
 		if (pInteractiveWidget)  // find the selected one
 		{
 			int n = gtk_combo_box_get_active (GTK_COMBO_BOX (pInteractiveWidget));
@@ -72,11 +72,7 @@ static void _on_answer_launch_recent (int iClickedButton, GtkWidget *pInteractiv
 			pAppInfo = myData.pNewApps->data;
 		}
 		g_return_if_fail (pAppInfo != NULL);
-		// GdkAppLaunchContext will automatically use startup notify / xdg-activation,
-		// allowing e.g. the app to raise itself if necessary
-		GdkAppLaunchContext *context = gdk_display_get_app_launch_context (gdk_display_get_default ());
-		g_app_info_launch (pAppInfo, NULL, G_APP_LAUNCH_CONTEXT (context), NULL);
-		g_object_unref (context); // will be kept by GIO if necessary (and we don't care about the "launched" signal in this case)
+		cairo_dock_launch_app_info (pAppInfo);
 	}
 	
 	g_list_free (myData.pNewApps);  // the content elongs to pKnownApplications
@@ -106,7 +102,7 @@ void cd_menu_check_for_new_apps (void)
 			{
 				gtk_combo_box_text_append_text (
 					GTK_COMBO_BOX_TEXT (s_pNewAppsDialog->pInteractiveWidget),
-					g_app_info_get_name (a->data));
+					g_app_info_get_name (G_APP_INFO (a->data)));
 			}
 			gtk_combo_box_set_active (
 				GTK_COMBO_BOX (s_pNewAppsDialog->pInteractiveWidget), 0);
@@ -122,7 +118,7 @@ void cd_menu_check_for_new_apps (void)
 			{
 				gtk_combo_box_text_append_text (
 					GTK_COMBO_BOX_TEXT (pInteractiveWidget),
-					g_app_info_get_name (a->data));
+					g_app_info_get_name (G_APP_INFO (a->data)));
 			}
 
 			gtk_combo_box_set_active (GTK_COMBO_BOX (pInteractiveWidget), 0); // select the first one

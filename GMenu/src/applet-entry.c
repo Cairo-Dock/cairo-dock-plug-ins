@@ -24,7 +24,7 @@
 
 
 typedef struct _EntryInfo {
-	GAppInfo  *pAppInfo;
+	GDesktopAppInfo  *pAppInfo;
 	GtkWidget *pMenuItem;
 	gboolean   bKeepMenu; // flag to not destroy the menu item if it's reused after
 	} EntryInfo;
@@ -37,16 +37,14 @@ static GtkWidget *s_pLaunchCommand = NULL; // widget to launch the command
 static gint _compare_apps (const EntryInfo *a, const EntryInfo *b)
 {
 	// ignore cases: some apps don't have capital letters for the first char
-	return g_ascii_strcasecmp (g_app_info_get_name (a->pAppInfo),
-		g_app_info_get_name (b->pAppInfo));
+	return g_ascii_strcasecmp (g_app_info_get_name (G_APP_INFO (a->pAppInfo)),
+		g_app_info_get_name (G_APP_INFO (b->pAppInfo)));
 }
 
 static gboolean _on_button_release_menu (GtkWidget *pMenu, GdkEventButton *pEvent,
-	GAppInfo *pAppInfo)
+	GDesktopAppInfo *pAppInfo)
 {
-	GdkAppLaunchContext *context = gdk_display_get_app_launch_context (gdk_display_get_default ());
-	g_app_info_launch (pAppInfo, NULL, G_APP_LAUNCH_CONTEXT (context), NULL);
-	g_object_unref (context);
+	cairo_dock_launch_app_info (pAppInfo);
 	return FALSE; // pass the signal: hide the menu
 }
 
@@ -87,7 +85,7 @@ static void _add_results_in_menu (GldiModuleInstance *myApplet)
 				 */
 		else
 		{
-			const gchar *cDescription = g_app_info_get_description (pInfo->pAppInfo);
+			const gchar *cDescription = g_app_info_get_description (G_APP_INFO (pInfo->pAppInfo));
 
 			// create the new entry: a label, an icon and a tooltip
 			if (myConfig.bDisplayDesc)
@@ -96,7 +94,7 @@ static void _add_results_in_menu (GldiModuleInstance *myApplet)
 					cairo_dock_cut_string (cDescription, 60) :
 					NULL;
 				gchar *cLabel = g_markup_printf_escaped ("<b>%s</b>\n%s",
-					g_app_info_get_display_name (pInfo->pAppInfo),
+					g_app_info_get_display_name (G_APP_INFO (pInfo->pAppInfo)),
 					cShortDesc ? cShortDesc : "");
 				pInfo->pMenuItem = gldi_menu_item_new (cLabel, "");
 				g_free (cLabel);
@@ -107,12 +105,12 @@ static void _add_results_in_menu (GldiModuleInstance *myApplet)
 					gtk_label_set_use_markup (pLabel, TRUE);
 				else // should not happen... but be secure with Gtk :)
 					gtk_menu_item_set_label (GTK_MENU_ITEM (pInfo->pMenuItem),
-						g_app_info_get_display_name (pInfo->pAppInfo));
+						g_app_info_get_display_name (G_APP_INFO (pInfo->pAppInfo)));
 			}
 			else
-				pInfo->pMenuItem = gldi_menu_item_new (g_app_info_get_name (pInfo->pAppInfo), "");
+				pInfo->pMenuItem = gldi_menu_item_new (g_app_info_get_name (G_APP_INFO (pInfo->pAppInfo)), "");
 
-			GIcon *pIcon = g_app_info_get_icon (pInfo->pAppInfo);
+			GIcon *pIcon = g_app_info_get_icon (G_APP_INFO (pInfo->pAppInfo));
 			if (pIcon)
 			{
 				GtkWidget *pImage = gtk_image_new_from_gicon (pIcon,
@@ -162,7 +160,7 @@ static void _add_results_in_menu (GldiModuleInstance *myApplet)
 }
 
 // to not recreate a menu entry each time and to not loose the selection
-static GtkWidget * _menu_match (GAppInfo *pAppInfo, GList *pEntryList)
+static GtkWidget * _menu_match (GDesktopAppInfo *pAppInfo, GList *pEntryList)
 {
 	EntryInfo *pInfo;
 	GList *pList;
@@ -181,20 +179,20 @@ static GtkWidget * _menu_match (GAppInfo *pAppInfo, GList *pEntryList)
 /* We need to always compare two strings ignoring case of chars because both
  * strings (property and key) can have capital letters
  */
-static gboolean _app_match (GAppInfo *pAppInfo, const gchar *key)
+static gboolean _app_match (GDesktopAppInfo *pAppInfo, const gchar *key)
 {
 	int n = strlen (key);
-	const gchar *prop = g_app_info_get_executable (pAppInfo); // transmission
+	const gchar *prop = g_app_info_get_executable (G_APP_INFO (pAppInfo)); // transmission
 	if (!prop || g_ascii_strncasecmp (prop, key, n) != 0)
 	{
-		prop = g_app_info_get_name (pAppInfo); // Transmission
+		prop = g_app_info_get_name (G_APP_INFO (pAppInfo)); // Transmission
 		if (!prop || g_ascii_strncasecmp (prop, key, n) != 0)
 		{
 			gchar *lower_key = g_ascii_strdown (key , -1);
 			if (!lower_key)
 				return FALSE;
 
-			prop = g_app_info_get_display_name (pAppInfo); // BitTorrent Client Transmission
+			prop = g_app_info_get_display_name (G_APP_INFO (pAppInfo)); // BitTorrent Client Transmission
 			gchar *lower_prop;
 			if (prop) // avoid warnings even if it should not happen
 				lower_prop = g_ascii_strdown (prop, -1);
@@ -217,7 +215,7 @@ static gboolean _app_match (GAppInfo *pAppInfo, const gchar *key)
 					g_free (lower_key);
 					return FALSE;
 				}
-				prop = g_app_info_get_description (pAppInfo);
+				prop = g_app_info_get_description (G_APP_INFO (pAppInfo));
 				if (!prop)
 				{
 					g_free (lower_key);
@@ -239,7 +237,7 @@ static gboolean _app_match (GAppInfo *pAppInfo, const gchar *key)
 }
 
 
-static void _create_filtered_list (GAppInfo *pAppInfo, gpointer *data)
+static void _create_filtered_list (GDesktopAppInfo *pAppInfo, gpointer *data)
 {
 	const gchar *cText = data[0];
 	GList *pList = data[1]; // the previous list
@@ -375,15 +373,13 @@ static void _launch_app_of_selected_item (GtkWidget *pMenu)
 
 	if (pMenuItem != NULL && pMenuItem != s_pLaunchCommand)
 	{
-		GAppInfo *pAppInfo = g_object_get_data (G_OBJECT (pMenuItem), "info");
-		GdkAppLaunchContext *context = gdk_display_get_app_launch_context (gdk_display_get_default ());
-		g_app_info_launch (pAppInfo, NULL, G_APP_LAUNCH_CONTEXT (context), NULL);
-		g_object_unref (context);
+		GDesktopAppInfo *pAppInfo = g_object_get_data (G_OBJECT (pMenuItem), "info");
+		cairo_dock_launch_app_info (pAppInfo);
 	}
 	else // no item or s_pLaunchCommand, we launch the command
 	{
 		// note: we have to parse this as a command line, since there could be arguments given
-		cairo_dock_launch_command (gtk_entry_get_text (GTK_ENTRY (myData.pEntry)));
+		cairo_dock_launch_command_full (gtk_entry_get_text (GTK_ENTRY (myData.pEntry)), NULL, GLDI_LAUNCH_GUI | GLDI_LAUNCH_SLICE);
 		gtk_widget_hide (myData.pMenu);
 	}
 }
@@ -425,7 +421,7 @@ static void _on_menu_deactivated (GtkWidget *pMenu, G_GNUC_UNUSED gpointer data)
 static gboolean _on_button_release_launch_command (G_GNUC_UNUSED GtkWidget *pMenu,
 	GdkEventButton *pEvent, G_GNUC_UNUSED gpointer data)
 {
-	cairo_dock_launch_command (gtk_entry_get_text (GTK_ENTRY (myData.pEntry)));
+	cairo_dock_launch_command_full (gtk_entry_get_text (GTK_ENTRY (myData.pEntry)), NULL, GLDI_LAUNCH_GUI | GLDI_LAUNCH_SLICE);
 	return FALSE; // pass the signal: hide the menu
 }
 

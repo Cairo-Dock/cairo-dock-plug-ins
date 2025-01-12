@@ -45,7 +45,7 @@ static void _cd_menu_configure_menu (GtkMenuItem *menu_item, gpointer data)
 {
 	CD_APPLET_ENTER;
 	if (myConfig.cConfigureMenuCommand != NULL)
-		cairo_dock_launch_command (myConfig.cConfigureMenuCommand);
+		cairo_dock_launch_command_full (myConfig.cConfigureMenuCommand, NULL, GLDI_LAUNCH_GUI | GLDI_LAUNCH_SLICE);
 	else if (s_cEditMenuCmd != NULL)
 		cairo_dock_launch_command_single_gui (s_cEditMenuCmd);
 	CD_APPLET_LEAVE();
