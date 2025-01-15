@@ -67,19 +67,20 @@ void env_backend_reboot (void)
 void env_backend_lock_screen (void)
 {
 	const char * const args[] = {"qdbus", "org.freedesktop.ScreenSaver", "/ScreenSaver", "Lock", NULL};
-	cairo_dock_launch_command_argv_full (args, NULL, TRUE);
+	cairo_dock_launch_command_argv (args);
 }
 
 void env_backend_setup_time (void)
 {
-	char *kcmshell = g_strdup_printf ("kcmshell%d clock", get_kde_version());
+	char *kcmshell = g_strdup_printf ("kcmshell%d", get_kde_version());
 	const char * const args[] = {kcmshell, "clock", NULL};
-	cairo_dock_launch_command_argv_full (args, NULL, TRUE);
+	cairo_dock_launch_command_argv_full (args, NULL, GLDI_LAUNCH_GUI | GLDI_LAUNCH_SLICE);
+	g_free (kcmshell);
 }
 
 void env_backend_show_system_monitor (void)
 {
-	cairo_dock_launch_command_single_gui ("ksysguard");
+	cairo_dock_launch_command_single_gui ("plasma-systemmonitor");
 }
 
 int get_kde_version (void)

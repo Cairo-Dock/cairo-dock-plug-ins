@@ -31,7 +31,7 @@ void env_backend_logout (void)
 	if (cResult != NULL && *cResult == '/')
 	{
 		args[2] = "--logout";
-		cairo_dock_launch_command_argv_full (args + 1, NULL, TRUE); // i.e. gnome-session-quit --logout
+		cairo_dock_launch_command_argv_full (args + 1, NULL, GLDI_LAUNCH_GUI); // i.e. gnome-session-quit --logout
 	}
 	else
 	{
@@ -42,14 +42,14 @@ void env_backend_logout (void)
 		if (cResult != NULL && *cResult == '/')
 		{
 			args[2] = "--logout";
-			cairo_dock_launch_command_argv_full (args + 1, NULL, TRUE);
+			cairo_dock_launch_command_argv_full (args + 1, NULL, GLDI_LAUNCH_GUI);
 		}
 		else
 		{
 			args[0] = "gnome-session-save";
 			args[1] = "--kill";
 			args[2] = "--gui";
-			cairo_dock_launch_command_argv_full (args, NULL, TRUE);
+			cairo_dock_launch_command_argv_full (args, NULL, GLDI_LAUNCH_GUI);
 		}
 	}
 	g_free (cResult);
@@ -63,7 +63,7 @@ void env_backend_shutdown (void)
 	if (cResult != NULL && *cResult == '/')
 	{
 		args[2] = "--power-off";
-		cairo_dock_launch_command_argv_full (args + 1, NULL, TRUE); // i.e. gnome-session-quit --logout
+		cairo_dock_launch_command_argv_full (args + 1, NULL, GLDI_LAUNCH_GUI); // i.e. gnome-session-quit --power-off
 	}
 	else
 	{
@@ -74,13 +74,13 @@ void env_backend_shutdown (void)
 		if (cResult != NULL && *cResult == '/')
 		{
 			args[2] = "--power-off";
-			cairo_dock_launch_command_argv_full (args + 1, NULL, TRUE);
+			cairo_dock_launch_command_argv_full (args + 1, NULL, GLDI_LAUNCH_GUI);
 		}
 		else
 		{
 			args[0] = "gnome-session-save";
 			args[1] = "--shutdown-dialog";
-			cairo_dock_launch_command_argv_full (args, NULL, TRUE);
+			cairo_dock_launch_command_argv_full (args, NULL, GLDI_LAUNCH_GUI);
 		}
 	}
 	g_free (cResult);
@@ -120,14 +120,13 @@ void env_backend_setup_time (void)
 		g_free (cResult);
 	}
 	if (args[0])
-		cairo_dock_launch_command_argv_full (args, NULL, TRUE);
+		cairo_dock_launch_command_argv_full (args, NULL, GLDI_LAUNCH_GUI | GLDI_LAUNCH_SLICE);
 	else
 		cd_warning ("couldn't guess what program to use to setup the time and date.");
 }
 
 void env_backend_show_system_monitor (void)
 {
-	const gchar * const args[] = {"gnome-system-monitor", NULL};
-	cairo_dock_launch_command_argv_full (args, NULL, TRUE);
+	cairo_dock_launch_command_single_gui ("gnome-system-monitor");
 }
 
