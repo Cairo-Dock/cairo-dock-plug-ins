@@ -132,7 +132,7 @@ CD_APPLET_ON_CLICK_BEGIN
 		{
 			// Click on a bookmark which contains a custom cmd, e.g.: "nautilus x-nautilus-(...)
 			if (CD_APPLET_CLICKED_ICON->iVolumeID == CD_VOLUME_ID_BOOKMARK_CMD)
-				cairo_dock_launch_command (CD_APPLET_CLICKED_ICON->cCommand);
+				cairo_dock_launch_command_full (CD_APPLET_CLICKED_ICON->cCommand, NULL, GLDI_LAUNCH_GUI | GLDI_LAUNCH_SLICE);
 			else
 			{
 				/* check if it's a mounted URI
