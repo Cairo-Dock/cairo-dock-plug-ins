@@ -94,7 +94,7 @@ static void _show_system_monitor (GtkMenuItem *menu_item, GldiModuleInstance *my
 {
 	if (myConfig.cSystemMonitorCommand != NULL)
 	{
-		cairo_dock_launch_command (myConfig.cSystemMonitorCommand);
+		cairo_dock_launch_command_full (myConfig.cSystemMonitorCommand, NULL, GLDI_LAUNCH_GUI | GLDI_LAUNCH_SLICE);
 	}
 	else
 	{
