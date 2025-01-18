@@ -190,9 +190,9 @@ CD_APPLET_ON_BUILD_MENU_PROTO
 			
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Delete all events"), GLDI_ICON_NAME_DELETE, _clear_all_events, CD_APPLET_MY_MENU, myApplet);
 		}
-		else if (CD_APPLET_CLICKED_ICON->pClassApp != NULL)
+		else if (CD_APPLET_CLICKED_ICON->pAppInfo && CD_APPLET_CLICKED_ICON->pAppInfo->app)
 		{
-			GDesktopAppInfo *app = CD_APPLET_CLICKED_ICON->pClassApp;
+			GDesktopAppInfo *app = CD_APPLET_CLICKED_ICON->pAppInfo->app;
 			const gchar **types = app ? g_app_info_get_supported_types (G_APP_INFO (app)) : NULL;
 			if (types)
 			{
