@@ -122,6 +122,7 @@ static void _on_got_events (ZeitgeistResultSet *pEvents, GtkListStore *pModel)
 		for (i = 0; i < n; i++)
 		{
 			subject = zeitgeist_event_get_subject (event, i);
+			gchar *cAppClass = NULL; // URI mapped to registered app class
 			
 			//\_____________ prevent doubles.
 			cEventURI = zeitgeist_subject_get_uri (subject);
@@ -150,8 +151,15 @@ static void _on_got_events (ZeitgeistResultSet *pEvents, GtkListStore *pModel)
 			else if (strncmp (cEventURI, "application://", 14) == 0)  // application URL
 			{
 				gchar *cClass = cairo_dock_register_class (cEventURI+14);
+				if (!cClass) // should not happen (if Zeitgeist can find an app, we should be able to as well), but be careful
+				{
+					g_hash_table_insert (pHashTable, (gchar*)cEventURI, NULL);  // since we've checked it, insert it, even if we don't display it.
+					g_free (cPath); // should be NULL, but just in case
+					continue;
+				}
 				cIconName = g_strdup (cairo_dock_get_class_icon (cClass));
 				cText = cairo_dock_get_class_name (cClass);  // use the translated name
+				cAppClass = g_strdup_printf ("application://%s", cClass); // store the class for later instead of the original URI
 				g_free (cClass);
 			}
 			else
@@ -178,12 +186,13 @@ static void _on_got_events (ZeitgeistResultSet *pEvents, GtkListStore *pModel)
 			gtk_list_store_append (GTK_LIST_STORE (pModel), &iter);
 			gtk_list_store_set (GTK_LIST_STORE (pModel), &iter,
 				CD_MODEL_NAME, cText,
-				CD_MODEL_URI, cEventURI,
+				CD_MODEL_URI, cAppClass ? cAppClass : cEventURI,
 				CD_MODEL_PATH, cEscapedPath,
 				CD_MODEL_ICON, pixbuf,
 				CD_MODEL_DATE, iTimeStamp,
 				CD_MODEL_ID, id, -1);
 			
+			g_free (cAppClass);
 			g_free (cIconName);
 			cIconName = NULL;
 			g_free (cName);
@@ -259,10 +268,9 @@ static gboolean _on_click_module_tree_view (GtkTreeView *pTreeView, GdkEventButt
 		{
 			if (bIsAppli)  // an appli -> run it
 			{
-				gchar *tmp = strrchr (cUri, '.');  // remove the '.desktop'
-				if (tmp)
-					*tmp = '\0';
-				cairo_dock_launch_command (cUri+14);
+				// in this case, we stored the class key from our registry (i.e. cairo-dock-class-manager)
+				GDesktopAppInfo *app_info = cairo_dock_get_class_app_info (cUri + 14);
+				if (app_info) cairo_dock_launch_app_info (app_info);
 			}
 			else  // a file -> open it
 			{

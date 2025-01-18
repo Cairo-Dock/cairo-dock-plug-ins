@@ -41,33 +41,42 @@ CD_APPLET_ON_MIDDLE_CLICK_END*/
 //\___________ Define here the entries you want to add to the menu when the user right-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons. The menu where you can add your entries is available throught the macro CD_APPLET_MY_MENU; you can add sub-menu to it if you want.
 static GtkWidget *s_pMenu = NULL;
 static GtkWidget *s_pSubMenu = NULL;
-static GList *s_pEventList = NULL;
-void cd_recent_events_reset_uri_list (void)
-{
-	s_pEventList = NULL;
-	return;
-	if (s_pEventList != NULL)
-	{
-		g_list_foreach (s_pEventList, (GFunc) g_free, NULL);
-		g_list_free (s_pEventList);
-		s_pEventList = NULL;
-	}
-}
+
 static gboolean _on_delete_menu (GtkWidget *widget, GdkEvent *event, gpointer user_data)
 {
 	cd_debug ("*** menu deleted");
 	s_pMenu = NULL;
 	s_pSubMenu = NULL;
-	cd_recent_events_reset_uri_list ();
 	return FALSE;
 }
-static void _open_file (GtkMenuItem *menu_item, gchar *cCommand)
+
+struct _OpenFileData
 {
-	cd_debug ("%s (%s)", __func__, cCommand);
+	GDesktopAppInfo *app;
+	gchar *cURI;
+};
+static void _menu_item_destroyed (gpointer data, GObject*)
+{
+	if (data)
+	{
+		struct _OpenFileData *pData = (struct _OpenFileData*)data;
+		if (pData->app) g_object_unref (GLDI_OBJECT (pData->app));
+		if (pData->cURI) g_free (pData->cURI);
+		g_free (pData);
+	}
+}
+static void _open_file (GtkMenuItem *menu_item, gpointer ptr)
+{
+	g_return_if_fail (ptr != NULL);
 	
-	cairo_dock_launch_command (cCommand);
-	
-	cd_recent_events_reset_uri_list ();
+	struct _OpenFileData *pData = (struct _OpenFileData*)ptr;
+	cd_debug ("%s (%s)", __func__, pData->cURI ? pData->cURI : "(null)");
+	if (pData->app && pData->cURI)
+	{
+		GList *list = g_list_append (NULL, pData->cURI);
+		cairo_dock_launch_app_info_with_uris (pData->app, list);
+		g_list_free (list);
+	}
 }
 static void _on_delete_events (int iNbEvents, gpointer data)
 {
@@ -94,7 +103,6 @@ static void _clear_all_events (GtkMenuItem *menu_item, gpointer data)
 static void _on_find_related_events (ZeitgeistResultSet *pEvents, Icon *pIcon)
 {
 	cd_debug ("%s ()", __func__);
-	cd_recent_events_reset_uri_list ();
 	if (s_pMenu == NULL || s_pSubMenu == NULL)
 		return;
 	
@@ -104,7 +112,6 @@ static void _on_find_related_events (ZeitgeistResultSet *pEvents, Icon *pIcon)
 	GtkWidget *pSubMenu = s_pSubMenu;
 	const gchar *cEventURI;
 	gchar *cName = NULL, *cURI = NULL, *cIconName = NULL, *cIconPath;
-	gchar *cCommand;
 	double fOrder;
 	int iVolumeID;
 	gboolean bIsDirectory;
@@ -148,12 +155,14 @@ static void _on_find_related_events (ZeitgeistResultSet *pEvents, Icon *pIcon)
 			
 			cairo_dock_fm_get_file_info (cEventURI, &cName, &cURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, 0);
 			
-			cCommand = g_strdup_printf ("%s \"%s\"", pIcon->cCommand, cPath); // some programs don't support URI, so we feed them with path.
+			struct _OpenFileData *data = g_new0 (struct _OpenFileData, 1);
+			data->app = g_object_ref (pIcon->pAppInfo->app);
+			data->cURI = g_strdup (cEventURI);
 			g_free (cPath);
-			s_pEventList = g_list_prepend (s_pEventList, cCommand);
 			
 			cIconPath = cairo_dock_search_icon_s_path (cIconName, iDesiredIconSize);
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (zeitgeist_subject_get_text (subject), cIconPath, _open_file, pSubMenu, cCommand);
+			GtkWidget *pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (zeitgeist_subject_get_text (subject), cIconPath, _open_file, pSubMenu, data);
+			g_object_weak_ref (G_OBJECT (pMenuItem), _menu_item_destroyed, (gpointer)data);
 			g_free (cIconPath);
 			g_free (cIconName);
 			cIconName = NULL;
