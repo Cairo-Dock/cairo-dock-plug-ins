@@ -173,7 +173,7 @@ static gboolean _load_applis_buffer_idle (gpointer data)
 	}
 	int iNbAppliLoaded = 0;
 	Icon *pIcon;
-	gint iDesiredIconSize = 10; // cairo_dock_search_icon_size (GTK_ICON_SIZE_MENU); // 16px (was 48px but why?) // to data?
+	gint iDesiredIconSize = 64; // was 10px which is too small cairo_dock_search_icon_size (GTK_ICON_SIZE_MENU); // 16px (was 48px but why?) // to data?
 	GList *a;
 	for (a = myData.pCurrentApplicationToLoad; a != NULL && iNbAppliLoaded < 3; a = a->next)  // on en charge 3 d'un coup.
 	{

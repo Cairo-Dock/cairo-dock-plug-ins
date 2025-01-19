@@ -144,7 +144,7 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 			
 			double fIconScale = (iIconsWidth > pMainDock->container.iWidth ? (double) pMainDock->container.iWidth / iIconsWidth : 1.);
 			double x0 = (pMainDock->container.iWidth - iIconsWidth * fIconScale) / 2;
-			double x = x0 + iOffsetX * fIconScale;  // abscisse de l'icone courante.
+			double x = x0 - iOffsetX * fIconScale;  // abscisse de l'icone courante.
 			Icon *pIcon;
 			int iWidth, iHeight;
 			double fZoom;
@@ -162,7 +162,7 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 				{
 					if (x < x0)
 						x += iIconsWidth * fIconScale;
-					else if (x > x0 + iIconsWidth * fIconScale)
+					else if (x - (iNbIcons & 1 ? iWidth * fZoom * fIconScale / 2 : 0.) >= x0 + iIconsWidth * fIconScale)
 						x -= iIconsWidth * fIconScale;
 				}
 				if (pMainDock->container.bIsHorizontal)
@@ -293,14 +293,12 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 			double fFrameHeight = pMainDock->container.iHeight/2;
 			double fRadius = fFrameHeight / 10;
 			double fLineWidth = 0.;
-			double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du cadre.
-			fDockOffsetX = pMainDock->container.iWidth/2 - fFrameWidth / 2 - fRadius;
-			fDockOffsetY = (!myConfig.bTextOnTop ? pMainDock->container.iHeight : fFrameHeight);
+			double fDockOffsetY = fFrameHeight * (myConfig.bTextOnTop ? 0.5 : 1.5);
 			double fFrameColor[4] = {myConfig.pFrameColor[0], myConfig.pFrameColor[1], myConfig.pFrameColor[2], myConfig.pFrameColor[3] * fAlpha};
 			glPushMatrix ();
 			if (! pMainDock->container.bIsHorizontal)
 				glRotatef (pMainDock->container.bDirectionUp ? 90. : -90., 0., 0., 1.);
-			glTranslatef (fDockOffsetX, fDockOffsetY, 0.);
+			glTranslatef (pMainDock->container.iWidth / 2.0, fDockOffsetY, 0.0);
 			cairo_dock_draw_rounded_rectangle_opengl (fFrameWidth, fFrameHeight, fRadius, fLineWidth, fFrameColor);
 			glPopMatrix ();
 			
@@ -363,7 +361,6 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 					_cairo_dock_disable_texture ();
 					fLineWidth = 4.;
 					double fFrameColor[4] = {myConfig.pFrameColor[0]+.1, myConfig.pFrameColor[1]+.1, myConfig.pFrameColor[2]+.1, 1.};
-					glTranslatef (iWidth/2 * fZoom * fIconScale + fLineWidth/2, iHeight * fZoom/2 * fIconScale - fLineWidth/2, 0.);
 					cairo_dock_draw_rounded_rectangle_opengl (iWidth * fZoom * fIconScale - fLineWidth,
 						iHeight * fZoom * fIconScale - fLineWidth,
 						fRadius,
@@ -387,8 +384,8 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 		double fRadius = myDocksParam.iDockRadius * myConfig.fFontSizeRatio;
 		
 		double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du cadre.
-		fDockOffsetX = pMainDock->container.iWidth/2 - fFrameWidth * fTextScale / 2 - fRadius;
-		fDockOffsetY = (myConfig.bTextOnTop ? pMainDock->container.iHeight : fFrameHeight);
+		fDockOffsetX = pMainDock->container.iWidth/2;
+		fDockOffsetY = (myConfig.bTextOnTop ? pMainDock->container.iHeight : fFrameHeight) - 0.5 * fFrameHeight;
 		
 		glPushMatrix ();
 		double fFrameColor[4] = {myConfig.pFrameColor[0], myConfig.pFrameColor[1], myConfig.pFrameColor[2], myConfig.pFrameColor[3] * fAlpha};
