@@ -24,10 +24,11 @@
 #include "applet-notifications.h"
 #include "applet-session.h"
 #include "applet-init.h"
+#include <cairo-dock-wayland-manager.h>
 
 
 CD_APPLET_DEFINE2_BEGIN ("Remote-Control",
-	CAIRO_DOCK_MODULE_SUPPORTS_X11,
+	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_APPLET_SYSTEM,
 	N_("This plug-in lets you control your dock from the keyboard\n"
 	"Press the shortcut (by default Super + Return), then either:\n"
@@ -37,11 +38,23 @@ CD_APPLET_DEFINE2_BEGIN ("Remote-Control",
 	"Press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter for middle click, and Ctrl+Enter for left click\n"
 	"Escape or the same shortkey will cancel."),
 	"Fabounet (Fabrice Rey)")
+	
+	if (gldi_container_is_wayland_backend ())
+		if (strcmp (gldi_wayland_get_detected_compositor(), "Wayfire"))
+			return FALSE;
+	
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_IS_PLUGIN);
 	CD_APPLET_REDEFINE_TITLE (N_("Control from keyboard"))
 CD_APPLET_DEFINE2_END
 
+static gboolean _menu_request (gpointer, GldiManager*)
+{
+	gldi_container_present (CAIRO_CONTAINER (g_pMainDock)); // currently no-op
+	gldi_wayland_grab_keyboard (CAIRO_CONTAINER (g_pMainDock)); // try to grab the keyboard
+	cd_do_on_shortkey_nav (NULL, NULL);
+	return GLDI_NOTIFICATION_INTERCEPT;
+}
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
@@ -49,12 +62,15 @@ CD_APPLET_INIT_BEGIN
 		D_("Enable/disable the keyboard control of the dock"),
 		"Configuration", "shortkey",
 		(CDBindkeyHandler) cd_do_on_shortkey_nav);
+	// allow triggering with Wayfire's toggle_menu signal -- use GLDI_RUN_FIRST to have higher priority than GMenu that normally takes this signal
+	gldi_object_register_notification (&myDesktopMgr, NOTIFICATION_MENU_REQUEST, (GldiNotificationFunc)_menu_request , GLDI_RUN_FIRST, NULL);
 CD_APPLET_INIT_END
 
 
 //\___________ Here is where you stop your applet. myConfig and myData are still valid, but will be reseted to 0 at the end of the function. In the end, your applet will go back to its original state, as if it had never been activated.
 CD_APPLET_STOP_BEGIN
 	cd_do_exit_session ();
+	gldi_object_remove_notification (&myDesktopMgr, NOTIFICATION_MENU_REQUEST, (GldiNotificationFunc)_menu_request, NULL);
 
 	gldi_object_unref (GLDI_OBJECT(myData.pKeyBinding));
 CD_APPLET_STOP_END

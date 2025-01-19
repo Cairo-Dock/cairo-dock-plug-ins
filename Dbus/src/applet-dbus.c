@@ -579,7 +579,7 @@ void cd_dbus_launch_service (void)
 	 */
 	#ifdef DBUSMENU_GTK_FOUND // need SetMenu => DBusMenu
 	if (myConfig.bLaunchLauncherAPIDaemon)
-		cairo_dock_launch_command (CD_PLUGINS_DIR"/cairo-dock-launcher-API-daemon");
+		cairo_dock_launch_command_single (CD_PLUGINS_DIR"/cairo-dock-launcher-API-daemon");
 	#endif
 }
 

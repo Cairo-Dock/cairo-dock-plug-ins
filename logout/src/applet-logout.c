@@ -716,6 +716,7 @@ static void cd_logout_switch_to_user (const gchar *cUser)
 {
 	const gchar *seat = g_getenv ("XDG_SEAT_PATH");
 	GError *error = NULL;
+	gboolean bSuccess = FALSE;
 	if (seat)  // else, we could possibly get it by: ck -> GetCurrentSession -> session -> GetSeatId
 	{
 		DBusGProxy *pProxy = cairo_dock_create_new_system_proxy (
@@ -731,10 +732,8 @@ static void cd_logout_switch_to_user (const gchar *cUser)
 		{
 			cd_warning ("DisplayManager (LocalDisplay) error: %s", error->message);
 			g_error_free (error);
-			if (myConfig.cUserActionSwitchUser != NULL)
-				cairo_dock_launch_command_printf ("%s %s", NULL,
-					myConfig.cUserActionSwitchUser, cUser);
 		}
+		else bSuccess = TRUE;
 		g_object_unref (pProxy);
 	}
 	else // try with gdm
@@ -751,11 +750,15 @@ static void cd_logout_switch_to_user (const gchar *cUser)
 		{
 			cd_warning ("DisplayManager error: %s", error->message);
 			g_error_free (error);
-			if (myConfig.cUserActionSwitchUser != NULL)
-				cairo_dock_launch_command_printf ("%s %s", NULL,
-					myConfig.cUserActionSwitchUser, cUser);
 		}
+		else bSuccess = TRUE;
 		g_object_unref (pProxy);
+	}
+	
+	if (!bSuccess && myConfig.cUserActionSwitchUser)
+	{
+		const gchar * const args[] = {myConfig.cUserActionSwitchUser, cUser, NULL};
+		cairo_dock_launch_command_argv (args);
 	}
 }
 

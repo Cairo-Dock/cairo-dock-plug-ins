@@ -319,14 +319,15 @@ static gboolean _cd_do_fill_bookmark_entry (CDEntry *pEntry)
 static void _cd_do_launch_url (CDEntry *pEntry)
 {
 	cd_debug ("%s (%s)", __func__, pEntry->cPath);
-	//cairo_dock_fm_launch_uri (pEntry->cPath);
-	cairo_dock_launch_command_printf ("firefox \"%s\"", NULL, pEntry->cPath);
+	const gchar * const args[] = {"firefox", pEntry->cPath, NULL};
+	cairo_dock_launch_command_argv_full (args, NULL, GLDI_LAUNCH_GUI | GLDI_LAUNCH_SLICE);
 }
 
 static void _cd_do_launch_in_new_window (CDEntry *pEntry)
 {
 	cd_debug ("%s (%s)", __func__, pEntry->cPath);
-	cairo_dock_launch_command_printf ("firefox -no-remote \"%s\"", NULL, pEntry->cPath);
+	const gchar * const args[] = {"firefox", "--new-window", pEntry->cPath, NULL};
+	cairo_dock_launch_command_argv_full (args, NULL, GLDI_LAUNCH_GUI | GLDI_LAUNCH_SLICE);
 }
 
 static void _cd_do_copy_url (CDEntry *pEntry)
@@ -339,7 +340,24 @@ static void _cd_do_copy_url (CDEntry *pEntry)
 static void _cd_do_launch_all_url (CDEntry *pEntry)
 {
 	cd_debug ("%s (%s)", __func__, pEntry->cPath);
-	cairo_dock_launch_command_printf ("firefox %s", NULL, pEntry->cPath);
+	gchar **entries = NULL;
+	GError *erreur = NULL;
+	if (!g_shell_parse_argv (pEntry->cPath, NULL, &entries, &erreur))
+	{
+		cd_warning ("couldn't parse entries (%s : %s)", pEntry->cPath, erreur->message);
+		g_error_free (erreur);
+		if (entries) g_strfreev (entries);
+		return FALSE;
+	}
+	GStrvBuilder *builder = g_strv_builder_new ();
+	g_strv_builder_add  (builder, "firefox");
+	g_strv_builder_addv (builder, entries);
+	gchar **args = g_strv_builder_end (builder);
+
+	cairo_dock_launch_command_argv_full (args, NULL, GLDI_LAUNCH_GUI | GLDI_LAUNCH_SLICE);
+	g_strfreev (args);
+	g_strfreev (entries);
+	g_strv_builder_unref (builder);
 }
 
   /////////////////

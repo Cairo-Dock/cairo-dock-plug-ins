@@ -93,9 +93,11 @@ static gboolean on_expose_listing (GtkWidget *pWidget, cairo_t *ctx, CDListing *
 		gldi_glx_end_draw_container (CAIRO_CONTAINER (pListing));
 	}
 	else*/
-	{
-		gldi_object_notify (CAIRO_CONTAINER (pListing), NOTIFICATION_RENDER, pListing, ctx);
-	}
+	
+	// if (g_bUseOpenGL) gldi_gl_container_begin_draw (CAIRO_CONTAINER (pListing));
+	gldi_object_notify (CAIRO_CONTAINER (pListing), NOTIFICATION_RENDER, pListing, ctx);
+	// if (g_bUseOpenGL) gldi_gl_container_end_draw (CAIRO_CONTAINER (pListing));
+	
 	return FALSE;
 }
 static gboolean on_configure_listing (GtkWidget* pWidget, GdkEventConfigure* pEvent, CDListing *pListing)
@@ -121,16 +123,15 @@ static gboolean on_configure_listing (GtkWidget* pWidget, GdkEventConfigure* pEv
 		pListing->container.iWidth = iNewWidth;
 		pListing->container.iHeight = iNewHeight;
 		
-		/*if (g_bUseOpenGL && pListing->container.glContext)
+/*		if (g_bUseOpenGL && pListing->container.glContext)
 		{
-			GLsizei w = pEvent->width;
-			GLsizei h = pEvent->height;
-			if (! gldi_gl_container_begin_draw (CAIRO_CONTAINER (pListing)))
+			gldi_gl_container_resized (CAIRO_CONTAINER (pListing), pEvent->width, pEvent->height);
+			
+			if (! gldi_gl_container_make_current (CAIRO_CONTAINER (pListing)))
 				return FALSE;
-			
-			glViewport(0, 0, w, h);
-			
-			cairo_dock_set_ortho_view (CAIRO_CONTAINER (pListing));
+
+			// gldi_gl_container_set_perspective_view (CAIRO_CONTAINER (pListing));
+			gldi_gl_container_set_ortho_view (CAIRO_CONTAINER (pListing));
 		}*/
 	}
 	return FALSE;
@@ -178,6 +179,7 @@ CDListing *cd_do_create_listing (void)
 	CDListing *pListing = g_new0 (CDListing, 1);
 	GldiContainerAttr attr;
 	memset (&attr, 0, sizeof (GldiContainerAttr));
+	attr.bNoOpengl = TRUE; // does not work yet
 	gldi_object_init (GLDI_OBJECT(pListing), &myContainerObjectMgr, &attr);
 	
 	/*pListing->container.iType = CAIRO_DOCK_NB_CONTAINER_TYPES+1;

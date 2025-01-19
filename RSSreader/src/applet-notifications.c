@@ -112,7 +112,10 @@ CD_APPLET_ON_DROP_DATA_END
 static void _start_browser (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	if (myConfig.cSpecificWebBrowser != NULL)  // une commande specifique est fournie.
-		cairo_dock_launch_command_printf ("%s %s", NULL, myConfig.cSpecificWebBrowser, myConfig.cUrl);
+	{
+		const gchar * const args[] = {myConfig.cSpecificWebBrowser, myConfig.cUrl, NULL};
+		cairo_dock_launch_command_argv_full (args, NULL, GLDI_LAUNCH_GUI | GLDI_LAUNCH_SLICE);
+	}
 	else  // sinon on utilise la commande par defaut.
 		cairo_dock_fm_launch_uri (myConfig.cUrl);
 }

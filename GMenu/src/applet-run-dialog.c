@@ -343,7 +343,7 @@ static void _cd_menu_on_quick_launch (int iClickedButton, GtkWidget *pInteractiv
 	{
 		const gchar *cCommand = gtk_entry_get_text (GTK_ENTRY (pInteractiveWidget));
 		if (cCommand != NULL && *cCommand != '\0')
-			cairo_dock_launch_command (cCommand);
+			cairo_dock_launch_command_full (cCommand, NULL, GLDI_LAUNCH_GUI | GLDI_LAUNCH_SLICE);
 	}
 	else
 	{

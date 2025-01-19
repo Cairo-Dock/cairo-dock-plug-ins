@@ -125,6 +125,7 @@ static void _browse_dir (const gchar *cDirPath)
 				g_free (cPath);
 				continue;
 			}
+			//!! TODO: set pCustomLauncher (or pAppInfo?) instead
 			pIcon = cairo_dock_create_dummy_launcher (NULL,
 				cIconName,
 				cCommand,
@@ -135,7 +136,7 @@ static void _browse_dir (const gchar *cDirPath)
 			if (str != NULL)
 				*str = '\0';
 			cd_debug (" + %s", pIcon->cCommand);
-			pIcon->cWorkingDirectory = g_key_file_get_string (pKeyFile, "Desktop Entry", "Path", NULL);
+			// pIcon->cWorkingDirectory = g_key_file_get_string (pKeyFile, "Desktop Entry", "Path", NULL);
 			myData.pApplications = g_list_prepend (myData.pApplications, pIcon);
 			g_key_file_free (pKeyFile);
 			if (! bFoundOneAppli)
@@ -172,7 +173,7 @@ static gboolean _load_applis_buffer_idle (gpointer data)
 	}
 	int iNbAppliLoaded = 0;
 	Icon *pIcon;
-	gint iDesiredIconSize = 10; // cairo_dock_search_icon_size (GTK_ICON_SIZE_MENU); // 16px (was 48px but why?) // to data?
+	gint iDesiredIconSize = 64; // was 10px which is too small cairo_dock_search_icon_size (GTK_ICON_SIZE_MENU); // 16px (was 48px but why?) // to data?
 	GList *a;
 	for (a = myData.pCurrentApplicationToLoad; a != NULL && iNbAppliLoaded < 3; a = a->next)  // on en charge 3 d'un coup.
 	{

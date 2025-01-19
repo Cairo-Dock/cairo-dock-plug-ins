@@ -237,7 +237,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, GldiContainer *pContainer, guint
 		if (myData.pMatchingIcons != NULL)  // on a une appli a lancer.
 		{
 			Icon *pIcon = (myData.pCurrentMatchingElement ? myData.pCurrentMatchingElement->data : myData.pMatchingIcons->data);
-			cairo_dock_launch_command (pIcon->cCommand);
+			cairo_dock_launch_command_full (pIcon->cCommand, NULL, GLDI_LAUNCH_GUI | GLDI_LAUNCH_SLICE);
 		}
 		else if (myData.pListing && myData.pListing->pCurrentEntry)  // pas d'appli mais une entree => on l'execute.
 		{
@@ -251,7 +251,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, GldiContainer *pContainer, guint
 		else if (myData.iNbValidCaracters > 0)  // pas d'entree mais du texte => on l'execute tel quel.
 		{
 			cd_debug ("on execute '%s'", myData.sCurrentText->str);
-			cairo_dock_launch_command (myData.sCurrentText->str);
+			cairo_dock_launch_command_full (myData.sCurrentText->str, NULL, GLDI_LAUNCH_GUI | GLDI_LAUNCH_SLICE);
 		}
 		
 		if (!(iModifierType & GDK_CONTROL_MASK) && !(iModifierType & GDK_MOD1_MASK) && !(iModifierType & GDK_SHIFT_MASK))

@@ -61,10 +61,10 @@ struct _AppletData {
 	// new apps
 	gboolean bFirstLaunch;
 	GHashTable *pKnownApplications;  // table of all applications that could go in the menu, including ignored ones
-	GList *pNewApps;  // a list of GAppInfo that were not present before.
+	GList *pNewApps;  // a list of GDesktopAppInfo that were not present before.
 	// entry
 	GtkWidget *pEntry;
-	GSList *pApps; // a (singly linked) list of GAppInfo: better to check all items
+	GSList *pApps; // a (singly linked) list of GDesktopAppInfo: better to check all items
 	// recent files sub-menu
 	GtkWidget *pRecentMenuItem;
 	gint iNbRecentItems;

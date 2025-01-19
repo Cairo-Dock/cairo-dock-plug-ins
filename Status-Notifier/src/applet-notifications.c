@@ -128,7 +128,7 @@ CD_APPLET_ON_CLICK_BEGIN
 				if (pItem->cId != NULL)
 				{
 					/// TODO: try to get the icon in the taskbar, because launch the command doesn't raise the window if it was already visible (but it does pop up it if it was hidden, usually).
-					cairo_dock_launch_command (pItem->cId);  // try to launch the application because generally this click shows its item's window.
+					cairo_dock_launch_command_full (pItem->cId, NULL, GLDI_LAUNCH_GUI | GLDI_LAUNCH_SLICE);  // try to launch the application because generally this click shows its item's window.
 				}
 			}
 		}

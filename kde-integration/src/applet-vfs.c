@@ -42,7 +42,7 @@ void vfs_backend_launch_uri (const gchar *cURI)
 
 	cd_debug ("%s (%s)", __func__, cURI);
 	const gchar * const args[] = {_get_kioclient (), "exec", cURI, NULL};
-	cairo_dock_launch_command_argv_full (args, NULL, TRUE);
+	cairo_dock_launch_command_argv_full (args, NULL, GLDI_LAUNCH_GUI | GLDI_LAUNCH_SLICE);
 
 	/// tester ca :
 	//KURL url(cURI);

@@ -252,7 +252,7 @@ void cd_dbus_launch_applet_process (GldiModuleInstance *pModuleInstance, dbusApp
 		pModuleInstance->cConfFilePath, g_cCairoDockDataDir,
 		myData.cProgName, cPid, NULL};
 	cd_debug ("launching distant applet: %s/%s", cDirPath, cModuleName);
-	cairo_dock_launch_command_argv_full (args, cDirPath, FALSE);
+	cairo_dock_launch_command_argv_full (args, cDirPath, GLDI_LAUNCH_DEFAULT);
 	g_free (cExec);
 	g_free (cID);
 	g_free (cPid);
