@@ -219,6 +219,7 @@ static gboolean _fetch_menu (CDSharedMemory *pSharedMemory)
 	CD_APPLET_LEAVE (TRUE);
 }*/
 
+static void _connect_to_menu (const gchar *cService, const gchar *cMenuObject);
 static void _on_got_menu (DBusGProxy *proxy, DBusGProxyCall *call_id, GldiModuleInstance *myApplet)
 {
 	cd_debug ("%s ()", __func__);
@@ -240,44 +241,48 @@ static void _on_got_menu (DBusGProxy *proxy, DBusGProxyCall *call_id, GldiModule
 		g_error_free (erreur);
 	}
 	if (bSuccess)
-	{
-		cd_debug (" -> %s", cService);
-		cd_debug ("    %s", cMenuObject);
-		if (cService && *cService != '\0')
-		{
-			/*if (myData.pTask != NULL)
-			{
-				gldi_task_discard (myData.pTask);
-				myData.pTask = NULL;
-			}
-			CDSharedMemory *pSharedMemory = g_new0 (CDSharedMemory, 1);
-			pSharedMemory->cService = cService;
-			pSharedMemory->cMenuObject = cMenuObject;
-			myData.pTask = gldi_task_new_full (0,
-				(GldiGetDataAsyncFunc) _get_menu_async,
-				(GldiUpdateSyncFunc) _fetch_menu,
-				(GFreeFunc) _free_shared_memory,
-				pSharedMemory);
-			gldi_task_launch_delayed (myData.pTask, 0);*/
-			/// TODO: it seems to hang he dock for a second, even with a task :-/
-			/// so maybe we need to cache the {window,menu} couples...
-			myData.pMenu = dbusmenu_gtkmenu_new (cService, cMenuObject);  /// can this object disappear by itself ? it seems to crash with 2 instances of inkscape, when closing one of them... 
-			if (g_object_is_floating (myData.pMenu))  // claim ownership on the menu.
-				g_object_ref_sink (myData.pMenu);
-			if (myData.pMenu)
-			{
-				g_object_weak_ref (G_OBJECT (myData.pMenu),
-					(GWeakNotify)_on_menu_destroyed,
-					myApplet);
-				gldi_menu_init (GTK_WIDGET(myData.pMenu), myIcon);
-			}
-		}
-	}
-	
+		_connect_to_menu (cService, cMenuObject);
+		
 	///g_free (cService);
 	///g_free (cMenuObject);
 	CD_APPLET_LEAVE ();
 }
+		
+static void _connect_to_menu (const gchar *cService, const gchar *cMenuObject)
+{
+	cd_debug (" -> %s", cService);
+	cd_debug ("    %s", cMenuObject);
+	if (cService && *cService != '\0')
+	{
+		/*if (myData.pTask != NULL)
+		{
+			gldi_task_discard (myData.pTask);
+			myData.pTask = NULL;
+		}
+		CDSharedMemory *pSharedMemory = g_new0 (CDSharedMemory, 1);
+		pSharedMemory->cService = cService;
+		pSharedMemory->cMenuObject = cMenuObject;
+		myData.pTask = gldi_task_new_full (0,
+			(GldiGetDataAsyncFunc) _get_menu_async,
+			(GldiUpdateSyncFunc) _fetch_menu,
+			(GFreeFunc) _free_shared_memory,
+			pSharedMemory);
+		gldi_task_launch_delayed (myData.pTask, 0);*/
+		/// TODO: it seems to hang he dock for a second, even with a task :-/
+		/// so maybe we need to cache the {window,menu} couples...
+		myData.pMenu = dbusmenu_gtkmenu_new (cService, cMenuObject);  /// can this object disappear by itself ? it seems to crash with 2 instances of inkscape, when closing one of them... 
+		if (g_object_is_floating (myData.pMenu))  // claim ownership on the menu.
+			g_object_ref_sink (myData.pMenu);
+		if (myData.pMenu)
+		{
+			g_object_weak_ref (G_OBJECT (myData.pMenu),
+				(GWeakNotify)_on_menu_destroyed,
+				myApplet);
+			gldi_menu_init (GTK_WIDGET(myData.pMenu), myIcon);
+		}
+	}
+}
+	
 static void _get_application_menu (GldiWindowActor *actor)
 {
 	// destroy the current menu
@@ -303,7 +308,13 @@ static void _get_application_menu (GldiWindowActor *actor)
 	// get the new one.
 	if (actor != NULL)
 	{
-		if (myData.pProxyRegistrar != NULL)
+		char *cService = NULL;
+		char *cMenuObject = NULL;
+		gldi_window_get_menu_address (actor, &cService, &cMenuObject);
+		
+		if (cService && cMenuObject)
+			_connect_to_menu (cService, cMenuObject);
+		else if (myData.pProxyRegistrar != NULL)
 		{
 			guint id = gldi_window_get_id (actor);
 			
@@ -389,7 +400,8 @@ void cd_app_menu_stop (void)
 
 void cd_app_menu_set_current_window (GldiWindowActor *actor)
 {
-	cd_debug ("%s (%p)", __func__, actor);
+	cd_debug ("%s (%p): %s", __func__, actor, actor ? actor->cName : "");
+	if (!actor && gldi_container_is_wayland_backend()) return; // KWin sets the active window to none when clicking on the dock
 	if (actor != myData.pCurrentWindow)
 	{
 		myData.pPreviousWindow = myData.pCurrentWindow;
