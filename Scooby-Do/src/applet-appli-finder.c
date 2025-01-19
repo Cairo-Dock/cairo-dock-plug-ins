@@ -125,6 +125,7 @@ static void _browse_dir (const gchar *cDirPath)
 				g_free (cPath);
 				continue;
 			}
+			//!! TODO: set pCustomLauncher (or pAppInfo?) instead
 			pIcon = cairo_dock_create_dummy_launcher (NULL,
 				cIconName,
 				cCommand,
@@ -135,7 +136,7 @@ static void _browse_dir (const gchar *cDirPath)
 			if (str != NULL)
 				*str = '\0';
 			cd_debug (" + %s", pIcon->cCommand);
-			pIcon->cWorkingDirectory = g_key_file_get_string (pKeyFile, "Desktop Entry", "Path", NULL);
+			// pIcon->cWorkingDirectory = g_key_file_get_string (pKeyFile, "Desktop Entry", "Path", NULL);
 			myData.pApplications = g_list_prepend (myData.pApplications, pIcon);
 			g_key_file_free (pKeyFile);
 			if (! bFoundOneAppli)
