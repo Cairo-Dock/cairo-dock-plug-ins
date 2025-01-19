@@ -31,6 +31,7 @@
 #include "applet-backend-firefox.h"
 #include "applet-backend-recent.h"
 #include "applet-init.h"
+#include <cairo-dock-wayland-manager.h>
 
 
 CD_APPLET_DEFINE2_BEGIN ("Scooby-Do",
@@ -62,6 +63,14 @@ CD_APPLET_DEFINE2_END
 		cd_do_register_firefox_backend ();\
 	if (myConfig.bUseRecent)\
 		cd_do_register_recent_backend (); } while (0)
+
+static gboolean _menu_request (gpointer, GldiManager*)
+{
+	gldi_wayland_grab_keyboard (CAIRO_CONTAINER (g_pMainDock)); // try to grab the keyboard
+	cd_do_on_shortkey_search (NULL, NULL);
+	return GLDI_NOTIFICATION_INTERCEPT;
+}
+
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
 	gldi_object_register_notification (&myContainerObjectMgr,
@@ -69,11 +78,12 @@ CD_APPLET_INIT_BEGIN
 		(GldiNotificationFunc) cd_do_key_pressed,
 		GLDI_RUN_AFTER, NULL);
 	
-	//!! TODO: allow activating by Wayfire's menu signal !!
 	myData.cKeyBinding = CD_APPLET_BIND_KEY (myConfig.cShortkeySearch,
 		D_("Enable/disable the Finder"),
 		"Configuration", "shortkey search",
 		(CDBindkeyHandler) cd_do_on_shortkey_search);
+	// also use Wayfire's menu request action -- make sure this is higher priority than GMenu
+	gldi_object_register_notification (&myDesktopMgr, NOTIFICATION_MENU_REQUEST, (GldiNotificationFunc)_menu_request, GLDI_RUN_FIRST, NULL);
 	
 	_register_backends ();
 CD_APPLET_INIT_END
@@ -84,6 +94,7 @@ CD_APPLET_STOP_BEGIN
 	gldi_object_remove_notification (&myContainerObjectMgr,
 		NOTIFICATION_KEY_PRESSED,
 		(GldiNotificationFunc) cd_do_key_pressed, NULL);
+	gldi_object_remove_notification (&myDesktopMgr, NOTIFICATION_MENU_REQUEST, (GldiNotificationFunc)_menu_request, NULL);
 	
 	gldi_object_unref (GLDI_OBJECT(myData.cKeyBinding));
 	
