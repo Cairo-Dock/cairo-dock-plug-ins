@@ -76,7 +76,7 @@ void cd_do_open_session (void)
 	}
 	
 	// on montre le main dock.
-	cairo_dock_emit_enter_signal (CAIRO_CONTAINER (g_pMainDock));
+	gldi_dock_enter_synthetic (g_pMainDock);
 	
 	// le main dock prend le focus.
 	gldi_container_present (CAIRO_CONTAINER (g_pMainDock));
@@ -112,7 +112,7 @@ void cd_do_close_session (void)
 	myData.cSearchText = NULL;
 	myData.iCurrentFilter = 0;
 	
-	cairo_dock_emit_leave_signal (CAIRO_CONTAINER (g_pMainDock));
+	gldi_dock_leave_synthetic (g_pMainDock);
 	
 	// on quitte dans une animation.
 	myData.iCloseTime = myConfig.iCloseDuration;

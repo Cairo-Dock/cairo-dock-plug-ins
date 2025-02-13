@@ -116,7 +116,7 @@ void cd_do_open_session (void)
 	
 	// show the dock.
 	myData.bIgnoreIconState = TRUE;
-	cairo_dock_emit_enter_signal (CAIRO_CONTAINER (pDock));
+	gldi_dock_enter_synthetic (pDock);
 	myData.bIgnoreIconState = FALSE;
 	
 	// give it focus for inputs.
@@ -170,7 +170,7 @@ void cd_do_close_session (void)
 	
 	if (myData.pCurrentDock != NULL)
 	{
-		cairo_dock_emit_leave_signal (CAIRO_CONTAINER (myData.pCurrentDock));
+		gldi_dock_leave_synthetic (myData.pCurrentDock);
 		
 		cd_do_remove_icons_number (myData.pCurrentDock);
 		

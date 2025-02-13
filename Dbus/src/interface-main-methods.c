@@ -67,13 +67,13 @@ static void _show_hide_one_dock (const gchar *cDockName, CairoDock *pDock, gpoin
 	{
 		///cairo_dock_pop_up (pDock);
 		///if (pDock->bAutoHide)
-			cairo_dock_emit_enter_signal (CAIRO_CONTAINER (pDock));
+			gldi_dock_enter_synthetic (pDock);
 	}
 	else
 	{
 		///cairo_dock_pop_down (pDock);  // ne fait rien s'il n'etait pas "popped".
 		///if (pDock->bAutoHide)
-			cairo_dock_emit_leave_signal (CAIRO_CONTAINER (pDock));
+			gldi_dock_leave_synthetic (pDock);
 	}
 }
 gboolean cd_dbus_main_show_dock (dbusMainObject *pDbusCallback, gint iVisibiliy, GError **error)

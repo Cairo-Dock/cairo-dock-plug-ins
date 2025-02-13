@@ -149,7 +149,7 @@ void cd_do_change_current_icon (Icon *pIcon, CairoDock *pDock)
 	if (myData.pCurrentDock != NULL && pDock != myData.pCurrentDock)  // on remet au repos le dock precedemment anime.
 	{
 		cd_debug ("leave this dock");
-		cairo_dock_emit_leave_signal (CAIRO_CONTAINER (myData.pCurrentDock));
+		gldi_dock_leave_synthetic (myData.pCurrentDock);
 		
 		cd_do_remove_icons_number (myData.pCurrentDock);
 		
@@ -179,7 +179,7 @@ void cd_do_change_current_icon (Icon *pIcon, CairoDock *pDock)
 			if (pDock->iVisibility == CAIRO_DOCK_VISI_KEEP_BELOW)
 				cairo_dock_pop_up (pDock);
 		}
-		cairo_dock_emit_enter_signal (CAIRO_CONTAINER (pDock));
+		gldi_dock_enter_synthetic (pDock);
 		
 		cd_do_numberize_icons (pDock);
 		
