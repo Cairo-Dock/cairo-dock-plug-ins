@@ -1,16 +1,18 @@
 ########### requirements ###############
 
 cmake_minimum_required (VERSION 3.16.0)
+
+project ("cairo-dock-plugins" C)
+
 find_package (PkgConfig)
 include (CheckLibraryExists)
 include (CheckIncludeFiles)
 include (CheckFunctionExists)
 include (CheckSymbolExists)
-include ("${CMAKE_CURRENT_SOURCE_DIR}/cmake_modules/GNUInstallDirs.cmake")
+include (GNUInstallDirs)
 
 ########### project ###############
 
-project ("cairo-dock-plugins")
 set (VERSION "3.5.99.rc2")
 # can be different from VERSION, e.g. if a new version of plugins does not depend on things added to core
 set (CORE_REQUIRED_VERSION "3.5.99.rc2")
