@@ -848,39 +848,8 @@ set (with_mail no)
 # find the compilation flags
 enable_if_not_defined (enable-mail)
 if (enable-mail)
-	execute_process(
-		COMMAND pkg-config libetpan --cflags
-		OUTPUT_VARIABLE MAIL_PACKAGE_CFLAGS)
-	if (NOT "${MAIL_PACKAGE_CFLAGS}" STREQUAL "" AND NOT "${MAIL_PACKAGE_CFLAGS}" STREQUAL "\n") # if there is a problem with the previous, we don't want to have a lot of errors
-		STRING (REGEX REPLACE "\n" "" TMP_VARIABLE "${MAIL_PACKAGE_CFLAGS}") # to not skip the last option
-		STRING (REGEX MATCHALL "(^| )-I[^ ]+( |$)" TMP_VARIABLE "${TMP_VARIABLE}") # first extract the "-I" options
-		STRING (REGEX REPLACE ";" "" TMP_VARIABLE "${TMP_VARIABLE}")
-		STRING (REGEX REPLACE " $" "" TMP_VARIABLE "${TMP_VARIABLE}")
-		STRING (REGEX REPLACE "^ " "" TMP_VARIABLE "${TMP_VARIABLE}")
-		STRING (REGEX REPLACE "  " " " TMP_VARIABLE "${TMP_VARIABLE}")
-		STRING (REGEX REPLACE "-I([^ ]+)" "\\1" MAIL_PACKAGE_INCLUDE_DIRS "${TMP_VARIABLE}")  # then remove the "-I" string
-	endif()
-	# find the link flags
-	execute_process(
-		COMMAND pkg-config libetpan --libs
-		OUTPUT_VARIABLE MAIL_PACKAGE_LIBS)
-	if (NOT "${MAIL_PACKAGE_LIBS}" STREQUAL "")
-		STRING (REGEX REPLACE "\n" "" MAIL_PACKAGE_LIBS "${MAIL_PACKAGE_LIBS}")
-		#   find the link libraries
-		STRING (REGEX MATCHALL "(^| )-l[^ ]+( |$)" TMP_VARIABLE "${MAIL_PACKAGE_LIBS}") # extract the "-l" options (only if it's separated by two blank spaces or the end/beginning of the line => -L/usr/lib/x86_64-linux-gnu)
-		STRING (REGEX REPLACE ";" "" TMP_VARIABLE "${TMP_VARIABLE}")
-		STRING (REGEX REPLACE "^ " "" TMP_VARIABLE "${TMP_VARIABLE}")
-		STRING (REGEX REPLACE "  " " " TMP_VARIABLE "${TMP_VARIABLE}")
-		STRING (REGEX REPLACE " $" "" MAIL_PACKAGE_LIBRARIES "${TMP_VARIABLE}")
-		#   find the link directories
-		STRING (REGEX MATCHALL "(^| )-L[^ ]+( |$)" TMP_VARIABLE "${MAIL_PACKAGE_LIBS}") # extract the "-L" options
-		STRING (REGEX REPLACE ";" "" TMP_VARIABLE "${TMP_VARIABLE}")
-		STRING (REGEX REPLACE " $" "" TMP_VARIABLE "${TMP_VARIABLE}")
-		STRING (REGEX REPLACE "^ " "" TMP_VARIABLE "${TMP_VARIABLE}")
-		STRING (REGEX REPLACE "  " " " TMP_VARIABLE "${TMP_VARIABLE}")
-		STRING (REGEX REPLACE "-L([^ ]+)" "\\1" MAIL_PACKAGE_LIBRARY_DIRS "${TMP_VARIABLE}")  # then remove the "-L" string
-	endif()
-	if ("${MAIL_PACKAGE_LIBS}" STREQUAL "")
+	pkg_check_modules (MAIL_PACKAGE libetpan)
+	if (NOT MAIL_PACKAGE_FOUND)
 		message (STATUS "warning : Could not find libetpan; Cairo-Dock won't be built with Mail applet.")
 		message (WARNING "This module is required to compile Mail applet: libetpan")
 		set (PROGRAMS_MISSING "${PROGRAMS_MISSING} libetpan-config")
