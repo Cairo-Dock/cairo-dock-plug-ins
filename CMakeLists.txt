@@ -23,6 +23,18 @@ if (NOT DEFINED CMAKE_BUILD_TYPE)
 endif()
 add_definitions (-DGL_GLEXT_PROTOTYPES="1")
 
+############ adjust prefix ##############
+# (this is to make things work if the user is using
+# CMAKE_INSTALL_PREFIX for both core and plugins to set
+# and installation path)
+if (DEFINED CMAKE_PREFIX_PATH)
+	if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+		set (CMAKE_INSTALL_PREFIX "${CMAKE_PREFIX_PATH}")
+	endif()
+else()
+	set (CMAKE_PREFIX_PATH "${CMAKE_INSTALL_PREFIX}")
+endif()
+
 ############ sources tarball #############
 
 set (CPACK_SOURCE_GENERATOR "TGZ")
@@ -58,26 +70,10 @@ endif ()
 
 set (dock_version ${VERSION}) # should be the same except if PACKAGEMENT is set
 
-# get plug-ins install dir
-execute_process(
-    COMMAND pkg-config gldi --variable=pluginsdir  # /usr/lib/cairo-dock # or /usr/lib/x86_64-linux-gnu/cairo-dock
-    OUTPUT_VARIABLE pluginsdir)
-STRING (REGEX REPLACE "\n" "" pluginsdir ${pluginsdir})  # remove the \n
-# get plug-ins data dir
-execute_process(
-    COMMAND pkg-config gldi --variable=pluginsdatadir  # /usr/share/cairo-dock/plug-ins
-    OUTPUT_VARIABLE pluginsdatadir)
-STRING (REGEX REPLACE "\n" "" pluginsdatadir ${pluginsdatadir})
-# get prefix dir
-execute_process(
-    COMMAND pkg-config gldi --variable=prefix  # /usr/share/cairo-dock/plug-ins
-    OUTPUT_VARIABLE prefix)
-STRING (REGEX REPLACE "\n" "" prefix ${prefix})
-# get GTK version (must be the same as the core, as GTK2 and GTK3 can't coexist at runtime)
-execute_process(
-    COMMAND pkg-config gldi --variable=gtkversion  # 2 or 3
-    OUTPUT_VARIABLE gtkversion)
-STRING (REGEX REPLACE "\n" "" gtkversion ${gtkversion})
+pkg_get_variable(pluginsdir     gldi pluginsdir)
+pkg_get_variable(pluginsdatadir gldi pluginsdatadir)
+pkg_get_variable(prefix         gldi prefix)
+pkg_get_variable(gtkversion     gldi gtkversion)
 
 # check that installation dir matches with the core
 GET_FILENAME_COMPONENT(libdir "${pluginsdir}/.." ABSOLUTE)  # /usr/lib # or /usr/lib/x86_64-linux-gnu
@@ -1359,6 +1355,8 @@ message (STATUS " - with Disks applet:              ${with_disks}")
 message (STATUS " - with Doncky applet:             ${with_doncky}")
 message (STATUS " - with Network-Monitor applet:    ${with_network_monitor}")
 message (STATUS " - with Scooby-Do applet:          ${with_scooby_do}")
+message ("")
+message (STATUS " Installation in : ${CMAKE_INSTALL_PREFIX}")
 
 if (NOT "${MODULES_MISSING}" STREQUAL "")
 	message ("")
