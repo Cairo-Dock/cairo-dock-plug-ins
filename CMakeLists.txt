@@ -1,16 +1,18 @@
 ########### requirements ###############
 
 cmake_minimum_required (VERSION 3.16.0)
+
+project ("cairo-dock-plugins" C)
+
 find_package (PkgConfig)
 include (CheckLibraryExists)
 include (CheckIncludeFiles)
 include (CheckFunctionExists)
 include (CheckSymbolExists)
-include ("${CMAKE_CURRENT_SOURCE_DIR}/cmake_modules/GNUInstallDirs.cmake")
+include (GNUInstallDirs)
 
 ########### project ###############
 
-project ("cairo-dock-plugins")
 set (VERSION "3.5.99.rc2")
 # can be different from VERSION, e.g. if a new version of plugins does not depend on things added to core
 set (CORE_REQUIRED_VERSION "3.5.99.rc2")
@@ -20,6 +22,18 @@ if (NOT DEFINED CMAKE_BUILD_TYPE)
 	add_definitions (-O3)
 endif()
 add_definitions (-DGL_GLEXT_PROTOTYPES="1")
+
+############ adjust prefix ##############
+# (this is to make things work if the user is using
+# CMAKE_INSTALL_PREFIX for both core and plugins to set
+# and installation path)
+if (DEFINED CMAKE_PREFIX_PATH)
+	if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+		set (CMAKE_INSTALL_PREFIX "${CMAKE_PREFIX_PATH}")
+	endif()
+else()
+	set (CMAKE_PREFIX_PATH "${CMAKE_INSTALL_PREFIX}")
+endif()
 
 ############ sources tarball #############
 
@@ -56,26 +70,10 @@ endif ()
 
 set (dock_version ${VERSION}) # should be the same except if PACKAGEMENT is set
 
-# get plug-ins install dir
-execute_process(
-    COMMAND pkg-config gldi --variable=pluginsdir  # /usr/lib/cairo-dock # or /usr/lib/x86_64-linux-gnu/cairo-dock
-    OUTPUT_VARIABLE pluginsdir)
-STRING (REGEX REPLACE "\n" "" pluginsdir ${pluginsdir})  # remove the \n
-# get plug-ins data dir
-execute_process(
-    COMMAND pkg-config gldi --variable=pluginsdatadir  # /usr/share/cairo-dock/plug-ins
-    OUTPUT_VARIABLE pluginsdatadir)
-STRING (REGEX REPLACE "\n" "" pluginsdatadir ${pluginsdatadir})
-# get prefix dir
-execute_process(
-    COMMAND pkg-config gldi --variable=prefix  # /usr/share/cairo-dock/plug-ins
-    OUTPUT_VARIABLE prefix)
-STRING (REGEX REPLACE "\n" "" prefix ${prefix})
-# get GTK version (must be the same as the core, as GTK2 and GTK3 can't coexist at runtime)
-execute_process(
-    COMMAND pkg-config gldi --variable=gtkversion  # 2 or 3
-    OUTPUT_VARIABLE gtkversion)
-STRING (REGEX REPLACE "\n" "" gtkversion ${gtkversion})
+pkg_get_variable(pluginsdir     gldi pluginsdir)
+pkg_get_variable(pluginsdatadir gldi pluginsdatadir)
+pkg_get_variable(prefix         gldi prefix)
+pkg_get_variable(gtkversion     gldi gtkversion)
 
 # check that installation dir matches with the core
 GET_FILENAME_COMPONENT(libdir "${pluginsdir}/.." ABSOLUTE)  # /usr/lib # or /usr/lib/x86_64-linux-gnu
@@ -848,39 +846,8 @@ set (with_mail no)
 # find the compilation flags
 enable_if_not_defined (enable-mail)
 if (enable-mail)
-	execute_process(
-		COMMAND pkg-config libetpan --cflags
-		OUTPUT_VARIABLE MAIL_PACKAGE_CFLAGS)
-	if (NOT "${MAIL_PACKAGE_CFLAGS}" STREQUAL "" AND NOT "${MAIL_PACKAGE_CFLAGS}" STREQUAL "\n") # if there is a problem with the previous, we don't want to have a lot of errors
-		STRING (REGEX REPLACE "\n" "" TMP_VARIABLE "${MAIL_PACKAGE_CFLAGS}") # to not skip the last option
-		STRING (REGEX MATCHALL "(^| )-I[^ ]+( |$)" TMP_VARIABLE "${TMP_VARIABLE}") # first extract the "-I" options
-		STRING (REGEX REPLACE ";" "" TMP_VARIABLE "${TMP_VARIABLE}")
-		STRING (REGEX REPLACE " $" "" TMP_VARIABLE "${TMP_VARIABLE}")
-		STRING (REGEX REPLACE "^ " "" TMP_VARIABLE "${TMP_VARIABLE}")
-		STRING (REGEX REPLACE "  " " " TMP_VARIABLE "${TMP_VARIABLE}")
-		STRING (REGEX REPLACE "-I([^ ]+)" "\\1" MAIL_PACKAGE_INCLUDE_DIRS "${TMP_VARIABLE}")  # then remove the "-I" string
-	endif()
-	# find the link flags
-	execute_process(
-		COMMAND pkg-config libetpan --libs
-		OUTPUT_VARIABLE MAIL_PACKAGE_LIBS)
-	if (NOT "${MAIL_PACKAGE_LIBS}" STREQUAL "")
-		STRING (REGEX REPLACE "\n" "" MAIL_PACKAGE_LIBS "${MAIL_PACKAGE_LIBS}")
-		#   find the link libraries
-		STRING (REGEX MATCHALL "(^| )-l[^ ]+( |$)" TMP_VARIABLE "${MAIL_PACKAGE_LIBS}") # extract the "-l" options (only if it's separated by two blank spaces or the end/beginning of the line => -L/usr/lib/x86_64-linux-gnu)
-		STRING (REGEX REPLACE ";" "" TMP_VARIABLE "${TMP_VARIABLE}")
-		STRING (REGEX REPLACE "^ " "" TMP_VARIABLE "${TMP_VARIABLE}")
-		STRING (REGEX REPLACE "  " " " TMP_VARIABLE "${TMP_VARIABLE}")
-		STRING (REGEX REPLACE " $" "" MAIL_PACKAGE_LIBRARIES "${TMP_VARIABLE}")
-		#   find the link directories
-		STRING (REGEX MATCHALL "(^| )-L[^ ]+( |$)" TMP_VARIABLE "${MAIL_PACKAGE_LIBS}") # extract the "-L" options
-		STRING (REGEX REPLACE ";" "" TMP_VARIABLE "${TMP_VARIABLE}")
-		STRING (REGEX REPLACE " $" "" TMP_VARIABLE "${TMP_VARIABLE}")
-		STRING (REGEX REPLACE "^ " "" TMP_VARIABLE "${TMP_VARIABLE}")
-		STRING (REGEX REPLACE "  " " " TMP_VARIABLE "${TMP_VARIABLE}")
-		STRING (REGEX REPLACE "-L([^ ]+)" "\\1" MAIL_PACKAGE_LIBRARY_DIRS "${TMP_VARIABLE}")  # then remove the "-L" string
-	endif()
-	if ("${MAIL_PACKAGE_LIBS}" STREQUAL "")
+	pkg_check_modules (MAIL_PACKAGE libetpan)
+	if (NOT MAIL_PACKAGE_FOUND)
 		message (STATUS "warning : Could not find libetpan; Cairo-Dock won't be built with Mail applet.")
 		message (WARNING "This module is required to compile Mail applet: libetpan")
 		set (PROGRAMS_MISSING "${PROGRAMS_MISSING} libetpan-config")
@@ -1388,6 +1355,8 @@ message (STATUS " - with Disks applet:              ${with_disks}")
 message (STATUS " - with Doncky applet:             ${with_doncky}")
 message (STATUS " - with Network-Monitor applet:    ${with_network_monitor}")
 message (STATUS " - with Scooby-Do applet:          ${with_scooby_do}")
+message ("")
+message (STATUS " Installation in : ${CMAKE_INSTALL_PREFIX}")
 
 if (NOT "${MODULES_MISSING}" STREQUAL "")
 	message ("")
