@@ -28,6 +28,13 @@ void cd_dbus_clean_up_processes (gboolean bAll);
 
 void cd_dbus_launch_service (void);
 
+/**
+ * Launch a subprocess (either an external applet or our launcher service).
+ * Similar to cairo_dock_launch_command_argv_full(), but sets PYTHONPATH and RUBYLIB
+ * to where our interfaces are installed, so that plugins written in Python
+ * and Ruby will work properly.
+ */
+void cd_dbus_launch_subprocess (const gchar * const * args, const gchar *cWorkingDirectory);
 
 gboolean cd_dbus_register_module_in_dir (const gchar *cModuleName, const gchar *cThirdPartyPath);
 

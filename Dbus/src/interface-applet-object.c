@@ -27,6 +27,7 @@
 #include "dbus-applet-spec.h"
 #include "dbus-sub-applet-spec.h"
 #include "interface-applet-object.h"
+#include "applet-dbus.h"
 
 static int s_iModuleId = 1;
 static GList *s_pAppletList = NULL;
@@ -252,7 +253,7 @@ void cd_dbus_launch_applet_process (GldiModuleInstance *pModuleInstance, dbusApp
 		pModuleInstance->cConfFilePath, g_cCairoDockDataDir,
 		myData.cProgName, cPid, NULL};
 	cd_debug ("launching distant applet: %s/%s", cDirPath, cModuleName);
-	cairo_dock_launch_command_argv_full (args, cDirPath, GLDI_LAUNCH_DEFAULT);
+	cd_dbus_launch_subprocess (args, cDirPath);
 	g_free (cExec);
 	g_free (cID);
 	g_free (cPid);
