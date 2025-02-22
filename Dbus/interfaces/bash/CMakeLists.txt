@@ -5,9 +5,9 @@ if (with_python3)
 	endif()
 	#  byte-compile the python scripts to .pyc and install them
 	execute_process(COMMAND "${PYTHON3_EXECUTABLE}" "-m" "compileall" "CDBashApplet.py" WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}")
-	install(DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/__pycache__" DESTINATION ${python_destdir})
+	install(DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/__pycache__" DESTINATION ${dbusdatadir})
 	# install the original python script
-	install(FILES "CDBashApplet.py" DESTINATION ${python_destdir})
+	install(FILES "CDBashApplet.py" DESTINATION ${dbusdatadir})
 	# and the bash functions goes into the data dir of the applet (didn't find a better place).
 	install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/CDBashApplet.sh
 		DESTINATION ${dbusdatadir}
