@@ -116,10 +116,10 @@ const gchar *get_kioclient_number (void)
 	static gchar *s_sNumber = NULL;
 	if (! s_sNumber)
 	{
-		if (get_kde_version() < 5)
-			s_sNumber = "";
+		if (get_kde_version() == 5)
+			s_sNumber = "5";
 		else
-			s_sNumber = g_strdup_printf("%d", get_kde_version());
+			s_sNumber = "";
 	}
 	return s_sNumber;
 }
