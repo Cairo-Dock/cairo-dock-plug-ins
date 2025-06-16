@@ -7,7 +7,7 @@ if (with_python3)
 
 	#  byte-compile the python scripts to .pyc and install them
 	execute_process(COMMAND "${PYTHON3_EXECUTABLE}" "-m" "compileall" "CDApplet.py" "CairoDock.py" WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}")
-	install(DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/__pycache__" DESTINATION ${python_destdir})
+	install(DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/__pycache__" DESTINATION ${dbusdatadir})
 	# install the original python scripts
-	install(FILES "CDApplet.py" "CairoDock.py" DESTINATION ${python_destdir})
+	install(FILES "CDApplet.py" "CairoDock.py" DESTINATION ${dbusdatadir})
 endif()

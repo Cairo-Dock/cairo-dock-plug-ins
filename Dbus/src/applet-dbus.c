@@ -579,10 +579,62 @@ void cd_dbus_launch_service (void)
 	 */
 	#ifdef DBUSMENU_GTK_FOUND // need SetMenu => DBusMenu
 	if (myConfig.bLaunchLauncherAPIDaemon)
-		cairo_dock_launch_command_single (CD_PLUGINS_DIR"/cairo-dock-launcher-API-daemon");
+	{
+		const char *tmp[] = {CD_PLUGINS_DIR"/cairo-dock-launcher-API-daemon", NULL};
+		cd_dbus_launch_subprocess (tmp, NULL);
+	}
 	#endif
 }
 
+static void _child_watch_dummy (GPid pid, gint, gpointer)
+{
+	g_spawn_close_pid (pid); // note: this is a no-op
+}
+void cd_dbus_launch_subprocess (const gchar * const * args, const gchar *cWorkingDirectory)
+{
+	GError *erreur = NULL;
+	GPid pid;
+	char **envp = g_get_environ ();
+	const char *pythonpath = g_environ_getenv (envp, "PYTHONPATH");
+	if (pythonpath)
+	{
+		char *tmp = g_strdup_printf ("%s:%s", MY_APPLET_SHARE_DATA_DIR, pythonpath);
+		envp = g_environ_setenv (envp, "PYTHONPATH", tmp, TRUE);
+		g_free (tmp);
+	}
+	else
+		envp = g_environ_setenv (envp, "PYTHONPATH", MY_APPLET_SHARE_DATA_DIR, TRUE);
+	
+	const char *rubypath = g_environ_getenv (envp, "RUBYLIB");
+	if (rubypath)
+	{
+		char *tmp = g_strdup_printf ("%s:%s", MY_APPLET_SHARE_DATA_DIR, rubypath);
+		envp = g_environ_setenv (envp, "RUBYLIB", tmp, TRUE);
+		g_free (tmp);
+	}
+	else
+		envp = g_environ_setenv (envp, "RUBYLIB", MY_APPLET_SHARE_DATA_DIR, TRUE);
+	
+	// note: args are expected as gchar**, but not modified (casted back to const immediately)
+	gboolean ret = g_spawn_async (cWorkingDirectory, (gchar**)args, envp,
+		G_SPAWN_SEARCH_PATH |
+		// note: posix_spawn (and clone on Linux) will be used if we include the following
+		// two flags, but this requires to later add a child watch and also adds a risk of
+		// fd leakage (although it has not been an issue before with system() as well)
+		G_SPAWN_DO_NOT_REAP_CHILD | G_SPAWN_LEAVE_DESCRIPTORS_OPEN |
+		G_SPAWN_STDOUT_TO_DEV_NULL | G_SPAWN_STDERR_TO_DEV_NULL,
+		NULL, NULL,
+		&pid, &erreur);
+	if (!ret)
+	{
+		cd_warning ("couldn't launch this command (%s : %s)", args[0], erreur->message);
+		g_error_free (erreur);
+	}
+	else
+		g_child_watch_add (pid, _child_watch_dummy, NULL);
+	
+	if (envp) g_strfreev (envp);
+}
 
   ///////////////////
  /// MARSHALLERS ///
