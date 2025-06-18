@@ -27,11 +27,7 @@ add_definitions (-DGL_GLEXT_PROTOTYPES="1")
 # (this is to make things work if the user is using
 # CMAKE_INSTALL_PREFIX for both core and plugins to set
 # and installation path)
-if (DEFINED CMAKE_PREFIX_PATH)
-	if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
-		set (CMAKE_INSTALL_PREFIX "${CMAKE_PREFIX_PATH}")
-	endif()
-else()
+if(NOT DEFINED CMAKE_PREFIX_PATH)
 	set (CMAKE_PREFIX_PATH "${CMAKE_INSTALL_PREFIX}")
 endif()
 
@@ -72,7 +68,7 @@ set (dock_version ${VERSION}) # should be the same except if PACKAGEMENT is set
 
 pkg_get_variable(pluginsdir     gldi pluginsdir)
 pkg_get_variable(pluginsdatadir gldi pluginsdatadir)
-pkg_get_variable(prefix         gldi prefix)
+pkg_get_variable(prefix         gldi plugins_prefix)
 pkg_get_variable(gtkversion     gldi gtkversion)
 
 # check that installation dir matches with the core
@@ -82,9 +78,10 @@ GET_FILENAME_COMPONENT(datadir "${pluginsdatadir}/../.." ABSOLUTE)  # /usr/share
 if (NOT "${CMAKE_INSTALL_PREFIX}" STREQUAL "${prefix}"
 		OR NOT "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}" STREQUAL "${libdir}"
 		OR NOT "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_DATAROOTDIR}" STREQUAL "${datadir}")
-	message (STATUS "It seems that the current CMAKE_INSTALL_{PREFIX,LIBDIR,DATAROOTDIR} flags are not the same that you have used with the core.")
+	## TODO: only show this if NOT CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT
+	message (STATUS "It seems that the current CMAKE_INSTALL_{PREFIX,LIBDIR,DATAROOTDIR} flags are not set to what is expected by the core.")
 	message (STATUS " It will be replaced by this value: ${prefix}")
-	message (WARNING "Plug-ins should be installed in the same directory as the core, that is to say in ${pluginsdir}")
+	message (WARNING "Plug-ins should be installed in the directory defined when setting up the core, that is to say in ${pluginsdir}")
 	set (CMAKE_INSTALL_PREFIX "${prefix}")
 	#set (libdir "${CMAKE_INSTALL_PREFIX}/${libname}/cairo-dock")
 endif()
