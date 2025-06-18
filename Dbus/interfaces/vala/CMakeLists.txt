@@ -63,4 +63,4 @@ endif()
 add_subdirectory(src)
 # .pc goes with others
 configure_file (${CMAKE_CURRENT_SOURCE_DIR}/${CDAPPLET}.pc.in ${CMAKE_CURRENT_BINARY_DIR}/${CDAPPLET}.pc)
-install (FILES  ${CMAKE_CURRENT_BINARY_DIR}/${CDAPPLET}.pc DESTINATION ${libdir}/pkgconfig)
+install (FILES  ${CMAKE_CURRENT_BINARY_DIR}/${CDAPPLET}.pc DESTINATION "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}/pkgconfig")
