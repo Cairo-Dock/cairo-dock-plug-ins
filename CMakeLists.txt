@@ -66,30 +66,26 @@ endif ()
 
 set (dock_version ${VERSION}) # should be the same except if PACKAGEMENT is set
 
-pkg_get_variable(pluginsdir     gldi pluginsdir)
-pkg_get_variable(pluginsdatadir gldi pluginsdatadir)
-pkg_get_variable(prefix         gldi plugins_prefix)
-pkg_get_variable(gtkversion     gldi gtkversion)
+pkg_get_variable(pluginsdir         gldi pluginsdir)
+pkg_get_variable(pluginsdatarootdir gldi pluginsdatarootdir)
+pkg_get_variable(prefix             gldi plugins_prefix)
+pkg_get_variable(localedir          gldi plugins_locale)
+pkg_get_variable(gtkversion         gldi gtkversion)
 
 # check that installation dir matches with the core
-GET_FILENAME_COMPONENT(libdir "${pluginsdir}/.." ABSOLUTE)  # /usr/lib # or /usr/lib/x86_64-linux-gnu
-GET_FILENAME_COMPONENT(pkgdatadir "${pluginsdatadir}/.." ABSOLUTE)  # /usr/share/cairo-dock
-GET_FILENAME_COMPONENT(datadir "${pluginsdatadir}/../.." ABSOLUTE)  # /usr/share
-if (NOT "${CMAKE_INSTALL_PREFIX}" STREQUAL "${prefix}"
-		OR NOT "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}" STREQUAL "${libdir}"
-		OR NOT "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_DATAROOTDIR}" STREQUAL "${datadir}")
-	## TODO: only show this if NOT CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT
-	message (STATUS "It seems that the current CMAKE_INSTALL_{PREFIX,LIBDIR,DATAROOTDIR} flags are not set to what is expected by the core.")
-	message (STATUS " It will be replaced by this value: ${prefix}")
-	message (WARNING "Plug-ins should be installed in the directory defined when setting up the core, that is to say in ${pluginsdir}")
+if (NOT "${CMAKE_INSTALL_PREFIX}" STREQUAL "${prefix}")
+	if (NOT CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+		message (STATUS "It seems that the current CMAKE_INSTALL_{PREFIX,LIBDIR,DATAROOTDIR} flags are not set to what is expected by the core.")
+		message (STATUS " It will be replaced by this value: ${prefix}")
+		message (WARNING "Plug-ins should be installed in the directory defined when setting up the core, that is to say in ${pluginsdir}")
+	endif()
 	set (CMAKE_INSTALL_PREFIX "${prefix}")
-	#set (libdir "${CMAKE_INSTALL_PREFIX}/${libname}/cairo-dock")
 endif()
 
 # set internationalisation
 set (GETTEXT_PLUGINS "cairo-dock-plugins")
-set (localedir "${prefix}/${CMAKE_INSTALL_LOCALEDIR}")
-set (gaugesdir "${datadir}/cairo-dock/gauges")
+set (pluginsdatadir "${pluginsdatarootdir}/plug-ins")
+set (gaugesdir "${pluginsdatarootdir}/gauges")
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules/")  # additionnal FindPackage files
 
