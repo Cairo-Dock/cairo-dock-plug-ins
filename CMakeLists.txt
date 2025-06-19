@@ -57,7 +57,6 @@ if( WIN32 )
 endif( WIN32 )
 
 set (PACKAGE ${CMAKE_PROJECT_NAME})
-set (GETTEXT_PACKAGE ${PACKAGE})
 
 if ("${PACKAGEMENT}" STREQUAL "") ## do not check if we're using the same version when packaging the application (e.g. if we just want to generate a tarball of a previous version)
 	# we need GLDI which contains most global var: check it now to avoid many errors with regex
@@ -70,6 +69,7 @@ pkg_get_variable(pluginsdir         gldi pluginsdir)
 pkg_get_variable(pluginsdatarootdir gldi pluginsdatarootdir)
 pkg_get_variable(prefix             gldi plugins_prefix)
 pkg_get_variable(localedir          gldi plugins_locale)
+pkg_get_variable(gettext_domain     gldi plugins_gettext)
 pkg_get_variable(gtkversion         gldi gtkversion)
 
 # check that installation dir matches with the core
@@ -83,7 +83,7 @@ if (NOT "${CMAKE_INSTALL_PREFIX}" STREQUAL "${prefix}")
 endif()
 
 # set internationalisation
-set (GETTEXT_PLUGINS "cairo-dock-plugins")
+set (GETTEXT_PLUGINS "${gettext_domain}")
 set (pluginsdatadir "${pluginsdatarootdir}/plug-ins")
 set (gaugesdir "${pluginsdatarootdir}/gauges")
 
