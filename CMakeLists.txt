@@ -13,9 +13,9 @@ include (GNUInstallDirs)
 
 ########### project ###############
 
-set (VERSION "3.5.99.rc2")
+set (VERSION "3.5.99.rc3")
 # can be different from VERSION, e.g. if a new version of plugins does not depend on things added to core
-set (CORE_REQUIRED_VERSION "3.5.99.rc2")
+set (CORE_REQUIRED_VERSION "3.5.99.rc3")
 
 add_definitions (-std=gnu99 -Wall -Werror-implicit-function-declaration) # -Wextra -Wwrite-strings -Wuninitialized -Werror-implicit-function-declaration -Wstrict-prototypes -Wreturn-type -Wparentheses -Warray-bounds)
 if (NOT DEFINED CMAKE_BUILD_TYPE)
@@ -27,11 +27,7 @@ add_definitions (-DGL_GLEXT_PROTOTYPES="1")
 # (this is to make things work if the user is using
 # CMAKE_INSTALL_PREFIX for both core and plugins to set
 # and installation path)
-if (DEFINED CMAKE_PREFIX_PATH)
-	if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
-		set (CMAKE_INSTALL_PREFIX "${CMAKE_PREFIX_PATH}")
-	endif()
-else()
+if(NOT DEFINED CMAKE_PREFIX_PATH)
 	set (CMAKE_PREFIX_PATH "${CMAKE_INSTALL_PREFIX}")
 endif()
 
@@ -61,7 +57,6 @@ if( WIN32 )
 endif( WIN32 )
 
 set (PACKAGE ${CMAKE_PROJECT_NAME})
-set (GETTEXT_PACKAGE ${PACKAGE})
 
 if ("${PACKAGEMENT}" STREQUAL "") ## do not check if we're using the same version when packaging the application (e.g. if we just want to generate a tarball of a previous version)
 	# we need GLDI which contains most global var: check it now to avoid many errors with regex
@@ -70,29 +65,27 @@ endif ()
 
 set (dock_version ${VERSION}) # should be the same except if PACKAGEMENT is set
 
-pkg_get_variable(pluginsdir     gldi pluginsdir)
-pkg_get_variable(pluginsdatadir gldi pluginsdatadir)
-pkg_get_variable(prefix         gldi prefix)
-pkg_get_variable(gtkversion     gldi gtkversion)
+pkg_get_variable(pluginsdir         gldi pluginsdir)
+pkg_get_variable(pluginsdatarootdir gldi pluginsdatarootdir)
+pkg_get_variable(prefix             gldi plugins_prefix)
+pkg_get_variable(localedir          gldi plugins_locale)
+pkg_get_variable(gettext_domain     gldi plugins_gettext)
+pkg_get_variable(gtkversion         gldi gtkversion)
 
 # check that installation dir matches with the core
-GET_FILENAME_COMPONENT(libdir "${pluginsdir}/.." ABSOLUTE)  # /usr/lib # or /usr/lib/x86_64-linux-gnu
-GET_FILENAME_COMPONENT(pkgdatadir "${pluginsdatadir}/.." ABSOLUTE)  # /usr/share/cairo-dock
-GET_FILENAME_COMPONENT(datadir "${pluginsdatadir}/../.." ABSOLUTE)  # /usr/share
-if (NOT "${CMAKE_INSTALL_PREFIX}" STREQUAL "${prefix}"
-		OR NOT "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}" STREQUAL "${libdir}"
-		OR NOT "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_DATAROOTDIR}" STREQUAL "${datadir}")
-	message (STATUS "It seems that the current CMAKE_INSTALL_{PREFIX,LIBDIR,DATAROOTDIR} flags are not the same that you have used with the core.")
-	message (STATUS " It will be replaced by this value: ${prefix}")
-	message (WARNING "Plug-ins should be installed in the same directory as the core, that is to say in ${pluginsdir}")
+if (NOT "${CMAKE_INSTALL_PREFIX}" STREQUAL "${prefix}")
+	if (NOT CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+		message (STATUS "It seems that the current CMAKE_INSTALL_{PREFIX,LIBDIR,DATAROOTDIR} flags are not set to what is expected by the core.")
+		message (STATUS " It will be replaced by this value: ${prefix}")
+		message (WARNING "Plug-ins should be installed in the directory defined when setting up the core, that is to say in ${pluginsdir}")
+	endif()
 	set (CMAKE_INSTALL_PREFIX "${prefix}")
-	#set (libdir "${CMAKE_INSTALL_PREFIX}/${libname}/cairo-dock")
 endif()
 
 # set internationalisation
-set (GETTEXT_PLUGINS "cairo-dock-plugins")
-set (localedir "${prefix}/${CMAKE_INSTALL_LOCALEDIR}")
-set (gaugesdir "${datadir}/cairo-dock/gauges")
+set (GETTEXT_PLUGINS "${gettext_domain}")
+set (pluginsdatadir "${pluginsdatarootdir}/plug-ins")
+set (gaugesdir "${pluginsdatarootdir}/gauges")
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules/")  # additionnal FindPackage files
 
@@ -483,9 +476,13 @@ if (enable-ruby-interface)
 	set (RUBY_FOUND TRUE)
 endif()
 
-set (with_mono no)
-enable_if_not_defined (enable-mono-interface)
+# Mono interface -- deprecated, disabled by default (Mono not maintained anymore, no plugins anyway)
+set (with_mono "no (deprecated, use '-Denable-mono-interface=True' to try to enable it)")
+if (NOT DEFINED enable-mono-interface)
+	set (enable-mono-interface FALSE)
+endif()
 if (enable-mono-interface)
+	set (with_mono "no (not found)")
 	message (STATUS " * Mono:")
 	#find_package (Mono)
 	find_program (GMCS_EXECUTABLE mcs)

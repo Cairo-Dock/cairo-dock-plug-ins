@@ -32,7 +32,7 @@ target_link_libraries (${CDAPPLET}
 
 
 # .so goes with other libs (to be found on runtime)
-install (TARGETS ${CDAPPLET} DESTINATION "${libdir}")
+install (TARGETS ${CDAPPLET} DESTINATION "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}")
 # .h goes in the dbus data dir
 install (FILES ${VALA_SRC_DIR}/${CDAPPLET}.h DESTINATION "${dbusdatadir}")
 
