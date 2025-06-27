@@ -45,28 +45,54 @@ static const gchar *logout_args[] = {"qdbus", "org.kde.ksmserver", "/KSMServer",
 	// ShutdownConfirm; ShutdownType; ShutdownMode
 	"1", "1", "-1", NULL};
 // usr/bin/dbus-send --session --type=method_call --dest=org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout int32:1 int32:2 int32:0
+static const gchar *logout_args6[] = {"qdbus6", "org.kde.LogoutPrompt", "/LogoutPrompt", NULL, NULL};
 
 void env_backend_logout (void)
 {
-	logout_args[5] = "3";
-	cairo_dock_launch_command_argv (logout_args);
+	if (get_kde_version () == 6)
+	{
+		logout_args6[3] = "promptLogout";
+		cairo_dock_launch_command_argv (logout_args6);
+	}
+	else
+	{
+		logout_args[5] = "3";
+		cairo_dock_launch_command_argv (logout_args);
+	}
 }
 
 void env_backend_shutdown (void)
 {
-	logout_args[5] = "2"; // or should we display other options too? => ShutdownTypeDefault?
-	cairo_dock_launch_command_argv (logout_args);
+	if (get_kde_version () == 6)
+	{
+		logout_args6[3] = "promptShutDown";
+		cairo_dock_launch_command_argv (logout_args6);
+	}
+	else
+	{
+		logout_args[5] = "2"; // or should we display other options too? => ShutdownTypeDefault?
+		cairo_dock_launch_command_argv (logout_args);
+	}
 }
 
 void env_backend_reboot (void)
 {
-	logout_args[5] = "1";
-	cairo_dock_launch_command_argv (logout_args);
+	if (get_kde_version () == 6)
+	{
+		logout_args6[3] = "promptReboot";
+		cairo_dock_launch_command_argv (logout_args6);
+	}
+	else
+	{
+		logout_args[5] = "1";
+		cairo_dock_launch_command_argv (logout_args);
+	}
 }
 
 void env_backend_lock_screen (void)
 {
-	const char * const args[] = {"qdbus", "org.freedesktop.ScreenSaver", "/ScreenSaver", "Lock", NULL};
+	const char * const args[] = { (get_kde_version () == 6) ? "qdbus6" : "qdbus",
+		"org.freedesktop.ScreenSaver", "/ScreenSaver", "Lock", NULL};
 	cairo_dock_launch_command_argv (args);
 }
 
