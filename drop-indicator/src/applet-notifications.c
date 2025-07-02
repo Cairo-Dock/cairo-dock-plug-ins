@@ -143,6 +143,9 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock, cairo_t
 			double fY = (pDock->container.bDirectionUp ? pDock->iActiveHeight - myData.dropIndicator.iHeight : myData.dropIndicator.iHeight);
 			glPushMatrix();
 			glLoadIdentity();
+			GdkWindow *gdkwindow = gldi_container_get_gdk_window (CAIRO_CONTAINER (pDock));
+			int scale = gdk_window_get_scale_factor (gdkwindow);
+			glScalef (scale, scale, 1.0);
 			
 			if (pDock->container.bIsHorizontal)
 			{
