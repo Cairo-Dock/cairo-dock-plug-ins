@@ -575,19 +575,13 @@ static void _cd_switcher_add_window_on_viewport (Icon *pIcon, int iNumDesktop, i
 	//g_print (" + %s\n", pIcon->cName);
 	
 	// on cree une copie de la surface de l'icone a la taille du menu.
-	GdkPixbuf *pixbuf = cairo_dock_icon_buffer_to_pixbuf (pIcon);
-	if (pixbuf == NULL)  // icon not loaded (because not in a dock, because inhibited)
+	int size = cairo_dock_search_icon_size (GTK_ICON_SIZE_LARGE_TOOLBAR);
+	cairo_surface_t *surface = cairo_dock_icon_buffer_to_cairo (pIcon, size, size);
+	if (surface == NULL)  // icon not loaded (because not in a dock, because inhibited)
 	{
 		const gchar *cIcon = cairo_dock_get_class_icon (pIcon->cClass);
-		gint iDesiredIconSize = cairo_dock_search_icon_size (GTK_ICON_SIZE_LARGE_TOOLBAR); // 24px
-		gchar *cIconPath = cairo_dock_search_icon_s_path (cIcon, iDesiredIconSize);
-		if (cIconPath)
-		{
-			pixbuf = gdk_pixbuf_new_from_file_at_size (cIconPath,
-				iDesiredIconSize,
-				iDesiredIconSize,
-				NULL);
-		}
+		cd_warning ("loading icon: %s", cIcon);
+		surface = cairo_dock_create_surface_from_icon (cIcon, size, size);
 	}
 	
 	// on ajoute une entree au menu avec le pixbuf.
@@ -595,11 +589,11 @@ static void _cd_switcher_add_window_on_viewport (Icon *pIcon, int iNumDesktop, i
 	GtkWidget *pMenuItem = gldi_menu_add_item (pMenu, cLabel, "", G_CALLBACK (_show_window), pIcon);
 	g_free (cLabel);
 	
-	if (pixbuf)
+	if (surface)
 	{
-		GtkWidget *image = gtk_image_new_from_pixbuf (pixbuf);
+		GtkWidget *image = gtk_image_new_from_surface (surface);
 		gldi_menu_item_set_image (pMenuItem, image);
-		g_object_unref (pixbuf);
+		cairo_surface_destroy (surface);
 	}
 }
 void cd_switcher_build_windows_list (GtkWidget *pMenu)

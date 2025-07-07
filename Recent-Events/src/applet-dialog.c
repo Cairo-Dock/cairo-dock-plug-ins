@@ -20,6 +20,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <cairo/cairo-gobject.h>
 
 #include "applet-struct.h"
 #include "applet-search.h"
@@ -98,11 +99,11 @@ static void _on_got_events (ZeitgeistResultSet *pEvents, GtkListStore *pModel)
 	gint64 iTimeStamp;
 	const gchar *cEventURI;
 	guint id;
-	gchar *cName = NULL, *cURI = NULL, *cIconName = NULL, *cIconPath, *cPath = NULL;
+	gchar *cName = NULL, *cURI = NULL, *cIconName = NULL, *cPath = NULL;
 	double fOrder;
 	int iVolumeID;
 	gboolean bIsDirectory;
-	GdkPixbuf *pixbuf;
+	cairo_surface_t *surface;
 	GtkTreeIter iter;
 	GHashTable *pHashTable = g_hash_table_new_full (g_str_hash, g_str_equal, NULL, NULL);  // used to prevent doubles
 	
@@ -167,13 +168,9 @@ static void _on_got_events (ZeitgeistResultSet *pEvents, GtkListStore *pModel)
 				cairo_dock_fm_get_file_info (cEventURI, &cName, &cURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, CAIRO_DOCK_FM_SORT_BY_DATE);
 			}
 			if (cIconName != NULL)
-			{
-				cIconPath = cairo_dock_search_icon_s_path (cIconName, myData.iDesiredIconSize);
-				pixbuf = gdk_pixbuf_new_from_file_at_size (cIconPath, myData.iDesiredIconSize, myData.iDesiredIconSize, NULL);
-				g_free (cIconPath);
-			}
+				surface = cairo_dock_create_surface_from_icon (cIconName, myData.iDesiredIconSize, myData.iDesiredIconSize);
 			else
-				pixbuf = NULL;
+				surface = NULL;
 			
 			//\_____________ build the path to display.
 			const gchar *cDisplayedPath = (cPath ? cPath : cEventURI);
@@ -188,7 +185,7 @@ static void _on_got_events (ZeitgeistResultSet *pEvents, GtkListStore *pModel)
 				CD_MODEL_NAME, cText,
 				CD_MODEL_URI, cAppClass ? cAppClass : cEventURI,
 				CD_MODEL_PATH, cEscapedPath,
-				CD_MODEL_ICON, pixbuf,
+				CD_MODEL_ICON, surface,
 				CD_MODEL_DATE, iTimeStamp,
 				CD_MODEL_ID, id, -1);
 			
@@ -199,8 +196,7 @@ static void _on_got_events (ZeitgeistResultSet *pEvents, GtkListStore *pModel)
 			cName = NULL;
 			g_free (cURI);
 			cURI = NULL;
-			if (pixbuf)
-				g_object_unref (pixbuf);
+			if (surface) cairo_surface_destroy (surface);
 			g_free (cPath);
 			g_free (cEscapedPath);
 			
@@ -413,7 +409,7 @@ static GtkWidget *cd_build_events_widget (void)
 		G_TYPE_STRING,  /* CD_MODEL_NAME */
 		G_TYPE_STRING,  /* CD_MODEL_URI */
 		G_TYPE_STRING,  /* CD_MODEL_PATH */
-		GDK_TYPE_PIXBUF,  /* CD_MODEL_ICON */
+		CAIRO_GOBJECT_TYPE_SURFACE,  /* CD_MODEL_ICON */
 		G_TYPE_INT64,  /* CD_MODEL_DATE */
 		G_TYPE_UINT);  /* CD_MODEL_ID */
 	myData.pModel = pModel;
@@ -438,7 +434,7 @@ static GtkWidget *cd_build_events_widget (void)
 	GtkCellRenderer *rend;
 	// icon
 	rend = gtk_cell_renderer_pixbuf_new ();
-	gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (pOneWidget), -1, NULL, rend, "pixbuf", CD_MODEL_ICON, NULL);
+	gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (pOneWidget), -1, NULL, rend, "surface", CD_MODEL_ICON, NULL);
 	// file name
 	rend = gtk_cell_renderer_text_new ();
 	col = gtk_tree_view_column_new_with_attributes (D_("File name"), rend, "text", CD_MODEL_NAME, NULL);
