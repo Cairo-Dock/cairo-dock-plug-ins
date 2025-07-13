@@ -183,6 +183,7 @@ void cd_switcher_trigger_paint_icons (void)
 	myData.iSidPainIcons = g_idle_add ((GSourceFunc)_paint_icons, NULL);
 }*/
 
+static gboolean s_bBgWarning = FALSE;
 
 void cd_switcher_load_desktop_bg_map_surface (void)
 {
@@ -194,7 +195,12 @@ void cd_switcher_load_desktop_bg_map_surface (void)
 		cairo_surface_destroy (myData.pDesktopBgMapSurface);
 	if (pBgSurface == NULL)
 	{
-		cd_warning ("couldn't get the wallpaper");
+		if (!s_bBgWarning)
+		{
+			// only show the warning once
+			cd_warning ("couldn't get the wallpaper");
+			s_bBgWarning = TRUE;
+		}
 		myData.pDesktopBgMapSurface = NULL;
 		gldi_desktop_background_destroy (db);
 		return ;
