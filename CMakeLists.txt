@@ -15,7 +15,7 @@ include (GNUInstallDirs)
 
 set (VERSION "3.5.99.rc4")
 # can be different from VERSION, e.g. if a new version of plugins does not depend on things added to core
-set (CORE_REQUIRED_VERSION "3.5.99.rc5")
+set (CORE_REQUIRED_VERSION "3.5.99.rc6")
 
 add_definitions (-std=gnu99 -Wall -Werror-implicit-function-declaration) # -Wextra -Wwrite-strings -Wuninitialized -Werror-implicit-function-declaration -Wstrict-prototypes -Wreturn-type -Wparentheses -Warray-bounds)
 if (NOT DEFINED CMAKE_BUILD_TYPE)
