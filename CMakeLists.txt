@@ -71,6 +71,7 @@ pkg_get_variable(prefix             gldi plugins_prefix)
 pkg_get_variable(localedir          gldi plugins_locale)
 pkg_get_variable(gettext_domain     gldi plugins_gettext)
 pkg_get_variable(gtkversion         gldi gtkversion)
+pkg_get_variable(pkgdatadir         gldi pkgdatadir)
 
 # check that installation dir matches with the core
 if (NOT "${CMAKE_INSTALL_PREFIX}" STREQUAL "${prefix}")
