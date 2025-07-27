@@ -435,7 +435,7 @@ void cd_dbus_clean_up_processes (gboolean bAll)
 			continue;
 		
 		snprintf (cFilePathBuffer, 23, "/proc/%s/cmdline", cPid);
-		int pipe = open (cFilePathBuffer, O_RDONLY);
+		int pipe = open (cFilePathBuffer, O_RDONLY | O_CLOEXEC);
 		if (pipe <= 0)
 			continue ;
 		
