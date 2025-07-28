@@ -145,8 +145,8 @@ renderer = 0
 #X[Gauge;@shared_filesdatadir@/images/icon-gauge.png]
 frame_gauge=
 
-#h+[@gaugesdir@;gauges;gauges3;wifi] Choose one of the available themes:/
-theme = turbo-night-fuel
+#h+[@gaugesdir_core@;gauges;gauges3;wifi] Choose one of the available themes:/
+theme = Turbo-night-fuel
 
 #X[Graph;@shared_filesdatadir@/images/icon-graph.png]
 frame_graph=
@@ -184,8 +184,8 @@ renderer = 2
 #X[Gauge;dialog-information]
 frame_gauge=
 
-#h+[@gaugesdir@;gauges;gauges3;wifi] Choose one of the available themes:/
-theme = turbo-night-fuel
+#h+[@gaugesdir_core@;gauges;gauges3;wifi] Choose one of the available themes:/
+theme = Turbo-night-fuel
 
 
 #X[Graph;dialog-information]
