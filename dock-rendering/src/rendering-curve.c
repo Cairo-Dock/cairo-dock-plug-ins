@@ -113,7 +113,7 @@ static void cd_rendering_calculate_max_dock_size_curve (CairoDock *pDock)
 	
 	pDock->iDecorationsHeight = myDocksParam.iFrameMargin + my_iCurveAmplitude + .5 * pDock->iMaxIconHeight;  // de bas en haut.
 	
-	pDock->iMaxDockHeight = iDockLineWidth + myDocksParam.iFrameMargin + my_iCurveAmplitude + (1 + myIconsParam.fAmplitude) * pDock->iMaxIconHeight * pDock->container.fRatio + (pDock->container.bIsHorizontal ? myIconsParam.iLabelSize : 0);  // de bas en haut.
+	pDock->iMaxDockHeight = iDockLineWidth + myDocksParam.iFrameMargin + my_iCurveAmplitude + ceil ((1 + myIconsParam.fAmplitude) * pDock->iMaxIconHeight * pDock->container.fRatio) + (pDock->container.bIsHorizontal ? myIconsParam.iLabelSize : 0);  // de bas en haut.
 	
 	double fRatio = (pDock->iRefCount == 0 && pDock->iVisibility == CAIRO_DOCK_VISI_RESERVE ? 1. : pDock->container.fRatio);  // prevent the dock from resizing itself and all the maximized windows each time an icon is removed/inserted.
 	pDock->iMinDockHeight = iDockLineWidth + myDocksParam.iFrameMargin + my_iCurveAmplitude + pDock->iMaxIconHeight * fRatio;  // de bas en haut.
