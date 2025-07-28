@@ -85,8 +85,11 @@ endif()
 
 # set internationalisation
 set (GETTEXT_PLUGINS "${gettext_domain}")
+# set base data directories
 set (pluginsdatadir "${pluginsdatarootdir}/plug-ins")
 set (gaugesdir "${pluginsdatarootdir}/gauges")
+# needed for Turbo-night-fuel which is provided by core
+set (gaugesdir_core "${pkgdatadir}/gauges")
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules/")  # additionnal FindPackage files
 

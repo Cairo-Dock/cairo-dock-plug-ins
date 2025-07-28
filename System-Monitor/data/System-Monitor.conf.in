@@ -111,7 +111,7 @@ renderer = 0
 #X[Gauge;@shared_filesdatadir@/images/icon-gauge.png]
 frame_gauge=
 
-#h+[@gaugesdir@;gauges;gauges3;system] Gauge theme/
+#h+[@gaugesdir_core@;gauges;gauges3;system] Gauge theme/
 theme = Turbo-night-fuel
 
 #l+[No;With dock orientation;Yes] Rotate applet theme :
