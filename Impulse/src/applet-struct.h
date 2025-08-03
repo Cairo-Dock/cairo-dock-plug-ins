@@ -37,6 +37,8 @@ struct _AppletConfig {
 	gchar *cIconImpulseOFF;
 	gchar *cIconImpulseERROR;
 	gint iSourceIndex;
+	gboolean bUseSink;
+	gboolean bUseMonitor;
 	} ;
 
 typedef struct {
