@@ -43,10 +43,11 @@ void _im_stop (void)
 	//im_stop(); // FIXME => if stopped, the client is not stopped and im_getSnapshot(IM_FFT) give always the same thing...
 }
 
-void cd_impulse_im_setSourceIndex (gint iSourceIndex)
+void cd_impulse_im_setSourceProperties (void)
 {
-	cd_debug ("Impulse: iSourceIndex = %d", iSourceIndex);
-	im_setSourceIndex (iSourceIndex);
+	cd_debug ("Impulse: iSourceIndex = %d, bUseSink = %d, bUseMonitor = %d",
+		myConfig.iSourceIndex, myConfig.bUseSink, myConfig.bUseMonitor);
+	im_setSourceProperties (myConfig.iSourceIndex, myConfig.bUseSink, myConfig.bUseMonitor);
 }
 
 ////////////////// USEFUL FUNCTIONS //////////////////

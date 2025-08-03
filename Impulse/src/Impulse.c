@@ -32,6 +32,7 @@
 #include <math.h>
 
 #include "Impulse.h"
+#include <cairo-dock-log.h>
 
 #define CHUNK 1024
 
@@ -42,6 +43,8 @@ static const long s_fft_max[] = { 12317168L, 7693595L, 5863615L, 4082974L, 58360
 #endif
 
 static uint32_t source_index = 0;
+static int use_sink = 0;
+static int use_monitor = 0;
 static int16_t buffer[ CHUNK / 2 ], snapshot[ CHUNK / 2 ];
 static size_t buffer_index = 0;
 
@@ -50,7 +53,7 @@ static pa_stream *stream = NULL;
 static pa_threaded_mainloop* mainloop = NULL;
 static pa_io_event* stdio_event = NULL;
 static pa_mainloop_api *mainloop_api = NULL;
-static char *stream_name = NULL, *client_name = NULL, *device = NULL;
+static char *stream_name = NULL, *client_name = NULL;
 
 static pa_sample_spec sample_spec = {
 	.format = PA_SAMPLE_S16LE,
@@ -69,30 +72,29 @@ static void quit( int ret ) {
 	mainloop_api->quit( mainloop_api, ret );
 }
 
-static void unmute_source_success_cb( pa_context *c, int success, void *userdata ) {
-	// printf("unmute: %d\n", success);
+static void get_source_info_callback( pa_context *c, const pa_source_info *i, int is_last, void *userdata ) {
+
+	if ( !i ) return;
+	cd_debug ( "%s", i->name );
+
+	if ( ( pa_stream_connect_record( stream, i->name, NULL, flags ) ) < 0 ) {
+		cd_warning ("pa_stream_connect_record() failed: %s", pa_strerror(pa_context_errno(c)));
+		quit(1);
+	}
 }
 
-static void get_source_info_callback( pa_context *c, const pa_sink_info *i, int is_last, void *userdata ) {
+static void get_sink_info_callback( pa_context *c, const pa_sink_info *i, int is_last, void *userdata ) {
 
-	if ( !i )
-		return;
+	if ( !i ) return;
+	cd_debug ( "%s -- %s", i->name, i->monitor_source_name );
 
-	// printf("source index: %u\n", i->index );
-
-	// snprintf(t, sizeof(t), "%u", i->monitor_of_sink);
-
-//	if ( i->monitor_of_sink != PA_INVALID_INDEX ) {
-		puts( i->name );
-	//	if ( device && strcmp( device, i->name ) == 0 ) return;
-
-		device = pa_xstrdup( i->name );
-
-		if ( ( pa_stream_connect_record( stream, device, NULL, flags ) ) < 0 ) {
-			fprintf(stderr, "pa_stream_connect_record() failed: %s\n", pa_strerror(pa_context_errno(c)));
-			quit(1);
-		}
-//	}
+	if ( ( pa_stream_connect_record( stream,
+		(use_monitor && i->monitor_source_name) ? i->monitor_source_name : i->name,
+		NULL, flags ) ) < 0 )
+	{
+		cd_warning ("pa_stream_connect_record() failed: %s", pa_strerror(pa_context_errno(c)));
+		quit(1);
+	}
 }
 
 /* This is called whenever new data is available */
@@ -139,8 +141,8 @@ static void init_source_stream_for_recording(void) {
 
 	pa_stream_set_read_callback(stream, stream_read_callback, NULL);
 	pa_stream_set_state_callback( stream, stream_state_callback, NULL );
-	pa_operation_unref( pa_context_set_sink_mute_by_index( context, source_index, 0, unmute_source_success_cb, NULL ) );
-	pa_operation_unref( pa_context_get_sink_info_by_index( context, source_index, get_source_info_callback, NULL ) );
+	if (use_sink) pa_operation_unref( pa_context_get_sink_info_by_index( context, source_index, get_sink_info_callback, NULL ) );
+	else pa_operation_unref( pa_context_get_source_info_by_index( context, source_index, get_source_info_callback, NULL ) );
 }
 
 static void stream_state_callback( pa_stream *s, void* userdata ) {
@@ -206,8 +208,10 @@ void im_stop (void) {
 	printf( "exit\n" );
 }
 
-void im_setSourceIndex( uint32_t index ) {
+void im_setSourceProperties( uint32_t index, int bUseSink, int bUseMonitor ) {
 	source_index = index;
+	use_sink = bUseSink;
+	use_monitor = bUseMonitor;
 	if ( !stream ) return;
 
 	if ( pa_stream_get_state( stream ) != PA_STREAM_UNCONNECTED )
