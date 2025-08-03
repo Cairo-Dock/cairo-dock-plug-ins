@@ -31,16 +31,16 @@ extern CairoDockHidingEffect *g_pHidingBackend;  // cairo_dock_is_hidden
 
 ////////////////// IMPULSE //////////////////
 
-void _im_start (void)
+static void _im_start (void)
 {
 	cd_debug ("Impulse: start im");
 	im_start ();
 }
 
-void _im_stop (void)
+static void _im_stop (void)
 {
 	cd_debug ("Impulse: stop im");
-	//im_stop(); // FIXME => if stopped, the client is not stopped and im_getSnapshot(IM_FFT) give always the same thing...
+	im_stop(); // FIXME => if stopped, the client is not stopped and im_getSnapshot(IM_FFT) give always the same thing...
 }
 
 void cd_impulse_im_setSourceProperties (void)
@@ -95,6 +95,12 @@ static gboolean _animate_the_dock (gpointer data)
 	guint iIcons = IM_TAB_SIZE / g_list_length (myData.pSharedMemory->pIconsList); // number of icons (without separators)
 
 	double *array = im_getSnapshot();
+	if (!array)
+	{
+		// backend has been stopped
+		cd_impulse_stop_animations (TRUE);
+		CD_APPLET_LEAVE (FALSE);
+	}
 
 	// we check if there is a signal (most of the time, all values are > 0)
 	if (array[0] == 0.0)
@@ -229,7 +235,10 @@ void cd_impulse_stop_animations (gboolean bChangeIcon)
 		_remove_notifications ();
 	}
 	if (myData.bPulseLaunched)
+	{
 		_im_stop();
+		myData.bPulseLaunched = FALSE;
+	}
 	if (bChangeIcon)
 		cd_impulse_draw_current_state ();
 	// myData.bPulseLaunched = FALSE; //FIXME => if already started and stopped, it will crash... because not correctly stopped...

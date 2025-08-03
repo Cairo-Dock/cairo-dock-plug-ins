@@ -47,13 +47,15 @@ static int use_sink = 0;
 static int use_monitor = 0;
 static int16_t buffer[ CHUNK / 2 ], snapshot[ CHUNK / 2 ];
 static size_t buffer_index = 0;
+static int stream_running = 0;
+static int failed = 0;
+static int initial_setup = 0;
 
 static pa_context *context = NULL;
 static pa_stream *stream = NULL;
 static pa_threaded_mainloop* mainloop = NULL;
 static pa_io_event* stdio_event = NULL;
 static pa_mainloop_api *mainloop_api = NULL;
-static char *stream_name = NULL, *client_name = NULL;
 
 static pa_sample_spec sample_spec = {
 	.format = PA_SAMPLE_S16LE,
@@ -68,8 +70,9 @@ static int channel_map_set = 0;
 
 /* A shortcut for terminating the application */
 static void quit( int ret ) {
-	assert( mainloop_api );
-	mainloop_api->quit( mainloop_api, ret );
+	stream_running = 0;
+	if (mainloop_api) mainloop_api->quit( mainloop_api, ret );
+	failed = 1;
 }
 
 static void get_source_info_callback( pa_context *c, const pa_source_info *i, int is_last, void *userdata ) {
@@ -133,14 +136,16 @@ static void stream_read_callback(pa_stream *s, size_t length, void *userdata) {
 static void stream_state_callback( pa_stream *s, void* userdata );
 
 static void init_source_stream_for_recording(void) {
+	if (! stream)
+	{
+		if (!(stream = pa_stream_new( context, "impulse", &sample_spec, channel_map_set ? &channel_map : NULL))) {
+			fprintf(stderr, "pa_stream_new() failed: %s\n", pa_strerror(pa_context_errno(context)));
+			quit(1);
+		}
 
-	if (!(stream = pa_stream_new( context, stream_name, &sample_spec, channel_map_set ? &channel_map : NULL))) {
-		fprintf(stderr, "pa_stream_new() failed: %s\n", pa_strerror(pa_context_errno(context)));
-		quit(1);
+		pa_stream_set_read_callback(stream, stream_read_callback, NULL);
+		pa_stream_set_state_callback( stream, stream_state_callback, NULL );
 	}
-
-	pa_stream_set_read_callback(stream, stream_read_callback, NULL);
-	pa_stream_set_state_callback( stream, stream_state_callback, NULL );
 	if (use_sink) pa_operation_unref( pa_context_get_sink_info_by_index( context, source_index, get_sink_info_callback, NULL ) );
 	else pa_operation_unref( pa_context_get_source_info_by_index( context, source_index, get_source_info_callback, NULL ) );
 }
@@ -148,7 +153,8 @@ static void init_source_stream_for_recording(void) {
 static void stream_state_callback( pa_stream *s, void* userdata ) {
 	if ( pa_stream_get_state( s ) == PA_STREAM_TERMINATED ) {
 		pa_stream_unref( stream );
-		init_source_stream_for_recording();
+		stream = NULL;
+		if (stream_running) init_source_stream_for_recording();
 	}
 }
 
@@ -169,7 +175,11 @@ static void context_state_callback( pa_context *c, void *userdata ) {
 			}
 
 			pa_stream_set_read_callback(stream, stream_read_callback, NULL);*/
-			init_source_stream_for_recording();
+			if (initial_setup)
+			{
+				init_source_stream_for_recording();
+				initial_setup = 0;
+			}
 
 			break;
 		case PA_CONTEXT_TERMINATED:
@@ -202,10 +212,11 @@ int im_context_state (void)
 }
 
 void im_stop (void) {
+	stream_running = 0;
+	if (stream && pa_stream_get_state( stream ) != PA_STREAM_UNCONNECTED)
+		pa_stream_disconnect( stream );
 
-	pa_threaded_mainloop_stop( mainloop );
-
-	printf( "exit\n" );
+	cd_debug ( "exit" );
 }
 
 void im_setSourceProperties( uint32_t index, int bUseSink, int bUseMonitor ) {
@@ -223,6 +234,8 @@ void im_setSourceProperties( uint32_t index, int bUseSink, int bUseMonitor ) {
 double *im_getSnapshot (void)
 {
 	static double magnitude [CHUNK / 4];
+	
+	if (!stream_running) return NULL;
 
 #ifdef FFT_IS_AVAILABLE
 	double *in;
@@ -283,47 +296,48 @@ double *im_getSnapshot (void)
 
 
 void im_start ( void ) {
+	if (failed) return; // we already had an error before
 
 	// Pulseaudio
-	int r;
+	int r, i;
 	char *server = NULL;
 
-	client_name = pa_xstrdup( "impulse" );
-	stream_name = pa_xstrdup( "impulse" );
+	for (i = 0; i < CHUNK / 2; i++) snapshot[i] = 0;
 
-	// Set up a new main loop
+	if (! mainloop)
+	{
+		// First time setup
+		initial_setup = 1;
+		
+		// Set up a new main loop
+		mainloop = pa_threaded_mainloop_new();
+		if (! mainloop)
+		{
+			fprintf( stderr, "pa_mainloop_new() failed.\n" );
+			return; // IM_FAILED;
+		}
+		mainloop_api = pa_threaded_mainloop_get_api( mainloop );
+		r = pa_signal_init( mainloop_api );
+		if (r) return;
+		
+		// create a new connection context
+		context = pa_context_new( mainloop_api, "impulse" );
+		if (! context)
+		{
+			cd_warning ("pa_context_new() failed.");
+			return; // IM_FAILED;
+		}
+		
+		pa_context_set_state_callback( context, context_state_callback, NULL );
 
-	if ( ! ( mainloop = pa_threaded_mainloop_new( ) ) ) {
-		fprintf( stderr, "pa_mainloop_new() failed.\n" );
-		return; // IM_FAILED;
+		/* Connect the context */
+		pa_context_connect( context, server, 0, NULL );
+		
+		// pulseaudio thread
+		pa_threaded_mainloop_start( mainloop );
 	}
+	else init_source_stream_for_recording();
 
-	mainloop_api = pa_threaded_mainloop_get_api( mainloop );
-
-	r = pa_signal_init( mainloop_api );
-	assert( r == 0 );
-
-	/*if (!(stdio_event = mainloop_api->io_new(mainloop_api,
-											 STDOUT_FILENO,
-											 PA_IO_EVENT_OUTPUT,
-											 stdout_callback, NULL))) {
-		fprintf(stderr, "io_new() failed.\n");
-		goto quit;
-	}*/
-
-	// create a new connection context
-	if ( ! ( context = pa_context_new( mainloop_api, client_name ) ) ) {
-		fprintf( stderr, "pa_context_new() failed.\n" );
-		return; // IM_FAILED;
-	}
-
-	pa_context_set_state_callback( context, context_state_callback, NULL );
-
-	/* Connect the context */
-	pa_context_connect( context, server, 0, NULL );
-
-	// pulseaudio thread
-	pa_threaded_mainloop_start( mainloop );
-
+	stream_running = 1;
 	return; // context_state (context);
 }
