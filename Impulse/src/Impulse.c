@@ -30,6 +30,7 @@
 #include <fftw3.h>
 #endif
 #include <math.h>
+#include <glib.h>
 
 #include "Impulse.h"
 #include <cairo-dock-log.h>
@@ -45,7 +46,12 @@ static const long s_fft_max[] = { 12317168L, 7693595L, 5863615L, 4082974L, 58360
 static uint32_t source_index = 0;
 static int use_sink = 0;
 static int use_monitor = 0;
-static int16_t buffer[ CHUNK / 2 ], snapshot[ CHUNK / 2 ];
+// we allocate 3 buffers to avoid reading and writing to the same
+static int16_t buffer1[ CHUNK / 2 ], buffer2[ CHUNK / 2 ], buffer3[ CHUNK / 2 ];
+static int16_t *buffer_ready = buffer1; // buffer that is currently full and can be used in im_getSnapshot ()
+static int16_t *buffer_in_snapshot = buffer2; // buffer that is currently used in im_getSnapshot ()
+static int16_t *buffer_update = buffer3; // buffer that is being filled by stream_read_callback ()
+static int have_buffer_update = 0; // whether there is new data in buffer_ready
 static size_t buffer_index = 0;
 static int stream_running = 0;
 static int failed = 0;
@@ -122,11 +128,12 @@ static void stream_read_callback(pa_stream *s, size_t length, void *userdata) {
 
 	if ( excess < 0 ) excess = 0;
 
-	memcpy( buffer + buffer_index, data, length - excess );
+	memcpy( buffer_update + buffer_index, data, length - excess );
 	buffer_index += ( length - excess ) / 2;
 
 	if ( excess ) {
-		memcpy( snapshot, buffer, buffer_index * 2 );
+		buffer_update = g_atomic_pointer_exchange (&buffer_ready, buffer_update);
+		g_atomic_int_set (&have_buffer_update, 1);
 		buffer_index = 0;
 	}
 
@@ -234,25 +241,22 @@ void im_setSourceProperties( uint32_t index, int bUseSink, int bUseMonitor ) {
 double *im_getSnapshot (void)
 {
 	static double magnitude [CHUNK / 4];
+	int i;
 	
 	if (!stream_running) return NULL;
 
+	if (g_atomic_int_exchange (&have_buffer_update, 0))
+	{
+		buffer_in_snapshot = g_atomic_pointer_exchange (&buffer_update, buffer_in_snapshot);
+	}
+
 #ifdef FFT_IS_AVAILABLE
-	double *in;
-	fftw_complex *out;
+	static double in [CHUNK / 2];
+	static fftw_complex out [CHUNK / 2]; // should be enough to have CHUNK / 4 + 1 ?
 	fftw_plan p;
 
-	in = (double*) malloc( sizeof( double ) * ( CHUNK / 2 ) );
-	out = (fftw_complex*) fftw_malloc( sizeof( fftw_complex ) * ( CHUNK / 2 ) );
-
-	if (snapshot != NULL)
-	{
-		int i;
-		for (i = 0; i < CHUNK / 2; i++)
-		{
-			in[ i ] = (double) snapshot[ i ];
-		}
-	}
+	for (i = 0; i < CHUNK / 2; i++)
+		in[ i ] = (double) buffer_in_snapshot[ i ];
 
 	p = fftw_plan_dft_r2c_1d( CHUNK / 2, in, out, 0 );
 
@@ -260,28 +264,23 @@ double *im_getSnapshot (void)
 
 	fftw_destroy_plan( p );
 
-	if (out != NULL)
+	for (i = 0; i < CHUNK / 2 / sample_spec.channels; i++)
 	{
-		int i;
-		for (i = 0; i < CHUNK / 2 / sample_spec.channels; i++)
-		{
-			magnitude[ i ] = (double) sqrt( pow( out[ i ][ 0 ], 2 ) + pow( out[ i ][ 1 ], 2 ) ) / s_fft_max[ i ];
-			if (magnitude[ i ] > 1.0 )
-				magnitude[ i ] = 1.0;
-		}
+		magnitude[ i ] = (double) sqrt( pow( out[ i ][ 0 ], 2 ) + pow( out[ i ][ 1 ], 2 ) ) / s_fft_max[ i ];
+		if (magnitude[ i ] > 1.0 )
+			magnitude[ i ] = 1.0;
 	}
 
-	free( in );
-	fftw_free(out);
 #else
-	int i, iSnapshot, iCurrentMagnitude;
+	int iSnapshot, iCurrentMagnitude;
 	for (i = 0; i < CHUNK / 2; i += sample_spec.channels)
 	{
+		int j;
 		iCurrentMagnitude = i / sample_spec.channels; // 1 => 256 (= CHUNK / 2 / channels)
 		magnitude [iCurrentMagnitude] = 0; // init
-		for (int j = 0; j < sample_spec.channels; j++)
+		for (j = 0; j < sample_spec.channels; j++)
 		{
-			iSnapshot = snapshot [i + j];
+			iSnapshot = buffer_in_snapshot [i + j];
 			if (iSnapshot > 0)
 				magnitude [iCurrentMagnitude] += (double) iSnapshot / MAXVALUE;
 		}
@@ -302,7 +301,7 @@ void im_start ( void ) {
 	int r, i;
 	char *server = NULL;
 
-	for (i = 0; i < CHUNK / 2; i++) snapshot[i] = 0;
+	for (i = 0; i < CHUNK / 2; i++) buffer_in_snapshot[i] = 0;
 
 	if (! mainloop)
 	{
