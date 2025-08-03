@@ -73,7 +73,7 @@ static void unmute_source_success_cb( pa_context *c, int success, void *userdata
 	// printf("unmute: %d\n", success);
 }
 
-static void get_source_info_callback( pa_context *c, const pa_source_info *i, int is_last, void *userdata ) {
+static void get_source_info_callback( pa_context *c, const pa_sink_info *i, int is_last, void *userdata ) {
 
 	if ( !i )
 		return;
@@ -139,8 +139,8 @@ static void init_source_stream_for_recording(void) {
 
 	pa_stream_set_read_callback(stream, stream_read_callback, NULL);
 	pa_stream_set_state_callback( stream, stream_state_callback, NULL );
-	pa_operation_unref( pa_context_set_source_mute_by_index( context, source_index, 0, unmute_source_success_cb, NULL ) );
-	pa_operation_unref( pa_context_get_source_info_by_index( context, source_index, get_source_info_callback, NULL ) );
+	pa_operation_unref( pa_context_set_sink_mute_by_index( context, source_index, 0, unmute_source_success_cb, NULL ) );
+	pa_operation_unref( pa_context_get_sink_info_by_index( context, source_index, get_source_info_callback, NULL ) );
 }
 
 static void stream_state_callback( pa_stream *s, void* userdata ) {
