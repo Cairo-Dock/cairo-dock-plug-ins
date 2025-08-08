@@ -141,9 +141,12 @@ icon error =
 #X[PulseAudio;preferences-system]
 frame_pulse=
 
-#i[0;10] Index of the source:
+#i Index of the source:
 #{0 in most cases}
 source_index = 0
+
+#L[Monitor;Source;Sink] Type of device to use
+dev_type = Monitor
 
 nb animations=1
 

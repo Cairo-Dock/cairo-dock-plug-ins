@@ -27,7 +27,7 @@
 
 double *im_getSnapshot (void);
 
-void im_setSourceIndex (uint32_t index);
+void im_setSourceProperties (uint32_t index, int bUseSink, int bUseMonitor);
 
 void im_start (void);
 

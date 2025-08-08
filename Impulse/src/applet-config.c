@@ -45,6 +45,19 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cIconImpulseON = CD_CONFIG_GET_STRING ("Configuration", "icon on");
 	myConfig.cIconImpulseOFF = CD_CONFIG_GET_STRING ("Configuration", "icon off");
 	myConfig.cIconImpulseERROR = CD_CONFIG_GET_STRING ("Configuration", "icon error");
+	
+	gchar *tmp = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "dev_type", "Monitor");
+	if (!strcmp (tmp, "Monitor"))
+	{
+		myConfig.bUseMonitor = TRUE;
+		myConfig.bUseSink = TRUE;
+	}
+	else
+	{
+		myConfig.bUseMonitor = FALSE;
+		myConfig.bUseSink = ! strcmp(tmp, "Sink");
+	}
+	g_free (tmp);
 CD_APPLET_GET_CONFIG_END
 
 

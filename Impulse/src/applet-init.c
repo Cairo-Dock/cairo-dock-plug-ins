@@ -75,7 +75,7 @@ CD_APPLET_INIT_BEGIN
 
 	_init_shared_memory ();
 
-	cd_impulse_im_setSourceIndex (myConfig.iSourceIndex);
+	cd_impulse_im_setSourceProperties ();
 
 	if (myConfig.bLaunchAtStartup)
 		cd_impulse_start_animating_with_delay ();
@@ -121,7 +121,7 @@ CD_APPLET_RELOAD_BEGIN
 		_free_shared_memory ();
 		_init_shared_memory ();
 
-		cd_impulse_im_setSourceIndex (myConfig.iSourceIndex);
+		cd_impulse_im_setSourceProperties ();
 
 		// if the icon has to be destroyed
 		if (myConfig.bLaunchAtStartup && myConfig.bFree)
