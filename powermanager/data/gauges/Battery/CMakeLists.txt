@@ -12,6 +12,7 @@ install(FILES
 	battery5.svg
 	battery6.svg
 	battery7.svg
+	preview
 	theme.xml
 	readme
 	DESTINATION ${gaugesdir}/Battery )
