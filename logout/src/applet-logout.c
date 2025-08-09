@@ -527,10 +527,18 @@ static void _exec_action (int iClickedButton, GtkWidget *pInteractiveWidget, voi
 	}
 	myData.pConfirmationDialog = NULL;
 }
+
+static gboolean _on_dialog_destroyed (G_GNUC_UNUSED gpointer pUserData, CairoDialog *pDialog)
+{
+	if (pDialog == myData.pConfirmationDialog) myData.pConfirmationDialog = NULL;
+	return GLDI_NOTIFICATION_LET_PASS;
+}
+
 static void _demand_confirmation (const gchar *cMessage, const gchar *cIconStock, const gchar *cIconImage, void (*callback) (void))
 {
 	gchar *cImagePath = cd_logout_check_icon (cIconStock, 32); // dialog
 	myData.pConfirmationDialog = gldi_dialog_show (cMessage, myIcon, myContainer, 0, cImagePath ? cImagePath : cIconImage, NULL, (CairoDockActionOnAnswerFunc) _exec_action, callback, NULL);
+	gldi_object_register_notification (myData.pConfirmationDialog, NOTIFICATION_DESTROY, (GldiNotificationFunc) _on_dialog_destroyed, GLDI_RUN_AFTER, NULL);
 	g_free (cImagePath);
 }
 
@@ -577,8 +585,11 @@ static gboolean _auto_shot_down (gpointer data)
 	if (myData.iCountDown <= 0)
 	{
 		myData.iSidShutDown = 0;
-		gldi_object_unref (GLDI_OBJECT(myData.pConfirmationDialog));
-		myData.pConfirmationDialog = NULL;
+		if (myData.pConfirmationDialog)
+		{
+			gldi_object_unref (GLDI_OBJECT(myData.pConfirmationDialog));
+			myData.pConfirmationDialog = NULL;
+		}
 		_shut_down ();
 		return FALSE;
 	}
