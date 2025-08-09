@@ -57,6 +57,12 @@ gboolean cd_menu_app_should_show (GDesktopAppInfo *pAppInfo)
 
 static CairoDialog *s_pNewAppsDialog = NULL;
 
+static gboolean _on_dialog_destroyed (G_GNUC_UNUSED gpointer pUserData, CairoDialog *pDialog)
+{
+	if (pDialog == s_pNewAppsDialog) s_pNewAppsDialog = NULL;
+	return GLDI_NOTIFICATION_LET_PASS;
+}
+
 static void _on_answer_launch_recent (int iClickedButton, GtkWidget *pInteractiveWidget, gpointer data, CairoDialog *pDialog)
 {
 	if (iClickedButton == 0 || iClickedButton == -1)  // ok ou entree.
@@ -81,10 +87,10 @@ static void _on_answer_launch_recent (int iClickedButton, GtkWidget *pInteractiv
 }
 
 #ifdef END_INSTALLATION_PID
-static gboolean _show_new_apps_dialog_idle (gpointer pData)
+static gboolean _show_new_apps_dialog_idle (gpointer)
 {
-	if (pData)
-		gldi_dialog_unhide (pData);
+	if (s_pNewAppsDialog)
+		gldi_dialog_unhide (s_pNewAppsDialog);
 	return FALSE;
 }
 #endif
@@ -131,10 +137,12 @@ void cd_menu_check_for_new_apps (void)
 				pInteractiveWidget, (CairoDockActionOnAnswerFunc)_on_answer_launch_recent,
 				NULL,
 				(GFreeFunc)NULL);
+			gldi_object_register_notification (s_pNewAppsDialog, NOTIFICATION_DESTROY,
+				(GldiNotificationFunc) _on_dialog_destroyed, GLDI_RUN_AFTER, NULL);
 			#ifdef END_INSTALLATION_PID
 			gldi_dialog_hide (s_pNewAppsDialog);
 			cairo_dock_fm_monitor_pid (END_INSTALLATION_PID, FALSE,
-					_show_new_apps_dialog_idle, TRUE, s_pNewAppsDialog);
+					_show_new_apps_dialog_idle, TRUE, NULL);
 			#endif
 			g_free (cIconPath);
 		}
