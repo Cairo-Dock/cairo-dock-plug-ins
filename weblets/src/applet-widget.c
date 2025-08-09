@@ -59,12 +59,12 @@ CairoDialog *cd_weblets_build_dialog(GldiModuleInstance *myApplet)
 	attr.pInteractiveWidget = myData.pGtkMozEmbed;
 	attr.pIcon = myIcon;
 	attr.pContainer = myContainer;
+	attr.bHideOnClick = TRUE;
 	return gldi_dialog_new (&attr);
 }
 
 /* Will be called when loading of the page is finished*/
-void load_finished_cb(WebKitWebView *pWebKitView, WebKitWebFrame* widget
-, GldiModuleInstance *myApplet)
+void load_finished_cb(WebKitWebView *pWebKitView, WebKitLoadEvent load_event, GldiModuleInstance *myApplet)
 {
 	cd_debug ("weblets : (re)load finished\n");
 	// update scrollbars status
@@ -80,7 +80,7 @@ void weblet_build_and_show(GldiModuleInstance *myApplet)
 	myData.pWebKitView = WEBKIT_WEB_VIEW (webkit_web_view_new ());
 	gtk_container_add (GTK_CONTAINER (myData.pGtkMozEmbed), GTK_WIDGET (myData.pWebKitView));
 	g_signal_connect(G_OBJECT(myData.pWebKitView),
-		"load_finished",
+		"load-changed",
 		G_CALLBACK (load_finished_cb),
 		myApplet);
 	gtk_widget_show_all (myData.pGtkMozEmbed);
@@ -108,23 +108,37 @@ gboolean cd_weblets_refresh_page (GldiModuleInstance *myApplet)
 		if (myConfig.cURI_to_load == NULL)
 		{
 			g_free (myConfig.cURI_to_load);
-			myConfig.cURI_to_load = g_strdup ("http://www.google.com");
+			myConfig.cURI_to_load = g_strdup ("https://www.google.com");
 		}
 		else
 		{
 			if (g_strstr_len (myConfig.cURI_to_load, -1, "://") == NULL)  // pas de protocole defini, on prend http par defaut.
 			{
 				gchar *tmp = myConfig.cURI_to_load;
-				myConfig.cURI_to_load = g_strconcat ("http://", (strncmp (myConfig.cURI_to_load, "www.", 4) ? "www." : ""), myConfig.cURI_to_load, NULL);
+				myConfig.cURI_to_load = g_strconcat ("https://", (strncmp (myConfig.cURI_to_load, "www.", 4) ? "www." : ""), myConfig.cURI_to_load, NULL);
 				g_free (tmp);
 			}
 		}
 		
-		webkit_web_view_open(WEBKIT_WEB_VIEW(myData.pWebKitView), myConfig.cURI_to_load?myConfig.cURI_to_load:"http://www.google.com");
+		webkit_web_view_load_uri (WEBKIT_WEB_VIEW(myData.pWebKitView), myConfig.cURI_to_load?myConfig.cURI_to_load:"https://www.google.com");
 	}
 	/* available since rev. 30985, from fev. 2008 */
-	webkit_web_view_set_transparent(myData.pWebKitView, myConfig.bIsTransparent);
+	// webkit_web_view_set_transparent(myData.pWebKitView, myConfig.bIsTransparent);
 
 	return TRUE;
+}
+
+gboolean cd_weblets_start_refresh_task (GldiModuleInstance *myApplet)
+{
+	if (!myData.pRefreshTimer)
+	{
+		myData.pRefreshTimer = gldi_task_new (myConfig.iReloadTimeout,
+			NULL,
+			(GldiUpdateSyncFunc) cd_weblets_refresh_page,
+			myApplet);
+		gldi_task_launch (myData.pRefreshTimer);
+		return TRUE;
+	}
+	else return FALSE;
 }
 

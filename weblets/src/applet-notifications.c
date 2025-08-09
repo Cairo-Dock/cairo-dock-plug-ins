@@ -46,6 +46,7 @@ CD_APPLET_ON_CLICK_BEGIN
 			weblet_build_and_show (myApplet);
 		else
 			gldi_dialog_unhide (myData.dialog);
+		cd_weblets_start_refresh_task (myApplet);
 	}
 CD_APPLET_ON_CLICK_END
 
@@ -72,8 +73,8 @@ static void _cd_weblets_set_current_URI (GldiModuleInstance *myApplet, const gch
 		myConfig.cURI_to_load,
 		G_TYPE_INVALID);
 
-	// on rafraichit le tout !
-	gldi_task_change_frequency_and_relaunch (myData.pRefreshTimer, myConfig.iReloadTimeout);
+	if (!cd_weblets_start_refresh_task (myApplet))
+		gldi_task_change_frequency_and_relaunch (myData.pRefreshTimer, myConfig.iReloadTimeout);
 }
 
 static void _cd_weblets_open_URI (GtkMenuItem *menu_item, gpointer *data)
@@ -89,8 +90,8 @@ static void _cd_weblets_open_URI (GtkMenuItem *menu_item, gpointer *data)
 
 static void _cd_weblets_reload_webpage (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
-	// on rafraichit le tout !
-	gldi_task_change_frequency_and_relaunch (myData.pRefreshTimer, myConfig.iReloadTimeout);
+	if (!cd_weblets_start_refresh_task (myApplet))
+		gldi_task_change_frequency_and_relaunch (myData.pRefreshTimer, myConfig.iReloadTimeout);
 }
 
 //\___________ Define here the entries you want to add to the menu when the user right-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons. The menu where you can add your entries is available throught the macro CD_APPLET_MY_MENU; you can add sub-menu to it if you want.
