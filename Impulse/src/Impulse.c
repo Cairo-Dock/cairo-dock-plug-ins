@@ -69,6 +69,20 @@ static pa_sample_spec sample_spec = {
 	.channels = 2
 };
 
+#if GLIB_CHECK_VERSION (2, 74, 0)
+#define _atomic_pointer_exchange g_atomic_pointer_exchange
+#else
+static inline int16_t *_atomic_pointer_exchange (int16_t **atomic, int16_t *newval)
+{
+	// older glib does not have exchange, emulate it with compare_and_exchange
+	int16_t *oldval;
+	do oldval = g_atomic_pointer_get (atomic);
+	while (! g_atomic_pointer_compare_and_exchange (atomic, oldval, newval));
+	return oldval;
+}
+#endif
+
+
 static pa_stream_flags_t flags = 0;
 
 static pa_channel_map channel_map;
@@ -132,7 +146,7 @@ static void stream_read_callback(pa_stream *s, size_t length, void *userdata) {
 	buffer_index += ( length - excess ) / 2;
 
 	if ( excess ) {
-		buffer_update = g_atomic_pointer_exchange (&buffer_ready, buffer_update);
+		buffer_update = _atomic_pointer_exchange (&buffer_ready, buffer_update);
 		g_atomic_int_set (&have_buffer_update, 1);
 		buffer_index = 0;
 	}
@@ -247,7 +261,7 @@ double *im_getSnapshot (void)
 
 	if (g_atomic_int_exchange (&have_buffer_update, 0))
 	{
-		buffer_in_snapshot = g_atomic_pointer_exchange (&buffer_update, buffer_in_snapshot);
+		buffer_in_snapshot = _atomic_pointer_exchange (&buffer_update, buffer_in_snapshot);
 	}
 
 #ifdef FFT_IS_AVAILABLE
