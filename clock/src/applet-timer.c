@@ -38,6 +38,12 @@ void cd_clock_free_alarm (CDClockAlarm *pAlarm)
 	g_free (pAlarm);
 }
 
+static void _dialog_destroyed (gpointer ptr)
+{
+	CDClockTask *pTask = (CDClockTask*)ptr;
+	pTask->pWarningDialog = NULL;
+}
+
 static void _set_warning_repetition (int iClickedButton, GtkWidget *pInteractiveWidget, CDClockTask *pTask, CairoDialog *pDialog);
 static gboolean _task_warning (CDClockTask *pTask, const gchar *cMessage)
 {
@@ -60,7 +66,7 @@ static gboolean _task_warning (CDClockTask *pTask, const gchar *cMessage)
 	gtk_container_add (GTK_CONTAINER (pAlign), label);
 	gtk_box_pack_start (GTK_BOX (pExtendedWidget), pAlign, FALSE, FALSE, 0);
 	
-	gldi_object_unref (GLDI_OBJECT(pTask->pWarningDialog));
+	if (pTask->pWarningDialog) gldi_object_unref (GLDI_OBJECT(pTask->pWarningDialog));
 	
 	CairoDialogAttr attr;
 	memset (&attr, 0, sizeof (CairoDialogAttr));
@@ -70,6 +76,7 @@ static gboolean _task_warning (CDClockTask *pTask, const gchar *cMessage)
 	attr.pActionFunc = (CairoDockActionOnAnswerFunc) _set_warning_repetition;
 	attr.pInteractiveWidget = pExtendedWidget;
 	attr.pUserData = pTask;
+	attr.pFreeDataFunc = _dialog_destroyed;
 	attr.iTimeLength = (pTask->iWarningDelay != 0 ? MIN (pTask->iWarningDelay-.1, 15.) : 15) * 60e3;  // on laisse le dialogue visible le plus longtemps possible, jusqu'a 15mn.
 	const gchar *cDefaultActionButtons[3] = {"ok", "cancel", NULL};
 	attr.cButtonsImage = cDefaultActionButtons;
@@ -490,10 +497,10 @@ gboolean cd_clock_update_with_time (GldiModuleInstance *myApplet)
 						myData.pNextAnniversary->b1DayWarning = TRUE;
 						gchar *cText = g_strdup_printf ("%s\n<b>%s</b>\n %s\n\n%s",
 							iDaysToNextAnniversary == 0 ? D_("Today is the following anniversary:") : D_("Tomorrow is the following anniversary:"),
-							myData.pNextTask->cTitle?myData.pNextTask->cTitle:D_("No title"),
-							myData.pNextTask->cText?myData.pNextTask->cText:"",
+							myData.pNextAnniversary->cTitle ? myData.pNextAnniversary->cTitle : D_("No title"),
+							myData.pNextAnniversary->cText  ? myData.pNextAnniversary->cText  : "",
 							D_("Repeat this message every:"));
-						_task_warning (myData.pNextTask, cText);
+						_task_warning (myData.pNextAnniversary, cText);
 						g_free (cText);
 						myData.pNextAnniversary = cd_clock_get_next_anniversary (myApplet);
 					}
