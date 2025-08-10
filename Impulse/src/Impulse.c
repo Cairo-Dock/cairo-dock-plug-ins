@@ -52,6 +52,7 @@ static int16_t *buffer_ready = buffer1; // buffer that is currently full and can
 static int16_t *buffer_in_snapshot = buffer2; // buffer that is currently used in im_getSnapshot ()
 static int16_t *buffer_update = buffer3; // buffer that is being filled by stream_read_callback ()
 static int have_buffer_update = 0; // whether there is new data in buffer_ready
+static GMutex buffer_mutex; // mutex to protect updating the above
 static size_t buffer_index = 0;
 static int stream_running = 0;
 static int failed = 0;
@@ -68,19 +69,6 @@ static pa_sample_spec sample_spec = {
 	.rate = 44100,
 	.channels = 2
 };
-
-#if GLIB_CHECK_VERSION (2, 74, 0)
-#define _atomic_pointer_exchange g_atomic_pointer_exchange
-#else
-static inline int16_t *_atomic_pointer_exchange (int16_t **atomic, int16_t *newval)
-{
-	// older glib does not have exchange, emulate it with compare_and_exchange
-	int16_t *oldval;
-	do oldval = g_atomic_pointer_get (atomic);
-	while (! g_atomic_pointer_compare_and_exchange (atomic, oldval, newval));
-	return oldval;
-}
-#endif
 
 
 static pa_stream_flags_t flags = 0;
@@ -146,8 +134,12 @@ static void stream_read_callback(pa_stream *s, size_t length, void *userdata) {
 	buffer_index += ( length - excess ) / 2;
 
 	if ( excess ) {
-		buffer_update = _atomic_pointer_exchange (&buffer_ready, buffer_update);
-		g_atomic_int_set (&have_buffer_update, 1);
+		g_mutex_lock (&buffer_mutex);
+		int16_t* tmp = buffer_update;
+		buffer_update = buffer_ready;
+		buffer_ready = tmp;
+		have_buffer_update = 1;
+		g_mutex_unlock (&buffer_mutex);
 		buffer_index = 0;
 	}
 
@@ -259,10 +251,19 @@ double *im_getSnapshot (void)
 	
 	if (!stream_running) return NULL;
 
-	if (g_atomic_int_exchange (&have_buffer_update, 0))
+	int have_update = 0;
+	g_mutex_lock (&buffer_mutex);
+	have_update = have_buffer_update;
+	if (have_update)
 	{
-		buffer_in_snapshot = _atomic_pointer_exchange (&buffer_update, buffer_in_snapshot);
+		int16_t *tmp = buffer_in_snapshot;
+		buffer_in_snapshot = buffer_update;
+		buffer_update = tmp;
+		have_buffer_update = 0;
 	}
+	g_mutex_unlock (&buffer_mutex);
+	
+	if (!have_update) return magnitude;
 
 #ifdef FFT_IS_AVAILABLE
 	static double in [CHUNK / 2];
