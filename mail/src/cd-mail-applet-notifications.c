@@ -240,6 +240,13 @@ void _cd_mail_close_preview_cb(GtkWidget *widget, CDMailAccount *pMailAccount)
 	}
 }
 
+static void _dialog_closed (GldiModuleInstance *myApplet)
+{
+	CD_APPLET_ENTER;
+	myData.pMessagesDialog = NULL;
+	CD_APPLET_LEAVE();
+}
+
 GtkWidget *cd_mail_messages_container_new(CDMailAccount *pMailAccount)
 {
 	GldiModuleInstance *myApplet = pMailAccount->pAppletInstance;
@@ -348,7 +355,7 @@ CD_APPLET_ON_SCROLL_BEGIN
 					0,
 					"same icon",
 					cd_mail_messages_container_new(pMailAccount),
-					NULL, NULL, NULL);
+					NULL, myApplet, (GFreeFunc)_dialog_closed);
 			}
 			else
 				cd_debug ("Not Displaying messages, pUnseenMessageList empty");
