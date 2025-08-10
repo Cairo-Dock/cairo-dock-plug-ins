@@ -28,12 +28,12 @@
 
 static void _on_got_events (ZeitgeistResultSet *events, GtkListStore *pModel);
 
+static CDEventType s_iOldCategory = -1;
+
 void cd_trigger_search (void)
 {
 	if (myData.pDialog == NULL)
 		return;
-
-	static CDEventType iOldCategory = -1;
 
 	const gchar *cQuery = gtk_entry_get_text (GTK_ENTRY (myData.pEntry));
 	CDEventType iCategory = myData.iCurrentCaterogy;
@@ -42,12 +42,12 @@ void cd_trigger_search (void)
 	/* avoid rebuild when pressing "non letter" keys
 	 * Note: cQuery's pointer is not automatically modified when the string change.
 	 */
-	if (iOldCategory == iCategory && g_strcmp0 (myData.cQuery, cQuery) == 0)
+	if (s_iOldCategory == iCategory && g_strcmp0 (myData.cQuery, cQuery) == 0)
 		return;
 
 	g_free (myData.cQuery);
 	myData.cQuery = g_strdup (cQuery);
-	iOldCategory = iCategory;
+	s_iOldCategory = iCategory;
 
 	int iSortType = 0;
 	if (iCategory >= CD_EVENT_TOP_RESULTS)
@@ -471,7 +471,8 @@ static void _on_dialog_destroyed (GldiModuleInstance *myApplet)
 	myData.pDialog = NULL;
 	myData.pEntry = NULL;  // interactive widget inside the dialog are destroyed with it.
 	myData.iCurrentCaterogy = CD_EVENT_ALL;
-	myData.pModel = NULL;	
+	myData.pModel = NULL;
+	s_iOldCategory = -1; // will need to repopulate search results when the dialog is recreated
 }
 static gboolean _show_dialog_delayed (gpointer data)
 {

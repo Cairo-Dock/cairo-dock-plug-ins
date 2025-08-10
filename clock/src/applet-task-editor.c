@@ -150,8 +150,8 @@ static gboolean _on_click_tree_view (GtkTreeView *pTreeView, GdkEventButton* pBu
 	static gpointer *data = NULL;
 	if (pButton->button == 3 && pButton->type == GDK_BUTTON_RELEASE)
 	{
-		GtkWidget *pMenu = gldi_menu_new (NULL);
-		cairo_dock_add_in_menu_with_stock_and_data (D_("Add a new task"), GLDI_ICON_NAME_ADD, G_CALLBACK (_cd_clock_add_new_task), pMenu, myApplet);
+		GtkWidget *pMenu = gtk_menu_new ();
+		cairo_dock_gui_menu_item_add (pMenu, D_("Add a new task"), GLDI_ICON_NAME_ADD, G_CALLBACK (_cd_clock_add_new_task), myApplet);
 		
 		GtkTreeSelection *pSelection = gtk_tree_view_get_selection (pTreeView);
 		GtkTreeModel *pModel;
@@ -172,7 +172,7 @@ static gboolean _on_click_tree_view (GtkTreeView *pTreeView, GdkEventButton* pBu
 				data[0] = myApplet;
 				data[1] = pTask;
 				data[2] = pModel;
-				cairo_dock_add_in_menu_with_stock_and_data (D_("Delete this task"), GLDI_ICON_NAME_REMOVE, G_CALLBACK (_cd_clock_delete_task), pMenu, data);
+				cairo_dock_gui_menu_item_add (pMenu, D_("Delete this task"), GLDI_ICON_NAME_REMOVE, G_CALLBACK (_cd_clock_delete_task), data);
 			}
 		}
 		gtk_widget_show_all (pMenu);
@@ -381,7 +381,8 @@ void cd_clock_build_task_editor (guint iDay, guint iMonth, guint iYear, GldiModu
 	if (myData.pTaskWindow == NULL)
 	{
 		myData.pTaskWindow = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-		gtk_window_set_modal (GTK_WINDOW (myData.pTaskWindow), TRUE);  // set as modal, since the dialog it comes from (the one containing the calendar) is modal (as any interactive dialog).
+		if (!gldi_container_is_wayland_backend ()) // on Wayland, the dock cannot have a modal window as it is not a regular toplevel
+			gtk_window_set_modal (GTK_WINDOW (myData.pTaskWindow), TRUE);  // set as modal, since the dialog it comes from (the one containing the calendar) is modal (as any interactive dialog).
 		
 		g_signal_connect (G_OBJECT (myData.pTaskWindow),
 			"key-press-event",
@@ -453,17 +454,11 @@ void cd_clock_build_task_editor (guint iDay, guint iMonth, guint iYear, GldiModu
 		//\______________ On l'ajoute a la fenetre.
 		GtkWidget *pScrolledWindow = gtk_scrolled_window_new (NULL, NULL);
 		gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (pScrolledWindow), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-		#if GTK_CHECK_VERSION (3, 8, 0)
 		gtk_container_add (GTK_CONTAINER (pScrolledWindow), pTreeView);
-		#else
-		gtk_scrolled_window_add_with_viewport (GTK_SCROLLED_WINDOW (pScrolledWindow), pTreeView);
-		#endif
 		gtk_container_add (GTK_CONTAINER (myData.pTaskWindow), pScrolledWindow);
-		//gtk_box_pack_start (GTK_BOX (pVBox), pScrolledWindow, FALSE, FALSE, 0);
 		
 		g_signal_connect (myData.pTaskWindow, "destroy", G_CALLBACK (on_delete_task_window), myApplet);
 		gtk_window_set_keep_above (GTK_WINDOW (myData.pTaskWindow), TRUE);
-		///gtk_window_set_modal (GTK_WINDOW (myData.pTaskWindow), TRUE);
 		gtk_window_resize (GTK_WINDOW (myData.pTaskWindow), 640, 300);
 	}
 	
