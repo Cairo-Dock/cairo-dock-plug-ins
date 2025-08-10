@@ -30,4 +30,6 @@ gboolean cd_weblets_refresh_page (GldiModuleInstance *myApplet);
 
 void weblet_build_and_show (GldiModuleInstance *myApplet);
 
+gboolean cd_weblets_start_refresh_task (GldiModuleInstance *myApplet);
+
 #endif

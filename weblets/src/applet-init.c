@@ -50,11 +50,7 @@ CD_APPLET_INIT_BEGIN
 		CD_APPLET_SET_STATIC_DESKLET;
 		
 		// mise en place du timer
-		myData.pRefreshTimer = gldi_task_new (myConfig.iReloadTimeout,
-			NULL,
-			(GldiUpdateSyncFunc) cd_weblets_refresh_page,
-			myApplet);
-		gldi_task_launch (myData.pRefreshTimer); // ceci lance au moins une fois le chargement de la page
+		cd_weblets_start_refresh_task (myApplet); // ceci lance au moins une fois le chargement de la page
 	}
 	else  // en desklet on n'affiche pas l'icone.
 		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
@@ -117,10 +113,6 @@ CD_APPLET_RELOAD_BEGIN
 		}
 
 		// on remet en place un timer tout frais
-		myData.pRefreshTimer = gldi_task_new (myConfig.iReloadTimeout,
-			NULL,
-			(GldiUpdateSyncFunc) cd_weblets_refresh_page,
-			myApplet);
-		gldi_task_launch (myData.pRefreshTimer); // ceci lance au moins une fois le chargement de la page
+		cd_weblets_start_refresh_task (myApplet); // ceci lance au moins une fois le chargement de la page
 	}
 CD_APPLET_RELOAD_END
