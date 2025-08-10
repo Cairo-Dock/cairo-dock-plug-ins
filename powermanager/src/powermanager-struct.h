@@ -92,7 +92,6 @@ struct _AppletData {
 	// UPower
 	#ifdef CD_UPOWER_AVAILABLE
 	UpClient *pUPowerClient;
-	GList *pSignalIDList;  // SID for the "battery properties changed" signal of the UPower battery device
 	gint iSignalIDAdded;
 	gint iSignalIDRemoved;
 	#endif

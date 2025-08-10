@@ -154,10 +154,10 @@ static void _on_device_added (UpClient *pClient, UpDevice *pDevice, gpointer dat
 		_on_device_list_changed_free_data (); // free data
 
 		// update state: get all devices and all info
-		CDSharedMemory *pSharedMemory = g_new0 (CDSharedMemory, 1);
-		pSharedMemory->pBatteryDeviceList = _cd_upower_add_and_ref_device_if_battery (pDevice, myData.pBatteryDeviceList);
-		pSharedMemory->pUPowerClient = pClient;
-		_cd_upower_update_state (pSharedMemory);
+		CDSharedMemory SharedMemory;
+		SharedMemory.pBatteryDeviceList = _cd_upower_add_and_ref_device_if_battery (pDevice, myData.pBatteryDeviceList);
+		SharedMemory.pUPowerClient = pClient;
+		_cd_upower_update_state (&SharedMemory);
 	}
 	CD_APPLET_LEAVE ();
 }
@@ -178,10 +178,10 @@ static void _on_device_removed (UpClient *pClient, UpDevice *pDevice, gpointer d
 		g_object_unref (pDevice); // unref, we no longer need it...
 
 		// update state: get all devices and all info
-		CDSharedMemory *pSharedMemory = g_new0 (CDSharedMemory, 1);
-		pSharedMemory->pBatteryDeviceList = g_list_delete_link (myData.pBatteryDeviceList, pOldDevice);
-		pSharedMemory->pUPowerClient = pClient;
-		_cd_upower_update_state (pSharedMemory);
+		CDSharedMemory SharedMemory;
+		SharedMemory.pBatteryDeviceList = g_list_delete_link (myData.pBatteryDeviceList, pOldDevice);
+		SharedMemory.pUPowerClient = pClient;
+		_cd_upower_update_state (&SharedMemory);
 	}
 	CD_APPLET_LEAVE ();
 }
@@ -224,7 +224,6 @@ static gboolean _cd_upower_update_state (CDSharedMemory *pSharedMemory)
 		// fetch static values of the devices, and watch for any change
 		UpDevice *pDevice;
 		GList *pItem;
-		gint iSignalID;
 		GString *sTechnology = NULL, *sVendor = NULL, *sModel = NULL;
 		const gchar *cTechnology;
 		gchar *cVendor, *cModel;
@@ -273,11 +272,10 @@ static gboolean _cd_upower_update_state (CDSharedMemory *pSharedMemory)
 				 * need to watch for the destruction/creation of a battery device.
 				 */
 				#ifdef CD_UPOWER_0_99 // Now called notify
-				iSignalID = g_signal_connect (pDevice, "notify", G_CALLBACK (_on_device_changed), NULL);
+				g_signal_connect (pDevice, "notify", G_CALLBACK (_on_device_changed), NULL);
 				#else
-				iSignalID = g_signal_connect (pDevice, "changed", G_CALLBACK (_on_device_changed), NULL);
+				g_signal_connect (pDevice, "changed", G_CALLBACK (_on_device_changed), NULL);
 				#endif
-				myData.pSignalIDList = g_list_append (myData.pSignalIDList, GINT_TO_POINTER (iSignalID));
 			}
 
 			bFirst = FALSE;
@@ -347,37 +345,36 @@ void cd_powermanager_start (void)
 	gldi_task_launch (myData.pTask);
 }
 
+static void _free_battery_dev (gpointer ptr)
+{
+	GObject *obj = (GObject*)ptr;
+	g_signal_handlers_disconnect_by_func (obj, _on_device_changed, NULL);
+	g_object_unref (obj); // remove the ref we took on the device. it may or not destroy the object, that's why we disconnected manually the signal above.
+}
+
 void cd_upower_stop (void)
 {
 	if (myData.pUPowerClient != NULL)
 	{
+		if (myData.iSignalIDAdded != 0)
+		{
+			g_signal_handler_disconnect (myData.pUPowerClient, myData.iSignalIDAdded);
+			myData.iSignalIDAdded = 0;
+		}
+		if (myData.iSignalIDRemoved != 0)
+		{
+			g_signal_handler_disconnect (myData.pUPowerClient, myData.iSignalIDRemoved);
+			myData.iSignalIDRemoved = 0;
+		}
+		
 		g_object_unref (myData.pUPowerClient);
 		myData.pUPowerClient = NULL;
-	}
-	
-	if (myData.pSignalIDList)
-	{
-		g_list_foreach (myData.pSignalIDList, (GFunc) g_source_remove, NULL);
-		g_list_free (myData.pSignalIDList);
-		myData.pSignalIDList = NULL;
 	}
 
 	if (myData.pBatteryDeviceList)
 	{
-		g_list_foreach (myData.pBatteryDeviceList, (GFunc) g_object_unref, NULL); // remove the ref we took on the device. it may or not destroy the object, that's why we disconnected manually the signal above.
-		g_list_free (myData.pBatteryDeviceList);
+		g_list_free_full (myData.pBatteryDeviceList, _free_battery_dev);
 		myData.pBatteryDeviceList = NULL;
-	}
-
-	if (myData.iSignalIDAdded != 0)
-	{
-		g_source_remove (myData.iSignalIDAdded);
-		myData.iSignalIDAdded = 0;
-	}
-	if (myData.iSignalIDRemoved != 0)
-	{
-		g_source_remove (myData.iSignalIDRemoved);
-		myData.iSignalIDRemoved = 0;
 	}
 }
 
