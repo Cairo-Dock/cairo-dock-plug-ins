@@ -337,7 +337,7 @@ static gboolean _entry_event (GtkEditable *entry,
 }
 
 
-static void _cd_menu_on_quick_launch (int iClickedButton, GtkWidget *pInteractiveWidget, gpointer data, CairoDialog *pDialog)
+static void _cd_menu_on_quick_launch (int iClickedButton, GtkWidget *pInteractiveWidget, gpointer, CairoDialog *pDialog)
 {
 	if (iClickedButton == 0 || iClickedButton == -1)  // ok ou entree.
 	{
@@ -352,6 +352,12 @@ static void _cd_menu_on_quick_launch (int iClickedButton, GtkWidget *pInteractiv
 	gldi_object_ref (GLDI_OBJECT(myData.pQuickLaunchDialog));
 	gldi_dialog_hide (myData.pQuickLaunchDialog);
 }
+static void _dialog_closed (GldiModuleInstance *myApplet)
+{
+	CD_APPLET_ENTER;
+	myData.pQuickLaunchDialog = NULL;
+	CD_APPLET_LEAVE();
+}
 void cd_run_dialog_show_hide (GldiModuleInstance *myApplet)
 {
 	if (myData.pQuickLaunchDialog == NULL)
@@ -361,7 +367,7 @@ void cd_run_dialog_show_hide (GldiModuleInstance *myApplet)
 			myIcon, myContainer,
 			cIconPath ? cIconPath : "same icon",
 			NULL,
-			(CairoDockActionOnAnswerFunc) _cd_menu_on_quick_launch, NULL, NULL);
+			(CairoDockActionOnAnswerFunc) _cd_menu_on_quick_launch, myApplet, (GFreeFunc) _dialog_closed);
 		g_free (cIconPath);
 		
 		GtkWidget *pEntry = myData.pQuickLaunchDialog->pInteractiveWidget;
@@ -377,7 +383,8 @@ void cd_run_dialog_show_hide (GldiModuleInstance *myApplet)
 
 void cd_run_dialog_free (void)
 {
-	gldi_object_unref (GLDI_OBJECT(myData.pQuickLaunchDialog));
+	if (myData.pQuickLaunchDialog)
+		gldi_object_unref (GLDI_OBJECT(myData.pQuickLaunchDialog));
 	
 	if (myData.dir_hash)
 		g_hash_table_destroy (myData.dir_hash);
