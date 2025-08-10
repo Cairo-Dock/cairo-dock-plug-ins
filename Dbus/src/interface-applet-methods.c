@@ -191,6 +191,13 @@ static gboolean _applet_show_dialog (dbusApplet *pDbusApplet, const gchar *messa
 	return TRUE;
 }
 
+static void _on_dialog_destroyed (dbusApplet *pDbusApplet)
+{
+	CD_APPLET_ENTER;
+	pDbusApplet->pDialog = NULL;
+	CD_APPLET_LEAVE();
+}
+
 // deprecated
 static gboolean _applet_ask_question (dbusApplet *pDbusApplet, const gchar *cMessage, const gchar *cIconID, GError **error)
 {
@@ -201,7 +208,7 @@ static gboolean _applet_ask_question (dbusApplet *pDbusApplet, const gchar *cMes
 	
 	if (pDbusApplet->pDialog)  // on n'autorise qu'un seul dialogue interactif a la fois.
 		gldi_object_unref (GLDI_OBJECT(pDbusApplet->pDialog));
-	pDbusApplet->pDialog = gldi_dialog_show_with_question (cMessage, pIcon, pContainer, "same icon", (CairoDockActionOnAnswerFunc) cd_dbus_applet_emit_on_answer_question, pDbusApplet, NULL);
+	pDbusApplet->pDialog = gldi_dialog_show_with_question (cMessage, pIcon, pContainer, "same icon", (CairoDockActionOnAnswerFunc) cd_dbus_applet_emit_on_answer_question, pDbusApplet, (GFreeFunc)_on_dialog_destroyed);
 	return TRUE;
 }
 
@@ -214,7 +221,7 @@ static gboolean _applet_ask_value (dbusApplet *pDbusApplet, const gchar *cMessag
 	
 	if (pDbusApplet->pDialog)  // on n'autorise qu'un seul dialogue interactif a la fois.
 		gldi_object_unref (GLDI_OBJECT(pDbusApplet->pDialog));
-	pDbusApplet->pDialog = gldi_dialog_show_with_value (cMessage, pIcon, pContainer, "same icon", fInitialValue, fMaxValue, (CairoDockActionOnAnswerFunc) cd_dbus_applet_emit_on_answer_value, pDbusApplet, NULL);
+	pDbusApplet->pDialog = gldi_dialog_show_with_value (cMessage, pIcon, pContainer, "same icon", fInitialValue, fMaxValue, (CairoDockActionOnAnswerFunc) cd_dbus_applet_emit_on_answer_value, pDbusApplet, (GFreeFunc)_on_dialog_destroyed);
 	return TRUE;
 }
 
@@ -227,7 +234,7 @@ static gboolean _applet_ask_text (dbusApplet *pDbusApplet, const gchar *cMessage
 	
 	if (pDbusApplet->pDialog)  // on n'autorise qu'un seul dialogue interactif a la fois.
 		gldi_object_unref (GLDI_OBJECT(pDbusApplet->pDialog));
-	pDbusApplet->pDialog = gldi_dialog_show_with_entry (cMessage, pIcon, pContainer, "same icon", cInitialText, (CairoDockActionOnAnswerFunc) cd_dbus_applet_emit_on_answer_text, pDbusApplet, NULL);
+	pDbusApplet->pDialog = gldi_dialog_show_with_entry (cMessage, pIcon, pContainer, "same icon", cInitialText, (CairoDockActionOnAnswerFunc) cd_dbus_applet_emit_on_answer_text, pDbusApplet, (GFreeFunc)_on_dialog_destroyed);
 	return TRUE;
 }
 // end of deprecated
@@ -257,12 +264,7 @@ static void _on_text_changed (GtkWidget *pEntry, GtkWidget *pLabel)
 	gldi_dialog_set_widget_text_color (pLabel);
 	g_free (cLabel);
 }
-static void _on_dialog_destroyed (dbusApplet *pDbusApplet)
-{
-	CD_APPLET_ENTER;
-	pDbusApplet->pDialog = NULL;
-	CD_APPLET_LEAVE();
-}
+
 static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDialogAttributes, GHashTable *hWidgetAttributes, const gchar *cIconID, GError **error)
 {
 	g_return_val_if_fail (hDialogAttributes != NULL, FALSE);
