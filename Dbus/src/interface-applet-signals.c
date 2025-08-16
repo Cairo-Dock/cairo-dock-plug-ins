@@ -20,6 +20,7 @@
 #include <glib.h>
 #include <dbus/dbus-glib.h>
 #include <dbus/dbus-glib-bindings.h>
+#include <implementations/cairo-dock-wayland-manager.h> // gldi_wayland_manager_have_layer_shell
 
 #include "applet-dbus.h"
 #include "interface-applet-methods.h"
@@ -404,6 +405,10 @@ void cd_dbus_emit_on_menu_select (GtkMenuItem *pMenuItem, gpointer data)
 			return ;
 	}
 	
+	// need to explicitly disable the tooltip on Wayland to avoid a race condition,
+	// see: https://github.com/wmww/gtk-layer-shell/issues/207
+	if (gldi_wayland_manager_have_layer_shell ())
+		gtk_widget_set_tooltip_text (GTK_WIDGET (pMenuItem), NULL);
 	int iNumEntry = GPOINTER_TO_INT (data);
 	g_signal_emit (myData.pCurrentMenuDbusApplet, s_iSignals[MENU_SELECT], 0, iNumEntry);  // since there can only be 1 menu at once, and the applet knows when the menu is raised, there is no need to pass the icon in the signal: the applet can remember the clicked icon when it received the 'build-menu' event.
 }
