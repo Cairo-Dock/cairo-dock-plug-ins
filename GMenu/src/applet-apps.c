@@ -47,12 +47,8 @@ gboolean cd_menu_app_should_show (GDesktopAppInfo *pAppInfo)
 	if (s_bDesktopEnvDef)
 		return g_app_info_should_show (G_APP_INFO (pAppInfo));
 
-	// XDG_CURRENT_DESKTOP is not defined => only check 'NoDisplay', if available
-	#if GLIB_CHECK_VERSION (2, 30, 0)
+	// XDG_CURRENT_DESKTOP is not defined => only check 'NoDisplay'
 	return ! g_desktop_app_info_get_nodisplay (pAppInfo);
-	#else
-	return TRUE;
-	#endif
 }
 
 static CairoDialog *s_pNewAppsDialog = NULL;
@@ -178,12 +174,6 @@ void cd_menu_init_apps (void)
 			if (cDesktopEnv)
 				g_setenv ("XDG_CURRENT_DESKTOP", cDesktopEnv, TRUE);
 		}
-
-		#if ! GLIB_CHECK_VERSION (2,41,0)
-		// Since 2.41 the value of the XDG_CURRENT_DESKTOP environment variable will be used.
-		if (cDesktopEnv)  // also set it for g_app_info_should_show() in gio
-			g_desktop_app_info_set_desktop_env (cDesktopEnv);
-		#endif
 
 		s_bDesktopEnvDef = (cDesktopEnv != NULL);  // if cDesktopEnv is NULL, g_app_info_should_show will drop any element that has a OnlyShowIn key (it does a direct comparison), so we won't use this function, as it's better to show more apps than having missing apps.
 

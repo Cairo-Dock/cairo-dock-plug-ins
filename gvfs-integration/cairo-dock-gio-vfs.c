@@ -876,20 +876,12 @@ static gboolean cairo_dock_gio_vfs_eject_drive (const gchar *cURI)
 	GDrive *pDrive = _cd_find_drive_from_name (cDriveName);
 	if (pDrive != NULL)
 	{
-		#if GLIB_CHECK_VERSION (2, 22, 0)
 		g_drive_eject_with_operation (pDrive,
 			G_MOUNT_UNMOUNT_NONE,
 			NULL,
 			NULL,
 			NULL,
 			NULL);
-		#else
-		g_drive_eject (pDrive,
-			G_MOUNT_UNMOUNT_NONE,
-			NULL,
-			NULL,
-			NULL);
-		#endif
 	}
 	g_object_unref (pDrive);
 	g_free (cDriveName);
@@ -913,17 +905,9 @@ static void _gio_vfs_mount_callback (gpointer pObject, GAsyncResult *res, gpoint
 			bSuccess = g_file_mount_enclosing_volume_finish (G_FILE (pObject), res, &erreur);
 	}
 	else if (GPOINTER_TO_INT (data[1]) == 0)
-		#if GLIB_CHECK_VERSION (2, 22, 0)
 		bSuccess = g_mount_unmount_with_operation_finish (G_MOUNT (pObject), res, &erreur);
-		#else
-		bSuccess = g_mount_unmount_finish (G_MOUNT (pObject), res, &erreur);
-		#endif
 	else
-		#if GLIB_CHECK_VERSION (2, 22, 0)
 		bSuccess = g_mount_eject_with_operation_finish (G_MOUNT (pObject), res, &erreur);
-		#else
-		bSuccess = g_mount_eject_finish (G_MOUNT (pObject), res, &erreur);
-		#endif
 	if (erreur != NULL)
 	{
 		cd_warning ("gvfs-integration : %s", erreur->message);
@@ -1015,35 +999,19 @@ static void cairo_dock_gio_vfs_unmount (const gchar *cURI, int iVolumeID, CairoD
 	data[3] = g_strdup (cURI);
 	data[4] = user_data;
 	if (bCanEject)
-		#if GLIB_CHECK_VERSION (2, 22, 0)
 		g_mount_eject_with_operation (pMount,
 			G_MOUNT_UNMOUNT_NONE,
 			NULL,
 			NULL,
 			(GAsyncReadyCallback) _gio_vfs_mount_callback,
 			data);
-		#else
-		g_mount_eject (pMount,
-			G_MOUNT_UNMOUNT_NONE,
-			NULL,
-			(GAsyncReadyCallback) _gio_vfs_mount_callback,
-			data);
-		#endif
 	else
-		#if GLIB_CHECK_VERSION (2, 22, 0)
 		g_mount_unmount_with_operation (pMount,
 			G_MOUNT_UNMOUNT_NONE,
 			NULL,
 			NULL,
 			(GAsyncReadyCallback) _gio_vfs_mount_callback,
 			data);
-		#else
-		g_mount_unmount (pMount,
-			G_MOUNT_UNMOUNT_NONE,
-			NULL,
-			(GAsyncReadyCallback) _gio_vfs_mount_callback,
-			data);
-		#endif
 }
 
 
@@ -1252,11 +1220,9 @@ static gboolean cairo_dock_gio_vfs_create_file (const gchar *cURI, gboolean bDir
 	
 	GError *erreur = NULL;
 	gboolean bSuccess = TRUE;
-	#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 18)
 	if (bDirectory)
 		g_file_make_directory_with_parents (pFile, NULL, &erreur);
 	else
-	#endif
 		g_file_create (pFile, G_FILE_CREATE_PRIVATE, NULL, &erreur);
 	if (erreur != NULL)
 	{

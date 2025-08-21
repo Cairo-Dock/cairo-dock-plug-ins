@@ -686,11 +686,7 @@ void cd_rssreader_show_dialog (GldiModuleInstance *myApplet)
 		GtkWidget *pScrolledWindow = gtk_scrolled_window_new (NULL, NULL);
 		g_object_set (pScrolledWindow, "height-request", 250, NULL);
 		gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (pScrolledWindow), GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
-		#if GTK_CHECK_VERSION (3, 8, 0)
 		gtk_container_add (GTK_CONTAINER (pScrolledWindow), pVBox);
-		#else
-		gtk_scrolled_window_add_with_viewport (GTK_SCROLLED_WINDOW (pScrolledWindow), pVBox);
-		#endif
 		
 		PangoLayout *pLayout = pango_cairo_create_layout (myDrawContext);
 		PangoFontDescription *fd = pango_font_description_from_string ("");

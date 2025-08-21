@@ -22,8 +22,7 @@
 
 #include <cairo-dock.h>
 
-#define GTK_BOOKMARKS_PATH ".config/gtk-3.0/bookmarks"  // from 3.6
-#define GTK_BOOKMARKS_PATH_OLD ".gtk-bookmarks"
+#define GTK_BOOKMARKS_PATH ".config/gtk-3.0/bookmarks"
 
 void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gchar *cURI, GldiModuleInstance *myApplet);
 

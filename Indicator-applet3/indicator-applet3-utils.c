@@ -112,16 +112,6 @@ static gboolean _set_new_image_pixbuf (GtkImage *pImage, GldiModuleInstance *myA
 	return TRUE;
 }
 
-#if ! GTK_CHECK_VERSION (3, 10, 0)
-const gchar *_get_image_stock (GtkImage *pImage)
-{
-	gchar *cName;
-	gtk_image_get_stock (pImage, &cName, NULL);
-	cd_debug ("Get stock: %s", cName);
-	return cName;
-}
-#endif
-
 static gboolean _set_image_on_icon (const gchar *cName, GldiModuleInstance *myApplet, const gchar *cDefaultFile)
 {
 	if (! cName)
@@ -148,12 +138,6 @@ gboolean cd_indicator3_update_image (GtkImage *pImage, gchar **cName, GldiModule
 		case GTK_IMAGE_PIXBUF:
 			return _set_new_image_pixbuf (pImage, myApplet);
 		break;
-		#if ! GTK_CHECK_VERSION (3, 10, 0)
-		case GTK_IMAGE_STOCK:
-			*cName = g_strdup (_get_image_stock (pImage));
-			return _set_image_on_icon (*cName, myApplet, cDefaultFile);
-		break;
-		#endif
 		case GTK_IMAGE_EMPTY:
 			cd_debug ("No image...");
 			return FALSE;

@@ -177,12 +177,7 @@ static gchar *_hmac_crypt (const guchar *text, const gchar* key, GChecksumType i
 	g_checksum_get_digest (cs, inner_digest, &digest_len);
 	
 	// perform outer MD5
-#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 18)
 	g_checksum_reset (cs);
-#else
-	g_checksum_free (cs);
-	cs = g_checksum_new (iType);
-#endif
 	g_checksum_update (cs, k_opad, 64);
 	g_checksum_update (cs, inner_digest, digest_len);  // 16
 	
