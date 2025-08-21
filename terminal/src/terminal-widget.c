@@ -322,46 +322,35 @@ void term_apply_settings (void)
 static void _create_terminal (GtkWidget *vterm)
 {
 	pid_t pid; 
-	#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 18)  // VTE_CHECK_VERSION doesn't exist in Hardy.
-		#if VTE_CHECK_VERSION(0,26,0)
-		const gchar *argv[] = {g_getenv ("SHELL"), NULL};
-		#if VTE_CHECK_VERSION(0,38,0)
-		vte_terminal_spawn_sync (
-		#else
-		vte_terminal_fork_command_full (
-		#endif
-			VTE_TERMINAL(vterm),
-			VTE_PTY_NO_LASTLOG | VTE_PTY_NO_UTMP | VTE_PTY_NO_WTMP,
-			"~/",
-			(gchar**)argv,  // argv
-			NULL,  // envv
-			0,  // GSpawnFlags spawn_flags
-			NULL,  // GSpawnChildSetupFunc child_setup
-			NULL,  // gpointer child_setup_data
-			&pid,
-			#if VTE_CHECK_VERSION(0,38,0)
-			NULL, // cancellable
-			#endif
-			NULL);
-		#else
-		pid = vte_terminal_fork_command (VTE_TERMINAL(vterm),
-			NULL,
-			NULL,
-			NULL,
-			"~/",
-			FALSE,
-			FALSE,
-			FALSE);
-		#endif
+	#if VTE_CHECK_VERSION(0,26,0)
+	const gchar *argv[] = {g_getenv ("SHELL"), NULL};
+	#if VTE_CHECK_VERSION(0,38,0)
+	vte_terminal_spawn_sync (
 	#else
-		pid = vte_terminal_fork_command (VTE_TERMINAL(vterm),
-			NULL,
-			NULL,
-			NULL,
-			"~/",
-			FALSE,
-			FALSE,
-			FALSE);
+	vte_terminal_fork_command_full (
+	#endif
+		VTE_TERMINAL(vterm),
+		VTE_PTY_NO_LASTLOG | VTE_PTY_NO_UTMP | VTE_PTY_NO_WTMP,
+		"~/",
+		(gchar**)argv,  // argv
+		NULL,  // envv
+		0,  // GSpawnFlags spawn_flags
+		NULL,  // GSpawnChildSetupFunc child_setup
+		NULL,  // gpointer child_setup_data
+		&pid,
+		#if VTE_CHECK_VERSION(0,38,0)
+		NULL, // cancellable
+		#endif
+		NULL);
+	#else
+	pid = vte_terminal_fork_command (VTE_TERMINAL(vterm),
+		NULL,
+		NULL,
+		NULL,
+		"~/",
+		FALSE,
+		FALSE,
+		FALSE);
 	#endif
 }
 
