@@ -130,12 +130,7 @@ STRING (REGEX REPLACE "gldi;" "" PACKAGE_LIBRARIES "${PACKAGE_LIBRARIES}")  # bu
 # add_definitions (-DGTK_DISABLE_DEPRECATED="1")
 
 #############    GLIB    #################
-pkg_check_modules (GLIB glib-2.0)
-	STRING (REGEX REPLACE "\\..*" "" GLIB_MAJOR "${GLIB_VERSION}") # 2.28.3 => 2
-	STRING (REGEX REPLACE "[0-9]*\\.([^ ]+)" "\\1" GLIB_MINOR "${GLIB_VERSION}")  # 2.28.3 => 2.28
-	STRING (REGEX REPLACE "\\.[0-9]*" "" GLIB_MINOR "${GLIB_MINOR}") # 2.28 => 28
-	STRING (REGEX REPLACE ".*\\." "" GLIB_NANO "${GLIB_VERSION}") # 2.28.3 => 3
-	STRING (REGEX REPLACE "-.*" "" GLIB_NANO "${GLIB_NANO}")
+pkg_check_modules (GLIB glib-2.0>=2.36) # same version as used in core
 
 ############# SHARED-FILES #################
 set (shared_filesdatadir "${pluginsdatadir}/shared-files")
@@ -521,9 +516,6 @@ if (enable-vala-interface)
 
 	enable_if_not_defined (enable-vala-support)
 	if (NOT enable-vala-support)
-		set (with_vala no)
-	# Glib < 2.26
-	elseif (${GLIB_MAJOR} LESS 3 AND ${GLIB_MINOR} LESS 26)
 		set (with_vala no)
 	elseif (VALAC_EXE AND EXISTS ${VALAC_EXE}) # now it works with 0.10 and 0.11 (= next 0.12) # $VALAC_EXE may be the correct path, even if valac is not installed !
 		execute_process(COMMAND ${VALAC_EXE} "--version"
