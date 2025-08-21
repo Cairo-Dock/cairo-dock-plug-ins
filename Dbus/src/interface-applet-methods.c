@@ -33,6 +33,7 @@ dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock/demo
 #include <glib.h>
 #include <dbus/dbus-glib.h>
 #include <dbus/dbus-glib-bindings.h>
+#include <implementations/cairo-dock-wayland-manager.h> // gldi_wayland_manager_have_layer_shell
 
 #include "interface-applet-signals.h"
 #include "interface-applet-methods.h"
@@ -999,6 +1000,16 @@ gboolean cd_dbus_applet_populate_menu (dbusApplet *pDbusApplet, const gchar **pL
 	return TRUE;
 }
 
+static void _on_map_menuitem (GtkWidget *pMenuItem, gpointer data)
+{
+	if (data) gtk_widget_set_tooltip_text (pMenuItem, (const gchar*)data);
+}
+
+static void _weak_free_helper (gpointer ptr, GObject*)
+{
+	g_free (ptr);
+}
+
 gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pItems, GError **error)
 {
 	if (myData.pModuleMainMenu == NULL/** || myData.pModuleSubMenu == NULL*/ || pDbusApplet != myData.pCurrentMenuDbusApplet)
@@ -1131,7 +1142,15 @@ gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pIte
 		if (v && G_VALUE_HOLDS_STRING (v))
 		{
 			cToolTip = g_value_get_string (v);
-			gtk_widget_set_tooltip_text (pMenuItem, cToolTip);
+			if (gldi_wayland_manager_have_layer_shell ())
+			{
+				/** Need to manage the tooltip ourselves, see e.g.
+				 * https://github.com/wmww/gtk-layer-shell/issues/207 */
+				gchar *tmp = g_strdup (cToolTip);
+				g_signal_connect (G_OBJECT (pMenuItem), "map", G_CALLBACK (_on_map_menuitem), tmp);
+				g_object_weak_ref (G_OBJECT (pMenuItem), _weak_free_helper, tmp);
+			}
+			else gtk_widget_set_tooltip_text (pMenuItem, cToolTip);
 		}
 		
 		// insert in its menu.

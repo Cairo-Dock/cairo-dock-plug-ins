@@ -21,6 +21,7 @@
 #include "applet-entry.h"
 
 #include <gdk/gdkkeysyms.h> // needed for 'GDK_KEY_Return'
+#include <implementations/cairo-dock-wayland-manager.h> // gldi_wayland_manager_have_layer_shell
 
 
 typedef struct _EntryInfo {
@@ -41,11 +42,24 @@ static gint _compare_apps (const EntryInfo *a, const EntryInfo *b)
 		g_app_info_get_name (G_APP_INFO (b->pAppInfo)));
 }
 
-static gboolean _on_button_release_menu (GtkWidget *pMenu, GdkEventButton *pEvent,
+static gboolean _on_button_release_menu (GtkWidget *pMenuItem, GdkEventButton *pEvent,
 	GDesktopAppInfo *pAppInfo)
 {
+	// need to explicitly disable the tooltip on Wayland to avoid a race condition (see below)
+	if (gldi_wayland_manager_have_layer_shell ())
+		gtk_widget_set_tooltip_text (pMenuItem, NULL);
 	cairo_dock_launch_app_info (pAppInfo);
 	return FALSE; // pass the signal: hide the menu
+}
+
+static void _on_map_entry (GtkWidget *pMenuItem, gpointer data)
+{
+	if (data) gtk_widget_set_tooltip_text (pMenuItem, (const gchar*)data);
+}
+
+static void _weak_free_helper (gpointer ptr, GObject*)
+{
+	g_free (ptr);
 }
 
 // the GtkLabel should always be the only one in the list but be secure :)
@@ -121,7 +135,17 @@ static void _add_results_in_menu (GldiModuleInstance *myApplet)
 			}
 
 			if (cDescription)
-				gtk_widget_set_tooltip_text (pInfo->pMenuItem, cDescription);
+			{
+				if (gldi_wayland_manager_have_layer_shell ())
+				{
+					/** Need to manage the tooltip ourselves, see e.g.
+					 * https://github.com/wmww/gtk-layer-shell/issues/207 */
+					gchar *tmp = g_strdup (cDescription);
+					g_signal_connect (G_OBJECT (pInfo->pMenuItem), "map", G_CALLBACK (_on_map_entry), tmp);
+					g_object_weak_ref (G_OBJECT (pInfo->pMenuItem), _weak_free_helper, tmp);
+				}
+				else gtk_widget_set_tooltip_text (pInfo->pMenuItem, cDescription);
+			}
 
 			gtk_widget_show (pInfo->pMenuItem);
 

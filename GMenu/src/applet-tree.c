@@ -24,6 +24,7 @@
 #include "applet-menu.h"  // start/stop
 #include "applet-apps.h"
 #include "applet-tree.h"
+#include <implementations/cairo-dock-wayland-manager.h> // gldi_wayland_manager_have_layer_shell
 
 #define CD_FOLDER_DEFAULT_ICON "folder"
 
@@ -44,8 +45,26 @@ static void _on_tree_changed (GMenuTree *tree, G_GNUC_UNUSED gpointer data)
 
 static void _on_activate_entry (GtkWidget *menuitem, GMenuTreeEntry *entry)
 {
+	// need to explicitly disable the tooltip on Wayland to avoid a race condition (see below)
+	if (gldi_wayland_manager_have_layer_shell ())
+		gtk_widget_set_tooltip_text (menuitem, NULL);
 	GDesktopAppInfo *pAppInfo = gmenu_tree_entry_get_app_info (entry);
 	cairo_dock_launch_app_info (pAppInfo);
+}
+
+static void _on_map_entry (GtkWidget *menuitem, gpointer data)
+{
+	if (data) gtk_widget_set_tooltip_text (menuitem, (const gchar*)data);
+}
+
+static void _weak_free_helper (gpointer ptr, GObject*)
+{
+	g_free (ptr);
+}
+
+static void _weak_unref_helper (gpointer ptr, GObject*)
+{
+	gmenu_tree_item_unref (ptr);
 }
 
 static void _on_drag_data_get (GtkWidget *widget,
@@ -184,7 +203,17 @@ static gboolean create_menuitem (GtkWidget *menu,
 	if (cComment == NULL)
 		cComment = g_app_info_get_description (G_APP_INFO (pAppInfo));
 	if (cComment)
-		gtk_widget_set_tooltip_text (menuitem, cComment);
+	{
+		if (gldi_wayland_manager_have_layer_shell ())
+		{
+			/** Need to manage the tooltip ourselves, see e.g.
+			 * https://github.com/wmww/gtk-layer-shell/issues/207 */
+			gchar *tmp = g_strdup (cComment);
+			g_signal_connect (G_OBJECT (menuitem), "map", G_CALLBACK (_on_map_entry), tmp);
+			g_object_weak_ref (G_OBJECT (menuitem), _weak_free_helper, tmp);
+		}
+		else gtk_widget_set_tooltip_text (menuitem, cComment);
+	}
 	
 	// load icon
 	GIcon *pIcon = NULL;
@@ -219,11 +248,9 @@ static gboolean create_menuitem (GtkWidget *menu,
 	g_signal_connect (menuitem, "activate",
 		G_CALLBACK (_on_activate_entry), entry);
 	
-	g_object_set_data_full (G_OBJECT (menuitem),
-		"cd-entry",
-		gmenu_tree_item_ref (entry),
-		(GDestroyNotify) gmenu_tree_item_unref);
 	// stick the entry on the menu-item, which allows us to ref it and be sure to unref when the menu is destroyed.
+	g_object_weak_ref (G_OBJECT (menuitem), _weak_unref_helper, gmenu_tree_item_ref (entry));
+	
 	return TRUE;
 }
 

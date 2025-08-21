@@ -43,10 +43,10 @@ typedef struct {
 static void cd_logout_shut_down_full (gboolean bDemandConfirmation);
 static void cd_logout_shut_down (void);
 static void cd_logout_restart (void);
-static void cd_logout_suspend (void);
-static void cd_logout_hibernate (void);
-static void cd_logout_hybridSleep (void);
-static void cd_logout_close_session (void);
+static void cd_logout_suspend (GtkMenuItem*, gpointer);
+static void cd_logout_hibernate (GtkMenuItem*, gpointer);
+static void cd_logout_hybridSleep (GtkMenuItem*, gpointer);
+static void cd_logout_close_session (GtkMenuItem*, gpointer);
 static void cd_logout_switch_to_user (const gchar *cUser);
 static void cd_logout_switch_to_guest (void);
 static void cd_logoout_lock_screen (void);
@@ -353,29 +353,35 @@ static GtkWidget *_build_menu (GtkWidget **pShutdownMenuItem)
 		gtk_widget_set_sensitive (pMenuItem, FALSE);
 	
 	cImagePath = cd_logout_check_icon ("sleep", myData.iDesiredIconSize);
-	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Hibernate"), cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/system-hibernate.svg", cd_logout_hibernate, pMenu);
-	gtk_widget_set_tooltip_text (pMenuItem, D_("Your computer will not consume any energy."));
+	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_TOOLTIP_AND_DATA (D_("Hibernate"),
+		cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/system-hibernate.svg",
+		D_("Your computer will not consume any energy."),
+		cd_logout_hibernate, pMenu, NULL);
 	if (!myData.bCanHibernate)
 		gtk_widget_set_sensitive (pMenuItem, FALSE);
 	
 	if (myData.bCanHybridSleep)
-	{
-		pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Hybrid Sleep"), cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/system-hibernate.svg", cd_logout_hybridSleep, pMenu);
-		gtk_widget_set_tooltip_text (pMenuItem, D_("Your computer will still consume a small amount of energy but after some time, the computer will suspend to disk and not consume any energy."));
-	}
+		CD_APPLET_ADD_IN_MENU_WITH_TOOLTIP_AND_DATA (D_("Hybrid Sleep"),
+			cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/system-hibernate.svg",
+			D_("Your computer will still consume a small amount of energy but after some time, the computer will suspend to disk and not consume any energy."),
+			cd_logout_hybridSleep, pMenu, NULL);
 	g_free (cImagePath);
 	
 	cImagePath = cd_logout_check_icon ("clock", myData.iDesiredIconSize);
-	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Suspend"), cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/system-suspend.svg", cd_logout_suspend, pMenu);
+	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_TOOLTIP_AND_DATA (D_("Suspend"),
+		cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/system-suspend.svg",
+		D_("Your computer will still consume a small amount of energy."),
+		cd_logout_suspend, pMenu, NULL);
 	g_free (cImagePath);
-	gtk_widget_set_tooltip_text (pMenuItem, D_("Your computer will still consume a small amount of energy."));
 	if (!myData.bCanSuspend)
 		gtk_widget_set_sensitive (pMenuItem, FALSE);
 	
 	cImagePath = cd_logout_check_icon ("system-log-out", myData.iDesiredIconSize);
-	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Log out"), cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/system-log-out.svg", cd_logout_close_session, pMenu);
+	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_TOOLTIP_AND_DATA (D_("Log out"),
+		cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/system-log-out.svg",
+		D_("Close your session and allow to open a new one."),
+		cd_logout_close_session, pMenu, NULL);
 	g_free (cImagePath);
-	gtk_widget_set_tooltip_text (pMenuItem, D_("Close your session and allow to open a new one."));
 	if (!_can_logoout ())
 		gtk_widget_set_sensitive (pMenuItem, FALSE);
 	
@@ -667,7 +673,7 @@ static void cd_logout_restart (void)
 	}
 }
 
-static void cd_logout_suspend (void)
+static void cd_logout_suspend (GtkMenuItem*, gpointer)
 {
 	if (myData.iLoginManager == CD_LOGIND)
 		_logind_action ("Suspend");
@@ -675,7 +681,7 @@ static void cd_logout_suspend (void)
 		_upower_action (TRUE);
 }
 
-static void cd_logout_hibernate (void)
+static void cd_logout_hibernate (GtkMenuItem*, gpointer)
 {
 	if (myData.iLoginManager == CD_LOGIND)
 		_logind_action ("Hibernate");
@@ -683,7 +689,7 @@ static void cd_logout_hibernate (void)
 		_upower_action (FALSE);
 }
 
-static void cd_logout_hybridSleep (void)
+static void cd_logout_hybridSleep (GtkMenuItem*, gpointer)
 {
 	if (myData.iLoginManager == CD_LOGIND)
 		_logind_action ("HybridSleep");
@@ -700,7 +706,7 @@ static void _logout (void)
 		cairo_dock_launch_command_single (MY_APPLET_SHARE_DATA_DIR"/logout.sh");
 }
 
-static void cd_logout_close_session (void)  // could use org.gnome.SessionManager.Logout
+static void cd_logout_close_session (GtkMenuItem*, gpointer)  // could use org.gnome.SessionManager.Logout
 {
 	/* Currently, cairo_dock_fm_logout displays to us a window from the DE
 	 * to confirm if we want to close the session or not. So there is a
