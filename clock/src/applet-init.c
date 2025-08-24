@@ -261,6 +261,13 @@ CD_APPLET_RELOAD_BEGIN
 			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 			CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
 		}
+		
+		if (myData.tz)
+		{
+			g_time_zone_unref (myData.tz);
+			myData.tz = NULL; // will be reloaded the next time we update the current time
+		}
+		
 		//\_______________ On stoppe le timer.
 		g_source_remove (myData.iSidUpdateClock);
 		myData.iSidUpdateClock = 0;

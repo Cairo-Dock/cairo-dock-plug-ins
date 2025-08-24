@@ -205,6 +205,8 @@ CD_APPLET_RESET_DATA_BEGIN
 	
 	cd_clock_reset_tasks_list (myApplet);
 	g_hash_table_destroy (myData.pBackends);
+	
+	if (myData.tz) g_time_zone_unref (myData.tz);
 CD_APPLET_RESET_DATA_END
 
 
