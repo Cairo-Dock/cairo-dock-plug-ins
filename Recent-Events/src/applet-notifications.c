@@ -52,7 +52,7 @@ static gboolean _on_delete_menu (GtkWidget *widget, GdkEvent *event, gpointer us
 
 struct _OpenFileData
 {
-	GDesktopAppInfo *app;
+	GldiAppInfo *app;
 	gchar *cURI;
 };
 static void _menu_item_destroyed (gpointer data, GObject*)
@@ -60,7 +60,7 @@ static void _menu_item_destroyed (gpointer data, GObject*)
 	if (data)
 	{
 		struct _OpenFileData *pData = (struct _OpenFileData*)data;
-		if (pData->app) g_object_unref (GLDI_OBJECT (pData->app));
+		if (pData->app) gldi_object_unref (GLDI_OBJECT (pData->app));
 		if (pData->cURI) g_free (pData->cURI);
 		g_free (pData);
 	}
@@ -73,9 +73,8 @@ static void _open_file (GtkMenuItem *menu_item, gpointer ptr)
 	cd_debug ("%s (%s)", __func__, pData->cURI ? pData->cURI : "(null)");
 	if (pData->app && pData->cURI)
 	{
-		GList *list = g_list_append (NULL, pData->cURI);
-		cairo_dock_launch_app_info_with_uris (pData->app, list);
-		g_list_free (list);
+		const gchar *tmp[] = {pData->cURI, NULL};
+		gldi_app_info_launch (pData->app, tmp);
 	}
 }
 static void _on_delete_events (int iNbEvents, gpointer data)
@@ -156,7 +155,8 @@ static void _on_find_related_events (ZeitgeistResultSet *pEvents, Icon *pIcon)
 			cairo_dock_fm_get_file_info (cEventURI, &cName, &cURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, 0);
 			
 			struct _OpenFileData *data = g_new0 (struct _OpenFileData, 1);
-			data->app = g_object_ref (pIcon->pAppInfo->app);
+			data->app = pIcon->pAppInfo; // note: if we got here, pIcon->pAppInfo != NULL
+			gldi_object_ref (data->app);
 			data->cURI = g_strdup (cEventURI);
 			g_free (cPath);
 			
@@ -199,10 +199,9 @@ CD_APPLET_ON_BUILD_MENU_PROTO
 			
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Delete all events"), GLDI_ICON_NAME_DELETE, _clear_all_events, CD_APPLET_MY_MENU, myApplet);
 		}
-		else if (CD_APPLET_CLICKED_ICON->pAppInfo && CD_APPLET_CLICKED_ICON->pAppInfo->app)
+		else if (CD_APPLET_CLICKED_ICON->pAppInfo)
 		{
-			GDesktopAppInfo *app = CD_APPLET_CLICKED_ICON->pAppInfo->app;
-			const gchar **types = app ? g_app_info_get_supported_types (G_APP_INFO (app)) : NULL;
+			const gchar **types = gldi_app_info_get_supported_types (CD_APPLET_CLICKED_ICON->pAppInfo);
 			if (types)
 			{
 				s_pMenu = pAppletMenu;
