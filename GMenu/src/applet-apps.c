@@ -161,20 +161,6 @@ void cd_menu_init_apps (void)
 	{
 		// check the XDG_CURRENT_DESKTOP env variable, it is used to match the 'OnlyShowIn' key in the .desktop files in gio and libgnomemenu
 		const gchar *cDesktopEnv = g_getenv ("XDG_CURRENT_DESKTOP");
-		if (! cDesktopEnv)  // the system didn't set the variable: this is probably a bug, so let's try to set a value ourselves (this is needed for both gio and libgnomemenu); this is a workaround, most of the time the value will be set correctly.
-		{
-			switch (g_iDesktopEnv)
-			{
-				case CAIRO_DOCK_GNOME: cDesktopEnv = "GNOME"; break;
-				case CAIRO_DOCK_XFCE: cDesktopEnv = "XFCE"; break;
-				case CAIRO_DOCK_KDE: cDesktopEnv = "KDE"; break;
-				default: break;
-			}
-			// if we found something, set the env variable, because libgnomemenu uses it directly, and if it is not set, will drop any element that has a OnlyShowIn key...
-			if (cDesktopEnv)
-				g_setenv ("XDG_CURRENT_DESKTOP", cDesktopEnv, TRUE);
-		}
-
 		s_bDesktopEnvDef = (cDesktopEnv != NULL);  // if cDesktopEnv is NULL, g_app_info_should_show will drop any element that has a OnlyShowIn key (it does a direct comparison), so we won't use this function, as it's better to show more apps than having missing apps.
 
 		myData.bFirstLaunch = TRUE;
