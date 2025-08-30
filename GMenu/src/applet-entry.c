@@ -48,7 +48,7 @@ static gboolean _on_button_release_menu (GtkWidget *pMenuItem, GdkEventButton *p
 	// need to explicitly disable the tooltip on Wayland to avoid a race condition (see below)
 	if (gldi_wayland_manager_have_layer_shell ())
 		gtk_widget_set_tooltip_text (pMenuItem, NULL);
-	cairo_dock_launch_app_info (pAppInfo);
+	gldi_launch_desktop_app_info (pAppInfo, NULL);
 	return FALSE; // pass the signal: hide the menu
 }
 
@@ -398,7 +398,7 @@ static void _launch_app_of_selected_item (GtkWidget *pMenu)
 	if (pMenuItem != NULL && pMenuItem != s_pLaunchCommand)
 	{
 		GDesktopAppInfo *pAppInfo = g_object_get_data (G_OBJECT (pMenuItem), "info");
-		cairo_dock_launch_app_info (pAppInfo);
+		gldi_launch_desktop_app_info (pAppInfo, NULL);
 	}
 	else // no item or s_pLaunchCommand, we launch the command
 	{

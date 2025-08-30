@@ -74,7 +74,7 @@ static void _on_answer_launch_recent (int iClickedButton, GtkWidget *pInteractiv
 			pAppInfo = myData.pNewApps->data;
 		}
 		g_return_if_fail (pAppInfo != NULL);
-		cairo_dock_launch_app_info (pAppInfo);
+		gldi_launch_desktop_app_info (pAppInfo, NULL);
 	}
 	
 	g_list_free (myData.pNewApps);  // the content elongs to pKnownApplications
