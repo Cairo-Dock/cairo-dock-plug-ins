@@ -30,16 +30,12 @@
 #include "3dcover-draw.h"
 
 #include "applet-xmms2.h" //Support XMMS2
-#include "applet-exaile.h" //Support Exaile
 #include "applet-exaile3.h" //Support Exaile 0.3
-#include "applet-songbird.h" //Support Songbird
-#include "applet-banshee.h" //Support Banshee
 #include "applet-rhythmbox.h" //Support Rhythmbox
 #include "applet-qmmp.h" //Support Qmmp
 #include "applet-gmusicbrowser.h" //Support GMusicBrowser
 #include "applet-guayadeque.h" //Support Guayadeque
 #include "applet-quodlibet.h" //Support QuodLibet
-#include "applet-listen.h" //Support Listen
 #include "applet-amarok2.h" //Support Amarok 2
 #include "applet-audacious.h" //Support Audacious
 #include "applet-clementine.h" // Support Clementine
@@ -68,14 +64,10 @@ CD_APPLET_INIT_BEGIN
 	// Register the players
 	// Note: with MPRIS2, we don't need to register a custom handler for each player. We only register handlers of old interfaces (MPRIS1 and before).
 	// Once all players use MPRIS2, we can drop all handlers but the MPRIS2 one.
-	cd_musicplayer_register_exaile_handler();
 	cd_musicplayer_register_exaile3_handler();
-	cd_musicplayer_register_songbird_handler();
-	cd_musicplayer_register_banshee_handler();
 	cd_musicplayer_register_rhythmbox_handler();
 	cd_musicplayer_register_qmmp_handler();
 	cd_musicplayer_register_quodlibet_handler();
-	cd_musicplayer_register_listen_handler();
 	cd_musicplayer_register_amarok2_handler();
 	cd_musicplayer_register_xmms2_handler();
 	cd_musicplayer_register_audacious_handler();
@@ -157,15 +149,10 @@ CD_APPLET_STOP_BEGIN
 	cd_musicplayer_stop_current_handler (TRUE);
 	
 	MusicPlayerHandler *pHandler = cd_musicplayer_get_handler_by_name ("Mpris2");  // Mpris2 handler has dynamic fields, free them.
-	g_free ((gchar*)pHandler->launch);
-	pHandler->launch = NULL;
-	g_free ((gchar*)pHandler->appclass);
-	pHandler->appclass = NULL;
 	g_free ((gchar*)pHandler->cDisplayedName);
 	pHandler->cDisplayedName = NULL;
 	g_free ((gchar*)pHandler->cMprisService);
 	pHandler->cMprisService = NULL;
-	
 	
 	// On stoppe les boucles de recup de la pochette.
 	if (myData.iSidCheckCover != 0)
