@@ -694,34 +694,48 @@ static gchar *_cd_find_target_uri (const gchar *cBaseURI)
 	return cTargetURI;
 }
 
+static gboolean _try_launch_app (GAppInfo *pAppInfo, const gchar *const *vURIs)
+{
+	if (pAppInfo && G_IS_DESKTOP_APP_INFO (pAppInfo))
+	{
+		GldiAppInfo *app = gldi_app_info_from_desktop_app_info (G_DESKTOP_APP_INFO (pAppInfo));
+		if (app)
+		{
+			gldi_app_info_launch (app, vURIs);
+			gldi_object_unref (GLDI_OBJECT (app));
+			// TODO: error checking? (now we always assume success)
+			return TRUE;
+		}
+	}
+	return FALSE;
+}
+
 static void cairo_dock_gio_vfs_launch_uri (const gchar *cURI)
 {
 	g_return_if_fail (cURI != NULL);
 	
 	// in case it's a mount point, take the URI that can actually be launched. 
-	GError *erreur = NULL;
-	gchar *cValidUri = (*cURI == '/' ? g_strconcat ("file://", cURI, NULL) : g_strdup (cURI));
-	cd_message ("%s (%s)", __func__, cValidUri);
 	
-	gchar *cTargetURI = _cd_find_target_uri (cValidUri);
-	cURI= (cTargetURI ? cTargetURI : cValidUri);
-	GList *pURIList = g_list_append (NULL, (gpointer)cURI);
 	
-	gchar *cURIScheme = g_uri_parse_scheme (cURI);
+	gchar *cTargetURI = NULL;
+	if (strstr (cURI, "://"))
+	{
+		cTargetURI = _cd_find_target_uri (cURI);
+		if (cTargetURI) cURI = cTargetURI;
+	}
+	const gchar *vURIs[] = {cURI, NULL};
+	
 	// now, try to launch it with the default program know by gvfs.
+	GError *erreur = NULL;
+	gchar *cURIScheme = g_uri_parse_scheme (cURI);
 	GAppInfo *pAppDefault = NULL;
 	gboolean bSuccess = FALSE;
 	if (cURIScheme && *cURIScheme)
 		pAppDefault = g_app_info_get_default_for_uri_scheme (cURIScheme);
 	g_free (cURIScheme);
 	
-	if (pAppDefault)
-	{
-		GDesktopAppInfo *app = G_DESKTOP_APP_INFO (pAppDefault);
-		if (app) bSuccess = cairo_dock_launch_app_info_with_uris (app, pURIList);
-		g_object_unref (pAppDefault);
-		if (bSuccess) goto launch_uri_end;
-	}
+	if (_try_launch_app (pAppDefault, vURIs))
+		goto launch_uri_end;
 	
 	// get the mime-type.
 	GFile *pFile = ((*cURI != '/') ? g_file_new_for_uri (cURI) : g_file_new_for_path (cURI));
@@ -741,12 +755,8 @@ static void cairo_dock_gio_vfs_launch_uri (const gchar *cURI)
 	const gchar *cMimeType = g_file_info_get_content_type (pFileInfo);
 	
 	pAppDefault = g_app_info_get_default_for_type (cMimeType, FALSE);
-	if (pAppDefault)
-	{
-		GDesktopAppInfo *app = G_DESKTOP_APP_INFO (pAppDefault);
-		if (app) bSuccess = cairo_dock_launch_app_info_with_uris (app, pURIList);
-		g_object_unref (pAppDefault);
-	}
+	if (_try_launch_app (pAppDefault, vURIs))
+		goto launch_uri_end;
 	
 	if (! bSuccess)  // error can happen (for instance, opening 'trash:/' on XFCE with a previous installation of nautilus) => try with another method.
 	{
@@ -754,14 +764,11 @@ static void cairo_dock_gio_vfs_launch_uri (const gchar *cURI)
 		
 		GList *pAppsList = g_app_info_get_all_for_type (cMimeType);
 		GAppInfo *pAppInfo;
-		GDesktopAppInfo *app;
 		GList *a;
 		for (a = pAppsList; a != NULL; a = a->next)
 		{
 			pAppInfo = a->data;
-			app = G_DESKTOP_APP_INFO (pAppInfo);
-			if (app) bSuccess = cairo_dock_launch_app_info_with_uris (app, pURIList);
-			if (bSuccess) break;
+			if (_try_launch_app (pAppInfo, vURIs)) break;
 		}
 		g_list_free_full (pAppsList, g_object_unref);
 	}
@@ -769,8 +776,6 @@ static void cairo_dock_gio_vfs_launch_uri (const gchar *cURI)
 	g_object_unref (pFile);
 
 launch_uri_end:
-	g_list_free (pURIList);
-	g_free (cValidUri);
 	g_free (cTargetURI);
 }
 
