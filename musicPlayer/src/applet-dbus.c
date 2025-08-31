@@ -93,10 +93,10 @@ MusicPlayerHandler *cd_musicplayer_dbus_find_opened_player (void)
 				pHandler = cd_musicplayer_get_handler_by_name ("Mpris2");
 				g_free ((gchar*)pHandler->cMprisService);
 				pHandler->cMprisService = g_strdup (name_list[i]);
-				pHandler->launch = g_strdup (name_list[i] + strlen (CD_MPRIS2_SERVICE_BASE)+1);  // only used to be displayed in the combo-box; we'll get the real data once we connect to it on the bus.
-				gchar *str = strchr (pHandler->launch, '.');
+				pHandler->appclass = g_strdup (name_list[i] + strlen (CD_MPRIS2_SERVICE_BASE)+1);  // only used to be displayed in the combo-box; we'll get the real data once we connect to it on the bus.
+/*				gchar *str = strchr (pHandler->launch, '.');
 				if (str)
-					*str = '\0';
+					*str = '\0'; */
 				break;
 			}
 		}

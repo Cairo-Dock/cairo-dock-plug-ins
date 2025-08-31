@@ -82,14 +82,14 @@ struct _MusicPlayerHandler {
 	const gchar *interface;
 	const gchar *path2;  // TrackList object.
 	const gchar *interface2;
-	const gchar *appclass;  // classe de l'appli.
-	const gchar *launch;  // commande lancant le lecteur.
+	gchar *appclass;  // classe de l'appli.
 	gchar *cDisplayedName;  // displayed name, or NULL
 	gchar *cCoverDir;  // repertoire utilisateur de l'appli, contenant les couvertures.
 	gboolean bSeparateAcquisition;  // Sert a activer le thread ou pas (TRUE = active; False = desactive)
 	MyPlayerControl iPlayerControls;  // un masque "OU" de MyPlayerControl.
 	MyLevel iLevel;
 	const gchar *cMpris2Service;  // MPRIS2 dbus name.
+	GldiAppInfo *pAppInfo; // registered application (used for launching it)
 };
 
 //Structures essentielles de l'applet

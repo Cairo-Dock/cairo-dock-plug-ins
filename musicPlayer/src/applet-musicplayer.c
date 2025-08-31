@@ -55,12 +55,12 @@ static inline void _fill_handler_properties (const gchar *cDesktopFileName, gcha
 {
 	g_free ((gchar*)myData.pCurrentHandler->appclass);
 	myData.pCurrentHandler->appclass = cAppClass;
-	g_free ((gchar*)myData.pCurrentHandler->launch);
-	GDesktopAppInfo *app = cairo_dock_get_class_app_info (myData.pCurrentHandler->appclass);
-	//!! TODO: potentially use g_app_info_get_executable() instead ??
-	if (app) myData.pCurrentHandler->launch = g_strdup (g_app_info_get_commandline (G_APP_INFO (app)));
-	if (myData.pCurrentHandler->launch == NULL)  // we really need a command to launch it on click, so insist a little
-		myData.pCurrentHandler->launch = g_strdup (cDesktopFileName);
+	gldi_object_unref (GLDI_OBJECT (myData.pCurrentHandler->pAppInfo));
+
+	myData.pCurrentHandler->pAppInfo = cairo_dock_get_class_app_info (myData.pCurrentHandler->appclass);
+	if (myData.pCurrentHandler->pAppInfo) gldi_object_ref (GLDI_OBJECT (myData.pCurrentHandler->pAppInfo));
+	
+	// myData.pCurrentHandler->launch = g_strdup (cAppClass); // only used for display
 	g_free ((gchar*)myData.pCurrentHandler->cDisplayedName);
 	myData.pCurrentHandler->cDisplayedName = g_strdup (cairo_dock_get_class_name (myData.pCurrentHandler->appclass));
 }
@@ -286,12 +286,15 @@ void cd_musicplayer_register_my_handler (MusicPlayerHandler *pHandler)
 
 /* Detruit un backend
  */
-void cd_musicplayer_free_handler (MusicPlayerHandler *pHandler)
+void cd_musicplayer_free_handler (gpointer data)
 {
-	if (pHandler == NULL)
+	if (data == NULL)
 		return ;
 	
+	MusicPlayerHandler *pHandler = (MusicPlayerHandler*)data;
 	g_free (pHandler->cCoverDir);
+	g_free (pHandler->appclass);
+	gldi_object_unref (GLDI_OBJECT (pHandler->pAppInfo));
 	g_free (pHandler);
 }
 
@@ -320,21 +323,23 @@ static void _on_got_desktop_entry (DBusGProxy *proxy, DBusGProxyCall *call_id, g
 		
 		if (cDesktopFileName != NULL)
 		{
-			if (myConfig.cLastKnownDesktopFile == NULL || strcmp (cDesktopFileName, myConfig.cLastKnownDesktopFile) != 0)  // the property has changed from the previous time.
+			// convert to lowercase, as that is expected by cairo_dock_register_class ()
+			gchar *cDesktopFileLower = g_ascii_strdown (cDesktopFileName, -1);
+			if (myConfig.cLastKnownDesktopFile == NULL || strcmp (cDesktopFileLower, myConfig.cLastKnownDesktopFile) != 0)  // the property has changed from the previous time.
 			{
-				gchar *cAppClass = cairo_dock_register_class (cDesktopFileName); // no need to be freed here
+				gchar *cAppClass = cairo_dock_register_class (cDesktopFileLower); // no need to be freed here
 				cd_debug ("  desktop-entry has changed, update => Class: %s", cAppClass);
 				if (cAppClass != NULL) // maybe the application has given a wrong cAppClass... Amarok? :)
 				{
 					// store the desktop filename, since we can't have it until the service is up, the next time the applet is started, which means we wouldn't be able to launch the player.
 					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
-						G_TYPE_STRING, "Configuration", "desktop-entry", cDesktopFileName,
+						G_TYPE_STRING, "Configuration", "desktop-entry", cDesktopFileLower,
 						G_TYPE_INVALID);
 					g_free (myConfig.cLastKnownDesktopFile);
-					myConfig.cLastKnownDesktopFile = g_strdup (cDesktopFileName);
+					myConfig.cLastKnownDesktopFile = cDesktopFileLower;
 					
 					// register the desktop file, and get the common properties of this class.
-					_fill_handler_properties (cDesktopFileName, cAppClass);
+					_fill_handler_properties (cDesktopFileLower, cAppClass);
 					
 					if (myData.pCurrentHandler->appclass != NULL)
 					{
@@ -345,7 +350,10 @@ static void _on_got_desktop_entry (DBusGProxy *proxy, DBusGProxyCall *call_id, g
 						CD_APPLET_MANAGE_APPLICATION (myData.pCurrentHandler->appclass);
 				}
 				else
-					cd_warning ("Wrong .desktop file name: %s", cDesktopFileName);
+				{
+					cd_warning ("Wrong .desktop file name: %s", cDesktopFileLower);
+					g_free (cDesktopFileLower);
+				}
 			}
 		}
 		g_value_unset (&v);
@@ -415,7 +423,7 @@ static void _on_name_owner_changed (const gchar *cName, gboolean bOwned, gpointe
 	}
 	else  // else stop the handler.
 	{
-		cd_debug ("stop the handler {%s, %s}", myData.pCurrentHandler->name, myData.pCurrentHandler->launch);
+		cd_debug ("stop the handler {%s, %s}", myData.pCurrentHandler->name, myData.pCurrentHandler->appclass);
 		cd_musicplayer_stop_current_handler (FALSE);  // FALSE = keep watching it.
 		cd_musicplayer_apply_status_surface (PLAYER_NONE);
 		if (myConfig.cDefaultTitle != NULL)
@@ -426,7 +434,7 @@ static void _on_name_owner_changed (const gchar *cName, gboolean bOwned, gpointe
 		{
 			if (strcmp (myData.pCurrentHandler->name, "Mpris2") == 0)
 			{
-				gchar *cDefaultName = cd_musicplayer_get_string_with_first_char_to_upper (myData.pCurrentHandler->launch);
+				gchar *cDefaultName = cd_musicplayer_get_string_with_first_char_to_upper (myData.pCurrentHandler->appclass);
 				CD_APPLET_SET_NAME_FOR_MY_ICON (cDefaultName);
 				g_free (cDefaultName);
 			}
@@ -434,7 +442,7 @@ static void _on_name_owner_changed (const gchar *cName, gboolean bOwned, gpointe
 			{
 				CD_APPLET_SET_NAME_FOR_MY_ICON (myData.pCurrentHandler->name);
 			}
-		cd_debug ("stopped {%s, %s}", myData.pCurrentHandler->name, myData.pCurrentHandler->launch);
+		cd_debug ("stopped {%s, %s}", myData.pCurrentHandler->name, myData.pCurrentHandler->appclass);
 		}
 	}
 	CD_APPLET_LEAVE ();
@@ -541,7 +549,7 @@ void cd_musicplayer_set_current_handler (const gchar *cName)
 		}
 		else
 		{
-			gchar *cDefaultName = cd_musicplayer_get_string_with_first_char_to_upper (myData.pCurrentHandler->launch);
+			gchar *cDefaultName = cd_musicplayer_get_string_with_first_char_to_upper (myData.pCurrentHandler->appclass);
 			CD_APPLET_SET_NAME_FOR_MY_ICON (cDefaultName);
 			g_free (cDefaultName);
 		}
