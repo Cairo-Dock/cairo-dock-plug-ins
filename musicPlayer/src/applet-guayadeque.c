@@ -33,11 +33,14 @@
  */
 void cd_musicplayer_register_guayadeque_handler (void)
 {
+	gchar *class = cairo_dock_register_class ("guayadeque");
+	if (!class) return; // no use if it is not installed or we cannot find it
 	MusicPlayerHandler *pGuayadeque = cd_mpris_new_handler ();
 	pGuayadeque->cMprisService = "org.mpris.guayadeque";
 	pGuayadeque->cMpris2Service = "org.mpris.MediaPlayer2.guayadeque";
-	pGuayadeque->appclass = "guayadeque";
-	pGuayadeque->launch = "guayadeque";
+	pGuayadeque->appclass = class;
+	pGuayadeque->pAppInfo = cairo_dock_get_class_app_info (pGuayadeque->appclass);
+	gldi_object_ref (GLDI_OBJECT (pGuayadeque->pAppInfo));
 	pGuayadeque->name = "Guayadeque";
 	cd_musicplayer_register_my_handler (pGuayadeque);
 }

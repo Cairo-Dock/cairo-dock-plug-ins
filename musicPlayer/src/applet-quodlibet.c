@@ -365,6 +365,10 @@ static void cd_quodlibet_start (void)
  */
 void cd_musicplayer_register_quodlibet_handler (void)
 {
+	gchar *class = cairo_dock_register_class ("io.github.quodlibet.quodlibet"); // io.github.quodlibet.QuodLibet
+	if (!class) class = cairo_dock_register_class ("quodlibet"); // fallback
+	if (!class) return; // no use if it is not installed or we cannot find it
+
 	MusicPlayerHandler *pHandler = g_new0 (MusicPlayerHandler, 1);
 	pHandler->name = "QuodLibet";
 	pHandler->get_data = cd_quodlibet_get_data;
@@ -375,8 +379,9 @@ void cd_musicplayer_register_quodlibet_handler (void)
 	pHandler->cCoverDir = NULL;  /// il me semble que QL gere les pochettes ...
 	
 	pHandler->iPlayerControls = PLAYER_PREVIOUS | PLAYER_PLAY_PAUSE | PLAYER_NEXT;
-	pHandler->appclass = "quodlibet";
-	pHandler->launch = "quodlibet";
+	pHandler->appclass = class;
+	pHandler->pAppInfo = cairo_dock_get_class_app_info (pHandler->appclass);
+	gldi_object_ref (GLDI_OBJECT (pHandler->pAppInfo));
 	pHandler->cMprisService = "net.sacredchao.QuodLibet";
 	pHandler->cMpris2Service = "org.mpris.MediaPlayer2.quodlibet";
 	pHandler->path = "/net/sacredchao/QuodLibet";

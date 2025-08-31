@@ -32,10 +32,14 @@
  */
 void cd_musicplayer_register_amarok2_handler (void)
 {
+	gchar *class = cairo_dock_register_class ("org.kde.amarok");
+	if (!class) return; // no use if it is not installed or we cannot find it
+	
 	MusicPlayerHandler *pAmarok2 = cd_mpris_new_handler ();
 	pAmarok2->cMprisService = "org.kde.amarok";
-	pAmarok2->appclass = "amarok";
-	pAmarok2->launch = "amarok";
+	pAmarok2->appclass = class;
+	pAmarok2->pAppInfo = cairo_dock_get_class_app_info (pAmarok2->appclass);
+	gldi_object_ref (GLDI_OBJECT (pAmarok2->pAppInfo));
 	pAmarok2->name = "Amarok 2";
 	pAmarok2->cMpris2Service = "org.mpris.MediaPlayer2.amarok";
 	cd_musicplayer_register_my_handler (pAmarok2);

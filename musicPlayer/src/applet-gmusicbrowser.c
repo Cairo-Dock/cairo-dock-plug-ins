@@ -33,11 +33,14 @@
  */
 void cd_musicplayer_register_gmusicbrowser_handler (void)
 {
+	gchar *class = cairo_dock_register_class ("gmusicbrowser");
+	if (!class) return; // no use if it is not installed or we cannot find it
 	MusicPlayerHandler *pHandler = cd_mpris_new_handler ();
 	pHandler->cMprisService = "org.mpris.gmusicbrowser";
 	pHandler->cMpris2Service = "org.mpris.MediaPlayer2.gmusicbrowser";
-	pHandler->appclass = "gmusicbrowser";
-	pHandler->launch = "gmusicbrowser";
+	pHandler->appclass = class;
+	pHandler->pAppInfo = cairo_dock_get_class_app_info (pHandler->appclass);
+	gldi_object_ref (GLDI_OBJECT (pHandler->pAppInfo));
 	pHandler->name = "GMusicBrowser";
 	cd_musicplayer_register_my_handler (pHandler);
 }

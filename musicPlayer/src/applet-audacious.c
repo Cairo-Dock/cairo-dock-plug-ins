@@ -411,6 +411,10 @@ static void cd_audacious_start (void)
  */
 void cd_musicplayer_register_audacious_handler (void)
 {
+	gchar *class = cairo_dock_register_class ("audacious");
+	if (!class) class = cairo_dock_register_class ("audacious2");
+	if (!class) return; // no use if it is not installed or we cannot find it
+
 	MusicPlayerHandler *pHandler = g_new0 (MusicPlayerHandler, 1);
 	pHandler->name = "Audacious";
 	pHandler->get_data = cd_audacious_get_data;
@@ -420,23 +424,9 @@ void cd_musicplayer_register_audacious_handler (void)
 	pHandler->get_cover = NULL;
 	pHandler->cCoverDir = NULL;
 
-	// TODO: to check because I think that the class was audacious2 before and not audacious...
-	/*gchar *cResult = cairo_dock_launch_command_sync ("which audacious2");
-	if (cResult != NULL && *cResult == '/')
-	{
-		cd_debug ("MusicPlayer: Audacious2");
-		pHandler->appclass = "audacious2";
-		pHandler->launch = "audacious2";
-	}
-	else
-	{
-		cd_debug ("MusicPlayer: Audacious (without 2)");
-		pHandler->appclass = "audacious"; // now it's without this '2'
-		pHandler->launch = "audacious";
-	}
-	g_free (cResult);*/
-	pHandler->appclass = "audacious";  // desktop file is audasious2.desktop, and command is audacious2, but audacious also exists, and the class is Audacious ... this is really not serious.
-	pHandler->launch = "audacious";
+	pHandler->appclass = class;
+	pHandler->pAppInfo = cairo_dock_get_class_app_info (pHandler->appclass);
+	gldi_object_ref (GLDI_OBJECT (pHandler->pAppInfo));
 	pHandler->cMprisService = "org.mpris.audacious";
 	pHandler->cMpris2Service = "org.mpris.MediaPlayer2.audacious";
 	pHandler->bSeparateAcquisition = FALSE;

@@ -333,6 +333,9 @@ static void cd_rhythmbox_start (void)
 void cd_musicplayer_register_rhythmbox_handler (void)
 {
 	cd_debug ("MP - Used RB DBus methods");
+	gchar *class = cairo_dock_register_class ("org.gnome.rhythmbox3");
+	if (!class) return; // no use if it is not installed or we cannot find it
+
 	MusicPlayerHandler *pHandler = g_new0 (MusicPlayerHandler, 1);
 	pHandler->name = "Rhythmbox";
 	pHandler->get_data = NULL;  // rien a faire vu que l'echange de donnees se fait entierement avec les proxys DBus.
@@ -341,8 +344,9 @@ void cd_musicplayer_register_rhythmbox_handler (void)
 	pHandler->control = cd_rhythmbox_control;
 	pHandler->get_cover = cd_rhythmbox_get_cover_path;
 	
-	pHandler->appclass = "rhythmbox";
-	pHandler->launch = "rhythmbox";
+	pHandler->appclass = class;
+	pHandler->pAppInfo = cairo_dock_get_class_app_info (pHandler->appclass);
+	gldi_object_ref (GLDI_OBJECT (pHandler->pAppInfo));
 	pHandler->cMprisService = "org.gnome.Rhythmbox";  // they used MPRIS from version 2.90.1~20110908 with org.mpris.MediaPlayer2.rhythmbox, but we don't care as they quickly switched to MPRIS2 in version 2.90.1~20111126
 	pHandler->cMpris2Service = "org.mpris.MediaPlayer2.rhythmbox"; // after 2.90.1~20111126 (on a previous development version, they used rhythmbox3...)
 	pHandler->path = "/org/gnome/Rhythmbox/Player"; // <= 0.13
