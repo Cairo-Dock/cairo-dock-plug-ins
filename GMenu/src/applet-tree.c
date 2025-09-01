@@ -49,7 +49,7 @@ static void _on_activate_entry (GtkWidget *menuitem, GMenuTreeEntry *entry)
 	if (gldi_wayland_manager_have_layer_shell ())
 		gtk_widget_set_tooltip_text (menuitem, NULL);
 	GDesktopAppInfo *pAppInfo = gmenu_tree_entry_get_app_info (entry);
-	cairo_dock_launch_app_info (pAppInfo);
+	gldi_launch_desktop_app_info (pAppInfo, NULL);
 }
 
 static void _on_map_entry (GtkWidget *menuitem, gpointer data)

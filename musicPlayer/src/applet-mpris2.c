@@ -765,7 +765,6 @@ void cd_musicplayer_register_mpris2_handler (void)
 	pHandler->interface2 = "org.mpris.MediaPlayer2.Player";
 	
 	pHandler->appclass = NULL;  // will be filled later.
-	pHandler->launch = NULL;  // will be filled later.
 	pHandler->iPlayerControls = PLAYER_PREVIOUS | PLAYER_PLAY_PAUSE | PLAYER_NEXT | PLAYER_STOP | PLAYER_SHUFFLE | PLAYER_REPEAT | PLAYER_ENQUEUE | PLAYER_VOLUME;
 	cd_musicplayer_register_my_handler (pHandler);
 }

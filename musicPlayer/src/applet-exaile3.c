@@ -33,11 +33,14 @@
  */
 void cd_musicplayer_register_exaile3_handler (void)
 {
+	gchar *class = cairo_dock_register_class ("exaile");
+	if (!class) return; // no use if it is not installed or we cannot find it
 	MusicPlayerHandler *pHandler = cd_mpris_new_handler ();
 	pHandler->cMprisService = "org.mpris.exaile";
 	pHandler->cMpris2Service = "org.mpris.MediaPlayer2.exaile";
-	pHandler->appclass = "exaile";  // en vrai "Exaile.py", mais le dock tronque les extensions et passe tout en minuscule.
-	pHandler->launch = "exaile";
-	pHandler->name = "Exaile 0.3";
+	pHandler->appclass = class;
+	pHandler->pAppInfo = cairo_dock_get_class_app_info (pHandler->appclass);
+	gldi_object_ref (GLDI_OBJECT (pHandler->pAppInfo));
+	pHandler->name = "Exaile";
 	cd_musicplayer_register_my_handler (pHandler);
 }

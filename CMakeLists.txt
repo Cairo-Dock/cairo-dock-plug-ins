@@ -13,9 +13,9 @@ include (GNUInstallDirs)
 
 ########### project ###############
 
-set (VERSION "3.5.99.rc7")
+set (VERSION "3.5.99.rc8")
 # can be different from VERSION, e.g. if a new version of plugins does not depend on things added to core
-set (CORE_REQUIRED_VERSION "3.5.99.rc9")
+set (CORE_REQUIRED_VERSION "3.5.99.rca")
 
 add_definitions (-std=gnu99 -Wall -Werror-implicit-function-declaration) # -Wextra -Wwrite-strings -Wuninitialized -Werror-implicit-function-declaration -Wstrict-prototypes -Wreturn-type -Wparentheses -Warray-bounds)
 if (NOT DEFINED CMAKE_BUILD_TYPE)
@@ -860,7 +860,7 @@ add_subdirectory (motion-blur)
 ############# MUSICPLAYER #################
 message (STATUS "> MusicPlayer:")
 set (GETTEXT_MUSICPLAYER ${GETTEXT_PLUGINS})
-set (VERSION_MUSICPLAYER "2.0.4")
+set (VERSION_MUSICPLAYER "2.1.0")
 set (PACKAGE_MUSICPLAYER "cd-musicPlayer")
 set (musicplayerdatadir "${pluginsdatadir}/musicPlayer")
 configure_file (${CMAKE_CURRENT_SOURCE_DIR}/musicPlayer/data/musicPlayer.conf.in ${CMAKE_CURRENT_BINARY_DIR}/musicPlayer/data/musicPlayer.conf)

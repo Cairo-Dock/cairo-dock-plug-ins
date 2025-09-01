@@ -208,6 +208,7 @@ struct _AppletData {
 	
 	GtkWidget *pLocationEntry;
 	DBusGProxy *pProxyResuming;
+	GTimeZone *tz;
 	} ;
 
 #endif

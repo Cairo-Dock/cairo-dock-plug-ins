@@ -96,8 +96,7 @@ CD_APPLET_RESET_DATA_BEGIN
 	g_free (myData.cPreviousRawTitle);
 	
 	// On s'occupe des handlers.
-	g_list_foreach (myData.pHandlers, (GFunc) cd_musicplayer_free_handler, NULL);
-	g_list_free (myData.pHandlers);
+	g_list_free_full (myData.pHandlers, cd_musicplayer_free_handler);
 	
 	// Bye bye pauvres textures opengl
 	cd_opengl_reset_opengl_datas (myApplet);

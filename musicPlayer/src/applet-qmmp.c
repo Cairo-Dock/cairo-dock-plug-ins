@@ -33,11 +33,16 @@
  */
 void cd_musicplayer_register_qmmp_handler (void)
 {
+	gchar *class = cairo_dock_register_class ("qmmp-1"); // looks weird, but this is used in the Ubuntu package at least
+	if (!class) class = cairo_dock_register_class ("qmmp"); // fallback
+	if (!class) return; // no use if it is not installed or we cannot find it
+
 	MusicPlayerHandler *pHandler = cd_mpris_new_handler ();
 	pHandler->cMprisService = "org.mpris.qmmp";
 	pHandler->cMpris2Service = "org.mpris.MediaPlayer2.qmmp";
-	pHandler->appclass = "qmmp";  // les classes sont passees en minuscule par le dock.
-	pHandler->launch = "qmmp";
+	pHandler->appclass = class;
+	pHandler->pAppInfo = cairo_dock_get_class_app_info (pHandler->appclass);
+	gldi_object_ref (GLDI_OBJECT (pHandler->pAppInfo));
 	pHandler->name = "Qmmp";
 	cd_musicplayer_register_my_handler (pHandler);
 }

@@ -48,8 +48,8 @@ static void _cd_musicplayer_show_from_systray (GtkMenuItem *menu_item, gpointer 
 	gboolean bRaised = FALSE;
 	if (myData.pCurrentHandler->raise)
 		bRaised = myData.pCurrentHandler->raise ();
-	if (! bRaised)
-		cairo_dock_launch_command (myData.pCurrentHandler->launch);
+	if (! bRaised && myData.pCurrentHandler->pAppInfo)
+		gldi_app_info_launch (myData.pCurrentHandler->pAppInfo, NULL);
 }
 static void _cd_musicplayer_quit (GtkMenuItem *menu_item, gpointer *data)
 {
@@ -57,10 +57,10 @@ static void _cd_musicplayer_quit (GtkMenuItem *menu_item, gpointer *data)
 	if (myData.pCurrentHandler->quit)
 		bQuit = myData.pCurrentHandler->quit ();
 	if (! bQuit)
-	{
-		gchar *cmd = g_strdup_printf ("killall %s", myData.pCurrentHandler->launch);
+	{ //!!! TODO
+/*		gchar *cmd = g_strdup_printf ("killall %s", myData.pCurrentHandler->launch);
 		cairo_dock_launch_command (cmd);
-		g_free (cmd);
+		g_free (cmd); */
 	}
 }
 static void _cd_musicplayer_jumpbox (GtkMenuItem *menu_item, gpointer *data) {
@@ -82,7 +82,7 @@ static void _cd_musicplayer_info (GtkMenuItem *menu_item, gpointer *data)
 }
 static void _cd_musicplayer_launch (GtkMenuItem *menu_item, gpointer *data)
 {
-	cairo_dock_launch_command (myData.pCurrentHandler->launch);
+	gldi_app_info_launch (myData.pCurrentHandler->pAppInfo, NULL);
 }
 
 static void _cd_musicplayer_choose_player (GtkMenuItem *menu_item, gpointer *data)
@@ -104,7 +104,7 @@ static void _cd_musicplayer_find_player (GtkMenuItem *menu_item, gpointer *data)
 			7000,
 			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 	}
-	else if (pHandler != myData.pCurrentHandler)
+	else if (pHandler != myData.pCurrentHandler || !strcmp (pHandler->name, "Mpris2"))
 	{
 		if (myData.pCurrentHandler != NULL)
 		{
@@ -113,8 +113,8 @@ static void _cd_musicplayer_find_player (GtkMenuItem *menu_item, gpointer *data)
 		
 		// get the name of the running player.
 		const gchar *cPlayerName;
-		if (strcmp (pHandler->name, "Mpris2") == 0)  // generic MPRIS2 handler, use the program name.
-			cPlayerName = pHandler->launch;
+		if (strcmp (pHandler->name, "Mpris2") == 0)  // generic MPRIS2 handler, use the class.
+			cPlayerName = pHandler->appclass;
 		else
 			cPlayerName = pHandler->name;
 		cd_debug ("found %s (%s)", pHandler->name, cPlayerName);
@@ -157,7 +157,7 @@ static void _choice_dialog_action (int iClickedButton, GtkWidget *pInteractiveWi
 	// set the handler with this value.
 	cd_musicplayer_set_current_handler (myConfig.cMusicPlayer);
 	// launch it, if it's already running, it's likely to have no effect
-	cairo_dock_launch_command (myData.pCurrentHandler->launch);
+	gldi_app_info_launch (myData.pCurrentHandler->pAppInfo, NULL);
 }
 static void _show_players_list_dialog (void)
 {
@@ -181,8 +181,8 @@ static void _show_players_list_dialog (void)
 	if (pRunningHandler != NULL)
 	{
 		GtkWidget *pEntry = gtk_bin_get_child (GTK_BIN (pComboBox));
-		if (strcmp (pRunningHandler->name, "Mpris2") == 0)  // generic MPRIS2 handler, use the program name.
-			gtk_entry_set_text (GTK_ENTRY (pEntry), pRunningHandler->launch);
+		if (strcmp (pRunningHandler->name, "Mpris2") == 0)  // generic MPRIS2 handler, use the app class.
+			gtk_entry_set_text (GTK_ENTRY (pEntry), pRunningHandler->appclass);
 		else
 			gtk_entry_set_text (GTK_ENTRY (pEntry), pRunningHandler->name);
 	}
@@ -221,8 +221,8 @@ CD_APPLET_ON_CLICK_BEGIN
 				{
 					if (myIcon->cClass != NULL)
 						gldi_icon_launch_command (myIcon);
-					else if (myData.pCurrentHandler->launch)
-						cairo_dock_launch_command (myData.pCurrentHandler->launch);
+					else if (myData.pCurrentHandler->pAppInfo)
+						gldi_app_info_launch (myData.pCurrentHandler->pAppInfo, NULL);
 				}
 			}
 			else if (myData.mouseOnButton2)
@@ -238,8 +238,8 @@ CD_APPLET_ON_CLICK_BEGIN
 					else if (myIcon->pAppli != NULL)
 						gldi_window_show (myIcon->pAppli);
 				}
-				else if (myData.pCurrentHandler->launch != NULL)
-					cairo_dock_launch_command (myData.pCurrentHandler->launch);
+				else if (myData.pCurrentHandler->pAppInfo)
+					gldi_app_info_launch (myData.pCurrentHandler->pAppInfo, NULL);
 			}
 			else
 			{
@@ -249,8 +249,8 @@ CD_APPLET_ON_CLICK_BEGIN
 				{
 					if (myIcon->cClass != NULL)
 						gldi_icon_launch_command (myIcon);
-					else if (myData.pCurrentHandler->launch)
-						cairo_dock_launch_command (myData.pCurrentHandler->launch);
+					else if (myData.pCurrentHandler->pAppInfo)
+						gldi_app_info_launch (myData.pCurrentHandler->pAppInfo, NULL);
 				}
 			}
 		}
@@ -278,8 +278,8 @@ CD_APPLET_ON_CLICK_BEGIN
 			{
 				if (myIcon->cClass != NULL)
 					gldi_icon_launch_command (myIcon);
-				else if (myData.pCurrentHandler->launch)
-					cairo_dock_launch_command (myData.pCurrentHandler->launch);
+				else if (myData.pCurrentHandler->pAppInfo)
+					gldi_app_info_launch (myData.pCurrentHandler->pAppInfo, NULL);
 			}
 		}
 	}

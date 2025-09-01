@@ -33,10 +33,14 @@
  */
 void cd_musicplayer_register_clementine_handler (void)
 {
+	// note: actual name is org.clementine_player.Clementine, but search is in lower case
+	gchar *class = cairo_dock_register_class ("org.clementine_player.clementine");
+	if (!class) return; // no use if it is not installed or we cannot find it
 	MusicPlayerHandler *pClementine = cd_mpris_new_handler ();
 	pClementine->cMprisService = "org.mpris.clementine";
-	pClementine->appclass = "clementine";  // les classes sont passees en minuscule par le dock.
-	pClementine->launch = "clementine";
+	pClementine->appclass = class;
+	pClementine->pAppInfo = cairo_dock_get_class_app_info (pClementine->appclass);
+	gldi_object_ref (GLDI_OBJECT (pClementine->pAppInfo));
 	pClementine->name = "Clementine";
 	pClementine->cMpris2Service = "org.mpris.MediaPlayer2.clementine";
 	cd_musicplayer_register_my_handler (pClementine);

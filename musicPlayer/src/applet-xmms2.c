@@ -35,8 +35,8 @@ void cd_musicplayer_register_xmms2_handler (void)
 	MusicPlayerHandler *pHandler = cd_mpris_new_handler ();
 	pHandler->cMprisService = "org.xmms.xmms2";  /// trouver le nom ...
 	pHandler->cMpris2Service = "org.mpris.MediaPlayer2.xmms2";
-	pHandler->appclass = "xmms2";  /// idem...
-	pHandler->launch = "xmms2";  /// idem...
+	pHandler->appclass = g_strdup ("xmms2");  /// not relevant (no GUI)
+	pHandler->pAppInfo = gldi_app_info_new_from_commandline ("xmms2-launcher", "XMMS 2", NULL, FALSE); // TODO: check if xmms2 is installed
 	pHandler->name = "XMMS 2";
 	cd_musicplayer_register_my_handler (pHandler);
 }

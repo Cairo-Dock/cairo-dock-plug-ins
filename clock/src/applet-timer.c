@@ -137,17 +137,28 @@ static inline void _get_current_time (time_t epoch, GldiModuleInstance *myApplet
 {
 	if (myConfig.cLocation != NULL)
 	{
-		g_setenv ("TZ", myConfig.cLocation, TRUE);
-		tzset ();
+		if (!myData.tz)
+		{
+			myData.tz = g_time_zone_new_identifier (myConfig.cLocation);
+			if (!myData.tz)
+				cd_warning ("cannot parse time zone identifier: %s\n", myConfig.cLocation);
+		}
 	}
-	localtime_r (&epoch, &myData.currentTime);
-	if (myConfig.cLocation != NULL)
-	{
-		if (myData.cSystemLocation != NULL)
-			g_setenv ("TZ", myData.cSystemLocation, TRUE);
-		else
-			g_unsetenv ("TZ");
-	}
+	
+	GDateTime *now = myData.tz ? g_date_time_new_now (myData.tz) : g_date_time_new_now_local ();
+	
+	myData.currentTime.tm_sec  = g_date_time_get_second (now);
+	myData.currentTime.tm_min  = g_date_time_get_minute (now);
+	myData.currentTime.tm_hour = g_date_time_get_hour (now);
+	myData.currentTime.tm_mday = g_date_time_get_day_of_month (now);
+	myData.currentTime.tm_mon  = g_date_time_get_month (now);
+	myData.currentTime.tm_year = g_date_time_get_year (now);
+	myData.currentTime.tm_wday = g_date_time_get_day_of_week (now);
+	if (myData.currentTime.tm_wday == 7) myData.currentTime.tm_wday = 0; // Sunday
+	myData.currentTime.tm_isdst = g_date_time_is_daylight_savings (now);
+	// not used: tm_yday, tm_gmtoff, tm_zone, we leave these unset
+	
+	g_date_time_unref (now);
 }
 
 void cd_clock_init_time (GldiModuleInstance *myApplet)

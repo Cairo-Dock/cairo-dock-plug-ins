@@ -50,7 +50,7 @@ static void _cd_dustbin_delete_trash (GtkMenuItem *menu_item, GldiModuleInstance
 
 static void _cd_dustbin_show_trash (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
-	cairo_dock_fm_launch_uri ("trash:/"/**myData.cDustbinPath*/);  // on force l'utilisation de trash:/ ici, car on sait que tous les backends sauront l'ouvrir.
+	cairo_dock_fm_launch_uri ("trash:///"/**myData.cDustbinPath*/);  // on force l'utilisation de trash:/ ici, car on sait que tous les backends sauront l'ouvrir.
 }
 
 

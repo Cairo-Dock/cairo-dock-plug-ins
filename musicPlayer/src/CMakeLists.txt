@@ -16,17 +16,13 @@ SET(cd-musicPlayer_LIB_SRCS
 	applet-mpris.c			applet-mpris.h
 	applet-mpris2.c			applet-mpris2.h
 	applet-amarok2.c			applet-amarok2.h
-	applet-banshee.c			applet-banshee.h
 	applet-clementine.c		applet-clementine.h
-	applet-exaile.c			applet-exaile.h
 	applet-exaile3.c			applet-exaile3.h
 	applet-gmusicbrowser.c		applet-gmusicbrowser.h
 	applet-guayadeque.c		applet-guayadeque.h
-	applet-listen.c			applet-listen.h
 	applet-qmmp.c			applet-qmmp.h
 	applet-quodlibet.c		applet-quodlibet.h
 	applet-rhythmbox.c		applet-rhythmbox.h
-	applet-songbird.c			applet-songbird.h
 	applet-audacious.c		applet-audacious.h
 	applet-xmms2.c			applet-xmms2.h
 )

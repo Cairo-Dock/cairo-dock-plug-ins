@@ -265,8 +265,8 @@ static gboolean _on_click_module_tree_view (GtkTreeView *pTreeView, GdkEventButt
 			if (bIsAppli)  // an appli -> run it
 			{
 				// in this case, we stored the class key from our registry (i.e. cairo-dock-class-manager)
-				GDesktopAppInfo *app_info = cairo_dock_get_class_app_info (cUri + 14);
-				if (app_info) cairo_dock_launch_app_info (app_info);
+				GldiAppInfo *app_info = cairo_dock_get_class_app_info (cUri + 14);
+				if (app_info) gldi_app_info_launch (app_info, NULL);
 			}
 			else  // a file -> open it
 			{
