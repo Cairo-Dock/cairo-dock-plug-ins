@@ -156,7 +156,7 @@ static void _on_find_related_events (ZeitgeistResultSet *pEvents, Icon *pIcon)
 			
 			struct _OpenFileData *data = g_new0 (struct _OpenFileData, 1);
 			data->app = pIcon->pAppInfo; // note: if we got here, pIcon->pAppInfo != NULL
-			gldi_object_ref (data->app);
+			gldi_object_ref (GLDI_OBJECT (data->app));
 			data->cURI = g_strdup (cEventURI);
 			g_free (cPath);
 			
