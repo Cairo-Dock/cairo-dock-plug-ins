@@ -1797,6 +1797,7 @@ void cd_rendering_free_slide_data (CairoDock *pDock)
 	if (pData != NULL)
 	{
 		gldi_object_remove_notification (CAIRO_CONTAINER (pDock), NOTIFICATION_SCROLL_ICON, (GldiNotificationFunc) _cd_slide_on_scroll, NULL);
+		gldi_object_remove_notification (CAIRO_CONTAINER (pDock), NOTIFICATION_SMOOTH_SCROLL_ICON, (GldiNotificationFunc) _cd_slide_on_smooth_scroll, NULL);
 		gldi_object_remove_notification (CAIRO_CONTAINER (pDock), NOTIFICATION_CLICK_ICON, (GldiNotificationFunc) _cd_slide_on_click, NULL);
 		gldi_object_remove_notification (CAIRO_CONTAINER (pDock), NOTIFICATION_MOUSE_MOVED, (GldiNotificationFunc) _cd_slide_on_mouse_moved, NULL);
 		g_signal_handler_disconnect (pDock->container.pWidget, pData->iSidPressEvent);
