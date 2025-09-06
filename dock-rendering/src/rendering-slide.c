@@ -114,14 +114,25 @@ static gboolean _add_scroll (CairoDock *pDock, int iDeltaOffsetY)
 	return TRUE;
 }
 
-static gboolean _cd_slide_on_scroll (gpointer data, Icon *pClickedIcon, CairoDock *pDock, int iDirection)
+static gboolean _cd_slide_on_scroll (gpointer data, Icon *pClickedIcon, CairoDock *pDock, int iDirection, gboolean bEmulated)
 {
+	if (bEmulated) return GLDI_NOTIFICATION_INTERCEPT; // we already consumed the corresponding smooth scroll event
 	CDSlideData *pData = pDock->pRendererData;
 	g_return_val_if_fail (pData != NULL, GLDI_NOTIFICATION_LET_PASS);
 	if (pData->iDeltaHeight == 0)
 		return GLDI_NOTIFICATION_LET_PASS;
 	
 	gboolean bScrolled = _add_scroll (pDock, iDirection == 1 ? pDock->iMaxIconHeight : - pDock->iMaxIconHeight);
+	return (bScrolled ? GLDI_NOTIFICATION_INTERCEPT : GLDI_NOTIFICATION_LET_PASS);
+}
+static gboolean _cd_slide_on_smooth_scroll (gpointer data, Icon *pClickedIcon, CairoDock *pDock, gdouble delta_x, gdouble delta_y)
+{
+	CDSlideData *pData = pDock->pRendererData;
+	g_return_val_if_fail (pData != NULL, GLDI_NOTIFICATION_LET_PASS);
+	if (pData->iDeltaHeight == 0)
+		return GLDI_NOTIFICATION_LET_PASS;
+	
+	gboolean bScrolled = _add_scroll (pDock, (gint) (delta_y * pDock->iMaxIconHeight));
 	return (bScrolled ? GLDI_NOTIFICATION_INTERCEPT : GLDI_NOTIFICATION_LET_PASS);
 }
 static gboolean _cd_slide_on_click (gpointer data, Icon *pClickedIcon, CairoDock *pDock, guint iButtonState)
@@ -379,6 +390,7 @@ static void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
 		pData = g_new0 (CDSlideData, 1);
 		pDock->pRendererData = pData;
 		gldi_object_register_notification (CAIRO_CONTAINER (pDock), NOTIFICATION_SCROLL_ICON, (GldiNotificationFunc) _cd_slide_on_scroll, GLDI_RUN_AFTER, NULL);
+		gldi_object_register_notification (CAIRO_CONTAINER (pDock), NOTIFICATION_SMOOTH_SCROLL_ICON, (GldiNotificationFunc) _cd_slide_on_smooth_scroll, GLDI_RUN_AFTER, NULL);
 		gldi_object_register_notification (CAIRO_CONTAINER (pDock), NOTIFICATION_CLICK_ICON, (GldiNotificationFunc) _cd_slide_on_click, GLDI_RUN_FIRST, NULL);
 		gldi_object_register_notification (CAIRO_CONTAINER (pDock), NOTIFICATION_MOUSE_MOVED, (GldiNotificationFunc) _cd_slide_on_mouse_moved, GLDI_RUN_AFTER, NULL);
 		pData->iSidPressEvent = g_signal_connect (G_OBJECT (pDock->container.pWidget),
@@ -1637,21 +1649,25 @@ static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 	// on dessine les icones, l'icone pointee en dernier.
 	if (pData->iDeltaHeight != 0) // on fait un clip pour les icones qui debordent.
 	{
+		// glScissor works in unscaled window coordinates, so we need to scale the area given to it
+		GdkWindow *gdkwindow = gldi_container_get_gdk_window (CAIRO_CONTAINER (pDock));
+		int scale = gdkwindow ? gdk_window_get_scale_factor (gdkwindow) : 1;
 		int h = my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth;
 		glEnable (GL_SCISSOR_TEST);
 		if (pDock->container.bIsHorizontal)
 		{
 			glScissor (0,
-				(pDock->container.bDirectionUp ? h : my_diapo_simple_lineWidth),  // lower left corner of the scissor box.
-				pDock->container.iWidth,
-				pDock->container.iHeight - h - my_diapo_simple_lineWidth);
+				scale * (pDock->container.bDirectionUp ? h : my_diapo_simple_lineWidth),  // lower left corner of the scissor box.
+				scale * pDock->container.iWidth,
+				scale * (pDock->container.iHeight - h - my_diapo_simple_lineWidth));
 		}
 		else
 		{
-			glScissor ((!pDock->container.bDirectionUp ? h : my_diapo_simple_lineWidth),  // lower left corner of the scissor box.
-				my_diapo_simple_lineWidth,
-				pDock->container.iHeight - h - my_diapo_simple_lineWidth,
-				pDock->container.iWidth);
+			glScissor (
+				scale * (!pDock->container.bDirectionUp ? h : my_diapo_simple_lineWidth),  // lower left corner of the scissor box.
+				scale * my_diapo_simple_lineWidth,
+				scale * (pDock->container.iHeight - h - my_diapo_simple_lineWidth),
+				scale * pDock->container.iWidth);
 		}
 	}
 	
@@ -1781,6 +1797,7 @@ void cd_rendering_free_slide_data (CairoDock *pDock)
 	if (pData != NULL)
 	{
 		gldi_object_remove_notification (CAIRO_CONTAINER (pDock), NOTIFICATION_SCROLL_ICON, (GldiNotificationFunc) _cd_slide_on_scroll, NULL);
+		gldi_object_remove_notification (CAIRO_CONTAINER (pDock), NOTIFICATION_SMOOTH_SCROLL_ICON, (GldiNotificationFunc) _cd_slide_on_smooth_scroll, NULL);
 		gldi_object_remove_notification (CAIRO_CONTAINER (pDock), NOTIFICATION_CLICK_ICON, (GldiNotificationFunc) _cd_slide_on_click, NULL);
 		gldi_object_remove_notification (CAIRO_CONTAINER (pDock), NOTIFICATION_MOUSE_MOVED, (GldiNotificationFunc) _cd_slide_on_mouse_moved, NULL);
 		g_signal_handler_disconnect (pDock->container.pWidget, pData->iSidPressEvent);
