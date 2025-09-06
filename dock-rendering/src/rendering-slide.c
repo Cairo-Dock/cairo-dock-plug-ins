@@ -1637,21 +1637,25 @@ static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 	// on dessine les icones, l'icone pointee en dernier.
 	if (pData->iDeltaHeight != 0) // on fait un clip pour les icones qui debordent.
 	{
+		// glScissor works in unscaled window coordinates, so we need to scale the area given to it
+		GdkWindow *gdkwindow = gldi_container_get_gdk_window (CAIRO_CONTAINER (pDock));
+		int scale = gdkwindow ? gdk_window_get_scale_factor (gdkwindow) : 1;
 		int h = my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth;
 		glEnable (GL_SCISSOR_TEST);
 		if (pDock->container.bIsHorizontal)
 		{
 			glScissor (0,
-				(pDock->container.bDirectionUp ? h : my_diapo_simple_lineWidth),  // lower left corner of the scissor box.
-				pDock->container.iWidth,
-				pDock->container.iHeight - h - my_diapo_simple_lineWidth);
+				scale * (pDock->container.bDirectionUp ? h : my_diapo_simple_lineWidth),  // lower left corner of the scissor box.
+				scale * pDock->container.iWidth,
+				scale * (pDock->container.iHeight - h - my_diapo_simple_lineWidth));
 		}
 		else
 		{
-			glScissor ((!pDock->container.bDirectionUp ? h : my_diapo_simple_lineWidth),  // lower left corner of the scissor box.
-				my_diapo_simple_lineWidth,
-				pDock->container.iHeight - h - my_diapo_simple_lineWidth,
-				pDock->container.iWidth);
+			glScissor (
+				scale * (!pDock->container.bDirectionUp ? h : my_diapo_simple_lineWidth),  // lower left corner of the scissor box.
+				scale * my_diapo_simple_lineWidth,
+				scale * (pDock->container.iHeight - h - my_diapo_simple_lineWidth),
+				scale * pDock->container.iWidth);
 		}
 	}
 	
