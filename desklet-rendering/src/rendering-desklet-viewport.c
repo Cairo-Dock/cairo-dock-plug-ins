@@ -180,14 +180,25 @@ static gboolean _add_scroll (CairoDesklet *pDesklet, int iDeltaOffsetY)
 	return TRUE;
 }
 
-static gboolean _cd_slide_on_scroll (gpointer data, Icon *pClickedIcon, CairoDesklet *pDesklet, int iDirection)
+static gboolean _cd_slide_on_scroll (gpointer data, Icon *pClickedIcon, CairoDesklet *pDesklet, int iDirection, gboolean bEmulated)
 {
+	if (bEmulated) return GLDI_NOTIFICATION_INTERCEPT; // we already consumed the corresponding smooth scroll event
 	CDViewportParameters *pData = pDesklet->pRendererData;
 	g_return_val_if_fail (pData != NULL, GLDI_NOTIFICATION_LET_PASS);
 	if (pData->iDeltaHeight == 0)
 		return GLDI_NOTIFICATION_LET_PASS;
 	
 	gboolean bScrolled = _add_scroll (pDesklet, iDirection == 1 ? pData->iIconSize : - pData->iIconSize);
+	return (bScrolled ? GLDI_NOTIFICATION_INTERCEPT : GLDI_NOTIFICATION_LET_PASS);
+}
+static gboolean _cd_slide_on_smooth_scroll (gpointer data, Icon *pClickedIcon, CairoDesklet *pDesklet, gdouble delta_x, gdouble delta_y)
+{
+	CDViewportParameters *pData = pDesklet->pRendererData;
+	g_return_val_if_fail (pData != NULL, GLDI_NOTIFICATION_LET_PASS);
+	if (pData->iDeltaHeight == 0)
+		return GLDI_NOTIFICATION_LET_PASS;
+	
+	gboolean bScrolled = _add_scroll (pDesklet, (gint) (delta_y * pData->iIconSize));
 	return (bScrolled ? GLDI_NOTIFICATION_INTERCEPT : GLDI_NOTIFICATION_LET_PASS);
 }
 
@@ -290,6 +301,7 @@ static CDViewportParameters *configure (CairoDesklet *pDesklet, gpointer *pConfi
 	pViewport->color_grip[3] = 1.;
 	
 	gldi_object_register_notification (CAIRO_CONTAINER (pDesklet), NOTIFICATION_SCROLL_ICON, (GldiNotificationFunc) _cd_slide_on_scroll, GLDI_RUN_AFTER, NULL);
+	gldi_object_register_notification (CAIRO_CONTAINER (pDesklet), NOTIFICATION_SMOOTH_SCROLL_ICON, (GldiNotificationFunc) _cd_slide_on_smooth_scroll, GLDI_RUN_AFTER, NULL);
 	gldi_object_register_notification (CAIRO_CONTAINER (pDesklet), NOTIFICATION_MOUSE_MOVED, (GldiNotificationFunc) _cd_slide_on_mouse_moved, GLDI_RUN_FIRST, NULL);
 	gldi_object_register_notification (CAIRO_CONTAINER (pDesklet), NOTIFICATION_ENTER_ICON, (GldiNotificationFunc) on_enter_icon_slide, GLDI_RUN_FIRST, NULL);
 	pViewport->iSidPressEvent = g_signal_connect (G_OBJECT (pDesklet->container.pWidget),
@@ -312,6 +324,7 @@ static void free_data (CairoDesklet *pDesklet)
 		return ;
 	
 	gldi_object_remove_notification (CAIRO_CONTAINER (pDesklet), NOTIFICATION_SCROLL_ICON, (GldiNotificationFunc) _cd_slide_on_scroll, NULL);
+	gldi_object_remove_notification (CAIRO_CONTAINER (pDesklet), NOTIFICATION_SMOOTH_SCROLL_ICON, (GldiNotificationFunc) _cd_slide_on_smooth_scroll, NULL);
 	gldi_object_remove_notification (CAIRO_CONTAINER (pDesklet), NOTIFICATION_MOUSE_MOVED, (GldiNotificationFunc) _cd_slide_on_mouse_moved, NULL);
 	gldi_object_remove_notification (CAIRO_CONTAINER (pDesklet), NOTIFICATION_ENTER_ICON, (GldiNotificationFunc) on_enter_icon_slide, NULL);
 	g_signal_handler_disconnect (pDesklet->container.pWidget, pViewport->iSidPressEvent);
