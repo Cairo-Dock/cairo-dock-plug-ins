@@ -21,7 +21,6 @@
 
 #include "cairo-dock-gio-vfs.h"
 
-#include "applet-thunar-vfs.h"
 #include "applet-utils.h"
 #include "applet-init.h"
 
@@ -34,45 +33,16 @@ CD_APPLET_DEFINE2_BEGIN ("xfce integration",
 	"Tofe (Christophe Chapuis")
 	if (g_iDesktopEnv == CAIRO_DOCK_XFCE)
 	{
-		CairoDockDesktopEnvBackend *pVFSBackend = NULL;
-		GVfs *vfs = cairo_dock_gio_vfs_init (TRUE);
-		// not sure if this check is necessary, moved this here from cairo-dock-gio-vfs.c
-		if (vfs && g_vfs_is_active (vfs))
-		{
-			pVFSBackend = g_new0 (CairoDockDesktopEnvBackend, 1);
-
-			cairo_dock_gio_vfs_fill_backend(pVFSBackend);
-		}
-#ifdef HAVE_THUNAR
-		else if (init_vfs_backend ())
-		{
-			pVFSBackend = g_new0 (CairoDockDesktopEnvBackend, 1);
-			pVFSBackend->get_file_info = vfs_backend_get_file_info;
-			pVFSBackend->get_file_properties = vfs_backend_get_file_properties;
-			pVFSBackend->list_directory = vfs_backend_list_directory;
-			pVFSBackend->launch_uri = vfs_backend_launch_uri;
-			pVFSBackend->is_mounted = vfs_backend_is_mounted;
-			pVFSBackend->mount = vfs_backend_mount;
-			pVFSBackend->unmount = vfs_backend_unmount;
-			pVFSBackend->add_monitor = vfs_backend_add_monitor;
-			pVFSBackend->remove_monitor = vfs_backend_remove_monitor;
-			pVFSBackend->delete_file = vfs_backend_delete_file;
-			pVFSBackend->rename = vfs_backend_rename_file;
-			pVFSBackend->move = vfs_backend_move_file;
-			pVFSBackend->get_trash_path = vfs_backend_get_trash_path;
-			pVFSBackend->get_desktop_path = vfs_backend_get_desktop_path;
-		}
-#endif
-		if(pVFSBackend != NULL)
-		{
-			pVFSBackend->logout = env_backend_logout;
-			pVFSBackend->shutdown = env_backend_shutdown;
-			pVFSBackend->reboot = env_backend_shutdown;
-			pVFSBackend->lock_screen = env_backend_lock_screen;
-			pVFSBackend->setup_time = env_backend_setup_time;
-			pVFSBackend->show_system_monitor = env_backend_show_system_monitor;
-			cairo_dock_fm_register_vfs_backend (pVFSBackend);
-		}
+		CairoDockDesktopEnvBackend *pVFSBackend = g_new0 (CairoDockDesktopEnvBackend, 1);
+		cairo_dock_gio_vfs_init (TRUE);
+		cairo_dock_gio_vfs_fill_backend (pVFSBackend);
+		pVFSBackend->logout = env_backend_logout;
+		pVFSBackend->shutdown = env_backend_shutdown;
+		pVFSBackend->reboot = env_backend_shutdown;
+		pVFSBackend->lock_screen = env_backend_lock_screen;
+		pVFSBackend->setup_time = env_backend_setup_time;
+		pVFSBackend->show_system_monitor = env_backend_show_system_monitor;
+		cairo_dock_fm_register_vfs_backend (pVFSBackend);
 	}
 	else
 		return FALSE;
