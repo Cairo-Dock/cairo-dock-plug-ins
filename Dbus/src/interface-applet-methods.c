@@ -469,14 +469,10 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 					{
 						GtkWidget *pExtendedWidget = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
 						GtkWidget *label = gtk_label_new (cMinLabel);
-						GtkWidget *pAlign = gtk_alignment_new (1., 1., 0., 0.);
-						gtk_container_add (GTK_CONTAINER (pAlign), label);
-						gtk_box_pack_start (GTK_BOX (pExtendedWidget), pAlign, FALSE, FALSE, 0);
+						gtk_box_pack_start (GTK_BOX (pExtendedWidget), label, FALSE, FALSE, 0);
 						gtk_box_pack_start (GTK_BOX (pExtendedWidget), pScale, FALSE, FALSE, 0);
 						label = gtk_label_new (cMaxLabel);
-						pAlign = gtk_alignment_new (1., 1., 0., 0.);
-						gtk_container_add (GTK_CONTAINER (pAlign), label);
-						gtk_box_pack_start (GTK_BOX (pExtendedWidget), pAlign, FALSE, FALSE, 0);
+						gtk_box_pack_start (GTK_BOX (pExtendedWidget), label, FALSE, FALSE, 0);
 						pInteractiveWidget = pExtendedWidget;
 					}
 					else

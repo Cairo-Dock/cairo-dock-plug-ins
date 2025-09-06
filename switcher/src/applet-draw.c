@@ -634,7 +634,7 @@ void cd_switcher_build_windows_list (GtkWidget *pMenu)
 			pMenuItem = gldi_menu_add_item (pMenu, sDesktopName->str, NULL, G_CALLBACK (_show_desktop), GINT_TO_POINTER (k));
 			GtkWidget *pLabel = gtk_bin_get_child (GTK_BIN(pMenuItem));
 			gtk_label_set_use_markup (GTK_LABEL (pLabel), TRUE);
-			gtk_misc_set_alignment (GTK_MISC (pLabel), .5, .5);
+			gtk_label_set_xalign (GTK_LABEL (pLabel), 0.5); // not sure if this is necessary
 			
 			pMenuItem = gtk_separator_menu_item_new ();
 			gtk_menu_shell_append(GTK_MENU_SHELL (pMenu), pMenuItem);
