@@ -57,14 +57,10 @@ static gboolean _task_warning (CDClockTask *pTask, const gchar *cMessage)
 
 	GtkWidget *pExtendedWidget = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
 	GtkWidget *label = gtk_label_new (D_("1mn"));
-	GtkWidget *pAlign = gtk_alignment_new (1., 1., 0., 0.);
-	gtk_container_add (GTK_CONTAINER (pAlign), label);
-	gtk_box_pack_start (GTK_BOX (pExtendedWidget), pAlign, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (pExtendedWidget), label, FALSE, FALSE, 0);
 	gtk_box_pack_start (GTK_BOX (pExtendedWidget), pScale, FALSE, FALSE, 0);
 	label = gtk_label_new (D_("1h"));
-	pAlign = gtk_alignment_new (1., 1., 0., 0.);
-	gtk_container_add (GTK_CONTAINER (pAlign), label);
-	gtk_box_pack_start (GTK_BOX (pExtendedWidget), pAlign, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (pExtendedWidget), label, FALSE, FALSE, 0);
 	
 	if (pTask->pWarningDialog) gldi_object_unref (GLDI_OBJECT(pTask->pWarningDialog));
 	

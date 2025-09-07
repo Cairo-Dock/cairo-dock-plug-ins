@@ -321,13 +321,11 @@ void term_apply_settings (void)
 
 static void _create_terminal (GtkWidget *vterm)
 {
-	pid_t pid; 
-	#if VTE_CHECK_VERSION(0,26,0)
 	const gchar *argv[] = {g_getenv ("SHELL"), NULL};
-	#if VTE_CHECK_VERSION(0,38,0)
+	#if VTE_CHECK_VERSION(0,48,0)
+	vte_terminal_spawn_async (
+	#else 
 	vte_terminal_spawn_sync (
-	#else
-	vte_terminal_fork_command_full (
 	#endif
 		VTE_TERMINAL(vterm),
 		VTE_PTY_NO_LASTLOG | VTE_PTY_NO_UTMP | VTE_PTY_NO_WTMP,
@@ -337,21 +335,17 @@ static void _create_terminal (GtkWidget *vterm)
 		0,  // GSpawnFlags spawn_flags
 		NULL,  // GSpawnChildSetupFunc child_setup
 		NULL,  // gpointer child_setup_data
-		&pid,
-		#if VTE_CHECK_VERSION(0,38,0)
-		NULL, // cancellable
+		#if VTE_CHECK_VERSION(0,48,0)
+		NULL,  // GDestroyNotify child_setup_data_destroy
+		-1, // timeout
+		#else
+		NULL, // pid
 		#endif
-		NULL);
-	#else
-	pid = vte_terminal_fork_command (VTE_TERMINAL(vterm),
-		NULL,
-		NULL,
-		NULL,
-		"~/",
-		FALSE,
-		FALSE,
-		FALSE);
-	#endif
+		NULL, // cancellable
+		#if VTE_CHECK_VERSION(0,48,0)
+		NULL, // VteTerminalSpawnAsyncCallback
+		#endif
+		NULL); // user_data
 }
 
 static void on_terminal_child_exited(VteTerminal *vterm,
@@ -382,11 +376,15 @@ static void on_terminal_child_exited(VteTerminal *vterm,
 
 static void _terminal_copy (GtkMenuItem *menu_item, GtkWidget *data)
 {
-  vte_terminal_copy_clipboard(VTE_TERMINAL(data));
+#if VTE_CHECK_VERSION(0,50,0)
+	vte_terminal_copy_clipboard_format (VTE_TERMINAL (data), VTE_FORMAT_TEXT);
+#else
+	vte_terminal_copy_clipboard (VTE_TERMINAL (data));
+#endif
 }
 static void _terminal_paste (GtkMenuItem *menu_item, GtkWidget *data)
 {
-  vte_terminal_paste_clipboard(VTE_TERMINAL(data));
+	vte_terminal_paste_clipboard (VTE_TERMINAL (data));
 }
 
 static void on_new_tab (GtkMenuItem *menu_item, G_GNUC_UNUSED gpointer data)
