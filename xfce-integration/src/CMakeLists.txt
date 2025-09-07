@@ -4,7 +4,6 @@
 SET(cd_xfce-integration_LIB_SRCS
 	applet-init.c
 	applet-init.h
-	applet-thunar-vfs.h
 	applet-utils.c
 	applet-utils.h
 )
@@ -12,14 +11,6 @@ if(${XFCE_INTEGRATION_GVFS_FOUND})
 	SET (XFCE_INTEGRATION_INCLUDE_DIRS ${XFCE_INTEGRATION_GVFS_INCLUDE_DIRS})
 	SET (XFCE_INTEGRATION_LIBRARY_DIRS ${XFCE_INTEGRATION_GVFS_LIBRARY_DIRS})
 	SET (XFCE_INTEGRATION_LIBRARIES ${XFCE_INTEGRATION_GVFS_LIBRARIES})
-	MESSAGE(STATUS "  GVFS found: source file applet-thunar-vfs.c NOT included for compilation.")
-else()
-	LIST(APPEND cd_xfce-integration_LIB_SRCS applet-thunar-vfs.c)
-	add_definitions (-DHAVE_THUNAR="1")
-	SET (XFCE_INTEGRATION_INCLUDE_DIRS ${XFCE_INTEGRATION_THUNAR_INCLUDE_DIRS})
-	SET (XFCE_INTEGRATION_LIBRARY_DIRS ${XFCE_INTEGRATION_THUNAR_LIBRARY_DIRS})
-	SET (XFCE_INTEGRATION_LIBRARIES ${XFCE_INTEGRATION_THUNAR_LIBRARIES})
-	MESSAGE(STATUS "  GVFS NOT found: source file applet-thunar-vfs.c included for compilation.")
 endif()
 
 add_library(${PACKAGE_XFCE_INTEGRATION} SHARED ${cd_xfce-integration_LIB_SRCS})
