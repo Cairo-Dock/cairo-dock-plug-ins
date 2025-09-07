@@ -32,7 +32,7 @@ gboolean cd_dbus_applet_emit_on_click_icon (gpointer data, Icon *pClickedIcon, G
 
 gboolean cd_dbus_applet_emit_on_middle_click_icon (gpointer data, Icon *pClickedIcon, GldiContainer *pClickedContainer);
 
-gboolean cd_dbus_applet_emit_on_scroll_icon (gpointer data, Icon *pClickedIcon, GldiContainer *pClickedContainer, int iDirection);
+gboolean cd_dbus_applet_emit_on_scroll_icon (gpointer data, Icon *pClickedIcon, GldiContainer *pClickedContainer, int iDirection, gboolean);
 
 gboolean cd_dbus_applet_emit_on_build_menu (gpointer data, Icon *pClickedIcon, GldiContainer *pClickedContainer, GtkWidget *pAppletMenu);
 
