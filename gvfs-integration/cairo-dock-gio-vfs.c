@@ -673,6 +673,26 @@ static gsize cairo_dock_gio_vfs_measure_directory (const gchar *cBaseURI, gint i
 }
 
 
+/***********************************************************************
+ * launch_uri () and helpers -- this function tries to find the default
+ * app to open an URI using the GAppInfo functions.
+ * To ensure the dock stays responsive, we try to use the async version
+ * of these functions if they are available (GLib >= 2.74).
+ * However, this complicates the code somewhat as we have two paths and
+ * also have to define the callbacks for the async functions.
+ * 
+ * We do the search in three steps:
+ *  1. We look at the URI scheme, using g_app_info_get_default_for_uri_scheme () / 
+ * 		g_app_info_get_default_for_uri_scheme_async ()
+ *  2. If no app is found, we try g_app_info_get_default_for_type () /
+ * 		g_app_info_get_default_for_type_async ()
+ *  3. If still no match, we use g_app_info_get_all_for_type ()
+ * 		(this does not have an async version, but by this time, all
+ * 		relevant information should be cached in Gio anyway).
+ * Note: we do not have proper error checking, only whether we got a valid
+ * GDesktopAppInfo and we could register a GldiAppInfo from it.
+ */
+
 static gchar *_cd_find_target_uri (const gchar *cBaseURI)
 {
 	GError *erreur = NULL;
@@ -710,55 +730,14 @@ static gboolean _try_launch_app (GAppInfo *pAppInfo, const gchar *const *vURIs)
 	return FALSE;
 }
 
-static void cairo_dock_gio_vfs_launch_uri (const gchar *cURI)
+static void _got_default_for_type (GAppInfo *app, const gchar *cURI, const gchar *cMimeType)
 {
-	g_return_if_fail (cURI != NULL);
-	
-	// in case it's a mount point, take the URI that can actually be launched. 
-	
-	
-	gchar *cTargetURI = NULL;
-	if (strstr (cURI, "://"))
-	{
-		cTargetURI = _cd_find_target_uri (cURI);
-		if (cTargetURI) cURI = cTargetURI;
-	}
 	const gchar *vURIs[] = {cURI, NULL};
 	
-	// now, try to launch it with the default program know by gvfs.
-	GError *erreur = NULL;
-	gchar *cURIScheme = g_uri_parse_scheme (cURI);
-	GAppInfo *pAppDefault = NULL;
-	gboolean bSuccess = FALSE;
-	if (cURIScheme && *cURIScheme)
-		pAppDefault = g_app_info_get_default_for_uri_scheme (cURIScheme);
-	g_free (cURIScheme);
+	gboolean bSuccess = _try_launch_app (app, vURIs);
+	if (app) g_object_unref (app);
 	
-	if (_try_launch_app (pAppDefault, vURIs))
-		goto launch_uri_end;
-	
-	// get the mime-type.
-	GFile *pFile = ((*cURI != '/') ? g_file_new_for_uri (cURI) : g_file_new_for_path (cURI));
-	const gchar *cQuery = G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE;
-	GFileInfo *pFileInfo = g_file_query_info (pFile,
-		cQuery,
-		G_FILE_QUERY_INFO_NONE,
-		NULL,
-		&erreur);
-	if (erreur != NULL)  // if no mime-type (can happen with not mounted volumes), abort.
-	{
-		cd_warning ("gvfs-integration : %s", erreur->message);
-		g_error_free (erreur);
-		g_object_unref (pFile);
-		goto launch_uri_end;
-	}
-	const gchar *cMimeType = g_file_info_get_content_type (pFileInfo);
-	
-	pAppDefault = g_app_info_get_default_for_type (cMimeType, FALSE);
-	if (_try_launch_app (pAppDefault, vURIs))
-		goto launch_uri_end;
-	
-	if (! bSuccess)  // error can happen (for instance, opening 'trash:/' on XFCE with a previous installation of nautilus) => try with another method.
+	if (! bSuccess)
 	{
 		cd_debug ("gvfs-integration : couldn't launch '%s' with its default app", cURI);
 		
@@ -772,11 +751,119 @@ static void cairo_dock_gio_vfs_launch_uri (const gchar *cURI)
 		}
 		g_list_free_full (pAppsList, g_object_unref);
 	}
+}
+
+struct _AsyncTypeData
+{
+	gchar *cURI;
+	gchar *cMimeType;
+};
+
+static void _got_default_for_type_async (GObject*, GAsyncResult *pRes, gpointer ptr)
+{
+	struct _AsyncTypeData *data = (struct _AsyncTypeData*)ptr;
+	GAppInfo *pAppInfo = g_app_info_get_default_for_type_finish (pRes, NULL);
+	_got_default_for_type (pAppInfo, data->cURI, data->cMimeType);
+	g_free (data->cURI);
+	g_free (data->cMimeType);
+	g_free (data);
+}
+
+static void _launch_uri_mime_type (gchar *cURI)
+{
+	// get the mime-type.
+	GError *erreur = NULL;
+	GFile *pFile = ((*cURI != '/') ? g_file_new_for_uri (cURI) : g_file_new_for_path (cURI));
+	const gchar *cQuery = G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE;
+	GFileInfo *pFileInfo = g_file_query_info (pFile,
+		cQuery,
+		G_FILE_QUERY_INFO_NONE,
+		NULL,
+		&erreur);
+	if (erreur != NULL)  // if no mime-type (can happen with not mounted volumes), abort.
+	{
+		cd_warning ("gvfs-integration : %s", erreur->message);
+		g_error_free (erreur);
+		g_object_unref (pFile);
+		g_free (cURI);
+		return;
+	}
+	const gchar *cMimeType = g_file_info_get_content_type (pFileInfo);
+	
+	if (cMimeType)
+	{
+#if GLIB_CHECK_VERSION(2, 74, 0)
+		struct _AsyncTypeData *data = g_new0 (struct _AsyncTypeData, 1);
+		data->cURI = (gchar*)cURI;
+		data->cMimeType = g_strdup (cMimeType);
+		g_app_info_get_default_for_type_async (cMimeType, FALSE, NULL, _got_default_for_type_async, (gpointer)data);
+		cURI = NULL;
+#else
+		_got_default_for_type (g_app_info_get_default_for_type (cMimeType, FALSE), cURI, cMimeType);
+#endif
+	}
+
 	g_object_unref (pFileInfo);
 	g_object_unref (pFile);
+	g_free (cURI);
+}
 
-launch_uri_end:
-	g_free (cTargetURI);
+static void _got_default_for_uri_scheme_async (GObject*, GAsyncResult *pRes, gpointer data)
+{
+	gchar *cURI = (gchar*)data;
+	gboolean bSuccess = FALSE;
+	GAppInfo *pAppInfo = g_app_info_get_default_for_uri_scheme_finish (pRes, NULL);
+	if (pAppInfo)
+	{
+		const gchar *vURIs[] = {cURI, NULL};
+		bSuccess = _try_launch_app (pAppInfo, vURIs);
+		g_object_unref (pAppInfo);
+	}
+	
+	if (! bSuccess) _launch_uri_mime_type (cURI);
+	else g_free (cURI);
+}
+
+static void cairo_dock_gio_vfs_launch_uri (const gchar *cURI)
+{
+	g_return_if_fail (cURI != NULL);
+	
+	// in case it's a mount point, take the URI that can actually be launched. 
+	gchar *cTargetURI = NULL;
+	if (strstr (cURI, "://"))
+	{
+		cTargetURI = _cd_find_target_uri (cURI);
+		if (cTargetURI) cURI = cTargetURI;
+	}
+	
+	// now, try to launch it with the default program know by gvfs.
+	gchar *cURIScheme = g_uri_parse_scheme (cURI);
+	gboolean bSuccess = FALSE;
+	
+#if GLIB_CHECK_VERSION(2, 74, 0)
+	if (cURIScheme && *cURIScheme)
+	{
+		g_app_info_get_default_for_uri_scheme_async (cURIScheme, NULL, _got_default_for_uri_scheme_async,
+			cTargetURI ? cTargetURI : g_strdup (cURI));
+		g_free (cURIScheme);
+		return;
+	}
+#else
+	if (cURIScheme && *cURIScheme)
+	{
+		GAppInfo *pAppDefault = g_app_info_get_default_for_uri_scheme (cURIScheme);
+		if (pAppDefault)
+		{
+			const gchar *vURIs[] = {cURI, NULL};
+			bSuccess = _try_launch_app (pAppDefault, vURIs);
+			g_object_unref (pAppDefault);
+		}
+	}
+#endif
+	g_free (cURIScheme);
+	
+	if (! bSuccess) _launch_uri_mime_type (cTargetURI ? cTargetURI : g_strdup (cURI));
+	else g_free (cTargetURI);
 }
 
 static GMount *_cd_find_mount_from_uri (const gchar *cURI, gchar **cTargetURI)
