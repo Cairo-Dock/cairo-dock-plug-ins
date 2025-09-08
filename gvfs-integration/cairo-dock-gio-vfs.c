@@ -753,6 +753,7 @@ static void _got_default_for_type (GAppInfo *app, const gchar *cURI, const gchar
 	}
 }
 
+#if GLIB_CHECK_VERSION(2, 74, 0)
 struct _AsyncTypeData
 {
 	gchar *cURI;
@@ -768,6 +769,7 @@ static void _got_default_for_type_async (GObject*, GAsyncResult *pRes, gpointer 
 	g_free (data->cMimeType);
 	g_free (data);
 }
+#endif
 
 static void _launch_uri_mime_type (gchar *cURI)
 {
@@ -808,6 +810,7 @@ static void _launch_uri_mime_type (gchar *cURI)
 	g_free (cURI);
 }
 
+#if GLIB_CHECK_VERSION(2, 74, 0)
 static void _got_default_for_uri_scheme_async (GObject*, GAsyncResult *pRes, gpointer data)
 {
 	gchar *cURI = (gchar*)data;
@@ -823,6 +826,7 @@ static void _got_default_for_uri_scheme_async (GObject*, GAsyncResult *pRes, gpo
 	if (! bSuccess) _launch_uri_mime_type (cURI);
 	else g_free (cURI);
 }
+#endif
 
 static void cairo_dock_gio_vfs_launch_uri (const gchar *cURI)
 {
