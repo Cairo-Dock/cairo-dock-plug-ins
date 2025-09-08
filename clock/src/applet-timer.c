@@ -147,8 +147,8 @@ static inline void _get_current_time (time_t epoch, GldiModuleInstance *myApplet
 	myData.currentTime.tm_min  = g_date_time_get_minute (now);
 	myData.currentTime.tm_hour = g_date_time_get_hour (now);
 	myData.currentTime.tm_mday = g_date_time_get_day_of_month (now);
-	myData.currentTime.tm_mon  = g_date_time_get_month (now);
-	myData.currentTime.tm_year = g_date_time_get_year (now);
+	myData.currentTime.tm_mon  = g_date_time_get_month (now) - 1;
+	myData.currentTime.tm_year = g_date_time_get_year (now) - 1900;
 	myData.currentTime.tm_wday = g_date_time_get_day_of_week (now);
 	if (myData.currentTime.tm_wday == 7) myData.currentTime.tm_wday = 0; // Sunday
 	myData.currentTime.tm_isdst = g_date_time_is_daylight_savings (now);
