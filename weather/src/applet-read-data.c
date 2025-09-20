@@ -54,10 +54,10 @@ static const char *_cd_weather_get_icon_number (int	code, gboolean bNight)
 			return bNight ? "33" : "34";
 		case 51:
 			// light drizzle
-			return "9";
+			return "11";
 		case 53:
 			// moderate drizzle
-			return "11";
+			return "9";
 		case 55:
 			// dense drizzle
 			return "12";
@@ -69,13 +69,14 @@ static const char *_cd_weather_get_icon_number (int	code, gboolean bNight)
 			return "10";
 		case 61:
 			// slight rain
-			return "5";
+			// note: we don't distinguish between "drizzle" and "rain", it is unclear which icons would correspond to these
+			return "11";
 		case 63:
 			// moderate rain
-			return "11";
+			return "9";
 		case 65:
 			// heavy rain
-			return "40";
+			return "12";
 		case 66:
 			// light freezing rain
 			return "8";
