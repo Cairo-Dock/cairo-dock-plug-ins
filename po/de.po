@@ -757,7 +757,7 @@ msgstr "Neuen Ordner erstellen"
 
 #: ../Folders/src/applet-notifications.c:408
 msgid "Sort by"
-msgstr "Sortiere nach"
+msgstr "Sortieren nach"
 
 #: ../Folders/src/applet-notifications.c:409
 msgid "By name"
@@ -2723,7 +2723,7 @@ msgstr ""
 #: ../logout/src/applet-logout.c:575
 #, c-format
 msgid "It will automatically shut-down in %ds"
-msgstr "Es wird automatish in %ds heruntergefahren"
+msgstr "Es wird automatisch in %ds heruntergefahren"
 
 #: ../logout/src/applet-logout.c:576
 msgid "Shut down the computer?"
@@ -6914,7 +6914,7 @@ msgstr "Einen Klang beim Mausdarüberbewegen abspielen?"
 
 #: ../Sound-Effects/data/messages:21
 msgid "Volume:"
-msgstr "Lautstärke :"
+msgstr "Lautstärke:"
 
 #: ../Sound-Effects/data/messages:25
 msgid "High"
@@ -7947,19 +7947,19 @@ msgstr "Anzahl der Dateien :"
 
 #: ../dustbin/data/messages:105
 msgid "Total number of files"
-msgstr "Gesamtzahl der Dateien :"
+msgstr "Gesamtzahl der Dateien"
 
 #: ../dustbin/data/messages:107
 msgid "Total weight"
-msgstr "Gesamtgewicht :"
+msgstr "Gesamtgewicht"
 
 #: ../dustbin/data/messages:109
 msgid "Ask confirmation before emptying Dustbin?"
-msgstr "Um Bestätigung bitten, bevor der Papierkorb geleert wird ?"
+msgstr "Vor dem Leeren des Papierkorbs um Bestätigung bitten?"
 
 #: ../icon-effect/data/messages:53
 msgid "Draw in background?"
-msgstr "Im Hintergrund zeichnen ?"
+msgstr "Im Hintergrund zeichnen?"
 
 #: ../icon-effect/data/messages:55
 msgid "Rotate effects with dock?"
@@ -8753,7 +8753,7 @@ msgstr "Aktion bei Linksklick :"
 
 #: ../showDesktop/data/messages:101 ../showDesktop/data/messages:115
 msgid "Show the desklets"
-msgstr "Zeige die Desklets"
+msgstr "Desklets anzeigen"
 
 #: ../showDesktop/data/messages:103 ../showDesktop/data/messages:117
 msgid "Show desktop and desklets"

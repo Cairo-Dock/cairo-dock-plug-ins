@@ -345,12 +345,12 @@ msgstr ""
 #: ../Dbus/src/interface-applet-signals.c:433
 #: ../Dbus/src/interface-applet-signals.c:464
 msgid "Sorry, this module couldn't be added."
-msgstr "对不起,这个模块无法添加."
+msgstr "对不起,这个模块无法加载."
 
 #: ../Dbus/src/interface-applet-signals.c:468
 #: ../Dbus/src/interface-applet-signals.c:474
 msgid "The module has been added, but couldn't be launched."
-msgstr "这个模块已经被添加,但是无法启动."
+msgstr "这个模块已经被加载,但是无法启动."
 
 #: ../Dbus/src/interface-applet-signals.c:477
 #, c-format

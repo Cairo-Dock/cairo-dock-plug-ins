@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2014-08-18 21:19+0000\n"
+"PO-Revision-Date: 2025-09-13 14:19+0000\n"
 "Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-10-19 06:37+0000\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Launchpad-Export-Date: 2025-09-21 14:20+0000\n"
+"X-Generator: Launchpad (build 299e6cec2b88528c8351aab8852cf896cddc6846)\n"
 "X-Poedit-Bookmarks: 1393,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
@@ -34,7 +34,7 @@ msgstr "彈跳"
 #: ../Animated-icons/data/messages:41 ../Animated-icons/data/messages:65
 #: ../Animated-icons/data/messages:181
 msgid "Busy"
-msgstr ""
+msgstr "忙碌"
 
 #: ../Animated-icons/src/applet-init.c:39
 msgid "Animated icons"
@@ -191,19 +191,19 @@ msgstr "剪貼簿歷史"
 
 #: ../Clipper/src/applet-init.c:87
 msgid "Pop-up the items menu"
-msgstr ""
+msgstr "彈出項目選單"
 
 #: ../Clipper/src/applet-notifications.c:33
 msgid "The clipboard history is empty."
-msgstr ""
+msgstr "剪貼簿歷史是空的。"
 
 #: ../Clipper/src/applet-notifications.c:89
 msgid "Clear clipboard History"
-msgstr ""
+msgstr "清空剪貼簿歷史"
 
 #: ../Clipper/src/applet-notifications.c:91
 msgid "Paste all copied items"
-msgstr ""
+msgstr "貼上所有複製的項目"
 
 #: ../Clipper/src/applet-notifications.c:99
 msgid ""
@@ -220,25 +220,25 @@ msgstr "還沒有東西耶。"
 #: ../Composite-Manager/src/applet-composite-manager.c:429
 #: ../Composite-Manager/src/applet-composite-manager.c:444
 msgid "No compositor is available."
-msgstr ""
+msgstr "沒有組合器可用。"
 
 #: ../Composite-Manager/src/applet-composite-manager.c:452
 #: ../Composite-Manager/src/applet-composite-manager.c:467
 msgid "No fallback is available."
-msgstr ""
+msgstr "沒有回饋可用。"
 
 #: ../Composite-Manager/src/applet-composite-manager.c:507
 #, c-format
 msgid "You need to install '%s'"
-msgstr ""
+msgstr "您需要安裝「%s」"
 
 #: ../Composite-Manager/src/applet-composite-manager.c:518
 msgid "No configuration tool is available."
-msgstr ""
+msgstr "沒有設定工具可用。"
 
 #: ../Composite-Manager/src/applet-init.c:27
 msgid "Composite-Manager"
-msgstr ""
+msgstr "組合管理程式"
 
 #: ../Composite-Manager/src/applet-init.c:30
 msgid ""
@@ -255,16 +255,16 @@ msgstr ""
 
 #: ../Composite-Manager/src/applet-init.c:52
 msgid "Toggle the composite ON/OFF"
-msgstr ""
+msgstr "切換組合器開/關"
 
 #: ../Composite-Manager/src/applet-notifications.c:42
 msgid "Toggle composite?"
-msgstr ""
+msgstr "是否切換組合器？"
 
 #: ../Composite-Manager/src/applet-notifications.c:124
 #: ../Composite-Manager/data/messages:125
 msgid "Edit Window-Manager settings"
-msgstr ""
+msgstr "編輯視窗管理程式設定值"
 
 #: ../Composite-Manager/src/applet-notifications.c:124
 #: ../Composite-Manager/src/applet-notifications.c:131
@@ -299,12 +299,12 @@ msgstr ""
 #: ../tomboy/src/tomboy-notifications.c:216
 #: ../wifi/src/applet-notifications.c:88
 msgid "middle-click"
-msgstr ""
+msgstr "中擊"
 
 #: ../Composite-Manager/src/applet-notifications.c:131
 #: ../Composite-Manager/data/messages:127
 msgid "Reload Window-Manager"
-msgstr ""
+msgstr "重新載入視窗管理程式"
 
 #: ../Composite-Manager/src/applet-notifications.c:140
 #: ../showDesktop/src/applet-notifications.c:181
@@ -321,13 +321,13 @@ msgstr "顯示桌面"
 #: ../Composite-Manager/data/messages:131 ../showDesktop/data/messages:107
 #: ../showDesktop/data/messages:121 ../switcher/data/messages:141
 msgid "Expose all the desktops"
-msgstr ""
+msgstr "顯示所有桌面"
 
 #: ../Composite-Manager/src/applet-notifications.c:158
 #: ../switcher/src/applet-notifications.c:333
 #: ../Composite-Manager/data/messages:133 ../switcher/data/messages:143
 msgid "Expose all the windows"
-msgstr ""
+msgstr "顯示所有視窗"
 
 #: ../Composite-Manager/src/applet-notifications.c:167
 #: ../showDesktop/src/applet-notifications.c:205
@@ -335,7 +335,7 @@ msgstr ""
 #: ../Composite-Manager/data/messages:135 ../showDesktop/data/messages:105
 #: ../showDesktop/data/messages:119
 msgid "Show the Widget Layer"
-msgstr ""
+msgstr "顯示視窗元件圖層"
 
 #: ../Dbus/src/applet-init.c:36
 msgid ""
@@ -407,11 +407,11 @@ msgstr ""
 
 #: ../Disks/src/applet-disks.c:175
 msgid "N/A"
-msgstr ""
+msgstr "無法使用"
 
 #: ../Disks/src/applet-init.c:29
 msgid "Disks"
-msgstr ""
+msgstr "磁碟"
 
 #: ../Disks/src/applet-init.c:32
 msgid ""
@@ -474,11 +474,11 @@ msgstr ""
 
 #: ../Doncky/src/applet-notifications.c:210
 msgid "It doesn't seem to be a valid XML file."
-msgstr ""
+msgstr "看起來不像是有效的 XML 檔案。"
 
 #: ../Doncky/src/applet-xml.c:311
 msgid "Please wait..."
-msgstr ""
+msgstr "請稍候…"
 
 #: ../Folders/src/applet-init.c:29
 msgid "Folders"
@@ -512,7 +512,7 @@ msgstr "空的或是無法讀取的資料夾。"
 
 #: ../Folders/src/applet-notifications.c:115
 msgid "Properties:"
-msgstr ""
+msgstr "屬性："
 
 #: ../Folders/src/applet-notifications.c:135 ../Folders/data/messages:115
 msgid "Size"
@@ -520,31 +520,31 @@ msgstr "大小"
 
 #: ../Folders/src/applet-notifications.c:135
 msgid "bytes"
-msgstr ""
+msgstr "位元組"
 
 #: ../Folders/src/applet-notifications.c:149
 msgid "Last Modification"
-msgstr ""
+msgstr "最後修改"
 
 #: ../Folders/src/applet-notifications.c:158
 msgid "Mime Type"
-msgstr ""
+msgstr "MIME 類型"
 
 #: ../Folders/src/applet-notifications.c:168
 msgid "User ID"
-msgstr ""
+msgstr "使用者 ID"
 
 #: ../Folders/src/applet-notifications.c:168
 msgid "Group ID"
-msgstr ""
+msgstr "群組 ID"
 
 #: ../Folders/src/applet-notifications.c:178
 msgid "Permissions"
-msgstr ""
+msgstr "權限"
 
 #: ../Folders/src/applet-notifications.c:178
 msgid "Read"
-msgstr ""
+msgstr "讀取"
 
 #: ../Folders/src/applet-notifications.c:179
 #: ../Folders/src/applet-notifications.c:180
@@ -552,7 +552,7 @@ msgstr ""
 #: ../System-Monitor/data/messages:115 ../alsaMixer/data/messages:129
 #: ../netspeed/data/messages:115 ../slider/data/messages:169
 msgid "Yes"
-msgstr ""
+msgstr "是"
 
 #: ../Folders/src/applet-notifications.c:179
 #: ../Folders/src/applet-notifications.c:180
@@ -576,7 +576,7 @@ msgstr "不要"
 
 #: ../Folders/src/applet-notifications.c:179
 msgid "Write"
-msgstr ""
+msgstr "寫入"
 
 #: ../Folders/src/applet-notifications.c:180
 #: ../Scooby-Do/src/applet-backend-command.c:95
@@ -627,13 +627,13 @@ msgstr "挑選目錄"
 #: ../Scooby-Do/src/applet-backend-files.c:393
 #: ../Screenshot/src/applet-screenshot.c:410
 msgid "Ok"
-msgstr ""
+msgstr "確定"
 
 #: ../Folders/src/applet-notifications.c:268
 #: ../Scooby-Do/src/applet-backend-files.c:395
 #: ../Screenshot/src/applet-screenshot.c:412
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: ../Folders/src/applet-notifications.c:300
 #, c-format
@@ -652,7 +652,7 @@ msgstr "輸入檔案名稱："
 
 #: ../Folders/src/applet-notifications.c:378
 msgid "Open the folder"
-msgstr ""
+msgstr "開啟資料夾"
 
 #: ../Folders/src/applet-notifications.c:385
 msgid "Rename this file"
@@ -688,39 +688,39 @@ msgstr "建立新的資料夾"
 
 #: ../Folders/src/applet-notifications.c:408
 msgid "Sort by"
-msgstr ""
+msgstr "排序依"
 
 #: ../Folders/src/applet-notifications.c:409
 msgid "By name"
-msgstr ""
+msgstr "依名稱"
 
 #: ../Folders/src/applet-notifications.c:410
 msgid "By date"
-msgstr ""
+msgstr "依日期"
 
 #: ../Folders/src/applet-notifications.c:411
 msgid "By size"
-msgstr ""
+msgstr "依大小"
 
 #: ../Folders/src/applet-notifications.c:412
 msgid "By type"
-msgstr ""
+msgstr "依類別"
 
 #: ../Folders/src/applet-notifications.c:450
 msgid "The folder has been imported."
-msgstr ""
+msgstr "此資料夾已匯入。"
 
 #: ../Folders/src/applet-notifications.c:505
 msgid "Do you want to import the content of the folder too?"
-msgstr ""
+msgstr "您是否要同時匯入資料夾的內容？"
 
 #: ../GMenu/src/applet-apps.c:116
 msgid "Launch this new application?"
-msgstr ""
+msgstr "是否要執行新的應用程式？"
 
 #: ../GMenu/src/applet-entry.c:483
 msgid "Launch this command"
-msgstr ""
+msgstr "執行這個指令"
 
 #: ../GMenu/src/applet-init.c:32
 msgid ""
@@ -742,19 +742,19 @@ msgstr "應用程式選單"
 
 #: ../GMenu/src/applet-init.c:71
 msgid "Show/hide the Applications menu"
-msgstr ""
+msgstr "顯示/隱藏應用程式選單"
 
 #: ../GMenu/src/applet-init.c:76
 msgid "Show/hide the quick-launch dialog"
-msgstr ""
+msgstr "顯示/隱藏快速啟動對話框"
 
 #: ../GMenu/src/applet-menu.c:148 ../GMenu/data/messages:115
 msgid "Logout"
-msgstr ""
+msgstr "登出"
 
 #: ../GMenu/src/applet-menu.c:151 ../GMenu/data/messages:117
 msgid "Shutdown"
-msgstr ""
+msgstr "關機"
 
 #: ../GMenu/src/applet-notifications.c:64
 msgid "Quick launch"
@@ -766,7 +766,7 @@ msgstr "配置選單"
 
 #: ../GMenu/src/applet-notifications.c:88
 msgid "None of these applications seems available:"
-msgstr ""
+msgstr "這些應用程式沒有可以使用的︰"
 
 #: ../GMenu/src/applet-notifications.c:96
 msgid "Clear recent"
@@ -786,7 +786,7 @@ msgstr "輸入要啟動的指令："
 
 #: ../Global-Menu/src/applet-init.c:30
 msgid "Global Menu"
-msgstr ""
+msgstr "全域選單"
 
 #: ../Global-Menu/src/applet-init.c:33
 msgid ""
@@ -799,11 +799,11 @@ msgstr ""
 
 #: ../Global-Menu/src/applet-init.c:112 ../Global-Menu/src/applet-init.c:211
 msgid "Show/hide the current application menu"
-msgstr ""
+msgstr "顯示/隱藏目前的應用程式選單"
 
 #: ../Global-Menu/src/applet-notifications.c:93
 msgid "The application didn't send its menu to us."
-msgstr ""
+msgstr "此應用程式沒有傳送選單給我們。"
 
 #: ../Impulse/src/applet-impulse.c:176
 msgid ""
@@ -853,13 +853,15 @@ msgstr ""
 
 #: ../Messaging-Menu/src/applet-init.c:106
 msgid "Show/hide the Messaging menu"
-msgstr ""
+msgstr "顯示/隱藏訊息選單"
 
 #: ../Messaging-Menu/src/applet-notifications.c:78
 msgid ""
 "The Messaging service did not reply.\n"
 "Please check that it is correctly installed."
 msgstr ""
+"訊息服務沒有回應。\n"
+"請檢查它是否已正確安裝。"
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:67
 msgid "Network connection state changed to inactive."
@@ -948,7 +950,7 @@ msgstr ""
 
 #: ../Network-Monitor/src/applet-init.c:41
 msgid "Network Monitor"
-msgstr ""
+msgstr "網路監視器"
 
 #: ../Network-Monitor/src/applet-netspeed.c:202
 #: ../System-Monitor/src/applet-monitor.c:97
@@ -1089,23 +1091,23 @@ msgstr "打開父資料夾"
 #: ../Screenshot/src/applet-screenshot.c:275
 #: ../quick-browser/src/applet-menu.c:295
 msgid "Copy the location"
-msgstr ""
+msgstr "複製位置"
 
 #: ../Recent-Events/src/applet-dialog.c:297
 msgid "Delete this event"
-msgstr ""
+msgstr "刪除這個事件"
 
 #: ../Recent-Events/src/applet-dialog.c:375
 msgid "All"
-msgstr ""
+msgstr "全部"
 
 #: ../Recent-Events/src/applet-dialog.c:376
 msgid "Applications"
-msgstr ""
+msgstr "應用程式"
 
 #: ../Recent-Events/src/applet-dialog.c:377
 msgid "Documents"
-msgstr ""
+msgstr "文件"
 
 #: ../Recent-Events/src/applet-dialog.c:379 ../drop-indicator/data/messages:3
 msgid "Images"
@@ -1113,27 +1115,27 @@ msgstr "圖形檔"
 
 #: ../Recent-Events/src/applet-dialog.c:380
 msgid "Audio"
-msgstr ""
+msgstr "音訊"
 
 #: ../Recent-Events/src/applet-dialog.c:381
 msgid "Videos"
-msgstr ""
+msgstr "視訊"
 
 #: ../Recent-Events/src/applet-dialog.c:382
 msgid "Web"
-msgstr ""
+msgstr "網頁"
 
 #: ../Recent-Events/src/applet-dialog.c:383
 msgid "Others"
-msgstr ""
+msgstr "其他"
 
 #: ../Recent-Events/src/applet-dialog.c:384
 msgid "Top Results"
-msgstr ""
+msgstr "最佳結果"
 
 #: ../Recent-Events/src/applet-dialog.c:390
 msgid "Look for events"
-msgstr ""
+msgstr "尋找事件"
 
 #: ../Recent-Events/src/applet-dialog.c:398
 msgid ""
@@ -1147,32 +1149,32 @@ msgstr ""
 #: ../Recent-Events/src/applet-dialog.c:440
 #: ../Screenshot/src/applet-screenshot.c:467
 msgid "File name"
-msgstr ""
+msgstr "檔案名稱"
 
 #: ../Recent-Events/src/applet-dialog.c:447
 msgid "Last access"
-msgstr ""
+msgstr "上次存取"
 
 #: ../Recent-Events/src/applet-dialog.c:489
 msgid "You need to install the Zeitgeist data engine."
-msgstr ""
+msgstr "您需要安裝 Zeitgeist 資料引擎。"
 
 #: ../Recent-Events/src/applet-dialog.c:537
 msgid "Browse and search in recent events"
-msgstr ""
+msgstr "在最近的事件中瀏覽與搜尋"
 
 #: ../Recent-Events/src/applet-init.c:29
 msgid "Recent-Events"
-msgstr ""
+msgstr "最近的事件"
 
 #: ../Recent-Events/src/applet-init.c:58
 msgid "Show/hide the Recent Events"
-msgstr ""
+msgstr "顯示/隱藏最近的事件"
 
 #: ../Recent-Events/src/applet-notifications.c:84
 #, c-format
 msgid "%d event(s) deleted"
-msgstr ""
+msgstr "已偵測到 %d 個事件"
 
 #: ../Recent-Events/src/applet-notifications.c:122
 msgid "No related files"
@@ -1180,11 +1182,11 @@ msgstr ""
 
 #: ../Recent-Events/src/applet-notifications.c:198
 msgid "Delete today's events"
-msgstr ""
+msgstr "刪除目前的事件"
 
 #: ../Recent-Events/src/applet-notifications.c:200
 msgid "Delete all events"
-msgstr ""
+msgstr "刪除所有的事件"
 
 #: ../Recent-Events/src/applet-notifications.c:209
 #: ../Scooby-Do/src/applet-backend-recent.c:213 ../Scooby-Do/data/messages:107
@@ -1207,11 +1209,11 @@ msgstr ""
 
 #: ../Remote-Control/src/applet-init.c:48
 msgid "Control from keyboard"
-msgstr ""
+msgstr "使用鍵盤控制"
 
 #: ../Remote-Control/src/applet-init.c:62
 msgid "Enable/disable the keyboard control of the dock"
-msgstr ""
+msgstr "啟用/停用以鍵盤控制 Dock"
 
 #: ../Scooby-Do/src/applet-backend-command.c:63
 #, c-format
@@ -1298,7 +1300,7 @@ msgstr "Amazon"
 
 #: ../Scooby-Do/src/applet-init.c:82
 msgid "Enable/disable the Finder"
-msgstr ""
+msgstr "啟用/停用尋找器"
 
 #: ../Scooby-Do/src/applet-listing.c:488
 msgid "(F1) Match case"
@@ -1360,23 +1362,23 @@ msgstr ""
 
 #: ../Screenshot/src/applet-init.c:53
 msgid "Take a screenshot"
-msgstr ""
+msgstr "拍下螢幕擷圖"
 
 #: ../Screenshot/src/applet-notifications.c:49
 msgid "Screenshot"
-msgstr ""
+msgstr "螢幕擷圖"
 
 #: ../Screenshot/src/applet-notifications.c:61
 msgid "Screenshot with options"
-msgstr ""
+msgstr "螢幕擷圖選項"
 
 #: ../Screenshot/src/applet-screenshot.c:158
 msgid "Screenshot from"
-msgstr ""
+msgstr "螢幕擷圖來自"
 
 #: ../Screenshot/src/applet-screenshot.c:321
 msgid "Unable to take a screenshot"
-msgstr ""
+msgstr "無法進行螢幕擷圖"
 
 #: ../Screenshot/src/applet-screenshot.c:438 ../Cairo-Penguin/data/messages:19
 #: ../Clipper/data/messages:137 ../Disks/data/messages:143
@@ -1392,15 +1394,15 @@ msgstr "以秒為單位"
 
 #: ../Screenshot/src/applet-screenshot.c:439
 msgid "Delay"
-msgstr ""
+msgstr "延遲"
 
 #: ../Screenshot/src/applet-screenshot.c:457
 msgid "Grab the current window instead of the all screen"
-msgstr ""
+msgstr "抓取目前的視窗而非整個螢幕"
 
 #: ../Screenshot/src/applet-screenshot.c:458
 msgid "Grab the current window"
-msgstr ""
+msgstr "抓取目前視窗"
 
 #: ../Screenshot/src/applet-screenshot.c:466
 #: ../Screenshot/src/applet-screenshot.c:475
@@ -1411,17 +1413,19 @@ msgstr "空白來使用預設的那個設定。"
 
 #: ../Screenshot/src/applet-screenshot.c:476
 msgid "Directory"
-msgstr ""
+msgstr "目錄"
 
 #: ../Sound-Effects/src/applet-init.c:29
 msgid "Sound Effects"
-msgstr ""
+msgstr "聲音效果"
 
 #: ../Sound-Effects/src/applet-init.c:32
 msgid ""
 "This plug-in add sound effects on various events in the dock:\n"
 " When clicking an icon, when hovering an icon, etc"
 msgstr ""
+"這個外掛程式會在 Dock 中的各種事件加上聲音特效︰\n"
+" 當點擊圖示、懸停於圖示上等等"
 
 #: ../Status-Notifier/src/applet-init.c:33
 msgid ""
@@ -1433,7 +1437,7 @@ msgstr ""
 
 #: ../Status-Notifier/src/applet-init.c:38
 msgid "Notification Area"
-msgstr ""
+msgstr "通知區域"
 
 #: ../System-Monitor/src/applet-cpusage.c:59
 msgid "Uptime"
@@ -1481,11 +1485,11 @@ msgstr ""
 #: ../System-Monitor/src/applet-notifications.c:109
 #: ../netspeed/src/applet-notifications.c:109
 msgid "Open the System-Monitor"
-msgstr ""
+msgstr "開啟系統監視器"
 
 #: ../System-Monitor/src/applet-notifications.c:111
 msgid "Show info"
-msgstr ""
+msgstr "顯示資訊"
 
 #: ../System-Monitor/src/applet-nvidia.c:146
 msgid "GPU model"
@@ -1536,30 +1540,30 @@ msgstr "緩衝區"
 
 #: ../System-Monitor/src/applet-sensors.c:358
 msgid "min"
-msgstr ""
+msgstr "最小"
 
 #: ../System-Monitor/src/applet-sensors.c:360
 msgid "max"
-msgstr ""
+msgstr "最大"
 
 #: ../System-Monitor/src/applet-sensors.c:363
 #: ../System-Monitor/src/applet-sensors.c:396
 msgid "alarm"
-msgstr ""
+msgstr "閙鈴"
 
 #: ../System-Monitor/src/applet-sensors.c:394
 msgid "rpm"
-msgstr ""
+msgstr "rpm"
 
 #: ../System-Monitor/src/applet-sensors.c:413
 #, c-format
 msgid "CPU temperature has reached %d°C"
-msgstr ""
+msgstr "CPU 溫度已達到 %d°C"
 
 #: ../System-Monitor/src/applet-sensors.c:427
 #, c-format
 msgid "Fan speed has reached %d rpm"
-msgstr ""
+msgstr "風扇速度已達到 %d rpm"
 
 #: ../Toons/src/applet-init.c:29
 msgid "Toons"
@@ -1590,15 +1594,15 @@ msgstr "螢幕亮度"
 
 #: ../Xgamma/src/applet-init.c:64
 msgid "Increase the brightness"
-msgstr ""
+msgstr "增加亮度"
 
 #: ../Xgamma/src/applet-init.c:68
 msgid "Decrease the brightness"
-msgstr ""
+msgstr "減少亮度"
 
 #: ../Xgamma/src/applet-notifications.c:87
 msgid "Set up gamma correction"
-msgstr ""
+msgstr "設定伽瑪校正"
 
 #: ../Xgamma/src/applet-notifications.c:91
 msgid "Apply current luminosity on startup"
@@ -1606,19 +1610,19 @@ msgstr "將目前的亮度設定套用至電腦啟動時"
 
 #: ../Xgamma/src/applet-xgamma.c:215
 msgid "Gamma :"
-msgstr ""
+msgstr "Gamma :"
 
 #: ../Xgamma/src/applet-xgamma.c:217
 msgid "Red :"
-msgstr ""
+msgstr "紅︰"
 
 #: ../Xgamma/src/applet-xgamma.c:219
 msgid "Green :"
-msgstr ""
+msgstr "綠︰"
 
 #: ../Xgamma/src/applet-xgamma.c:221
 msgid "Blue :"
-msgstr ""
+msgstr "藍︰"
 
 #: ../Xgamma/src/applet-xgamma.c:247 ../Xgamma/src/applet-xgamma.c:320
 msgid "Set up gamma:"
@@ -1626,7 +1630,7 @@ msgstr "設定 gamma 值："
 
 #: ../Xgamma/src/applet-xgamma.c:335
 msgid "Luminosity"
-msgstr ""
+msgstr "亮度"
 
 #: ../alsaMixer/src/applet-backend-alsamixer.c:72
 #, c-format
@@ -1660,7 +1664,7 @@ msgstr "設置音量："
 
 #: ../alsaMixer/src/applet-draw.c:37
 msgid "Volume"
-msgstr ""
+msgstr "音量"
 
 #: ../alsaMixer/src/applet-init.c:32
 msgid ""
@@ -1679,7 +1683,7 @@ msgstr "音效控制"
 
 #: ../alsaMixer/src/applet-init.c:144
 msgid "Show/hide the Sound menu"
-msgstr ""
+msgstr "顯示/隱藏音效選單"
 
 #: ../alsaMixer/src/applet-notifications.c:80
 msgid "Adjust channels"
@@ -1688,7 +1692,7 @@ msgstr "調整聲道"
 #: ../alsaMixer/src/applet-notifications.c:80
 #: ../clock/src/applet-calendar.c:599
 msgid "double-click"
-msgstr ""
+msgstr "雙擊"
 
 #: ../alsaMixer/src/applet-notifications.c:85
 msgid "Unmute"
@@ -1719,7 +1723,7 @@ msgstr "加入新的工作事項"
 
 #: ../clock/src/applet-calendar.c:599
 msgid "Edit tasks"
-msgstr ""
+msgstr "編輯工作"
 
 #: ../clock/src/applet-calendar.c:665
 msgid "Calendar and tasks"
@@ -1986,15 +1990,15 @@ msgstr "清晰"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:97
 msgid "light"
-msgstr ""
+msgstr "光"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:105
 msgid "water drop"
-msgstr ""
+msgstr "水滴"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:113
 msgid "water"
-msgstr ""
+msgstr "水"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:121
 msgid "futuristic"
@@ -2041,7 +2045,7 @@ msgstr "提示"
 #: ../dnd2share/src/applet-backend-uppix.c:30
 #: ../dnd2share/src/applet-backend-videobin.c:31
 msgid "Direct Link"
-msgstr ""
+msgstr "直接連結"
 
 #: ../dnd2share/src/applet-backend-codepad.c:50
 #: ../dnd2share/src/applet-backend-custom.c:75
@@ -2049,36 +2053,36 @@ msgstr ""
 #: ../dnd2share/src/applet-backend-pastebin-mozilla.c:51
 #: ../dnd2share/src/applet-backend-pastebin.c:44
 msgid "Your text is empty and couldn't be uploaded to this server"
-msgstr ""
+msgstr "您的文字是空白，並且無法上傳到這個伺服器"
 
 #: ../dnd2share/src/applet-backend-dropbox.c:62
 msgid "This directory seems not valid:"
-msgstr ""
+msgstr "這個目錄似乎是無效的︰"
 
 #: ../dnd2share/src/applet-backend-imgur.c:32
 msgid "Display Image"
-msgstr ""
+msgstr "顯示影像"
 
 #: ../dnd2share/src/applet-backend-imgur.c:32
 msgid "Large"
-msgstr ""
+msgstr "大"
 
 #: ../dnd2share/src/applet-backend-imgur.c:32
 #: ../dock-rendering/data/messages:41
 msgid "Small"
-msgstr ""
+msgstr "小"
 
 #: ../dnd2share/src/applet-backend-uppix.c:30
 msgid "Thumbnail"
-msgstr ""
+msgstr "縮圖"
 
 #: ../dnd2share/src/applet-dnd2share.c:43
 msgid "No text"
-msgstr ""
+msgstr "沒有文字"
 
 #: ../dnd2share/src/applet-dnd2share.c:54
 msgid "Text:"
-msgstr ""
+msgstr "文字"
 
 #: ../dnd2share/src/applet-dnd2share.c:316
 msgid ""
@@ -2094,7 +2098,7 @@ msgstr "在開始新的上傳之前，請等候目前的上傳結束。"
 
 #: ../dnd2share/src/applet-dnd2share.c:437
 msgid "This file is not readable."
-msgstr ""
+msgstr "這個檔案不可讀取。"
 
 #: ../dnd2share/src/applet-dnd2share.c:663
 msgid "Tiny URL"
@@ -2110,7 +2114,7 @@ msgstr "無法上傳檔案，請檢查您的網路連線是否啟用。"
 msgid ""
 "Couldn't upload the file to %s, check that your internet connection is "
 "active."
-msgstr ""
+msgstr "無法上傳檔案到 %s，請檢查您的網際網路連線是否正常。"
 
 #: ../dnd2share/src/applet-dnd2share.h:32
 #, c-format
@@ -2119,6 +2123,8 @@ msgid ""
 "Check that your internet connection is active and '%s' is correctly "
 "installed and running"
 msgstr ""
+"無法上傳檔案到 %s。\n"
+"請檢查您的網際網路連線是否正常以及「%s」已正確安裝並執行"
 
 #: ../dnd2share/src/applet-init.c:44
 msgid ""
@@ -2423,11 +2429,11 @@ msgstr ""
 
 #: ../keyboard-indicator/src/applet-init.c:101
 msgid "Switch keyboard language"
-msgstr ""
+msgstr "切換鍵盤語言"
 
 #: ../keyboard-indicator/src/applet-notifications.c:78
 msgid "Keyboard preferences"
-msgstr ""
+msgstr "鍵盤偏好設定"
 
 #: ../logout/src/applet-init.c:33
 msgid ""
@@ -2442,23 +2448,23 @@ msgstr ""
 #: ../logout/src/applet-init.c:40 ../logout/src/applet-logout.c:380
 #: ../logout/data/messages:95
 msgid "Log out"
-msgstr ""
+msgstr "登出"
 
 #: ../logout/src/applet-init.c:69
 msgid "Lock the screen"
-msgstr ""
+msgstr "鎖定螢幕"
 
 #: ../logout/src/applet-init.c:73
 msgid "Show the log-out menu"
-msgstr ""
+msgstr "顯示登出選單"
 
 #: ../logout/src/applet-logout.c:343 ../logout/data/messages:97
 msgid "Shut down"
-msgstr ""
+msgstr "關機"
 
 #: ../logout/src/applet-logout.c:350
 msgid "Restart"
-msgstr ""
+msgstr "重新開機"
 
 #: ../logout/src/applet-logout.c:356
 msgid "Hibernate"
@@ -2466,17 +2472,19 @@ msgstr "休眠"
 
 #: ../logout/src/applet-logout.c:358
 msgid "Your computer will not consume any energy."
-msgstr ""
+msgstr "您的電腦將不會消耗任何能源。"
 
 #: ../logout/src/applet-logout.c:364
 msgid "Hybrid Sleep"
-msgstr ""
+msgstr "混合式睡眠"
 
 #: ../logout/src/applet-logout.c:366
 msgid ""
 "Your computer will still consume a small amount of energy but after some "
 "time, the computer will suspend to disk and not consume any energy."
 msgstr ""
+"您的電腦仍然會消耗少量能源，但是經過一段時間後，電腦會進入磁碟休眠，之後不會"
+"消耗任何能源。"
 
 #: ../logout/src/applet-logout.c:371
 msgid "Suspend"
@@ -2484,19 +2492,19 @@ msgstr "暫停"
 
 #: ../logout/src/applet-logout.c:373
 msgid "Your computer will still consume a small amount of energy."
-msgstr ""
+msgstr "您的電腦仍然會消耗少量能源。"
 
 #: ../logout/src/applet-logout.c:382
 msgid "Close your session and allow to open a new one."
-msgstr ""
+msgstr "關閉您的工作階段並允許開啟一個新的。"
 
 #: ../logout/src/applet-logout.c:396
 msgid "Switch user"
-msgstr ""
+msgstr "切換使用者"
 
 #: ../logout/src/applet-logout.c:417
 msgid "Guest session"
-msgstr ""
+msgstr "訪客工作階段"
 
 #: ../logout/src/applet-logout.c:424 ../logout/data/messages:99
 msgid "Lock screen"
@@ -2508,44 +2516,48 @@ msgstr "計劃的自動關機"
 
 #: ../logout/src/applet-logout.c:500
 msgid "Logind has returned this error:"
-msgstr ""
+msgstr "Logind 已回傳這個錯誤︰"
 
 #: ../logout/src/applet-logout.c:502
 msgid ""
 "Please check that you can do this action\n"
 "(e.g. you can't power the computer off if another session is active)"
 msgstr ""
+"請檢查您是否可以進行這個動作\n"
+"(例如︰如果有其他工作階段在使用時您不能關閉電腦的電源)"
 
 #: ../logout/src/applet-logout.c:575
 #, c-format
 msgid "It will automatically shut-down in %ds"
-msgstr ""
+msgstr "它會自動在 %d 秒後關機"
 
 #: ../logout/src/applet-logout.c:576
 msgid "Shut down the computer?"
-msgstr ""
+msgstr "是否將電腦關機？"
 
 #: ../logout/src/applet-logout.c:581
 msgid ""
 "It seems your system is being updated!\n"
 "Please be sure that you can shut down your computer right now."
 msgstr ""
+"您的系統似乎在更新！\n"
+"請確定是否能在此時關閉電腦。"
 
 #: ../logout/src/applet-logout.c:668
 msgid "Restart the computer?"
-msgstr ""
+msgstr "是否重新啟動電腦？"
 
 #: ../logout/src/applet-logout.c:721
 msgid "Close the current session?"
-msgstr ""
+msgstr "是否關閉目前的工作階段？"
 
 #: ../logout/src/applet-notifications.c:103
 msgid "Manage users"
-msgstr ""
+msgstr "管理使用者"
 
 #: ../logout/src/applet-reboot-required.c:62
 msgid "Please do that at the end of the update."
-msgstr ""
+msgstr "請在更新結束後再進行。"
 
 #: ../logout/src/applet-timer.c:47
 msgid "Your computer will shut-down in 1 minute."
@@ -2591,6 +2603,7 @@ msgid ""
 "Enter 0 to use the default port. Default ports are 143 for IMAP4 and 993 for "
 "IMAP4 over SSL."
 msgstr ""
+"輸入 0 使用預設連接埠。預設的連接埠， IMAP4 為 143， IMAP4 透過 SSL 為 993。"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Use a secure connection (SSL)"
@@ -2615,7 +2628,7 @@ msgstr "留空白以使用預設郵件應用程式。"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Specific icon file when using multiple accounts"
-msgstr ""
+msgstr "當使用多個帳號時指定的圖示檔案"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Directory on server:"
@@ -2635,13 +2648,13 @@ msgstr "饋流的位址："
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Remove this account"
-msgstr ""
+msgstr "移除這個帳號"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid ""
 "Don't forget to enable IMAP (or POP) service from settings of your mail "
 "account."
-msgstr ""
+msgstr "不要忘記啟用您的電子郵件帳號設定值的 IMAP (或 POP) 服務。"
 
 #: ../mail/src/cd-mail-applet-config.c:224
 msgid "Please choose an account type."
@@ -2724,6 +2737,8 @@ msgid ""
 "No mail application is defined,\n"
 "you can define it in the configuration panel of this module"
 msgstr ""
+"尚未定義郵件應用程式，\n"
+"您可以在這個模組的設定面板中定義它"
 
 #: ../mail/src/cd-mail-applet-notifications.c:146
 msgid "Refresh a mail account"
@@ -2731,7 +2746,7 @@ msgstr "更新信件帳戶"
 
 #: ../mail/src/cd-mail-applet-notifications.c:153
 msgid "Refresh all"
-msgstr ""
+msgstr "重新整理全部"
 
 #: ../mail/src/cd-mail-applet-notifications.c:160
 #, c-format
@@ -2827,7 +2842,7 @@ msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:193
 msgid "Choose a music player to control"
-msgstr ""
+msgstr "選擇要控制的音樂播放器"
 
 #: ../musicPlayer/src/applet-notifications.c:297
 msgid "Find opened player"
@@ -2835,7 +2850,7 @@ msgstr "尋找已開啟的播放器"
 
 #: ../musicPlayer/src/applet-notifications.c:301
 msgid "Choose a player"
-msgstr ""
+msgstr "選擇一個播放器"
 
 #: ../musicPlayer/src/applet-notifications.c:307
 msgid "Previous"
@@ -2843,23 +2858,23 @@ msgstr "上一首"
 
 #: ../musicPlayer/src/applet-notifications.c:307
 msgid "scroll-up"
-msgstr ""
+msgstr "捲起"
 
 #: ../musicPlayer/src/applet-notifications.c:313
 msgid "Play/Pause"
-msgstr ""
+msgstr "播放/暫停"
 
 #: ../musicPlayer/src/applet-notifications.c:313
 msgid "left-click"
-msgstr ""
+msgstr "左擊"
 
 #: ../musicPlayer/src/applet-notifications.c:319
 msgid "Next"
-msgstr ""
+msgstr "下一首"
 
 #: ../musicPlayer/src/applet-notifications.c:319
 msgid "scroll-down"
-msgstr ""
+msgstr "捲下"
 
 #: ../musicPlayer/src/applet-notifications.c:324
 msgid "Stop"
@@ -2875,11 +2890,11 @@ msgstr "顯示 JumpBox"
 
 #: ../musicPlayer/src/applet-notifications.c:336
 msgid "Shuffle"
-msgstr ""
+msgstr "隨機播放"
 
 #: ../musicPlayer/src/applet-notifications.c:344
 msgid "Repeat"
-msgstr ""
+msgstr "重複"
 
 #: ../musicPlayer/src/applet-notifications.c:352
 msgid "Rate this song"
@@ -2887,11 +2902,11 @@ msgstr "評等這首歌"
 
 #: ../musicPlayer/src/applet-notifications.c:356
 msgid "Show"
-msgstr ""
+msgstr "顯示"
 
 #: ../musicPlayer/src/applet-notifications.c:357
 msgid "Quit"
-msgstr ""
+msgstr "結束"
 
 #: ../netspeed/src/applet-init.c:29
 msgid "netspeed"
@@ -2926,6 +2941,9 @@ msgid ""
 "Please be sure that at least one interface is available\n"
 " and that you have the right to monitor it"
 msgstr ""
+"找不到介面。\n"
+"請確定至少有一個介面可用\n"
+" 同時您有權限監控它"
 
 #: ../netspeed/src/applet-notifications.c:48
 #, c-format
@@ -2934,10 +2952,13 @@ msgid ""
 "You may have to set up the interface you wish to monitor.\n"
 "Do you want to do it now?"
 msgstr ""
+"介面「%s」似乎不存在或無法讀取。\n"
+"您可以試著設定想要監控的介面。\n"
+"是否要立刻進行？"
 
 #: ../netspeed/src/applet-notifications.c:105
 msgid "Enable/disable network"
-msgstr ""
+msgstr "啟用/停用網路"
 
 #: ../netspeed/src/applet-notifications.c:113
 msgid "Re-check interface"
@@ -2945,23 +2966,23 @@ msgstr "重新檢查界面卡"
 
 #: ../powermanager/src/powermanager-draw.c:190
 msgid "Battery charged"
-msgstr ""
+msgstr "電池已充飽"
 
 #: ../powermanager/src/powermanager-draw.c:202
 msgid "h"
-msgstr ""
+msgstr "小時"
 
 #: ../powermanager/src/powermanager-draw.c:204
 msgid "mn"
-msgstr ""
+msgstr "分"
 
 #: ../powermanager/src/powermanager-draw.c:213
 msgid "remaining"
-msgstr ""
+msgstr "還剩"
 
 #: ../powermanager/src/powermanager-draw.c:213
 msgid "until charged"
-msgstr ""
+msgstr "直到已充飽"
 
 #: ../powermanager/src/powermanager-draw.c:231 ../wifi/src/applet-draw.c:30
 #: ../Clipper/data/messages:97 ../GMenu/data/messages:113
@@ -2972,36 +2993,36 @@ msgstr "無"
 
 #: ../powermanager/src/powermanager-draw.c:266
 msgid "Laptop on Battery."
-msgstr ""
+msgstr "筆電使用電池。"
 
 #: ../powermanager/src/powermanager-draw.c:267
 #: ../powermanager/src/powermanager-draw.c:276
 msgid "Battery charged at:"
-msgstr ""
+msgstr "電池充飽於︰"
 
 #: ../powermanager/src/powermanager-draw.c:268
 msgid "Estimated time before empty:"
-msgstr ""
+msgstr "電力耗盡前剩餘時間︰"
 
 #: ../powermanager/src/powermanager-draw.c:275
 msgid "Laptop on Charge."
-msgstr ""
+msgstr "筆電充電中。"
 
 #: ../powermanager/src/powermanager-draw.c:277
 msgid "Estimated time before full:"
-msgstr ""
+msgstr "電力充飽前剩餘時間︰"
 
 #: ../powermanager/src/powermanager-draw.c:284
 msgid "Model:"
-msgstr ""
+msgstr "型號："
 
 #: ../powermanager/src/powermanager-draw.c:290
 msgid "Technology:"
-msgstr ""
+msgstr "技術："
 
 #: ../powermanager/src/powermanager-draw.c:294
 msgid "Maximum capacity:"
-msgstr ""
+msgstr "最大容量︰"
 
 #: ../powermanager/src/powermanager-draw.c:299
 msgid "No battery found."
@@ -3049,7 +3070,7 @@ msgstr "設定電源管理"
 
 #: ../powermanager/src/powermanager-menu-functions.c:87
 msgid "Power statistics"
-msgstr ""
+msgstr "電源統計"
 
 #: ../quick-browser/src/applet-init.c:29
 msgid "Quick Browser"
@@ -3070,7 +3091,7 @@ msgstr ""
 
 #: ../quick-browser/src/applet-init.c:64
 msgid "Show/hide the folder menu"
-msgstr ""
+msgstr "顯示/隱藏資料夾選單"
 
 #: ../quick-browser/src/applet-menu.c:103
 msgid "Open this folder"
@@ -3087,53 +3108,53 @@ msgstr "已卸載"
 
 #: ../shortcuts/src/applet-bookmarks.c:425
 msgid "Home Folder"
-msgstr ""
+msgstr "家目錄"
 
 #: ../shortcuts/src/applet-disk-usage.c:183
 #: ../shortcuts/src/applet-disk-usage.c:212
 msgid "Mount point:"
-msgstr ""
+msgstr "掛載點："
 
 #: ../shortcuts/src/applet-disk-usage.c:184
 #: ../shortcuts/src/applet-disk-usage.c:213
 msgid "File system:"
-msgstr ""
+msgstr "檔案系統："
 
 #: ../shortcuts/src/applet-disk-usage.c:185
 #: ../shortcuts/src/applet-disk-usage.c:214
 msgid "Device:"
-msgstr ""
+msgstr "裝置："
 
 #: ../shortcuts/src/applet-disk-usage.c:186
 #: ../shortcuts/src/applet-disk-usage.c:215
 msgid "Mount options:"
-msgstr ""
+msgstr "掛載選項："
 
 #: ../shortcuts/src/applet-disk-usage.c:218
 msgid "Backup frequency:"
-msgstr ""
+msgstr "備份頻率："
 
 #: ../shortcuts/src/applet-disk-usage.c:218
 msgid "days"
-msgstr ""
+msgstr "天"
 
 #: ../shortcuts/src/applet-disk-usage.c:241
 #: ../shortcuts/src/applet-disk-usage.c:251
 #: ../shortcuts/src/applet-disk-usage.c:256
 msgid "Name:"
-msgstr ""
+msgstr "名稱："
 
 #: ../shortcuts/src/applet-disk-usage.c:242
 msgid "Capacity:"
-msgstr ""
+msgstr "容量："
 
 #: ../shortcuts/src/applet-disk-usage.c:243
 msgid "Free space:"
-msgstr ""
+msgstr "可用空間："
 
 #: ../shortcuts/src/applet-disk-usage.c:251
 msgid "Not mounted"
-msgstr ""
+msgstr "沒有掛載"
 
 #: ../shortcuts/src/applet-disk-usage.c:257 ../RSSreader/data/messages:97
 msgid "URL:"
@@ -3197,19 +3218,19 @@ msgstr "請輸入此書籤的名稱："
 
 #: ../shortcuts/src/applet-notifications.c:304
 msgid "Open Home directory"
-msgstr ""
+msgstr "開啟家目錄"
 
 #: ../shortcuts/src/applet-notifications.c:309
 msgid "Browse Network"
-msgstr ""
+msgstr "瀏覽網路"
 
 #: ../shortcuts/src/applet-notifications.c:312
 msgid "Browse recent files"
-msgstr ""
+msgstr "瀏覽最近使用的檔案"
 
 #: ../shortcuts/src/applet-notifications.c:315
 msgid "Open Trash"
-msgstr ""
+msgstr "開啟垃圾筒"
 
 #: ../shortcuts/src/applet-notifications.c:323
 msgid "Rename this bookmark"
@@ -3225,11 +3246,11 @@ msgstr "彈出"
 
 #: ../shortcuts/src/applet-notifications.c:342
 msgid "Unmount"
-msgstr ""
+msgstr "卸載"
 
 #: ../shortcuts/src/applet-notifications.c:342
 msgid "Mount"
-msgstr ""
+msgstr "掛載"
 
 #: ../shortcuts/src/applet-notifications.c:347
 msgid "Get disk info"
@@ -3292,7 +3313,7 @@ msgstr ""
 
 #: ../slider/src/applet-notifications.c:68
 msgid "You need to define the images folder first."
-msgstr ""
+msgstr "您需要先定義影像資料夾。"
 
 #: ../slider/src/applet-notifications.c:214
 msgid "Play"
@@ -3314,7 +3335,7 @@ msgstr "瀏覽圖片資料夾"
 
 #: ../slider/src/applet-notifications.c:244
 msgid "Refresh images list"
-msgstr ""
+msgstr "重新整理影像列表"
 
 #: ../stack/src/applet-init.c:31
 msgid "stack"
@@ -3383,11 +3404,11 @@ msgstr "移除此項目"
 
 #: ../stack/src/applet-notifications.c:290
 msgid "The file has been added to the stack."
-msgstr ""
+msgstr "此檔案已加入堆疊。"
 
 #: ../stack/src/applet-notifications.c:291
 msgid "The URL has been added to the stack."
-msgstr ""
+msgstr "此 URL 已加入堆疊。"
 
 #: ../switcher/src/applet-draw.c:623 ../switcher/src/applet-draw.c:630
 #: ../switcher/src/applet-load-icons.c:54
@@ -3468,11 +3489,11 @@ msgstr ""
 
 #: ../systray/src/systray-init.c:41
 msgid "Notification Area Old"
-msgstr ""
+msgstr "舊式通知區域"
 
 #: ../systray/src/systray-init.c:65
 msgid "Show/hide the systray"
-msgstr ""
+msgstr "顯示/隱藏系統匣"
 
 #: ../systray/src/systray-interface.c:74
 msgid ""
@@ -3519,7 +3540,7 @@ msgstr ""
 
 #: ../terminal/src/terminal-init.c:60
 msgid "Show/hide the terminal"
-msgstr ""
+msgstr "顯示/隱藏終端機"
 
 #: ../terminal/src/terminal-menu-functions.c:77
 #: ../terminal/src/terminal-widget.c:421
@@ -3565,15 +3586,15 @@ msgstr "關閉這個分頁"
 
 #: ../tomboy/src/applet-backend-default.c:159
 msgid "Note:"
-msgstr ""
+msgstr "備註:"
 
 #: ../tomboy/src/applet-backend-default.c:207
 msgid "Title:"
-msgstr ""
+msgstr "標題："
 
 #: ../tomboy/src/tomboy-draw.c:188
 msgid "Open all"
-msgstr ""
+msgstr "全部開啟"
 
 #: ../tomboy/src/tomboy-init.c:32
 msgid "Note-Taking"
@@ -3645,7 +3666,7 @@ msgstr "清除標記"
 
 #: ../tomboy/src/tomboy-notifications.c:276
 msgid "No description"
-msgstr ""
+msgstr "沒有描述"
 
 #: ../weather/src/applet-config.c:121
 msgid ""
@@ -3657,7 +3678,7 @@ msgstr ""
 
 #: ../weather/src/applet-config.c:127
 msgid "Couldn't get the location code (is connection alive?)"
-msgstr ""
+msgstr "無法取得位置代碼 (連線是否正常？)"
 
 #: ../weather/src/applet-config.c:135
 msgid "I couldn't find this location"
@@ -3665,7 +3686,7 @@ msgstr "我沒有辦法找到這個位置"
 
 #: ../weather/src/applet-config.c:183
 msgid "Searching the location code..."
-msgstr ""
+msgstr "搜尋位置代碼…"
 
 #: ../weather/src/applet-config.c:216
 msgid ""
@@ -3697,11 +3718,11 @@ msgstr "資料已經開始下載，請稍候。"
 
 #: ../weather/src/applet-notifications.c:94
 msgid "Show current conditions (middle-click)"
-msgstr ""
+msgstr "顯示目前的概況 (中擊)"
 
 #: ../weather/src/applet-notifications.c:99
 msgid "Open open-meteo.com (double-click)"
-msgstr ""
+msgstr "開啟 open-meteo.com (雙擊)"
 
 #: ../weather/src/applet-notifications.c:101
 msgid "Reload now"
@@ -3806,12 +3827,12 @@ msgstr "Wifi"
 
 #: ../wifi/src/applet-notifications.c:88
 msgid "Toggle wifi ON/OFF"
-msgstr ""
+msgstr "切換 wifi 開啟/關閉"
 
 #: ../gvfs-integration/cairo-dock-gio-vfs.c:328
 #: ../gvfs-integration/cairo-dock-gio-vfs.c:513
 msgid "File System"
-msgstr ""
+msgstr "檔案系統"
 
 #: ../Animated-icons/data/messages:1 ../icon-effect/data/messages:1
 #: ../illusion/data/messages:1
@@ -3840,7 +3861,7 @@ msgstr "動畫播放的時間："
 
 #: ../Animated-icons/data/messages:45 ../icon-effect/data/messages:35
 msgid "Repeat these effects until the corresponding application opens?"
-msgstr ""
+msgstr "重複這些特效直到對應的應用程式開啟？"
 
 #: ../Animated-icons/data/messages:47 ../icon-effect/data/messages:37
 msgid "when clicking on an application"
@@ -4049,21 +4070,21 @@ msgstr "閃爍的時間長度："
 
 #: ../Animated-icons/data/messages:185
 msgid "Busy duration:"
-msgstr ""
+msgstr "忙碌期間︰"
 
 #: ../Animated-icons/data/messages:189
 msgid ""
 "The image must contain all the frames of the animation, side by side, from "
 "left to right."
-msgstr ""
+msgstr "這個影像必須包含所有動畫影格，一個接一個，由左至右。"
 
 #: ../Animated-icons/data/messages:191
 msgid "Image :"
-msgstr ""
+msgstr "影像︰"
 
 #: ../Animated-icons/data/messages:193
 msgid "Image size"
-msgstr ""
+msgstr "影像大小"
 
 #: ../Cairo-Penguin/data/messages:1 ../Cairo-Penguin/data/messages:3
 #: ../Clipper/data/messages:1 ../Clipper/data/messages:3
@@ -5277,11 +5298,11 @@ msgstr "樣式"
 
 #: ../Composite-Manager/data/messages:91
 msgid "Image when composite is active:"
-msgstr ""
+msgstr "使用組合效果的影像︰"
 
 #: ../Composite-Manager/data/messages:93
 msgid "Image when composite is inactive:"
-msgstr ""
+msgstr "不使用組合效果的影像︰"
 
 #: ../Composite-Manager/data/messages:95 ../Global-Menu/data/messages:87
 #: ../RSSreader/data/messages:103 ../Status-Notifier/data/messages:117
@@ -5295,39 +5316,39 @@ msgstr "動作方式"
 msgid ""
 "Let empty to use the default one. Alternatively, you can set any command you "
 "want."
-msgstr ""
+msgstr "留空以使用預設值。或者，您可以設定任何想要使用的指令。"
 
 #: ../Composite-Manager/data/messages:99
 msgid "Composite window-manager:"
-msgstr ""
+msgstr "組合式視窗管理程式︰"
 
 #: ../Composite-Manager/data/messages:101
 #: ../Composite-Manager/data/messages:113
 msgid "Compiz"
-msgstr ""
+msgstr "Compiz"
 
 #: ../Composite-Manager/data/messages:103
 #: ../Composite-Manager/data/messages:115
 msgid "KWin"
-msgstr ""
+msgstr "KWin"
 
 #: ../Composite-Manager/data/messages:105
 #: ../Composite-Manager/data/messages:117
 msgid "Xfwm"
-msgstr ""
+msgstr "Xfwm"
 
 #: ../Composite-Manager/data/messages:107
 #: ../Composite-Manager/data/messages:119
 msgid "Metacity"
-msgstr ""
+msgstr "Metacity"
 
 #: ../Composite-Manager/data/messages:111
 msgid "Fallback window-manager:"
-msgstr ""
+msgstr "後備視窗管理程式︰"
 
 #: ../Composite-Manager/data/messages:121
 msgid "Ask before switching:"
-msgstr ""
+msgstr "切換前詢問︰"
 
 #: ../Composite-Manager/data/messages:123 ../logout/data/messages:93
 #: ../showDesktop/data/messages:111 ../slider/data/messages:123
@@ -5337,7 +5358,7 @@ msgstr "中鍵點擊動作："
 
 #: ../Composite-Manager/data/messages:137
 msgid "Shortkey to toggle the composite ON/OFF:"
-msgstr ""
+msgstr "切換組合功能開啟/關閉的快捷鍵︰"
 
 #: ../Dbus/data/messages:3
 msgid "Let external applications pop up dialogs in the dock?"
@@ -5389,15 +5410,15 @@ msgstr ""
 
 #: ../Dbus/data/messages:27
 msgid "Launch the Launcher API daemon?"
-msgstr ""
+msgstr "是否執行啟動器 API 伺服程式？"
 
 #: ../Disks/data/messages:5
 msgid "Name of the container it belongs to:"
-msgstr ""
+msgstr "它所屬容器的名稱︰"
 
 #: ../Disks/data/messages:17
 msgid "Desklet mode"
-msgstr ""
+msgstr "桌面工具模式"
 
 #: ../Disks/data/messages:89 ../Network-Monitor/data/messages:139
 #: ../netspeed/data/messages:99
@@ -5428,7 +5449,7 @@ msgstr "圖表"
 #: ../Disks/data/messages:99 ../System-Monitor/data/messages:109
 #: ../alsaMixer/data/messages:123 ../netspeed/data/messages:109
 msgid "Rotate applet theme :"
-msgstr ""
+msgstr "旋轉面板程式布景︰"
 
 #: ../Disks/data/messages:103 ../System-Monitor/data/messages:113
 #: ../alsaMixer/data/messages:127 ../netspeed/data/messages:113
@@ -5523,7 +5544,7 @@ msgstr "顯示"
 
 #: ../Disks/data/messages:135
 msgid "Display values"
-msgstr ""
+msgstr "顯示數值"
 
 #: ../Disks/data/messages:139 ../Network-Monitor/data/messages:119
 #: ../System-Monitor/data/messages:165 ../alsaMixer/data/messages:107
@@ -5539,7 +5560,7 @@ msgstr "在標籤"
 
 #: ../Disks/data/messages:145
 msgid "Refresh time"
-msgstr ""
+msgstr "更新時間"
 
 #: ../Disks/data/messages:147 ../netspeed/data/messages:153
 msgid ""
@@ -5553,23 +5574,23 @@ msgstr ""
 
 #: ../Disks/data/messages:151
 msgid "Partitions monitored : Size"
-msgstr ""
+msgstr "監控的分割區︰大小"
 
 #: ../Disks/data/messages:153
 msgid "E.g. sda1, sdb5..."
-msgstr ""
+msgstr "例如︰sda1、sdb5…"
 
 #: ../Disks/data/messages:155
 msgid "Disks monitored : Speed"
-msgstr ""
+msgstr "監控的分割區︰速度"
 
 #: ../Disks/data/messages:157
 msgid "E.g. sda, sdb... Up to 5 values allowed"
-msgstr ""
+msgstr "例如︰sda、sdb…最多可以有 5 個數值"
 
 #: ../Disks/data/messages:159
 msgid "Preferences"
-msgstr ""
+msgstr "偏好設定"
 
 #: ../Disks/data/messages:161 ../Network-Monitor/data/messages:133
 #: ../netspeed/data/messages:165
@@ -5578,7 +5599,7 @@ msgstr "讓它空白來使用預設值。"
 
 #: ../Disks/data/messages:163
 msgid "System monitor command"
-msgstr ""
+msgstr "系統監控指令"
 
 #: ../Doncky/data/messages:91
 msgid "Specify the xml file to be used :"
@@ -5679,7 +5700,7 @@ msgstr "留下空白以使用該資料夾的名稱。"
 
 #: ../Folders/data/messages:11 ../quick-browser/data/messages:11
 msgid "Folder name"
-msgstr ""
+msgstr "資料夾名稱"
 
 #: ../Folders/data/messages:13
 msgid "How to render the icon :"
@@ -5713,7 +5734,7 @@ msgstr ""
 
 #: ../Folders/data/messages:107
 msgid "Show folder's content?"
-msgstr ""
+msgstr "是否顯示資料夾的內容？"
 
 #: ../Folders/data/messages:109
 msgid "Sort files by :"
@@ -5751,7 +5772,7 @@ msgstr "顯示最近使用的文件"
 
 #: ../GMenu/data/messages:97
 msgid "Number of items to display"
-msgstr ""
+msgstr "要顯示的項目數量"
 
 #: ../GMenu/data/messages:99
 msgid ""
@@ -5761,15 +5782,15 @@ msgstr ""
 
 #: ../GMenu/data/messages:101
 msgid "Load settings' menu?"
-msgstr ""
+msgstr "是否載入設定值的選單？"
 
 #: ../GMenu/data/messages:103
 msgid "Display the description in search's results?"
-msgstr ""
+msgstr "是否在搜尋結果中顯示描述？"
 
 #: ../GMenu/data/messages:105
 msgid "Display a notification to quickly launch new applications?"
-msgstr ""
+msgstr "顯示通知以便快速啟動新的應用程式？"
 
 #: ../GMenu/data/messages:107
 msgid "Command to use for configuring the menu:"
@@ -5777,7 +5798,7 @@ msgstr "設置選單的指令："
 
 #: ../GMenu/data/messages:111
 msgid "Show Logout and/or Shutdown : "
-msgstr ""
+msgstr "顯示登出和/或關機︰ "
 
 #: ../Global-Menu/data/messages:85
 msgid ""
@@ -7001,7 +7022,6 @@ msgid "Configure time and date"
 msgstr "設定時間與日期"
 
 #: ../clock/data/messages:183 ../logout/data/messages:121
-#: ../logout/data/messages:133
 msgid "Leave empty to execute the default command."
 msgstr "執行預設的指令時，請讓它空白。"
 
@@ -8955,6 +8975,9 @@ msgstr "啟動無線配置的替代指令列："
 
 #~ msgid "It seems that the Me-Menu is not installed on your system"
 #~ msgstr "看起來「Me 選單」尚未安裝於您的系統上"
+
+#~ msgid "Connect to Server..."
+#~ msgstr "連接到伺服器…"
 
 #~ msgid "Jan"
 #~ msgstr "一月"
