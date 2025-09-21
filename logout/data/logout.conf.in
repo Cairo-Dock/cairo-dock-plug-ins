@@ -144,7 +144,7 @@ user action2 =
 user action switch =
 
 #s Custom command to lock the screen:
-#{Leave empty to execute the default command (if not empty, this is preferred).}
+#{Leave empty to execute the default command.}
 user action lock =
 
 shutdown time = 0
