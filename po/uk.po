@@ -8069,6 +8069,8 @@ msgstr "Команди"
 #: ../logout/data/messages:123
 msgid "Fallback user-defined command to execute for logout in case of problem:"
 msgstr ""
+"Резервна команада, яку задає користувач, для виходу в разі виникнення "
+"проблем:"
 
 #: ../logout/data/messages:125
 msgid ""
@@ -8084,6 +8086,8 @@ msgstr ""
 msgid ""
 "Fallback user-defined command to execute for shutdown in case of problem:"
 msgstr ""
+"Резервна команада, яку задає користувач, для вимкнення в разі виникнення "
+"проблем:"
 
 #: ../logout/data/messages:129
 msgid ""
