@@ -29,7 +29,9 @@
 #include "applet-draw.h"
 
 #define CD_CLOCK_DATE_BUFFER_LENGTH 50
-static char s_cDateBuffer[CD_CLOCK_DATE_BUFFER_LENGTH+1];
+static char s_cDateBuffer1[CD_CLOCK_DATE_BUFFER_LENGTH+1];
+static char s_cDateBuffer2[CD_CLOCK_DATE_BUFFER_LENGTH+1];
+static char s_cCmbBuffer[2*CD_CLOCK_DATE_BUFFER_LENGTH+1];
 
 #define GAPY .02
 ///#define MAX_RATIO 2.
@@ -135,32 +137,64 @@ void cd_clock_draw_text (GldiModuleInstance *myApplet, int iWidth, int iHeight, 
 		gldi_color_set_cairo (myDrawContext, &myConfig.textDescription.fColorStart);
 
 	//\______________ We define the text that we have to draw.
+	const char *cDateFormat = cd_clock_get_date_format ();
+	// hour's format
+	const gchar *cTimeFormat;
+	if (myConfig.b24Mode)
+	{
+		if (myConfig.bShowSeconds)
+			cTimeFormat = "%T";
+		else
+			cTimeFormat = "%R";
+	}
+	else
+	{
+		if (myConfig.bShowSeconds)
+			cTimeFormat = "%r";  // same as %I:%M:%S %p
+		else
+			cTimeFormat = "%I:%M %p";
+	}
+
+
+	if (myConfig.iShowDate == CAIRO_DOCK_INFO_ON_ICON)
+	{
+		size_t off = 0;
+		if (myData.iTextLayout == CD_TEXT_LAYOUT_AUTO)
+		{
+			// we separately format date and time and will combine them in two different ways
+			strftime (s_cDateBuffer1, CD_CLOCK_DATE_BUFFER_LENGTH, cDateFormat, pTime);
+			strftime (s_cDateBuffer2, CD_CLOCK_DATE_BUFFER_LENGTH, cTimeFormat, pTime);
+			// we start with the one line version
+			snprintf (s_cCmbBuffer, 2 * CD_CLOCK_DATE_BUFFER_LENGTH + 1, "%s %s", s_cDateBuffer1, s_cDateBuffer2);
+		}
+		else if (myData.iTextLayout == CD_TEXT_LAYOUT_2_LINES)
+		{
+			// time goes first
+			off = strftime (s_cCmbBuffer, 2 * CD_CLOCK_DATE_BUFFER_LENGTH, cTimeFormat, pTime);
+			s_cCmbBuffer[off] = '\n'; // note: there is at least one more character (as the buffer size is +1 longer than given to strftime)
+			++off;
+			strftime (s_cCmbBuffer + off, 2 * CD_CLOCK_DATE_BUFFER_LENGTH + 1 - off, cDateFormat, pTime);
+		}
+		else
+		{
+			// one line layout, date goes first
+			off = strftime (s_cCmbBuffer, 2 * CD_CLOCK_DATE_BUFFER_LENGTH, cDateFormat, pTime);
+			s_cCmbBuffer[off] = ' ';
+			++off;
+			strftime (s_cCmbBuffer + off, 2 * CD_CLOCK_DATE_BUFFER_LENGTH + 1 - off, cTimeFormat, pTime);
+		}
+	}
+	else strftime (s_cCmbBuffer, 2 * CD_CLOCK_DATE_BUFFER_LENGTH - 1, cTimeFormat, pTime);
+	
 	// layout
 	PangoFontDescription *pDesc = myConfig.textDescription.fd;
 	pango_font_description_set_absolute_size (pDesc, myIcon->fHeight * 72 / myData.fDpi * PANGO_SCALE); // pixel converted to point, converted to pango dimension.
 
 	PangoLayout *pLayout = pango_cairo_create_layout (myDrawContext);
 	pango_layout_set_font_description (pLayout, pDesc);
+	pango_layout_set_alignment (pLayout, PANGO_ALIGN_CENTER);
 
-	// hour's format
-	const gchar *cFormat;
-	if (myConfig.b24Mode)
-	{
-		if (myConfig.bShowSeconds)
-			cFormat = "%T";
-		else
-			cFormat = "%R";
-	}
-	else
-	{
-		if (myConfig.bShowSeconds)
-			cFormat = "%r";  // same as %I:%M:%S %p
-		else
-			cFormat = "%I:%M %p";
-	}
-
-	strftime (s_cDateBuffer, CD_CLOCK_DATE_BUFFER_LENGTH, cFormat, pTime);
-	pango_layout_set_text (pLayout, s_cDateBuffer, -1);
+	pango_layout_set_text (pLayout, s_cCmbBuffer, -1);
 	PangoRectangle log;
 	pango_layout_get_pixel_extents (pLayout, NULL, &log);
 	if (myConfig.iOutlineWidth)
@@ -168,16 +202,29 @@ void cd_clock_draw_text (GldiModuleInstance *myApplet, int iWidth, int iHeight, 
 		log.width += myConfig.iOutlineWidth / 2;
 		log.height += myConfig.iOutlineWidth / 2;
 	}
-
-	//\______________ We draw the text.
-	cairo_save (myDrawContext);
-	if (myConfig.iShowDate == CAIRO_DOCK_INFO_ON_ICON)
+	
+	// scaling with the current layout
+	double fZoomX = (double) iWidth / log.width;
+	double fZoomY = (double) iHeight / log.height;
+	// keep the ratio of the text, until 12px height.
+	fZoomX = MIN (fZoomX, fZoomY);
+	fZoomY = fZoomX * myConfig.fTextRatio;
+	if (fZoomY * log.height < MIN_TEXT_HEIGHT)
+		fZoomY = MIN_TEXT_HEIGHT / log.height;
+	
+	if (myConfig.iShowDate == CAIRO_DOCK_INFO_ON_ICON && myData.iTextLayout == CD_TEXT_LAYOUT_AUTO)
 	{
+		// If the orientation is no longer defined, we define it just once at startup (if we are close
+		// to the limit, the size of the text could change enough to change the layout).
+		// We test both layouts for this -- note: currently, the bufer includes the one line layout,
+		// we should test the two line alternative.
+		snprintf (s_cCmbBuffer, 2 * CD_CLOCK_DATE_BUFFER_LENGTH + 1, "%s\n%s", s_cDateBuffer2, s_cDateBuffer1);
+
 		PangoLayout *pLayout2 = pango_cairo_create_layout (myDrawContext);
 		pango_layout_set_font_description (pLayout2, pDesc);
+		pango_layout_set_alignment (pLayout2, PANGO_ALIGN_CENTER);
 
-		strftime (s_cDateBuffer, CD_CLOCK_DATE_BUFFER_LENGTH, cd_clock_get_date_format (), pTime);
-		pango_layout_set_text (pLayout2, s_cDateBuffer, -1);
+		pango_layout_set_text (pLayout2, s_cCmbBuffer, -1);
 		PangoRectangle log2;
 		pango_layout_get_pixel_extents (pLayout2, NULL, &log2);
 		if (myConfig.iOutlineWidth)
@@ -185,101 +232,53 @@ void cd_clock_draw_text (GldiModuleInstance *myApplet, int iWidth, int iHeight, 
 			log2.width += myConfig.iOutlineWidth / 2;
 			log2.height += myConfig.iOutlineWidth / 2;
 		}
-
-		double h=0, w=0, fZoomX=0, fZoomY=0;  // settings linked to the display with 2 lines
-		double h_=0, w_=0, fZoomX_=0, fZoomY_=0;  // one line
-		if (myData.iTextLayout == CD_TEXT_LAYOUT_2_LINES || myData.iTextLayout == CD_TEXT_LAYOUT_AUTO)
-		{
-			h = log.height + log2.height + GAPY * iHeight;
-			w = MAX (log.width, log2.width);
-			fZoomX = (double) iWidth / w;
-			fZoomY = (double) iHeight / h;
-
-			// keep the ratio of the text, until 12px height.
-			fZoomX = MIN (fZoomX, fZoomY) * myConfig.fTextRatio;
-			fZoomY = fZoomX;
-			if (fZoomY * h < MIN_TEXT_HEIGHT)
-				fZoomY = MIN_TEXT_HEIGHT / h;
-		}
-		if (myData.iTextLayout == CD_TEXT_LAYOUT_1_LINE || myData.iTextLayout == CD_TEXT_LAYOUT_AUTO)
-		{
-			h_ = MAX (log.height, log2.height);
-			w_ = log.width + log2.width + log2.width / strlen(s_cDateBuffer); // gap with the mean value of char's width
-			fZoomX_ = (double) iWidth / w_;
-			fZoomY_ = (double) iHeight / h_;
-
-			// keep the ratio of the text, until 12px height.
-			fZoomX_ = MIN (fZoomX_, fZoomY_) * myConfig.fTextRatio;
-			fZoomY_ = fZoomX_;
-			if (fZoomY_ * h_ < MIN_TEXT_HEIGHT)
-				fZoomY_ = MIN_TEXT_HEIGHT / h_;
-		}
-
-		if (myData.iTextLayout == CD_TEXT_LAYOUT_AUTO)  // if the orientation is no longer defined, we define it just once at startup (if we are closed to the limit, the size of the text could change enough to change the layout.
-		{
-			double def = (fZoomX > fZoomY ? fZoomX / fZoomY : fZoomY / fZoomX);  // deformation.
-			double def_ = (fZoomX_ > fZoomY_ ? fZoomX_ / fZoomY_ : fZoomY_ / fZoomX_);
-			if (def > def_)  // deformation bigger when using 1 line => it's better to use 2 lines
-				myData.iTextLayout = CD_TEXT_LAYOUT_2_LINES;
-			else
-				myData.iTextLayout = CD_TEXT_LAYOUT_1_LINE;
-		}
-
-		if (myData.iTextLayout == CD_TEXT_LAYOUT_1_LINE)  // mode 1 line
-		{
-			cairo_translate (myDrawContext, (iWidth - fZoomX_ * w_) / 2, (iHeight - fZoomY_ * h_)/2);  // text will be centred.
-			cairo_scale (myDrawContext, fZoomX_, fZoomY_);
-			if (myConfig.iOutlineWidth)
-				_outlined_pango_cairo (myApplet, pLayout2);
-			pango_cairo_show_layout (myDrawContext, pLayout2);
-
-			cairo_restore (myDrawContext);
-			cairo_save (myDrawContext);
-
-			cairo_translate (myDrawContext, (iWidth + fZoomX_ * w_) / 2 - fZoomX_ * log.width, (iHeight - fZoomY_ * h_)/2);
-			cairo_scale (myDrawContext, fZoomX_, fZoomY_);
-			if (myConfig.iOutlineWidth)
-				_outlined_pango_cairo (myApplet, pLayout);
-			pango_cairo_show_layout (myDrawContext, pLayout);
-		}
-		else  // mode 2 lines
-		{
-			cairo_translate (myDrawContext, (iWidth - fZoomX * log.width) / 2, (iHeight - fZoomY * h)/2);  // text will be centred.
-			cairo_scale (myDrawContext, fZoomX, fZoomY);
-			if (myConfig.iOutlineWidth)
-				_outlined_pango_cairo (myApplet, pLayout);
-			pango_cairo_show_layout (myDrawContext, pLayout);
-
-			cairo_restore (myDrawContext);
-			cairo_save (myDrawContext);
-
-			cairo_translate (myDrawContext, (iWidth - fZoomX * log2.width) / 2, (iHeight + fZoomY * GAPY)/2);
-			cairo_scale (myDrawContext, fZoomX, fZoomY);
-			if (myConfig.iOutlineWidth)
-				_outlined_pango_cairo (myApplet, pLayout2);
-			pango_cairo_show_layout (myDrawContext, pLayout2);
-		}
-		g_object_unref (pLayout2);
-	}
-	else  // only the hour with 1 line.
-	{
-		double fZoomX = (double) iWidth / log.width;
-		double fZoomY = (double) iHeight / log.height;
-
+		
+		// scaling with the current layout
+		double fZoomX2 = (double) iWidth / log2.width;
+		double fZoomY2 = (double) iHeight / log2.height;
 		// keep the ratio of the text, until 12px height.
-		fZoomX = MIN (fZoomX, fZoomY) * myConfig.fTextRatio;
-		fZoomY = fZoomX;
-		if (fZoomY * log.height < MIN_TEXT_HEIGHT)
-			fZoomY = MIN_TEXT_HEIGHT / log.height;
-
-		cairo_translate (myDrawContext,
-			(iWidth - fZoomX * log.width)/2,
-			(iHeight - fZoomY * log.height)/2);  // text will be centred.
-		cairo_scale (myDrawContext, fZoomX, fZoomY);
-		if (myConfig.iOutlineWidth)
-			_outlined_pango_cairo (myApplet, pLayout);
-		pango_cairo_show_layout (myDrawContext, pLayout);
+		fZoomX2 = MIN (fZoomX2, fZoomY2);
+		fZoomY2 = fZoomX2 * myConfig.fTextRatio;
+		if (fZoomY2 * log2.height < MIN_TEXT_HEIGHT)
+			fZoomY2 = MIN_TEXT_HEIGHT / log2.height;
+		
+		// 1. check distortion, i.e. which case differs more from the expected ratio
+		double exp_Y1 = fZoomX * myConfig.fTextRatio;
+		double exp_Y2 = fZoomX2 * myConfig.fTextRatio;
+		double def1 = (fZoomY  > exp_Y1 ? fZoomY  / exp_Y1 : exp_Y1 / fZoomY );  // deformation.
+		double def2 = (fZoomY2 > exp_Y2 ? fZoomY2 / exp_Y2 : exp_Y2 / fZoomY2);
+		if (def1 > def2 * 1.001) myData.iTextLayout = CD_TEXT_LAYOUT_2_LINES;
+		else if (def2 > def1 * 1.001) myData.iTextLayout = CD_TEXT_LAYOUT_1_LINE;
+		else
+		{
+			// 2. check which case shrinks the text more
+			if (fZoomX < fZoomX2) myData.iTextLayout = CD_TEXT_LAYOUT_2_LINES;
+			else myData.iTextLayout = CD_TEXT_LAYOUT_1_LINE;
+		}
+		
+		if (myData.iTextLayout == CD_TEXT_LAYOUT_2_LINES)
+		{
+			g_object_unref (pLayout);
+			pLayout = pLayout2;
+			fZoomX = fZoomX2;
+			fZoomY = fZoomY2;
+			log.width = log2.width;
+			log.height = log2.height;
+		}
+		else g_object_unref (pLayout2);
 	}
+
+	//\______________ We draw the text.
+	cairo_save (myDrawContext);
+
+	cairo_translate (myDrawContext,
+		(iWidth - fZoomX * log.width)/2,
+		(iHeight - fZoomY * log.height)/2);  // text will be centred.
+	cairo_scale (myDrawContext, fZoomX, fZoomY);
+	if (myConfig.iOutlineWidth)
+		_outlined_pango_cairo (myApplet, pLayout);
+	pango_cairo_show_layout (myDrawContext, pLayout);
+
 	cairo_restore (myDrawContext);
 	g_object_unref (pLayout);
 
@@ -319,13 +318,13 @@ void cd_clock_draw_analogic (GldiModuleInstance *myApplet, int iWidth, int iHeig
 		cairo_save (myDrawContext);
 		cairo_set_source_rgb (myDrawContext, myConfig.fDateColor[0], myConfig.fDateColor[1], myConfig.fDateColor[2]);
 		cairo_set_line_width (myDrawContext, 8.0f);
-		strftime (s_cDateBuffer, CD_CLOCK_DATE_BUFFER_LENGTH, cd_clock_get_date_format (), pTime);
-		cairo_text_extents (myDrawContext, s_cDateBuffer, &textExtents);
+		strftime (s_cDateBuffer1, CD_CLOCK_DATE_BUFFER_LENGTH, cd_clock_get_date_format (), pTime);
+		cairo_text_extents (myDrawContext, s_cDateBuffer1, &textExtents);
 		cairo_move_to (myDrawContext,
 			-textExtents.width / 2.0f,
 			2.0f * textExtents.height);
 
-		cairo_show_text (myDrawContext, s_cDateBuffer);
+		cairo_show_text (myDrawContext, s_cDateBuffer1);
 		cairo_restore (myDrawContext);
 	}
 
