@@ -33,5 +33,9 @@ void cd_clock_draw_analogic (GldiModuleInstance *myApplet, int iWidth, int iHeig
 void cd_clock_render_analogic_to_texture (GldiModuleInstance *myApplet, int iWidth, int iHeight, struct tm *pTime, double fFraction);
 
 
+/** Get a format string that is suitable to pass to strftime() to format
+ * the date to be displayed on the icon or as a label. */
+const char *cd_clock_get_date_format (void);
+
 #endif
 

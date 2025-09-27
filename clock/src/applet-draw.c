@@ -21,6 +21,9 @@
 #include <time.h>
 #include <signal.h>
 #include <math.h>
+#include <locale.h> // setlocale()
+#include <langinfo.h> // nl_langinfo()
+#include <ctype.h> // isdigit()
 
 #include "applet-struct.h"
 #include "applet-draw.h"
@@ -31,6 +34,77 @@ static char s_cDateBuffer[CD_CLOCK_DATE_BUFFER_LENGTH+1];
 #define GAPY .02
 ///#define MAX_RATIO 2.
 #define MIN_TEXT_HEIGHT 12.  // the text should be at least 12 pixels height, or it would be hard to read for a lot of people.
+
+/** Get a format string that is suitable to pass to strftime() to format
+ * the date to be displayed on the icon or as a label.
+ * We need this function as the default date format (%x) is not sufficient.
+ * Specifically, we want to (1) omit the year so that the label can be shorter;
+ * (2) use the name of the month to avoid confusion with the day; and (3) include
+ * the weekday as well. However, what is a good way to represent this information
+ * varies by language.
+ */
+const char *cd_clock_get_date_format (void)
+{
+	static const char *cFormat = NULL;
+	
+	if (cFormat) return cFormat;
+	
+	const char *cLocale = setlocale (LC_TIME, NULL); // contrary to the name, this will get the current locale setting
+	
+	// Chinese and Japanese: %b and %B are equivalent to %m月, better to specify explicitly, and also use
+	// the 日 character to indicate the day of the month
+	// note: %- is a glibc extension to print a number without padding; it is also supported by musl, see:
+	// https://git.musl-libc.org/cgit/musl/tree/src/time/strftime.c#n235
+	// and the BSD libc implementation: https://man.freebsd.org/cgi/man.cgi?strftime
+	// However, it might cause problems on systems with other libc implementations (e.g. ulibc-ng, newlib, etc.).
+	if (!strncmp (cLocale, "ja", 2))
+		cFormat = "%-m月%e日 (%a)"; // Japanese: one character abbreviation of weekday should be clear
+	else if (!strncmp (cLocale, "zh", 2))
+		cFormat = "%-m月%e日 (%A)"; // Chinese: use the full weekday names, as %a only gives numbers / 日
+	else
+	{
+		// try to determine if months should go before days or otherwise
+		const char *tmp = nl_langinfo (D_FMT);
+		gboolean month_first = FALSE;
+		
+		for (; *tmp; ++tmp) if (*tmp == '%')
+		{
+			gboolean found = FALSE;
+			++tmp;
+			// flags supported by glibc
+			if (*tmp == '-' || *tmp == '_' || *tmp == '0' || *tmp == '^' || *tmp == '#') ++tmp;
+			// field width supported by glibc
+			while (isdigit (*tmp)) ++tmp;
+			// alternate number selector flag supported by glibc
+			if (*tmp == 'O') ++tmp;
+			
+			switch (*tmp)
+			{
+				case 'b':
+				case 'h':
+				case 'B':
+				case 'm':
+				case 'D':
+					month_first = TRUE;
+					found = TRUE;
+					break;
+				case 'd':
+				case 'e':
+				case 'F':
+				case 0:
+					found = TRUE;
+					break;
+				default:
+					break;
+			}
+			
+			if (found) break;
+		}
+		
+		cFormat = month_first ? "%b %e (%a)" : "%e %b (%a)";
+	}
+	return cFormat;
+}
 
 static void _outlined_pango_cairo (GldiModuleInstance *myApplet, PangoLayout *pLayout)
 {
@@ -102,7 +176,7 @@ void cd_clock_draw_text (GldiModuleInstance *myApplet, int iWidth, int iHeight, 
 		PangoLayout *pLayout2 = pango_cairo_create_layout (myDrawContext);
 		pango_layout_set_font_description (pLayout2, pDesc);
 
-		strftime (s_cDateBuffer, CD_CLOCK_DATE_BUFFER_LENGTH, "%a %d %b", pTime);
+		strftime (s_cDateBuffer, CD_CLOCK_DATE_BUFFER_LENGTH, cd_clock_get_date_format (), pTime);
 		pango_layout_set_text (pLayout2, s_cDateBuffer, -1);
 		PangoRectangle log2;
 		pango_layout_get_pixel_extents (pLayout2, NULL, &log2);
@@ -245,7 +319,7 @@ void cd_clock_draw_analogic (GldiModuleInstance *myApplet, int iWidth, int iHeig
 		cairo_save (myDrawContext);
 		cairo_set_source_rgb (myDrawContext, myConfig.fDateColor[0], myConfig.fDateColor[1], myConfig.fDateColor[2]);
 		cairo_set_line_width (myDrawContext, 8.0f);
-		strftime (s_cDateBuffer, CD_CLOCK_DATE_BUFFER_LENGTH, "%a%d%b", pTime);
+		strftime (s_cDateBuffer, CD_CLOCK_DATE_BUFFER_LENGTH, cd_clock_get_date_format (), pTime);
 		cairo_text_extents (myDrawContext, s_cDateBuffer, &textExtents);
 		cairo_move_to (myDrawContext,
 			-textExtents.width / 2.0f,
