@@ -260,7 +260,7 @@ gboolean cd_clock_update_with_time (GldiModuleInstance *myApplet)
 	gboolean bNewDate = (myData.currentTime.tm_mday != myData.iLastCheckedDay || myData.currentTime.tm_mon != myData.iLastCheckedMonth || myData.currentTime.tm_year != myData.iLastCheckedYear);
 	if (bNewDate)
 	{
-		strftime (s_cDateBuffer, CD_CLOCK_DATE_BUFFER_LENGTH, "%a %d %b", &myData.currentTime);
+		strftime (s_cDateBuffer, CD_CLOCK_DATE_BUFFER_LENGTH, cd_clock_get_date_format (), &myData.currentTime);
 		myData.iLastCheckedDay = myData.currentTime.tm_mday;
 		myData.iLastCheckedMonth = myData.currentTime.tm_mon;
 		myData.iLastCheckedYear = myData.currentTime.tm_year;
