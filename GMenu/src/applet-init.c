@@ -38,7 +38,7 @@ CD_APPLET_DEFINE2_BEGIN ("GMenu",
 	CD_APPLET_REDEFINE_TITLE (N_("Applications Menu"))
 CD_APPLET_DEFINE2_END
 
-static gboolean _menu_request (gpointer, GldiManager*)
+static gboolean _menu_request (G_GNUC_UNUSED gpointer ptr, G_GNUC_UNUSED GldiManager* pManager)
 {
 	gldi_container_present (CAIRO_CONTAINER (myDock)); // currently no-op
 	gldi_wayland_grab_keyboard (CAIRO_CONTAINER (myDock)); // try to grab the keyboard

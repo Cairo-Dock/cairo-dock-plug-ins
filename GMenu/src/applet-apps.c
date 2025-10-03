@@ -83,7 +83,7 @@ static void _on_answer_launch_recent (int iClickedButton, GtkWidget *pInteractiv
 }
 
 #ifdef END_INSTALLATION_PID
-static gboolean _show_new_apps_dialog_idle (gpointer)
+static gboolean _show_new_apps_dialog_idle (G_GNUC_UNUSED gpointer dummy)
 {
 	if (s_pNewAppsDialog)
 		gldi_dialog_unhide (s_pNewAppsDialog);

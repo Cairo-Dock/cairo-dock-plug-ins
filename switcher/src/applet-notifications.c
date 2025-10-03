@@ -41,7 +41,7 @@ static void _cd_expose_desktops (void)
 {
 	gldi_desktop_present_desktops ();
 }
-static gboolean _cd_expose_windows_idle (gpointer)
+static gboolean _cd_expose_windows_idle (G_GNUC_UNUSED gpointer dummy)
 {
 	_cd_expose_windows ();
 	_expose_windows_timeout = 0;

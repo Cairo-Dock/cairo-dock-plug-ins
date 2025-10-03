@@ -57,12 +57,12 @@ static void _on_map_entry (GtkWidget *menuitem, gpointer data)
 	if (data) gtk_widget_set_tooltip_text (menuitem, (const gchar*)data);
 }
 
-static void _weak_free_helper (gpointer ptr, GObject*)
+static void _weak_free_helper (gpointer ptr, G_GNUC_UNUSED GObject* pObj)
 {
 	g_free (ptr);
 }
 
-static void _weak_unref_helper (gpointer ptr, GObject*)
+static void _weak_unref_helper (gpointer ptr, G_GNUC_UNUSED GObject* pObj)
 {
 	gmenu_tree_item_unref (ptr);
 }

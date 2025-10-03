@@ -673,7 +673,7 @@ static void cd_logout_restart (void)
 	}
 }
 
-static void cd_logout_suspend (GtkMenuItem*, gpointer)
+static void cd_logout_suspend (G_GNUC_UNUSED GtkMenuItem *pMenuItem, G_GNUC_UNUSED gpointer dummy)
 {
 	if (myData.iLoginManager == CD_LOGIND)
 		_logind_action ("Suspend");
@@ -681,7 +681,7 @@ static void cd_logout_suspend (GtkMenuItem*, gpointer)
 		_upower_action (TRUE);
 }
 
-static void cd_logout_hibernate (GtkMenuItem*, gpointer)
+static void cd_logout_hibernate (G_GNUC_UNUSED GtkMenuItem *pMenuItem, G_GNUC_UNUSED gpointer dummy)
 {
 	if (myData.iLoginManager == CD_LOGIND)
 		_logind_action ("Hibernate");
@@ -689,7 +689,7 @@ static void cd_logout_hibernate (GtkMenuItem*, gpointer)
 		_upower_action (FALSE);
 }
 
-static void cd_logout_hybridSleep (GtkMenuItem*, gpointer)
+static void cd_logout_hybridSleep (G_GNUC_UNUSED GtkMenuItem *pMenuItem, G_GNUC_UNUSED gpointer dummy)
 {
 	if (myData.iLoginManager == CD_LOGIND)
 		_logind_action ("HybridSleep");
@@ -706,7 +706,7 @@ static void _logout (void)
 		cairo_dock_launch_command_single (MY_APPLET_SHARE_DATA_DIR"/logout.sh");
 }
 
-static void cd_logout_close_session (GtkMenuItem*, gpointer)  // could use org.gnome.SessionManager.Logout
+static void cd_logout_close_session (G_GNUC_UNUSED GtkMenuItem *pMenuItem, G_GNUC_UNUSED gpointer dummy)  // could use org.gnome.SessionManager.Logout
 {
 	/* Currently, cairo_dock_fm_logout displays to us a window from the DE
 	 * to confirm if we want to close the session or not. So there is a

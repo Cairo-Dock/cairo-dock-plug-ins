@@ -337,7 +337,7 @@ static gboolean _entry_event (GtkEditable *entry,
 }
 
 
-static void _cd_menu_on_quick_launch (int iClickedButton, GtkWidget *pInteractiveWidget, gpointer, CairoDialog *pDialog)
+static void _cd_menu_on_quick_launch (int iClickedButton, GtkWidget *pInteractiveWidget, G_GNUC_UNUSED gpointer dummy, CairoDialog *pDialog)
 {
 	if (iClickedButton == 0 || iClickedButton == -1)  // ok ou entree.
 	{

@@ -586,7 +586,7 @@ void cd_dbus_launch_service (void)
 	#endif
 }
 
-static void _child_watch_dummy (GPid pid, gint, gpointer)
+static void _child_watch_dummy (GPid pid, G_GNUC_UNUSED gint status, G_GNUC_UNUSED gpointer dummy)
 {
 	g_spawn_close_pid (pid); // note: this is a no-op
 }
