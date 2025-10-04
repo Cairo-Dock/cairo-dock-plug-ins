@@ -332,7 +332,8 @@ gboolean cd_dbus_applet_emit_on_middle_click_icon (gpointer data, Icon *pClicked
 	return GLDI_NOTIFICATION_INTERCEPT;
 }
 
-gboolean cd_dbus_applet_emit_on_scroll_icon (gpointer data, Icon *pClickedIcon, GldiContainer *pClickedContainer, int iDirection, gboolean)
+gboolean cd_dbus_applet_emit_on_scroll_icon (gpointer data, Icon *pClickedIcon, GldiContainer *pClickedContainer,
+	int iDirection, G_GNUC_UNUSED gboolean bEmulated)
 {
 	if (pClickedIcon == NULL)
 		return GLDI_NOTIFICATION_LET_PASS;

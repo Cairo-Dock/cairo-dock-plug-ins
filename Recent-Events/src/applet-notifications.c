@@ -55,7 +55,7 @@ struct _OpenFileData
 	GldiAppInfo *app;
 	gchar *cURI;
 };
-static void _menu_item_destroyed (gpointer data, GObject*)
+static void _menu_item_destroyed (gpointer data, G_GNUC_UNUSED GObject *pObj)
 {
 	if (data)
 	{

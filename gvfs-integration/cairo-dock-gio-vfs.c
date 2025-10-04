@@ -760,7 +760,7 @@ struct _AsyncTypeData
 	gchar *cMimeType;
 };
 
-static void _got_default_for_type_async (GObject*, GAsyncResult *pRes, gpointer ptr)
+static void _got_default_for_type_async (G_GNUC_UNUSED GObject* pObj, GAsyncResult *pRes, gpointer ptr)
 {
 	struct _AsyncTypeData *data = (struct _AsyncTypeData*)ptr;
 	GAppInfo *pAppInfo = g_app_info_get_default_for_type_finish (pRes, NULL);
@@ -811,7 +811,7 @@ static void _launch_uri_mime_type (gchar *cURI)
 }
 
 #if GLIB_CHECK_VERSION(2, 74, 0)
-static void _got_default_for_uri_scheme_async (GObject*, GAsyncResult *pRes, gpointer data)
+static void _got_default_for_uri_scheme_async (G_GNUC_UNUSED GObject* pObj, GAsyncResult *pRes, gpointer data)
 {
 	gchar *cURI = (gchar*)data;
 	gboolean bSuccess = FALSE;
