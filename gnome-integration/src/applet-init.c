@@ -19,8 +19,6 @@
 
 #include "stdlib.h"
 
-#include "cairo-dock-gio-vfs.h"
-
 #include "applet-utils.h"
 #include "applet-init.h"
 
@@ -33,42 +31,27 @@ CD_APPLET_DEFINE2_BEGIN ("gnome integration",
 	"It is designed for the a GNOME version >= 2.22",
 	"Fabounet (Fabrice Rey)")
 	
-	CairoDockDesktopEnvBackend *pVFSBackend = NULL;
-	if (! cairo_dock_fm_vfs_backend_is_defined ())  // the Gnome backend will register the GVFS functions, even if it's not a Gnome environment. It will not overwrite the other functions of the backend, and if another backend comes later, it can set its own functions.
-	{
-		GVfs *vfs = cairo_dock_gio_vfs_init (TRUE);
-		// not sure if this check is necessary, moved this here from cairo-dock-gio-vfs.c
-		if (vfs && g_vfs_is_active (vfs))
-		{
-			cd_debug ("GVFS");
-			pVFSBackend = g_new0 (CairoDockDesktopEnvBackend, 1);
-			cairo_dock_gio_vfs_fill_backend (pVFSBackend);
-		}
-	}
-	
 	if (g_iDesktopEnv == CAIRO_DOCK_GNOME && (glib_major_version > 2 || glib_minor_version >= 16))
 	{
 		cd_debug ("GNOME");
-		if (pVFSBackend == NULL)
-			pVFSBackend = g_new0 (CairoDockDesktopEnvBackend, 1);
+		CairoDockDesktopEnvBackend VFSBackend = { NULL };
 		
 		/* calling gnome-session-quit will only work if either
 		 * gnome-shell or gnome-flashback are running */
 		if (cairo_dock_dbus_detect_application ("org.gnome.Shell"))
 		{
-			pVFSBackend->logout = env_backend_logout;
-			pVFSBackend->shutdown = env_backend_shutdown;
-			pVFSBackend->reboot = env_backend_shutdown;
+			VFSBackend.logout = env_backend_logout;
+			VFSBackend.shutdown = env_backend_shutdown;
+			VFSBackend.reboot = env_backend_shutdown;
 		}
 		// this calls shared-files/scripts/lock-screen.sh which will not work on Wayland
 		if (! gldi_container_is_wayland_backend ())
-			pVFSBackend->lock_screen = env_backend_lock_screen;
-		pVFSBackend->setup_time = env_backend_setup_time;
-		pVFSBackend->show_system_monitor = env_backend_show_system_monitor;
+			VFSBackend.lock_screen = env_backend_lock_screen;
+		VFSBackend.setup_time = env_backend_setup_time;
+		VFSBackend.show_system_monitor = env_backend_show_system_monitor;
+		
+		cairo_dock_fm_register_vfs_backend (&VFSBackend);
 	}
-	
-	if (pVFSBackend != NULL)
-		cairo_dock_fm_register_vfs_backend (pVFSBackend);
 	else
 		return FALSE;
 	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_IS_PLUGIN);

@@ -22,7 +22,6 @@
 #include "applet-vfs.h"
 #include "applet-utils.h"
 #include "applet-init.h"
-#include "cairo-dock-gio-vfs.h"
 
 
 CD_APPLET_DEFINE2_BEGIN ("kde integration",
@@ -34,24 +33,21 @@ CD_APPLET_DEFINE2_BEGIN ("kde integration",
 	"Fabounet (Fabrice Rey)")
 	if (g_iDesktopEnv == CAIRO_DOCK_KDE)
 	{
-		CairoDockDesktopEnvBackend *pVFSBackend = g_new0 (CairoDockDesktopEnvBackend, 1);
-		// the KDE backend uses the standard GIO GVFS functions for most things.
-		cairo_dock_gio_vfs_init (FALSE);
-		cairo_dock_gio_vfs_fill_backend(pVFSBackend);
-
-		// here, we only override KDE-specific stuff
-		pVFSBackend->launch_uri = vfs_backend_launch_uri;
-		pVFSBackend->delete_file = vfs_backend_delete_file;
-		pVFSBackend->rename = vfs_backend_rename_file;
-		pVFSBackend->move = vfs_backend_move_file;
-		pVFSBackend->empty_trash = vfs_backend_empty_trash;
-		pVFSBackend->logout = env_backend_logout;
-		pVFSBackend->shutdown = env_backend_shutdown;
-		pVFSBackend->reboot = env_backend_reboot;
-		pVFSBackend->lock_screen = env_backend_lock_screen;
-		pVFSBackend->setup_time = env_backend_setup_time;
-		pVFSBackend->show_system_monitor = env_backend_show_system_monitor;
-		cairo_dock_fm_register_vfs_backend (pVFSBackend);
+		CairoDockDesktopEnvBackend VFSBackend = { NULL };
+		
+		// here, we provide / override KDE-specific stuff (basics are provided by the GIO VFS backend in core)
+		VFSBackend.launch_uri = vfs_backend_launch_uri;
+		VFSBackend.delete_file = vfs_backend_delete_file;
+		VFSBackend.rename = vfs_backend_rename_file;
+		VFSBackend.move = vfs_backend_move_file;
+		VFSBackend.empty_trash = vfs_backend_empty_trash;
+		VFSBackend.logout = env_backend_logout;
+		VFSBackend.shutdown = env_backend_shutdown;
+		VFSBackend.reboot = env_backend_reboot;
+		VFSBackend.lock_screen = env_backend_lock_screen;
+		VFSBackend.setup_time = env_backend_setup_time;
+		VFSBackend.show_system_monitor = env_backend_show_system_monitor;
+		cairo_dock_fm_register_vfs_backend (&VFSBackend);
 	}
 	else
 		return FALSE;

@@ -124,18 +124,14 @@ message (STATUS "Check dependencies...")
 message (STATUS "=====================")
 message ("")
 
-pkg_check_modules ("PACKAGE" REQUIRED "gldi")  # we check first the common libs that most plug-ins would need: basically, all the libs used by the core.
+pkg_check_modules ("PACKAGE" REQUIRED "gldi" "glib-2.0>=2.36")  # we check first the common libs that most plug-ins would need: basically, all the libs used by the core.
 STRING (REGEX REPLACE "gldi;" "" PACKAGE_LIBRARIES "${PACKAGE_LIBRARIES}")  # but we don't want to link to gldi, since we are dl-opened by it.
 
 # add_definitions (-DGTK_DISABLE_DEPRECATED="1")
 
-#############    GLIB    #################
-pkg_check_modules (GLIB glib-2.0>=2.36) # same version as used in core
-
 ############# SHARED-FILES #################
 set (shared_filesdatadir "${pluginsdatadir}/shared-files")
 add_subdirectory (shared-files)
-
 
 
 ################################################################################
@@ -146,11 +142,6 @@ add_subdirectory (shared-files)
 
 ############# STATIC LIBRARIES ################
 message (STATUS "> Static Libraries:")
-
-############# GVFS-INTEGRATION ################
-message (STATUS "> GVFS-Integration:")
-pkg_check_modules ("LIBGIO" "gio-2.0") ## GIO is used by a few applets: do not offer the possibility to not disable it
-add_subdirectory (gvfs-integration)
 
 ############# INDICATOR-APPLET #################
 message (STATUS "> Indicator-Applet:")
@@ -687,19 +678,12 @@ message (STATUS "> Gnome-Integration:")
 set (with_gnome_integration no)
 enable_if_not_defined (enable-gnome-integration)
 if (enable-gnome-integration)
-	pkg_check_modules (GNOME_INTEGRATION gio-2.0)
-	if (NOT GNOME_INTEGRATION_FOUND)
-		message (STATUS "Could not find gio; Cairo-Dock won't be built with Gnome>=2.22 support.")
-		message (STATUS "This module is required to compile Gnome-Integration applet: gio-2.0")
-		set (MODULES_INTEGRATION_MISSING "${MODULES_INTEGRATION_MISSING} gio-2.0")
-	else()
-		set (GETTEXT_GNOME_INTEGRATION ${GETTEXT_PLUGINS})
-		set (VERSION_GNOME_INTEGRATION "1.0.5")
-		set (PACKAGE_GNOME_INTEGRATION "cd_gnome-integration")
-		set (with_gnome_integration yes)
-		set (gnome_integrationdatadir "${pluginsdatadir}/gnome-integration")
-		add_subdirectory ("gnome-integration")
-	endif()
+	set (GETTEXT_GNOME_INTEGRATION ${GETTEXT_PLUGINS})
+	set (VERSION_GNOME_INTEGRATION "1.0.5")
+	set (PACKAGE_GNOME_INTEGRATION "cd_gnome-integration")
+	set (with_gnome_integration yes)
+	set (gnome_integrationdatadir "${pluginsdatadir}/gnome-integration")
+	add_subdirectory ("gnome-integration")
 endif()
 
 ############# ICON EFFECTS #################
@@ -760,20 +744,12 @@ message (STATUS "> KDE-Integration:")
 set (with_kde_integration no)
 enable_if_not_defined (enable-kde-integration)
 if (enable-kde-integration)
-	pkg_check_modules (KDE_INTEGRATION gio-2.0)
-	message (STATUS "  KDE_INTEGRATION_FOUND: ${KDE_INTEGRATION_FOUND}")
-	if (NOT KDE_INTEGRATION_FOUND)
-		message (STATUS "Could not find gio; Cairo-Dock won't be built with KDE support.")
-		message (STATUS "This module is required to compile KDE-Integration applet: gio-2.0")
-		set (MODULES_INTEGRATION_MISSING "${MODULES_INTEGRATION_MISSING} gio-2.0")
-	else()
-		set (GETTEXT_KDE_INTEGRATION ${GETTEXT_PLUGINS})
-		set (VERSION_KDE_INTEGRATION "1.0.4")
-		set (PACKAGE_KDE_INTEGRATION "cd_kde-integration")
-		set (with_kde_integration yes)
-		set (kde_integrationdatadir "${pluginsdatadir}/kde-integration")
-		add_subdirectory ("kde-integration")
-	endif()
+	set (GETTEXT_KDE_INTEGRATION ${GETTEXT_PLUGINS})
+	set (VERSION_KDE_INTEGRATION "1.0.4")
+	set (PACKAGE_KDE_INTEGRATION "cd_kde-integration")
+	set (with_kde_integration yes)
+	set (kde_integrationdatadir "${pluginsdatadir}/kde-integration")
+	add_subdirectory ("kde-integration")
 endif()
 
 ############# KEYBOARD_INDICATOR #################
@@ -1227,19 +1203,12 @@ message (STATUS "> XFCE-Integration:")
 set (with_xfce_integration no)
 enable_if_not_defined (enable-xfce-integration)
 if (enable-xfce-integration)
-	pkg_check_modules (XFCE_INTEGRATION_GVFS gio-2.0)
-	if (NOT XFCE_INTEGRATION_GVFS_FOUND)
-		message (STATUS "Could find libgio-2.0; Cairo-Dock won't be built with XFCE support.")
-		message (STATUS "This module is required to compile XFCE-Integration applet: gio-2.0")
-		set (MODULES_INTEGRATION_MISSING "${MODULES_INTEGRATION_MISSING} gio-2.0")
-	else()
-		set (GETTEXT_XFCE_INTEGRATION ${GETTEXT_PLUGINS})
-		set (VERSION_XFCE_INTEGRATION "1.0.4")
-		set (PACKAGE_XFCE_INTEGRATION "cd_xfce-integration")
-		set (with_xfce_integration yes)
-		set (xfce_integrationdatadir "${pluginsdatadir}/xfce-integration")
-		add_subdirectory ("xfce-integration")
-	endif()
+	set (GETTEXT_XFCE_INTEGRATION ${GETTEXT_PLUGINS})
+	set (VERSION_XFCE_INTEGRATION "1.0.4")
+	set (PACKAGE_XFCE_INTEGRATION "cd_xfce-integration")
+	set (with_xfce_integration yes)
+	set (xfce_integrationdatadir "${pluginsdatadir}/xfce-integration")
+	add_subdirectory ("xfce-integration")
 endif()
 
 ############# XGAMMA #################

@@ -19,8 +19,6 @@
 
 #include "stdlib.h"
 
-#include "cairo-dock-gio-vfs.h"
-
 #include "applet-utils.h"
 #include "applet-init.h"
 
@@ -33,16 +31,15 @@ CD_APPLET_DEFINE2_BEGIN ("xfce integration",
 	"Tofe (Christophe Chapuis")
 	if (g_iDesktopEnv == CAIRO_DOCK_XFCE)
 	{
-		CairoDockDesktopEnvBackend *pVFSBackend = g_new0 (CairoDockDesktopEnvBackend, 1);
-		cairo_dock_gio_vfs_init (TRUE);
-		cairo_dock_gio_vfs_fill_backend (pVFSBackend);
-		pVFSBackend->logout = env_backend_logout;
-		pVFSBackend->shutdown = env_backend_shutdown;
-		pVFSBackend->reboot = env_backend_shutdown;
-		pVFSBackend->lock_screen = env_backend_lock_screen;
-		pVFSBackend->setup_time = env_backend_setup_time;
-		pVFSBackend->show_system_monitor = env_backend_show_system_monitor;
-		cairo_dock_fm_register_vfs_backend (pVFSBackend);
+		CairoDockDesktopEnvBackend VFSBackend = { NULL };
+		
+		VFSBackend.logout = env_backend_logout;
+		VFSBackend.shutdown = env_backend_shutdown;
+		VFSBackend.reboot = env_backend_shutdown;
+		VFSBackend.lock_screen = env_backend_lock_screen;
+		VFSBackend.setup_time = env_backend_setup_time;
+		VFSBackend.show_system_monitor = env_backend_show_system_monitor;
+		cairo_dock_fm_register_vfs_backend (&VFSBackend);
 	}
 	else
 		return FALSE;
