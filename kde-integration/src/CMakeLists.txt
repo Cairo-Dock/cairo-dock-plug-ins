@@ -22,20 +22,12 @@ add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_KDE_INTEGRATION}")
 add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.png")
 
-include_directories (
-	${PACKAGE_INCLUDE_DIRS}
-	${KDE_INTEGRATION_INCLUDE_DIRS}
-	${CMAKE_SOURCE_DIR}/gvfs-integration)
+include_directories (${PACKAGE_INCLUDE_DIRS})
 
-link_directories (
-	${PACKAGE_LIBRARY_DIRS}
-	${KDE_INTEGRATION_LIBRARY_DIRS}
-	${CMAKE_SOURCE_DIR}/gvfs-integration)
+link_directories (${PACKAGE_LIBRARY_DIRS})
 
 target_link_libraries (${PACKAGE_KDE_INTEGRATION}
-	${PACKAGE_LIBRARIES}
-	${KDE_INTEGRATION_LIBRARIES}
-	gvfs-integration)
+	${PACKAGE_LIBRARIES})
 
 ########### install files ###############
 
