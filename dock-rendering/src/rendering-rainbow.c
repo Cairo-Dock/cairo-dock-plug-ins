@@ -44,7 +44,7 @@ static GLfloat* pColorTab = NULL;
 static void cd_rendering_calculate_max_dock_size_rainbow (CairoDock *pDock)
 {
 	pDock->fMagnitudeMax = my_fRainbowMagnitude;
-	cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->fFlatDockWidth);
+	cairo_dock_calculate_icons_positions_at_rest_linear (pDock);
 	
 	double fMaxScale =  1. + my_fRainbowMagnitude * myIconsParam.fAmplitude;
 	int iMaxIconWidth = pDock->iMaxIconHeight + my_iSpaceBetweenIcons;

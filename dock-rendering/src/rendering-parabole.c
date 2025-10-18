@@ -271,7 +271,7 @@ static void cd_rendering_calculate_max_dock_size_parabole (CairoDock *pDock)
 	}
 	
 	pDock->fMagnitudeMax = my_fParaboleMagnitude;
-	cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->fFlatDockWidth);
+	cairo_dock_calculate_icons_positions_at_rest_linear (pDock);
 	
 	int Ws = gldi_dock_get_screen_width (pDock) - 2;  // let 1px on each edge, so that we can leave the dock even if it gets huge.
 	int Hs = gldi_dock_get_screen_height (pDock) - 2;
