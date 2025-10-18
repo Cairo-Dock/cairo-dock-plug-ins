@@ -43,13 +43,22 @@ extern cairo_surface_t *my_pFlatSeparatorSurface[2];
 
 static void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 {
-	cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->fFlatDockWidth);
-	
-	//pDock->iMaxDockHeight = (int) ((1 + myIconsParam.fAmplitude) * pDock->iMaxIconHeight + myIconsParam.fReflectSize * pDock->container.fRatio) + myIconsParam.iLabelSize + myDocksParam.iDockLineWidth + myDocksParam.iFrameMargin;
-	
 	_define_parameters (hi, h0, H, l, r, gamma, h, w, dw);
 	double h0max = (1 + myIconsParam.fAmplitude) * pDock->iMaxIconHeight * pDock->container.fRatio + MAX ((pDock->container.bIsHorizontal ? myIconsParam.iLabelSize : 0), myDocksParam.iFrameMargin + l);
 	pDock->iMaxDockHeight = (int) ceil (hi + h0max + l);
+	
+	cairo_dock_calculate_icons_positions_at_rest_linear (pDock);
+	// adjust y positions (take into account reflections)
+	{
+		double fReflectionOffsetY = (pDock->container.bDirectionUp ? -1 : 1) * pDock->iIconSize * myIconsParam.fReflectHeightRatio * pDock->container.fRatio;
+		Icon* icon;
+		GList* ic;
+		for (ic = pDock->icons; ic != NULL; ic = ic->next)
+		{
+			icon = ic->data;
+			icon->fYAtRest += fReflectionOffsetY;
+		}
+	}
 	
 	// 1ere estimation.
 	// w
@@ -722,7 +731,7 @@ static Icon *cd_rendering_calculate_icons_3D_plane (CairoDock *pDock)
 	Icon *pPointedIcon = cairo_dock_apply_wave_effect_linear (pDock);
 	
 	//\____________________ On calcule les position/etirements/alpha des icones.
-	double fReflectionOffsetY = (pDock->container.bDirectionUp ? -1 : 1) * /**myIconsParam.fReflectSize*/pDock->iIconSize * myIconsParam.fReflectHeightRatio * pDock->container.fRatio;
+	double fReflectionOffsetY = (pDock->container.bDirectionUp ? -1 : 1) * pDock->iIconSize * myIconsParam.fReflectHeightRatio * pDock->container.fRatio;
 	double offsetx = pDock->iOffsetForExtend * (pDock->fAlign - .5) * 2;
 	Icon* icon;
 	GList* ic;
