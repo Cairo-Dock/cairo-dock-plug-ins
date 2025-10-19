@@ -381,6 +381,8 @@ static guint _cd_rendering_diapo_simple_guess_grid (GList *pIconList, guint *nRo
 	return count;
 }
 
+static Icon* _cd_rendering_calculate_icons_for_diapo_simple (CairoDock *pDock, gint nRowsX, gint nRowsY, gint Mx, gint My, gboolean bPosAtRest);
+
 static void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
 {
 	// add our private data if not already done
@@ -548,6 +550,9 @@ static void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
 	
 	pDock->iActiveWidth = pDock->iMaxDockWidth;
 	pDock->iActiveHeight = pDock->iMaxDockHeight;
+	
+	// fill in XAtRest / YAtRest (used for window minimize positions)
+	_cd_rendering_calculate_icons_for_diapo_simple (pDock, nRowsX, nRowsY, 0, 0, TRUE);
 }
 
 
@@ -555,7 +560,7 @@ static void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
  /// ICONS COMPUTATION ///
 /////////////////////////
 
-static Icon* _cd_rendering_calculate_icons_for_diapo_simple (CairoDock *pDock, gint nRowsX, gint nRowsY, gint Mx, gint My)
+static Icon* _cd_rendering_calculate_icons_for_diapo_simple (CairoDock *pDock, gint nRowsX, gint nRowsY, gint Mx, gint My, gboolean bPosAtRest)
 {
 	CDSlideData *pData = pDock->pRendererData;  // non nul
 	double fScrollOffset = (pDock->container.bDirectionUp ? - pData->iScrollOffset : pData->iScrollOffset);
@@ -585,6 +590,8 @@ static Icon* _cd_rendering_calculate_icons_for_diapo_simple (CairoDock *pDock, g
 				x = 0;  // go to next line.
 				y ++;
 			}
+			
+			if (bPosAtRest) continue;
 			
 			sep_offset += iSeparatorHeight;
 			
@@ -621,15 +628,40 @@ static Icon* _cd_rendering_calculate_icons_for_diapo_simple (CairoDock *pDock, g
 			
 			if (pDock->container.bIsHorizontal)
 			{
-				icon->fX = fx;
-				icon->fY = fy;
+				if (bPosAtRest)
+				{
+					icon->fXAtRest = fx;
+					icon->fYAtRest = fy;
+				}
+				else
+				{	
+					icon->fX = fx;
+					icon->fY = fy;
+				}
 			}
 			else
 			{
-				icon->fX = fy;
-				icon->fY = fx;
+				if (bPosAtRest)
+				{
+					icon->fXAtRest = fy;
+					icon->fYAtRest = fx;
+				}
+				else
+				{
+					icon->fX = fy;
+					icon->fY = fx;
+				}
 			}
-			
+
+			x ++;
+			if (x >= nRowsX)
+			{
+				x = 0;
+				y ++;
+			}
+
+			if (bPosAtRest) continue;
+
 			// on en deduit le zoom par rapport a la position de la souris.
 			gdouble distanceE = sqrt ((icon->fX + icon->fWidth/2 - Mx) * (icon->fX + icon->fWidth/2 - Mx) + (icon->fY + icon->fHeight/2 - My) * (icon->fY + icon->fHeight/2 - My));
 			if (my_diapo_simple_lineaire)
@@ -649,7 +681,7 @@ static Icon* _cd_rendering_calculate_icons_for_diapo_simple (CairoDock *pDock, g
 			}
 
 			// on tient compte du zoom (zoom centre).
-			icon->fXMin = icon->fXMax = icon->fXAtRest =  // Ca on s'en sert pas encore
+			icon->fXMin = icon->fXMax = // Ca on s'en sert pas encore
 			icon->fDrawX = icon->fX + icon->fWidth  * (1. - icon->fScale) / 2;
 			icon->fDrawY = icon->fY + icon->fHeight * (1. - icon->fScale) / 2;
 
@@ -663,13 +695,6 @@ static Icon* _cd_rendering_calculate_icons_for_diapo_simple (CairoDock *pDock, g
 			icon->fPhase = 0.;
 			icon->fOrientation = 0.;  // 2. * G_PI * pDock->fFoldingFactor;
 			icon->fWidthFactor = icon->fHeightFactor = fFoldingScale;
-
-			x ++;
-			if (x >= nRowsX)
-			{
-				x = 0;
-				y ++;
-			}
 		}
 		icon->fAlpha = (pDock->fFoldingFactor > .7 ? (1 - pDock->fFoldingFactor) / (1 - .7) : 1.);  // apparition de 1 a 0.7
 		
@@ -795,7 +820,7 @@ Icon *cd_rendering_calculate_icons_diapo_simple (CairoDock *pDock)
 		return NULL;
 	
 	// On calcule les parametres des icones
-	Icon *pPointedIcon = _cd_rendering_calculate_icons_for_diapo_simple (pDock, nRowsX, nRowsY, pDock->container.iMouseX, pDock->container.iMouseY);
+	Icon *pPointedIcon = _cd_rendering_calculate_icons_for_diapo_simple (pDock, nRowsX, nRowsY, pDock->container.iMouseX, pDock->container.iMouseY, FALSE);
 	
 	_cd_rendering_check_if_mouse_inside_diapo_simple (pDock);
 	
