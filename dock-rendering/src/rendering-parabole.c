@@ -241,7 +241,7 @@ static void cd_rendering_calculate_reference_parabole (double alpha)
 }
 
 
-double cd_rendering_interpol_curvilign_abscisse (double x, double y, double lambda, double alpha)
+static double cd_rendering_interpol_curvilign_abscisse (double x, double y, double lambda, double alpha)
 {
 	double w = g_desktopGeometry.Xscreen.height / my_fParaboleRatio;  // aie, au changement de resolution ...
 	double lambda_reference = my_fParaboleRatio * pow (w, 1 - alpha);
@@ -571,7 +571,7 @@ static double cd_rendering_calculate_wave_position (CairoDock *pDock, double fCu
 	return x_abs;
 }
 
-Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
+static Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 {
 	if (pDock->icons == NULL)
 		return NULL;
@@ -696,6 +696,39 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 	return pPointedIcon;
 }
 
+static void cd_rendering_get_minimize_pos_parabole (Icon *icon, CairoDock *pDock, double *pX, double *pY)
+{
+	Icon *pFirstIcon = pDock->icons->data;
+	
+	const double fMaxScale =  1. + my_fParaboleMagnitude * myIconsParam.fAmplitude;
+
+	double x, y;
+	if (icon == pFirstIcon)
+	{
+		x = 0.0;
+		y = 0.0;
+	}
+	else
+	{
+		const double w = MAX (1, pDock->container.iWidth - pDock->iMaxLabelWidth - pDock->iMaxIconHeight * (.5+sqrt(5./4.)) * fMaxScale);
+		const double h = my_fParaboleRatio * w;
+		const double alpha = my_fParaboleCurvature;
+		const double lambda = h / pow (w, alpha);
+		const double s = icon->fXAtRest - pFirstIcon->fXAtRest;
+		y = cd_rendering_interpol (s, s_pReferenceParaboleS, s_pReferenceParaboleY);
+		x = fCurveInv (y, lambda, alpha);
+	}
+	
+	*pY = pDock->container.bDirectionUp ? pDock->iMaxDockHeight - (y + icon->fHeight) : y;
+	if (pDock->fAlign == 1)
+	{
+		*pX = pDock->iMaxDockWidth - (x + pDock->iMaxLabelWidth + .5 * pDock->iMaxIconHeight * fMaxScale + icon->fWidth * 0.5);
+	}
+	else
+	{
+		*pX = x + pDock->iMaxLabelWidth + .5 * pDock->iMaxIconHeight * fMaxScale - icon->fWidth * 0.5;
+	}
+}
 
 static void cd_rendering_render_parabole_opengl (CairoDock *pDock)
 {
@@ -799,6 +832,7 @@ void cd_rendering_register_parabole_renderer (const gchar *cRendererName)
 	pRenderer->render_optimized = NULL;
 	pRenderer->render_opengl = cd_rendering_render_parabole_opengl;
 	pRenderer->set_subdock_position = cd_rendering_set_subdock_position_parabole;
+	pRenderer->get_minimize_pos = cd_rendering_get_minimize_pos_parabole;
 	// parametres
 	pRenderer->cDisplayedName = D_ (cRendererName);
 	pRenderer->cReadmeFilePath = g_strdup (MY_APPLET_SHARE_DATA_DIR"/readme-parabolic-view");
