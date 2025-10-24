@@ -54,7 +54,7 @@ static void cd_rendering_calculate_max_dock_size_rainbow (CairoDock *pDock)
 	
 	int iNbRows = (int) ceil (sqrt (2 * iNbIcons / fCone / fMaxScale) + .5);  /// approximation, use complete formula
 	
-	pDock->iMaxDockHeight = iNbRows * (pDock->iMaxIconHeight + my_iSpaceBetweenRows) * fMaxScale + iMinRadius;
+	pDock->iMaxDockHeight = iNbRows * (pDock->iMaxIconHeight + my_iSpaceBetweenRows) * fMaxScale + iMinRadius + 2 * myIconsParam.iLabelSize;
 	pDock->iMaxDockWidth = 2 * (pDock->iMaxDockHeight * cos (my_fRainbowConeOffset));
 	cd_debug ("iNbRows : %d => %dx%d (iMaxIconHeight = %d ; iMinRadius = %d ; fMaxScale = %.2f)", iNbRows, pDock->iMaxDockWidth, pDock->iMaxDockHeight, pDock->iMaxIconHeight, iMinRadius, fMaxScale);
 	
@@ -222,156 +222,127 @@ static void cd_rendering_get_polar_coords (CairoDock *pDock, double *fRadius, do
 	*fTheta = atan2 (x, y);
 }
 
-static double _calculate_wave_offset (int x_abs, int iMaxIconHeight, double fMagnitude, double fFlatDockWidth, int iWidth, double fAlign, double fFoldingFactor, double fRatio)
+/**
+ * Functions to scale the rainbow's radius so that the currently pointed row is zoomed.
+ * We do this by assuming a position-dependent scaling factor to the radius. In the following,
+ * "t" is a curve parameter that corresponds to unscaled coordinates, and "x" is the real
+ * radius. The scaling factor is dependent on t:
+ *    s(t) = | 1                             if t < t0 - W/2 or t > t0 + W/2
+ *           | A * cos (pi * (t - t0) / W)   if t \in [t0 - W/2; t0 + W/2]
+ * where t0 is a parameter that corresponds to the "center point", i.e. the mouse position
+ * in unscaled coordinates, while W is the width of the scaling effect and A is its amplitude.
+ * These are calculated as:
+ *    W = myIconsParam.iSinusoidWidth * pDock->container.fRatio;
+ *    A = myIconsParam.fAmplitude * my_fRainbowMagnitude * cairo_dock_calculate_magnitude (pDock->iMagnitudeIndex);
+ * Below, the function _get_current_scale () calculates s(t) for a set of parameters (t0 and dock parameters).
+ * 
+ * We convert to real radius coordinates by integrating s along t:
+ *    x(t) = \int_0^t s(z) d z
+ * The result depends on whether t0 is larger than W/2.
+ * If t0 > W/2, we have:
+ *    x(t) = |  t                                                                   if t <  t0 - W/2
+ *           |  t + A * W * ( 1 + sin (pi * (t - t0 / W) ) ) / pi                   if t \in [t0 - W/2; t0 + W/2]
+ *           |  t + 2 * A * W / pi                                                  if t >  t0 + W/2
+ * If t0 < W/2, then:
+ *    x(t) = | t + A * W * ( sin (pi * t0 / W) + sin (pi * (t - t0 / W) ) ) / pi    if t <  t0 + W/2
+ *           | t + A * W * ( sin (pi * t0 / W) + 1 ) / pi                           if t >= t0 + W/2
+ * Below, the function _get_current_radius () calculates x(t) for a set of parameters (t0 and dock parameters).
+ * 
+ * To calculte t0, we need to invert the above function. If x0 is the current mouse position (in polar
+ * coordinates, i.e. the current radius), we can do the following:
+ *   If x0 > W / 2 + A * W / pi  =>  t0 = x0 - A * W / pi
+ *   Otherwise, we need to solve the following equation:
+ *      t0 + A * W * sin (pi * t0 / W) / pi - x0 = 0
+ *   We know that:
+ *      t0 \in [ MAX(0, x0 - A * W / pi); x0 ]
+ *      and also that the left hand side of the above equation is a monotonously
+ *      increasing function on this interval, meaning that there can be only one
+ *      zero crossing
+ *   This means that we can do a binary search starting from the two endpoints until
+ *   we find a candidate t0 where the left hand side is close enough to zero (we do
+ *   not need to be very precise).
+ * Below, the _calculate_t0 () function does this for a given x0 and dock parameters.
+ * This is called whenever the mouse position changes and the resulting t0 is used
+ * for later calculations.
+ * 
+ * Additional complications:
+ * We scale coordinates by (1.0 - pDock->fFoldingFactor) to take into account the
+ * dock opening / closing animation.
+ * We start our coordinate system not from the half-circle center, but from the radius
+ * that corresponds to the first icon position (fMinIconRadius below). This is done
+ * so that the radius of the first ring of icons never changes. This means that:
+ *   -- for x0 >= fMinIconRadius, we simply subtract this value (and later add back as necessary)
+ *   -- for x0 <  fMinIconRadius, we calculate an "artificial" t0, so that we have zero scaling
+ *      (achieved by setting t0 == -W / 2) when x0 == 0 and we have t0 == 0 if x0 == fMinIconRadius
+ */
+static double _get_current_scale (CairoDock *pDock, double t, double t0)
 {
-	int iIconNumber = (x_abs + .5*my_iSpaceBetweenRows) / (iMaxIconHeight + my_iSpaceBetweenRows);
-	
-	int x_cumulated = iIconNumber * (iMaxIconHeight + my_iSpaceBetweenRows);
-	cd_debug (" iIconNumber : %d ; x_cumulated : %d", iIconNumber, x_cumulated);
-	double fXMiddle = x_cumulated + iMaxIconHeight / 2;
-	double fPhase = (fXMiddle - x_abs) / myIconsParam.iSinusoidWidth / fRatio * G_PI + G_PI / 2;
-	if (fPhase < 0)
-	{
-		fPhase = 0;
-	}
-	else if (fPhase > G_PI)
-	{
-		fPhase = G_PI;
-	}
-	double fScale = 1 + fMagnitude * myIconsParam.fAmplitude * sin (fPhase);
-	double fX = x_cumulated - 0*(fFlatDockWidth - iWidth) / 2 + (1 - fScale) * (x_abs - x_cumulated + .5*my_iSpaceBetweenRows);
-	fX = fAlign * iWidth + (fX - fAlign * iWidth) * (1. - fFoldingFactor);
-	
-	while (iIconNumber > 0)
-	{
-		iIconNumber --;
-		x_cumulated = iIconNumber * (iMaxIconHeight + my_iSpaceBetweenRows);
-		//cd_debug ("  %d) x_cumulated = %d", iIconNumber, x_cumulated);
-		fXMiddle = x_cumulated + iMaxIconHeight / 2;
-		fPhase = (fXMiddle - x_abs) / myIconsParam.iSinusoidWidth / fRatio * G_PI + G_PI / 2;
-		if (fPhase < 0)
-		{
-			fPhase = 0;
-		}
-		else if (fPhase > G_PI)
-		{
-			fPhase = G_PI;
-		}
-		fScale = 1 + fMagnitude * myIconsParam.fAmplitude * sin (fPhase);
-		
-		fX = fX - (iMaxIconHeight + my_iSpaceBetweenRows) * fScale;
-		fX = fAlign * iWidth + (fX - fAlign * iWidth) * (1. - fFoldingFactor);
-	}
-	return -fX;
-}
-static double cd_rendering_calculate_wave_position (CairoDock *pDock, double fCurvilignAbscisse, double fMagnitude)
-{
-	cd_debug ("%s (%.2f)", __func__, fCurvilignAbscisse);
-	
-	if (pDock->icons == NULL || fCurvilignAbscisse <= 0)
-		return 0;
-	double fWaveOffset, fWaveExtrema;
-	double x_abs = fCurvilignAbscisse;
-	int nb_iter = 0;
 	double fRatio = pDock->container.fRatio;
+	double W = myIconsParam.iSinusoidWidth * fRatio;
+	double scale = 1.0;
+	if (t > t0 - 0.5 * W && t < t0 + 0.5 * W)
+	{
+		double fMagnitude = cairo_dock_calculate_magnitude (pDock->iMagnitudeIndex);
+		double A = myIconsParam.fAmplitude * my_fRainbowMagnitude * fMagnitude;
+		scale += A * cos (G_PI * (t - t0) / W);
+	}
+	return scale * (1.0 - pDock->fFoldingFactor);
+}
+
+static double _get_current_radius (CairoDock *pDock, double t, double t0)
+{
+	double fRatio = pDock->container.fRatio;
+	double W = myIconsParam.iSinusoidWidth * fRatio;
+	double x = t;
+	if (t > t0 - 0.5 * W)
+	{
+		double fMagnitude = cairo_dock_calculate_magnitude (pDock->iMagnitudeIndex);
+		double A = myIconsParam.fAmplitude * my_fRainbowMagnitude * fMagnitude;
+		
+		if (t0 < 0.5 * W) x += A * W * sin (G_PI * t0 / W) / G_PI;
+		else x += A * W / G_PI;
+		
+		if (t < t0 + 0.5 * W) x += A * W * sin (G_PI * (t - t0) / W) / G_PI;
+		else x += A * W / G_PI;
+	}
+	
+	return x * (1.0 - pDock->fFoldingFactor);
+}
+
+static double _calculate_t0 (CairoDock *pDock, double x)
+{
+	double fRatio = pDock->container.fRatio;
+	double W = myIconsParam.iSinusoidWidth * fRatio;
+	if (pDock->fFoldingFactor > 0.999) return -0.5 * W; // dock is almost hidden, avoid any scaling
+	
+	if (x <= 0.0) return 0.0;
+	
+	x /= (1.0 - pDock->fFoldingFactor);
+	
+	double fMagnitude = cairo_dock_calculate_magnitude (pDock->iMagnitudeIndex);
+	double A = myIconsParam.fAmplitude * my_fRainbowMagnitude * fMagnitude;
+	
+	double t0 = x - A * W / G_PI;
+	if (t0 >= 0.5 * W) return t0;
+	
+	// we need to solve the following equation for t0:
+	// t0 + A*W*sin(G_PI*t0/W)/G_PI - x = 0
+	// we know that: t0 < x and t0 > 0 and t0 > x - A * W / G_PI
+	if (t0 < 0.0) t0 = 0.0;
+	double delta = 0.5 * (x - t0);
+	int nb_iter = 0;
 	
 	do
 	{
-		//cd_debug ("  x_abs : %.2f", x_abs);
-		fWaveOffset = _calculate_wave_offset (x_abs, pDock->iMaxIconHeight, fMagnitude, pDock->fFlatDockWidth, pDock->fFlatDockWidth, 0*pDock->fAlign, pDock->fFoldingFactor, fRatio);
-		
-		fWaveExtrema = fWaveOffset + x_abs;
-		if (fWaveExtrema >= 0)
-			x_abs += (fCurvilignAbscisse - fWaveExtrema) / 2;
-		else
-			x_abs = MAX (0, x_abs - (fCurvilignAbscisse - fWaveExtrema) / 2);
-		if (x_abs > (int) pDock->fFlatDockWidth)
-		{
-			x_abs = (int) pDock->fFlatDockWidth;
-			break ;
-		}
-		//cd_debug ("  -> fWaveOffset : %.2f, fWaveExtrema : %.2f", fWaveOffset, fWaveExtrema);
-		
-		nb_iter ++;
-	}
-	while (fabs (fWaveExtrema - fCurvilignAbscisse) > 1 && nb_iter < 15);
+		t0 += delta;
+		double res = t0 + A * W * sin (G_PI * t0 / W) / G_PI - x;
+		if (res < -1e-6) delta = 0.5 * fabs (delta);
+		else if (res > 1e-6) delta = -0.5 * fabs (delta);
+		else break; // already close enough
+		nb_iter++;
+	} while (nb_iter < 15);
 	
-	return x_abs;
-}
-
-static int cd_rendering_calculate_wave_on_each_lines (int x_abs, int iMaxIconHeight, double fMagnitude, double fFlatDockWidth, int iWidth, double fAlign, double fFoldingFactor, double fRatio, int iNbRows, double *pScales)  // (fScale,fX)
-{
-	if (iNbRows <= 0)
-		return 0;
-	cd_debug ("%s (%d, %.2f, %.2f, %d)", __func__, x_abs, fMagnitude, fFoldingFactor, iNbRows);
-	if (x_abs < 0 && iWidth > 0)  // These borderline cases are there to avoid having icons which shrink too fast when we go out from the sides.
-		x_abs = -1;
-	else if (x_abs > fFlatDockWidth && iWidth > 0)
-		x_abs = fFlatDockWidth+1;
-	
-	float x_cumulated = 0, fXMiddle;
-	double fPhase, fX, fScale = 0.0;
-	int iNumRow, iPointedRow=-1;
-	for (iNumRow = 0; iNumRow < iNbRows; iNumRow ++)
-	{
-		//cd_debug (" ligne %d", iNumRow);
-		fXMiddle = x_cumulated + .5*iMaxIconHeight;
-		
-		fPhase = (fXMiddle - x_abs) / myIconsParam.iSinusoidWidth / fRatio * G_PI + G_PI / 2;
-		if (fPhase < 0)
-			fPhase = 0;
-		else if (fPhase > G_PI)
-			fPhase = G_PI;
-		fScale = 1 + fMagnitude * myIconsParam.fAmplitude * sin (fPhase);
-		pScales[2*iNumRow] = fScale;
-		//cd_debug ("  fScale : %.2f", fScale);
-		
-		if (iPointedRow != -1)
-		{
-			fX = pScales[2*(iNumRow-1)+1] + (iMaxIconHeight + my_iSpaceBetweenRows) * pScales[2*(iNumRow-1)];
-			fX = fAlign * iWidth + (fX - fAlign * iWidth) * (1. - fFoldingFactor);
-			pScales[2*iNumRow+1] = fX;
-			//cd_debug ("  fX : %.2f (prev : %.2f , %.2f)", fX, pScales[2*(iNumRow-1)+1], pScales[2*(iNumRow-1)]);
-		}
-		
-		if (x_cumulated + iMaxIconHeight + .5*my_iSpaceBetweenRows >= x_abs && x_cumulated - .5*my_iSpaceBetweenRows <= x_abs && iPointedRow == -1)  // We found the line on which the mouse's pointer is over.
-		{
-			iPointedRow = iNumRow;
-			fX = x_cumulated - 0*(fFlatDockWidth - iWidth) / 2 + (1 - fScale) * (x_abs - x_cumulated + .5*my_iSpaceBetweenRows);
-			fX = fAlign * iWidth + (fX - fAlign * iWidth) * (1. - fFoldingFactor);
-			//cd_debug ("  ligne pointee : %d", iPointedRow);
-			pScales[2*iNumRow+1] = fX;
-			//cd_debug ("  fX : %.2f", fX);
-		}
-		
-		x_cumulated += iMaxIconHeight;
-	}
-	
-	if (iPointedRow == -1)  // We are out of the disk.
-	{
-		iPointedRow = iNbRows - 1;
-		
-		fX = x_cumulated - (fFlatDockWidth - iWidth) / 2 + (1 - fScale) * (iMaxIconHeight + .5*my_iSpaceBetweenRows);
-		fX = fAlign * iWidth + (fX - fAlign * iWidth) * (1 - fFoldingFactor);
-		pScales[2*iNumRow+1] = fX;
-		//cd_debug ("  fX : %.2f", fX);
-	}
-	
-	for (iNumRow = iPointedRow-1; iNumRow >= 0; iNumRow --)
-	{
-		fX = pScales[2*(iNumRow+1)+1] - (iMaxIconHeight + my_iSpaceBetweenRows) * pScales[2*iNumRow];
-		fX = fAlign * iWidth + (fX - fAlign * iWidth) * (1. - fFoldingFactor);
-		pScales[2*iNumRow+1] = fX;
-		//cd_debug ("  fX : %.2f", fX);
-	}
-	
-	fX = pScales[1];
-	for (iNumRow = 0; iNumRow < iNbRows; iNumRow ++)
-	{
-		pScales[2*iNumRow+1] -= fX;
-	}
-	
-	return iPointedRow;
+	return t0;
 }
 
 static Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
@@ -385,28 +356,26 @@ static Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 	double fCone = G_PI - 2 * my_fRainbowConeOffset;
 	int iNbIcons = g_list_length (pDock->icons);
 	int iMinRadius = MIN (my_iRainbowNbIconsMin, iNbIcons) * iMaxIconWidth * fMaxScale / fCone;
-	double fRatio = pDock->container.fRatio;
 	double fRadius, fTheta;
 	cd_debug (" mouse : (%d ; %d)", pDock->container.iMouseX, pDock->container.iMouseY);
 	cd_rendering_get_polar_coords (pDock, &fRadius, &fTheta);
 	cd_debug (" polar : (%.2f ; %.2f)", fRadius, fTheta/G_PI*180.);
 	
-	double fCurvilignAbscisse = (fTheta > -G_PI/2 && fTheta < G_PI/2 ? MAX (0, fRadius - iMinRadius): 0);
+	double t0;
+	double fMinIconRadius = iMinRadius + 0.5 * pDock->iMaxIconHeight;
+	if (fRadius > fMinIconRadius) t0 = _calculate_t0 (pDock, fRadius - fMinIconRadius);
+	else
+	{
+		double fRatio = pDock->container.fRatio;
+		double W = myIconsParam.iSinusoidWidth * fRatio;
+		t0 = 0.5 * W * (fRadius / fMinIconRadius - 1.0);
+	}
 	
-	//\____________________ We deduce or apply the wave in order to have a "ridge" at the position of the cursor.
-	Icon *pPointedIcon = NULL;
-	double fMagnitude = cairo_dock_calculate_magnitude (pDock->iMagnitudeIndex) * pDock->fMagnitudeMax;
-	int x_abs = (int) round (cd_rendering_calculate_wave_position (pDock, fCurvilignAbscisse, fMagnitude));
-	cd_debug (" => x_abs : %d (fMagnitude:%.2f ; fFoldingFactor:%.2f)", x_abs, fMagnitude, pDock->fFoldingFactor);
-	
-	//\_______________ We deduce the amplitude for each line.
 	int iNbRows = round ((pDock->iMaxDockHeight - iMinRadius) / ((pDock->iMaxIconHeight + my_iSpaceBetweenRows) * fMaxScale));
 	cd_debug ("iNbRows : %d", iNbRows);
-	double fFlatDockWidth = iNbRows * (pDock->iMaxIconHeight + my_iSpaceBetweenRows) * fMaxScale;
-	double *pScales = g_new0 (double, 2*iNbRows+2);
-	cd_rendering_calculate_wave_on_each_lines (x_abs, pDock->iMaxIconHeight, fMagnitude, fFlatDockWidth, fFlatDockWidth, 0*pDock->fAlign, pDock->fFoldingFactor, fRatio, iNbRows, pScales);
 	
 	//\____________________ We deduce the positions/stretching/alpha of all icons.
+	Icon *pPointedIcon = NULL;
 	Icon* icon;
 	GList* ic;
 	
@@ -415,6 +384,7 @@ static Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 	
 	int iNbRow = -1, iNbIconsOnRow = 0, iNbInsertedIcons = 0;
 	double fCurrentRadius=0, fNormalRadius=0, fCurrentTheta, fThetaStart=0, fDeltaTheta=0, fCurrentScale=1;
+	double t = 0;
 	do
 	{
 		icon = ic->data;
@@ -425,8 +395,10 @@ static Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 			if (iNbRow >= iNbRows)
 				break ;
 			iNbInsertedIcons = 0;
-			fCurrentRadius = iMinRadius * (1 - pDock->fFoldingFactor) + pScales[2*iNbRow+1];
-			fCurrentScale = pScales[2*iNbRow] * (1 - pDock->fFoldingFactor);
+			t = iNbRow * (pDock->iMaxIconHeight + my_iSpaceBetweenRows);
+			fCurrentRadius = iMinRadius + _get_current_radius (pDock, t, t0);
+			fCurrentScale = _get_current_scale (pDock, t, t0);
+			
 			fNormalRadius = iMinRadius + iNbRow * (pDock->iMaxIconHeight + my_iSpaceBetweenRows) * fMaxScale;
 			fDeltaTheta = 2 * atan (iMaxIconWidth * fMaxScale / 2 / fNormalRadius);
 			iNbIconsOnRow = (int) (fCone / fDeltaTheta);
@@ -477,14 +449,12 @@ static Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 		
 		ic = cairo_dock_get_next_element (ic, pDock->icons);
 	} while (ic != pFirstDrawnElement);
-	g_free (pScales);
 	
-	//g_print ("fRadius : %.2f ; limite : %.2f\n", fRadius, fCurrentRadius + pDock->iMaxIconHeight * fCurrentScale);
 	if (! pDock->container.bInside ||
-		fRadius > fCurrentRadius + pDock->iMaxIconHeight * fCurrentScale + myIconsParam.iLabelSize - (pDock->fFoldingFactor > 0 ? 20 : 0) ||
-		((fTheta < - G_PI/2 + my_fRainbowConeOffset || fTheta > G_PI/2 - my_fRainbowConeOffset) && fRadius > iMinRadius + .5 * pDock->iMaxIconHeight * fMaxScale))
+		t0 > (iNbRows + 0.2) * (pDock->iMaxIconHeight + my_iSpaceBetweenRows) ||
+		((fTheta < - G_PI/2 + my_fRainbowConeOffset - G_PI / 18 || fTheta > G_PI/2 - my_fRainbowConeOffset + G_PI / 18) &&
+			fRadius > iMinRadius + .5 * pDock->iMaxIconHeight * fMaxScale))
 	{
-		cd_debug ("We go out of the semi-disk");
 		pDock->iMousePositionType = CAIRO_DOCK_MOUSE_OUTSIDE;
 		pDock->bCanDrop = FALSE;
 	}
