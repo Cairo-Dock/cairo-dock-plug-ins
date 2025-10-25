@@ -50,7 +50,7 @@ CD_APPLET_DEFINE2_BEGIN ("gnome integration",
 		VFSBackend.setup_time = env_backend_setup_time;
 		VFSBackend.show_system_monitor = env_backend_show_system_monitor;
 		
-		cairo_dock_fm_register_vfs_backend (&VFSBackend);
+		cairo_dock_fm_register_vfs_backend (&VFSBackend, TRUE); // TRUE: overwrite previously registered functions
 	}
 	else
 		return FALSE;
