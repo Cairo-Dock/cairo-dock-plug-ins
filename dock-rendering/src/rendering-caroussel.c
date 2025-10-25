@@ -62,7 +62,7 @@ extern double my_fScrollSpeed;
 
 void cd_rendering_calculate_max_dock_size_caroussel (CairoDock *pDock)
 {
-	cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->fFlatDockWidth, pDock->iScrollOffset);
+	cairo_dock_calculate_icons_positions_at_rest_linear (pDock);
 	
 	int iEllipseHeight = (1 + myIconsParam.fAmplitude) * pDock->iMaxIconHeight / sqrt (1 + my_fInclinationOnHorizon * my_fInclinationOnHorizon) + my_iGapOnEllipse;
 	pDock->iDecorationsHeight = iEllipseHeight + 2 * myDocksParam.iFrameMargin + myIconsParam.fReflectSize;

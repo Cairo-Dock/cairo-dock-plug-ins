@@ -98,6 +98,13 @@ static double cd_rendering_interpol_curve_height (double x)
 }
 */
 
+static void _cd_rendering_curve_adjust_y_at_rest (Icon *icon, G_GNUC_UNUSED CairoDock *pDock, double y_sens)
+{
+	icon->fYAtRest += y_sens;
+}
+
+static void _cd_rendering_curve_foreach_icon (CairoDock *pDock, gboolean bUseXAtRest, void (*func)(Icon *icon, CairoDock *pDock, double y_sens));
+
 static void cd_rendering_calculate_max_dock_size_curve (CairoDock *pDock)
 {
 	static double fCurveCurvature = 0;
@@ -108,12 +115,16 @@ static void cd_rendering_calculate_max_dock_size_curve (CairoDock *pDock)
 	}
 	int iDockLineWidth = _get_dock_linewidth();
 	
+	pDock->iMaxDockHeight = iDockLineWidth + myDocksParam.iFrameMargin + my_iCurveAmplitude + ceil ((1 + myIconsParam.fAmplitude) * pDock->iMaxIconHeight * pDock->container.fRatio) + (pDock->container.bIsHorizontal ? myIconsParam.iLabelSize : 0);  // de bas en haut.
+	pDock->iActiveHeight = pDock->iMaxDockHeight;
+	if (! pDock->container.bIsHorizontal)
+		pDock->iMaxDockHeight += 8*myIconsParam.iLabelSize;  // vertical dock, add some padding to draw the labels.	
+	
 	// on calcule tout ce qu'on peut.
-	cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->fFlatDockWidth);
+	cairo_dock_calculate_icons_positions_at_rest_linear (pDock);
+	_cd_rendering_curve_foreach_icon (pDock, TRUE, _cd_rendering_curve_adjust_y_at_rest);
 	
 	pDock->iDecorationsHeight = myDocksParam.iFrameMargin + my_iCurveAmplitude + .5 * pDock->iMaxIconHeight;  // de bas en haut.
-	
-	pDock->iMaxDockHeight = iDockLineWidth + myDocksParam.iFrameMargin + my_iCurveAmplitude + ceil ((1 + myIconsParam.fAmplitude) * pDock->iMaxIconHeight * pDock->container.fRatio) + (pDock->container.bIsHorizontal ? myIconsParam.iLabelSize : 0);  // de bas en haut.
 	
 	double fRatio = (pDock->iRefCount == 0 && pDock->iVisibility == CAIRO_DOCK_VISI_RESERVE ? 1. : pDock->container.fRatio);  // prevent the dock from resizing itself and all the maximized windows each time an icon is removed/inserted.
 	pDock->iMinDockHeight = iDockLineWidth + myDocksParam.iFrameMargin + my_iCurveAmplitude + pDock->iMaxIconHeight * fRatio;  // de bas en haut.
@@ -155,9 +166,6 @@ static void cd_rendering_calculate_max_dock_size_curve (CairoDock *pDock)
 	pDock->iMinDockWidth = MAX (1, pDock->fFlatDockWidth);  // fFlatDockWidth peut etre meme negatif avec un dock vide.
 	
 	pDock->iActiveWidth = iMaxDockWidth;
-	pDock->iActiveHeight = pDock->iMaxDockHeight;
-	if (! pDock->container.bIsHorizontal)
-		pDock->iMaxDockHeight += 8*myIconsParam.iLabelSize;  // vertical dock, add some padding to draw the labels.	
 }
 
 
@@ -995,17 +1003,25 @@ static void cd_rendering_render_optimized_curve (cairo_t *pCairoContext, CairoDo
 }
 
 
-Icon *cd_rendering_calculate_icons_curve (CairoDock *pDock)
+static void _cd_rendering_curve_adjust_icon (Icon *icon, CairoDock *pDock, double y_sens)
 {
-	Icon *pPointedIcon = cairo_dock_apply_wave_effect_linear (pDock);
-	
-	cairo_dock_check_if_mouse_inside_linear (pDock);
-	
+	icon->fDrawX = icon->fX + (pDock->iOffsetForExtend * (pDock->fAlign - .5) * 2);
+	icon->fDrawY = icon->fY + y_sens;
+	//g_print ("y : %.2f -> fDrawY = %.2f\n", y, icon->fDrawY);
+	icon->fWidthFactor = 1.;
+	icon->fHeightFactor = 1.;
+	///icon->fDeltaYReflection = 0.;
+	icon->fOrientation = 0.;
+	icon->fAlpha = 1;
+}
+
+static void _cd_rendering_curve_foreach_icon (CairoDock *pDock, gboolean bUseXAtRest, void (*func)(Icon *icon, CairoDock *pDock, double y_sens))
+{
 	//\____________________ On calcule les position/etirements/alpha des icones.
-	if(pDock->icons  == NULL)
-		return NULL;
+	if(pDock->icons == NULL) return;
+	
 	gint sens = pDock->container.bDirectionUp ? 1 : -1;
-	//double fReflectionOffsetY = - sens * /**myIconsParam.fReflectSize*/pDock->iIconSize * myIconsParam.fReflectHeightRatio;
+	
 	// On va calculer une parabole pour approcher la courbe de bézier : 
 	// Soient A: (xa,ya) B: (xb,yb) C: (xc,yc) trois points qui appartiennent à la parabole. xa, xb et xc sont distincts.
 	// P1(x)=(x-xb)(x-xc)
@@ -1029,9 +1045,9 @@ Icon *cd_rendering_calculate_icons_curve (CairoDock *pDock)
 	{
 		Icon *pFirstIcon = cairo_dock_get_first_icon (pDock->icons);
 		Icon *pLastIcon = cairo_dock_get_last_icon (pDock->icons);
-		xa = pFirstIcon->fX ; // icone de gauche
+		xa = bUseXAtRest ? pFirstIcon->fXAtRest : pFirstIcon->fX ; // icone de gauche
 		ya = 0;
-		xc = pLastIcon->fX;  // icone de droite
+		xc = bUseXAtRest ? pLastIcon->fXAtRest : pLastIcon->fX;  // icone de droite
 		yc = 0;
 	}
 	xb = (xc+xa)/2;
@@ -1054,18 +1070,20 @@ Icon *cd_rendering_calculate_icons_curve (CairoDock *pDock)
 	for (ic = pDock->icons; ic != NULL; ic = ic->next)
 	{
 		icon = ic->data;
-		double x = icon->fX;
+		double x = bUseXAtRest ? icon->fXAtRest : icon->fX;
 		double y = k1*(x-xb)*(x-xc) + k2*(x-xa)*(x-xc) + k3*(x-xa)*(x-xb);
 		
-		icon->fDrawX = icon->fX + (pDock->iOffsetForExtend * (pDock->fAlign - .5) * 2);
-		icon->fDrawY = icon->fY + sens * y;
-		//g_print ("y : %.2f -> fDrawY = %.2f\n", y, icon->fDrawY);
-		icon->fWidthFactor = 1.;
-		icon->fHeightFactor = 1.;
-		///icon->fDeltaYReflection = 0.;
-		icon->fOrientation = 0.;
-		icon->fAlpha = 1;
+		func (icon, pDock, sens * y);
 	}
+}
+
+Icon *cd_rendering_calculate_icons_curve (CairoDock *pDock)
+{
+	Icon *pPointedIcon = cairo_dock_apply_wave_effect_linear (pDock);
+	
+	cairo_dock_check_if_mouse_inside_linear (pDock);
+	
+	_cd_rendering_curve_foreach_icon (pDock, FALSE, _cd_rendering_curve_adjust_icon);
 	
 	cairo_dock_check_can_drop_linear (pDock);
 	

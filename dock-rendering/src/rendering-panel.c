@@ -83,6 +83,11 @@ static void cd_compute_size (CairoDock *pDock)
 		fGroupGap = myIconsParam.iIconGap;
 	//g_print (" -> %d groups, %d/%d\nfGroupGap = %.2f\n", iNbGroups, (int)fGroupsWidth, (int)W, fGroupGap);
 	
+	double hicon = pDock->iMaxIconHeight;
+	pDock->iMaxDockHeight = iDockLineWidth + myDocksParam.iFrameMargin + hicon * pDock->container.fRatio + myDocksParam.iFrameMargin + iDockLineWidth + (pDock->container.bIsHorizontal ? myIconsParam.iLabelSize : 0);
+	pDock->iMaxDockHeight = MAX (pDock->iMaxDockHeight, hicon * (1 + myIconsParam.fAmplitude));  // au moins la taille du FBO.
+	//g_print ("panel view: pDock->iMaxIconHeight = %d\n", pDock->iMaxIconHeight);
+	
 	//\_____________ On calcule la position au repos des icones et la taille du dock.
 	double xg = fScreenBorderGap;  // abscisse de l'icone courante, et abscisse du debut du groupe courant.
 	double x = xg;
@@ -108,20 +113,19 @@ static void cd_compute_size (CairoDock *pDock)
 		
 		pIcon->fXAtRest = x;
 		x += pIcon->fWidth + myIconsParam.iIconGap;
+		
+		if (pDock->container.bDirectionUp)
+			pIcon->fYAtRest = pDock->iMaxDockHeight - (iDockLineWidth + myDocksParam.iFrameMargin + pIcon->fHeight);
+		else
+			pIcon->fYAtRest = iDockLineWidth + myDocksParam.iFrameMargin;
 	}
 	
 	pDock->fMagnitudeMax = 0.;  // pas de vague.
 	
-	double hicon = pDock->iMaxIconHeight;
 	pDock->iDecorationsHeight = hicon * pDock->container.fRatio + 2 * myDocksParam.iFrameMargin;
 	
 	pDock->iMaxDockWidth = pDock->fFlatDockWidth = pDock->iMinDockWidth = MAX (W, x);  // if > W, we'll come back here with a smaller ratio.
 	//g_print ("iMaxDockWidth : %d (%.2f)\n", pDock->iMaxDockWidth, pDock->container.fRatio);
-	
-	pDock->iMaxDockHeight = iDockLineWidth + myDocksParam.iFrameMargin + hicon * pDock->container.fRatio + myDocksParam.iFrameMargin + iDockLineWidth + (pDock->container.bIsHorizontal ? myIconsParam.iLabelSize : 0);
-	
-	pDock->iMaxDockHeight = MAX (pDock->iMaxDockHeight, pDock->iMaxIconHeight * (1 + myIconsParam.fAmplitude));  // au moins la taille du FBO.
-	//g_print ("panel view: pDock->iMaxIconHeight = %d\n", pDock->iMaxIconHeight);
 	
 	pDock->iDecorationsWidth = pDock->iMaxDockWidth;
 	pDock->iMinDockHeight = 2 * (iDockLineWidth + myDocksParam.iFrameMargin) + hicon * pDock->container.fRatio;  /// TODO: make the height constant, to avoid moving all windows when space is reserved and ratio changes.
