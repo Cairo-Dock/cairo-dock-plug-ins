@@ -41,6 +41,37 @@ static double *pCosSinTab = NULL;
 static GLfloat *pVertexTab = NULL;
 static GLfloat* pColorTab = NULL;
 
+typedef struct _CDRainbowData
+{
+	gboolean bUseDrawCoords;
+	int iLastRow;
+} CDRainbowData;
+
+/* Allocate or get CDRainbowData for a dock. */
+static CDRainbowData *_get_rainbow_data (CairoDock *pDock)
+{
+	CDRainbowData *pData = NULL;
+	if (pDock->pRendererData) pData = (CDRainbowData*)pDock->pRendererData;
+	else
+	{
+		pData = g_new (CDRainbowData, 1);
+		pDock->pRendererData = pData;
+		pData->bUseDrawCoords = FALSE;
+		pData->iLastRow = -1;
+	}
+	
+	return pData;
+}
+
+static void _free_rainbow_data (CairoDock *pDock)
+{
+	if (pDock->pRendererData)
+	{
+		g_free (pDock->pRendererData);
+		pDock->pRendererData = NULL;
+	}
+}
+
 static void cd_rendering_calculate_max_dock_size_rainbow (CairoDock *pDock)
 {
 	pDock->fMagnitudeMax = my_fRainbowMagnitude;
@@ -66,8 +97,72 @@ static void cd_rendering_calculate_max_dock_size_rainbow (CairoDock *pDock)
 	
 	pDock->iActiveWidth = pDock->iMaxDockWidth;
 	pDock->iActiveHeight = pDock->iMaxDockHeight;
+	
+	
+	//\____________________ We calculate the minimize position of all icons when the mouse is outside the dock
+	// These are used by default until we have updated them in cd_rendering_calculate_icons_rainbow ()
+	if (!pDock->icons) return;
+	
+	Icon* icon;
+	GList* ic;
+	
+	GList *pFirstDrawnElement = pDock->icons;
+	ic = pFirstDrawnElement;
+	
+	int iNbRow = -1, iNbIconsOnRow = 0, iNbInsertedIcons = 0;
+	double fCurrentRadius=0, fThetaStart=0, fDeltaTheta=0, fCurrentScale=1;
+	double t = 0;
+	do
+	{
+		icon = ic->data;
+		
+		if (iNbInsertedIcons == iNbIconsOnRow)
+		{
+			iNbRow ++;
+			if (iNbRow >= iNbRows)
+				break ;
+			iNbInsertedIcons = 0;
+			t = iNbRow * (pDock->iMaxIconHeight + my_iSpaceBetweenRows);
+			fCurrentRadius = iMinRadius + t;
+			fCurrentScale = 1.0;
+			
+			double fNormalRadius = iMinRadius + iNbRow * (pDock->iMaxIconHeight + my_iSpaceBetweenRows) * fMaxScale;
+			fDeltaTheta = 2 * atan (iMaxIconWidth * fMaxScale / 2 / fNormalRadius);
+			iNbIconsOnRow = (int) (fCone / fDeltaTheta);
+			fThetaStart = - G_PI/2 + my_fRainbowConeOffset + (fCone - iNbIconsOnRow * fDeltaTheta) / 2 + fDeltaTheta / 2;
+		}
+		
+		double x0 = fCurrentRadius + (pDock->container.bDirectionUp ? pDock->iMaxIconHeight * fCurrentScale : 0);
+		double fCurrentTheta = fThetaStart + iNbInsertedIcons * fDeltaTheta;
+		icon->fYAtRest = x0 * cos (fCurrentTheta) + icon->fWidth/2 * fCurrentScale * sin (fCurrentTheta);
+		if (pDock->container.bDirectionUp)
+			icon->fYAtRest = pDock->iMaxDockHeight - icon->fYAtRest;
+		icon->fXAtRest = x0 * sin (fCurrentTheta) - icon->fWidth/2 * fCurrentScale * cos (fCurrentTheta);
+		
+		iNbInsertedIcons ++;
+		ic = cairo_dock_get_next_element (ic, pDock->icons);
+	} while (ic != pFirstDrawnElement);
+	
+	CDRainbowData *pData = _get_rainbow_data (pDock);
+	pData->bUseDrawCoords = FALSE;
 }
 
+static void cd_rendering_get_minimize_pos_rainbow (Icon *icon, CairoDock *pDock, double *pX, double *pY)
+{
+	if (pDock->pRendererData)
+	{
+		CDRainbowData *pData = (CDRainbowData*)pDock->pRendererData;
+		if (pData->bUseDrawCoords)
+		{
+			*pY = icon->fDrawY + 0.5 * icon->fHeight; // adjust position a bit since it is inexact anyway
+			*pX = icon->fDrawX;
+			return;
+		}
+	}
+	
+	*pY = icon->fYAtRest;
+	*pX = icon->fXAtRest + pDock->container.iWidth / 2;
+}
 
 static void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDock)
 {
@@ -362,14 +457,10 @@ static Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 	cd_debug (" polar : (%.2f ; %.2f)", fRadius, fTheta/G_PI*180.);
 	
 	double t0;
+	const double W = myIconsParam.iSinusoidWidth * pDock->container.fRatio;
 	double fMinIconRadius = iMinRadius + 0.5 * pDock->iMaxIconHeight;
 	if (fRadius > fMinIconRadius) t0 = _calculate_t0 (pDock, fRadius - fMinIconRadius);
-	else
-	{
-		double fRatio = pDock->container.fRatio;
-		double W = myIconsParam.iSinusoidWidth * fRatio;
-		t0 = 0.5 * W * (fRadius / fMinIconRadius - 1.0);
-	}
+	else t0 = 0.5 * W * (fRadius / fMinIconRadius - 1.0);
 	
 	int iNbRows = round ((pDock->iMaxDockHeight - iMinRadius) / ((pDock->iMaxIconHeight + my_iSpaceBetweenRows) * fMaxScale));
 	cd_debug ("iNbRows : %d", iNbRows);
@@ -382,7 +473,7 @@ static Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 	GList *pFirstDrawnElement = pDock->icons;
 	ic = pFirstDrawnElement;
 	
-	int iNbRow = -1, iNbIconsOnRow = 0, iNbInsertedIcons = 0;
+	int iNbRow = -1, iNbIconsOnRow = 0, iNbInsertedIcons = 0, iPointedRow = -1;
 	double fCurrentRadius=0, fNormalRadius=0, fCurrentTheta, fThetaStart=0, fDeltaTheta=0, fCurrentScale=1;
 	double t = 0;
 	do
@@ -418,6 +509,7 @@ static Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 		{
 			icon->bPointed = TRUE;
 			pPointedIcon = icon;
+			iPointedRow = iNbRow;
 			cd_debug (" POINTED ICON : %s", pPointedIcon->cName);
 		}
 		else
@@ -463,6 +555,21 @@ static Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 		pDock->iMousePositionType = CAIRO_DOCK_MOUSE_INSIDE;
 		if (pDock->bIsDragging)
 			pDock->bCanDrop = TRUE;
+	}
+	
+	// slight adjustment as there is a lot of change when approaching the origin
+	if (iPointedRow == -1 && t0 < -0.25 * W) iPointedRow = -2;
+	CDRainbowData *pData = _get_rainbow_data (pDock);
+	if ( (! pData->bUseDrawCoords && iPointedRow >= 0) ||
+		(pData->bUseDrawCoords && pData->iLastRow != iPointedRow))
+	{
+		// We trigger resetting icon minimize geometries if the row where the mouse points
+		// to changed, or when the mouse first enters the subdock. This is necessary as
+		// icons can move quite a lot if the amplitude is high.
+		cd_debug ("iPointedRow: %d, iLastRow: %d", iPointedRow, pData->iLastRow);
+		pData->bUseDrawCoords = TRUE;
+		pData->iLastRow = iPointedRow;
+		cairo_dock_trigger_set_WM_icons_geometry (pDock);
 	}
 	
 	return pPointedIcon;
@@ -696,6 +803,8 @@ void cd_rendering_register_rainbow_renderer (const gchar *cRendererName)
 	pRenderer->render_optimized = NULL;
 	pRenderer->render_opengl = cd_rendering_render_rainbow_opengl;
 	pRenderer->set_subdock_position = cairo_dock_set_subdock_position_linear;
+	pRenderer->free_data = _free_rainbow_data;
+	pRenderer->get_minimize_pos = cd_rendering_get_minimize_pos_rainbow;
 	// parametres
 	pRenderer->cDisplayedName = D_ (cRendererName);
 	pRenderer->cReadmeFilePath = g_strdup (MY_APPLET_SHARE_DATA_DIR"/readme-rainbow-view");
