@@ -22,14 +22,10 @@
 #include "applet-utils.h"
 
 
-void env_backend_logout (void)
+void env_backend_logout (G_GNUC_UNUSED CairoDockFMConfirmationFunc cb_confirm, G_GNUC_UNUSED gpointer data)
 {
+	// we ignore cb_confirm as the below command will ask for confirmation
 	cairo_dock_launch_command_single ("xfce4-session-logout");
-}
-
-void env_backend_shutdown (void)
-{
-	cairo_dock_launch_command_single ("xfce4-session-logout");  // avec les options telles que --halt, la fenetre n'est pas montree.
 }
 
 void env_backend_lock_screen (void)

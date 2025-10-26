@@ -24,9 +24,7 @@
 
 #include <cairo-dock.h>
 
-void env_backend_logout (void);
-
-void env_backend_shutdown (void);
+void env_backend_logout (CairoDockFMConfirmationFunc cb_confirm, gpointer data);
 
 void env_backend_lock_screen (void);
 
