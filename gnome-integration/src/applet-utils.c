@@ -19,114 +19,208 @@
 
 #include <stdlib.h>
 #include <cairo-dock.h>
+#include <glib.h>
+#include <gio/gio.h>
 
 #include "applet-utils.h"
 
+/*
+ * Notes on GNOME vs. Cinnamon:
+ * Both have org.gnome.SessionManager with the same functionality for logout, shutdown, reboot, etc.
+ * The only difference is in the GSettings schema for the logout confirmation setting.
+ */
 
-void env_backend_logout (void)
+static GDBusProxy *s_pSessionProxy = NULL;
+static gboolean s_bIsCinnamon = FALSE;
+static GSettings *s_pSessionSettings = NULL;
+
+static gboolean _need_confirmation (void)
 {
-	// since Gnome 3, gnome-session-save has been replaced by gnome-session-quit
-	const gchar *args[] = {"which", "gnome-session-quit", NULL, NULL};
-	gchar *cResult = cairo_dock_launch_command_argv_sync_with_stderr (args, FALSE);
-	if (cResult != NULL && *cResult == '/')
+	if (!s_pSessionSettings) return TRUE;
+	
+	return ! g_settings_get_boolean (s_pSessionSettings, "logout-prompt");
+}
+
+
+static void _logout_real (void)
+{
+	if (! s_pSessionProxy) return;
+	
+	g_dbus_proxy_call (s_pSessionProxy, "Logout", g_variant_new ("(u)", 0), // 0 -- normal
+		G_DBUS_CALL_FLAGS_NO_AUTO_START | G_DBUS_CALL_FLAGS_ALLOW_INTERACTIVE_AUTHORIZATION,
+		-1, // timeout (-1 : default)
+		NULL, // GCancellable
+		NULL, // callback
+		NULL // callback data
+	);
+}
+
+static void _env_backend_logout (CairoDockFMConfirmationFunc cb_confirm, gpointer data)
+{
+	if (! s_pSessionProxy) return;
+	if (cb_confirm && _need_confirmation ())
+		cb_confirm (data, _logout_real);
+	else _logout_real ();
+}
+
+static void _shutdown_real (void)
+{
+	if (! s_pSessionProxy) return;
+	
+	g_dbus_proxy_call (s_pSessionProxy, "Shutdown", NULL, // no parameters
+		G_DBUS_CALL_FLAGS_NO_AUTO_START | G_DBUS_CALL_FLAGS_ALLOW_INTERACTIVE_AUTHORIZATION,
+		-1, // timeout (-1 : default)
+		NULL, // GCancellable
+		NULL, // callback
+		NULL // callback data
+	);
+}
+
+static void _env_backend_shutdown (CairoDockFMConfirmationFunc cb_confirm, gpointer data)
+{
+	if (! s_pSessionProxy) return;
+	if (cb_confirm && _need_confirmation ())
+		cb_confirm (data, _shutdown_real);
+	else _shutdown_real ();
+}
+
+static void _reboot_real (void)
+{
+	if (! s_pSessionProxy) return;
+	
+	g_dbus_proxy_call (s_pSessionProxy, "Reboot", NULL, // no parameters
+		G_DBUS_CALL_FLAGS_NO_AUTO_START | G_DBUS_CALL_FLAGS_ALLOW_INTERACTIVE_AUTHORIZATION,
+		-1, // timeout (-1 : default)
+		NULL, // GCancellable
+		NULL, // callback
+		NULL // callback data
+	);
+}
+static void _env_backend_reboot (CairoDockFMConfirmationFunc cb_confirm, gpointer data)
+{
+	if (! s_pSessionProxy) return;
+	if (cb_confirm && _need_confirmation ())
+		cb_confirm (data, _reboot_real);
+	else _reboot_real ();
+}
+
+
+static void _env_backend_setup_time (void)
+{
+	const gchar * args[] = {NULL, NULL, NULL};
+	if (s_bIsCinnamon)
 	{
-		args[2] = "--logout";
-		cairo_dock_launch_command_argv_full (args + 1, NULL, GLDI_LAUNCH_GUI); // i.e. gnome-session-quit --logout
+		args[0] = "cinnamon-settings";
+		args[1] = "calendar";
 	}
 	else
 	{
-		g_free (cResult);
-		args[1] = "cinnamon-session-quit";
-		// Cinnamon?
-		cResult = cairo_dock_launch_command_argv_sync_with_stderr (args, FALSE);
-		if (cResult != NULL && *cResult == '/')
-		{
-			args[2] = "--logout";
-			cairo_dock_launch_command_argv_full (args + 1, NULL, GLDI_LAUNCH_GUI);
-		}
-		else
-		{
-			args[0] = "gnome-session-save";
-			args[1] = "--kill";
-			args[2] = "--gui";
-			cairo_dock_launch_command_argv_full (args, NULL, GLDI_LAUNCH_GUI);
-		}
+		args[0] = "gnome-control-center";
+		args[1] = "datetime";
 	}
-	g_free (cResult);
+	
+	cairo_dock_launch_command_argv_full (args, NULL, GLDI_LAUNCH_GUI | GLDI_LAUNCH_SLICE);
 }
 
-void env_backend_shutdown (void)
+static void _env_backend_show_system_monitor (void)
 {
-	// since Gnome 3, gnome-session-save has been replaced by gnome-session-quit
-	const gchar *args[] = {"which", "gnome-session-quit", NULL, NULL};
-	gchar *cResult = cairo_dock_launch_command_argv_sync_with_stderr (args, FALSE);
-	if (cResult != NULL && *cResult == '/')
-	{
-		args[2] = "--power-off";
-		cairo_dock_launch_command_argv_full (args + 1, NULL, GLDI_LAUNCH_GUI); // i.e. gnome-session-quit --power-off
-	}
-	else
-	{
-		g_free (cResult);
-		args[1] = "cinnamon-session-quit";
-		// Cinnamon?
-		cResult = cairo_dock_launch_command_argv_sync_with_stderr (args, FALSE);
-		if (cResult != NULL && *cResult == '/')
-		{
-			args[2] = "--power-off";
-			cairo_dock_launch_command_argv_full (args + 1, NULL, GLDI_LAUNCH_GUI);
-		}
-		else
-		{
-			args[0] = "gnome-session-save";
-			args[1] = "--shutdown-dialog";
-			cairo_dock_launch_command_argv_full (args, NULL, GLDI_LAUNCH_GUI);
-		}
-	}
-	g_free (cResult);
-}
-
-void env_backend_lock_screen (void)
-{
-	cairo_dock_launch_command_single (MY_APPLET_SHARE_DATA_DIR"/../shared-files/scripts/lock-screen.sh");
-}
-
-void env_backend_setup_time (void)
-{
-	static gboolean bChecked = FALSE;
-	static const gchar *args[] = {NULL, NULL, NULL};
-	if (!bChecked)
-	{
-		bChecked = TRUE;
-		args[0] = "which";
-		args[1] = "gnome-control-center";
-		gchar *cResult = cairo_dock_launch_command_argv_sync_with_stderr (args, FALSE);  // Gnome3
-		if (cResult != NULL && *cResult == '/')
-		{
-			args[0] = "gnome-control-center";
-			args[1] = "datetime";
-		}
-		else
-		{
-			g_free (cResult);
-			args[1] = "time-admin";
-			cResult = cairo_dock_launch_command_argv_sync_with_stderr (args, FALSE);  // Gnome2
-			if (cResult != NULL && *cResult == '/')
-			{
-				args[0] = "time-admin";
-				args[1] = NULL;
-			}
-		}
-		g_free (cResult);
-	}
-	if (args[0])
-		cairo_dock_launch_command_argv_full (args, NULL, GLDI_LAUNCH_GUI | GLDI_LAUNCH_SLICE);
-	else
-		cd_warning ("couldn't guess what program to use to setup the time and date.");
-}
-
-void env_backend_show_system_monitor (void)
-{
+	//!! TODO: is there a Cinnamon variant?
 	cairo_dock_launch_command_single_gui ("gnome-system-monitor");
+}
+
+static gboolean s_bRegistered = FALSE;
+
+static void _register_backend (void)
+{
+	if (s_bRegistered) return;
+	s_bRegistered = TRUE;
+	
+	CairoDockDesktopEnvBackend VFSBackend = { NULL };
+	
+	VFSBackend.logout              = _env_backend_logout;
+	VFSBackend.shutdown            = _env_backend_shutdown;
+	VFSBackend.reboot              = _env_backend_reboot;
+	VFSBackend.setup_time          = _env_backend_setup_time;
+	VFSBackend.show_system_monitor = _env_backend_show_system_monitor;
+	
+	cairo_dock_fm_register_vfs_backend (&VFSBackend, TRUE); // TRUE: overwrite previously registered functions
+}
+
+static void _proxy_connected (G_GNUC_UNUSED GObject *obj, GAsyncResult *res, G_GNUC_UNUSED gpointer data)
+{
+	GError *erreur = NULL;
+	
+	s_pSessionProxy = g_dbus_proxy_new_finish (res, &erreur);
+	
+	if (erreur)
+	{
+		cd_warning ("Error creating gnome-session proxy: %s", erreur->message);
+		g_error_free (erreur);
+		erreur = NULL;
+	}
+	else 
+	{
+		_register_backend ();
+		GVariant *prop = g_dbus_proxy_get_cached_property (s_pSessionProxy, "SessionName");
+		if (prop)
+		{
+			if (g_variant_is_of_type (prop, G_VARIANT_TYPE ("s")))
+			{
+				gsize len = 0;
+				const gchar *name = g_variant_get_string (prop, &len);
+				if (len == 8 && ! strncmp (name, "cinnamon", 8))
+					s_bIsCinnamon = TRUE;
+			}
+			g_variant_unref (prop);
+		}
+		
+		// set up our settings proxy
+		GSettingsSchema *schema = g_settings_schema_source_lookup (
+			g_settings_schema_source_get_default (),
+			s_bIsCinnamon ? "org.cinnamon.SessionManager" : "org.gnome.SessionManager",
+			TRUE);
+		if (schema)
+		{
+			if (s_pSessionSettings) g_object_unref (s_pSessionSettings); // should not happen
+			s_pSessionSettings = g_settings_new_full (schema, NULL, NULL);
+			g_settings_schema_unref (schema);
+		}
+		else cd_warning ("Cannot find GSettings schema for the session manager");
+	}
+}
+
+static void _on_name_appeared (GDBusConnection *connection, G_GNUC_UNUSED const gchar *name,
+	G_GNUC_UNUSED const gchar *name_owner, G_GNUC_UNUSED gpointer data)
+{
+	g_return_if_fail (s_pSessionProxy == NULL);
+	
+	g_dbus_proxy_new (connection,
+		G_DBUS_PROXY_FLAGS_DO_NOT_AUTO_START | G_DBUS_PROXY_FLAGS_DO_NOT_CONNECT_SIGNALS,
+		NULL, // GDBusInterfaceInfo -- we could supply this, but work anyway
+		"org.gnome.SessionManager",
+		"/org/gnome/SessionManager",
+		"org.gnome.SessionManager",
+		NULL, // GCancellable
+		_proxy_connected,
+		NULL);
+}
+
+static void _on_name_vanished (G_GNUC_UNUSED GDBusConnection *connection, G_GNUC_UNUSED const gchar *name, G_GNUC_UNUSED gpointer user_data)
+{
+	cd_warning ("gnome-session proxy disappeared");
+	g_object_unref (s_pSessionProxy);
+	s_pSessionProxy = NULL;
+	g_object_unref (s_pSessionSettings);
+	s_pSessionSettings = NULL;
+	
+	//!! TODO: we cannot "unregister" our backend
+}
+
+
+void env_backend_init (void)
+{
+	// Note: org.gnome.SessionManager is used by both GNOME and Cinnamon
+	g_bus_watch_name (G_BUS_TYPE_SESSION, "org.gnome.SessionManager", G_BUS_NAME_WATCHER_FLAGS_NONE,
+		_on_name_appeared, _on_name_vanished, NULL, NULL);
 }
 

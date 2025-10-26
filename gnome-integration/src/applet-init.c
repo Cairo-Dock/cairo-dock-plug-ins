@@ -31,26 +31,12 @@ CD_APPLET_DEFINE2_BEGIN ("gnome integration",
 	"It is designed for the a GNOME version >= 2.22",
 	"Fabounet (Fabrice Rey)")
 	
-	if (g_iDesktopEnv == CAIRO_DOCK_GNOME && (glib_major_version > 2 || glib_minor_version >= 16))
+	if (g_iDesktopEnv == CAIRO_DOCK_GNOME)
 	{
 		cd_debug ("GNOME");
-		CairoDockDesktopEnvBackend VFSBackend = { NULL };
-		
-		/* calling gnome-session-quit will only work if either
-		 * gnome-shell or gnome-flashback are running */
-		if (cairo_dock_dbus_detect_application ("org.gnome.Shell"))
-		{
-			VFSBackend.logout = env_backend_logout;
-			VFSBackend.shutdown = env_backend_shutdown;
-			VFSBackend.reboot = env_backend_shutdown;
-		}
-		// this calls shared-files/scripts/lock-screen.sh which will not work on Wayland
-		if (! gldi_container_is_wayland_backend ())
-			VFSBackend.lock_screen = env_backend_lock_screen;
-		VFSBackend.setup_time = env_backend_setup_time;
-		VFSBackend.show_system_monitor = env_backend_show_system_monitor;
-		
-		cairo_dock_fm_register_vfs_backend (&VFSBackend, TRUE); // TRUE: overwrite previously registered functions
+		env_backend_init (); // will detect GNOME vs Cinnamon and register the required functions later
+		// (this means that if GNOME environment is detected, this applet will always show as "enabled",
+		// but will only be active if the DBus session proxy have been found)
 	}
 	else
 		return FALSE;
