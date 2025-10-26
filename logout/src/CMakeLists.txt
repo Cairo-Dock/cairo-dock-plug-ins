@@ -26,29 +26,12 @@ if (DEBIAN_PKG_MANAGERS)
 	add_definitions (-DEND_INSTALLATION_PID="${DEBIAN_PKG_MANAGERS}")
 endif()
 
+include_directories (${PACKAGE_INCLUDE_DIRS})
 
-if (UPOWER_SUPPORTS_SUSPEND_HIBERNATE)
-	add_definitions (-DCD_UPOWER_AVAILABLE="1")
+link_directories (${PACKAGE_LIBRARY_DIRS})
 
-	include_directories (
-		${UPOWER_INCLUDE_DIRS}
-		${PACKAGE_INCLUDE_DIRS})
-
-	link_directories (
-		${UPOWER_LIBRARY_DIRS}
-		${PACKAGE_LIBRARY_DIRS})
-
-	target_link_libraries (${PACKAGE_LOGOUT}
-		${UPOWER_LIBRARIES}
-		${PACKAGE_LIBRARIES})
-else()
-	include_directories (${PACKAGE_INCLUDE_DIRS})
-
-	link_directories (${PACKAGE_LIBRARY_DIRS})
-
-	target_link_libraries (${PACKAGE_LOGOUT}
-		${PACKAGE_LIBRARIES})
-endif()
+target_link_libraries (${PACKAGE_LOGOUT}
+	${PACKAGE_LIBRARIES})
 
 ########### install files ###############
 

@@ -31,4 +31,8 @@ void cd_logout_check_capabilities (guint delay);
 
 void cd_logout_timer_shutdown (void); // called from applet-timer.c
 
+void cd_logout_shut_down (void);
+
+void cd_logout_close_session (GtkMenuItem *pMenuItem, gpointer dummy);
+
 #endif

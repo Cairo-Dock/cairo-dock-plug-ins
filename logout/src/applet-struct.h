@@ -55,23 +55,9 @@ struct _AppletConfig {
 	CDDisplayRebootNeeded iRebootNeededImage;
 	} ;
 
-typedef enum {
-	CD_UNKNOWN,
-	CD_CONSOLE_KIT,
-	CD_LOGIND,
-	CD_NB_LOGIN_MANAGER
-	} CDLoginManager;
-	
 typedef struct {
 	GdkEvent *pEvent;
-	gboolean bCanHibernate;
-	gboolean bCanHybridSleep;
-	gboolean bCanSuspend;
-	gboolean bCanStop;
-	gboolean bCanRestart;
 	gboolean bHasGuestAccount;
-	gboolean bShowMenu;
-	CDLoginManager iLoginManager;
 	} CDSharedMemory;
 
 struct _AppletData {
@@ -79,13 +65,7 @@ struct _AppletData {
 	// manual capabilities.
 	GldiTask *pTask;
 	gboolean bCapabilitiesChecked;
-	gboolean bCanHibernate;
-	gboolean bCanHybridSleep;
-	gboolean bCanSuspend;
-	gboolean bCanStop;
-	gboolean bCanRestart;
 	gboolean bHasGuestAccount;
-	CDLoginManager iLoginManager;
 	GldiShortkey *pKeyBinding;
 	GldiShortkey *pKeyBinding2;
 	GList *pUserList;
