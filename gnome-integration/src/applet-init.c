@@ -42,7 +42,7 @@ CD_APPLET_DEFINE2_BEGIN ("gnome integration",
 		{
 			VFSBackend.logout = env_backend_logout;
 			VFSBackend.shutdown = env_backend_shutdown;
-			VFSBackend.reboot = env_backend_shutdown;
+			VFSBackend.reboot = env_backend_reboot;
 		}
 		// this calls shared-files/scripts/lock-screen.sh which will not work on Wayland
 		if (! gldi_container_is_wayland_backend ())

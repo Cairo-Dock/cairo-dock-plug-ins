@@ -23,58 +23,66 @@
 #include "applet-utils.h"
 
 
-void env_backend_logout (void)
+void env_backend_logout (G_GNUC_UNUSED CairoDockFMConfirmationFunc cb_confirm, G_GNUC_UNUSED gpointer data)
 {
+	//!! TODO: gnome-session will only show a confirmation prompt if org.gnome.gnome-session.logout-prompt == true in gsettings
+	//!! we should check this !!
+	//!! TODO: also, we could just call the DBus interface: org.gnome.SessionManager, that's what gnome-session-quit does
+	
 	// since Gnome 3, gnome-session-save has been replaced by gnome-session-quit
-	const gchar *args[] = {"which", "gnome-session-quit", NULL, NULL};
-	gchar *cResult = cairo_dock_launch_command_argv_sync_with_stderr (args, FALSE);
-	if (cResult != NULL && *cResult == '/')
+	const gchar *args[] = {NULL, NULL, NULL, NULL};
+	gchar *cResult = g_find_program_in_path ("gnome-session-quit");
+	if (cResult)
 	{
-		args[2] = "--logout";
-		cairo_dock_launch_command_argv_full (args + 1, NULL, GLDI_LAUNCH_GUI); // i.e. gnome-session-quit --logout
+		args[0] = cResult;
+		args[1] = "--logout";
+		cairo_dock_launch_command_argv_full (args, NULL, GLDI_LAUNCH_GUI); // i.e. gnome-session-quit --logout
+		g_free (cResult);
 	}
 	else
 	{
-		g_free (cResult);
-		args[1] = "cinnamon-session-quit";
 		// Cinnamon?
-		cResult = cairo_dock_launch_command_argv_sync_with_stderr (args, FALSE);
-		if (cResult != NULL && *cResult == '/')
+		cResult = g_find_program_in_path ("cinnamon-session-quit");
+		if (cResult)
 		{
-			args[2] = "--logout";
-			cairo_dock_launch_command_argv_full (args + 1, NULL, GLDI_LAUNCH_GUI);
+			args[0] = cResult;
+			args[1] = "--logout";
+			cairo_dock_launch_command_argv_full (args, NULL, GLDI_LAUNCH_GUI);
+			g_free (cResult);
 		}
 		else
 		{
+			// last resort, try anyway
 			args[0] = "gnome-session-save";
 			args[1] = "--kill";
 			args[2] = "--gui";
 			cairo_dock_launch_command_argv_full (args, NULL, GLDI_LAUNCH_GUI);
 		}
 	}
-	g_free (cResult);
 }
 
-void env_backend_shutdown (void)
+void env_backend_shutdown (G_GNUC_UNUSED CairoDockFMConfirmationFunc cb_confirm, G_GNUC_UNUSED gpointer data)
 {
 	// since Gnome 3, gnome-session-save has been replaced by gnome-session-quit
-	const gchar *args[] = {"which", "gnome-session-quit", NULL, NULL};
-	gchar *cResult = cairo_dock_launch_command_argv_sync_with_stderr (args, FALSE);
-	if (cResult != NULL && *cResult == '/')
+	const gchar *args[] = {NULL, NULL, NULL, NULL};
+	gchar *cResult = g_find_program_in_path ("gnome-session-quit");
+	if (cResult)
 	{
-		args[2] = "--power-off";
-		cairo_dock_launch_command_argv_full (args + 1, NULL, GLDI_LAUNCH_GUI); // i.e. gnome-session-quit --power-off
+		args[0] = cResult;
+		args[1] = "--power-off";
+		cairo_dock_launch_command_argv_full (args, NULL, GLDI_LAUNCH_GUI); // i.e. gnome-session-quit --power-off
+		g_free (cResult);
 	}
 	else
 	{
-		g_free (cResult);
-		args[1] = "cinnamon-session-quit";
 		// Cinnamon?
-		cResult = cairo_dock_launch_command_argv_sync_with_stderr (args, FALSE);
-		if (cResult != NULL && *cResult == '/')
+		cResult = g_find_program_in_path ("cinnamon-session-quit");
+		if (cResult)
 		{
-			args[2] = "--power-off";
-			cairo_dock_launch_command_argv_full (args + 1, NULL, GLDI_LAUNCH_GUI);
+			args[0] = cResult;
+			args[1] = "--power-off";
+			cairo_dock_launch_command_argv_full (args, NULL, GLDI_LAUNCH_GUI);
+			g_free (cResult);
 		}
 		else
 		{
@@ -83,8 +91,34 @@ void env_backend_shutdown (void)
 			cairo_dock_launch_command_argv_full (args, NULL, GLDI_LAUNCH_GUI);
 		}
 	}
-	g_free (cResult);
 }
+
+void env_backend_reboot (G_GNUC_UNUSED CairoDockFMConfirmationFunc cb_confirm, G_GNUC_UNUSED gpointer data)
+{
+	// since Gnome 3, gnome-session-save has been replaced by gnome-session-quit
+	const gchar *args[] = {NULL, NULL, NULL, NULL};
+	gchar *cResult = g_find_program_in_path ("gnome-session-quit");
+	if (cResult)
+	{
+		args[0] = cResult;
+		args[1] = "--reboot";
+		cairo_dock_launch_command_argv_full (args, NULL, GLDI_LAUNCH_GUI); // i.e. gnome-session-quit --power-off
+		g_free (cResult);
+	}
+	else
+	{
+		// Cinnamon?
+		cResult = g_find_program_in_path ("cinnamon-session-quit");
+		if (cResult)
+		{
+			args[0] = cResult;
+			args[1] = "--reboot";
+			cairo_dock_launch_command_argv_full (args, NULL, GLDI_LAUNCH_GUI);
+			g_free (cResult);
+		}
+	}
+}
+
 
 void env_backend_lock_screen (void)
 {
