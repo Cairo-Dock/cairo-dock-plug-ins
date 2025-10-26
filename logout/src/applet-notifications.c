@@ -31,46 +31,16 @@ CD_APPLET_ON_CLICK_BEGIN
 
 CD_APPLET_ON_CLICK_END
 
-		
-static void _logout (void)
-{
-	if (myConfig.cUserAction != NULL)
-	{
-		cairo_dock_launch_command (myConfig.cUserAction);
-	}
-	else
-	{
-		gboolean bLoggedOut = cairo_dock_fm_logout ();
-		if (! bLoggedOut)
-		{
-			cd_logout_display_actions ();
-		}
-	}
-}
-static void _shutdown (void)
-{
-	if (myConfig.cUserActionShutdown != NULL)
-	{
-		cairo_dock_launch_command (myConfig.cUserActionShutdown);
-	}
-	else
-	{
-		gboolean bShutdowned = cairo_dock_fm_shutdown ();
-		if (! bShutdowned)
-		{
-			cd_logout_display_actions ();
-		}
-	}
-}
+
 static inline void _execute_action (gint iAction)
 {
 	switch (iAction)
 	{
 		case CD_LOGOUT:
-			_logout ();
+			cd_logout_close_session (NULL, NULL);
 		break;
 		case CD_SHUTDOWN:
-			_shutdown ();
+			cd_logout_shut_down ();
 		break;
 		case CD_LOCK_SCREEN:
 			cairo_dock_fm_lock_screen ();

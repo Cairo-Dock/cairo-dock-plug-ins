@@ -33,12 +33,10 @@ typedef struct {
 } CDUser;
 
 static void cd_logout_shut_down_full (gboolean bDemandConfirmation);
-static void cd_logout_shut_down (void);
 static void cd_logout_restart (void);
 static void cd_logout_suspend (GtkMenuItem*, gpointer);
 static void cd_logout_hibernate (GtkMenuItem*, gpointer);
 static void cd_logout_hybridSleep (GtkMenuItem*, gpointer);
-static void cd_logout_close_session (GtkMenuItem*, gpointer);
 static void cd_logout_switch_to_user (const gchar *cUser);
 static void cd_logout_switch_to_guest (void);
 static void cd_logoout_lock_screen (void);
@@ -289,6 +287,12 @@ static void _display_menu (const GdkEvent *pEvent)
  /// ACTIONS ///
 ///////////////
 
+typedef enum {
+	CD_LOGOUT_LOGOUT,
+	CD_LOGOUT_SHUTDOWN,
+	CD_LOGOUT_REBOOT
+} CDLogoutActionType;
+
 static void _exec_action (int iClickedButton, GtkWidget *pInteractiveWidget, void (*callback) (void), CairoDialog *pDialog)
 {
 	if (iClickedButton == 0 || iClickedButton == -1)  // 'OK' button or 'Enter', execute the action.
@@ -315,6 +319,7 @@ static void _demand_confirmation (const gchar *cMessage, const gchar *cIconStock
 	g_free (cImagePath);
 }
 
+/*
 static void _shut_down (void)
 {
 	if (myConfig.cUserActionShutdown)
@@ -364,9 +369,41 @@ static gboolean _auto_shot_down (gpointer data)
 		return TRUE;
 	}
 }
-void cd_logout_shut_down_full (gboolean bDemandConfirmation)
+*/
+
+static void _confirm_action (gpointer data, CairoDockFMUserActionFunc action)
 {
-	if (bDemandConfirmation)
+	CDLogoutActionType iAction = GPOINTER_TO_INT (data);
+	switch (iAction)
+	{
+		case CD_LOGOUT_LOGOUT:
+			_demand_confirmation (D_("Close the current session?"), "system-log-out", MY_APPLET_SHARE_DATA_DIR"/system-log-out.svg", action);
+			break;
+		case CD_LOGOUT_REBOOT:
+			_demand_confirmation (D_("Restart the computer?"), GLDI_ICON_NAME_REFRESH, MY_APPLET_SHARE_DATA_DIR"/system-restart.svg", action);
+			break;
+		case CD_LOGOUT_SHUTDOWN:
+			//!! TODO: add back the timer?
+			_demand_confirmation (D_("Shut down the computer?"), "system-shutdown", MY_APPLET_SHARE_DATA_DIR"/system-shutdown.svg", action);
+			break;
+	}
+}
+
+static void _shutdown_custom (void)
+{
+	gldi_object_notify (&myModuleObjectMgr, NOTIFICATION_LOGOUT);
+	cairo_dock_launch_command (myConfig.cUserActionShutdown);
+}
+
+static void _logout_custom (void)
+{
+	gldi_object_notify (&myModuleObjectMgr, NOTIFICATION_LOGOUT);
+	cairo_dock_launch_command (myConfig.cUserAction);
+}
+
+static void cd_logout_shut_down_full (gboolean bDemandConfirmation)
+{
+/*	if (bDemandConfirmation)
 	{
 		myData.iCountDown = 60;
 		gchar *cMessage = _info_msg ();
@@ -380,6 +417,17 @@ void cd_logout_shut_down_full (gboolean bDemandConfirmation)
 	else
 	{
 		_shut_down ();
+	} */
+	
+	if (myConfig.cUserActionShutdown)
+	{
+		if (bDemandConfirmation) _confirm_action (GINT_TO_POINTER (CD_LOGOUT_SHUTDOWN), _shutdown_custom);
+		else _shutdown_custom ();
+	}
+	else
+	{
+		if (bDemandConfirmation) cairo_dock_fm_shutdown (_confirm_action, GINT_TO_POINTER (CD_LOGOUT_SHUTDOWN));
+		else cairo_dock_fm_shutdown (NULL, NULL); // might still show confirmation dialog from the system
 	}
 }
 
@@ -392,20 +440,24 @@ void cd_logout_timer_shutdown (void)
 	cd_logout_shut_down_full (FALSE);
 }
 
+/*
 static void _restart (void)
 {
 	cairo_dock_fm_reboot ();
 }
+*/
 
 static void cd_logout_restart (void)
 {
 	if (myConfig.bConfirmAction)
 	{
-		_demand_confirmation (D_("Restart the computer?"), GLDI_ICON_NAME_REFRESH, MY_APPLET_SHARE_DATA_DIR"/system-restart.svg", _restart);
+		cairo_dock_fm_reboot (_confirm_action, GINT_TO_POINTER (CD_LOGOUT_REBOOT));
+		// _demand_confirmation (D_("Restart the computer?"), GLDI_ICON_NAME_REFRESH, MY_APPLET_SHARE_DATA_DIR"/system-restart.svg", _restart);
 	}
 	else
 	{
-		_restart ();
+		cairo_dock_fm_reboot (NULL, NULL);
+		// _restart ();
 	}
 }
 
@@ -423,7 +475,7 @@ static void cd_logout_hybridSleep (G_GNUC_UNUSED GtkMenuItem *pMenuItem, G_GNUC_
 {
 	cairo_dock_fm_hybrid_sleep ();
 }
-
+/*
 static void _logout (void)
 {
 	if (myConfig.cUserAction != NULL)
@@ -433,9 +485,20 @@ static void _logout (void)
 	}
 	else cairo_dock_fm_logout ();
 }
-
-static void cd_logout_close_session (G_GNUC_UNUSED GtkMenuItem *pMenuItem, G_GNUC_UNUSED gpointer dummy)  // could use org.gnome.SessionManager.Logout
+*/
+void cd_logout_close_session (G_GNUC_UNUSED GtkMenuItem *pMenuItem, G_GNUC_UNUSED gpointer dummy)  // could use org.gnome.SessionManager.Logout
 {
+	if (myConfig.cUserAction != NULL)
+	{
+		if (myConfig.bConfirmAction) _confirm_action (GINT_TO_POINTER (CD_LOGOUT_LOGOUT), _logout_custom);
+		else _logout_custom ();
+	}
+	else
+	{
+		if (myConfig.bConfirmAction) cairo_dock_fm_logout (_confirm_action, GINT_TO_POINTER (CD_LOGOUT_LOGOUT));
+		else cairo_dock_fm_logout (NULL, NULL);
+	}
+	/*
 	if (myConfig.bConfirmAction)
 	{
 		_demand_confirmation (D_("Close the current session?"), "system-log-out", MY_APPLET_SHARE_DATA_DIR"/system-log-out.svg", _logout);  /// same question, see above...
@@ -443,7 +506,7 @@ static void cd_logout_close_session (G_GNUC_UNUSED GtkMenuItem *pMenuItem, G_GNU
 	else
 	{
 		_logout ();
-	}
+	} */
 }
 
 static void cd_logout_switch_to_user (const gchar *cUser)
