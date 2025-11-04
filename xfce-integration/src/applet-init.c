@@ -34,12 +34,12 @@ CD_APPLET_DEFINE2_BEGIN ("xfce integration",
 		CairoDockDesktopEnvBackend VFSBackend = { NULL };
 		
 		VFSBackend.logout = env_backend_logout;
-		VFSBackend.shutdown = env_backend_shutdown;
-		VFSBackend.reboot = env_backend_shutdown;
+		VFSBackend.shutdown = env_backend_logout;
+		VFSBackend.reboot = env_backend_logout;
 		VFSBackend.lock_screen = env_backend_lock_screen;
 		VFSBackend.setup_time = env_backend_setup_time;
 		VFSBackend.show_system_monitor = env_backend_show_system_monitor;
-		cairo_dock_fm_register_vfs_backend (&VFSBackend);
+		cairo_dock_fm_register_vfs_backend (&VFSBackend, TRUE); // TRUE: overwrite previously registered functions
 	}
 	else
 		return FALSE;

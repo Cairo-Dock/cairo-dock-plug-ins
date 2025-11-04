@@ -47,7 +47,7 @@ static const gchar *logout_args[] = {"qdbus", "org.kde.ksmserver", "/KSMServer",
 // usr/bin/dbus-send --session --type=method_call --dest=org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout int32:1 int32:2 int32:0
 static const gchar *logout_args6[] = {"qdbus6", "org.kde.LogoutPrompt", "/LogoutPrompt", NULL, NULL};
 
-void env_backend_logout (void)
+void env_backend_logout (G_GNUC_UNUSED CairoDockFMConfirmationFunc cb_confirm, G_GNUC_UNUSED gpointer data)
 {
 	if (get_kde_version () == 6)
 	{
@@ -61,7 +61,7 @@ void env_backend_logout (void)
 	}
 }
 
-void env_backend_shutdown (void)
+void env_backend_shutdown (G_GNUC_UNUSED CairoDockFMConfirmationFunc cb_confirm, G_GNUC_UNUSED gpointer data)
 {
 	if (get_kde_version () == 6)
 	{
@@ -75,7 +75,7 @@ void env_backend_shutdown (void)
 	}
 }
 
-void env_backend_reboot (void)
+void env_backend_reboot (G_GNUC_UNUSED CairoDockFMConfirmationFunc cb_confirm, G_GNUC_UNUSED gpointer data)
 {
 	if (get_kde_version () == 6)
 	{
