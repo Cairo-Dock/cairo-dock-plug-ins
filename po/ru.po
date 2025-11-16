@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2015-08-07 12:08+0000\n"
-"Last-Translator: Odessa Soul <duha@ukr.net>\n"
+"POT-Creation-Date: 2025-09-21 19:12+0000\n"
+"PO-Revision-Date: 2025-11-15 00:00+0000\n"
+"Last-Translator: fossil <Unknown>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-08-08 05:59+0000\n"
-"X-Generator: Launchpad (build 17656)\n"
+"X-Launchpad-Export-Date: 2025-11-16 20:04+0000\n"
+"X-Generator: Launchpad (build 1d08ffb47b836b8a4c9a0f11318dfdea7420ab6d)\n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:55
@@ -27,13 +28,13 @@ msgstr "Мигание"
 #: ../Animated-icons/data/messages:27 ../Animated-icons/data/messages:51
 #: ../Animated-icons/data/messages:159
 msgid "Bounce"
-msgstr "Отскакивать от краёв"
+msgstr "Отскок от края"
 
 #: ../Animated-icons/src/applet-busy.c:111 ../Animated-icons/data/messages:21
 #: ../Animated-icons/data/messages:41 ../Animated-icons/data/messages:65
 #: ../Animated-icons/data/messages:181
 msgid "Busy"
-msgstr "Не беспокоить"
+msgstr "Загрузка"
 
 #: ../Animated-icons/src/applet-init.c:39
 msgid "Animated icons"
@@ -47,7 +48,7 @@ msgstr "Это плагин предоставляет много красивы
 #: ../Animated-icons/data/messages:33 ../Animated-icons/data/messages:57
 #: ../Animated-icons/data/messages:147
 msgid "Pulse"
-msgstr "Пульсирующий"
+msgstr "Пульсация"
 
 #: ../Animated-icons/src/applet-rotation.c:389
 #: ../Animated-icons/data/messages:9 ../Animated-icons/data/messages:29
@@ -59,7 +60,7 @@ msgstr "Вращение"
 #: ../Animated-icons/data/messages:39 ../Animated-icons/data/messages:63
 #: ../Animated-icons/data/messages:87 ../Animated-icons/data/messages:95
 msgid "Spot"
-msgstr "Точечно"
+msgstr "Прожектор"
 
 #: ../Animated-icons/src/applet-wave.c:287 ../Animated-icons/data/messages:17
 #: ../Animated-icons/data/messages:37 ../Animated-icons/data/messages:61
@@ -196,11 +197,11 @@ msgstr "История буфера обмена"
 
 #: ../Clipper/src/applet-init.c:87
 msgid "Pop-up the items menu"
-msgstr ""
+msgstr "Пункты всплывающего меню"
 
 #: ../Clipper/src/applet-notifications.c:33
 msgid "The clipboard history is empty."
-msgstr ""
+msgstr "История буфера обмена пуста."
 
 #: ../Clipper/src/applet-notifications.c:89
 msgid "Clear clipboard History"
@@ -336,13 +337,13 @@ msgstr "Показать рабочий стол"
 #: ../Composite-Manager/data/messages:131 ../showDesktop/data/messages:107
 #: ../showDesktop/data/messages:121 ../switcher/data/messages:141
 msgid "Expose all the desktops"
-msgstr "Экспозиция всех рабочих столов"
+msgstr "Экспонировать все рабочие столы"
 
 #: ../Composite-Manager/src/applet-notifications.c:158
 #: ../switcher/src/applet-notifications.c:333
 #: ../Composite-Manager/data/messages:133 ../switcher/data/messages:143
 msgid "Expose all the windows"
-msgstr "Экспозиция всех окон"
+msgstr "Экспонировать все окна"
 
 #: ../Composite-Manager/src/applet-notifications.c:167
 #: ../showDesktop/src/applet-notifications.c:205
@@ -363,7 +364,7 @@ msgstr ""
 #: ../Dbus/src/interface-applet-signals.c:433
 #: ../Dbus/src/interface-applet-signals.c:464
 msgid "Sorry, this module couldn't be added."
-msgstr "Не удалось загрузить этот модуль."
+msgstr "К сожалению, этот модуль не может быть добавлен."
 
 #: ../Dbus/src/interface-applet-signals.c:468
 #: ../Dbus/src/interface-applet-signals.c:474
@@ -462,6 +463,41 @@ msgid ""
 " - Find actions : left, middle click, drop and wheel.\n"
 " - Fill menu with actions.\n"
 msgstr ""
+"<b><i>Мониторинг скорости дисков и свободного пространства</i></b>.\n"
+"\n"
+"Этот апплет показывает информацию о ваших дисках. Вы можете активировать оба "
+"параметра одновременно, но удобнее будет разделить их на несколько "
+"экземпляров апплета.\n"
+"Использование обоих параметров в одном апплете может привести к проблемам с "
+"отображением скорости.\n"
+"\n"
+"<b>Дисковое пространство</b> :  Показывает скорость передачи данных на "
+"диске. До 10 разделов\n"
+"  Для мониторинга, вам необходимо указать точки монтирования каждого "
+"раздела, например «/» или «/home»\n"
+"  Для удобства наблюдения используйте частоту обновления 30 или 60 секунд с "
+"короткой задержкой или вообще без неё.\n"
+"\n"
+"<b>Скорость диска</b> :  Показывает скорость передачи данных с диска. Можно "
+"использовать до 5 дисков\n"
+"  Для мониторинга, вам необходимо связать имена дисков с именами устройств, "
+"например «sda» или «sdb»\n"
+"  Для удобства построения графика используйте частоту обновления в 2 или 3 "
+"секунды без задержки.\n"
+"\n"
+"В следующем выпуске планируется сделать намного больше :\n"
+" <u>Свободное место :</u>\n"
+" - Всплывающие сообщения с подробной информацией.\n"
+" - Редактируемые метки ?\n"
+" <u>Скорость :</u>\n"
+" - Параметры для всех дисков.\n"
+" - Всплывающая информация о дисках, чтобы знать, что добавить в список.\n"
+" - Редактируемые метки ?\n"
+" - Получить реальный размер блока для дисков\n"
+" <u>Глобально</u>\n"
+" - Поиск действий : щелчок левой, средней кнопкой мыши, перетаскивание и "
+"вращение.\n"
+" - Заполнить меню действий.\n"
 
 #: ../Disks/src/applet-notifications.c:72
 #: ../System-Monitor/src/applet-init.c:33
@@ -644,7 +680,7 @@ msgstr "Укажите каталог"
 #: ../Scooby-Do/src/applet-backend-files.c:393
 #: ../Screenshot/src/applet-screenshot.c:410
 msgid "Ok"
-msgstr ""
+msgstr "ОК"
 
 #: ../Folders/src/applet-notifications.c:268
 #: ../Scooby-Do/src/applet-backend-files.c:395
@@ -783,7 +819,7 @@ msgstr "Настроить меню"
 
 #: ../GMenu/src/applet-notifications.c:88
 msgid "None of these applications seems available:"
-msgstr ""
+msgstr "Ни одно из этих приложений, по-видимому, не доступно:"
 
 #: ../GMenu/src/applet-notifications.c:96
 msgid "Clear recent"
@@ -825,7 +861,7 @@ msgstr "Показать или скрыть меню текущего прил�
 
 #: ../Global-Menu/src/applet-notifications.c:93
 msgid "The application didn't send its menu to us."
-msgstr ""
+msgstr "Приложение не отправляло нам своё меню."
 
 #: ../Impulse/src/applet-impulse.c:176
 msgid ""
@@ -851,7 +887,7 @@ msgstr ""
 
 #: ../Indicator-Generic/src/applet-init.c:30
 msgid "Indicator-Generic"
-msgstr ""
+msgstr "Универсальный индикатор"
 
 #: ../Indicator-Generic/src/applet-init.c:33
 msgid ""
@@ -861,6 +897,13 @@ msgid ""
 "automatically hidden.\n"
 "You can also blacklist indicators you don't want to see."
 msgstr ""
+"Этот плагин может отображать все доступные индикаторы на панели.\n"
+"Индикаторы предоставляют информацию о чем-либо и меню для управления этим "
+"процессом:\n"
+"  например индикатор для управления задачами принтера. Неактивные индикаторы "
+"скрываются автоматически.\n"
+"Также вы можете поместить в черный список индикаторы, которые не желаете "
+"видеть на панели."
 
 #: ../Indicator-Generic/src/applet-notifications.c:34
 #, c-format
@@ -868,6 +911,8 @@ msgid ""
 "This indicator service did not reply.\n"
 "Please check that '%s' is correctly installed and its daemon is running."
 msgstr ""
+"Служба индикатора не отвечает.\n"
+"Пожалуйста, убедитесь, что «%s» установлен правильно и его демон запущен."
 
 #: ../Messaging-Menu/src/applet-init.c:34
 msgid "Messaging Menu"
@@ -879,6 +924,10 @@ msgid ""
 "It handles Evolution, Pidgin, Empathy, etc\n"
 "It requires the Messaging service, which is available on Ubuntu by default."
 msgstr ""
+"Меню, которое уведомляет вас о новых сообщениях в Почте или чате.\n"
+"Взаимодействует с Evolution, Pidgin, Empathy и др.\n"
+"Для этого требуется служба обмена сообщениями, которая обычно доступна в "
+"Ubuntu по умолчанию."
 
 #: ../Messaging-Menu/src/applet-init.c:106
 msgid "Show/hide the Messaging menu"
@@ -1065,7 +1114,7 @@ msgstr "Обновить"
 
 #: ../RSSreader/src/applet-rss.c:400
 msgid "Warning: couldn't retrieve data last time we tried."
-msgstr "Внимание: не удалось получить данные"
+msgstr "Внимание: не удалось получить данные."
 
 #: ../RSSreader/src/applet-rss.c:436
 msgid "No URL is defined."
@@ -1100,7 +1149,7 @@ msgstr ""
 "Не определён URL\n"
 "Вы можете скопировать URL в буфер обмена,\n"
 " а затем в меню выбрать пункт\n"
-" «Вставить URL»"
+" «Вставить URL»."
 
 #: ../RSSreader/src/applet-rss.c:782
 msgid ""
@@ -1139,7 +1188,7 @@ msgstr "Приложения"
 
 #: ../Recent-Events/src/applet-dialog.c:377
 msgid "Documents"
-msgstr ""
+msgstr "Документы"
 
 #: ../Recent-Events/src/applet-dialog.c:379 ../drop-indicator/data/messages:3
 msgid "Images"
@@ -1151,7 +1200,7 @@ msgstr "Аудио"
 
 #: ../Recent-Events/src/applet-dialog.c:381
 msgid "Videos"
-msgstr ""
+msgstr "Видео"
 
 #: ../Recent-Events/src/applet-dialog.c:382
 msgid "Web"
@@ -1159,7 +1208,7 @@ msgstr "Веб"
 
 #: ../Recent-Events/src/applet-dialog.c:383
 msgid "Others"
-msgstr ""
+msgstr "Прочее"
 
 #: ../Recent-Events/src/applet-dialog.c:384
 msgid "Top Results"
@@ -1177,6 +1226,11 @@ msgid ""
 "quoting the string \"foo is a bar\". You can truncate terms by appending a "
 "*. "
 msgstr ""
+"Логическим оператором по умолчанию является AND. Таким образом, запрос foo "
+"bar будет интерпретирован как foo AND bar. Чтобы исключить термин из "
+"результирующего набора, добавьте перед ним знак минус, например, foo -bar. "
+"Запросы по фразам можно выполнять с использованием двойных кавычек: \"foo is "
+"a bar\". Также можно сокращать термины, добавив символ *. "
 
 #: ../Recent-Events/src/applet-dialog.c:440
 #: ../Screenshot/src/applet-screenshot.c:467
@@ -1210,7 +1264,7 @@ msgstr "%d событие(й) удалено"
 
 #: ../Recent-Events/src/applet-notifications.c:122
 msgid "No related files"
-msgstr ""
+msgstr "Нет связанных файлов"
 
 #: ../Recent-Events/src/applet-notifications.c:198
 msgid "Delete today's events"
@@ -1238,10 +1292,22 @@ msgid ""
 "middle click, and Ctrl+Enter for left click\n"
 "Escape or the same shortkey will cancel."
 msgstr ""
+"Этот плагин позволяет вам управлять док-панелью с клавиатуры.\n"
+"Нажмите комбинацию клавиш (по умолчанию Super + Return), затем выполните "
+"одно из следующих действий:\n"
+" - нажмите номер значка, который вы хотите активировать - или используйте "
+"стрелки для перехода к панелям и суб-панелям (Ctrl + Page up/down для "
+"перехода к другой основной панели)\n"
+" - или введите название кнопки запуска и нажмите Tab, чтобы автоматически "
+"перейти к следующей подходящей кнопке запуска\n"
+"Нажмите Enter для одинарного щелчка по значку, Shift+Enter для щелчка с "
+"нажатой клавишей Shift, Alt+Enter для щелчка средней кнопкой мыши и "
+"Ctrl+Enter для щелчка левой кнопкой мыши.\n"
+"Escape или другая комбинация с подобным функционалом отменят действие."
 
 #: ../Remote-Control/src/applet-init.c:48
 msgid "Control from keyboard"
-msgstr "Манипуляции с клавиатуры"
+msgstr "Управление с клавиатуры"
 
 #: ../Remote-Control/src/applet-init.c:62
 msgid "Enable/disable the keyboard control of the dock"
@@ -1250,7 +1316,7 @@ msgstr "Задействовать или отключить манипуляц�
 #: ../Scooby-Do/src/applet-backend-command.c:63
 #, c-format
 msgid "The value %s has been copied into the clipboard."
-msgstr "Значение %s  было скопировано в буфер обмена"
+msgstr "Значение %s было скопировано в буфер обмена."
 
 #: ../Scooby-Do/src/applet-backend-files.c:161
 msgid "Open a terminal here"
@@ -1332,7 +1398,7 @@ msgstr "Amazon"
 
 #: ../Scooby-Do/src/applet-init.c:82
 msgid "Enable/disable the Finder"
-msgstr ""
+msgstr "Включить/Отключить поиск"
 
 #: ../Scooby-Do/src/applet-listing.c:488
 msgid "(F1) Match case"
@@ -1391,6 +1457,10 @@ msgid ""
 "<b>Middle-click</b> gives you more options.\n"
 "You can bind a <b>shortcut</b> to the action."
 msgstr ""
+"Простой апплет для создания снимков экрана.\n"
+"<b>Щелчок</b>, чтобы сделать снимок.\n"
+"<b>Средняя кнопка</b> вызывает дополнительные настройки.\n"
+"Также вы можете назначить свои <b>горячие клавиши</b> на это действие."
 
 #: ../Screenshot/src/applet-init.c:53
 msgid "Take a screenshot"
@@ -1402,7 +1472,7 @@ msgstr "Скриншот"
 
 #: ../Screenshot/src/applet-notifications.c:61
 msgid "Screenshot with options"
-msgstr ""
+msgstr "Снимок экрана с параметрами"
 
 #: ../Screenshot/src/applet-screenshot.c:158
 msgid "Screenshot from"
@@ -1430,11 +1500,11 @@ msgstr "Задержка"
 
 #: ../Screenshot/src/applet-screenshot.c:457
 msgid "Grab the current window instead of the all screen"
-msgstr ""
+msgstr "Захватить только текущее окно, а не весь экран"
 
 #: ../Screenshot/src/applet-screenshot.c:458
 msgid "Grab the current window"
-msgstr ""
+msgstr "Захватить текущее окно"
 
 #: ../Screenshot/src/applet-screenshot.c:466
 #: ../Screenshot/src/applet-screenshot.c:475
@@ -1456,6 +1526,8 @@ msgid ""
 "This plug-in add sound effects on various events in the dock:\n"
 " When clicking an icon, when hovering an icon, etc"
 msgstr ""
+"Этот плагин добавляет звуковые эффекты к различным событиям в док-панели:\n"
+" При нажатии на значок, наведении курсора мыши на значок и т.д."
 
 #: ../Status-Notifier/src/applet-init.c:33
 msgid ""
@@ -1716,6 +1788,14 @@ msgid ""
 "mixer.\n"
 "The applet can either use the Ubuntu Sound-menu or the Alsa driver."
 msgstr ""
+"Этот апплет позволяет управлять громкостью звука из док-панели.\n"
+"Прокручивание колёсика мыши вверх/вниз на значке позволяет регулировать "
+"громкость звука.\n"
+"Щелчок левой кнопкой мыши по значку показывает/скрывает регулятор громкости "
+"(вы также можете указать собственную комбинацию клавиш)\n"
+"Щелчок средней кнопкой выключает звук, двойной щелчок левой кнопкой мыши "
+"вызывает окно настройки звука.\n"
+"Этот апплет может использовать либо звуковое меню Ubuntu, либо драйвер Alsa."
 
 #: ../alsaMixer/src/applet-init.c:40
 msgid "Sound Control"
@@ -2034,7 +2114,7 @@ msgstr "чистый"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:97
 msgid "light"
-msgstr ""
+msgstr "светлый"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:105
 msgid "water drop"
@@ -2097,11 +2177,11 @@ msgstr "Прямая ссылка"
 #: ../dnd2share/src/applet-backend-pastebin-mozilla.c:51
 #: ../dnd2share/src/applet-backend-pastebin.c:44
 msgid "Your text is empty and couldn't be uploaded to this server"
-msgstr ""
+msgstr "Ваша запись пуста и не может быть загружена на этот сервер"
 
 #: ../dnd2share/src/applet-backend-dropbox.c:62
 msgid "This directory seems not valid:"
-msgstr ""
+msgstr "Этот каталог, похоже, недоступен:"
 
 #: ../dnd2share/src/applet-backend-imgur.c:32
 msgid "Display Image"
@@ -2126,7 +2206,7 @@ msgstr "Нет текста"
 
 #: ../dnd2share/src/applet-dnd2share.c:54
 msgid "Text:"
-msgstr "Текст"
+msgstr "Текст:"
 
 #: ../dnd2share/src/applet-dnd2share.c:316
 msgid ""
@@ -2159,6 +2239,8 @@ msgid ""
 "Couldn't upload the file to %s, check that your internet connection is "
 "active."
 msgstr ""
+"Не удалось загрузить файл в %s. Убедитесь, что ваше интернет-соединение "
+"активно."
 
 #: ../dnd2share/src/applet-dnd2share.h:32
 #, c-format
@@ -2167,6 +2249,9 @@ msgid ""
 "Check that your internet connection is active and '%s' is correctly "
 "installed and running"
 msgstr ""
+"Не удалось загрузить файл в %s.\n"
+"Убедитесь, что ваше интернет-соединение активно и «%s» правильно установлен "
+"и запущен"
 
 #: ../dnd2share/src/applet-init.c:44
 msgid ""
@@ -2271,7 +2356,7 @@ msgstr "Щёлкните на значке, чтобы скопировать с
 
 #: ../dnd2share/src/applet-notifications.c:412
 msgid "Send the clipboard's content"
-msgstr "Послать содержимое буфера обмена."
+msgstr "Отправить содержимое буфера обмена"
 
 #: ../dnd2share/src/applet-notifications.c:415
 msgid "History"
@@ -2291,7 +2376,7 @@ msgstr "Очистить историю"
 
 #: ../dnd2share/src/applet-notifications.c:490
 msgid "Use only a files hosting site"
-msgstr ""
+msgstr "Использовать только сайт для хостинга файлов"
 
 #: ../dock-rendering/src/rendering-init.c:34
 msgid "Caroussel"
@@ -2313,7 +2398,7 @@ msgstr "Радуга"
 #: ../dock-rendering/src/rendering-init.c:39 ../dock-rendering/data/messages:29
 #: ../shortcuts/data/messages:109 ../stack/data/messages:101
 msgid "Slide"
-msgstr "Скольжение"
+msgstr "Слайд"
 
 #: ../dock-rendering/src/rendering-init.c:40 ../dock-rendering/data/messages:7
 msgid "Curve"
@@ -2502,6 +2587,14 @@ msgid ""
 "<b>Click</b> on the icon to pop the menu up.\n"
 "You can bind a <b>shortcut</b> to it, and also to lock the screen."
 msgstr ""
+"Этот апплет позволяет управлять текущим сеансом. Вы можете:\n"
+"выключить, перезагрузить, перейти в спящий режим, перейти в ждущий режим, "
+"выйти из системы, заблокировать экран, переключиться на другого пользователя "
+"или задействовать автоматическое завершение\n"
+"Он также сообщит вам, если потребуется перезагрузка системы.\n"
+"<b>Нажмите</b> на значок, чтобы открыть меню.\n"
+"К нему также можно привязать <b>комбинации клавиш</b>, а также заблокировать "
+"экран."
 
 #: ../logout/src/applet-init.c:40 ../logout/src/applet-logout.c:380
 #: ../logout/data/messages:95
@@ -2534,13 +2627,16 @@ msgstr "Компьютер не будет потреблять энергии."
 
 #: ../logout/src/applet-logout.c:364
 msgid "Hybrid Sleep"
-msgstr ""
+msgstr "Гибридный спящий режим"
 
 #: ../logout/src/applet-logout.c:366
 msgid ""
 "Your computer will still consume a small amount of energy but after some "
 "time, the computer will suspend to disk and not consume any energy."
 msgstr ""
+"Ваш компьютер по-прежнему будет потреблять небольшое количество энергии, но "
+"через некоторое время компьютер приостановит работу с диском и перестанет "
+"потреблять энергию."
 
 #: ../logout/src/applet-logout.c:371
 msgid "Suspend"
@@ -2572,13 +2668,15 @@ msgstr "Автоматическое завершение"
 
 #: ../logout/src/applet-logout.c:500
 msgid "Logind has returned this error:"
-msgstr ""
+msgstr "Logind вернул эту ошибку:"
 
 #: ../logout/src/applet-logout.c:502
 msgid ""
 "Please check that you can do this action\n"
 "(e.g. you can't power the computer off if another session is active)"
 msgstr ""
+"Пожалуйста, убедитесь, что вы можете выполнить это действие\n"
+"(например, можно ли выключить компьютер, если активен другой сеанс)"
 
 #: ../logout/src/applet-logout.c:575
 #, c-format
@@ -2594,6 +2692,8 @@ msgid ""
 "It seems your system is being updated!\n"
 "Please be sure that you can shut down your computer right now."
 msgstr ""
+"Кажется, ваша система обновляется!\n"
+"Пожалуйста, убедитесь, что вы можете отключить компьютер прямо сейчас."
 
 #: ../logout/src/applet-logout.c:668
 msgid "Restart the computer?"
@@ -2609,7 +2709,7 @@ msgstr "Пользователи"
 
 #: ../logout/src/applet-reboot-required.c:62
 msgid "Please do that at the end of the update."
-msgstr ""
+msgstr "Пожалуйста, сделайте это в конце обновления."
 
 #: ../logout/src/applet-timer.c:47
 msgid "Your computer will shut-down in 1 minute."
@@ -2682,7 +2782,7 @@ msgstr "Оставьте пустым, чтобы использовать по�
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Specific icon file when using multiple accounts"
-msgstr ""
+msgstr "Особый файл значка при использовании нескольких учётных записей"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Directory on server:"
@@ -2714,31 +2814,31 @@ msgstr ""
 
 #: ../mail/src/cd-mail-applet-config.c:224
 msgid "Please choose an account type."
-msgstr "Выбирете тип аккаунта."
+msgstr "Выберите тип учётной записи."
 
 #: ../mail/src/cd-mail-applet-config.c:229
 msgid "New account's name"
-msgstr "Имя для нового аккаунта"
+msgstr "Название для новой учётной записи"
 
 #: ../mail/src/cd-mail-applet-config.c:232
 msgid "Please enter a name for this account."
-msgstr "Введите имя для этого аккаунта"
+msgstr "Введите имя для этой учётной записи"
 
 #: ../mail/src/cd-mail-applet-config.c:242
 msgid ""
 "This account already exists.\n"
 "Please choose another name for the new account."
 msgstr ""
-"Аккаунт с таким именем уже существует.\n"
+"Учётная запись с таким именем уже существует.\n"
 "Выберите другое имя."
 
 #: ../mail/src/cd-mail-applet-config.c:373
 msgid "Enter a name for this account. You can give it any name you want."
-msgstr "Введите имя для этого аккаунта. Можете ввести любое."
+msgstr "Введите имя для этой учётной записи. Можете ввести любое."
 
 #: ../mail/src/cd-mail-applet-config.c:428
 msgid "Remove Account"
-msgstr "Удалить аккаунт"
+msgstr "Удалить учётную запись"
 
 #: ../mail/src/cd-mail-applet-etpan.c:237 ../wifi/src/applet-draw.c:145
 msgid "unknown"
@@ -2886,6 +2986,19 @@ msgid ""
 " and jpeg image to use as cover.\n"
 "Note: you may have to install or activate the MPRIS plug-in of the player."
 msgstr ""
+"Это приложение позволяет управлять любым музыкальным проигрывателем.\n"
+"Сначала выберите проигрыватель которым хотите управлять.\n"
+"<b>Щёлкните левой кнопкой мыши</b>, чтобы показать/скрыть проигрыватель или "
+"поставить на паузу,\n"
+"<b>Щёлкните средней кнопкой мыши</b>, чтобы приостановить или перейти к "
+"следующей композиции,\n"
+"<b>Прокрутите колёсико мыши вверх/вниз</b> для выбора композиции или "
+"управления уровнем громкости.\n"
+"Вы можете перетаскивать песни на значок, чтобы поместить их в очередь "
+"(зависит от проигрывателя),\n"
+" а также использовать изображение в формате jpeg в качестве обложки.\n"
+"Примечание: возможно, вам придется установить или активировать подключаемый "
+"модуль MPRIS для проигрывателя."
 
 #: ../musicPlayer/src/applet-notifications.c:101
 msgid ""
@@ -2919,7 +3032,7 @@ msgstr "прокрутка вверх"
 
 #: ../musicPlayer/src/applet-notifications.c:313
 msgid "Play/Pause"
-msgstr "Играть/Пауза"
+msgstr "Воспроизведение/Пауза"
 
 #: ../musicPlayer/src/applet-notifications.c:313
 msgid "left-click"
@@ -2999,6 +3112,9 @@ msgid ""
 "Please be sure that at least one interface is available\n"
 " and that you have the right to monitor it"
 msgstr ""
+"Интерфейс не найден.\n"
+"Убедитесь, что хотя бы один интерфейс доступен\n"
+" и вы имеете право управлять им"
 
 #: ../netspeed/src/applet-notifications.c:48
 #, c-format
@@ -3007,6 +3123,9 @@ msgid ""
 "You may have to set up the interface you wish to monitor.\n"
 "Do you want to do it now?"
 msgstr ""
+"Интерфейс '%s' не существует или не доступен.\n"
+"Возможно, вам придется сначала настроить интерфейс, чтобы управлять им.\n"
+"Хотите сделать это сейчас?"
 
 #: ../netspeed/src/applet-notifications.c:105
 msgid "Enable/disable network"
@@ -3034,7 +3153,7 @@ msgstr "осталось"
 
 #: ../powermanager/src/powermanager-draw.c:213
 msgid "until charged"
-msgstr ""
+msgstr "до полного заряда"
 
 #: ../powermanager/src/powermanager-draw.c:231 ../wifi/src/applet-draw.c:30
 #: ../Clipper/data/messages:97 ../GMenu/data/messages:113
@@ -3074,7 +3193,7 @@ msgstr "Технология:"
 
 #: ../powermanager/src/powermanager-draw.c:294
 msgid "Maximum capacity:"
-msgstr ""
+msgstr "Максимальная ёмкость:"
 
 #: ../powermanager/src/powermanager-draw.c:299
 msgid "No battery found."
@@ -3090,7 +3209,7 @@ msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:321
 msgid "Estimated time with charge:"
-msgstr "время работы от батареи:"
+msgstr "Время работы от батареи:"
 
 #: ../powermanager/src/powermanager-draw.c:321
 msgid "Please put your laptop on charge."
@@ -3126,7 +3245,7 @@ msgstr "Управление питанием"
 
 #: ../powermanager/src/powermanager-menu-functions.c:87
 msgid "Power statistics"
-msgstr ""
+msgstr "Статистика энергопотребления"
 
 #: ../quick-browser/src/applet-init.c:29
 msgid "Quick Browser"
@@ -3351,7 +3470,7 @@ msgstr ""
 "правый щелчок.\n"
 "Левый щелчок для показа/скрытия рабочего стола,\n"
 "Средний щелчок для показа/скрытия рабочего стола, десклетов, Слоя Виджетов "
-"или всех столов сразу"
+"или всех столов сразу."
 
 #: ../showDesktop/src/applet-notifications.c:220
 msgid "Change screen resolution"
@@ -3359,7 +3478,7 @@ msgstr "Изменить разрешение экрана"
 
 #: ../slider/src/applet-init.c:29
 msgid "slider"
-msgstr "Слайд-шоу"
+msgstr "Слайдер"
 
 #: ../slider/src/applet-init.c:32
 msgid ""
@@ -3376,7 +3495,7 @@ msgstr ""
 
 #: ../slider/src/applet-notifications.c:68
 msgid "You need to define the images folder first."
-msgstr ""
+msgstr "В первую очередь вы должны назначить папку с изображениями."
 
 #: ../slider/src/applet-notifications.c:214
 msgid "Play"
@@ -3402,7 +3521,7 @@ msgstr "Обновить список изображений"
 
 #: ../stack/src/applet-init.c:31
 msgid "stack"
-msgstr "stack"
+msgstr "Стэк"
 
 #: ../stack/src/applet-init.c:34
 msgid ""
@@ -3565,7 +3684,7 @@ msgstr "Старая область уведомлений"
 
 #: ../systray/src/systray-init.c:65
 msgid "Show/hide the systray"
-msgstr ""
+msgstr "Показать/скрыть область уведомлений"
 
 #: ../systray/src/systray-interface.c:74
 msgid ""
@@ -3573,9 +3692,9 @@ msgid ""
 "Since there can only be one systray at once, you should remove it to avoid "
 "any conflict."
 msgstr ""
-"Область задач уже запущена (возможно на вашей панели)\n"
-"Одновременно может быть запущена только одна область задач. Чтобы избежать "
-"конфликтов, вам следует удалить вторую."
+"Область уведомлений уже запущена (возможно на вашей панели)\n"
+"Одновременно может быть запущена только одна область уведомлений. Чтобы "
+"избежать конфликтов, вам следует удалить вторую."
 
 #: ../template/src/applet-init.c:27
 msgid "CD_APPLET_NAME"
@@ -3671,7 +3790,7 @@ msgstr "Примечание:"
 
 #: ../tomboy/src/applet-backend-default.c:207
 msgid "Title:"
-msgstr ""
+msgstr "Заголовок:"
 
 #: ../tomboy/src/tomboy-draw.c:188
 msgid "Open all"
@@ -3695,7 +3814,7 @@ msgstr ""
 
 #: ../tomboy/src/tomboy-notifications.c:85
 msgid "Note name : "
-msgstr "Имя заметки: "
+msgstr "Название заметки: "
 
 #: ../tomboy/src/tomboy-notifications.c:112
 msgid "Delete this note?"
@@ -3820,7 +3939,7 @@ msgstr "Температура"
 
 #: ../weather/src/applet-notifications.c:143
 msgid "Rain or snow"
-msgstr ""
+msgstr "Дождь или снег"
 
 #: ../weather/src/applet-notifications.c:153
 msgid "Data are being fetched, please re-try in a few seconds."
@@ -3949,6 +4068,8 @@ msgstr "Сколько раз проигрывать анимацию:"
 #: ../Animated-icons/data/messages:45 ../icon-effect/data/messages:35
 msgid "Repeat these effects until the corresponding application opens?"
 msgstr ""
+"Повторять эти эффекты до тех пор, пока не откроется соответствующее "
+"приложение?"
 
 #: ../Animated-icons/data/messages:47 ../icon-effect/data/messages:37
 msgid "when clicking on an application"
@@ -4137,7 +4258,7 @@ msgstr "Должен ли пульс зависеть от формы значк
 
 #: ../Animated-icons/data/messages:163
 msgid "Bounce duration:"
-msgstr "Продолжительность подпрыга:"
+msgstr "Продолжительность отскока:"
 
 #: ../Animated-icons/data/messages:167
 msgid "When bouncing, resize the icon by:"
@@ -4157,13 +4278,15 @@ msgstr "Продолжительность мигания:"
 
 #: ../Animated-icons/data/messages:185
 msgid "Busy duration:"
-msgstr ""
+msgstr "Продолжительность эффекта «Загрузка»:"
 
 #: ../Animated-icons/data/messages:189
 msgid ""
 "The image must contain all the frames of the animation, side by side, from "
 "left to right."
 msgstr ""
+"Изображение должно содержать все кадры анимации, один за другим, слева "
+"направо."
 
 #: ../Animated-icons/data/messages:191
 msgid "Image :"
@@ -4239,7 +4362,7 @@ msgstr "Значок"
 #: ../weather/data/messages:5 ../weblets/data/messages:5
 #: ../wifi/data/messages:5
 msgid "Name of the dock it belongs to:"
-msgstr "Имя панели, к которой он принадлежит:"
+msgstr "Название панели, к которой он принадлежит:"
 
 #: ../Cairo-Penguin/data/messages:7 ../Clipper/data/messages:7
 #: ../Composite-Manager/data/messages:7 ../Disks/data/messages:7
@@ -4262,7 +4385,7 @@ msgstr "Имя панели, к которой он принадлежит:"
 #: ../tomboy/data/messages:7 ../weather/data/messages:9
 #: ../weblets/data/messages:7 ../wifi/data/messages:7
 msgid "Name of the icon as it will appear in its caption in the dock:"
-msgstr "Имя значка, как оно будет отображено в подписи на панели:"
+msgstr "Название значка, как оно будет отображено в подписи на панели:"
 
 #: ../Cairo-Penguin/data/messages:9 ../Clipper/data/messages:9
 #: ../Composite-Manager/data/messages:9 ../Disks/data/messages:9
@@ -4309,7 +4432,7 @@ msgstr "По умолчанию"
 #: ../tomboy/data/messages:25 ../weather/data/messages:13
 #: ../weblets/data/messages:13 ../wifi/data/messages:11
 msgid "Set to 0 to use the default applet size"
-msgstr "Установите 0, чтобы использовать стандартный размер апплета."
+msgstr "Установите 0, чтобы использовать стандартный размер апплета"
 
 #: ../Cairo-Penguin/data/messages:13 ../Clipper/data/messages:15
 #: ../Composite-Manager/data/messages:13 ../Disks/data/messages:13
@@ -4403,7 +4526,7 @@ msgstr "Смещение от поверхности:"
 #: ../systray/data/messages:11 ../template/data/messages:11
 #: ../terminal/data/messages:11 ../weblets/data/messages:11
 msgid "Image filename:"
-msgstr "Имя изображения:"
+msgstr "Название изображения:"
 
 #: ../Clipper/data/messages:17 ../Composite-Manager/data/messages:15
 #: ../Disks/data/messages:15 ../Doncky/data/messages:17
@@ -4530,8 +4653,9 @@ msgid ""
 "Depending on your WindowManager, you may be able to resize this with ALT + "
 "middle-click or ALT + left-click."
 msgstr ""
-"В зависимости от вашего Менеджера Окон, вы можете изменять размер при помощи "
-"ALT + средний щелчок или ALT + левый щелчок."
+"В зависимости от вашего оконного менеджера, вы можете изменять его размер "
+"при помощи комбинации: ALT + щелчок средней кнопкой мыши или ALT + щелчок "
+"левой кнопкой мыши."
 
 #: ../Clipper/data/messages:27 ../Composite-Manager/data/messages:25
 #: ../Disks/data/messages:23 ../Doncky/data/messages:27
@@ -4574,8 +4698,8 @@ msgid ""
 "Depending on your WindowManager, you may be able to move this with ALT + "
 "left-click."
 msgstr ""
-"В зависимости от вашего Менеджера Окон, вы можете перемешать с помощью ALT + "
-"левый щелчок"
+"В зависимости от вашего оконного менеджера, вы можете перемещать его с "
+"помощью комбинации: ALT + щелчок левой кнопкой мыши."
 
 #: ../Clipper/data/messages:31 ../Composite-Manager/data/messages:29
 #: ../Disks/data/messages:47 ../Doncky/data/messages:31
@@ -5286,7 +5410,7 @@ msgstr "Выделения"
 #: ../Clipper/data/messages:103 ../GMenu/data/messages:119
 #: ../show-mouse/data/messages:15
 msgid "Both"
-msgstr "Оба"
+msgstr "Оба варианта"
 
 #: ../Clipper/data/messages:105
 msgid "Number of items:"
@@ -5390,9 +5514,9 @@ msgid ""
 "Depending on your WindowManager, you may be able to move this with ALT + "
 "left-click.. Negative values are counted from the right/bottom of the screen"
 msgstr ""
-"В зависимости от вашего ОМ, вы можете перемещать панель с помощью ALT+левый "
-"щелчок. Отрицательные значения вычисляются относительно правого/нижнего угла "
-"экрана."
+"В зависимости от вашего оконного менеджера, вы можете перемещать панель с "
+"помощью комбинации: ALT + щелчок левой кнопкой мыши. Отрицательные значения "
+"вычисляются относительно правого/нижнего угла экрана"
 
 #: ../Composite-Manager/data/messages:89 ../Impulse/data/messages:117
 #: ../clock/data/messages:133 ../clock/data/messages:151
@@ -5514,14 +5638,16 @@ msgstr "Позволить внешним приложениям анимиро�
 #: ../Dbus/data/messages:25
 msgid "The dock will catch DBus signals to Launcher API and act as Unity"
 msgstr ""
+"Док-панель будет перехватывать сигналы DBus к Launcher API и действовать как "
+"Unity"
 
 #: ../Dbus/data/messages:27
 msgid "Launch the Launcher API daemon?"
-msgstr ""
+msgstr "Запустить демон Launcher API?"
 
 #: ../Disks/data/messages:5
 msgid "Name of the container it belongs to:"
-msgstr "Имя контейнера, которому он принадлежит:"
+msgstr "Название контейнера, которому он принадлежит:"
 
 #: ../Disks/data/messages:17
 msgid "Desklet mode"
@@ -5541,7 +5667,7 @@ msgstr "Выберите стиль отображения: "
 #: ../powermanager/data/messages:109 ../wifi/data/messages:101
 #: ../wifi/data/messages:107
 msgid "Gauge"
-msgstr "Датчик"
+msgstr "Индикатор"
 
 #: ../Disks/data/messages:93 ../Disks/data/messages:107
 #: ../Network-Monitor/data/messages:143 ../Network-Monitor/data/messages:149
@@ -5556,12 +5682,12 @@ msgstr "График"
 #: ../Disks/data/messages:99 ../System-Monitor/data/messages:109
 #: ../alsaMixer/data/messages:123 ../netspeed/data/messages:109
 msgid "Rotate applet theme :"
-msgstr ""
+msgstr "Повернуть апплет :"
 
 #: ../Disks/data/messages:103 ../System-Monitor/data/messages:113
 #: ../alsaMixer/data/messages:127 ../netspeed/data/messages:113
 msgid "With dock orientation"
-msgstr ""
+msgstr "С ориентацией панели"
 
 #: ../Disks/data/messages:109 ../Network-Monitor/data/messages:151
 #: ../Network-Monitor/data/messages:195 ../System-Monitor/data/messages:119
@@ -5618,7 +5744,7 @@ msgstr "Цвет высоких значений:"
 
 #: ../Disks/data/messages:125 ../netspeed/data/messages:135
 msgid "Graph colour for low rate vaues:"
-msgstr "Цвет графики при низких значениях."
+msgstr "Цвет графики при низких значениях:"
 
 #: ../Disks/data/messages:127 ../Network-Monitor/data/messages:169
 #: ../Network-Monitor/data/messages:213 ../System-Monitor/data/messages:137
@@ -5831,7 +5957,7 @@ msgstr "Отрисовывать содержимое суб-панели как
 
 #: ../Folders/data/messages:21
 msgid "Draw sub-dock's content inside a box"
-msgstr "Отрисовывать содержимое суб-панели внутри коробки"
+msgstr "Отрисовывать содержимое суб-панели внутри рамки"
 
 #: ../Folders/data/messages:103
 msgid "Folder's path:"
@@ -5892,18 +6018,20 @@ msgid ""
 "The settings menu file is sometimes available in a settings.menu file but "
 "its content can also be available in the main .menu file used by the dock"
 msgstr ""
+"Файл меню настроек иногда доступен в файле settings.menu, но его содержимое "
+"также может быть доступно в файле main .menu, используемом док-панелью"
 
 #: ../GMenu/data/messages:101
 msgid "Load settings' menu?"
-msgstr ""
+msgstr "Загрузить настройки меню?"
 
 #: ../GMenu/data/messages:103
 msgid "Display the description in search's results?"
-msgstr ""
+msgstr "Выводить описание на экран в результатах поиска?"
 
 #: ../GMenu/data/messages:105
 msgid "Display a notification to quickly launch new applications?"
-msgstr ""
+msgstr "Показывать уведомления для быстрого запуска новых приложений?"
 
 #: ../GMenu/data/messages:107
 msgid "Command to use for configuring the menu:"
@@ -5920,18 +6048,22 @@ msgid ""
 " The applet can steal the menu from the windows, in which case it will "
 "display a button to pop up the menu of the current window."
 msgstr ""
+"Апплет может перехватывать верхнюю границу развернутых окон, и в этом случае "
+"он будет отображать кнопки управления окном.\n"
+" Апплет может перехватывать меню окна, и в этом случае он будет отображать "
+"кнопку для вызова меню текущего окна."
 
 #: ../Global-Menu/data/messages:89
 msgid "Steal window menu"
-msgstr ""
+msgstr "Перехватывать меню окна"
 
 #: ../Global-Menu/data/messages:91
 msgid "Steal window decoration"
-msgstr ""
+msgstr "Перехватывать оформление окна"
 
 #: ../Global-Menu/data/messages:93
 msgid "Steal window menu and border"
-msgstr ""
+msgstr "Перехватить меню окна и границу"
 
 #: ../Global-Menu/data/messages:95
 msgid "Shortkey to pop up the menu"
@@ -5947,7 +6079,7 @@ msgstr "Компактынй режим"
 
 #: ../Global-Menu/data/messages:101
 msgid "Order of the buttons: "
-msgstr ""
+msgstr "Порядок расположения кнопок: "
 
 #: ../Global-Menu/data/messages:103
 msgid "Auto"
@@ -5963,19 +6095,19 @@ msgstr "Кнопка закрытия в начале"
 
 #: ../Global-Menu/data/messages:109
 msgid "Image for the 'minimize' button"
-msgstr ""
+msgstr "Изображение для кнопки «Свернуть»"
 
 #: ../Global-Menu/data/messages:111
 msgid "Image for the 'maximize' button"
-msgstr ""
+msgstr "Изображение для кнопки «Развернуть»"
 
 #: ../Global-Menu/data/messages:113
 msgid "Image for the 'restore' button"
-msgstr ""
+msgstr "Изображение для кнопки «Восстановить»"
 
 #: ../Global-Menu/data/messages:115
 msgid "Image for the 'close' button"
-msgstr ""
+msgstr "Изображение для кнопки «Закрыть»"
 
 #: ../Impulse/data/messages:87
 msgid "Animation of the icons:"
@@ -6053,35 +6185,35 @@ msgstr "PulseAudio"
 
 #: ../Impulse/data/messages:127
 msgid "0 in most cases"
-msgstr ""
+msgstr "0 в большинстве случаев"
 
 #: ../Impulse/data/messages:129
 msgid "Index of the source:"
-msgstr ""
+msgstr "Индекс источника:"
 
 #: ../Impulse/data/messages:131
 msgid "Type of device to use"
-msgstr ""
+msgstr "Тип используемого устройства"
 
 #: ../Impulse/data/messages:133
 msgid "Monitor"
-msgstr ""
+msgstr "Монитор"
 
 #: ../Impulse/data/messages:135
 msgid "Source"
-msgstr ""
+msgstr "Источник"
 
 #: ../Impulse/data/messages:137
 msgid "Sink"
-msgstr ""
+msgstr "Приёмник"
 
 #: ../Indicator-Generic/data/messages:91
 msgid "Separated by a semi-colon ';'"
-msgstr ""
+msgstr "Разделять точкой с запятой «;»"
 
 #: ../Indicator-Generic/data/messages:93
 msgid "Blacklist these indicators:"
-msgstr ""
+msgstr "Чёрный список индикаторов:"
 
 #: ../Messaging-Menu/data/messages:15 ../Network-Monitor/data/messages:17
 #: ../Status-Notifier/data/messages:19 ../System-Monitor/data/messages:15
@@ -6103,7 +6235,7 @@ msgstr "Всегда показывать значок, даже если пан
 #: ../slider/data/messages:19 ../weather/data/messages:21
 #: ../wifi/data/messages:19
 msgid "With default background"
-msgstr ""
+msgstr "С фоном по умолчанию"
 
 #: ../Messaging-Menu/data/messages:21 ../Network-Monitor/data/messages:23
 #: ../Status-Notifier/data/messages:25 ../System-Monitor/data/messages:21
@@ -6114,7 +6246,7 @@ msgstr ""
 #: ../slider/data/messages:21 ../weather/data/messages:23
 #: ../wifi/data/messages:21
 msgid "With custom background"
-msgstr ""
+msgstr "С собственным фоном"
 
 #: ../Messaging-Menu/data/messages:23 ../Network-Monitor/data/messages:25
 #: ../Status-Notifier/data/messages:27 ../System-Monitor/data/messages:23
@@ -6125,7 +6257,7 @@ msgstr ""
 #: ../slider/data/messages:23 ../weather/data/messages:25
 #: ../wifi/data/messages:23
 msgid "Background color to add in this case"
-msgstr ""
+msgstr "Цвет фона, выбранный пользователем"
 
 #: ../Messaging-Menu/data/messages:99
 msgid ""
@@ -6159,7 +6291,7 @@ msgstr "Информация на значке:"
 
 #: ../Network-Monitor/data/messages:107
 msgid "Wifi signal"
-msgstr "WIFI Сигнал"
+msgstr "WIFI сигнал"
 
 #: ../Network-Monitor/data/messages:109
 msgid "Connexion speed"
@@ -6464,7 +6596,7 @@ msgstr "Горячая клавиша для переключения аппле
 
 #: ../Remote-Control/data/messages:7
 msgid "Dock to control initially"
-msgstr ""
+msgstr "Док-панель для управления"
 
 #: ../Remote-Control/data/messages:9 ../Scooby-Do/data/messages:25
 msgid "Animation of the current icon :"
@@ -6665,20 +6797,20 @@ msgstr "Позволит вам запускать команды и даже в
 
 #: ../Screenshot/data/messages:91
 msgid "Shortkey to take a screenshot"
-msgstr ""
+msgstr "Сочетание клавиш для создания снимка экрана"
 
 #: ../Screenshot/data/messages:93
 msgid "Save image in"
-msgstr ""
+msgstr "Сохранить изображение в"
 
 #: ../Sound-Effects/data/messages:3
 msgid "Play a sound on click ?"
-msgstr ""
+msgstr "Воспроизводить звук при щелчке?"
 
 #: ../Sound-Effects/data/messages:5 ../Sound-Effects/data/messages:11
 #: ../Sound-Effects/data/messages:17
 msgid "A .wav file encoded in PCM."
-msgstr ""
+msgstr "Файл .wav закодирован в PCM."
 
 #: ../Sound-Effects/data/messages:7 ../Sound-Effects/data/messages:13
 #: ../Sound-Effects/data/messages:19
@@ -6687,11 +6819,11 @@ msgstr "Звуковой файл"
 
 #: ../Sound-Effects/data/messages:9
 msgid "Play a sound on middle click ?"
-msgstr ""
+msgstr "Воспроизводить звук при щелчке средней кнопки мыши?"
 
 #: ../Sound-Effects/data/messages:15
 msgid "Play a sound on mouse hover ?"
-msgstr ""
+msgstr "Воспроизводить звук при наведении мыши?"
 
 #: ../Sound-Effects/data/messages:21
 msgid "Volume:"
@@ -6703,7 +6835,7 @@ msgstr ""
 
 #: ../Status-Notifier/data/messages:13
 msgid "Image's filename :"
-msgstr "Имя изображения:"
+msgstr "Название изображения:"
 
 #: ../Status-Notifier/data/messages:105
 msgid "Hide inactive items"
@@ -6741,7 +6873,7 @@ msgstr "Стиль отображения"
 #: ../System-Monitor/data/messages:107 ../alsaMixer/data/messages:121
 #: ../powermanager/data/messages:111 ../wifi/data/messages:109
 msgid "Gauge theme"
-msgstr ""
+msgstr "Тема индикатора"
 
 #: ../System-Monitor/data/messages:131 ../powermanager/data/messages:127
 msgid "It's the colour of the graphic for high values."
@@ -6925,11 +7057,11 @@ msgstr "Оставьте пустым, чтобы показать текущи�
 
 #: ../Xgamma/data/messages:11
 msgid "Current luminosity"
-msgstr ""
+msgstr "Текущая яркость"
 
 #: ../Xgamma/data/messages:93 ../alsaMixer/data/messages:137
 msgid "Variation for 1 mouse scroll, in %:"
-msgstr "Изменения при 1 прокручивании колесика, в %:"
+msgstr "Изменение при одном прокручивании колесика, в %:"
 
 #: ../Xgamma/data/messages:95
 msgid "Use 0 for none."
@@ -6958,7 +7090,7 @@ msgstr "Отображать громкость:"
 #: ../alsaMixer/data/messages:113 ../powermanager/data/messages:107
 #: ../wifi/data/messages:105
 msgid "Icon with progress bar"
-msgstr ""
+msgstr "Значок с полосой прогресса"
 
 #: ../alsaMixer/data/messages:117 ../wifi/data/messages:137
 msgid "Default icon:"
@@ -6986,7 +7118,7 @@ msgstr "Alsa"
 
 #: ../alsaMixer/data/messages:143
 msgid "Sound card:"
-msgstr "Звуковая карта для управления"
+msgstr "Звуковая карта для управления:"
 
 #: ../alsaMixer/data/messages:145
 msgid "Select channel:"
@@ -7119,7 +7251,7 @@ msgstr "Пользовательский"
 
 #: ../clock/data/messages:159 ../keyboard-indicator/data/messages:125
 msgid "Use a custom font"
-msgstr "Использовать настроенный шрифт"
+msgstr "Использовать свой шрифт"
 
 #: ../clock/data/messages:161 ../keyboard-indicator/data/messages:127
 msgid "Font:"
@@ -7127,11 +7259,11 @@ msgstr "Шрифт:"
 
 #: ../clock/data/messages:163
 msgid "Set to 0 to not have it"
-msgstr ""
+msgstr "Чтобы его не было, установите значение 0"
 
 #: ../clock/data/messages:165
 msgid "Outline thickness:"
-msgstr ""
+msgstr "Толщина контура:"
 
 #: ../clock/data/messages:167
 msgid "Outline colour:"
@@ -7325,18 +7457,22 @@ msgstr "Свой скрипт для загрузки файла:"
 #: ../dnd2share/data/messages:177
 msgid "Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
 msgstr ""
+"Оставьте пустым, если хотите загрузить файлы в «~/Dropbox/Public» или «~/"
+"Ubuntu One»."
 
 #: ../dnd2share/data/messages:179
 msgid "Path of a custom DropBox / UbuntuOne folder :"
-msgstr ""
+msgstr "Путь к папке пользователя DropBox / UbuntuOne :"
 
 #: ../dnd2share/data/messages:181
 msgid "Otherwise, your user name will be used when possible."
-msgstr "В противном случае, имя пользователя используется когда это возможно."
+msgstr ""
+"В противном случае, по возможности, будет использоваться ваше имя "
+"пользователя."
 
 #: ../dnd2share/data/messages:183
 msgid "Post text as Anonymous ?"
-msgstr "Посылать текст анонимно?"
+msgstr "Отправлять текст анонимно ?"
 
 #: ../dock-rendering/data/messages:1
 msgid "Inclinated Plane"
@@ -7360,7 +7496,7 @@ msgstr "Кривизна в процентах:"
 
 #: ../dock-rendering/data/messages:15
 msgid "Amplitude of the curve:"
-msgstr "Амлитуда кривой."
+msgstr "Амплитуда кривой:"
 
 #: ../dock-rendering/data/messages:19
 msgid "Physically separate groups of icons"
@@ -7484,7 +7620,7 @@ msgstr "Чем выше значение, тем быстрее парабола
 
 #: ../dock-rendering/data/messages:95
 msgid "Curvature:"
-msgstr "сила кривизны:"
+msgstr "Кривизна:"
 
 #: ../dock-rendering/data/messages:97
 msgid "The parabola will be restricted to a rectangle of this proportion."
@@ -7570,12 +7706,18 @@ msgid ""
 "You can choose to display separators as a line\n"
 " or a physical hole on the plane."
 msgstr ""
+"<b>Трехмерный вид панели</b>\n"
+"Это наиболее близкий вид к док-панели MacOSX.\n"
+"Вы можете выбрать отображение разделителей в виде линий\n"
+" или физический разрыв на панели."
 
 #: ../dock-rendering/data/messages:140
 msgid ""
 "<b>A 3D caroussel view</b>\n"
 "Icons scroll with mouse position."
 msgstr ""
+"<b>В виде 3D карусели</b>\n"
+"Значки прокручиваются под курсором мыши."
 
 #: ../dock-rendering/data/messages:142
 msgid ""
@@ -7584,12 +7726,18 @@ msgid ""
 "You can choose to display separators as a line\n"
 " or a physical hole on the plane."
 msgstr ""
+"<b>В виде кривой</b>\n"
+"Позволяет искривлять панель!\n"
+"Вы можете выбрать для отображения разделителя в виде линии\n"
+" или физического проёма на плоскости."
 
 #: ../dock-rendering/data/messages:144
 msgid ""
 "<b>Slide view</b>\n"
 "A brand new view, especially designed for big subdocks."
 msgstr ""
+"<b>В виде слайдов</b>\n"
+"Совершенно новый вид, специально разработанный для больших док-панелей."
 
 #: ../dock-rendering/data/messages:146
 msgid ""
@@ -7598,6 +7746,10 @@ msgid ""
 "Icons are not zoomed on mouse over.\n"
 "Separators are rendered as spaces between the different groups of icons."
 msgstr ""
+"<b>В виде панели</b>\n"
+"В этом виде ваша док-панель будет выглядеть как панель gnome или KDE.\n"
+"При наведении курсора мыши значки не увеличиваются.\n"
+"Разделители между различными группами значков отображаются как пробелы."
 
 #: ../dock-rendering/data/messages:148
 msgid ""
@@ -7605,6 +7757,9 @@ msgid ""
 "Perfect for medium sub-docks with 3 to 10 icons.\n"
 "Labels are also clickable."
 msgstr ""
+"<b>В виде параболы</b>\n"
+"Идеально подходит для суб-панелей среднего размера с 3-10 значками.\n"
+"Также по щелчку активируются метки."
 
 #: ../dock-rendering/data/messages:150
 msgid ""
@@ -7612,6 +7767,10 @@ msgid ""
 "An original view, designed for sub-docks with few icons.\n"
 "Icons' labels can be displayed horizontally or not."
 msgstr ""
+"<b>В виде радуги</b>\n"
+"Оригинальный вид, разработанный для суб-панелей с небольшим количеством "
+"значков.\n"
+"Значки меток могут отображаться горизонтально или вертикально."
 
 #: ../dock-rendering/data/messages:152
 msgid ""
@@ -7619,6 +7778,9 @@ msgid ""
 "This view is specially adapted to large sub-docks.\n"
 "You can choose to display all icons' labels."
 msgstr ""
+"<b>В виде слайдов</b>\n"
+"Этот вид специально адаптирован для больших суб-панелей.\n"
+"Вы можете выбрать отображение подписей всех значков."
 
 #: ../drop-indicator/data/messages:1
 msgid "Drag and drop indicator"
@@ -7852,7 +8014,7 @@ msgstr "Общие"
 
 #: ../keyboard-indicator/data/messages:101
 msgid "caps lock, num lock, etc."
-msgstr "Caps lock, num lock и т.д."
+msgstr "caps lock, num lock и т.д."
 
 #: ../keyboard-indicator/data/messages:103
 msgid "Display keyboard locks as quick-info?"
@@ -7860,11 +8022,11 @@ msgstr "Отображать состояние клавиатурных реж�
 
 #: ../keyboard-indicator/data/messages:105
 msgid "Icon image name for NumLock status:"
-msgstr ""
+msgstr "Название изображения для значка состояния клавиши NumLock:"
 
 #: ../keyboard-indicator/data/messages:107
 msgid "Icon image name for CapsLock status:"
-msgstr ""
+msgstr "Название изображения для значка состояния клавиши CapsLock:"
 
 #: ../keyboard-indicator/data/messages:109
 msgid ""
@@ -7888,7 +8050,7 @@ msgstr "меньше"
 
 #: ../keyboard-indicator/data/messages:137
 msgid "Number of letters to draw on the icon."
-msgstr ""
+msgstr "Количество букв отображаемых на значке."
 
 #: ../logout/data/messages:91
 msgid "Action"
@@ -7918,7 +8080,7 @@ msgstr "Значок для уведомления о необходимости
 #: ../logout/data/messages:113
 msgid ""
 "Display this image as an emblem or replace applet's icon with this image?"
-msgstr ""
+msgstr "Отображать значок апплета как эмблему или заменить его изображением?"
 
 #: ../logout/data/messages:115
 msgid "Emblem"
@@ -7935,6 +8097,8 @@ msgstr "Команды"
 #: ../logout/data/messages:123
 msgid "Fallback user-defined command to execute for logout in case of problem:"
 msgstr ""
+"Резервная пользовательская команда, выполняемая для завершения сеанса в "
+"случае возникновения проблем:"
 
 #: ../logout/data/messages:125
 msgid ""
@@ -7950,20 +8114,25 @@ msgstr ""
 msgid ""
 "Fallback user-defined command to execute for shutdown in case of problem:"
 msgstr ""
+"Резервная пользовательская команда, выполняемая для завершения работы в "
+"случае возникновения проблем:"
 
 #: ../logout/data/messages:129
 msgid ""
 "Leave empty to execute the default command. If not empty, it will execute "
 "this command with the name of the user (or nothing for guest session)"
 msgstr ""
+"Оставьте поле пустым, чтобы выполнить команду по умолчанию. Если поле будет "
+"заполнено, то команда будет выполняться от имени пользователя (или не будет "
+"выполняться для гостевых сеансов)"
 
 #: ../logout/data/messages:131
 msgid "User-defined command to execute for changing user:"
-msgstr ""
+msgstr "Пользовательская команда выполняемая для смены пользователя:"
 
 #: ../logout/data/messages:135
 msgid "Custom command to lock the screen:"
-msgstr ""
+msgstr "Пользовательская команда для блокировки экрана:"
 
 #: ../mail/data/messages:99
 msgid ""
@@ -7973,11 +8142,11 @@ msgid ""
 msgstr ""
 "Если вы испытываете какие-либо проблемы с этим апплетом, уберите эту опцию "
 "во время режима обслуживания, затем позвольте панели загрузиться и измените/"
-"удалите нужный аккаунт."
+"удалите нужную учётную запись."
 
 #: ../mail/data/messages:101
 msgid "Check mail account on startup?"
-msgstr "Проверять почтовый аккаунт при запуске?"
+msgstr "Проверять почтовую учётную запись при запуске?"
 
 #: ../mail/data/messages:109
 msgid "Name of the file for the \"no mail\" image :"
@@ -8059,11 +8228,11 @@ msgstr "Добавить учётную запись почты (необход�
 
 #: ../mail/data/messages:153
 msgid "The new account will be created with the specified type and name."
-msgstr "Новый аккаунт будет создан с указанным типом и именем."
+msgstr "Новая учётная запись будет создана с указанным типом и именем."
 
 #: ../mail/data/messages:155
 msgid "Add an account with specified type and name:"
-msgstr "Добавить аккаунт с указанным типом и именем:"
+msgstr "Добавить учётную запись с указанным типом и именем:"
 
 #: ../motion-blur/data/messages:3
 msgid "Also blur on mouse movement?"
@@ -8158,7 +8327,7 @@ msgstr "Показать/скрыть по щелчку, Играть/пазуа
 
 #: ../musicPlayer/data/messages:135
 msgid "Actions on scroll up/down:"
-msgstr ""
+msgstr "Действия при прокрутке вверх/вниз:"
 
 #: ../musicPlayer/data/messages:137
 msgid "Next/previous song"
@@ -8247,7 +8416,7 @@ msgstr "Файл изображения значка 'пауза':"
 
 #: ../netspeed/data/messages:145
 msgid "By default all interfaces will be monitored."
-msgstr ""
+msgstr "По умолчанию все интерфейсы будут контролироваться."
 
 #: ../netspeed/data/messages:147
 msgid "interface:"
@@ -8283,7 +8452,7 @@ msgstr "заряд"
 
 #: ../powermanager/data/messages:151
 msgid "Timelength"
-msgstr "Врменная шкала"
+msgstr "Временная шкала"
 
 #: ../powermanager/data/messages:153
 msgid "Emblem icon's filename when on charge:"
@@ -8442,11 +8611,11 @@ msgstr "Обортов в секунду."
 
 #: ../show-mouse/data/messages:9
 msgid "Show mouse on:"
-msgstr "Использовать эффект:"
+msgstr "Использовать эффект на:"
 
 #: ../show-mouse/data/messages:11
 msgid "Dock"
-msgstr "панель"
+msgstr "Док-панель"
 
 #: ../show-mouse/data/messages:21
 msgid "Particle life time:"
@@ -8484,7 +8653,7 @@ msgstr "Показать десклеты"
 
 #: ../showDesktop/data/messages:103 ../showDesktop/data/messages:117
 msgid "Show desktop and desklets"
-msgstr "Показ рабочего стола и десклетов"
+msgstr "Показать рабочий стол и десклеты"
 
 #: ../showDesktop/data/messages:123
 msgid "Shortkey for the middle-click action:"
@@ -8524,11 +8693,11 @@ msgstr "Перечитывать все свойства изображений 
 
 #: ../slider/data/messages:119 ../slider/data/messages:125
 msgid "play/pause"
-msgstr "играть/пауза"
+msgstr "Воспроизведение/Пауза"
 
 #: ../slider/data/messages:121 ../slider/data/messages:127
 msgid "open image"
-msgstr "открыть изображение"
+msgstr "Открыть изображение"
 
 #: ../slider/data/messages:129
 msgid "open parent folder"
@@ -8536,7 +8705,7 @@ msgstr "Открыть родительский каталог"
 
 #: ../slider/data/messages:133
 msgid "Sliding delay:"
-msgstr "Задержка скольжения:"
+msgstr "Задержка перелистывания:"
 
 #: ../slider/data/messages:135
 msgid "Effect while changing image:"
@@ -8650,7 +8819,7 @@ msgstr "Опции"
 
 #: ../stack/data/messages:115
 msgid "Separate the items by type (file/web page/text)"
-msgstr ""
+msgstr "Разделять элементы по типу (файл/веб-страница/текст)"
 
 #: ../stack/data/messages:117
 msgid ""
@@ -8658,7 +8827,7 @@ msgid ""
 "based on their type (video, image, etc.)"
 msgstr ""
 "Эта опция позволит вам избежать отображения некоторых файлов в Stacks, "
-"основываясь на их типе (видео, изображения и т.д...)"
+"основываясь на их типе (видео, изображения и т.д.)"
 
 #: ../stack/data/messages:119
 msgid "Filter files on MIME type?"
@@ -8686,27 +8855,27 @@ msgstr "Вручную"
 
 #: ../switcher/data/messages:93
 msgid "How to display all desktops?"
-msgstr ""
+msgstr "Как отобразить все рабочие столы?"
 
 #: ../switcher/data/messages:95
 msgid "A sub-dock with all desktops"
-msgstr ""
+msgstr "Как суб-панель со всеми рабочими столами"
 
 #: ../switcher/data/messages:97
 msgid "All desktops drawn on the main icon"
-msgstr ""
+msgstr "Все рабочие столы на главном значке"
 
 #: ../switcher/data/messages:99
 msgid "Desktops layout"
-msgstr ""
+msgstr "Расположение рабочих столов"
 
 #: ../switcher/data/messages:103
 msgid "On a single line"
-msgstr ""
+msgstr "В одну линию"
 
 #: ../switcher/data/messages:105
 msgid "Keep the original arrangement"
-msgstr ""
+msgstr "Сохранять первоначальное расположение"
 
 #: ../switcher/data/messages:107
 msgid "Preserve the ratio of the screen?"
@@ -8714,19 +8883,19 @@ msgstr "Не изменять пропорции экрана?"
 
 #: ../switcher/data/messages:109
 msgid "Background for each desktop"
-msgstr ""
+msgstr "Фон для каждого рабочего стола"
 
 #: ../switcher/data/messages:111
 msgid "Wallpaper"
-msgstr ""
+msgstr "Обои"
 
 #: ../switcher/data/messages:113 ../switcher/data/messages:119
 msgid "Custom image"
-msgstr ""
+msgstr "Пользовательское изображение"
 
 #: ../switcher/data/messages:115 ../switcher/data/messages:123
 msgid "Custom colour"
-msgstr ""
+msgstr "Пользовательский цвет"
 
 #: ../switcher/data/messages:121 ../switcher/data/messages:155
 #: ../switcher/data/messages:161 ../switcher/data/messages:165
@@ -8736,7 +8905,7 @@ msgstr "к, з, с, а"
 
 #: ../switcher/data/messages:127
 msgid "Show desktop number on icons?"
-msgstr ""
+msgstr "Показывать номер рабочего стола на значках?"
 
 #: ../switcher/data/messages:129
 msgid "Draw windows on icons?"
@@ -8748,7 +8917,7 @@ msgstr "Отрисовывать скрытые окна тоже?"
 
 #: ../switcher/data/messages:133
 msgid "Draw icons of windows?"
-msgstr ""
+msgstr "Рисовать значки окон?"
 
 #: ../switcher/data/messages:137
 msgid "Show windows' list"
@@ -8812,11 +8981,11 @@ msgstr "Цвет этих окон:"
 
 #: ../switcher/data/messages:189
 msgid "Sub-Dock"
-msgstr ""
+msgstr "Суб-панель"
 
 #: ../systray/data/messages:83
 msgid "Shortkey to toggle the systray in dock mode:"
-msgstr "Клавиатурное сокращение для переключения области:"
+msgstr "Клавиатурное сокращение для переключения области уведомлений:"
 
 #: ../systray/data/messages:85
 msgid "Icons packing :"
@@ -8856,7 +9025,7 @@ msgstr "Цвет фона:"
 
 #: ../terminal/data/messages:97
 msgid "Use a custom font?"
-msgstr ""
+msgstr "Использовать свой шрифт?"
 
 #: ../terminal/data/messages:99
 msgid "Custom font:"
@@ -8864,27 +9033,27 @@ msgstr "Свой шрифт:"
 
 #: ../terminal/data/messages:103
 msgid "Automatically scroll to the bottom when new data are received"
-msgstr ""
+msgstr "Автоматически прокручивать вниз при получении новых данных"
 
 #: ../terminal/data/messages:105
 msgid "Scroll on output"
-msgstr ""
+msgstr "Прокручивать при выводе"
 
 #: ../terminal/data/messages:107
 msgid "Automatically scroll to the bottom when a key is pressed"
-msgstr ""
+msgstr "Автоматически прокручивать вниз при нажатии клавиши"
 
 #: ../terminal/data/messages:109
 msgid "Scroll on keystroke"
-msgstr ""
+msgstr "Прокручивать по нажатию клавиши"
 
 #: ../terminal/data/messages:111
 msgid "Limited scrollback buffer"
-msgstr ""
+msgstr "Ограничение буфера прокрутки"
 
 #: ../terminal/data/messages:113
 msgid "Length of the scrollback buffer"
-msgstr ""
+msgstr "Количество строк буфера прогрутки"
 
 #: ../terminal/data/messages:117
 msgid ""
@@ -8905,10 +9074,11 @@ msgstr "Клавиатурное сокращение для показа тер
 #: ../terminal/data/messages:123
 msgid "The default terminal is defined by the COLORTERM environment variable"
 msgstr ""
+"Терминал, установленный по умолчанию, определяется переменной среды COLORTERM"
 
 #: ../terminal/data/messages:125
 msgid "Open this terminal when doing a middle click on the icon:"
-msgstr ""
+msgstr "Щелчком средней кнопкой мыши по значку открывать этот терминал:"
 
 #: ../tomboy/data/messages:19
 msgid "'Close' icon image name:"
@@ -8996,18 +9166,20 @@ msgid ""
 "You can get these by searching for your city on any online map service, e.g. "
 "OpenStreetMap or Google Maps"
 msgstr ""
+"Вы можете получить их, выполнив поиск своего города на любом "
+"картографическом сервисе, например, OpenStreetMap или Google Maps"
 
 #: ../weather/data/messages:105
 msgid "Coordinates of your location:"
-msgstr ""
+msgstr "Координаты вашего местонахождения:"
 
 #: ../weather/data/messages:107
 msgid "Latitude"
-msgstr ""
+msgstr "Широта"
 
 #: ../weather/data/messages:109
 msgid "Longitude"
-msgstr ""
+msgstr "Долгота"
 
 #: ../weather/data/messages:111
 msgid "If so, degrees will be displayed in Celsius, otherwise in Fahrenheit."
@@ -9017,7 +9189,7 @@ msgstr ""
 
 #: ../weather/data/messages:113
 msgid "Use International System Units?"
-msgstr "Использовать систему СИ?"
+msgstr "Использовать международную систему единиц?"
 
 #: ../weather/data/messages:115
 msgid "in seconds. Set 0 to have never-ending dialogs."
@@ -9025,7 +9197,7 @@ msgstr "в секундах. Установите 0, чтобы окна ник�
 
 #: ../weather/data/messages:117
 msgid "Dialog duration:"
-msgstr "Продолжительность окон:"
+msgstr "Продолжительность показа диалоговых окон:"
 
 #: ../weather/data/messages:119 ../wifi/data/messages:141
 msgid "Info"
@@ -9033,7 +9205,8 @@ msgstr "Информация"
 
 #: ../weather/data/messages:121
 msgid "Display current conditions on the icon instead of the default one?"
-msgstr "Отображать текущее состояние на значке, вместо стандартного?"
+msgstr ""
+"Отображать текущее состояние значком из выбранной темы, вместо стандартного?"
 
 #: ../weather/data/messages:123
 msgid "Number of days to forecast:"
@@ -9041,11 +9214,11 @@ msgstr "Количество дней для прогноза:"
 
 #: ../weather/data/messages:125
 msgid "Display temperature as quick info?"
-msgstr "Отображать температуру в быстрой помощи?"
+msgstr "Показывать температуру в кратких сведениях?"
 
 #: ../weather/data/messages:135
 msgid "Render desklet in 3D?"
-msgstr "Отрисовыать десклет в 3D?"
+msgstr "Отрисовывать десклет в 3D?"
 
 #: ../weblets/data/messages:91
 msgid "URI to load in weblet"
@@ -9104,7 +9277,7 @@ msgstr "Предопределённые закладки в меню аппле
 
 #: ../wifi/data/messages:139
 msgid "\"No signal\" icon"
-msgstr ""
+msgstr "Значок «Нет сигнала»"
 
 #: ../wifi/data/messages:147
 msgid "Signal Strength"
@@ -9133,86 +9306,3 @@ msgstr ""
 #: ../wifi/data/messages:165
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr "Альтернативная команда запуска Настройки Беспроводного Соединения:"
-
-#~ msgid "Me Menu"
-#~ msgstr "Моё Меню"
-
-#~ msgid ""
-#~ "A menu that lets you access quickly to your information, your online "
-#~ "status, your friends."
-#~ msgstr ""
-#~ "Меню, которое предоставляет быстрый доступ до нужной информации, такой "
-#~ "как: ваш сетевой статус, ваши знакомые."
-
-#~ msgid "It seems that the Me-Menu is not installed on your system"
-#~ msgstr "По всей видимости Me-Menu не установлено на вашей системе"
-
-#~ msgid "Connect to Server..."
-#~ msgstr "Подключение к серверу..."
-
-#~ msgid "Jan"
-#~ msgstr "Янв"
-
-#~ msgid "Feb"
-#~ msgstr "Фев"
-
-#~ msgid "Mar"
-#~ msgstr "Мар"
-
-#~ msgid "Apr"
-#~ msgstr "Апр"
-
-#~ msgid "May"
-#~ msgstr "Май"
-
-#~ msgid "Jun"
-#~ msgstr "Июн"
-
-#~ msgid "Jui"
-#~ msgstr "Июл"
-
-#~ msgid "Aug"
-#~ msgstr "Авг"
-
-#~ msgid "Sep"
-#~ msgstr "Сен"
-
-#~ msgid "Oct"
-#~ msgstr "Окт"
-
-#~ msgid "Nov"
-#~ msgstr "Ноя"
-
-#~ msgid "Dec"
-#~ msgstr "Дек"
-
-#~ msgid ""
-#~ "No data available\n"
-#~ " is your connection alive?"
-#~ msgstr ""
-#~ "Не могу получить информацию\n"
-#~ " Включен ли Интернет?"
-
-#~ msgid "Precipitation probability"
-#~ msgstr "Вероятность выпадения осадков"
-
-#~ msgid "Feels like"
-#~ msgstr "Комфорт"
-
-#~ msgid "Banshee"
-#~ msgstr "Banshee"
-
-#~ msgid "Exaile 0.3"
-#~ msgstr "Exaile 0.3"
-
-#~ msgid "Listen"
-#~ msgstr "Listen"
-
-#~ msgid "Songbird"
-#~ msgstr "Songbird"
-
-#~ msgid "Enter the name of your location in the text entry and press Enter."
-#~ msgstr "Введите ваше местонахождение и нажмите Enter."
-
-#~ msgid "Display nights?"
-#~ msgstr "Показывать ночные прогнозы?"
