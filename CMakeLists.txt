@@ -953,7 +953,7 @@ add_subdirectory (Screenshot)
 ############# SHORTCUTS #################
 message (STATUS "> Shortcuts:")
 set (GETTEXT_SHORTCUTS ${GETTEXT_PLUGINS})
-set (VERSION_SHORTCUTS "1.3.6")
+set (VERSION_SHORTCUTS "1.3.7")
 set (PACKAGE_SHORTCUTS "cd-shortcuts")
 set (shortcutsdatadir "${pluginsdatadir}/shortcuts")
 configure_file (${CMAKE_CURRENT_SOURCE_DIR}/shortcuts/data/shortcuts.conf.in ${CMAKE_CURRENT_BINARY_DIR}/shortcuts/data/shortcuts.conf)
