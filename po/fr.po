@@ -8630,7 +8630,7 @@ msgid "List networks?"
 msgstr "Lister les points réseau ?"
 
 #: ../shortcuts/data/messages:97
-msgid "GTK bookmarks, that are used by Nautilus for exemple."
+msgid "GTK bookmarks, that are used by Nautilus for example."
 msgstr "Signets GTK, utilisés par Nautilus par exemple."
 
 #: ../shortcuts/data/messages:99
