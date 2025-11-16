@@ -83,11 +83,19 @@ static void cd_rendering_calculate_max_dock_size_rainbow (CairoDock *pDock)
 	int iNbIcons = g_list_length (pDock->icons);
 	int iMinRadius = MIN (my_iRainbowNbIconsMin, iNbIcons) * iMaxIconWidth * fMaxScale / fCone;
 	
-	int iNbRows = (int) ceil (sqrt (2 * iNbIcons / fCone / fMaxScale) + .5);  /// approximation, use complete formula
+	int iNbRows = 0;
+	int iNbTotal = 0;
+	for (; iNbTotal < iNbIcons; iNbRows++)
+	{
+		double fNormalRadius = iMinRadius + iNbRows * (pDock->iMaxIconHeight + my_iSpaceBetweenRows) * fMaxScale;
+		double fDeltaTheta = 2 * atan (iMaxIconWidth * fMaxScale / 2 / fNormalRadius);
+		int iNbIconsOnRow = MAX ((int) (fCone / fDeltaTheta), 1); // ensure that we do not get into an infinite loop
+		iNbTotal += iNbIconsOnRow;
+	}
 	
 	pDock->iMaxDockHeight = iNbRows * (pDock->iMaxIconHeight + my_iSpaceBetweenRows) * fMaxScale + iMinRadius + 2 * myIconsParam.iLabelSize;
 	pDock->iMaxDockWidth = 2 * (pDock->iMaxDockHeight * cos (my_fRainbowConeOffset));
-	cd_debug ("iNbRows : %d => %dx%d (iMaxIconHeight = %d ; iMinRadius = %d ; fMaxScale = %.2f)", iNbRows, pDock->iMaxDockWidth, pDock->iMaxDockHeight, pDock->iMaxIconHeight, iMinRadius, fMaxScale);
+	cd_debug ("iNbRows : %d => %dx%d (iMaxIconHeight = %d ; iMinRadius = %d ; fMaxScale = %.2f)", iNbRows, pDock->iMaxDockWidth, pDock->iMaxDockHeight, (int)pDock->iMaxIconHeight, iMinRadius, fMaxScale);
 	
 	pDock->iDecorationsWidth = 0;
 	pDock->iDecorationsHeight = 0;
@@ -300,9 +308,12 @@ static void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDoc
 	{
 		icon = ic->data;
 
-		cairo_save (pCairoContext);
-		cairo_dock_render_one_icon (icon, pDock, pCairoContext, fDockMagnitude, TRUE);
-		cairo_restore (pCairoContext);
+		if (!CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (icon))
+		{
+			cairo_save (pCairoContext);
+			cairo_dock_render_one_icon (icon, pDock, pCairoContext, fDockMagnitude, TRUE);
+			cairo_restore (pCairoContext);
+		}
 
 		ic = cairo_dock_get_next_element (ic, pDock->icons);
 	} while (ic != pFirstDrawnElement);
@@ -463,7 +474,7 @@ static Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 	else t0 = 0.5 * W * (fRadius / fMinIconRadius - 1.0);
 	
 	int iNbRows = round ((pDock->iMaxDockHeight - iMinRadius) / ((pDock->iMaxIconHeight + my_iSpaceBetweenRows) * fMaxScale));
-	cd_debug ("iNbRows : %d", iNbRows);
+	cd_debug ("iNbRows : %d, maxHeight: %d", iNbRows, pDock->iMaxDockHeight);
 	
 	//\____________________ We deduce the positions/stretching/alpha of all icons.
 	Icon *pPointedIcon = NULL;
@@ -480,64 +491,67 @@ static Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 	{
 		icon = ic->data;
 		
-		if (iNbInsertedIcons == iNbIconsOnRow)
+		if (!CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (icon))
 		{
-			iNbRow ++;
-			if (iNbRow >= iNbRows)
-				break ;
-			iNbInsertedIcons = 0;
-			t = iNbRow * (pDock->iMaxIconHeight + my_iSpaceBetweenRows);
-			fCurrentRadius = iMinRadius + _get_current_radius (pDock, t, t0);
-			fCurrentScale = _get_current_scale (pDock, t, t0);
+			if (iNbInsertedIcons == iNbIconsOnRow)
+			{
+				iNbRow ++;
+				if (iNbRow >= iNbRows)
+					break ;
+				iNbInsertedIcons = 0;
+				t = iNbRow * (pDock->iMaxIconHeight + my_iSpaceBetweenRows);
+				fCurrentRadius = iMinRadius + _get_current_radius (pDock, t, t0);
+				fCurrentScale = _get_current_scale (pDock, t, t0);
+				
+				fNormalRadius = iMinRadius + iNbRow * (pDock->iMaxIconHeight + my_iSpaceBetweenRows) * fMaxScale;
+				fDeltaTheta = 2 * atan (iMaxIconWidth * fMaxScale / 2 / fNormalRadius);
+				iNbIconsOnRow = (int) (fCone / fDeltaTheta);
+				fThetaStart = - G_PI/2 + my_fRainbowConeOffset + (fCone - iNbIconsOnRow * fDeltaTheta) / 2 + fDeltaTheta / 2;
+				cd_debug ("We go to the line %d (%d icons, fThetaStart = %.2fdeg, fCurrentRadius = %.2f(%.2f), fDeltaTheta = %.2f, fCurrentScale = %.2f)", iNbRow, iNbIconsOnRow, fThetaStart/G_PI*180, fCurrentRadius, fNormalRadius, fDeltaTheta/G_PI*180, fCurrentScale);
+			}
 			
-			fNormalRadius = iMinRadius + iNbRow * (pDock->iMaxIconHeight + my_iSpaceBetweenRows) * fMaxScale;
-			fDeltaTheta = 2 * atan (iMaxIconWidth * fMaxScale / 2 / fNormalRadius);
-			iNbIconsOnRow = (int) (fCone / fDeltaTheta);
-			fThetaStart = - G_PI/2 + my_fRainbowConeOffset + (fCone - iNbIconsOnRow * fDeltaTheta) / 2 + fDeltaTheta / 2;
-			cd_debug ("We go to the line %d (%d icons, fThetaStart = %.2fdeg, fCurrentRadius = %.2f(%.2f), fDeltaTheta = %.2f, fCurrentScale = %.2f)", iNbRow, iNbIconsOnRow, fThetaStart/G_PI*180, fCurrentRadius, fNormalRadius, fDeltaTheta/G_PI*180, fCurrentScale);
+			icon->fX = fCurrentRadius + (pDock->container.bDirectionUp ? pDock->iMaxIconHeight * fCurrentScale : 0);
+			
+			fCurrentTheta = fThetaStart + iNbInsertedIcons * fDeltaTheta;
+			icon->fOrientation = (pDock->container.bDirectionUp ? fCurrentTheta : - fCurrentTheta);
+			if (! pDock->container.bIsHorizontal)
+			{
+				icon->fOrientation = -icon->fOrientation + 0;
+			}
+			if (pPointedIcon == NULL && fRadius < fCurrentRadius + (pDock->iMaxIconHeight + my_iSpaceBetweenRows) * fCurrentScale && fRadius > fCurrentRadius && fTheta > fCurrentTheta - fDeltaTheta/2 && fTheta < fCurrentTheta + fDeltaTheta/2)
+			{
+				icon->bPointed = TRUE;
+				pPointedIcon = icon;
+				iPointedRow = iNbRow;
+				cd_debug (" POINTED ICON : %s", pPointedIcon->cName);
+			}
+			else
+				icon->bPointed = FALSE;
+			
+			//if (pDock->container.bIsHorizontal)
+			{
+				icon->fDrawY = icon->fX * cos (fCurrentTheta) + icon->fWidth/2 * fCurrentScale * sin (fCurrentTheta);
+				if (pDock->container.bDirectionUp)
+					icon->fDrawY = pDock->container.iHeight - icon->fDrawY;
+				icon->fDrawX = icon->fX * sin (fCurrentTheta) - icon->fWidth/2 * fCurrentScale * cos (fCurrentTheta) + pDock->container.iWidth / 2;
+			}
+			/*else
+			{
+				icon->fDrawX = icon->fX * cos (fCurrentTheta) + icon->fWidth/2 * fCurrentScale * sin (fCurrentTheta);
+				if (!pDock->container.bDirectionUp)
+					icon->fDrawX = pDock->container.iWidth - icon->fDrawX;
+				icon->fDrawY = icon->fX * sin (fCurrentTheta) - icon->fWidth/2 * fCurrentScale * cos (fCurrentTheta) + pDock->container.iHeight / 2;
+			}*/
+			
+			cd_debug (" %.2fdeg ; (%.2f;%.2f)", fCurrentTheta/G_PI*180, icon->fDrawX, icon->fDrawY);
+			
+			icon->fScale = fCurrentScale;
+			icon->fAlpha = 1;
+			icon->fWidthFactor = 1.;
+			icon->fHeightFactor = 1.;
+			
+			iNbInsertedIcons ++;
 		}
-		
-		icon->fX = fCurrentRadius + (pDock->container.bDirectionUp ? pDock->iMaxIconHeight * fCurrentScale : 0);
-		
-		fCurrentTheta = fThetaStart + iNbInsertedIcons * fDeltaTheta;
-		icon->fOrientation = (pDock->container.bDirectionUp ? fCurrentTheta : - fCurrentTheta);
-		if (! pDock->container.bIsHorizontal)
-		{
-			icon->fOrientation = -icon->fOrientation + 0;
-		}
-		if (pPointedIcon == NULL && fRadius < fCurrentRadius + (pDock->iMaxIconHeight + my_iSpaceBetweenRows) * fCurrentScale && fRadius > fCurrentRadius && fTheta > fCurrentTheta - fDeltaTheta/2 && fTheta < fCurrentTheta + fDeltaTheta/2)
-		{
-			icon->bPointed = TRUE;
-			pPointedIcon = icon;
-			iPointedRow = iNbRow;
-			cd_debug (" POINTED ICON : %s", pPointedIcon->cName);
-		}
-		else
-			icon->bPointed = FALSE;
-		
-		//if (pDock->container.bIsHorizontal)
-		{
-			icon->fDrawY = icon->fX * cos (fCurrentTheta) + icon->fWidth/2 * fCurrentScale * sin (fCurrentTheta);
-			if (pDock->container.bDirectionUp)
-				icon->fDrawY = pDock->container.iHeight - icon->fDrawY;
-			icon->fDrawX = icon->fX * sin (fCurrentTheta) - icon->fWidth/2 * fCurrentScale * cos (fCurrentTheta) + pDock->container.iWidth / 2;
-		}
-		/*else
-		{
-			icon->fDrawX = icon->fX * cos (fCurrentTheta) + icon->fWidth/2 * fCurrentScale * sin (fCurrentTheta);
-			if (!pDock->container.bDirectionUp)
-				icon->fDrawX = pDock->container.iWidth - icon->fDrawX;
-			icon->fDrawY = icon->fX * sin (fCurrentTheta) - icon->fWidth/2 * fCurrentScale * cos (fCurrentTheta) + pDock->container.iHeight / 2;
-		}*/
-		
-		cd_debug (" %.2fdeg ; (%.2f;%.2f)", fCurrentTheta/G_PI*180, icon->fDrawX, icon->fDrawY);
-		
-		icon->fScale = fCurrentScale;
-		icon->fAlpha = 1;
-		icon->fWidthFactor = 1.;
-		icon->fHeightFactor = 1.;
-		
-		iNbInsertedIcons ++;
 		
 		ic = cairo_dock_get_next_element (ic, pDock->icons);
 	} while (ic != pFirstDrawnElement);
@@ -772,9 +786,12 @@ static void cd_rendering_render_rainbow_opengl (CairoDock *pDock)
 	{
 		icon = ic->data;
 		
-		glPushMatrix ();
-		cairo_dock_render_one_icon_opengl (icon, pDock, fDockMagnitude, TRUE);  // ! mySystem.bTextAlwaysHorizontal
-		glPopMatrix ();
+		if (!CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (icon))
+		{
+			glPushMatrix ();
+			cairo_dock_render_one_icon_opengl (icon, pDock, fDockMagnitude, TRUE);  // ! mySystem.bTextAlwaysHorizontal
+			glPopMatrix ();
+		}
 		
 		ic = cairo_dock_get_next_element (ic, pDock->icons);
 	} while (ic != pFirstDrawnElement);
