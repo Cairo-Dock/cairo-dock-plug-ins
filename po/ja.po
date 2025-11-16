@@ -8441,7 +8441,7 @@ msgid "List networks?"
 msgstr "ネットワークを一覧化？"
 
 #: ../shortcuts/data/messages:97
-msgid "GTK bookmarks, that are used by Nautilus for exemple."
+msgid "GTK bookmarks, that are used by Nautilus for example."
 msgstr "例えば Nautilus で使用される、GTK ブックマークです。"
 
 #: ../shortcuts/data/messages:99

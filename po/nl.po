@@ -8571,7 +8571,7 @@ msgid "List networks?"
 msgstr "Netwerk tonen ?"
 
 #: ../shortcuts/data/messages:97
-msgid "GTK bookmarks, that are used by Nautilus for exemple."
+msgid "GTK bookmarks, that are used by Nautilus for example."
 msgstr "GTK-bladwijzers, die bijvoorbeeld gebruikt worden door Nautilus."
 
 #: ../shortcuts/data/messages:99

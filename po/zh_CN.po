@@ -8086,7 +8086,7 @@ msgid "List networks?"
 msgstr "列出网络?"
 
 #: ../shortcuts/data/messages:97
-msgid "GTK bookmarks, that are used by Nautilus for exemple."
+msgid "GTK bookmarks, that are used by Nautilus for example."
 msgstr "GTK书签，由Nautilus之类程序使用。"
 
 #: ../shortcuts/data/messages:99
