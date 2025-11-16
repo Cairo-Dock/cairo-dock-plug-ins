@@ -134,7 +134,7 @@ static GtkWidget *_append_one_item_to_menu (const gchar *cLabel, const gchar *gt
 	
 	gtk_menu_shell_append  (GTK_MENU_SHELL (pMenu), pMenuItem);
 	if (pFunction)
-		g_signal_connect (G_OBJECT (pMenuItem), "activate", G_CALLBACK (pFunction), pData);
+		g_signal_connect_swapped (G_OBJECT (pMenuItem), "activate", G_CALLBACK (pFunction), pData); // note: pData is NULL
 	return pMenuItem;
 }
 
