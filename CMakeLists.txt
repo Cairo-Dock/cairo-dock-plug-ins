@@ -620,7 +620,7 @@ endif()
 ############# DROP INDICATOR #################
 message (STATUS "> Drop Indicator:")
 set (GETTEXT_DROP_INDICATOR ${GETTEXT_PLUGINS})
-set (VERSION_DROP_INDICATOR "1.1.7")
+set (VERSION_DROP_INDICATOR "1.1.8")
 set (PACKAGE_DROP_INDICATOR "cd-drop_indicator")
 set (drop_indicatordatadir "${pluginsdatadir}/drop-indicator")
 configure_file (${CMAKE_CURRENT_SOURCE_DIR}/drop-indicator/data/drop_indicator.conf.in ${CMAKE_CURRENT_BINARY_DIR}/drop-indicator/data/drop_indicator.conf)
