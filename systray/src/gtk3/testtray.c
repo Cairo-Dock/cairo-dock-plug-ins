@@ -19,7 +19,7 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#include "config.h"
+// #include "config.h"
 
 #include <string.h>
 #include <stdio.h>
@@ -65,7 +65,7 @@ update_child_count (TrayData *data)
 static void
 tray_added_cb (GtkContainer *box, GtkWidget *icon, TrayData *data)
 {
-  cd_debug ("[Screen %u tray %p] Child %p added to tray: \"%s\"",
+  g_print ("[Screen %u tray %p] Child %p added to tray: \"%s\"\n",
 	   data->screen_num, data->tray, icon, "XXX");//na_tray_child_get_title (icon));
 
   update_child_count (data);
@@ -74,7 +74,7 @@ tray_added_cb (GtkContainer *box, GtkWidget *icon, TrayData *data)
 static void
 tray_removed_cb (GtkContainer *box, GtkWidget *icon, TrayData *data)
 {
-  cd_debug ("[Screen %u tray %p] Child %p removed from tray",
+  g_print ("[Screen %u tray %p] Child %p removed from tray\n",
 	   data->screen_num, data->tray, icon);
 
   update_child_count (data);
@@ -84,7 +84,7 @@ static void orientation_changed_cb (GtkComboBox *combo, TrayData *data)
 {
   GtkOrientation orientation = (GtkOrientation) gtk_combo_box_get_active (combo);
 
-  cd_debug ("[Screen %u tray %p] Setting orientation to \"%s\"",
+  g_print ("[Screen %u tray %p] Setting orientation to \"%s\"\n",
 	   data->screen_num, data->tray, orientation == 0 ? "horizontal" : "vertical");
 
   na_tray_set_orientation (data->tray, orientation);
