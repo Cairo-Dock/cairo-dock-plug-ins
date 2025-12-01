@@ -30,6 +30,14 @@
 #include "na-tray.h"
 #include "na-tray-manager.h"
 
+static void _tray_item_removed_cb (G_GNUC_UNUSED GtkContainer *box, GtkWidget *icon, G_GNUC_UNUSED gpointer data)
+{
+	cd_debug ("Child %p removed from systray", icon);
+	if (myDesklet)
+		gtk_window_resize (GTK_WINDOW (myDesklet->container.pWidget), 1, 1);
+	else if (myData.dialog && gtk_widget_is_visible (myData.dialog->container.pWidget))
+		gtk_window_resize (GTK_WINDOW (myData.dialog->container.pWidget), 1, 1);
+}
 
 void cd_systray_build_dialog (void)
 {
@@ -53,6 +61,10 @@ void cd_systray_build_systray (void)
 		myConfig.iIconPacking == 0 ? GTK_ORIENTATION_HORIZONTAL : GTK_ORIENTATION_VERTICAL);
 	na_tray_set_icon_size (myData.tray, 24);
 	na_tray_set_padding (myData.tray, 3);
+	
+	GtkWidget *box = gtk_bin_get_child (GTK_BIN (gtk_bin_get_child (GTK_BIN (myData.tray))));
+	g_signal_connect_after (box, "remove", G_CALLBACK (_tray_item_removed_cb), NULL);
+
 	
 	if (myDock)
 	{
