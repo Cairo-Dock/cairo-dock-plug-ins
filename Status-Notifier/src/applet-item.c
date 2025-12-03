@@ -238,7 +238,7 @@ static void _on_new_item_icon (GObject *pObj, GAsyncResult *pRes, gpointer ptr)
 			
 			// the label may have changed too, but avoid updating it too often
 			if (pItem->iSidUpdateIcon == 0)
-			pItem->iSidUpdateIcon = g_timeout_add (400, (GSourceFunc)_update_icon_description, pItem);
+				pItem->iSidUpdateIcon = g_timeout_add (400, (GSourceFunc)_update_icon_description, pItem);
 		}
 	}
 	CD_APPLET_LEAVE ();
@@ -265,7 +265,7 @@ static void _on_new_item_attention_icon (GObject *pObj, GAsyncResult *pRes, gpoi
 			
 			// the label may have changed too, but avoid updating it too often
 			if (pItem->iSidUpdateIcon == 0)
-			pItem->iSidUpdateIcon = g_timeout_add (400, (GSourceFunc)_update_icon_description, pItem);
+				pItem->iSidUpdateIcon = g_timeout_add (400, (GSourceFunc)_update_icon_description, pItem);
 		}
 	}
 	CD_APPLET_LEAVE ();
@@ -428,7 +428,8 @@ gchar *cd_satus_notifier_search_item_icon_s_path (CDStatusNotifierItem *pItem, g
 	if (cIconPath == NULL)
 	{
 		cIconPath = cairo_dock_search_icon_s_path (cImageName, iSize);
-		if (cIconPath == NULL)  // in case we have a buggy app, try some heuristic
+		// in case we have a buggy app, try some heuristic
+		if (cIconPath == NULL && pItem->pFallbackIcon == NULL && (pItem->iStatus != CD_STATUS_NEEDS_ATTENTION || pItem->pFallbackIconAttention == NULL))
 		{
 			cIconPath = cairo_dock_search_icon_s_path (pItem->cId, iSize);
 			if (cIconPath == NULL && pItem->pSurface == NULL)  // only use the fallback icon if the item is still empty (to not have an invisible item).
@@ -437,14 +438,133 @@ gchar *cd_satus_notifier_search_item_icon_s_path (CDStatusNotifierItem *pItem, g
 			}
 		}
 	}
-	else if (pItem->iSidUpdateIcon != 0)  // we found an icon, discard any pending update.
-	{
-		g_source_remove (pItem->iSidUpdateIcon);
-		pItem->iSidUpdateIcon = 0;
-	}
 	
 	return cIconPath;
 }
+
+static gboolean _parse_pixmap_property (GVariant *v, cairo_surface_t **pResult)
+{
+	// type: 'a(iiay)'
+	if (g_variant_is_of_type (v, G_VARIANT_TYPE ("a(iiay)")))
+	{
+		GVariant *v2 = NULL;
+		int w, h;
+		
+		GVariantIter iter;
+		GVariant *v1;
+		
+		g_variant_iter_init (&iter, v);
+		
+		int iSize;
+		if (myConfig.bCompactMode) iSize = myData.iItemSize;
+		else
+		{
+			// try to guess icon size based on any existing icon
+			GList *icons = CD_APPLET_MY_ICONS_LIST;
+			if (icons)
+			{
+				Icon *pIcon = (Icon*)icons->data;
+				iSize = cairo_dock_icon_get_allocated_width (pIcon);
+			}
+			else // just use the general config
+				iSize = myIconsParam.iIconWidth * (1. + myIconsParam.fAmplitude);
+		}
+		
+		// iterate over all offered icons, take the first one that is large enough
+		while ((v1 = g_variant_iter_next_value (&iter)))
+		{		
+			g_variant_unref (v2);
+			g_variant_get_child (v1, 0, "i", &w);
+			g_variant_get_child (v1, 1, "i", &h);
+			v2 = g_variant_get_child_value (v1, 2);
+			g_variant_unref (v1);
+			if (w >= iSize && h >= iSize)
+				break;
+		}
+		
+		if (!v2) return FALSE; // empty array
+		
+		gsize len;
+		const void *data = g_variant_get_fixed_array (v2, &len, 1);
+		if (len != 4*w*h) cd_warning ("Unexpected image size!");
+		else
+		{
+			cairo_surface_t *s = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, w, h);
+			unsigned char *dest = cairo_image_surface_get_data (s);
+			gsize stride = cairo_image_surface_get_stride (s);
+			const uint32_t *src = (const uint32_t*)data;
+			gsize i, j;
+			for (i = 0; i < (gsize)h; i++)
+			{
+				uint32_t *dest_row = (uint32_t*)(dest + i * stride);
+				for (j = 0; j < (gsize)w; j++) dest_row[j] = g_ntohl (src[i * w + j]); // note: src is in "network byte order"
+			}
+			cairo_surface_mark_dirty (s);
+			
+			cairo_surface_destroy (*pResult);
+			*pResult = s;
+		}
+		g_variant_unref (v2);
+		return TRUE;
+	}
+	cd_warning ("Unexpected result type: %s", g_variant_get_type_string (v));
+	return FALSE;
+}
+
+static void _on_new_item_icon_pixmap2 (CDStatusNotifierItem *pItem, cairo_surface_t **ptr, GVariant *res)
+{
+	if (g_variant_is_of_type (res, G_VARIANT_TYPE ("(v)")))
+	{
+		GVariant *v1 = g_variant_get_child_value (res, 0);
+		GVariant *v2 = g_variant_get_variant (v1);
+		if (_parse_pixmap_property (v2, (cairo_surface_t**)ptr))
+			cd_satus_notifier_update_item_image (pItem);
+		// warning already shown if type does not match
+		g_variant_unref (v2);
+		g_variant_unref (v1);
+	}
+	else cd_warning ("Unexpected result type: %s", g_variant_get_type_string (res));
+	g_variant_unref (res);
+}
+
+static void _on_new_item_icon_pixmap (GObject *pObj, GAsyncResult *pRes, gpointer ptr)
+{
+	CD_APPLET_ENTER;
+	GError *err = NULL;
+	GVariant *res = g_dbus_proxy_call_finish (G_DBUS_PROXY (pObj), pRes, &err);
+	if (err)
+	{
+		// Do not display a warning, it is OK if the pixmap properties do not exist
+		g_error_free (err);
+	}
+	else
+	{
+		CDStatusNotifierItem *pItem = (CDStatusNotifierItem*)ptr;
+		_on_new_item_icon_pixmap2 (pItem, &pItem->pFallbackIcon, res);
+	}
+	
+	CD_APPLET_LEAVE ();
+}
+
+static void _on_new_item_icon_attention_pixmap (GObject *pObj, GAsyncResult *pRes, gpointer ptr)
+{
+	CD_APPLET_ENTER;
+	GError *err = NULL;
+	GVariant *res = g_dbus_proxy_call_finish (G_DBUS_PROXY (pObj), pRes, &err);
+	if (err)
+	{
+		// Do not display a warning, it is OK if the pixmap properties do not exist
+		g_error_free (err);
+	}
+	else
+	{
+		CDStatusNotifierItem *pItem = (CDStatusNotifierItem*)ptr;
+		_on_new_item_icon_pixmap2 (pItem, &pItem->pFallbackIconAttention, res);
+	}
+	
+	CD_APPLET_LEAVE ();
+}
+
 
 static void _item_signal (G_GNUC_UNUSED GDBusProxy *pProxy, G_GNUC_UNUSED const gchar *cSender, const gchar *cSignal,
 	GVariant* pPar, CDStatusNotifierItem *pItem)
@@ -466,6 +586,15 @@ static void _item_signal (G_GNUC_UNUSED GDBusProxy *pProxy, G_GNUC_UNUSED const 
 			pItem->pCancel,
 			_on_new_item_icon,
 			pItem);
+		
+		// also update the IconPixmap property as this might have changed as well
+		// (although it is wasteful to read it again if it did not)
+		g_dbus_proxy_call (pItem->pProxyProps, "Get", g_variant_new ("(ss)", CD_STATUS_NOTIFIER_ITEM_IFACE, "IconPixmap"),
+			G_DBUS_CALL_FLAGS_NO_AUTO_START,
+			-1,
+			pItem->pCancel,
+			_on_new_item_icon_pixmap,
+			pItem);
 	}
 	else if (! strcmp (cSignal, "NewAttentionIcon"))
 	{
@@ -474,6 +603,15 @@ static void _item_signal (G_GNUC_UNUSED GDBusProxy *pProxy, G_GNUC_UNUSED const 
 			-1,
 			pItem->pCancel,
 			_on_new_item_attention_icon,
+			pItem);
+		
+		// also update the AttentionIconPixmap property as this might have changed as well
+		// (although it is wasteful to read it again if it did not)
+		g_dbus_proxy_call (pItem->pProxyProps, "Get", g_variant_new ("(ss)", CD_STATUS_NOTIFIER_ITEM_IFACE, "AttentionIconPixmap"),
+			G_DBUS_CALL_FLAGS_NO_AUTO_START,
+			-1,
+			pItem->pCancel,
+			_on_new_item_icon_attention_pixmap,
 			pItem);
 	}
 	
@@ -673,13 +811,7 @@ static void _item_proxy_created (G_GNUC_UNUSED GObject *pObj, GAsyncResult *pRes
 	// properties supported by KDE and Ubuntu.
 	GVariant *v;
 	v = g_dbus_proxy_get_cached_property (pProxyItem, "Id");
-	if (v)
-	{
-		if (g_variant_is_of_type (v, G_VARIANT_TYPE ("s")))
-			pItem->cId = g_variant_dup_string (v, NULL);
-		g_variant_unref (v);
-			
-	}
+	if (v) _get_string_from_variant (v, &pItem->cId);
 	cd_debug ("===   ID '%s'", pItem->cId);
 	
 	v = g_dbus_proxy_get_cached_property (pProxyItem, "Category");  // (ApplicationStatus, Communications, SystemServices, Hardware) -> fOrder
@@ -715,6 +847,20 @@ static void _item_proxy_created (G_GNUC_UNUSED GObject *pObj, GAsyncResult *pRes
 	v = g_dbus_proxy_get_cached_property (pProxyItem, "AttentionIconName");
 	if (v) _get_string_from_variant (v, &pItem->cAttentionIconName);
 	cd_debug ("===   AttentionIconName '%s'", pItem->cAttentionIconName);
+	
+	v = g_dbus_proxy_get_cached_property (pProxyItem, "IconPixmap");
+	if (v)
+	{
+		_parse_pixmap_property (v, &pItem->pFallbackIcon);
+		g_variant_unref (v);
+	}
+	
+	v = g_dbus_proxy_get_cached_property (pProxyItem, "AttentionIconPixmap");
+	if (v)
+	{
+		_parse_pixmap_property (v, &pItem->pFallbackIconAttention);
+		g_variant_unref (v);
+	}
 	
 	v = g_dbus_proxy_get_cached_property (pProxyItem, "Menu"); // object path to a dbus-menu
 	if (v)
@@ -844,6 +990,8 @@ void cd_free_item (CDStatusNotifierItem *pItem)
 	g_free (pItem->cOverlayIconName);
 	cd_free_tooltip (pItem->pToolTip);
 	cairo_surface_destroy (pItem->pSurface);
+	cairo_surface_destroy (pItem->pFallbackIcon);
+	cairo_surface_destroy (pItem->pFallbackIconAttention);
 	g_free (pItem);
 }
 
@@ -861,6 +1009,25 @@ static void _load_item_image (Icon *icon)
 			iWidth,
 			iHeight);
 		cairo_dock_load_image_buffer_from_surface (&icon->image, pSurface, iWidth, iHeight);
+	}
+	else
+	{
+		cairo_surface_t *pSurface = ((pItem->iStatus == CD_STATUS_NEEDS_ATTENTION) && pItem->pFallbackIconAttention) ?
+					pItem->pFallbackIconAttention : pItem->pFallbackIcon;
+		if (pSurface)
+		{
+			cairo_surface_t *pNewSurface = cairo_dock_create_blank_surface (iWidth, iHeight);
+			cairo_t *pCairoContext = cairo_create (pNewSurface);
+			double w = cairo_image_surface_get_width (pSurface);
+			double h = cairo_image_surface_get_height (pSurface);
+			double s = MIN (iWidth / w, iHeight / h);
+			cairo_scale (pCairoContext, s, s);
+			cairo_set_source_surface (pCairoContext, pSurface, 0., 0.);
+			cairo_paint (pCairoContext);
+			cairo_destroy (pCairoContext);
+			
+			cairo_dock_load_image_buffer_from_surface (&icon->image, pNewSurface, iWidth, iHeight);
+		}
 	}
 	g_free (cIconPath);
 }

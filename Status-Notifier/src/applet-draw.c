@@ -149,11 +149,31 @@ static void cd_satus_notifier_draw_compact_icon (void)
 		if (pItem->pSurface != NULL && _item_is_visible (pItem))
 		{
 			cd_debug ("===  draw %s (%d)", pItem->cId, pItem->iPosition);
-			cairo_set_source_surface (myDrawContext,
-				pItem->pSurface,
-				x_pad + j * (myData.iItemSize + iIconGap),
-				y_pad + i * myData.iItemSize);
-			cairo_paint (myDrawContext);
+			
+			// optionally scale icons
+			double w = cairo_image_surface_get_width (pItem->pSurface);
+			double h = cairo_image_surface_get_height (pItem->pSurface);
+			double s = MIN (myData.iItemSize / w, myData.iItemSize / h);
+			if (s != 1.0)
+			{
+				cairo_save (myDrawContext);
+				cairo_translate (myDrawContext, x_pad + j * (myData.iItemSize + iIconGap),
+					y_pad + i * myData.iItemSize);
+				cairo_scale (myDrawContext, s, s);
+				cairo_pattern_t *pattern = cairo_pattern_create_for_surface (pItem->pSurface);
+				cairo_set_source (myDrawContext, pattern);
+				cairo_paint (myDrawContext);
+				cairo_pattern_destroy (pattern);
+				cairo_restore (myDrawContext);
+			}
+			else
+			{
+				cairo_set_source_surface (myDrawContext,
+					pItem->pSurface,
+					x_pad + j * (myData.iItemSize + iIconGap),
+					y_pad + i * myData.iItemSize);
+				cairo_paint (myDrawContext);
+			}
 			
 			j ++;
 			if (j == myData.iNbColumns)  // ligne suivante.
@@ -196,6 +216,16 @@ void cd_satus_notifier_reload_compact_mode (void)
 						cairo_surface_destroy (pItem->pSurface);
 					pItem->pSurface = cairo_dock_create_surface_from_icon (cIconPath, myData.iItemSize, myData.iItemSize);
 					g_free (cIconPath);
+				}
+				else
+				{
+					cairo_surface_t *pSurface = ((pItem->iStatus == CD_STATUS_NEEDS_ATTENTION) && pItem->pFallbackIconAttention) ?
+						pItem->pFallbackIconAttention : pItem->pFallbackIcon;
+					if (pSurface)
+					{
+						if (pItem->pSurface) cairo_surface_destroy (pItem->pSurface);
+						pItem->pSurface = cairo_surface_reference (pSurface);
+					}
 				}
 			}
 		}
@@ -288,6 +318,16 @@ void cd_satus_notifier_update_item_image (CDStatusNotifierItem *pItem)
 			pItem->pSurface = cairo_dock_create_surface_from_icon (cIconPath, myData.iItemSize, myData.iItemSize);
 			g_free (cIconPath);
 		}
+		else
+		{
+			cairo_surface_t *pSurface = ((pItem->iStatus == CD_STATUS_NEEDS_ATTENTION) && pItem->pFallbackIconAttention) ?
+				pItem->pFallbackIconAttention : pItem->pFallbackIcon;
+			if (pSurface)
+			{
+				if (pItem->pSurface) cairo_surface_destroy (pItem->pSurface);
+				pItem->pSurface = cairo_surface_reference (pSurface);
+			}
+		}
 		cd_satus_notifier_draw_compact_icon ();
 	}
 	else
@@ -296,9 +336,27 @@ void cd_satus_notifier_update_item_image (CDStatusNotifierItem *pItem)
 		if (pIcon != NULL && pIcon->image.pSurface != NULL)
 		{
 			cairo_t *pIconContext = cairo_create (pIcon->image.pSurface);
-			cairo_dock_set_image_on_icon (pIconContext,
-				pItem->iStatus == CD_STATUS_NEEDS_ATTENTION ? pItem->cAttentionIconName : pItem->cIconName,
-				pIcon, CD_APPLET_MY_ICONS_LIST_CONTAINER);
+			int iWidth, iHeight;
+			cairo_dock_get_icon_extent (pIcon, &iWidth, &iHeight);
+			gchar *cIconPath = cd_satus_notifier_search_item_icon_s_path (pItem, MAX (iWidth, iHeight));
+			if (cIconPath)
+			{
+				cairo_dock_set_image_on_icon (pIconContext, cIconPath, pIcon, CD_APPLET_MY_ICONS_LIST_CONTAINER);
+				g_free (cIconPath);
+			}
+			else
+			{
+				cairo_surface_t *pSurface = ((pItem->iStatus == CD_STATUS_NEEDS_ATTENTION) && pItem->pFallbackIconAttention) ?
+					pItem->pFallbackIconAttention : pItem->pFallbackIcon;
+				if (pSurface)
+				{
+					double w = cairo_image_surface_get_width (pSurface);
+					double h = cairo_image_surface_get_height (pSurface);
+					double s = MIN (iWidth / w, iHeight / h);
+					cairo_scale (pIconContext, s, s);
+					cairo_dock_set_icon_surface (pIconContext, pSurface, pIcon);
+				}
+			}
 			cairo_destroy (pIconContext);
 		}
 	}

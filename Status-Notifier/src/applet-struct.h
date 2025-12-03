@@ -93,7 +93,9 @@ typedef struct {
 	GDBusProxy *pProxyProps;
 	GDBusProxy *pProxy;
 	DbusmenuGtkMenu *pMenu;
-	cairo_surface_t *pSurface;
+	cairo_surface_t *pSurface; // surface used when drawing in compact mode
+	cairo_surface_t *pFallbackIcon; // IconPixmap property, used when no IconName is available
+	cairo_surface_t *pFallbackIconAttention; // AttentionIconPixmap property, used when no IconName is available
 	guint iSidUpdateIcon;
 	GCancellable *pCancel;
 	// menu redraw
