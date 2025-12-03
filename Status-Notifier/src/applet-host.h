@@ -23,7 +23,7 @@
 #include <cairo-dock.h>
 
 
-CDStatusNotifierItem * cd_satus_notifier_find_item_from_service (const gchar *cService);
+CDStatusNotifierItem * cd_satus_notifier_find_item_from_service (const gchar *cService, const gchar *cObjectPath);
 
 CDStatusNotifierItem * cd_satus_notifier_find_item_from_position (int iPosition);
 
@@ -42,7 +42,7 @@ void cd_status_notifier_add_item_in_list (CDStatusNotifierItem *pItem);
  */
 void cd_status_notifier_remove_item_in_list (CDStatusNotifierItem *pItem);
 
-void cd_satus_notifier_remove_item (const gchar *cService, int iPosition);
+void cd_satus_notifier_remove_item (const gchar *cService, const gchar *cObjectPath, int iPosition);
 
 
 void cd_satus_notifier_launch_service (void);

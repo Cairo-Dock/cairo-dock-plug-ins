@@ -68,6 +68,7 @@ typedef struct {
 typedef struct {
 	// props
 	gchar *cService;
+	gchar *cObjectPath;
 	gchar *cId;
 	CDCategoryEnum iCategory;
 	CDStatusEnum iStatus;
@@ -89,12 +90,12 @@ typedef struct {
 	gint iPosition;  // donnee par l'indicator service
 	guint iSidPopupTooltip;
 	// data
-	DBusGProxy *pProxyProps;
-	DBusGProxy *pProxy;
-	gboolean bInvalid;  // item deja en cours de destruction
+	GDBusProxy *pProxyProps;
+	GDBusProxy *pProxy;
 	DbusmenuGtkMenu *pMenu;
 	cairo_surface_t *pSurface;
 	guint iSidUpdateIcon;
+	GCancellable *pCancel;
 	// menu redraw
 	int iMenuWidth;
 } CDStatusNotifierItem;
