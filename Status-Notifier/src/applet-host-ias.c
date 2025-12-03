@@ -266,7 +266,7 @@ static void on_removed_application (DBusGProxy *proxy_watcher, gint iPosition, G
 	CD_APPLET_ENTER;
 	cd_debug ("=== %s (%d)", __func__, iPosition);
 	
-	cd_satus_notifier_remove_item (NULL, iPosition);
+	cd_satus_notifier_remove_item (NULL, NULL, iPosition);
 	
 	// position -1 for items placed after this one.
 	CDStatusNotifierItem *pItem;
@@ -503,25 +503,16 @@ static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall
 		}
 		
 		// make a new item based on these properties.
-		pItem = cd_satus_notifier_create_item (cAddress, cObjectPath);
-		if (! pItem)
-			continue;
-		if (pItem->iPosition == -1)
-			pItem->iPosition = iPosition;
-		if (pItem->cTitle == NULL && pItem->cLabel == NULL && pItem->cAccessibleDesc == NULL)
-			pItem->cLabel = g_strdup (cAccessibleDesc && *cAccessibleDesc != '\0' ? cAccessibleDesc :
-			                          cLabel && *cLabel != '\0' ? cLabel :
-			                          cTitle && *cTitle != '\0' ? cTitle :
-			                          NULL);  // don't use cId as a fallback, because it often has cryptic names (nm-applet ; dropbox-xxxx). If the appli doesn't provide a title, it's its fault.
-	}
-	
-	if (myConfig.bCompactMode)
-	{
-		cd_satus_notifier_reload_compact_mode ();
-	}
-	else
-	{
-		cd_satus_notifier_load_icons_from_items ();
+		pItem = g_new0 (CDStatusNotifierItem, 1);
+		pItem->cService = g_strdup (cAddress);
+		// set default values
+		pItem->iPosition = iPosition;
+		pItem->cLabel = g_strdup (cAccessibleDesc && *cAccessibleDesc != '\0' ? cAccessibleDesc :
+								  cLabel && *cLabel != '\0' ? cLabel :
+								  cTitle && *cTitle != '\0' ? cTitle :
+								  NULL);  // don't use cId as a fallback, because it often has cryptic names (nm-applet ; dropbox-xxxx). If the appli doesn't provide a title, it's its fault.
+		
+		cd_satus_notifier_create_item (pItem, cObjectPath);
 	}
 	
 	g_ptr_array_free (pApplications, TRUE);

@@ -33,15 +33,15 @@
 #define CD_STATUS_NOTIFIER_HOST_ADDR "org.kde.StatusNotifierHost"
 
 
-CDStatusNotifierItem * cd_satus_notifier_find_item_from_service (const gchar *cService)
+CDStatusNotifierItem * cd_satus_notifier_find_item_from_service (const gchar *cService, const gchar *cObjectPath)
 {
-	g_return_val_if_fail (cService != NULL, NULL);
+	g_return_val_if_fail (cService != NULL && cObjectPath != NULL, NULL);
 	CDStatusNotifierItem *pItem;
 	GList *it;
 	for (it = myData.pItems; it != NULL; it = it->next)
 	{
 		pItem = it->data;
-		if (pItem->cService && strcmp (pItem->cService, cService) == 0)
+		if (strcmp (pItem->cService, cService) == 0 && strcmp (pItem->cObjectPath, cObjectPath) == 0)
 			return pItem;
 	}
 	return NULL;
@@ -67,51 +67,21 @@ CDStatusNotifierItem * cd_satus_notifier_find_item_from_position (int iPosition)
 
 void cd_satus_notifier_add_new_item_with_default (const gchar *cService, const gchar *cObjectPath, int iPosition, const gchar *cIconName, const gchar *cIconThemePath, const gchar *cLabel)
 {
-	CDStatusNotifierItem *pItem = cd_satus_notifier_find_item_from_service (cService);
+	CDStatusNotifierItem *pItem = cd_satus_notifier_find_item_from_service (cService,
+		(cObjectPath && *cObjectPath) ? cObjectPath : CD_STATUS_NOTIFIER_ITEM_OBJ);
 	g_return_if_fail (pItem == NULL);  // on evite d'ajouter 2 fois le meme service.
 	
-	pItem = cd_satus_notifier_create_item (cService, cObjectPath);
-	g_return_if_fail (pItem != NULL);
+	pItem = g_new0 (CDStatusNotifierItem, 1);
+	pItem->cService = g_strdup (cService);
 	
 	// the Ubuntu IAS is buggy, it doesn't return all the properties of the item; so we may have to complete with the properties that are given in the 'ApplicationAdded' callback.
-	if (pItem->cIconName == NULL)
-		pItem->cIconName = g_strdup (cIconName);
-	
-	if (pItem->cIconThemePath == NULL)
-	{
-		pItem->cIconThemePath = g_strdup (cIconThemePath);
-		if (pItem->cIconThemePath && *pItem->cIconThemePath != '\0')
-		{
-			cd_satus_notifier_add_theme_path (pItem->cIconThemePath);
-		}
-	}
-	
-	if (pItem->cLabel == NULL)
-		pItem->cLabel = g_strdup (cLabel);
-	
-	if (pItem->cMenuPath == NULL)  /// this is questionnable ... if the item doesn't provide a menu, this could be that it really doesn't use a dbusmenu (but rather relies on the ContextMenu).
-	{
-		cd_debug ("No menu defined for '%s', using '%s' as the menu path", cService, cObjectPath);
-		pItem->cMenuPath = g_strdup (cObjectPath);
-		cd_satus_notifier_build_item_dbusmenu (pItem);
-	}
-	
+	pItem->cIconName = g_strdup (cIconName);
+	pItem->cIconThemePath = g_strdup (cIconThemePath);
+	pItem->cLabel = g_strdup (cLabel);
+	pItem->cMenuPath = g_strdup (cObjectPath); /// this is questionnable ... if the item doesn't provide a menu, this could be that it really doesn't use a dbusmenu (but rather relies on the ContextMenu).
 	pItem->iPosition = iPosition;
-	if (pItem->cLabel == NULL && pItem->cTitle == NULL)
-		pItem->cLabel = g_strdup (pItem->cId);  // cService is often a dbus name like :1.355
-	cd_debug ("item '%s' appended", pItem->cId);
 	
-	if (! _item_is_visible (pItem))  // don't show a passive item.
-		return;
-	if (myConfig.bCompactMode)
-	{
-		cd_satus_notifier_reload_compact_mode ();
-	}
-	else
-	{
-		Icon *pIcon = cd_satus_notifier_create_icon_for_item (pItem);
-		CD_APPLET_ADD_ICON_IN_MY_ICONS_LIST (pIcon);
-	}
+	cd_satus_notifier_create_item (pItem, cObjectPath);
 }
 
 void cd_status_notifier_add_item_in_list (CDStatusNotifierItem *pItem)
@@ -130,9 +100,12 @@ void cd_status_notifier_remove_item_in_list (CDStatusNotifierItem *pItem)
 		gldi_icon_detach (myIcon);
 }
 
-void cd_satus_notifier_remove_item (const gchar *cService, int iPosition)
+void cd_satus_notifier_remove_item (const gchar *cService, const gchar *cObjectPath, int iPosition)
 {
-	CDStatusNotifierItem *pItem = (cService ? cd_satus_notifier_find_item_from_service (cService) : cd_satus_notifier_find_item_from_position (iPosition));
+	CDStatusNotifierItem *pItem = NULL;
+	if (cService) pItem = cd_satus_notifier_find_item_from_service (cService,
+		(cObjectPath && *cObjectPath) ? cObjectPath : CD_STATUS_NOTIFIER_ITEM_OBJ);
+	else pItem = cd_satus_notifier_find_item_from_position (iPosition);
 	g_return_if_fail (pItem != NULL);
 	
 	cd_status_notifier_remove_item_in_list (pItem);

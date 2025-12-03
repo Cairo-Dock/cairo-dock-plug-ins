@@ -47,18 +47,13 @@ static inline gboolean _emit_click (CDStatusNotifierItem *pItem, Icon *pIcon, Gl
 	int x, y;
 	_get_x_y (pIcon, pContainer, &x, &y);
 	
-	GError *erreur = NULL;
-	dbus_g_proxy_call (pItem->pProxy, cSignal, &erreur,
-		G_TYPE_INT, x,
-		G_TYPE_INT, y,
-		G_TYPE_INVALID,
-		G_TYPE_INVALID);
-	if (erreur != NULL)
-	{
-		//g_print ("method %s failed (%s)\n", cSignal, erreur->message);
-		g_error_free (erreur);
-		return FALSE;
-	}
+	g_dbus_proxy_call (pItem->pProxy, cSignal, g_variant_new ("(ii)", x, y),
+		G_DBUS_CALL_FLAGS_NO_AUTO_START, // flags
+		-1, // timeout
+		NULL, // GCancellable
+		NULL, // callback -- don't care about the result
+		NULL // user data
+	);
 	return TRUE;
 }
 
@@ -144,16 +139,14 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 			_emit_click (pItem, CD_APPLET_CLICKED_ICON, CD_APPLET_CLICKED_CONTAINER, "SecondaryActivate");
 		else
 		{
-			GError *error = NULL;
-			dbus_g_proxy_call (pItem->pProxy, "XAyatanaSecondaryActivate", &error,
-				G_TYPE_UINT, gtk_get_current_event_time (),
-				G_TYPE_INVALID,
-				G_TYPE_INVALID);
-			if (error != NULL)
-			{
-				cd_warning ("Error when middle-clicking on %s: %s", pItem->cId, error->message);
-				g_error_free (error);
-			}
+			g_dbus_proxy_call (pItem->pProxy, "XAyatanaSecondaryActivate",
+				g_variant_new ("(u)", gtk_get_current_event_time ()),
+				G_DBUS_CALL_FLAGS_NO_AUTO_START, // flags
+				-1, // timeout
+				NULL, // GCancellable
+				NULL, // callback -- don't care about the result
+				NULL // user data
+			);
 		}
 	}
 CD_APPLET_ON_MIDDLE_CLICK_END
@@ -163,17 +156,14 @@ CD_APPLET_ON_SCROLL_BEGIN
 	CDStatusNotifierItem *pItem = _get_item (CD_APPLET_CLICKED_ICON, CD_APPLET_CLICKED_CONTAINER);
 	if (pItem != NULL)
 	{
-		GError *erreur = NULL;
-		dbus_g_proxy_call (pItem->pProxy, "Scroll", &erreur,
-			G_TYPE_INT, CD_APPLET_SCROLL_UP ? -1 : +1,
-			G_TYPE_STRING, "vertical",
-			G_TYPE_INVALID,
-			G_TYPE_INVALID);
-		if (erreur != NULL)
-		{
-			//g_print ("method %s failed (%s)\n", "Scroll", erreur->message);
-			g_error_free (erreur);
-		}
+		g_dbus_proxy_call (pItem->pProxy, "Scroll",
+			g_variant_new ("(is)", CD_APPLET_SCROLL_UP ? -1 : +1, "vertical"),
+			G_DBUS_CALL_FLAGS_NO_AUTO_START, // flags
+			-1, // timeout
+			NULL, // GCancellable
+			NULL, // callback -- don't care about the result
+			NULL // user data
+		);
 	}
 CD_APPLET_ON_SCROLL_END
 
