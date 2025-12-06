@@ -70,12 +70,22 @@ static void on_removed_item (DBusGProxy *proxy_watcher, const gchar *cNotifierIt
 	CD_APPLET_ENTER;
 	cd_debug ("=== %s (%s)", __func__, cNotifierItemId);
 	
+	gchar *cService = NULL, *cObjectPath = NULL;
 	gchar *str = strchr (cNotifierItemId, '/');
-	if (str != NULL)  // service + path, remove the path, we only need the service.
-		*str = '\0';
+	if (str != NULL)  // service + path
+	{
+		cService = g_strndup (cNotifierItemId, str - cNotifierItemId);
+		cObjectPath = str;
+	}
+	else  // we handle this case too, by supposing the path is the default /StatusNotifierItem
+	{
+		cService = g_strdup (cNotifierItemId);
+		cObjectPath = NULL;
+	}
 	
-	cd_satus_notifier_remove_item (cNotifierItemId, -1);
+	cd_satus_notifier_remove_item (cService, cObjectPath, -1);
 	
+	g_free (cService);
 	CD_APPLET_LEAVE ();
 }
 
@@ -132,23 +142,14 @@ static void _on_get_applications_from_watcher (DBusGProxy *proxy, DBusGProxyCall
 				cService = g_strdup (pApplications[i]);
 				cObjectPath = NULL;
 			}
-			pItem = cd_satus_notifier_create_item (cService, cObjectPath);
-			g_free (cService);
-			if (! pItem)
-				continue;
-			cd_debug ("===  => + %s", pItem->cTitle?pItem->cTitle:pItem->cLabel);
+			
+			pItem = g_new0 (CDStatusNotifierItem, 1);
+			pItem->cService = cService;
+			pItem->iPosition = -1;
+			cd_satus_notifier_create_item (pItem, cObjectPath);
 		}
 		
 		g_free (v);
-		
-		if (myConfig.bCompactMode)
-		{
-			cd_satus_notifier_reload_compact_mode ();
-		}
-		else
-		{
-			cd_satus_notifier_load_icons_from_items ();
-		}
 	}
 	else   // un watcher asocial comme celui d'Ubuntu, on essaye avec l'"indicator-application".
 	{

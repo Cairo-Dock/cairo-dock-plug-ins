@@ -22,8 +22,17 @@
 
 #include <cairo-dock.h>
 
+#define CD_STATUS_NOTIFIER_ITEM_OBJ "/StatusNotifierItem"
 
-CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, const gchar *cObjectPath);
+/** Create a new item asynchronously and add it to our list of items if successful.
+@param pItem a newly allocated item with at least the cService member filled out by the caller
+@param cObjectPath the object path to use
+
+This function takes ownership of the pItem parameter (which will be added to our list of items or freed
+in case of an error). The caller can set any member to a suggested default value; however, these will be
+overwritten if they are provided by the application.
+*/
+void cd_satus_notifier_create_item (CDStatusNotifierItem *pItem, const gchar *cObjectPath);
 
 void cd_free_item (CDStatusNotifierItem *pItem);
 
@@ -37,7 +46,9 @@ CDStatusNotifierItem *cd_satus_notifier_get_item_from_icon (Icon *pIcon);
 Icon *cd_satus_notifier_get_icon_from_item (CDStatusNotifierItem *pItem);
 
 
-#define _item_is_visible(item) ((item)->iStatus != CD_STATUS_PASSIVE || ! myConfig.bHideInactive)
+// note: we can have items in the list which have not been fully created yet, we need to ignore these
+// we check pProxy to decide this
+#define _item_is_visible(item) ((item)->pProxy && ((item)->iStatus != CD_STATUS_PASSIVE || ! myConfig.bHideInactive))
 
 
 void cd_satus_notifier_build_item_dbusmenu (CDStatusNotifierItem *pItem);
