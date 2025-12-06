@@ -492,10 +492,25 @@ static gboolean _parse_pixmap_property (GVariant *v, cairo_surface_t **pResult)
 	return FALSE;
 }
 
+static void _on_new_item_icon_pixmap2 (CDStatusNotifierItem *pItem, cairo_surface_t **ptr, GVariant *res)
+{
+	if (g_variant_is_of_type (res, G_VARIANT_TYPE ("(v)")))
+	{
+		GVariant *v1 = g_variant_get_child_value (res, 0);
+		GVariant *v2 = g_variant_get_variant (v1);
+		if (_parse_pixmap_property (v2, (cairo_surface_t**)ptr))
+			cd_satus_notifier_update_item_image (pItem);
+		// warning already shown if type does not match
+		g_variant_unref (v2);
+		g_variant_unref (v1);
+	}
+	else cd_warning ("Unexpected result type: %s", g_variant_get_type_string (res));
+	g_variant_unref (res);
+}
+
 static void _on_new_item_icon_pixmap (GObject *pObj, GAsyncResult *pRes, gpointer ptr)
 {
 	CD_APPLET_ENTER;
-	CDStatusNotifierItem *pItem = (CDStatusNotifierItem*)ptr;
 	GError *err = NULL;
 	GVariant *res = g_dbus_proxy_call_finish (G_DBUS_PROXY (pObj), pRes, &err);
 	if (err)
@@ -505,22 +520,32 @@ static void _on_new_item_icon_pixmap (GObject *pObj, GAsyncResult *pRes, gpointe
 	}
 	else
 	{
-		if (g_variant_is_of_type (res, G_VARIANT_TYPE ("(v)")))
-		{
-			GVariant *v1 = g_variant_get_child_value (res, 0);
-			GVariant *v2 = g_variant_get_variant (v1);
-			if (_parse_pixmap_property (v2, (cairo_surface_t**)ptr))
-				cd_satus_notifier_update_item_image (pItem);
-			// warning already shown if type does not match
-			g_variant_unref (v2);
-			g_variant_unref (v1);
-		}
-		else cd_warning ("Unexpected result type: %s", g_variant_get_type_string (res));
-		g_variant_unref (res);
+		CDStatusNotifierItem *pItem = (CDStatusNotifierItem*)ptr;
+		_on_new_item_icon_pixmap2 (pItem, &pItem->pFallbackIcon, res);
 	}
 	
 	CD_APPLET_LEAVE ();
 }
+
+static void _on_new_item_icon_attention_pixmap (GObject *pObj, GAsyncResult *pRes, gpointer ptr)
+{
+	CD_APPLET_ENTER;
+	GError *err = NULL;
+	GVariant *res = g_dbus_proxy_call_finish (G_DBUS_PROXY (pObj), pRes, &err);
+	if (err)
+	{
+		// Do not display a warning, it is OK if the pixmap properties do not exist
+		g_error_free (err);
+	}
+	else
+	{
+		CDStatusNotifierItem *pItem = (CDStatusNotifierItem*)ptr;
+		_on_new_item_icon_pixmap2 (pItem, &pItem->pFallbackIconAttention, res);
+	}
+	
+	CD_APPLET_LEAVE ();
+}
+
 
 static void _item_signal (G_GNUC_UNUSED GDBusProxy *pProxy, G_GNUC_UNUSED const gchar *cSender, const gchar *cSignal,
 	GVariant* pPar, CDStatusNotifierItem *pItem)
@@ -550,7 +575,7 @@ static void _item_signal (G_GNUC_UNUSED GDBusProxy *pProxy, G_GNUC_UNUSED const 
 			-1,
 			pItem->pCancel,
 			_on_new_item_icon_pixmap,
-			&pItem->pFallbackIcon);
+			pItem);
 	}
 	else if (! strcmp (cSignal, "NewAttentionIcon"))
 	{
@@ -567,8 +592,8 @@ static void _item_signal (G_GNUC_UNUSED GDBusProxy *pProxy, G_GNUC_UNUSED const 
 			G_DBUS_CALL_FLAGS_NO_AUTO_START,
 			-1,
 			pItem->pCancel,
-			_on_new_item_icon_pixmap,
-			&pItem->pFallbackIconAttention);
+			_on_new_item_icon_attention_pixmap,
+			pItem);
 	}
 	
 	// signals supported by Ubuntu.
