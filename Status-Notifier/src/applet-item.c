@@ -703,7 +703,8 @@ void cd_satus_notifier_create_item (CDStatusNotifierItem *pItem, const gchar *cO
 	
 	// special case for Ubuntu indicators: we don't know their object path.
 	gchar *cRealObjectPath = NULL;
-	if (cObjectPath != NULL && strncmp (cObjectPath, CD_INDICATOR_APPLICATION_ITEM_OBJ, strlen (CD_INDICATOR_APPLICATION_ITEM_OBJ)) == 0 && g_str_has_suffix (cObjectPath, "/Menu"))
+	if (cObjectPath != NULL && strncmp (cObjectPath, CD_INDICATOR_APPLICATION_ITEM_OBJ, strlen (CD_INDICATOR_APPLICATION_ITEM_OBJ)) == 0 &&
+		(g_str_has_suffix (cObjectPath, "/Menu") || g_str_has_suffix (cObjectPath, "/MenuBar"))) // not sure if both are used, but just to be safe
 	{
 		// I think this is because this path is actually the menu path, and fortunately it's just under the item object's path.
 		const gchar *str = strrchr (cObjectPath, '/');
@@ -711,6 +712,12 @@ void cd_satus_notifier_create_item (CDStatusNotifierItem *pItem, const gchar *cO
 		{
 			cRealObjectPath = g_strndup (cObjectPath, str - cObjectPath);
 		}
+	}
+	else if (cObjectPath != NULL && (!strcmp (cObjectPath, "/Menu") || !strcmp (cObjectPath, "/MenuBar")))
+	{
+		// ayatana-indicator-application.service has a weird idea of object paths (see above) that is incompatible
+		// with the standard and not followed by normal apps, try to correct
+		cObjectPath = CD_STATUS_NOTIFIER_ITEM_OBJ;
 	}
 	else if (cObjectPath == NULL || *cObjectPath == '\0')  // no path, let's assume it's the common one.
 	{
