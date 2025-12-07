@@ -86,6 +86,8 @@ static gboolean _popup_menu (CDStatusNotifierItem *pItem, Icon *pIcon, GldiConta
 	cd_satus_notifier_build_item_dbusmenu (pItem);
 	if (pItem->pMenu != NULL)
 	{
+		gldi_menu_reinit (GTK_WIDGET (pItem->pMenu), pIcon);
+		
 		gldi_menu_popup (GTK_WIDGET (pItem->pMenu));
 		r = TRUE;
 	}
