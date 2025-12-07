@@ -788,6 +788,12 @@ static void _item_proxy_created (G_GNUC_UNUSED GObject *pObj, GAsyncResult *pRes
 	}
 	else g_free (cNameOwner);
 	
+	// Note: here we have a DBus proxy that is connected to an app. But that does not mean that the
+	// object and interface that we specified actually exists and there seems to be no easy way to
+	// verify this apart from calling org.freedesktop.DBus.Introspectable.Introspect() and parsing
+	// the XML returned (if any). So we just assume that the interface is valid and later check that
+	// we have the minimum amount of properties that are required to display an item.
+	
 	// We create a separate proxy for retrieving DBus properties when there is an update.
 	// Note: we can use the _sync version since this call will not block (and should not fail).
 	GDBusProxy *pProxyProps = g_dbus_proxy_new_for_bus_sync (
@@ -867,6 +873,20 @@ static void _item_proxy_created (G_GNUC_UNUSED GObject *pObj, GAsyncResult *pRes
 	{
 		_parse_pixmap_property (v, &pItem->pFallbackIconAttention);
 		g_variant_unref (v);
+	}
+	
+	// At this point we can verify if this is a valid item. We do this in a bit heuristic way, requiring either:
+	//  (1) Id and the regular icon are set -> this means that we have a valid proxy interface, since
+	//      Id is not set by any caller
+	//  (2) MenuPath and the regular icon are set -> this means that this item might not implement the
+	//      expected interface, but was created by the IAS host which already provided a menu path
+	//      (note that we do this check before trying to retrieve the "Menu" property)
+	if (! ((pItem->cIconName || pItem->pFallbackIcon) && (pItem->cId || pItem->cMenuPath)) )
+	{
+		cd_warning ("Item does not implement the SNI interface and has no menu path!");
+		cd_status_notifier_remove_item_in_list (pItem);
+		cd_free_item (pItem);
+		CD_APPLET_LEAVE ();
 	}
 	
 	v = g_dbus_proxy_get_cached_property (pProxyItem, "Menu"); // object path to a dbus-menu
