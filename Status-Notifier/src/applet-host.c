@@ -84,12 +84,21 @@ void cd_satus_notifier_add_new_item_with_default (const gchar *cService, const g
 	cd_satus_notifier_create_item (pItem, cObjectPath);
 }
 
+gint _compare_pos (gconstpointer a, gconstpointer b)
+{
+	const CDStatusNotifierItem *pItemA = (CDStatusNotifierItem*)a;
+	const CDStatusNotifierItem *pItemB = (CDStatusNotifierItem*)b;
+	if (pItemA->iPosition < pItemB->iPosition) return -1;
+	if (pItemA->iPosition > pItemB->iPosition) return 1;
+	return 0;
+}
+
 void cd_status_notifier_add_item_in_list (CDStatusNotifierItem *pItem)
 {
 	if (myData.pItems == NULL)
 		gldi_icon_insert_in_container (myIcon, myContainer, ! CAIRO_DOCK_ANIMATE_ICON);
 
-	myData.pItems = g_list_prepend (myData.pItems, pItem);
+	myData.pItems = g_list_insert_sorted (myData.pItems, pItem, _compare_pos);
 }
 
 void cd_status_notifier_remove_item_in_list (CDStatusNotifierItem *pItem)
@@ -106,7 +115,9 @@ void cd_satus_notifier_remove_item (const gchar *cService, const gchar *cObjectP
 	if (cService) pItem = cd_satus_notifier_find_item_from_service (cService,
 		(cObjectPath && *cObjectPath) ? cObjectPath : CD_STATUS_NOTIFIER_ITEM_OBJ);
 	else pItem = cd_satus_notifier_find_item_from_position (iPosition);
-	g_return_if_fail (pItem != NULL);
+	// not an error since we automatically remove items if they disconnect, but also get
+	// removal notifications from the watcher
+	if (pItem == NULL) return;
 	
 	cd_status_notifier_remove_item_in_list (pItem);
 	
@@ -163,8 +174,7 @@ void cd_satus_notifier_stop_service (void)
 	cd_satus_notifier_unregister_from_ias ();
 	
 	// free all the items.
-	g_list_foreach (myData.pItems, (GFunc) cd_free_item, NULL);
-	g_list_free (myData.pItems);
+	g_list_free_full (myData.pItems, (GDestroyNotify) cd_free_item);
 	
 	if (! myConfig.bCompactMode)
 		CD_APPLET_DELETE_MY_ICONS_LIST;
@@ -176,7 +186,7 @@ void cd_satus_notifier_stop_service (void)
 
 void cd_satus_notifier_launch_our_watcher (void)
 {
-	if (myData.bNoIAS && myData.bNoWatcher)
+	if (! myData.bHaveIAS && myData.bNoWatcher)
 	{
 		cd_message ("starting our own watcher...");
 		cairo_dock_launch_command_single (CD_PLUGINS_DIR"/status-notifier-watcher");

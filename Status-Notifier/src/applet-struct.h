@@ -100,19 +100,20 @@ typedef struct {
 	GCancellable *pCancel;
 	// menu redraw
 	int iMenuWidth;
+	Icon *pIcon; // last assigned icon to this item
 } CDStatusNotifierItem;
 
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
 	gchar *cHostName;
-	DBusGProxy *pProxyWatcher;
-	DBusGProxy *pProxyWatcherProps;
-	DBusGProxy *pProxyIndicatorService;
-	DBusGProxy *pProxyIndicatorApplicationService;
+	GDBusProxy *pProxyWatcher; // DBus proxy for the KDE SNI watcher interface
+	GCancellable *pCancellableWatcher; // cancellable for the above proxy
+	GDBusProxy *pProxyIndicatorApplicationService;
+	GCancellable *pCancellableIAS;
 	gboolean bIASWatched;
 	gboolean bBrokenWatcher;
-	gboolean bNoIAS;
+	gboolean bHaveIAS;
 	gboolean bNoWatcher;
 	GList *pItems;  // list of all items.
 	GHashTable *pThemePaths;

@@ -135,7 +135,7 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	CDStatusNotifierItem *pItem = _get_item (CD_APPLET_CLICKED_ICON, CD_APPLET_CLICKED_CONTAINER);
 	if (pItem != NULL)
 	{
-		if (myData.bNoIAS) // of course it's not the same method :-)
+		if (! myData.bHaveIAS) // of course it's not the same method :-)
 			_emit_click (pItem, CD_APPLET_CLICKED_ICON, CD_APPLET_CLICKED_CONTAINER, "SecondaryActivate");
 		else
 		{
