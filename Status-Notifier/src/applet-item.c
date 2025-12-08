@@ -78,17 +78,9 @@ static CDToolTip *_make_tooltip_from_dbus_struct (GVariant *pToolTipTab)
 	{
 		// type: "(sa(iiay)ss)", checked by the caller
 		pToolTip = g_new0 (CDToolTip, 1);
-		GVariant *v = g_variant_get_child_value (pToolTipTab, 0);
-		pToolTip->cIconName = g_variant_dup_string (v, NULL);
-		g_variant_unref (v);
-		
-		v = g_variant_get_child_value (pToolTipTab, 2);
-		pToolTip->cTitle = g_variant_dup_string (v, NULL);
-		g_variant_unref (v);
-		
-		v = g_variant_get_child_value (pToolTipTab, 3);
-		pToolTip->cMessage = g_variant_dup_string (v, NULL);
-		g_variant_unref (v);
+		cd_status_notifier_get_string_child_from_variant (pToolTipTab, 0, &pToolTip->cIconName);
+		cd_status_notifier_get_string_child_from_variant (pToolTipTab, 2, &pToolTip->cTitle);
+		cd_status_notifier_get_string_child_from_variant (pToolTipTab, 3, &pToolTip->cMessage);
 		
 		if (pToolTip->cMessage != NULL)
 		{
@@ -140,18 +132,27 @@ static void _show_item_tooltip (Icon *pIcon, CDStatusNotifierItem *pItem)
 	}
 }*/
 
-static gboolean _get_string_from_variant (GVariant *v2, gchar **str)
+gboolean cd_status_notifier_get_string_from_variant (GVariant *v2, gchar **str)
 {
 	gboolean ret = FALSE;
 	if (g_variant_is_of_type (v2, G_VARIANT_TYPE ("s")))
 	{
 		g_free (*str);
-		*str = g_variant_dup_string (v2, NULL);
-		ret = TRUE;
+		gsize len;
+		const char *tmp = g_variant_get_string (v2, &len);
+		if (tmp && len) *str = g_strndup (tmp, len);
+		else *str = NULL; // we do not want empty strings
 	}
 	else cd_warning ("Unexpected result type: %s", g_variant_get_type_string (v2));
 	g_variant_unref (v2);
 	return ret;
+}
+
+gboolean cd_status_notifier_get_string_child_from_variant (GVariant *v2, unsigned int i_, gchar **str)
+{
+	GVariant *v3 = g_variant_get_child_value (v2, i_);
+	if (! v3) return FALSE;
+	return cd_status_notifier_get_string_from_variant (v3, str);
 }
 
 static gboolean _parse_string_prop (GVariant *res, gchar **str)
@@ -161,7 +162,7 @@ static gboolean _parse_string_prop (GVariant *res, gchar **str)
 	{
 		GVariant *v1 = g_variant_get_child_value (res, 0);
 		GVariant *v2 = g_variant_get_variant (v1);
-		ret = _get_string_from_variant (v2, str);
+		ret = cd_status_notifier_get_string_from_variant (v2, str);
 		g_variant_unref (v1);
 	}
 	else cd_warning ("Unexpected result type: %s", g_variant_get_type_string (res));
@@ -307,17 +308,6 @@ static void on_new_item_status (const gchar *cStatus, CDStatusNotifierItem *pIte
 	}
 }
 
-
-static void on_new_item_label (const gchar *cLabel, const gchar *cLabelGuide, CDStatusNotifierItem *pItem)
-{
-	cd_debug ("=== %s (%s, %s)", __func__, cLabel, cLabelGuide);
-	
-	g_free (pItem->cLabel);
-	pItem->cLabel = g_strdup (cLabel);
-	g_free (pItem->cLabelGuide);
-	pItem->cLabelGuide = g_strdup (cLabelGuide);
-}
-
 static void _on_new_item_icon_theme (GObject *pObj, GAsyncResult *pRes, gpointer ptr)
 {
 	CD_APPLET_ENTER;
@@ -391,15 +381,19 @@ static void _on_item_name_owner_changed (G_GNUC_UNUSED GObject *pObj, G_GNUC_UNU
 	if (!cNameOwner)
 	{
 		cd_status_notifier_remove_item_in_list (pItem);
+		gboolean bVisible = _item_is_visible (pItem);
 		
-		if (myConfig.bCompactMode)
+		if (bVisible)  // the item was visible, remove it
 		{
-			cd_satus_notifier_reload_compact_mode ();
-		}
-		else
-		{
-			Icon *pIcon = cd_satus_notifier_get_icon_from_item (pItem);
-			CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (pIcon);
+			if (myConfig.bCompactMode)
+			{
+				cd_satus_notifier_reload_compact_mode ();
+			}
+			else
+			{
+				Icon *pIcon = cd_satus_notifier_get_icon_from_item (pItem);
+				CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (pIcon);
+			}
 		}
 		
 		cd_free_item (pItem);
@@ -415,7 +409,7 @@ gchar *cd_satus_notifier_search_item_icon_s_path (CDStatusNotifierItem *pItem, g
 	gchar *cImageName = (pItem->iStatus == CD_STATUS_NEEDS_ATTENTION ? pItem->cAttentionIconName: pItem->cIconName);
 	
 	gchar *cIconPath = NULL;
-	if (pItem->cIconThemePath != NULL)  // workaround pour des applis telles que dropbox qui trouvent malin de specifier des icones avec des noms hyper generiques (idle.png).
+	if (pItem->cIconThemePath && cImageName)  // workaround pour des applis telles que dropbox qui trouvent malin de specifier des icones avec des noms hyper generiques (idle.png).
 	{
 		cIconPath = g_strdup_printf ("%s/%s", pItem->cIconThemePath, cImageName);
 		if (! g_file_test (cIconPath, G_FILE_TEST_EXISTS))
@@ -427,11 +421,10 @@ gchar *cd_satus_notifier_search_item_icon_s_path (CDStatusNotifierItem *pItem, g
 	
 	if (cIconPath == NULL)
 	{
-		cIconPath = cairo_dock_search_icon_s_path (cImageName, iSize);
-		// in case we have a buggy app, try some heuristic
+		if (cImageName) cIconPath = cairo_dock_search_icon_s_path (cImageName, iSize);
 		if (cIconPath == NULL && pItem->pFallbackIcon == NULL && (pItem->iStatus != CD_STATUS_NEEDS_ATTENTION || pItem->pFallbackIconAttention == NULL))
 		{
-			cIconPath = cairo_dock_search_icon_s_path (pItem->cId, iSize);
+			cIconPath = cairo_dock_search_icon_s_path (pItem->cId, iSize); // in case we have a buggy app, try some heuristic
 			if (cIconPath == NULL && pItem->pSurface == NULL)  // only use the fallback icon if the item is still empty (to not have an invisible item).
 			{
 				cIconPath = g_strdup (MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
@@ -473,7 +466,7 @@ static gboolean _parse_pixmap_property (GVariant *v, cairo_surface_t **pResult)
 		// iterate over all offered icons, take the first one that is large enough
 		while ((v1 = g_variant_iter_next_value (&iter)))
 		{		
-			g_variant_unref (v2);
+			if (v2) g_variant_unref (v2);
 			g_variant_get_child (v1, 0, "i", &w);
 			g_variant_get_child (v1, 1, "i", &h);
 			v2 = g_variant_get_child_value (v1, 2);
@@ -623,11 +616,8 @@ static void _item_signal (G_GNUC_UNUSED GDBusProxy *pProxy, G_GNUC_UNUSED const 
 	{
 		if (g_variant_is_of_type (pPar, G_VARIANT_TYPE ("(ss)")))
 		{
-			GVariant *v1 = g_variant_get_child_value (pPar, 0);
-			GVariant *v2 = g_variant_get_child_value (pPar, 0);
-			on_new_item_label (g_variant_get_string (v1, NULL), g_variant_get_string (v2, NULL), pItem);
-			g_variant_unref (v1);
-			g_variant_unref (v2);
+			cd_status_notifier_get_string_child_from_variant (pPar, 0, &pItem->cLabel);
+			cd_status_notifier_get_string_child_from_variant (pPar, 1, &pItem->cLabelGuide);
 		}
 	}
 	else if (! strcmp (cSignal, "NewIconThemePath"))
@@ -824,7 +814,7 @@ static void _item_proxy_created (G_GNUC_UNUSED GObject *pObj, GAsyncResult *pRes
 	// properties supported by KDE and Ubuntu.
 	GVariant *v;
 	v = g_dbus_proxy_get_cached_property (pProxyItem, "Id");
-	if (v) _get_string_from_variant (v, &pItem->cId);
+	if (v) cd_status_notifier_get_string_from_variant (v, &pItem->cId);
 	cd_debug ("===   ID '%s'", pItem->cId);
 	
 	v = g_dbus_proxy_get_cached_property (pProxyItem, "Category");  // (ApplicationStatus, Communications, SystemServices, Hardware) -> fOrder
@@ -850,15 +840,15 @@ static void _item_proxy_created (G_GNUC_UNUSED GObject *pObj, GAsyncResult *pRes
 	}
 	
 	v = g_dbus_proxy_get_cached_property (pProxyItem, "IconName");
-	if (v) _get_string_from_variant (v, &pItem->cIconName); // note: will update icon name if the result is valid and will also free v
+	if (v) cd_status_notifier_get_string_from_variant (v, &pItem->cIconName); // note: will update icon name if the result is valid and will also free v
 	cd_debug ("===   IconName '%s'", pItem->cIconName);
 	
 	v = g_dbus_proxy_get_cached_property (pProxyItem, "IconThemePath");
-	if (v) _get_string_from_variant (v, &pItem->cIconThemePath);
+	if (v) cd_status_notifier_get_string_from_variant (v, &pItem->cIconThemePath);
 	cd_debug ("===   IconThemePath '%s'", pItem->cIconThemePath);
 	
 	v = g_dbus_proxy_get_cached_property (pProxyItem, "AttentionIconName");
-	if (v) _get_string_from_variant (v, &pItem->cAttentionIconName);
+	if (v) cd_status_notifier_get_string_from_variant (v, &pItem->cAttentionIconName);
 	cd_debug ("===   AttentionIconName '%s'", pItem->cAttentionIconName);
 	
 	v = g_dbus_proxy_get_cached_property (pProxyItem, "IconPixmap");
@@ -894,8 +884,13 @@ static void _item_proxy_created (G_GNUC_UNUSED GObject *pObj, GAsyncResult *pRes
 	{
 		if (g_variant_is_of_type (v, G_VARIANT_TYPE ("o")) || g_variant_is_of_type (v, G_VARIANT_TYPE ("s")))
 		{
-			g_free (pItem->cMenuPath); // note: the caller might have set a default value, we need to free it
-			pItem->cMenuPath = g_variant_dup_string (v, NULL);  // if NULL, we'll just send the ContextMenu() signal.
+			gsize len;
+			const gchar *tmp = g_variant_get_string (v, &len);
+			if (tmp && len)
+			{
+				g_free (pItem->cMenuPath); // note: the caller might have set a default value, we need to free it
+				pItem->cMenuPath = g_strndup (tmp, len);
+			}
 		}
 		g_variant_unref (v);
 	}
@@ -903,19 +898,19 @@ static void _item_proxy_created (G_GNUC_UNUSED GObject *pObj, GAsyncResult *pRes
 	
 	// properties supported by Ubuntu.
 	v = g_dbus_proxy_get_cached_property (pProxyItem, "XAyatanaLabel");
-	if (v) _get_string_from_variant (v, &pItem->cLabel);
+	if (v) cd_status_notifier_get_string_from_variant (v, &pItem->cLabel);
 	cd_debug ("===   Label '%s'", pItem->cLabel);
 	
 	v = g_dbus_proxy_get_cached_property (pProxyItem, "XAyatanaLabelGuide");
-	if (v) _get_string_from_variant (v, &pItem->cLabelGuide);
+	if (v) cd_status_notifier_get_string_from_variant (v, &pItem->cLabelGuide);
 	cd_debug ("===   LabelGuide '%s'", pItem->cLabelGuide);
 	
 	v = g_dbus_proxy_get_cached_property (pProxyItem, "IconAccessibleDesc"); // Updated with ApplicationIconChanged
-	if (v) _get_string_from_variant (v, &pItem->cAccessibleDesc);
+	if (v) cd_status_notifier_get_string_from_variant (v, &pItem->cAccessibleDesc);
 	
 	// properties supported by KDE.
 	v = g_dbus_proxy_get_cached_property (pProxyItem, "Title");
-	if (v) _get_string_from_variant (v, &pItem->cTitle);
+	if (v) cd_status_notifier_get_string_from_variant (v, &pItem->cTitle);
 	cd_debug ("===   Title '%s'", pItem->cTitle);
 	
 	v = g_dbus_proxy_get_cached_property (pProxyItem, "WindowId");
@@ -929,11 +924,11 @@ static void _item_proxy_created (G_GNUC_UNUSED GObject *pObj, GAsyncResult *pRes
 	}
 	
 	v = g_dbus_proxy_get_cached_property (pProxyItem, "OverlayIconName"); // not used currently
-	if (v) _get_string_from_variant (v, &pItem->cOverlayIconName);
+	if (v) cd_status_notifier_get_string_from_variant (v, &pItem->cOverlayIconName);
 	cd_debug ("===   OverlayIconName '%s'", pItem->cOverlayIconName);
 	
 	v = g_dbus_proxy_get_cached_property (pProxyItem, "AttentionMovieName");
-	if (v) _get_string_from_variant (v, &pItem->cAttentionMovieName);
+	if (v) cd_status_notifier_get_string_from_variant (v, &pItem->cAttentionMovieName);
 	cd_debug ("===   AttentionMovieName '%s'", pItem->cAttentionMovieName);
 	
 	v = g_dbus_proxy_get_cached_property (pProxyItem, "ToolTip");
@@ -953,7 +948,7 @@ static void _item_proxy_created (G_GNUC_UNUSED GObject *pObj, GAsyncResult *pRes
 		g_variant_unref (v);
 	}
 	
-	if (pItem->cIconThemePath && *pItem->cIconThemePath != '\0')  // on le rajoute au theme d'icones par defaut; comme le launcher-manager va deja chercher dedans pour charger l'icone, on n'a rien d'autre a faire.
+	if (pItem->cIconThemePath)  // on le rajoute au theme d'icones par defaut; comme le launcher-manager va deja chercher dedans pour charger l'icone, on n'a rien d'autre a faire.
 	{
 		cd_satus_notifier_add_theme_path (pItem->cIconThemePath);
 	}
@@ -988,6 +983,7 @@ void cd_free_item (CDStatusNotifierItem *pItem)
 {
 	if (pItem == NULL)
 		return;
+	
 	if (pItem->iSidPopupTooltip != 0)
 		g_source_remove (pItem->iSidPopupTooltip);
 	if (pItem->iSidUpdateIcon != 0)
@@ -995,7 +991,7 @@ void cd_free_item (CDStatusNotifierItem *pItem)
 	if (pItem->cIconThemePath)
 		cd_satus_notifier_remove_theme_path (pItem->cIconThemePath);
 	if (pItem->pMenu != NULL)
-		g_object_unref (pItem->pMenu);  // will remove the 'reposition' callback too.
+		gtk_widget_destroy (GTK_WIDGET (pItem->pMenu));  // will remove the 'reposition' callback too.
 	if (pItem->pProxy) g_object_unref (pItem->pProxy);
 	if (pItem->pProxyProps) g_object_unref (pItem->pProxyProps);
 	if (pItem->pCancel)
@@ -1094,15 +1090,7 @@ CDStatusNotifierItem *cd_satus_notifier_get_item_from_icon (Icon *pIcon)
 
 Icon *cd_satus_notifier_get_icon_from_item (CDStatusNotifierItem *pItem)
 {
-	//g_print ("=== %s (%s)\n", __func__, pItem->cService);
-	GList *ic, *pIcons = CD_APPLET_MY_ICONS_LIST;
-	Icon *pIcon;
-	for (ic = pIcons; ic != NULL; ic = ic->next)
-	{
-		pIcon = ic->data;
-		if (_icon_belongs_to_item (pIcon, pItem)) return pIcon;
-	}
-	return NULL;
+	return pItem->pIcon;
 }
 
 
@@ -1127,8 +1115,8 @@ void cd_satus_notifier_build_item_dbusmenu (CDStatusNotifierItem *pItem)
 		if (pItem->cMenuPath != NULL && *pItem->cMenuPath != '\0' && strcmp (pItem->cMenuPath, "/NO_DBUSMENU") != 0)  // hopefully, if the item doesn't provide a dbusmenu, it will not set something different as these 2 choices  (ex.: Klipper).
 		{
 			pItem->pMenu = dbusmenu_gtkmenu_new ((gchar *)pItem->cService, (gchar *)pItem->cMenuPath);
-			if (g_object_is_floating (pItem->pMenu))  // claim ownership on the menu.
-				g_object_ref_sink (pItem->pMenu);
+//			if (g_object_is_floating (pItem->pMenu))  // claim ownership on the menu.
+//				g_object_ref_sink (pItem->pMenu);
 			gldi_menu_init (GTK_WIDGET(pItem->pMenu), myIcon);
 			/* Position of the menu: GTK doesn't do its job :-/
 			 * e.g. with Dropbox: the menu is out of the screen every time
