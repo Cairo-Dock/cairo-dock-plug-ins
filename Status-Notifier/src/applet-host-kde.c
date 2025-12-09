@@ -33,6 +33,8 @@
 #define CD_STATUS_NOTIFIER_WATCHER_ADDR "org.kde.StatusNotifierWatcher"
 #define CD_STATUS_NOTIFIER_WATCHER_OBJ "/StatusNotifierWatcher"
 #define CD_STATUS_NOTIFIER_WATCHER_IFACE "org.kde.StatusNotifierWatcher"
+// our address basename
+#define CD_STATUS_NOTIFIER_HOST_ADDR "org.kde.StatusNotifierHost"
 
   ///////////////
  /// Signals ///
@@ -194,6 +196,9 @@ static void _on_get_applications_from_watcher (GObject *pObj, GAsyncResult *pRes
  /// Connection ///
 //////////////////
 
+// static gboolean s_bHostRegistered = FALSE;
+static gboolean s_bTriedOwnName = FALSE;
+
 // static void _on_register_host (DBusGProxy *proxy, DBusGProxyCall *call_id, GldiModuleInstance *myApplet)
 static void _on_register_host (GObject *pObj, GAsyncResult *pRes, G_GNUC_UNUSED gpointer ptr)
 {
@@ -265,6 +270,19 @@ static void _on_register_host (GObject *pObj, GAsyncResult *pRes, G_GNUC_UNUSED 
 	CD_APPLET_LEAVE ();
 }
 
+static void _register_host (void)
+{
+	cd_debug ("=== register to the SNI wathcer");
+		g_dbus_proxy_call (myData.pProxyWatcher,
+			"RegisterStatusNotifierHost",
+			g_variant_new ("(s)", myData.cHostName),
+			G_DBUS_CALL_FLAGS_NO_AUTO_START,
+			-1,
+			myData.pCancellableWatcher,
+			_on_register_host,
+			NULL);
+}
+
 static void _free_item2 (gpointer ptr)
 {
 	CDStatusNotifierItem *pItem = (CDStatusNotifierItem*)ptr;
@@ -287,18 +305,10 @@ static void _on_watcher_owner_changed (G_GNUC_UNUSED GObject *pObj, G_GNUC_UNUSE
 		g_free (cNameOwner);
 		// TODO: does this mean that now the interface is always available?? (since we provided the interface when creating the proxy)
 		
-		myData.bNoWatcher = FALSE;
+		myData.bHaveWatcher = TRUE;
 		
-		// and register to it.
-		cd_debug ("=== register to the SNI wathcer");
-		g_dbus_proxy_call (myData.pProxyWatcher,
-			"RegisterStatusNotifierHost",
-			g_variant_new ("(s)", myData.cHostName),
-			G_DBUS_CALL_FLAGS_NO_AUTO_START,
-			-1,
-			myData.pCancellableWatcher,
-			_on_register_host,
-			NULL);
+		// and register to it (but wait until we have at least tried to own the necessary DBus name).
+		if (s_bTriedOwnName) _register_host ();
 		
 		if (myConfig.bCompactMode)
 			CD_APPLET_SET_IMAGE_ON_MY_ICON (NULL);  // remove the broken image if it was set beforehand, to get the default icon in the items GUI.
@@ -332,7 +342,7 @@ static void _on_watcher_owner_changed (G_GNUC_UNUSED GObject *pObj, G_GNUC_UNUSE
 		}
 		myData.bBrokenWatcher = FALSE;
 		
-		myData.bNoWatcher = TRUE;
+		myData.bHaveWatcher = FALSE;
 		cd_satus_notifier_launch_our_watcher ();
 	}
 	
@@ -371,6 +381,36 @@ static void _watcher_proxy_created (GObject *pObj, GAsyncResult *pRes, gpointer 
 	CD_APPLET_LEAVE ();
 }
 
+
+void _on_name_acquired (G_GNUC_UNUSED GDBusConnection *conn, G_GNUC_UNUSED const gchar *cName,
+	G_GNUC_UNUSED gpointer ptr)
+{
+	CD_APPLET_ENTER;
+	
+	if (! s_bTriedOwnName)
+	{
+		s_bTriedOwnName = TRUE;
+		if (myData.bHaveWatcher) _register_host ();
+	}
+	
+	CD_APPLET_LEAVE ();
+}
+
+void _on_name_lost (G_GNUC_UNUSED GDBusConnection *conn, const gchar *cName,
+	G_GNUC_UNUSED gpointer ptr)
+{
+	CD_APPLET_ENTER;
+	
+	if (! s_bTriedOwnName)
+	{
+		cd_warning ("Cannot own DBus name: %s", cName);
+		// note: we still try to connect to the watcher since owning a DBus name should not be necessary for this
+		s_bTriedOwnName = TRUE;
+		if (myData.bHaveWatcher) _register_host ();
+	}
+	
+	CD_APPLET_LEAVE ();
+}
 
 void cd_satus_notifier_detect_watcher (void)
 {
@@ -456,6 +496,21 @@ void cd_satus_notifier_detect_watcher (void)
 	);
 	
 	g_dbus_node_info_unref (pNodeInfo); // the previous call should have taken a ref to pInfo
+	
+	// Register our service name on the bus. This is not used (i.e. neither the watcher nor the
+	// items need to connect to it), and does not seem to be required in practice anymore.
+	int pid = (int)getpid ();
+	myData.cHostName = g_strdup_printf (CD_STATUS_NOTIFIER_HOST_ADDR"-%d", pid);
+	
+	myData.uBusNameID = g_bus_own_name (G_BUS_TYPE_SESSION,
+		myData.cHostName,
+		G_BUS_NAME_OWNER_FLAGS_DO_NOT_QUEUE | G_BUS_NAME_OWNER_FLAGS_REPLACE, // name should be unique, but just to make sure
+		NULL, // bus acquired, not needed
+		_on_name_acquired,
+		_on_name_lost,
+		NULL, // user_data
+		NULL // free func
+	);
 }
 
 void cd_satus_notifier_unregister_from_watcher (void)
@@ -470,6 +525,15 @@ void cd_satus_notifier_unregister_from_watcher (void)
 	{
 		g_object_unref (myData.pProxyWatcher);
 		myData.pProxyWatcher = NULL;
+	}
+	
+	if (myData.uBusNameID)
+	{
+		g_bus_unown_name (myData.uBusNameID);
+		myData.uBusNameID = 0;
+		g_free (myData.cHostName);
+		myData.cHostName = NULL;
+		s_bTriedOwnName = FALSE;
 	}
 }
 

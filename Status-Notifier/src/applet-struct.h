@@ -114,7 +114,7 @@ struct _AppletData {
 	gboolean bIASWatched;
 	gboolean bBrokenWatcher;
 	gboolean bHaveIAS;
-	gboolean bNoWatcher;
+	gboolean bHaveWatcher;
 	GList *pItems;  // list of all items.
 	GHashTable *pThemePaths;
 	gint iNbLines, iNbColumns, iItemSize;  // agencement compact.
@@ -122,6 +122,7 @@ struct _AppletData {
 	gdouble fDesktopNameAlpha;  // in compact desklet mode, alpha for the currently hovered item title.
 	gint iDefaultWidth;  // in compact mode, initial icon size.
 	gint iDefaultHeight;
+	guint uBusNameID; // ID returned by g_bus_own_name () -- only used by the KDE SNI implementation
 	} ;
 
 

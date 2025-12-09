@@ -29,10 +29,6 @@
 #include "applet-host-kde.h"
 #include "applet-host-ias.h"
 
-// our address basename
-#define CD_STATUS_NOTIFIER_HOST_ADDR "org.kde.StatusNotifierHost"
-
-
 CDStatusNotifierItem * cd_satus_notifier_find_item_from_service (const gchar *cService, const gchar *cObjectPath)
 {
 	g_return_val_if_fail (cService != NULL && cObjectPath != NULL, NULL);
@@ -64,25 +60,6 @@ CDStatusNotifierItem * cd_satus_notifier_find_item_from_position (int iPosition)
   ///////////////////////
  /// Add/remove item ///
 ///////////////////////
-
-void cd_satus_notifier_add_new_item_with_default (const gchar *cService, const gchar *cObjectPath, int iPosition, const gchar *cIconName, const gchar *cIconThemePath, const gchar *cLabel)
-{
-	CDStatusNotifierItem *pItem = cd_satus_notifier_find_item_from_service (cService,
-		(cObjectPath && *cObjectPath) ? cObjectPath : CD_STATUS_NOTIFIER_ITEM_OBJ);
-	g_return_if_fail (pItem == NULL);  // on evite d'ajouter 2 fois le meme service.
-	
-	pItem = g_new0 (CDStatusNotifierItem, 1);
-	pItem->cService = g_strdup (cService);
-	
-	// the Ubuntu IAS is buggy, it doesn't return all the properties of the item; so we may have to complete with the properties that are given in the 'ApplicationAdded' callback.
-	pItem->cIconName = g_strdup (cIconName);
-	pItem->cIconThemePath = g_strdup (cIconThemePath);
-	pItem->cLabel = g_strdup (cLabel);
-	pItem->cMenuPath = g_strdup (cObjectPath); /// this is questionnable ... if the item doesn't provide a menu, this could be that it really doesn't use a dbusmenu (but rather relies on the ContextMenu).
-	pItem->iPosition = iPosition;
-	
-	cd_satus_notifier_create_item (pItem, cObjectPath);
-}
 
 gint _compare_pos (gconstpointer a, gconstpointer b)
 {
@@ -155,12 +132,6 @@ void cd_satus_notifier_launch_service (void)
 	if (myData.pThemePaths == NULL)
 		myData.pThemePaths = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, NULL);  // (path dir,ref count).
 	
-	// Register our service name on the bus.
-	pid_t pid = getpid ();
-	myData.cHostName = g_strdup_printf (CD_STATUS_NOTIFIER_HOST_ADDR"-%d", pid);
-	//cd_debug ("=== registering name '%s' on the bus ...", myData.cHostName);
-	cairo_dock_register_service_name (myData.cHostName);
-	
 	// see if a Watcher and/or an Indicator Application Service (IAS) is on the bus.
 	cd_satus_notifier_detect_watcher ();
 	cd_satus_notifier_detect_ias ();
@@ -186,7 +157,7 @@ void cd_satus_notifier_stop_service (void)
 
 void cd_satus_notifier_launch_our_watcher (void)
 {
-	if (! myData.bHaveIAS && myData.bNoWatcher)
+	if (! myData.bHaveIAS && ! myData.bHaveWatcher)
 	{
 		cd_message ("starting our own watcher...");
 		cairo_dock_launch_command_single (CD_PLUGINS_DIR"/status-notifier-watcher");
