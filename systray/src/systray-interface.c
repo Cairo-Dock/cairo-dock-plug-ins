@@ -30,18 +30,58 @@
 #include "na-tray.h"
 #include "na-tray-manager.h"
 
+static const char *_get_warning_message (void)
+{
+	return D_("Another systray is already running (probably on your panel)\nSince there can only be one systray at once, you should remove it to avoid any conflict.");
+}
 
 void cd_systray_build_dialog (void)
 {
 	CairoDialogAttr attr;
 	memset (&attr, 0, sizeof (CairoDialogAttr));
-	attr.pInteractiveWidget = GTK_WIDGET (myData.tray);
+	if (myData.tray) attr.pInteractiveWidget = GTK_WIDGET (myData.tray); // myData.tray will be NULL if we could not start it
+	else attr.cText = _get_warning_message (); // show a warning about not having an active tray
 	attr.bHideOnClick = TRUE;  // keep the dialog alive on click (hide it).
 	attr.pIcon = myIcon;
 	attr.pContainer = myContainer;
 	myData.dialog = gldi_dialog_new (&attr);
-	gtk_window_set_resizable (GTK_WINDOW(myData.dialog->container.pWidget), FALSE);  /// utile ?...
 	gldi_dialog_hide (myData.dialog);
+}
+
+
+
+static void _show_error_dialog (void)
+{
+	gldi_dialog_show_temporary_with_icon (_get_warning_message (), myIcon, myContainer, 8000, NULL);
+}
+
+static gboolean _show_error_dialog_delayed (G_GNUC_UNUSED void *ptr)
+{
+	CD_APPLET_ENTER;
+	if (cairo_dock_is_loading ())
+	{
+		CD_APPLET_LEAVE (G_SOURCE_CONTINUE);
+	}
+	
+	_show_error_dialog ();
+	
+	CD_APPLET_LEAVE (G_SOURCE_REMOVE);
+}
+
+static gboolean s_bChecked = FALSE;
+
+void cd_systray_build_desklet (void)
+{
+	if (myData.tray) gldi_desklet_add_interactive_widget (myDesklet, GTK_WIDGET (myData.tray));
+	else
+	{
+		// no tray, just add a placeholder -- maybe we could display a broken icon instead?
+		GtkWidget *dummy = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
+		g_object_set (dummy, "height-request", 24, NULL);
+		gldi_desklet_add_interactive_widget_with_margin (myDesklet, dummy, 24);
+	}
+	CD_APPLET_SET_DESKLET_RENDERER (NULL);
+	CD_APPLET_SET_STATIC_DESKLET;
 }
 
 void cd_systray_build_systray (void)
@@ -49,10 +89,25 @@ void cd_systray_build_systray (void)
 	if (myData.tray != NULL)
 		return;
 	
-	myData.tray = na_tray_new_for_screen (gtk_widget_get_screen (GTK_WIDGET (myContainer->pWidget)),
-		myConfig.iIconPacking == 0 ? GTK_ORIENTATION_HORIZONTAL : GTK_ORIENTATION_VERTICAL);
-	na_tray_set_icon_size (myData.tray, 24);
-	na_tray_set_padding (myData.tray, 3);
+	if (na_tray_manager_check_running (gtk_widget_get_screen (GTK_WIDGET (myContainer->pWidget))))
+	{
+		cd_warning ("another systray is already running, not creating ours");
+		if (!s_bChecked)
+		{
+			s_bChecked = TRUE;
+			// show an error dialog (do this only once)
+			if (cairo_dock_is_loading ())
+				g_timeout_add_seconds (2, _show_error_dialog_delayed, NULL);
+			else _show_error_dialog ();
+		}
+	}
+	else
+	{
+		myData.tray = na_tray_new_for_screen (gtk_widget_get_screen (GTK_WIDGET (myContainer->pWidget)),
+			myConfig.iIconPacking == 0 ? GTK_ORIENTATION_HORIZONTAL : GTK_ORIENTATION_VERTICAL);
+		na_tray_set_icon_size (myData.tray, 24);
+		na_tray_set_padding (myData.tray, 3);
+	}
 	
 	if (myDock)
 	{
@@ -60,20 +115,11 @@ void cd_systray_build_systray (void)
 	}
 	else
 	{
-		gldi_desklet_add_interactive_widget (myDesklet, GTK_WIDGET (myData.tray));
-		CD_APPLET_SET_DESKLET_RENDERER (NULL);
+		cd_systray_build_desklet ();
 	}
 	gtk_widget_show (GTK_WIDGET (myData.tray));
 }
 
-
-void cd_systray_check_running (void)
-{
-	if (na_tray_manager_check_running (gtk_widget_get_screen (GTK_WIDGET (myContainer->pWidget))) && ! cairo_dock_is_loading ())
-	{
-		gldi_dialog_show_temporary_with_icon (D_("Another systray is already running (probably on your panel)\nSince there can only be one systray at once, you should remove it to avoid any conflict."), myIcon, myContainer, 8000, NULL);
-	}
-}
 
 
 void systray_on_keybinding_pull (const char *keystring, gpointer user_data)

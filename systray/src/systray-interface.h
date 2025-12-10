@@ -30,7 +30,7 @@ void cd_systray_build_dialog (void);
 
 void cd_systray_build_systray (void);
 
-void cd_systray_check_running (void);
+void cd_systray_build_desklet (void);
 
 void systray_on_keybinding_pull (const char *keystring, gpointer user_data);
 
