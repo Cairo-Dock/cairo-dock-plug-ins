@@ -68,6 +68,7 @@ typedef struct {
 typedef struct {
 	// props
 	gchar *cService;
+	gchar *cObjectPath;
 	gchar *cId;
 	CDCategoryEnum iCategory;
 	CDStatusEnum iStatus;
@@ -89,28 +90,31 @@ typedef struct {
 	gint iPosition;  // donnee par l'indicator service
 	guint iSidPopupTooltip;
 	// data
-	DBusGProxy *pProxyProps;
-	DBusGProxy *pProxy;
-	gboolean bInvalid;  // item deja en cours de destruction
+	GDBusProxy *pProxyProps;
+	GDBusProxy *pProxy;
 	DbusmenuGtkMenu *pMenu;
-	cairo_surface_t *pSurface;
+	cairo_surface_t *pSurface; // surface used when drawing in compact mode
+	cairo_surface_t *pFallbackIcon; // IconPixmap property, used when no IconName is available
+	cairo_surface_t *pFallbackIconAttention; // AttentionIconPixmap property, used when no IconName is available
 	guint iSidUpdateIcon;
+	GCancellable *pCancel;
 	// menu redraw
 	int iMenuWidth;
+	Icon *pIcon; // last assigned icon to this item
 } CDStatusNotifierItem;
 
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
 	gchar *cHostName;
-	DBusGProxy *pProxyWatcher;
-	DBusGProxy *pProxyWatcherProps;
-	DBusGProxy *pProxyIndicatorService;
-	DBusGProxy *pProxyIndicatorApplicationService;
+	GDBusProxy *pProxyWatcher; // DBus proxy for the KDE SNI watcher interface
+	GCancellable *pCancellableWatcher; // cancellable for the above proxy
+	GDBusProxy *pProxyIndicatorApplicationService;
+	GCancellable *pCancellableIAS;
 	gboolean bIASWatched;
 	gboolean bBrokenWatcher;
-	gboolean bNoIAS;
-	gboolean bNoWatcher;
+	gboolean bHaveIAS;
+	gboolean bHaveWatcher;
 	GList *pItems;  // list of all items.
 	GHashTable *pThemePaths;
 	gint iNbLines, iNbColumns, iItemSize;  // agencement compact.
@@ -118,6 +122,7 @@ struct _AppletData {
 	gdouble fDesktopNameAlpha;  // in compact desklet mode, alpha for the currently hovered item title.
 	gint iDefaultWidth;  // in compact mode, initial icon size.
 	gint iDefaultHeight;
+	guint uBusNameID; // ID returned by g_bus_own_name () -- only used by the KDE SNI implementation
 	} ;
 
 

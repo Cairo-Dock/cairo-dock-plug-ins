@@ -118,18 +118,21 @@ CD_APPLET_STOP_BEGIN
 	// keyboard events
 	gldi_object_unref (GLDI_OBJECT(myData.pKeyBinding));
 
-	#ifndef INDICATOR_MESSAGES_WITH_IND3
-	cd_indicator_destroy (myData.pIndicator);
-	#else
-	// It seems we doesn't need to free the indicator (object and event)
-	cd_messaging_destroy (myData.pIndicator, myData.pEntry, myApplet); // remove the connection to signals (menu)
-	cd_indicator3_unload (myData.pIndicator, // remove the connection to signals (indicator)
-		cd_messaging_entry_added,
-		cd_messaging_entry_removed,
-		cd_messaging_accessible_desc_update,
-		NULL,
-		myApplet);
-	#endif
+	if (myData.pIndicator)
+	{
+		#ifndef INDICATOR_MESSAGES_WITH_IND3
+		cd_indicator_destroy (myData.pIndicator);
+		#else
+		// It seems we doesn't need to free the indicator (object and event)
+		cd_messaging_destroy (myData.pIndicator, myData.pEntry, myApplet); // remove the connection to signals (menu)
+		cd_indicator3_unload (myData.pIndicator, // remove the connection to signals (indicator)
+			cd_messaging_entry_added,
+			cd_messaging_entry_removed,
+			cd_messaging_accessible_desc_update,
+			NULL,
+			myApplet);
+		#endif
+	}
 CD_APPLET_STOP_END
 
 

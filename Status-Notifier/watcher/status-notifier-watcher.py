@@ -19,143 +19,152 @@
 # The code follows the same logic as the KDE watcher, to ensure a complete compatibility.
 
 import sys
+import gi
 
-from gi.repository import GLib as glib
-from gi.repository import GObject as gobject
-g_bMainLoopInGObject = False
+from gi.repository import GLib, Gio, GObject
 
-import dbus, dbus.service
-from dbus.mainloop.glib import DBusGMainLoop
-
-class SNWatcher(dbus.service.Object):
+class SNWatcher():
 	bus_name_str = 'org.kde.StatusNotifierWatcher'
 	bus_obj_str  = '/StatusNotifierWatcher'
 	bus_iface_str = 'org.kde.StatusNotifierWatcher'
-	items_list = []  # array of service+path
-	hosts_list = []  # array of services
+	items = {}  # dict of DBus service name to set of items
+	hosts = set()  # status notifier hosts registered
+	
+	interface_xml = """
+		<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN" "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+		<node>
+		  <interface name="org.kde.StatusNotifierWatcher">
+
+			<!-- methods -->
+			<method name="RegisterStatusNotifierItem">
+			   <arg name="service" type="s" direction="in"/>
+			</method>
+
+			<method name="RegisterStatusNotifierHost">
+			   <arg name="service" type="s" direction="in"/>
+			</method>
+
+
+			<!-- properties -->
+
+			<property name="RegisteredStatusNotifierItems" type="as" access="read">
+			   <annotation name="com.trolltech.QtDBus.QtTypeName.Out0" value="QStringList"/>
+			</property>
+
+			<property name="IsStatusNotifierHostRegistered" type="b" access="read"/>
+
+			<property name="ProtocolVersion" type="i" access="read"/>
+
+
+			<!-- signals -->
+
+			<signal name="StatusNotifierItemRegistered">
+				<arg type="s"/>
+			</signal>
+
+			<signal name="StatusNotifierItemUnregistered">
+				<arg type="s"/>
+			</signal>
+
+			<signal name="StatusNotifierHostRegistered">
+			</signal>
+
+			<signal name="StatusNotifierHostUnregistered">
+			</signal>
+		  </interface>
+		</node>
+	"""
 	
 	def _emit_host_registered (self):
 		self.StatusNotifierHostRegistered()
 		return False
 	
 	def __init__(self):
-		DBusGMainLoop(set_as_default=True)
-		try: 
-			self.bus = dbus.SessionBus()
-			bus_name = dbus.service.BusName (self.bus_name_str, self.bus)
-			print("[Cairo-Dock] Status-Notifier: registered a watcher:",bus_name)
-			dbus.service.Object.__init__(self, bus_name, self.bus_obj_str)
-		except dbus.DBusException:
-			print('Could not open dbus. Uncaught exception.')
-			return
+		self.interface = Gio.DBusNodeInfo.new_for_xml(self.interface_xml).interfaces[0]
+		self.bus_id = Gio.bus_own_name(Gio.BusType.SESSION, self.bus_name_str, Gio.BusNameOwnerFlags.NONE,
+			self.on_bus_acquired,
+			None, # name acquired handler -- not used, we should export our interface already when the bus has been acquired
+			self.on_name_lost)
 		
-		bus_object = self.bus.get_object(dbus.BUS_DAEMON_NAME, dbus.BUS_DAEMON_PATH)
-		self.main = dbus.Interface(bus_object, dbus.BUS_DAEMON_IFACE)
-		self.main.connect_to_signal("NameOwnerChanged", self.on_name_owner_changed)
-		
-		if g_bMainLoopInGObject:
-			self.loop = gobject.MainLoop()
-		else:
-			self.loop = glib.MainLoop()
+		self.loop = GLib.MainLoop()
 		self.loop.run()
 	
-	def on_name_owner_changed(self, service, prev_owner, new_owner):
+	def on_bus_acquired(self, conn, name):
+		conn.signal_subscribe('org.freedesktop.DBus', 'org.freedesktop.DBus', 'NameOwnerChanged', '/org/freedesktop/DBus',
+			None, Gio.DBusSignalFlags.NONE, self.on_name_owner_changed)
+		conn.register_object(self.bus_obj_str, self.interface, self.handle_method_call, self.get_prop, None)
+	
+	def on_name_lost(self, conn, name):
+		self.loop.quit() # not much to do, better to leave restarting to the Status-Notifier plugin
+	
+	def on_name_owner_changed(self, conn, sender, obj, iface, signal_name, pars):
+		service, prev_owner, new_owner = pars.unpack()
 		# print("name_owner_changed: %s; %s; %s" % (service, prev_owner, new_owner))
-		if (new_owner == '' and not service.startswith(':')):  # a service has disappear from the bus, check if it was an item or a host.
-			# search amongst the items.
-			match = service+'/'
-			# print("  search for ",match)
-			to_be_removed=[]
-			for it in self.items_list:
-				# print("  check for ",it)
-				if (it.startswith(match)):  # it[0:len(match)] == match
-					# print("    match!")
-					to_be_removed.append(it)
-			for it in to_be_removed:
-				self.items_list.remove (it)
-				self.StatusNotifierItemUnregistered(it)
-
-			# search amongst the hosts.
-			to_be_removed=[]
-			for it in self.hosts_list:
-				if (it == service):
-					to_be_removed.append(it)
-			for it in to_be_removed:
-				self.hosts_list.remove (it)
-				self.StatusNotifierHostUnregistered()
-		elif (service == 'com.Skype.API'):  # this stupid proprietary software only creates its item when the host appears !
-			glib.timeout_add_seconds(2, self._emit_host_registered)
+		if (new_owner == ''):  # a service has disappear from the bus, check if it was an item or a host.
+			if service in self.hosts:
+				self.hosts.remove(service)
+				if len(self.hosts) == 0:
+					conn.emit_signal(None, self.bus_obj_str, self.bus_iface_str, 'StatusNotifierHostUnregistered', None)
+			
+			if service in self.items:
+				for itemId in self.items[service]:
+					conn.emit_signal(None, self.bus_obj_str, self.bus_iface_str, 'StatusNotifierItemUnregistered',
+						GLib.Variant.new_tuple(GLib.Variant.new_string(itemId)))
+				del self.items[service]
 		
 	### methods ###
-	
-	@dbus.service.method(dbus_interface = bus_iface_str, in_signature = 's', out_signature = None)
-	def RegisterStatusNotifierHost(self, service):
-		if (self.hosts_list.count (service) == 0):  # if not already listed
-			self.hosts_list.append (service)
-			self.StatusNotifierHostRegistered()
-		# print('hosts:',self.hosts_list)
-		# sys.stdout.flush()
-	
-	@dbus.service.method(dbus_interface = bus_iface_str, in_signature = 's', out_signature = None, sender_keyword='sender')
-	def RegisterStatusNotifierItem(self, serviceOrPath, sender=None):
-		# build the item id: service + path
-		if (serviceOrPath[0] == '/'):
-			service = sender
-			path = serviceOrPath
-		else:
-			service = serviceOrPath
-			path = "/StatusNotifierItem"
+	def handle_method_call(self,
+							conn: Gio.DBusConnection,
+							sender: str,
+							object_path: str,
+							interface_name: str,
+							method_name: str,
+							par: GLib.Variant,
+							invocation: Gio.DBusMethodInvocation):
 		
-		itemId = service + path
-		# keep track of this new item, and emit the 'new' signal.
-		if (self.items_list.count (itemId) == 0):  # if not already listed
-			self.items_list.append (itemId)
-			self.StatusNotifierItemRegistered (itemId)
+		if method_name == 'RegisterStatusNotifierHost':
+			host_addr = par.unpack()[0] # should be string
+			self.hosts.add(host_addr)
+			conn.emit_signal(None, self.bus_obj_str, self.bus_iface_str, 'StatusNotifierHostRegistered', None)
+			invocation.return_value(None)
+		elif method_name == 'RegisterStatusNotifierItem':
+			serviceOrPath = par.unpack()[0]
+			service = None
+			path = None
+			# build the item id: service + path
+			if (serviceOrPath[0] == '/'):
+				service = sender
+				path = serviceOrPath
+			else:
+				service = serviceOrPath
+				path = '/StatusNotifierItem'
+			itemId = service + path
+			
+			if sender not in self.items:
+				self.items[sender] = set()
+			if not itemId in self.items[sender]:
+				self.items[sender].add(itemId)
+				conn.emit_signal(None, self.bus_obj_str, self.bus_iface_str, 'StatusNotifierItemRegistered',
+					GLib.Variant.new_tuple(GLib.Variant.new_string(itemId)))
+			invocation.return_value(None)
+		# note: unknown methods are already handled by Gio, no need to worry about them
 	
-	### Properties ###
-	
-	@dbus.service.method(dbus_interface = dbus.PROPERTIES_IFACE, in_signature = 'ss', out_signature = 'v')
-	def Get(self, interface, property):
-		if interface == 'org.kde.StatusNotifierWatcher':
-			if property == 'RegisteredStatusNotifierItems':
-				# print("items: ",self.items_list)
-				if (len (self.items_list) != 0):
-					return self.items_list
-				else:  # too bad! dbus-python can't encode the GValue if 'items_list' is None or [].
-					return ['']  # so we return a empty string; hopefuly the host will skip this invalid value.
-			elif property == 'IsStatusNotifierHostRegistered':
-				return (len (self.hosts_list) != 0)
-			elif property == 'HasStatusNotifierHostRegistered':  # deprecated
-				return (len (self.hosts_list) != 0)
-			elif property == 'ProtocolVersion':
-				return 0
-	
-	### Signals ###
-	
-	@dbus.service.signal(dbus_interface=bus_name_str, signature='s')
-	def StatusNotifierItemRegistered(self, service):
-		pass
-		# print("%s registered" % (service))
-		# sys.stdout.flush()
-	
-	@dbus.service.signal(dbus_interface=bus_name_str, signature='s')
-	def StatusNotifierItemUnregistered(self, service):
-		pass
-		# print("%s unregistered" % (service))
-		# sys.stdout.flush()
-	
-	@dbus.service.signal(dbus_interface=bus_name_str, signature=None)
-	def StatusNotifierHostRegistered(self):
-		pass
-		# print("a host has been registered")
-		# sys.stdout.flush()
-	
-	@dbus.service.signal(dbus_interface=bus_name_str, signature=None)
-	def StatusNotifierHostUnregistered(self):
-		pass
-		# print("a host has been unregistered")
-		# sys.stdout.flush()
-	
+	def get_prop(self,
+				conn: Gio.DBusConnection,
+				sender: str,
+				obj: str,
+				iface: str,
+				name: str):
+		if iface == 'org.kde.StatusNotifierWatcher':
+			if name == 'RegisteredStatusNotifierItems':
+				res = list()
+				for x in self.items.values():
+					res += x
+				return GLib.Variant.new_strv(res)
+			elif name == 'IsStatusNotifierHostRegistered':
+				return GLib.Variant.new_boolean(len (self.hosts) != 0)
+			elif name == 'ProtocolVersion':
+				return GLib.Variant.new_int32(0)
 	
 if __name__ == '__main__':
 	SNWatcher()
