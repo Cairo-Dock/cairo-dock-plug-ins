@@ -48,8 +48,6 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	// CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 	
-	cd_systray_check_running ();  // petit message si l'utilisateur active le systray alors qu'un autre systray existe.
-	
 	cd_systray_build_systray (); // on construit le systray immediatement pour les applis qui ne peuvent exister sans.
 	
 	if (myDesklet)  // le desklet ne tourne pas.
@@ -83,44 +81,36 @@ CD_APPLET_RELOAD_BEGIN
 
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		if (! myData.tray)  // ne devrait pas arriver.
-		{
-			cd_systray_build_systray ();
-		}
-		else
-		{
-			// changement de l'orientation.
+		// changement de l'orientation.
+		if (myData.tray)
 			cd_systray_set_orientation (myConfig.iIconPacking == 0 ? GTK_ORIENTATION_HORIZONTAL : GTK_ORIENTATION_VERTICAL);
-			
-			// changement de container.
-			if (CD_APPLET_MY_CONTAINER_TYPE_CHANGED)
+		
+		// changement de container.
+		if (CD_APPLET_MY_CONTAINER_TYPE_CHANGED)
+		{
+			if (myDesklet != NULL)  // il faut passer du dialogue au desklet.
 			{
-				if (myDesklet != NULL)  // il faut passer du dialogue au desklet.
-				{
-					gldi_dialog_steal_interactive_widget (myData.dialog);
-					gldi_object_unref (GLDI_OBJECT(myData.dialog));
-					myData.dialog = NULL;
-					gldi_desklet_add_interactive_widget (myDesklet, GTK_WIDGET (myData.tray));
-					CD_APPLET_SET_DESKLET_RENDERER (NULL);  // pour empecher le clignotement du au double-buffer.
-					CD_APPLET_SET_STATIC_DESKLET;
-				}
-				else  // il faut passer du desklet au dialogue
-				{
-					CairoDesklet *pDesklet = CAIRO_DESKLET (CD_APPLET_MY_OLD_CONTAINER);
-					gldi_desklet_steal_interactive_widget (pDesklet);
-					cd_systray_build_dialog ();
-				}
-				g_object_unref (G_OBJECT (myData.tray));  // le 'steal' a ajoute une reference, et l'insertion dans le container aussi.
+				if (myData.tray) gldi_dialog_steal_interactive_widget (myData.dialog);
+				gldi_object_unref (GLDI_OBJECT(myData.dialog));
+				myData.dialog = NULL;
+				cd_systray_build_desklet ();
 			}
-			
-			if (myDock)
-				CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
+			else  // il faut passer du desklet au dialogue
+			{
+				CairoDesklet *pDesklet = CAIRO_DESKLET (CD_APPLET_MY_OLD_CONTAINER);
+				if (myData.tray) gldi_desklet_steal_interactive_widget (pDesklet);
+				cd_systray_build_dialog ();
+			}
+			if (myData.tray) g_object_unref (G_OBJECT (myData.tray));  // le 'steal' a ajoute une reference, et l'insertion dans le container aussi.
 		}
+		
+		if (myDock)
+			CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 		
 		gldi_shortkey_rebind (myData.cKeyBinding, myConfig.shortcut, NULL);
 	}
 	
-	if (myDesklet)  // on cloue le desklet.
+/*	if (myDesklet)  // on cloue le desklet. -- does not work properly with how desklets are positioned
 	{
 		GdkGravity iGravity;
 		if (myContainer->iWindowPositionX < g_desktopGeometry.Xscreen.width/2)  // we don't know if the container is set on a given screen or not, so take the X screen.
@@ -128,6 +118,6 @@ CD_APPLET_RELOAD_BEGIN
 		else
 			iGravity = GDK_GRAVITY_NORTH_EAST;
 		gtk_window_set_gravity (GTK_WINDOW (myContainer->pWidget), iGravity);
-	}
+	} */
 
 CD_APPLET_RELOAD_END
