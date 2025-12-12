@@ -130,6 +130,21 @@ CD_APPLET_STOP_BEGIN
 CD_APPLET_STOP_END
 
 
+static void _unlink_menus (void)
+{
+	// note: we need to manually unlink our items from the corresponding icons, otherwise their menu
+	// would be destroyed when the icon is removed and we would be left with a dangling pointer
+	CDStatusNotifierItem *pItem;
+	GList *it;
+	for (it = myData.pItems; it != NULL; it = it->next)
+	{
+		pItem = it->data;
+		pItem->pIcon = NULL;
+		// will be added to the correct icon when it is shown the next time
+		if (pItem->pMenu) gldi_menu_reinit (GTK_WIDGET (pItem->pMenu), NULL);
+	}
+}
+
 //\___________ The reload occurs in 2 occasions : when the user changes the applet's config, and when the user reload the cairo-dock's config or modify the desklet's size. The macro CD_APPLET_MY_CONFIG_CHANGED can tell you this. myConfig has already been reloaded at this point if you're in the first case, myData is untouched. You also have the macro CD_APPLET_MY_CONTAINER_TYPE_CHANGED that can tell you if you switched from dock/desklet to desklet/dock mode.
 CD_APPLET_RELOAD_BEGIN
 	myData.iDefaultWidth = myIcon->image.iWidth;
@@ -180,6 +195,8 @@ CD_APPLET_RELOAD_BEGIN
 			{
 				CD_APPLET_SET_DESKLET_RENDERER ("Simple");  // set a desklet renderer.
 			}
+			
+			_unlink_menus ();
 			CD_APPLET_DELETE_MY_ICONS_LIST;
 			if (myDock)  // on ne veut pas d'un sous-dock vide.
 			{
@@ -192,6 +209,7 @@ CD_APPLET_RELOAD_BEGIN
 		else
 		{
 			// reload all icons
+			_unlink_menus ();
 			CD_APPLET_DELETE_MY_ICONS_LIST;
 			myData.iItemSize = 0;  // unvalidate the grid.
 			
