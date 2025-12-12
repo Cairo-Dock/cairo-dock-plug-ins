@@ -485,12 +485,23 @@ static gboolean _parse_pixmap_property (GVariant *v, cairo_surface_t **pResult)
 			cairo_surface_t *s = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, w, h);
 			unsigned char *dest = cairo_image_surface_get_data (s);
 			gsize stride = cairo_image_surface_get_stride (s);
-			const uint32_t *src = (const uint32_t*)data;
 			gsize i, j;
-			for (i = 0; i < (gsize)h; i++)
+			for (i = 0; i < (gsize)h; i++) for (j = 0; j < (gsize)w; j++)
 			{
-				uint32_t *dest_row = (uint32_t*)(dest + i * stride);
-				for (j = 0; j < (gsize)w; j++) dest_row[j] = g_ntohl (src[i * w + j]); // note: src is in "network byte order"
+				// cairo expects premultiplied alpha, we need to take care of this + convert endianness
+				uint8_t px1[4]; // note: src is in "network byte order", which means big endian, i.e. alpha is in px1[0]
+				memcpy (px1, data + 4 * i * w + 4 * j, 4);
+				
+				uint32_t px2;
+				unsigned int k;
+				unsigned int alpha = px1[0];
+				
+				for (k = 1; k < 4; k++)
+					px1[k] = (uint8_t)( (px1[k] * alpha) / 255U ); // note: implicit promotion of px1[k] to 32-bit
+				
+				memcpy (&px2, px1, 4); // "copy" to 32-bit integer to avoid aliasing problems
+				px2 = g_ntohl (px2); // convert endianness (no-op on big endian)
+				memcpy (dest + i * stride + 4 * j, &px2, 4); // copy to destination
 			}
 			cairo_surface_mark_dirty (s);
 			
