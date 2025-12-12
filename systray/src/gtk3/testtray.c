@@ -119,6 +119,16 @@ add_tray_cb (GtkWidget *button, TrayData *data)
   create_tray_on_screen (data->screen, TRUE);
 }
 
+static gboolean _redraw_and_recount (gpointer ptr)
+{
+  TrayData *data = (TrayData*)ptr;
+
+  gtk_widget_queue_draw (GTK_WIDGET (data->tray));
+  update_child_count (data);
+
+  return FALSE;
+}
+
 static TrayData *
 create_tray_on_screen (GdkScreen *screen,
 		       gboolean force)
@@ -191,6 +201,8 @@ create_tray_on_screen (GdkScreen *screen,
   gtk_widget_show_all (window);
 
   update_child_count (data);
+
+  g_timeout_add (300, _redraw_and_recount, data);
 
   return data;
 }
