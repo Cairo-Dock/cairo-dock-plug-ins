@@ -13,7 +13,7 @@ include (GNUInstallDirs)
 
 ########### project ###############
 
-set (VERSION "3.6.92")
+set (VERSION "3.6.93")
 # can be different from VERSION, e.g. if a new version of plugins does not depend on things added to core
 set (CORE_REQUIRED_VERSION "3.6.92")
 

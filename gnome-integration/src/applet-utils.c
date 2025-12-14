@@ -31,6 +31,7 @@
  */
 
 static GDBusProxy *s_pSessionProxy = NULL;
+static GCancellable *s_pCancel = NULL; // cancellable for creating the above proxy
 static gboolean s_bIsCinnamon = FALSE;
 static GSettings *s_pSessionSettings = NULL;
 
@@ -151,6 +152,11 @@ static void _proxy_connected (G_GNUC_UNUSED GObject *obj, GAsyncResult *res, G_G
 	GError *erreur = NULL;
 	
 	s_pSessionProxy = g_dbus_proxy_new_finish (res, &erreur);
+	if (s_pCancel)
+	{
+		g_object_unref (G_OBJECT (s_pCancel));
+		s_pCancel = NULL;
+	}
 	
 	if (erreur)
 	{
@@ -192,27 +198,36 @@ static void _proxy_connected (G_GNUC_UNUSED GObject *obj, GAsyncResult *res, G_G
 static void _on_name_appeared (GDBusConnection *connection, G_GNUC_UNUSED const gchar *name,
 	G_GNUC_UNUSED const gchar *name_owner, G_GNUC_UNUSED gpointer data)
 {
-	g_return_if_fail (s_pSessionProxy == NULL);
+	g_return_if_fail (s_pSessionProxy == NULL && s_pCancel == NULL);
 	
+	s_pCancel = g_cancellable_new ();
 	g_dbus_proxy_new (connection,
 		G_DBUS_PROXY_FLAGS_DO_NOT_AUTO_START | G_DBUS_PROXY_FLAGS_DO_NOT_CONNECT_SIGNALS,
 		NULL, // GDBusInterfaceInfo -- we could supply this, but work anyway
 		"org.gnome.SessionManager",
 		"/org/gnome/SessionManager",
 		"org.gnome.SessionManager",
-		NULL, // GCancellable
+		s_pCancel, // GCancellable
 		_proxy_connected,
 		NULL);
 }
 
 static void _on_name_vanished (G_GNUC_UNUSED GDBusConnection *connection, G_GNUC_UNUSED const gchar *name, G_GNUC_UNUSED gpointer user_data)
 {
-	cd_warning ("gnome-session proxy disappeared");
-	g_object_unref (s_pSessionProxy);
-	s_pSessionProxy = NULL;
-	g_object_unref (s_pSessionSettings);
-	s_pSessionSettings = NULL;
+	if (s_pCancel || s_pSessionProxy) cd_warning ("gnome-session proxy disappeared");
+	else cd_message ("Not a GNOME or Cinnamon session, not registering"); // this can happen in other DEs if XDG_CURRENT_DESKTOP includes GNOME
 	
+	if (s_pCancel) g_cancellable_cancel (s_pCancel); // will be freed in _proxy_connected ()
+	if (s_pSessionProxy)
+	{
+		g_object_unref (s_pSessionProxy);
+		s_pSessionProxy = NULL;
+	}
+	if (s_pSessionSettings)
+	{
+		g_object_unref (s_pSessionSettings);
+		s_pSessionSettings = NULL;
+	}
 	//!! TODO: we cannot "unregister" our backend
 }
 
