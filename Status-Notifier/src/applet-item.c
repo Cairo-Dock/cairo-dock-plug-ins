@@ -142,6 +142,7 @@ gboolean cd_status_notifier_get_string_from_variant (GVariant *v2, gchar **str)
 		const char *tmp = g_variant_get_string (v2, &len);
 		if (tmp && len) *str = g_strndup (tmp, len);
 		else *str = NULL; // we do not want empty strings
+		ret = TRUE;
 	}
 	else cd_warning ("Unexpected result type: %s", g_variant_get_type_string (v2));
 	g_variant_unref (v2);
@@ -826,7 +827,7 @@ static void _item_proxy_created (G_GNUC_UNUSED GObject *pObj, GAsyncResult *pRes
 	GVariant *v;
 	v = g_dbus_proxy_get_cached_property (pProxyItem, "Id");
 	if (v) cd_status_notifier_get_string_from_variant (v, &pItem->cId);
-	cd_debug ("===   ID '%s'", pItem->cId);
+	cd_debug ("===   ID '%s' (%p)", pItem->cId, pItem);
 	
 	v = g_dbus_proxy_get_cached_property (pProxyItem, "Category");  // (ApplicationStatus, Communications, SystemServices, Hardware) -> fOrder
 	if (v)
@@ -918,6 +919,7 @@ static void _item_proxy_created (G_GNUC_UNUSED GObject *pObj, GAsyncResult *pRes
 	
 	v = g_dbus_proxy_get_cached_property (pProxyItem, "IconAccessibleDesc"); // Updated with ApplicationIconChanged
 	if (v) cd_status_notifier_get_string_from_variant (v, &pItem->cAccessibleDesc);
+	cd_debug ("===   AccessibleDesc '%s'", pItem->cAccessibleDesc);
 	
 	// properties supported by KDE.
 	v = g_dbus_proxy_get_cached_property (pProxyItem, "Title");
