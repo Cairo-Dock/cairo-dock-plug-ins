@@ -85,7 +85,7 @@ static void _cd_show_widget_layer (void)
 
 static void _cd_expose (void)
 {
-	gldi_desktop_present_desktops ();
+	gldi_desktop_present_desktops (myDock ? &myDock->container : NULL);
 }
 static gboolean _expose_delayed (G_GNUC_UNUSED gpointer data)
 {

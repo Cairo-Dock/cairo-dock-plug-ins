@@ -39,7 +39,7 @@ static void _cd_expose_windows (void)
 }
 static void _cd_expose_desktops (void)
 {
-	gldi_desktop_present_desktops ();
+	gldi_desktop_present_desktops (myDock ? &myDock->container : NULL);
 }
 static gboolean _cd_expose_windows_idle (G_GNUC_UNUSED gpointer dummy)
 {
