@@ -56,8 +56,8 @@ static void _cd_show_desktop (void)
 static void _cd_expose_windows (void)
 {
 	// note: myDock will be NULL if we are not in a dock (i.e. we are in a desklet)
-	// but it is not needed in that case (the parameter is only used on Wayfire to
-	// lose keyboard focus from layer-shell surfaces)
+	// but it is not needed in that case (the parameter is only used on Wayfire
+	// and niri to lose keyboard focus from layer-shell surfaces)
 	gldi_desktop_present_windows (myDock ? &myDock->container : NULL);
 }
 static unsigned int _expose_windows_timeout = 0;
@@ -69,7 +69,8 @@ static gboolean _cd_expose_windows_idle (G_GNUC_UNUSED gpointer dummy)
 }
 static void _cd_expose_desktops (void)
 {
-	gldi_desktop_present_desktops ();
+	// Need to give the container on niri to lose keyboard focus
+	gldi_desktop_present_desktops (myDock ? &myDock->container : NULL);
 }
 static void _cd_show_widget_layer (void)
 {
