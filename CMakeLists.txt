@@ -13,9 +13,9 @@ include (GNUInstallDirs)
 
 ########### project ###############
 
-set (VERSION "3.6.93")
+set (VERSION "3.6.95")
 # can be different from VERSION, e.g. if a new version of plugins does not depend on things added to core
-set (CORE_REQUIRED_VERSION "3.6.92")
+set (CORE_REQUIRED_VERSION "3.6.95")
 
 add_definitions (-std=gnu99 -Wall -Werror-implicit-function-declaration) # -Wextra -Wwrite-strings -Wuninitialized -Werror-implicit-function-declaration -Wstrict-prototypes -Wreturn-type -Wparentheses -Warray-bounds)
 if (NOT DEFINED CMAKE_BUILD_TYPE)
