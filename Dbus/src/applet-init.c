@@ -37,7 +37,8 @@ CD_APPLET_DEFINE2_BEGIN ("Dbus",
 	"The communication between both sides is based on Dbus"),
 	"Necropotame & Fabounet")
 	pInterface->initModule = CD_APPLET_INIT_FUNC;  // no stop method -> the plug-in will be auto-loaded.
-	pInterface->read_conf_file = CD_APPLET_READ_CONFIG_FUNC;  /// inutile je pense...
+	pInterface->read_conf_file = CD_APPLET_READ_CONFIG_FUNC;
+	pInterface->reset_config =  CD_APPLET_RESET_CONFIG_FUNC; // needed to correctly reload the config if Reboot is called
 	pInterface->reset_data = cd_dbus_save_my_data;
 	CD_APPLET_REDEFINE_TITLE ("DBus");
 	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_IS_PLUGIN);
