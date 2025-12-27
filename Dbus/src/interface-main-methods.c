@@ -42,20 +42,31 @@ dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.
 
 static gboolean dbus_deskletVisible = FALSE;
 
-gboolean cd_dbus_main_reboot(dbusMainObject *pDbusCallback, GError **error)
+
+  ///////////////////
+ ///  UTILITIES  ///
+///////////////////
+
+static void _main_reboot (GVariant *pPar, GDBusMethodInvocation *pInv)
 {
 	if (! myConfig.bEnableReboot)
-		return FALSE;
-	cairo_dock_load_current_theme ();
-	return TRUE;
+		g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR, G_DBUS_ERROR_ACCESS_DENIED, "Reboot disabled in config");
+	else
+	{
+		cairo_dock_load_current_theme ();
+		g_dbus_method_invocation_return_value (pInv, NULL);
+	}
 }
 
-gboolean cd_dbus_main_quit (dbusMainObject *pDbusCallback, GError **error)
+static void _main_quit (GVariant *pPar, GDBusMethodInvocation *pInv)
 {
 	if (! myConfig.bEnableQuit)
-		return FALSE;
-	gtk_main_quit ();
-	return TRUE;
+		g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR, G_DBUS_ERROR_ACCESS_DENIED, "Quit disabled in config");
+	else
+	{
+		gtk_main_quit ();
+		g_dbus_method_invocation_return_value (pInv, NULL);
+	}
 }
 
 static void _show_hide_one_dock (const gchar *cDockName, CairoDock *pDock, gpointer data)
@@ -76,16 +87,26 @@ static void _show_hide_one_dock (const gchar *cDockName, CairoDock *pDock, gpoin
 			gldi_dock_leave_synthetic (pDock);
 	}
 }
-gboolean cd_dbus_main_show_dock (dbusMainObject *pDbusCallback, gint iVisibiliy, GError **error)
+static void _main_show_dock (GVariant *pPar, GDBusMethodInvocation *pInv)
 {
 	if (! myConfig.bEnableShowDock)
-		return FALSE;
+	{
+		g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR, G_DBUS_ERROR_ACCESS_DENIED, "ShowDock disabled in config");
+		return;
+	}
 	
 	if (g_pMainDock == NULL)
-		return FALSE;
+	{
+		g_dbus_method_invocation_return_value (pInv, NULL); // not an error
+		return;
+	}
+	
+	// pPar should be a tuple: (i)
+	gint32 iVisibility;
+	g_variant_get_child (pPar, 0, "i", &iVisibility);
 	
 	gboolean bShow;
-	switch (iVisibiliy)
+	switch (iVisibility)
 	{
 		case 0:  // hide
 			bShow = FALSE;
@@ -107,23 +128,29 @@ gboolean cd_dbus_main_show_dock (dbusMainObject *pDbusCallback, gint iVisibiliy,
 	if (! bShow)
 		cairo_dock_quick_hide_all_docks ();
 	
-	return TRUE;
+	g_dbus_method_invocation_return_value (pInv, NULL);
 }
 
-gboolean cd_dbus_main_show_desklet (dbusMainObject *pDbusCallback, gboolean *widgetLayer, GError **error)
+static void _main_show_desklet (GVariant *pPar, GDBusMethodInvocation *pInv)
 {
 	if (! myConfig.bEnableDesklets)
-		return FALSE;
+	{
+		g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR, G_DBUS_ERROR_ACCESS_DENIED, "ShowDesklet disabled in config");
+		return;
+	}
 	if (dbus_deskletVisible)
 	{
 		gldi_desklets_set_visibility_to_default ();
 	}
 	else
 	{
-		gldi_desklets_set_visible (!!widgetLayer);
+		gboolean bWidgetLayer = FALSE;
+		g_variant_get_child (pPar, 0, "b", &bWidgetLayer);
+		gldi_desklets_set_visible (bWidgetLayer);
 	}
 	dbus_deskletVisible = !dbus_deskletVisible;
-	return TRUE;
+	
+	g_dbus_method_invocation_return_value (pInv, NULL);
 }
 
 
@@ -131,14 +158,28 @@ gboolean cd_dbus_main_show_desklet (dbusMainObject *pDbusCallback, gboolean *wid
  /// SET ON ICON ///
 ///////////////////
 
-gboolean cd_dbus_main_set_quick_info (dbusMainObject *pDbusCallback, const gchar *cQuickInfo, gchar *cIconQuery, GError **error)
+static void _main_set_quick_info (GVariant *pPar, GDBusMethodInvocation *pInv)
 {
 	if (! myConfig.bEnableSetQuickInfo)
-		return FALSE;
+	{
+		g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR, G_DBUS_ERROR_ACCESS_DENIED, "SetQuickInfo disabled in config");
+		return;
+	}
+	
+	// pPar should be (ss)
+	const gchar *cQuickInfo;
+	gchar *cIconQuery;
+	// note: only cIconQuery is copied and need to be freed later
+	g_variant_get (pPar, "(&ss)", &cQuickInfo, &cIconQuery);
 	
 	GList *pList = cd_dbus_find_matching_icons (cIconQuery);
+	g_free (cIconQuery);
 	if (pList == NULL)
-		return TRUE;
+	{
+		// not an error?
+		g_dbus_method_invocation_return_value (pInv, NULL);
+		return;
+	}
 	
 	nullify_argument (cQuickInfo);
 	
@@ -157,17 +198,29 @@ gboolean cd_dbus_main_set_quick_info (dbusMainObject *pDbusCallback, const gchar
 	}
 	
 	g_list_free (pList);
-	return TRUE;
+	g_dbus_method_invocation_return_value (pInv, NULL);
 }
 
-gboolean cd_dbus_main_set_label (dbusMainObject *pDbusCallback, const gchar *cLabel, gchar *cIconQuery, GError **error)
+static void _main_set_label (GVariant *pPar, GDBusMethodInvocation *pInv)
 {
 	if (! myConfig.bEnableSetLabel)
-		return FALSE;
+	{
+		g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR, G_DBUS_ERROR_ACCESS_DENIED, "SetLabel disabled in config");
+		return;
+	}
+	
+	const gchar *cLabel;
+	gchar *cIconQuery;
+	// note: only cIconQuery is copied and need to be freed later
+	g_variant_get (pPar, "(&ss)", &cLabel, &cIconQuery);
 	
 	GList *pList = cd_dbus_find_matching_icons (cIconQuery);
+	g_free (cIconQuery);
 	if (pList == NULL)
-		return TRUE;
+	{
+		g_dbus_method_invocation_return_value (pInv, NULL);
+		return;
+	}
 	
 	nullify_argument (cLabel);
 	
@@ -185,17 +238,27 @@ gboolean cd_dbus_main_set_label (dbusMainObject *pDbusCallback, const gchar *cLa
 	}
 	
 	g_list_free (pList);
-	return TRUE;
+	g_dbus_method_invocation_return_value (pInv, NULL);
 }
 
-gboolean cd_dbus_main_set_icon (dbusMainObject *pDbusCallback, const gchar *cImage, gchar *cIconQuery, GError **error)
+static void _main_set_icon (GVariant *pPar, GDBusMethodInvocation *pInv)
 {
 	if (! myConfig.bEnableSetIcon)
-		return FALSE;
+	{
+		g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR, G_DBUS_ERROR_ACCESS_DENIED, "SetIcon disabled in config");
+		return;
+	}
 	
+	const gchar *cImage;
+	gchar *cIconQuery;
+	g_variant_get (pPar, "(&ss)", &cImage, &cIconQuery);
 	GList *pList = cd_dbus_find_matching_icons (cIconQuery);
+	g_free (cIconQuery);
 	if (pList == NULL)
-		return TRUE;
+	{
+		g_dbus_method_invocation_return_value (pInv, NULL);
+		return;
+	}
 	
 	Icon *pIcon;
 	GldiContainer *pContainer;
@@ -217,17 +280,28 @@ gboolean cd_dbus_main_set_icon (dbusMainObject *pDbusCallback, const gchar *cIma
 	}
 	
 	g_list_free (pList);
-	return TRUE;
+	g_dbus_method_invocation_return_value (pInv, NULL);
 }
 
-gboolean cd_dbus_main_set_emblem (dbusMainObject *pDbusCallback, const gchar *cImage, gint iPosition, gchar *cIconQuery, GError **error)
+static void _main_set_emblem (GVariant *pPar, GDBusMethodInvocation *pInv)
 {
 	if (! myConfig.bEnableSetIcon)
-		return FALSE;
+	{
+		g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR, G_DBUS_ERROR_ACCESS_DENIED, "SetEmblem disabled in config");
+		return;
+	}
 	
+	const gchar *cImage;
+	gint32 iPosition;
+	gchar *cIconQuery;
+	g_variant_get (pPar, "(&sis)", &cImage, &iPosition, &cIconQuery);
 	GList *pList = cd_dbus_find_matching_icons (cIconQuery);
+	g_free (cIconQuery);
 	if (pList == NULL)
-		return TRUE;
+	{
+		g_dbus_method_invocation_return_value (pInv, NULL);
+		return;
+	}
 	
 	Icon *pIcon;
 	GldiContainer *pContainer;
@@ -258,17 +332,34 @@ gboolean cd_dbus_main_set_emblem (dbusMainObject *pDbusCallback, const gchar *cI
 	}
 	
 	g_list_free (pList);
-	return TRUE;
+	g_dbus_method_invocation_return_value (pInv, NULL);
 }
 
-gboolean cd_dbus_main_animate (dbusMainObject *pDbusCallback, const gchar *cAnimation, gint iNbRounds, gchar *cIconQuery, GError **error)
+static void _main_animate (GVariant *pPar, GDBusMethodInvocation *pInv)
 {
-	if (! myConfig.bEnableAnimateIcon || cAnimation == NULL)
-		return FALSE;
+	if (! myConfig.bEnableAnimateIcon)
+	{
+		g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR, G_DBUS_ERROR_ACCESS_DENIED, "Animate disabled in config");
+		return;
+	}
 	
+	const gchar *cAnimation;
+	gint iNbRounds;
+	gchar *cIconQuery;
+	g_variant_get (pPar, "(&sis)", &cAnimation, &iNbRounds, &cIconQuery);
+	if (! cAnimation) //!! TODO: is this possible? (we may just get an empty string)
+	{
+		g_free (cIconQuery);
+		g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR, G_DBUS_ERROR_INVALID_ARGS, "Animation parameter missing");
+		return;
+	}
 	GList *pList = cd_dbus_find_matching_icons (cIconQuery);
+	g_free (cIconQuery);
 	if (pList == NULL)
-		return TRUE;
+	{
+		g_dbus_method_invocation_return_value (pInv, NULL);
+		return;
+	}
 	
 	Icon *pIcon;
 	GldiContainer *pContainer;
@@ -283,17 +374,28 @@ gboolean cd_dbus_main_animate (dbusMainObject *pDbusCallback, const gchar *cAnim
 	}
 	
 	g_list_free (pList);
-	return TRUE;
+	g_dbus_method_invocation_return_value (pInv, NULL);
 }
 
-gboolean cd_dbus_main_demands_attention (dbusMainObject *pDbusCallback, gboolean bStart, const gchar *cAnimation, gchar *cIconQuery, GError **error)
+static void _main_demands_attention (GVariant *pPar, GDBusMethodInvocation *pInv)
 {
 	if (! myConfig.bEnableAnimateIcon)
-		return FALSE;
+	{
+		g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR, G_DBUS_ERROR_ACCESS_DENIED, "DemandsAttention disabled in config");
+		return;
+	}
 	
+	gboolean bStart;
+	const gchar *cAnimation;
+	gchar *cIconQuery;
+	g_variant_get (pPar, "(b&ss)", &bStart, &cAnimation, &cIconQuery);
 	GList *pList = cd_dbus_find_matching_icons (cIconQuery);
+	g_free (cIconQuery);
 	if (pList == NULL)
-		return TRUE;
+	{
+		g_dbus_method_invocation_return_value (pInv, NULL);
+		return;
+	}
 	
 	Icon *pIcon;
 	GldiContainer *pContainer;
@@ -316,16 +418,29 @@ gboolean cd_dbus_main_demands_attention (dbusMainObject *pDbusCallback, gboolean
 	}
 	
 	g_list_free (pList);
-	return TRUE;
+	g_dbus_method_invocation_return_value (pInv, NULL);
 }
 
-gboolean cd_dbus_main_show_dialog (dbusMainObject *pDbusCallback, const gchar *message, gint iDuration, gchar *cIconQuery, GError **error)
+static void _main_show_dialog (GVariant *pPar, GDBusMethodInvocation *pInv)
 {
 	if (! myConfig.bEnablePopUp)
-		return FALSE;
-	g_return_val_if_fail (message != NULL, FALSE);
+	{
+		g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR, G_DBUS_ERROR_ACCESS_DENIED, "ShowDialog disabled in config");
+		return;
+	}
 	
+	const gchar *cMessage;
+	gint iDuration;
+	gchar *cIconQuery;
+	g_variant_get (pPar, "(&sis)", &cMessage, &iDuration, &cIconQuery);
+	if (!cMessage) //!! TODO: is this possible? (we may just get an empty string)
+	{
+		g_free (cIconQuery);
+		g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR, G_DBUS_ERROR_INVALID_ARGS, "Message argument missing");
+		return;
+	}
 	GList *pList = cd_dbus_find_matching_icons (cIconQuery);
+	g_free (cIconQuery);
 	
 	Icon *pIcon;
 	GldiContainer *pContainer;
@@ -336,15 +451,15 @@ gboolean cd_dbus_main_show_dialog (dbusMainObject *pDbusCallback, const gchar *m
 		pContainer = cairo_dock_get_icon_container (pIcon);
 		if (! CAIRO_DOCK_IS_DOCK (pContainer))
 			continue;
-		gldi_dialog_show_temporary_with_icon (message, pIcon, pContainer, 1000 * iDuration, "same icon");
+		gldi_dialog_show_temporary_with_icon (cMessage, pIcon, pContainer, 1000 * iDuration, "same icon");
 		break;  // only show 1 dialog.
 	}
 	
 	if (ic == NULL)  // empty list, or didn't find a valid icon.
-		gldi_dialog_show_general_message (message, 1000 * iDuration);
+		gldi_dialog_show_general_message (cMessage, 1000 * iDuration);
 	
 	g_list_free (pList);
-	return TRUE;
+	g_dbus_method_invocation_return_value (pInv, NULL);
 }
 
 
@@ -432,11 +547,22 @@ static void root_changed (DbusmenuGtkClient * client, DbusmenuMenuitem * newroot
 	g_signal_connect(G_OBJECT(newroot), DBUSMENU_MENUITEM_SIGNAL_CHILD_REMOVED, G_CALLBACK(root_child_delete), pData);
 }
 
-gboolean cd_dbus_main_set_menu (dbusMainObject *pDbusCallback, const gchar *cBusName, const gchar *cMenuPath, gchar *cIconQuery, GError **error)
+static void _main_set_menu (GVariant *pPar, GDBusMethodInvocation *pInv)
 {
+	//!! TODO: add a setting to disable this function as well !!
+	
+	const gchar *cBusName;
+	const gchar *cMenuPath;
+	gchar *cIconQuery;
+	g_variant_get (pPar, "(&s&ss)", &cBusName, &cMenuPath, &cIconQuery);
+	
 	GList *pList = cd_dbus_find_matching_icons (cIconQuery);
+	g_free (cIconQuery);
 	if (pList == NULL)
-		return TRUE;
+	{
+		g_dbus_method_invocation_return_value (pInv, NULL);
+		return;
+	}
 	
 	cd_debug ("%s (%s , %s)", __func__, cBusName, cMenuPath);
 	static gboolean s_bInit = FALSE;
@@ -499,22 +625,31 @@ gboolean cd_dbus_main_set_menu (dbusMainObject *pDbusCallback, const gchar *cBus
 	}
 	
 	g_list_free (pList);
-	return TRUE;
+	g_dbus_method_invocation_return_value (pInv, NULL);
 }
 #else
-gboolean cd_dbus_main_set_menu (dbusMainObject *pDbusCallback, const gchar *cBusName, const gchar *cMenuPath, gchar *cIconQuery, GError **error)
+static void _main_set_menu (GVariant *pPar, GDBusMethodInvocation *pInv)
 {
-	g_set_error (error, 1, 1, "Cairo-Dock has not been compiled with DbusMenu support, so The 'SetMenu' method won't work.");
-	return FALSE;
+	g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR, G_DBUS_ERROR_NOT_SUPPORTED,
+		"Cairo-Dock has not been compiled with DbusMenu support, so The 'SetMenu' method won't work.");
 }
 #endif
 
 
-gboolean cd_dbus_main_set_progress (dbusMainObject *dbusMainObject, double fPercent, gchar *cIconQuery, GError **error)
+static void _main_set_progress (GVariant *pPar, GDBusMethodInvocation *pInv)
 {
+	//!! TODO: add a setting to disable this function as well !!
+	
+	double fPercent;
+	gchar *cIconQuery;
+	g_variant_get (pPar, "(ds)", &fPercent, &cIconQuery);
 	GList *pList = cd_dbus_find_matching_icons (cIconQuery);
+	g_free (cIconQuery);
 	if (pList == NULL)
-		return TRUE;
+	{
+		g_dbus_method_invocation_return_value (pInv, NULL);
+		return;
+	}
 	
 	Icon *pIcon;
 	GList *ic;
@@ -536,21 +671,27 @@ gboolean cd_dbus_main_set_progress (dbusMainObject *dbusMainObject, double fPerc
 		cairo_dock_render_new_data_on_icon (pIcon, pIcon->pContainer, NULL, &fPercent);
 	}
 	g_list_free (pList);
-	return TRUE;
+	g_dbus_method_invocation_return_value (pInv, NULL);
 }
+
 
 
   ///////////
  /// ADD ///
 ///////////
 
-gboolean cd_dbus_main_add (dbusMainObject *pDbusCallback, GHashTable *pProperties, gchar **cConfigFile, GError **error)
+static void _main_add (GVariant *pPar, GDBusMethodInvocation *pInv)
 {
-	GValue *v;
+	//!! TODO: add a setting to disable this function as well !!
+	
+	GVariant *pProperties;
+	g_variant_get (pPar, "(@a{sv})", &pProperties);
+	
+	gchar *cConfigFile = NULL; // result
+	
+	
 	const gchar *cType = "";
-	v = g_hash_table_lookup (pProperties, "type");
-	if (v && G_VALUE_HOLDS_STRING (v))
-		cType = g_value_get_string (v);
+	g_variant_lookup (pProperties, "type", "&s", &cType);
 	CDMainType iType = cd_dbus_get_main_type (cType, -1);
 	
 	switch (iType)
@@ -559,10 +700,7 @@ gboolean cd_dbus_main_add (dbusMainObject *pDbusCallback, GHashTable *pPropertie
 		{
 			// get the dock
 			const gchar *cDockName = NULL;
-			v = g_hash_table_lookup (pProperties, "container");
-			if (v && G_VALUE_HOLDS_STRING (v))
-				cDockName = g_value_get_string (v);
-			if (cDockName == NULL)
+			if (! g_variant_lookup (pProperties, "container", "&s", &cDockName) || ! cDockName)
 				cDockName = CAIRO_DOCK_MAIN_DOCK_NAME;
 			CairoDock *pParentDock = gldi_dock_get (cDockName);
 			if (pParentDock == NULL)
@@ -573,25 +711,24 @@ gboolean cd_dbus_main_add (dbusMainObject *pDbusCallback, GHashTable *pPropertie
 			
 			// get the order
 			double fOrder = 0;
-			v = g_hash_table_lookup (pProperties, "order");
-			if (v)
+			GVariant *v = g_variant_lookup_value (pProperties, "order", NULL);
+			gboolean bValid = FALSE;
+			if (v && g_variant_is_of_type (v, G_VARIANT_TYPE ("i")))
+				{ fOrder = g_variant_get_int32 (v); bValid = TRUE; }
+			else if (v && g_variant_is_of_type (v, G_VARIANT_TYPE ("d")))
+				{ fOrder = g_variant_get_double (v); bValid = TRUE; }
+			if (bValid)
 			{
-				if (G_VALUE_HOLDS_DOUBLE (v))
-					fOrder = g_value_get_double (v);
-				else if (G_VALUE_HOLDS_INT (v))
-					fOrder = g_value_get_int (v);
-				if (fOrder < 0)
-					fOrder = CAIRO_DOCK_LAST_ORDER;
+				if (fOrder < 0) fOrder = CAIRO_DOCK_LAST_ORDER;
 			}
 			else  // no order defined, look for a position
 			{
-				v = g_hash_table_lookup (pProperties, "position");  // this option is especially useful for tests, when you need to know exactly where an icon will be
-				if (v && G_VALUE_HOLDS_INT (v))
+				gint32 iPosition;
+				if (g_variant_lookup (pProperties, "position", "i", &iPosition))
 				{
-					int iPosition = g_value_get_int (v);
 					if (iPosition >= 0)
 					{
-						int i;
+						gint32 i;
 						GList *ic;
 						Icon *icon;
 						for (ic = pParentDock->icons, i = 0; ic != NULL && i < iPosition; ic = ic->next)
@@ -622,9 +759,7 @@ gboolean cd_dbus_main_add (dbusMainObject *pDbusCallback, GHashTable *pPropertie
 			if (strcmp (cType, CD_TYPE_LAUNCHER) == 0)
 			{
 				const gchar *cDesktopFile = NULL;
-				v = g_hash_table_lookup (pProperties, "config-file");
-				if (v && G_VALUE_HOLDS_STRING (v))
-					cDesktopFile = g_value_get_string (v);
+				g_variant_lookup (pProperties, "config-file", "&s", &cDesktopFile);
 				
 				if (cDesktopFile != NULL)
 				{
@@ -636,21 +771,13 @@ gboolean cd_dbus_main_add (dbusMainObject *pDbusCallback, GHashTable *pPropertie
 					
 					// get additional properties
 					const gchar *cName = NULL;
-					v = g_hash_table_lookup (pProperties, "name");
-					if (v && G_VALUE_HOLDS_STRING (v))
-						cName = g_value_get_string (v);
+					g_variant_lookup (pProperties, "name", "&s", &cName);
 					const gchar *cIcon = NULL;
-					v = g_hash_table_lookup (pProperties, "icon");
-					if (v && G_VALUE_HOLDS_STRING (v))
-						cIcon = g_value_get_string (v);
+					g_variant_lookup (pProperties, "icon", "&s", &cIcon);
 					const gchar *cCommand = NULL;
-					v = g_hash_table_lookup (pProperties, "command");
-					if (v && G_VALUE_HOLDS_STRING (v))
-						cCommand = g_value_get_string (v);
+					g_variant_lookup (pProperties, "command", "&s", &cCommand);
 					const gchar *cClass = NULL;
-					v = g_hash_table_lookup (pProperties, "class");
-					if (v && G_VALUE_HOLDS_STRING (v))
-						cClass = g_value_get_string (v);
+					g_variant_lookup (pProperties, "class", "&s", &cClass);
 					
 					// open the conf-file and set the fields.
 					gchar *cConfFilePath = (*pNewIcon->cDesktopFileName == '/' ? g_strdup (pNewIcon->cDesktopFileName) : g_strdup_printf ("%s/%s", g_cCurrentLaunchersPath, pNewIcon->cDesktopFileName));
@@ -685,13 +812,9 @@ gboolean cd_dbus_main_add (dbusMainObject *pDbusCallback, GHashTable *pPropertie
 				
 				// get additional properties
 				const gchar *cName = NULL;
-				v = g_hash_table_lookup (pProperties, "name");
-				if (v && G_VALUE_HOLDS_STRING (v))
-					cName = g_value_get_string (v);
+				g_variant_lookup (pProperties, "name", "&s", &cName);
 				const gchar *cIcon = NULL;
-				v = g_hash_table_lookup (pProperties, "icon");
-				if (v && G_VALUE_HOLDS_STRING (v))
-					cIcon = g_value_get_string (v);
+				g_variant_lookup (pProperties, "icon", "&s", &cIcon);
 				
 				// open the conf-file and set the fields.
 				gchar *cConfFilePath = (*pNewIcon->cDesktopFileName == '/' ? g_strdup (pNewIcon->cDesktopFileName) : g_strdup_printf ("%s/%s", g_cCurrentLaunchersPath, pNewIcon->cDesktopFileName));
@@ -711,11 +834,13 @@ gboolean cd_dbus_main_add (dbusMainObject *pDbusCallback, GHashTable *pPropertie
 			}
 			else
 			{
-				g_set_error (error, 1, 1, "can't add an icon of type '%s'", cType);
-				return FALSE;
+				g_dbus_method_invocation_return_error (pInv, G_DBUS_ERROR, G_DBUS_ERROR_NOT_SUPPORTED,
+					"can't add an icon of type '%s'", cType);
+				g_variant_unref (pProperties);
+				return;
 			}
 			if (pNewIcon != NULL && pNewIcon->cDesktopFileName != NULL)
-				*cConfigFile = (*pNewIcon->cDesktopFileName == '/' ? g_strdup (pNewIcon->cDesktopFileName) : g_strdup_printf ("%s/%s", g_cCurrentLaunchersPath, pNewIcon->cDesktopFileName));
+				cConfigFile = (*pNewIcon->cDesktopFileName == '/' ? g_strdup (pNewIcon->cDesktopFileName) : g_strdup_printf ("%s/%s", g_cCurrentLaunchersPath, pNewIcon->cDesktopFileName));
 		}
 		break;
 		
@@ -726,29 +851,38 @@ gboolean cd_dbus_main_add (dbusMainObject *pDbusCallback, GHashTable *pPropertie
 				gchar *cDockName = gldi_dock_add_conf_file ();
 				CairoDock *pDock = gldi_dock_new (cDockName);
 				if (!pDock)
-					return FALSE;
-				*cConfigFile = g_strdup_printf ("%s/%s.conf", g_cCurrentThemePath, cDockName);
+				{
+					g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR, G_DBUS_ERROR_FAILED,
+						"Cannot create new dock");
+					g_variant_unref (pProperties);
+					return;
+				}
+				cConfigFile = g_strdup_printf ("%s/%s.conf", g_cCurrentThemePath, cDockName);
 				g_free (cDockName);
 			}
 			else
 			{
-				g_set_error (error, 1, 1, "can't add a desklet, add a module-instance instead");
-				return FALSE;
+				g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR, G_DBUS_ERROR_NOT_SUPPORTED,
+					"can't add a desklet, add a module-instance instead");
+				g_variant_unref (pProperties);
+				return;
 			}
 		}
 		break;
 		case CD_MAIN_TYPE_MODULE:
 		{
 			const gchar *cModuleName = NULL;
-			v = g_hash_table_lookup (pProperties, "module");
-			if (v && G_VALUE_HOLDS_STRING (v))
-				cModuleName = g_value_get_string (v);
+			g_variant_lookup (pProperties, "module", "&s", &cModuleName);
 			
-			GldiModule *pModule = gldi_module_get (cModuleName);
+			GldiModule *pModule = cModuleName ? gldi_module_get (cModuleName) : NULL;
 			if (pModule == NULL)
 			{
-				g_set_error (error, 1, 1, "no such module (%s)", cModuleName);
-				return FALSE;
+				if (cModuleName) g_dbus_method_invocation_return_error (pInv, G_DBUS_ERROR,
+					G_DBUS_ERROR_FILE_NOT_FOUND, "no such module (%s)", cModuleName);
+				else g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR, G_DBUS_ERROR_INVALID_ARGS,
+					"can't add a desklet, missing module name");
+				g_variant_unref (pProperties);
+				return;
 			}
 			if (pModule->pInstancesList == NULL)
 				gldi_module_activate (pModule);
@@ -757,15 +891,17 @@ gboolean cd_dbus_main_add (dbusMainObject *pDbusCallback, GHashTable *pPropertie
 		case CD_MAIN_TYPE_MODULE_INSTANCE:
 		{
 			const gchar *cModuleName = NULL;
-			v = g_hash_table_lookup (pProperties, "module");
-			if (v && G_VALUE_HOLDS_STRING (v))
-				cModuleName = g_value_get_string (v);
+			g_variant_lookup (pProperties, "module", "&s", &cModuleName);
 			
-			GldiModule *pModule = gldi_module_get (cModuleName);
+			GldiModule *pModule = cModuleName ? gldi_module_get (cModuleName) : NULL;
 			if (pModule == NULL)
 			{
-				g_set_error (error, 1, 1, "no such module (%s)", cModuleName);
-				return FALSE;
+				if (cModuleName) g_dbus_method_invocation_return_error (pInv, G_DBUS_ERROR,
+					G_DBUS_ERROR_FILE_NOT_FOUND, "no such module (%s)", cModuleName);
+				else g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR, G_DBUS_ERROR_INVALID_ARGS,
+					"can't add a desklet, missing module name");
+				g_variant_unref (pProperties);
+				return;
 			}
 			
 			if (pModule->pInstancesList == NULL)
@@ -779,17 +915,29 @@ gboolean cd_dbus_main_add (dbusMainObject *pDbusCallback, GHashTable *pPropertie
 			if (pModule->pInstancesList)
 			{
 				GldiModuleInstance *pModuleInstance = pModule->pInstancesList->data;  // prepend
-				*cConfigFile = g_strdup (pModuleInstance->cConfFilePath);
+				cConfigFile = g_strdup (pModuleInstance->cConfFilePath);
 			}
 		}
 		break;
 		default:
-			g_set_error (error, 1, 1, "Unknown type (%s)", cType);
-			return FALSE;
+			g_dbus_method_invocation_return_error (pInv, G_DBUS_ERROR,
+				G_DBUS_ERROR_INVALID_ARGS, "Unknown type (%s)", cType);
+			g_variant_unref (pProperties);
+			return;
 		break;
 	}
 	
-	return TRUE;
+	g_variant_unref (pProperties);
+	
+	GVariant *res = NULL;
+	if (cConfigFile)
+	{
+		GVariant *tmp = g_variant_new_take_string (cConfigFile);
+		res = g_variant_new_tuple (&tmp, 1);
+	}
+	else res = g_variant_new ("(s)", "");
+	
+	g_dbus_method_invocation_return_value (pInv, res);
 }
 
 
@@ -797,9 +945,14 @@ gboolean cd_dbus_main_add (dbusMainObject *pDbusCallback, GHashTable *pPropertie
  /// RELOAD ///
 //////////////
 
-gboolean cd_dbus_main_reload (dbusMainObject *pDbusCallback, gchar *cQuery, GError **error)
+static void _main_reload (GVariant *pPar, GDBusMethodInvocation *pInv)
 {
-	GList *pObjects = cd_dbus_find_matching_objects (cQuery);
+	//!! TODO: access control with settings !!
+	
+	gchar *cQuery = NULL;
+	g_variant_get_child (pPar, 0, "s", &cQuery);
+	
+	GList *pObjects = cQuery ? cd_dbus_find_matching_objects (cQuery) : NULL;
 	GList *o;
 	GldiObject *obj;
 	for (o = pObjects; o != NULL; o = o->next)
@@ -808,7 +961,7 @@ gboolean cd_dbus_main_reload (dbusMainObject *pDbusCallback, gchar *cQuery, GErr
 		gldi_object_reload (obj, TRUE);
 	}
 	g_list_free (pObjects);
-	return TRUE;
+	g_dbus_method_invocation_return_value (pInv, NULL);
 }
 
 
@@ -821,9 +974,13 @@ static gboolean _on_object_deleted (GList *o, G_GNUC_UNUSED GldiObject *obj)
 	o->data = NULL;
 	return GLDI_NOTIFICATION_LET_PASS;
 }
-gboolean cd_dbus_main_remove (dbusMainObject *pDbusCallback, gchar *cQuery, GError **error)
+static void _main_remove (GVariant *pPar, GDBusMethodInvocation *pInv)
 {
-	GList *pObjects = cd_dbus_find_matching_objects (cQuery);
+	//!! TODO: access control with settings !!
+	
+	gchar *cQuery = NULL;
+	g_variant_get_child (pPar, 0, "s", &cQuery);
+	GList *pObjects = cQuery ? cd_dbus_find_matching_objects (cQuery): NULL;
 	
 	// first connect to the "delete" signal, to not destroy 2 times an icon (case of an icon in a sub-dock that is destroyed just before).
 	GldiObject *obj;
@@ -845,7 +1002,7 @@ gboolean cd_dbus_main_remove (dbusMainObject *pDbusCallback, gchar *cQuery, GErr
 		gldi_object_delete (obj);
 	}
 	g_list_free (pObjects);
-	return TRUE;
+	g_dbus_method_invocation_return_value (pInv, NULL);
 }
 
 
@@ -853,17 +1010,17 @@ gboolean cd_dbus_main_remove (dbusMainObject *pDbusCallback, gchar *cQuery, GErr
  /// PROPERTIES ///
 //////////////////
 
-static void _add_icon_properties (Icon *pIcon, GPtrArray *pTab)
+static inline GVariant *_variant_string_nonnull (const gchar *str)
+{
+	return g_variant_new_string (str ? str : "");
+}
+
+static void _add_icon_properties (Icon *pIcon, GVariantBuilder *pTab)
 {
 	GldiContainer *pContainer = cairo_dock_get_icon_container (pIcon);
 	
-	GHashTable *h = g_hash_table_new_full (g_str_hash,
-		g_str_equal,
-		NULL,
-		g_free);
-	g_ptr_array_add (pTab, h);
+	g_variant_builder_open (pTab, G_VARIANT_TYPE ("a{sv}"));
 	
-	GValue *v;
 	int iPosition;
 	const gchar *cType;
 	const gchar *cContainerName;
@@ -883,59 +1040,25 @@ static void _add_icon_properties (Icon *pIcon, GPtrArray *pTab)
 		cType = CD_TYPE_CLASS_ICON;
 	else
 		cType = CD_TYPE_ICON_OTHER;
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_STRING);
-	g_value_set_string (v, cType);
-	g_hash_table_insert (h, "type", v);
+	g_variant_builder_add (pTab, "{sv}", "type", g_variant_new_string (cType));
 	
 	cDesktopFile = "";
 	if (pIcon->cDesktopFileName != NULL)
 		cDesktopFile = pIcon->cDesktopFileName;
 	else if (CAIRO_DOCK_IS_APPLET (pIcon))
 		cDesktopFile = pIcon->pModuleInstance->cConfFilePath;
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_STRING);
-	g_value_set_string (v, cDesktopFile);
-	g_hash_table_insert (h, "config-file", v);
+	g_variant_builder_add (pTab, "{sv}", "config-file", g_variant_new_string (cDesktopFile));
 	
 	if (CAIRO_DOCK_IS_APPLET (pIcon))
-	{
-		v = g_new0 (GValue, 1);
-		g_value_init (v, G_TYPE_STRING);
-		g_value_set_string (v, pIcon->pModuleInstance->pModule->pVisitCard->cModuleName);
-		g_hash_table_insert (h, "module", v);
-	}
+		g_variant_builder_add (pTab, "{sv}", "module", _variant_string_nonnull (
+			pIcon->pModuleInstance->pModule->pVisitCard->cModuleName));
 	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_STRING);
-	g_value_set_string (v, pIcon->cName);  /// g_value_set_static_string ?...
-	g_hash_table_insert (h, "name", v);
-	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_STRING);
-	g_value_set_string (v, pIcon->cCommand);
-	g_hash_table_insert (h, "command", v);
-	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_STRING);
-	g_value_set_string (v, pIcon->cClass);
-	g_hash_table_insert (h, "class", v);
-	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_STRING);
-	g_value_set_string (v, pIcon->cFileName);
-	g_hash_table_insert (h, "icon", v);
-	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_STRING);
-	g_value_set_string (v, pIcon->cQuickInfo);
-	g_hash_table_insert (h, "quick-info", v);
-	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_UINT);
-	int id = gldi_window_get_id (pIcon->pAppli);
-	g_value_set_uint (v, GPOINTER_TO_INT(id));
-	g_hash_table_insert (h, "Xid", v);
+	g_variant_builder_add (pTab, "{sv}", "name", _variant_string_nonnull (pIcon->cName));
+	g_variant_builder_add (pTab, "{sv}", "command", _variant_string_nonnull (pIcon->cCommand));
+	g_variant_builder_add (pTab, "{sv}", "class", _variant_string_nonnull (pIcon->cClass));
+	g_variant_builder_add (pTab, "{sv}", "icon", _variant_string_nonnull (pIcon->cFileName));
+	g_variant_builder_add (pTab, "{sv}", "quick-info", _variant_string_nonnull (pIcon->cQuickInfo));
+	g_variant_builder_add (pTab, "{sv}", "Xid", g_variant_new_int32 (gldi_window_get_id (pIcon->pAppli)));
 	
 	iPosition = -1;
 	cContainerName = "";
@@ -955,275 +1078,148 @@ static void _add_icon_properties (Icon *pIcon, GPtrArray *pTab)
 		if (CAIRO_DOCK_IS_APPLET (pDesklet->pIcon))
 			cContainerName = pDesklet->pIcon->pModuleInstance->pModule->pVisitCard->cModuleName;
 	}
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_INT);
-	g_value_set_int (v, iPosition);
-	g_hash_table_insert (h, "position", v);
 	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_STRING);
-	g_value_set_string (v, cContainerName);
-	g_hash_table_insert (h, "container", v);
+	g_variant_builder_add (pTab, "{sv}", "position", g_variant_new_int32 (iPosition));
+	g_variant_builder_add (pTab, "{sv}", "container", _variant_string_nonnull (cContainerName));
+	g_variant_builder_add (pTab, "{sv}", "order", g_variant_new_double (pIcon->fOrder));
 	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_DOUBLE);
-	g_value_set_double (v, pIcon->fOrder);
-	g_hash_table_insert (h, "order", v);
+	g_variant_builder_close (pTab);
 }
 
-static void _add_module_properties (GldiModule *pModule, GPtrArray *pTab)
+#if GLIB_CHECK_VERSION (2, 84, 0)
+#define _init_variant_builder g_variant_builder_init_static
+#else
+#define _init_variant_builder g_variant_builder_init
+#endif
+
+static void _add_module_properties (GldiModule *pModule, GVariantBuilder *pTab)
 {
-	GHashTable *h = g_hash_table_new_full (g_str_hash,
-		g_str_equal,
-		NULL,
-		g_free);
-	g_ptr_array_add (pTab, h);
+	g_variant_builder_open (pTab, G_VARIANT_TYPE ("a{sv}"));
 	
-	GValue *v;
-	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_STRING);
-	g_value_set_string (v, "Module");
-	g_hash_table_insert (h, "type", v);
-	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_STRING);
-	g_value_set_string (v, pModule->pVisitCard->cModuleName);
-	g_hash_table_insert (h, "name", v);
-	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_UINT);
-	g_value_set_uint (v, pModule->pVisitCard->iContainerType);
-	g_hash_table_insert (h, "module-type", v);
-	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_UINT);
-	g_value_set_uint (v, pModule->pVisitCard->iCategory);
-	g_hash_table_insert (h, "category", v);
-	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_STRING);
-	g_value_set_string (v, pModule->pVisitCard->cTitle);
-	g_hash_table_insert (h, "title", v);
-	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_STRING);
-	g_value_set_string (v, pModule->pVisitCard->cIconFilePath);
-	g_hash_table_insert (h, "icon", v);
-	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_STRING);
-	g_value_set_string (v, pModule->pVisitCard->cPreviewFilePath);
-	g_hash_table_insert (h, "preview", v);
-	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_STRING);
-	g_value_set_string (v, dgettext (pModule->pVisitCard->cGettextDomain, pModule->pVisitCard->cDescription));
-	g_hash_table_insert (h, "description", v);
-	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_STRING);
-	g_value_set_string (v, pModule->pVisitCard->cAuthor);
-	g_hash_table_insert (h, "author", v);
-	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_BOOLEAN);
-	g_value_set_boolean (v, pModule->pVisitCard->bMultiInstance);
-	g_hash_table_insert (h, "is-multi-instance", v);
+	g_variant_builder_add (pTab, "{sv}", "type", g_variant_new_string (CD_TYPE_MODULE));
+	g_variant_builder_add (pTab, "{sv}", "name", _variant_string_nonnull (pModule->pVisitCard->cModuleName));
+	g_variant_builder_add (pTab, "{sv}", "module-type", g_variant_new_int32 (pModule->pVisitCard->iContainerType));
+	g_variant_builder_add (pTab, "{sv}", "category", g_variant_new_int32 (pModule->pVisitCard->iCategory));
+	g_variant_builder_add (pTab, "{sv}", "title", _variant_string_nonnull (pModule->pVisitCard->cTitle));
+	g_variant_builder_add (pTab, "{sv}", "icon", _variant_string_nonnull (pModule->pVisitCard->cIconFilePath));
+	g_variant_builder_add (pTab, "{sv}", "preview", _variant_string_nonnull (pModule->pVisitCard->cPreviewFilePath));
+	g_variant_builder_add (pTab, "{sv}", "description", _variant_string_nonnull (pModule->pVisitCard->cDescription));
+	g_variant_builder_add (pTab, "{sv}", "author", _variant_string_nonnull (pModule->pVisitCard->cAuthor));
+	g_variant_builder_add (pTab, "{sv}", "is-multi-instance", g_variant_new_boolean (pModule->pVisitCard->bMultiInstance));
 	
 	cd_debug ("list instances ...");
-	gchar **pInstances = g_new0 (gchar*, g_list_length (pModule->pInstancesList)+1);
+	GVariantBuilder instances;
+	_init_variant_builder (&instances, G_VARIANT_TYPE ("as"));
+	
 	GldiModuleInstance *pInstance;
-	int i = 0;
 	GList *mi;
 	for (mi = pModule->pInstancesList; mi != NULL; mi = mi->next)
 	{
 		pInstance = mi->data;
-		pInstances[i++] = g_strdup (pInstance->cConfFilePath);
+		if (pInstance->cConfFilePath)
+			g_variant_builder_add (&instances, "s", pInstance->cConfFilePath);
 	}
-	cd_debug ("write instances ...");
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_STRV);
-	g_value_set_boxed (v, pInstances);
-	g_hash_table_insert (h, "instances", v);
-	cd_debug ("done.");
+	g_variant_builder_add (pTab, "{sv}", "instances", g_variant_new ("as", &instances));
+	g_variant_builder_close (pTab);
 }
 
-static void _add_manager_properties (GldiManager *pManager, GPtrArray *pTab)
+static void _add_manager_properties (GldiManager *pManager, GVariantBuilder *pTab)
 {
-	GHashTable *h = g_hash_table_new_full (g_str_hash,
-		g_str_equal,
-		NULL,
-		g_free);
-	g_ptr_array_add (pTab, h);
+	g_variant_builder_open (pTab, G_VARIANT_TYPE ("a{sv}"));
 	
-	GValue *v;
+	g_variant_builder_add (pTab, "{sv}", "type", g_variant_new_string (CD_TYPE_MANAGER));
+	g_variant_builder_add (pTab, "{sv}", "name", _variant_string_nonnull (pManager->cModuleName));
+	g_variant_builder_add (pTab, "{sv}", "config-file", _variant_string_nonnull (g_cConfFile));
 	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_STRING);
-	g_value_set_string (v, CD_TYPE_MANAGER);
-	g_hash_table_insert (h, "type", v);
-	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_STRING);
-	g_value_set_string (v, pManager->cModuleName);
-	g_hash_table_insert (h, "name", v);
-	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_STRING);
-	g_value_set_string (v, g_cConfFile);
-	g_hash_table_insert (h, "config-file", v);
+	g_variant_builder_close (pTab);
 }
 
-static void _set_container_properties (GldiContainer *pContainer, GHashTable *h)
+static void _set_container_properties (GldiContainer *pContainer, GVariantBuilder *pTab)
 {
-	GValue *v;
-	int x, y, w, ht;
+	int x, y, w, h;
 	if (pContainer->bIsHorizontal)
 	{
 		x = pContainer->iWindowPositionX;
 		y = pContainer->iWindowPositionY;
 		w = pContainer->iWidth;
-		ht = pContainer->iHeight;
+		h = pContainer->iHeight;
 	}
 	else
 	{
 		y = pContainer->iWindowPositionX;
 		x = pContainer->iWindowPositionY;
-		ht = pContainer->iWidth;
+		h = pContainer->iWidth;
 		w = pContainer->iHeight;
 	}
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_INT);
-	g_value_set_int (v, x);
-	g_hash_table_insert (h, "x", v);
 	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_INT);
-	g_value_set_int (v, y);
-	g_hash_table_insert (h, "y", v);
-	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_INT);
-	g_value_set_int (v, w);
-	g_hash_table_insert (h, "width", v);
-	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_INT);
-	g_value_set_int (v, ht);
-	g_hash_table_insert (h, "height", v);
+	g_variant_builder_add (pTab, "{sv}", "x", g_variant_new_int32 (x));
+	g_variant_builder_add (pTab, "{sv}", "y", g_variant_new_int32 (y));
+	g_variant_builder_add (pTab, "{sv}", "width", g_variant_new_int32 (w));
+	g_variant_builder_add (pTab, "{sv}", "height", g_variant_new_int32 (h));
 	
 	CairoDockPositionType iScreenBorder = ((! pContainer->bIsHorizontal) << 1) | (! pContainer->bDirectionUp);
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_UINT);
-	g_value_set_uint (v, iScreenBorder);
-	g_hash_table_insert (h, "orientation", v);
+	g_variant_builder_add (pTab, "{sv}", "orientation", g_variant_new_int32 (iScreenBorder));
 }
 
-static void _add_dock_properties (CairoDock *pDock, GPtrArray *pTab)
+static void _add_dock_properties (CairoDock *pDock, GVariantBuilder *pTab)
 {
-	GHashTable *h = g_hash_table_new_full (g_str_hash,
-		g_str_equal,
-		NULL,
-		g_free);
-	g_ptr_array_add (pTab, h);
-	
-	GValue *v;
-	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_STRING);
-	g_value_set_string (v, CD_TYPE_DOCK);
-	g_hash_table_insert (h, "type", v);
+	g_variant_builder_open (pTab, G_VARIANT_TYPE ("a{sv}"));
 	
 	const gchar *cDockName = gldi_dock_get_name (pDock);
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_STRING);
-	g_value_set_string (v, cDockName);
-	g_hash_table_insert (h, "name", v);
-	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_BOOLEAN);
-	g_value_set_boolean (v, (pDock->iRefCount > 0));
-	g_hash_table_insert (h, "is-sub-dock", v);
-	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_INT);
-	g_value_set_int (v, g_list_length (pDock->icons));
-	g_hash_table_insert (h, "nb-icons", v);
+	g_variant_builder_add (pTab, "{sv}", "type", g_variant_new_string (CD_TYPE_DOCK));
+	g_variant_builder_add (pTab, "{sv}", "name", _variant_string_nonnull (cDockName));
+	g_variant_builder_add (pTab, "{sv}", "is-sub-dock", g_variant_new_boolean (pDock->iRefCount > 0));
+	g_variant_builder_add (pTab, "{sv}", "nb-icons", g_variant_new_int32 (g_list_length (pDock->icons)));
 	
 	if (pDock->iRefCount == 0 && ! pDock->bIsMainDock)
 	{
 		gchar *cConfFilePath = g_strdup_printf ("%s/%s.conf", g_cCurrentThemePath, cDockName);
-		v = g_new0 (GValue, 1);
-		g_value_init (v, G_TYPE_STRING);
-		g_value_set_string (v, cConfFilePath);
-		g_hash_table_insert (h, "config-file", v);
-		g_free (cConfFilePath);
+		g_variant_builder_add (pTab, "{sv}", "config-file", g_variant_new_take_string (cConfFilePath));
 	}
 	
-	_set_container_properties (CAIRO_CONTAINER (pDock), h);
+	_set_container_properties (CAIRO_CONTAINER (pDock), pTab);
+	
+	g_variant_builder_close (pTab);
 }
 
-static void _add_desklet_properties (CairoDesklet *pDesklet, GPtrArray *pTab)
+static void _add_desklet_properties (CairoDesklet *pDesklet, GVariantBuilder *pTab)
 {
-	GHashTable *h = g_hash_table_new_full (g_str_hash,
-		g_str_equal,
-		NULL,
-		g_free);
-	g_ptr_array_add (pTab, h);
+	g_variant_builder_open (pTab, G_VARIANT_TYPE ("a{sv}"));
 	
-	GValue *v;
+	g_variant_builder_add (pTab, "{sv}", "type", g_variant_new_string (CD_TYPE_DESKLET));
+	g_variant_builder_add (pTab, "{sv}", "name", _variant_string_nonnull (
+		CAIRO_DOCK_IS_APPLET (pDesklet->pIcon) ? pDesklet->pIcon->pModuleInstance->pModule->pVisitCard->cModuleName : ""
+	));
+	g_variant_builder_add (pTab, "{sv}", "nb-icons", g_variant_new_int32 (1 + g_list_length (pDesklet->icons)));
 	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_STRING);
-	g_value_set_string (v, CD_TYPE_DESKLET);
-	g_hash_table_insert (h, "type", v);
+	_set_container_properties (CAIRO_CONTAINER (pDesklet), pTab);
 	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_STRING);
-	g_value_set_string (v, CAIRO_DOCK_IS_APPLET (pDesklet->pIcon) ? pDesklet->pIcon->pModuleInstance->pModule->pVisitCard->cModuleName : "");
-	g_hash_table_insert (h, "name", v);
-	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_INT);
-	g_value_set_int (v, 1 + g_list_length (pDesklet->icons));
-	g_hash_table_insert (h, "nb-icons", v);
-	
-	_set_container_properties (CAIRO_CONTAINER (pDesklet), h);
+	g_variant_builder_close (pTab);
 }
 
-static void _add_module_instance_properties (GldiModuleInstance *pModuleInstance, GPtrArray *pTab)
+static void _add_module_instance_properties (GldiModuleInstance *pModuleInstance, GVariantBuilder *pTab)
 {
-	GHashTable *h = g_hash_table_new_full (g_str_hash,
-		g_str_equal,
-		NULL,
-		g_free);
-	g_ptr_array_add (pTab, h);
+	g_variant_builder_open (pTab, G_VARIANT_TYPE ("a{sv}"));
 	
-	GValue *v;
+	g_variant_builder_add (pTab, "{sv}", "type", g_variant_new_string (CD_TYPE_MODULE_INSTANCE));
+	g_variant_builder_add (pTab, "{sv}", "name", _variant_string_nonnull (pModuleInstance->pModule->pVisitCard->cModuleName));
+	g_variant_builder_add (pTab, "{sv}", "config-file", _variant_string_nonnull (pModuleInstance->cConfFilePath));
 	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_STRING);
-	g_value_set_string (v, CD_TYPE_MODULE_INSTANCE);
-	g_hash_table_insert (h, "type", v);
-	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_STRING);
-	g_value_set_string (v, pModuleInstance->pModule->pVisitCard->cModuleName);
-	g_hash_table_insert (h, "name", v);
-	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_STRING);
-	g_value_set_string (v, pModuleInstance->cConfFilePath);
-	g_hash_table_insert (h, "config-file", v);
+	g_variant_builder_close (pTab);
 }
 
-gboolean cd_dbus_main_get_properties (dbusMainObject *pDbusCallback, gchar *cQuery, GPtrArray **pAttributes, GError **error)
+static void _main_get_properties (GVariant *pPar, GDBusMethodInvocation *pInv)
 {
-	GPtrArray *pTab = g_ptr_array_new ();
-	*pAttributes = pTab;
+	//!! TODO: access control with settings !!
 	
-	GList *pObjects = cd_dbus_find_matching_objects (cQuery);
+	gchar *cQuery = NULL;
+	g_variant_get_child (pPar, 0, "s", &cQuery);
+	GList *pObjects = cQuery ? cd_dbus_find_matching_objects (cQuery): NULL;
+	
+	GVariantBuilder res_builder;
+	_init_variant_builder (&res_builder, G_VARIANT_TYPE ("(aa{sv})"));
+	g_variant_builder_open (&res_builder, G_VARIANT_TYPE ("aa{sv}"));
+	
 	GList *o;
 	GldiObject *obj;
 	for (o = pObjects; o != NULL; o = o->next)
@@ -1232,37 +1228,157 @@ gboolean cd_dbus_main_get_properties (dbusMainObject *pDbusCallback, gchar *cQue
 		if (CAIRO_DOCK_IS_ICON (obj))
 		{
 			Icon *pIcon = (Icon*)obj;
-			_add_icon_properties (pIcon, pTab);
+			_add_icon_properties (pIcon, &res_builder);
 		}
 		else if (CAIRO_DOCK_IS_CONTAINER (obj))
 		{
 			if (CAIRO_DOCK_IS_DOCK (obj))
 			{
 				CairoDock *pDock = CAIRO_DOCK (obj);
-				_add_dock_properties (pDock, pTab);
+				_add_dock_properties (pDock, &res_builder);
 			}
 			else if (CAIRO_DOCK_IS_DESKLET (obj))
 			{
 				CairoDesklet *pDesklet = CAIRO_DESKLET (obj);
-				_add_desklet_properties (pDesklet, pTab);
+				_add_desklet_properties (pDesklet, &res_builder);
 			}
 		}
 		else if (GLDI_OBJECT_IS_MODULE (obj))
 		{
 			GldiModule *pModule = (GldiModule *)obj;
-			_add_module_properties (pModule, pTab);
+			_add_module_properties (pModule, &res_builder);
 		}
 		else if (GLDI_OBJECT_IS_MANAGER (obj))
 		{
 			GldiManager *pManager = (GldiManager *)obj;
-			_add_manager_properties (pManager, pTab);
+			_add_manager_properties (pManager, &res_builder);
 		}
 		else if (GLDI_OBJECT_IS_MODULE_INSTANCE (obj))
 		{
 			GldiModuleInstance *pModuleInstance = (GldiModuleInstance *)obj;
-			_add_module_instance_properties (pModuleInstance, pTab);
+			_add_module_instance_properties (pModuleInstance, &res_builder);
 		}
 	}
 	g_list_free (pObjects);
-	return TRUE;
+	
+	g_variant_builder_close (&res_builder);
+	
+	g_dbus_method_invocation_return_value (pInv, g_variant_builder_end (&res_builder));
 }
+
+
+void cd_dbus_main_method_call (G_GNUC_UNUSED GDBusConnection *pConn, G_GNUC_UNUSED const gchar *cSender,
+	G_GNUC_UNUSED const gchar *cObj, // object path -- will always be org.cairodock.CairoDock
+	G_GNUC_UNUSED const gchar *cInterface, // interface -- will always be org.cairodock.CairoDock
+	const gchar *cMethod, GVariant *pPar, GDBusMethodInvocation* pInv, G_GNUC_UNUSED gpointer data)
+{
+	CD_APPLET_ENTER;
+	
+	     if (!strcmp (cMethod, "Reboot")) _main_reboot (pPar, pInv);
+	else if (!strcmp (cMethod, "Quit")) _main_quit (pPar, pInv);
+	else if (!strcmp (cMethod, "ShowDock")) _main_show_dock (pPar, pInv);
+	else if (!strcmp (cMethod, "ShowDesklet")) _main_show_desklet (pPar, pInv);
+	else if (!strcmp (cMethod, "SetQuickInfo")) _main_set_quick_info (pPar, pInv);
+	else if (!strcmp (cMethod, "SetLabel")) _main_set_label (pPar, pInv);
+	else if (!strcmp (cMethod, "SetIcon")) _main_set_icon (pPar, pInv);
+	else if (!strcmp (cMethod, "SetEmblem")) _main_set_emblem (pPar, pInv);
+	else if (!strcmp (cMethod, "Animate")) _main_animate (pPar, pInv);
+	else if (!strcmp (cMethod, "DemandsAttention")) _main_demands_attention (pPar, pInv);
+	else if (!strcmp (cMethod, "ShowDialog")) _main_show_dialog (pPar, pInv);
+	else if (!strcmp (cMethod, "SetMenu")) _main_set_menu (pPar, pInv);
+	else if (!strcmp (cMethod, "SetProgress")) _main_set_progress (pPar, pInv);
+	else if (!strcmp (cMethod, "Add")) _main_add (pPar, pInv);
+	else if (!strcmp (cMethod, "Reload")) _main_reload (pPar, pInv);
+	else if (!strcmp (cMethod, "Remove")) _main_remove (pPar, pInv);
+	else if (!strcmp (cMethod, "GetProperties")) _main_get_properties (pPar, pInv);
+	else g_dbus_method_invocation_return_error (pInv, G_DBUS_ERROR, G_DBUS_ERROR_UNKNOWN_METHOD, "Unknown method: '%s'", cMethod);
+	
+	CD_APPLET_LEAVE ();
+}
+
+GVariant *cd_dbus_main_get_property (G_GNUC_UNUSED GDBusConnection *pConn, G_GNUC_UNUSED const gchar *cSender,
+	G_GNUC_UNUSED const gchar *cObj, G_GNUC_UNUSED const gchar *cInterface, const gchar* cProp,
+	GError** error, G_GNUC_UNUSED gpointer data)
+{
+	// we don't have any properties
+	g_set_error (error, G_DBUS_ERROR, G_DBUS_ERROR_UNKNOWN_PROPERTY, "Unknown property (%s)", cProp);
+	return NULL;
+}
+
+const gchar *s_cMainXml = 
+"<!DOCTYPE node PUBLIC \"-//freedesktop//DTD D-BUS Object Introspection 1.0//EN\""
+"\"http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd\">"
+"<node name=\"/org/cairodock/CairoDock\">"
+"	<interface name=\"org.cairodock.CairoDock\">"
+"		<method name=\"Reboot\">"
+"		</method>"
+"		<method name=\"Quit\">"
+"		</method>"
+"		<method name=\"ShowDock\">"
+"			<arg name=\"iVisibility\" type=\"i\" direction=\"in\"/>"
+"		</method>"
+"		<method name=\"ShowDesklet\">"
+"			<arg name=\"widgetLayer\" type=\"b\" direction=\"in\"/>"
+"		</method>"
+"		"
+"		<method name=\"Add\">"
+"			<arg name=\"pProperties\" direction=\"in\" type=\"a{sv}\"/>"
+"			<arg name=\"cConfigFile\" type=\"s\" direction=\"out\"/>"
+"		</method>"
+"		<method name=\"Reload\">"
+"			<arg name=\"cQuery\" type=\"s\" direction=\"in\"/>"
+"		</method>"
+"		<method name=\"Remove\">"
+"			<arg name=\"cQuery\" type=\"s\" direction=\"in\"/>"
+"		</method>"
+"		<method name=\"GetProperties\">"
+"			<arg name=\"cQuery\" type=\"s\" direction=\"in\"/>"
+"			<arg name=\"pProperties\" direction=\"out\" type=\"aa{sv}\"/>"
+"		</method>"
+"		"
+"		<method name=\"SetQuickInfo\">"
+"			<arg name=\"cQuickInfo\" type=\"s\" direction=\"in\"/>"
+"			<arg name=\"cIconQuery\" type=\"s\" direction=\"in\"/>"
+"		</method>"
+"		<method name=\"SetLabel\">"
+"			<arg name=\"cLabel\" type=\"s\" direction=\"in\"/>"
+"			<arg name=\"cIconQuery\" type=\"s\" direction=\"in\"/>"
+"		</method>"
+"		<method name=\"SetIcon\">"
+"			<arg name=\"cImage\" type=\"s\" direction=\"in\"/>"
+"			<arg name=\"cIconQuery\" type=\"s\" direction=\"in\"/>"
+"		</method>"
+"		<method name=\"SetEmblem\">"
+"			<arg name=\"cImage\" type=\"s\" direction=\"in\"/>"
+"			<arg name=\"iPosition\" type=\"i\" direction=\"in\"/>"
+"			<arg name=\"cIconQuery\" type=\"s\" direction=\"in\"/>"
+"		</method>"
+"		<method name=\"Animate\">"
+"			<arg name=\"cAnimation\" type=\"s\" direction=\"in\"/>"
+"			<arg name=\"iNbRounds\" type=\"i\" direction=\"in\"/>"
+"			<arg name=\"cIconQuery\" type=\"s\" direction=\"in\"/>"
+"		</method>"
+"		<method name=\"DemandsAttention\">"
+"			<arg name=\"bStart\" type=\"b\" direction=\"in\"/>"
+"			<arg name=\"cAnimation\" type=\"s\" direction=\"in\"/>"
+"			<arg name=\"cIconQuery\" type=\"s\" direction=\"in\"/>"
+"		</method>"
+"		<method name=\"ShowDialog\">"
+"			<arg name=\"message\" type=\"s\" direction=\"in\"/>"
+"			<arg name=\"iDuration\" type=\"i\" direction=\"in\"/>"
+"			<arg name=\"cIconQuery\" type=\"s\" direction=\"in\"/>"
+"		</method>"
+"		<method name=\"SetMenu\">"
+"			<arg name=\"cBusName\" type=\"s\" direction=\"in\"/>"
+"			<arg name=\"cMenuPath\" type=\"s\" direction=\"in\"/>"
+"			<arg name=\"cIconQuery\" type=\"s\" direction=\"in\"/>"
+"		</method>"
+"		<method name=\"SetProgress\">"
+"			<arg name=\"fPercent\" type=\"d\" direction=\"in\"/>"
+"			<arg name=\"cIconQuery\" type=\"s\" direction=\"in\"/>"
+"		</method>"
+"	</interface>"
+"</node>";
+
+
+
