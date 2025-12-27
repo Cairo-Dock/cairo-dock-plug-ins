@@ -45,18 +45,8 @@ struct _AppletConfig {
 	} ;
 
 
-typedef struct _dbusMainObject dbusMainObject;
 typedef struct _dbusApplet dbusApplet;
 typedef struct _dbusSubApplet dbusSubApplet;
-
-struct _dbusMainObject {
-	GObject parent;
-	DBusGConnection *connection;
-};
-typedef struct {
-	GObjectClass parent_class;
-} dbusMainObjectClass;
-
 
 struct _dbusApplet {
 	GObject parent;
@@ -116,7 +106,8 @@ typedef struct _CDIconData {
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
-	dbusMainObject *pMainObject;
+	// dbusMainObject *pMainObject;
+	guint uRegMainObject;
 	const gchar *cProgName;
 	gchar *cBasePath;
 	///GtkWidget *pModuleSubMenu;
