@@ -24,63 +24,14 @@
 #include <cairo-dock.h>
 #include "applet-struct.h"
 
+void cd_dbus_main_method_call (GDBusConnection *pConn, G_GNUC_UNUSED const gchar *cSender,
+	G_GNUC_UNUSED const gchar *cObj, G_GNUC_UNUSED const gchar *cInterface,
+	const gchar *cMethod, GVariant *pPar, GDBusMethodInvocation* pInv, G_GNUC_UNUSED gpointer data);
 
-gboolean cd_dbus_main_reboot(dbusMainObject *dbusMainObject, GError **error);
+GVariant *cd_dbus_main_get_property (G_GNUC_UNUSED GDBusConnection *pConn, G_GNUC_UNUSED const gchar *cSender,
+	G_GNUC_UNUSED const gchar *cObj, G_GNUC_UNUSED const gchar *cInterface, const gchar* cProp,
+	GError** error, G_GNUC_UNUSED gpointer data);
 
-gboolean cd_dbus_main_quit (dbusMainObject *dbusMainObject, GError **error);
-
-gboolean cd_dbus_main_show_dock (dbusMainObject *dbusMainObject, gint iVisibiliy, GError **error);
-
-gboolean cd_dbus_main_show_desklet (dbusMainObject *dbusMainObject, gboolean *widgetLayer, GError **error);
-
-
-gboolean cd_dbus_main_reload_module (dbusMainObject *dbusMainObject, const gchar *cModuleName, GError **error);
-
-gboolean cd_dbus_main_activate_module (dbusMainObject *dbusMainObject, const gchar *cModuleName, gboolean bActivate, GError **error);
-
-
-gboolean cd_dbus_main_get_icon_properties (dbusMainObject *pDbusCallback, gchar *cIconQuery, GPtrArray **pIconAttributes, GError **error);
-
-gboolean cd_dbus_main_get_container_properties (dbusMainObject *pDbusCallback, const gchar *cName, GPtrArray **pAttributes, GError **error);
-
-gboolean cd_dbus_main_get_module_properties (dbusMainObject *pDbusCallback, const gchar *cName, GPtrArray **pAttributes, GError **error);
-
-
-gboolean cd_dbus_main_add_launcher (dbusMainObject *pDbusCallback, const gchar *cDesktopFilePath, gdouble fOrder, const gchar *cDockName, gchar **cLauncherFile, GError **error);
-
-gboolean cd_dbus_main_add_temporary_icon (dbusMainObject *pDbusCallback, GHashTable *hIconAttributes, GError **error);
-
-gboolean cd_dbus_main_reload_icon (dbusMainObject *dbusMainObject, gchar *cIconQuery, GError **error);
-
-gboolean cd_dbus_main_remove_icon (dbusMainObject *pDbusCallback, gchar *cIconQuery, GError **error);
-
-
-gboolean cd_dbus_main_set_quick_info (dbusMainObject *dbusMainObject, const gchar *cQuickInfo, gchar *cIconQuery, GError **error);
-
-gboolean cd_dbus_main_set_label (dbusMainObject *dbusMainObject, const gchar *cLabel, gchar *cIconQuery, GError **error);
-
-gboolean cd_dbus_main_set_icon (dbusMainObject *dbusMainObject, const gchar *cImage, gchar *cIconQuery, GError **error);
-
-gboolean cd_dbus_main_set_emblem (dbusMainObject *pDbusCallback, const gchar *cImage, gint iPosition, gchar *cIconQuery, GError **error);
-
-gboolean cd_dbus_main_animate (dbusMainObject *dbusMainObject, const gchar *cAnimation, gint iNbRounds, gchar *cIconQuery, GError **error);
-
-gboolean cd_dbus_main_demands_attention (dbusMainObject *pDbusCallback, gboolean bStart, const gchar *cAnimation, gchar *cIconQuery, GError **error);
-
-gboolean cd_dbus_main_show_dialog (dbusMainObject *dbusMainObject, const gchar *message, gint iDuration, gchar *cIconQuery, GError **error);
-
-gboolean cd_dbus_main_set_menu (dbusMainObject *pDbusCallback, const gchar *cBusName, const gchar *cMenuPath, gchar *cIconQuery, GError **error);
-
-gboolean cd_dbus_main_set_progress (dbusMainObject *dbusMainObject, double fPercent, gchar *cIconQuery, GError **error);
-
-
-gboolean cd_dbus_main_add (dbusMainObject *pDbusCallback, GHashTable *pProperties, gchar **cConfigFile, GError **error);
-
-gboolean cd_dbus_main_reload (dbusMainObject *pDbusCallback, gchar *cQuery, GError **error);
-
-gboolean cd_dbus_main_remove (dbusMainObject *pDbusCallback, gchar *cQuery, GError **error);
-
-gboolean cd_dbus_main_get_properties (dbusMainObject *pDbusCallback, gchar *cQuery, GPtrArray **pIconAttributes, GError **error);
-
+extern const gchar *s_cMainXml;
 
 #endif
