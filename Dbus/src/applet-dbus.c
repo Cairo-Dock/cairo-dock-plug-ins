@@ -59,29 +59,6 @@ dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.
 #define GETTEXT_NAME_EXTRAS "cairo-dock-plugins-extra"
 #define LOCALE_DIR_NAME "locale"
 
-  ///////////////////
- /// MAIN OBJECT ///
-///////////////////
-
-G_DEFINE_TYPE(dbusMainObject, cd_dbus_main, G_TYPE_OBJECT);
-
-static void cd_dbus_main_class_init(dbusMainObjectClass *klass)
-{
-	cd_message("");
-}
-static void cd_dbus_main_init (dbusMainObject *pMainObject)
-{
-	cd_message("");
-	
-	// Initialise the DBus connection
-	pMainObject->connection = cairo_dock_get_session_connection ();
-	
-	dbus_g_object_type_install_info(cd_dbus_main_get_type(), &dbus_glib_cd_dbus_main_object_info);
-	
-	// Register DBUS path
-	dbus_g_connection_register_g_object(pMainObject->connection, myData.cBasePath, G_OBJECT(pMainObject));
-}
-
 
   //////////////////////////
  /// MODULE REGISTERING ///
@@ -478,9 +455,50 @@ void cd_dbus_clean_up_processes (gboolean bAll)
 	#endif
 }
 
+static void _on_name_acquired (GDBusConnection* pConn, G_GNUC_UNUSED const gchar* cName, G_GNUC_UNUSED gpointer data)
+{
+	CD_APPLET_ENTER;
+	
+	GDBusNodeInfo* pNodeInfo = g_dbus_node_info_new_for_xml (s_cMainXml, NULL);
+	// note: return value is owned by pNodeInfo
+	GDBusInterfaceInfo *pInfo = g_dbus_node_info_lookup_interface (pNodeInfo, "org.cairodock.CairoDock");
+	
+	GDBusInterfaceVTable vtable;
+	vtable.method_call = cd_dbus_main_method_call;
+	vtable.get_property = cd_dbus_main_get_property;
+	vtable.set_property = NULL;
+	
+	GError *err = NULL;
+	
+	myData.uRegMainObject = g_dbus_connection_register_object (pConn, myData.cBasePath,
+		pInfo, &vtable, NULL, NULL, &err);
+	g_dbus_node_info_unref (pNodeInfo); // the previous call should have taken a ref to pInfo
+	
+	if (err)
+	{
+		cd_warning ("Error registering main DBus object:\n%s", err->message);
+		g_error_free (err);
+	}
+	
+	CD_APPLET_LEAVE ();
+}
+
+static void _on_name_lost (GDBusConnection* pConn, G_GNUC_UNUSED const gchar* cName, G_GNUC_UNUSED gpointer data)
+{
+	CD_APPLET_ENTER;
+	
+	if (myData.uRegMainObject)
+	{
+		g_dbus_connection_unregister_object (pConn, myData.uRegMainObject);
+		myData.uRegMainObject = 0;
+	}
+	
+	CD_APPLET_LEAVE ();
+}
+
 void cd_dbus_launch_service (void)
 {
-	g_return_if_fail (myData.pMainObject == NULL);
+	g_return_if_fail (myData.uRegMainObject == 0);
 	cd_message ("dbus : launching service...");
 	
 	//\____________ define the base path on the bus. So each program built on gldi has its own path on the gldi bus, and will place its applets under its own path.
@@ -510,10 +528,14 @@ void cd_dbus_launch_service (void)
 	cd_dbus_clean_up_processes (FALSE);  // FALSE <=> from old gldi instances
 	
 	//\____________ Register the service name (the service name is registerd once by the first gldi instance).
-	cairo_dock_register_service_name ("org.cairodock.CairoDock");  /// what happens if the gldi instance that had registered the name quits while a 2nd instance remains ? do we need to queue ?...
+	g_bus_own_name (G_BUS_TYPE_SESSION, "org.cairodock.CairoDock", G_BUS_NAME_OWNER_FLAGS_DO_NOT_QUEUE, NULL, // bus acquired handler
+		_on_name_acquired, _on_name_lost, NULL, NULL);
+	// cairo_dock_register_service_name ("org.cairodock.CairoDock");  /// what happens if the gldi instance that had registered the name quits while a 2nd instance remains ? do we need to queue ?...
 	
 	//\____________ create the main object on the bus.
-	myData.pMainObject = g_object_new (cd_dbus_main_get_type(), NULL);  // call cd_dbus_main_class_init() and cd_dbus_main_init().
+	// myData.pMainObject = g_object_new (cd_dbus_main_get_type(), NULL);  // call cd_dbus_main_class_init() and cd_dbus_main_init().
+	
+	return; // for now, we cannot create applet objects
 	
 	//\____________ internationalize the applets (we need to do that before registering applets).
 	gchar *cLocaleDir = g_strdup_printf ("%s/"CD_DBUS_APPLETS_FOLDER"/"LOCALE_DIR_NAME, g_cCairoDockDataDir);  // user version of /usr/share/locale

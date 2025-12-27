@@ -109,7 +109,7 @@ dbusApplet * cd_dbus_get_dbus_applet_from_instance (GldiModuleInstance *pModuleI
 
 dbusApplet *cd_dbus_create_remote_applet_object (GldiModuleInstance *pModuleInstance)
 {
-	g_return_val_if_fail (pModuleInstance != NULL && myData.pMainObject != NULL, NULL);
+	g_return_val_if_fail (pModuleInstance != NULL && myData.uRegMainObject != 0, NULL);
 	const gchar *cModuleName = pModuleInstance->pModule->pVisitCard->cModuleName;
 	g_return_val_if_fail (cModuleName != NULL, NULL);
 	cd_debug ("%s (%s)", __func__, cModuleName);

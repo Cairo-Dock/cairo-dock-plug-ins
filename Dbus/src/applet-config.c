@@ -41,3 +41,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bEnableAnimateIcon		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable animate icon");
 	myConfig.bLaunchLauncherAPIDaemon = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "launcher api daemon", TRUE);
 CD_APPLET_GET_CONFIG_END
+
+CD_APPLET_RESET_CONFIG_BEGIN
+
+CD_APPLET_RESET_CONFIG_END
+
