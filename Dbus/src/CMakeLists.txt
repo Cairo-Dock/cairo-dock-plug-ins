@@ -10,9 +10,6 @@ SET (cd-Dbus_LIB_SRCS
 	interface-applet-object.c 	interface-applet-object.h
 	interface-applet-methods.c 	interface-applet-methods.h
 	interface-applet-signals.c 	interface-applet-signals.h
-	dbus-applet-spec.h
-	dbus-sub-applet-spec.h
-	dbus-main-spec.h
 	applet-struct.h
 )
 
