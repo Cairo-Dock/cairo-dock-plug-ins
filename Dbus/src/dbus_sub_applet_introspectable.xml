@@ -47,6 +47,13 @@
 		</method>
 		<!-- End of deprecated -->
 		
+		<method name="PopupDialog">
+			<arg name="hDialogAttributes" direction="in" type="a{sv}"/>
+			<arg name="hWidgetAttributes" direction="in" type="a{sv}"/>
+			<arg name="cIconID" direction="in" type="s" />
+		</method>
+		
+		
 		<method name="AddSubIcons">
 			<arg name="pIconFields" type="as" direction="in"/>
 		</method>
