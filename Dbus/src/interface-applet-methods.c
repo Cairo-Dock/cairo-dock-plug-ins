@@ -31,21 +31,15 @@ dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock/demo
 
 #include <math.h>
 #include <glib.h>
-#include <dbus/dbus-glib.h>
-#include <dbus/dbus-glib-bindings.h>
 #include <implementations/cairo-dock-wayland-manager.h> // gldi_wayland_manager_have_layer_shell
 
 #include "interface-applet-signals.h"
 #include "interface-applet-methods.h"
 
-static inline GldiModuleInstance *_get_module_instance_from_dbus_applet (dbusApplet *pDbusApplet)
-{
-	return pDbusApplet->pModuleInstance;
-}
 
-static inline gboolean _get_icon_and_container_from_id (dbusApplet *pDbusApplet, const gchar *cIconID, Icon **pIcon, GldiContainer **pContainer)
+static inline gboolean _get_icon_and_container_from_id (DBusAppletData *pDbusApplet, const gchar *cIconID, Icon **pIcon, GldiContainer **pContainer)
 {
-	GldiModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
+	GldiModuleInstance *pInstance = pDbusApplet->pModuleInstance;
 	g_return_val_if_fail (pInstance != NULL, FALSE);
 	
 	if (cIconID == NULL)
@@ -80,7 +74,7 @@ static inline int _get_container_type (GldiContainer *pContainer)
 }
 
 
-static gboolean _applet_set_quick_info (dbusApplet *pDbusApplet, const gchar *cQuickInfo, const gchar *cIconID, GError **error)
+static gboolean _applet_set_quick_info (DBusAppletData *pDbusApplet, const gchar *cQuickInfo, const gchar *cIconID)
 {
 	Icon *pIcon;
 	GldiContainer *pContainer;
@@ -92,7 +86,7 @@ static gboolean _applet_set_quick_info (dbusApplet *pDbusApplet, const gchar *cQ
 	return TRUE;
 }
 
-static gboolean _applet_set_label (dbusApplet *pDbusApplet, const gchar *cLabel, const gchar *cIconID, GError **error)
+static gboolean _applet_set_label (DBusAppletData *pDbusApplet, const gchar *cLabel, const gchar *cIconID)
 {
 	Icon *pIcon;
 	GldiContainer *pContainer;
@@ -104,7 +98,7 @@ static gboolean _applet_set_label (dbusApplet *pDbusApplet, const gchar *cLabel,
 	return TRUE;
 }
 
-static gboolean _applet_set_icon (dbusApplet *pDbusApplet, const gchar *cImage, const gchar *cIconID, GError **error)
+static gboolean _applet_set_icon (DBusAppletData *pDbusApplet, const gchar *cImage, const gchar *cIconID)
 {
 	Icon *pIcon;
 	GldiContainer *pContainer;
@@ -140,7 +134,7 @@ static gboolean _applet_set_icon_with_default (dbusApplet *pDbusApplet, const gc
 	return TRUE;
 }
 */
-static gboolean _applet_set_emblem (dbusApplet *pDbusApplet, const gchar *cImage, gint iPosition, const gchar *cIconID, GError **error)
+static gboolean _applet_set_emblem (DBusAppletData *pDbusApplet, const gchar *cImage, gint iPosition, const gchar *cIconID)
 {
 	Icon *pIcon;
 	GldiContainer *pContainer;
@@ -163,7 +157,7 @@ static gboolean _applet_set_emblem (dbusApplet *pDbusApplet, const gchar *cImage
 	return TRUE;
 }
 
-static gboolean _applet_animate (dbusApplet *pDbusApplet, const gchar *cAnimation, gint iNbRounds, const gchar *cIconID, GError **error)
+static gboolean _applet_animate (DBusAppletData *pDbusApplet, const gchar *cAnimation, gint iNbRounds, const gchar *cIconID)
 {
 	Icon *pIcon;
 	GldiContainer *pContainer;
@@ -178,7 +172,7 @@ static gboolean _applet_animate (dbusApplet *pDbusApplet, const gchar *cAnimatio
 	return FALSE;
 }
 
-static gboolean _applet_show_dialog (dbusApplet *pDbusApplet, const gchar *message, gint iDuration, const gchar *cIconID, GError **error)
+static gboolean _applet_show_dialog (DBusAppletData *pDbusApplet, const gchar *message, gint iDuration, const gchar *cIconID)
 {
 	Icon *pIcon;
 	GldiContainer *pContainer;
@@ -192,7 +186,7 @@ static gboolean _applet_show_dialog (dbusApplet *pDbusApplet, const gchar *messa
 	return TRUE;
 }
 
-static void _on_dialog_destroyed (dbusApplet *pDbusApplet)
+static void _on_dialog_destroyed (DBusAppletData *pDbusApplet)
 {
 	CD_APPLET_ENTER;
 	pDbusApplet->pDialog = NULL;
@@ -200,7 +194,7 @@ static void _on_dialog_destroyed (dbusApplet *pDbusApplet)
 }
 
 // deprecated
-static gboolean _applet_ask_question (dbusApplet *pDbusApplet, const gchar *cMessage, const gchar *cIconID, GError **error)
+static gboolean _applet_ask_question (DBusAppletData *pDbusApplet, const gchar *cMessage, const gchar *cIconID)
 {
 	Icon *pIcon;
 	GldiContainer *pContainer;
@@ -213,7 +207,7 @@ static gboolean _applet_ask_question (dbusApplet *pDbusApplet, const gchar *cMes
 	return TRUE;
 }
 
-static gboolean _applet_ask_value (dbusApplet *pDbusApplet, const gchar *cMessage, gdouble fInitialValue, gdouble fMaxValue, const gchar *cIconID, GError **error)
+static gboolean _applet_ask_value (DBusAppletData *pDbusApplet, const gchar *cMessage, gdouble fInitialValue, gdouble fMaxValue, const gchar *cIconID)
 {
 	Icon *pIcon;
 	GldiContainer *pContainer;
@@ -226,7 +220,7 @@ static gboolean _applet_ask_value (dbusApplet *pDbusApplet, const gchar *cMessag
 	return TRUE;
 }
 
-static gboolean _applet_ask_text (dbusApplet *pDbusApplet, const gchar *cMessage, const gchar *cInitialText, const gchar *cIconID, GError **error)
+static gboolean _applet_ask_text (DBusAppletData *pDbusApplet, const gchar *cMessage, const gchar *cInitialText, const gchar *cIconID)
 {
 	Icon *pIcon;
 	GldiContainer *pContainer;
@@ -266,9 +260,8 @@ static void _on_text_changed (GtkWidget *pEntry, GtkWidget *pLabel)
 	g_free (cLabel);
 }
 
-static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDialogAttributes, GHashTable *hWidgetAttributes, const gchar *cIconID, GError **error)
+static gboolean _applet_popup_dialog (DBusAppletData *pDbusApplet, GVariant *pDialogAttr, GVariant *pWidgetAttr, const gchar *cIconID)
 {
-	g_return_val_if_fail (hDialogAttributes != NULL, FALSE);
 	Icon *pIcon;
 	GldiContainer *pContainer;
 	if (! _get_icon_and_container_from_id (pDbusApplet, cIconID, &pIcon, &pContainer))
@@ -277,46 +270,39 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 	if (pDbusApplet->pDialog)  // on n'autorise qu'un seul dialogue interactif a la fois.
 		gldi_object_unref (GLDI_OBJECT(pDbusApplet->pDialog));
 	
+	
+	GVariantDict *hDialogAttributes = g_variant_dict_new (pDialogAttr);
+	GVariantDict *hWidgetAttributes = (g_variant_n_children (pWidgetAttr) > 0) ? g_variant_dict_new (pWidgetAttr) : NULL;
+	
 	CairoDialogAttr attr;
 	memset (&attr, 0, sizeof (CairoDialogAttr));
-	GValue *v;
 	
 	// attributs du dialogue.
-	gchar *cImageFilePath = NULL;
-	v = g_hash_table_lookup (hDialogAttributes, "icon");
-	if (v && G_VALUE_HOLDS_STRING (v))
+	const gchar *cImageFilePath = NULL;
+	if (g_variant_dict_lookup (hDialogAttributes, "icon", "&s", &cImageFilePath))
 	{
 		int w, h;
 		cairo_dock_get_icon_extent (pIcon, &w, &h);
-		cImageFilePath = cairo_dock_search_icon_s_path (g_value_get_string (v), MAX (w, h));
+		cImageFilePath = cairo_dock_search_icon_s_path (cImageFilePath, MAX (w, h));
 		attr.cImageFilePath = cImageFilePath;
 	}
 	else
 		attr.cImageFilePath = "same icon";
 	
-	v = g_hash_table_lookup (hDialogAttributes, "message");
-	if (v && G_VALUE_HOLDS_STRING (v))
-		attr.cText = g_value_get_string (v);
-	
-	v = g_hash_table_lookup (hDialogAttributes, "time-length");
-	if (v && G_VALUE_HOLDS_INT (v))
-		attr.iTimeLength = 1000 * g_value_get_int (v);
+	g_variant_dict_lookup (hDialogAttributes, "message", "&s", &attr.cText);
+	if (g_variant_dict_lookup (hDialogAttributes, "time-length", "&i", &attr.iTimeLength))
+		attr.iTimeLength *= 1000;
 	
 	gchar **cButtonsImage = NULL;
-	v = g_hash_table_lookup (hDialogAttributes, "buttons");
-	if (v && G_VALUE_HOLDS_STRING (v))
+	const char *tmp = NULL;
+	if (g_variant_dict_lookup (hDialogAttributes, "buttons", "&s", &tmp))
 	{
-		cButtonsImage = g_strsplit (g_value_get_string (v), ";", -1);  // NULL-terminated
+		cButtonsImage = g_strsplit (tmp, ";", -1);  // NULL-terminated
 		attr.cButtonsImage = (const gchar **)cButtonsImage;
 	}
 	
-	v = g_hash_table_lookup (hDialogAttributes, "force-above");
-	if (v && G_VALUE_HOLDS_BOOLEAN (v))
-		attr.bForceAbove = g_value_get_boolean (v);
-	
-	v = g_hash_table_lookup (hDialogAttributes, "use-markup");
-	if (v && G_VALUE_HOLDS_BOOLEAN (v))
-		attr.bUseMarkup = g_value_get_boolean (v);
+	g_variant_dict_lookup (hDialogAttributes, "force-above", "b", &attr.bForceAbove);
+	g_variant_dict_lookup (hDialogAttributes, "use-markup", "b", &attr.bUseMarkup);
 	
 	attr.pUserData = pDbusApplet;
 	attr.pFreeDataFunc = (GFreeFunc)_on_dialog_destroyed;
@@ -325,225 +311,182 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 	GtkWidget *pInteractiveWidget = NULL, *pOneWidget = NULL;
 	if (hWidgetAttributes != NULL)  // un widget d'interaction est defini.
 	{
-		v = g_hash_table_lookup (hWidgetAttributes, "widget-type");
-		if (v && G_VALUE_HOLDS_STRING (v))
+		const gchar *cType;
+		if (g_variant_dict_lookup (hWidgetAttributes, "widget-type", "&s", &cType))
 		{
-			const gchar *cType = g_value_get_string (v);
-			if (cType)
+			if (strcmp (cType, "text-entry") == 0)
 			{
-				if (strcmp (cType, "text-entry") == 0)
+				gboolean bMultiLines = FALSE;
+				gboolean bEditable = TRUE;
+				gboolean bVisible = TRUE;
+				int iNbCharsMax = 0;
+				const gchar *cInitialText = NULL;
+				
+				g_variant_dict_lookup (hDialogAttributes, "multi-lines", "b", &bMultiLines);
+				g_variant_dict_lookup (hDialogAttributes, "editable", "b", &bEditable);
+				g_variant_dict_lookup (hDialogAttributes, "visible", "b", &bVisible);
+				g_variant_dict_lookup (hDialogAttributes, "nb-chars", "i", &iNbCharsMax);
+				g_variant_dict_lookup (hDialogAttributes, "initial-value", "&s", &cInitialText);
+				
+				if (bMultiLines)
 				{
-					gboolean bMultiLines = FALSE;
-					gboolean bEditable = TRUE;
-					gboolean bVisible = TRUE;
-					int iNbCharsMax = 0;
-					const gchar *cInitialText = NULL;
+					pOneWidget = gtk_text_view_new ();
+					GtkWidget *pScrolledWindow = gtk_scrolled_window_new (NULL, NULL);
+					gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (pScrolledWindow), GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
+					gtk_container_add (GTK_CONTAINER (pScrolledWindow), pOneWidget);
+					g_object_set (pScrolledWindow, "width-request", 230, "height-request", 130, NULL);
+					pInteractiveWidget = pScrolledWindow;
 					
-					v = g_hash_table_lookup (hWidgetAttributes, "multi-lines");
-					if (v && G_VALUE_HOLDS_BOOLEAN (v))
-						bMultiLines = g_value_get_boolean (v);
+					if (! bEditable)
+						gtk_text_view_set_editable (GTK_TEXT_VIEW (pOneWidget), FALSE);
 					
-					v = g_hash_table_lookup (hWidgetAttributes, "editable");
-					if (v && G_VALUE_HOLDS_BOOLEAN (v))
-						bEditable = g_value_get_boolean (v);
+					if (cInitialText != NULL)
+					{
+						GtkTextBuffer *pBuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (pOneWidget));
+						gtk_text_buffer_set_text (pBuffer, cInitialText, -1);
+					}
 					
-					v = g_hash_table_lookup (hWidgetAttributes, "visible");
-					if (v && G_VALUE_HOLDS_BOOLEAN (v))
-						bVisible = g_value_get_boolean (v);
+					if (attr.cButtonsImage != NULL)
+						attr.pActionFunc = (CairoDockActionOnAnswerFunc) cd_dbus_applet_emit_on_answer_text_view;
+				}
+				else
+				{
+					pOneWidget = gtk_entry_new ();
+					pInteractiveWidget = pOneWidget;
+					gtk_entry_set_has_frame (GTK_ENTRY (pOneWidget), FALSE);
+					g_object_set (pOneWidget, "width-request", CAIRO_DIALOG_MIN_ENTRY_WIDTH, NULL);
+					if (cInitialText != NULL)
+						gtk_entry_set_text (GTK_ENTRY (pOneWidget), cInitialText);
+					if (! bEditable)
+						gtk_editable_set_editable (GTK_EDITABLE (pOneWidget), FALSE);
+					if (! bVisible)
+						gtk_entry_set_visibility (GTK_ENTRY (pOneWidget), FALSE);
 					
-					v = g_hash_table_lookup (hWidgetAttributes, "nb-chars");
-					if (v && G_VALUE_HOLDS_INT(v))
-						iNbCharsMax = g_value_get_int(v);
-					
-					v = g_hash_table_lookup (hWidgetAttributes, "initial-value");
-					if (v && G_VALUE_HOLDS_STRING (v))
-						cInitialText = g_value_get_string (v);
+					if (attr.cButtonsImage != NULL)
+						attr.pActionFunc = (CairoDockActionOnAnswerFunc) cd_dbus_applet_emit_on_answer_text_entry;
+				}
+				if (iNbCharsMax != 0)
+				{
+					gchar *cLabel = g_strdup_printf ("<b>%zd</b>", cInitialText ? strlen (cInitialText) : 0);
+					GtkWidget *pLabel = gtk_label_new (cLabel);
+					g_free (cLabel);
+					gtk_label_set_use_markup (GTK_LABEL (pLabel), TRUE);
+					GtkWidget *pBox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 3);
+					gtk_box_pack_start (GTK_BOX (pBox), pInteractiveWidget, TRUE, TRUE, 0);
+					gtk_box_pack_start (GTK_BOX (pBox), pLabel, FALSE, FALSE, 0);
+					pInteractiveWidget = pBox;
 					
 					if (bMultiLines)
 					{
-						pOneWidget = gtk_text_view_new ();
-						GtkWidget *pScrolledWindow = gtk_scrolled_window_new (NULL, NULL);
-						gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (pScrolledWindow), GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
-						gtk_container_add (GTK_CONTAINER (pScrolledWindow), pOneWidget);
-						g_object_set (pScrolledWindow, "width-request", 230, "height-request", 130, NULL);
-						pInteractiveWidget = pScrolledWindow;
-						
-						if (! bEditable)
-							gtk_text_view_set_editable (GTK_TEXT_VIEW (pOneWidget), FALSE);
-						
-						if (cInitialText != NULL)
-						{
-							GtkTextBuffer *pBuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (pOneWidget));
-							gtk_text_buffer_set_text (pBuffer, cInitialText, -1);
-						}
-						
-						if (attr.cButtonsImage != NULL)
-							attr.pActionFunc = (CairoDockActionOnAnswerFunc) cd_dbus_applet_emit_on_answer_text_view;
+						GtkTextBuffer *pBuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (pOneWidget));
+						g_signal_connect (pBuffer, "changed", G_CALLBACK (_on_text_changed), pLabel);
+						g_object_set_data (G_OBJECT (pBuffer), "nb-chars-max", GINT_TO_POINTER (iNbCharsMax));
 					}
 					else
 					{
-						pOneWidget = gtk_entry_new ();
-						pInteractiveWidget = pOneWidget;
-						gtk_entry_set_has_frame (GTK_ENTRY (pOneWidget), FALSE);
-						g_object_set (pOneWidget, "width-request", CAIRO_DIALOG_MIN_ENTRY_WIDTH, NULL);
-						if (cInitialText != NULL)
-							gtk_entry_set_text (GTK_ENTRY (pOneWidget), cInitialText);
-						if (! bEditable)
-							gtk_editable_set_editable (GTK_EDITABLE (pOneWidget), FALSE);
-						if (! bVisible)
-							gtk_entry_set_visibility (GTK_ENTRY (pOneWidget), FALSE);
-						
-						if (attr.cButtonsImage != NULL)
-							attr.pActionFunc = (CairoDockActionOnAnswerFunc) cd_dbus_applet_emit_on_answer_text_entry;
-					}
-					if (iNbCharsMax != 0)
-					{
-						gchar *cLabel = g_strdup_printf ("<b>%zd</b>", cInitialText ? strlen (cInitialText) : 0);
-						GtkWidget *pLabel = gtk_label_new (cLabel);
-						g_free (cLabel);
-						gtk_label_set_use_markup (GTK_LABEL (pLabel), TRUE);
-						GtkWidget *pBox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 3);
-						gtk_box_pack_start (GTK_BOX (pBox), pInteractiveWidget, TRUE, TRUE, 0);
-						gtk_box_pack_start (GTK_BOX (pBox), pLabel, FALSE, FALSE, 0);
-						pInteractiveWidget = pBox;
-						
-						if (bMultiLines)
-						{
-							GtkTextBuffer *pBuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (pOneWidget));
-							g_signal_connect (pBuffer, "changed", G_CALLBACK (_on_text_changed), pLabel);
-							g_object_set_data (G_OBJECT (pBuffer), "nb-chars-max", GINT_TO_POINTER (iNbCharsMax));
-						}
-						else
-						{
-							g_signal_connect (pOneWidget, "changed", G_CALLBACK (_on_text_changed), pLabel);
-							g_object_set_data (G_OBJECT (pOneWidget), "nb-chars-max", GINT_TO_POINTER (iNbCharsMax));
-							gtk_entry_set_width_chars (GTK_ENTRY (pOneWidget), MIN (iNbCharsMax/2, 100));  // a rough estimate is: 140 chars ~ 1024 pixels
-						}
+						g_signal_connect (pOneWidget, "changed", G_CALLBACK (_on_text_changed), pLabel);
+						g_object_set_data (G_OBJECT (pOneWidget), "nb-chars-max", GINT_TO_POINTER (iNbCharsMax));
+						gtk_entry_set_width_chars (GTK_ENTRY (pOneWidget), MIN (iNbCharsMax/2, 100));  // a rough estimate is: 140 chars ~ 1024 pixels
 					}
 				}
-				else if (strcmp (cType, "scale") == 0)
+			}
+			else if (strcmp (cType, "scale") == 0)
+			{
+				GtkWidget *pScale = NULL;
+				double fMinValue = 0.;
+				double fMaxValue = 100.;
+				int iNbDigit = 2;
+				double fInitialValue = 0.;
+				const gchar *cMinLabel = NULL;
+				const gchar *cMaxLabel = NULL;
+				
+				g_variant_dict_lookup (hWidgetAttributes, "min-value", "d", &fMinValue);
+				g_variant_dict_lookup (hWidgetAttributes, "max-value", "d", &fMaxValue);
+				fMaxValue = MAX (fMaxValue, fMinValue+1);
+				g_variant_dict_lookup (hWidgetAttributes, "nb-digit", "i", &iNbDigit);
+				g_variant_dict_lookup (hWidgetAttributes, "initial-value", "d", &fInitialValue);
+				fInitialValue = MAX (MIN (fInitialValue, fMaxValue), fMinValue);
+				g_variant_dict_lookup (hWidgetAttributes, "min-label", "&s", &cMinLabel);
+				g_variant_dict_lookup (hWidgetAttributes, "max-label", "&s", &cMaxLabel);
+				
+				pScale = gtk_scale_new_with_range (GTK_ORIENTATION_HORIZONTAL, fMinValue, fMaxValue, (fMaxValue - fMinValue) / 100.);
+				pOneWidget = pScale;
+				gtk_scale_set_digits (GTK_SCALE (pScale), iNbDigit);
+				gtk_range_set_value (GTK_RANGE (pScale), fInitialValue);
+				
+				g_object_set (pScale, "width-request", 150, NULL);
+				gldi_dialog_set_widget_text_color (pScale);
+				
+				if (cMinLabel || cMaxLabel)
 				{
-					GtkWidget *pScale = NULL;
-					double fMinValue = 0.;
-					double fMaxValue = 100.;
-					int iNbDigit = 2;
-					double fInitialValue = 0.;
-					const gchar *cMinLabel = NULL;
-					const gchar *cMaxLabel = NULL;
-					
-					v = g_hash_table_lookup (hWidgetAttributes, "min-value");
-					if (v && G_VALUE_HOLDS_DOUBLE (v))
-						fMinValue = g_value_get_double (v);
-					
-					v = g_hash_table_lookup (hWidgetAttributes, "max-value");
-					if (v && G_VALUE_HOLDS_DOUBLE (v))
-						fMaxValue = g_value_get_double (v);
-					fMaxValue = MAX (fMaxValue, fMinValue+1);
-					
-					v = g_hash_table_lookup (hWidgetAttributes, "nb-digit");
-					if (v && G_VALUE_HOLDS_INT (v))
-						iNbDigit = g_value_get_int (v);
-					
-					v = g_hash_table_lookup (hWidgetAttributes, "initial-value");
-					if (v && G_VALUE_HOLDS_DOUBLE (v))
-						fInitialValue = g_value_get_double (v);
-					fInitialValue = MAX (MIN (fInitialValue, fMaxValue), fMinValue);
-					
-					v = g_hash_table_lookup (hWidgetAttributes, "min-label");
-					if (v && G_VALUE_HOLDS_STRING (v))
-						cMinLabel = g_value_get_string (v);
-					
-					v = g_hash_table_lookup (hWidgetAttributes, "max-label");
-					if (v && G_VALUE_HOLDS_STRING (v))
-						cMaxLabel = g_value_get_string (v);
-
-					pScale = gtk_scale_new_with_range (GTK_ORIENTATION_HORIZONTAL, fMinValue, fMaxValue, (fMaxValue - fMinValue) / 100.);
-					pOneWidget = pScale;
-					gtk_scale_set_digits (GTK_SCALE (pScale), iNbDigit);
-					gtk_range_set_value (GTK_RANGE (pScale), fInitialValue);
-					
-					g_object_set (pScale, "width-request", 150, NULL);
-					gldi_dialog_set_widget_text_color (pScale);
-					
-					if (cMinLabel || cMaxLabel)
-					{
-						GtkWidget *pExtendedWidget = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-						GtkWidget *label = gtk_label_new (cMinLabel);
-						gtk_box_pack_start (GTK_BOX (pExtendedWidget), label, FALSE, FALSE, 0);
-						gtk_box_pack_start (GTK_BOX (pExtendedWidget), pScale, FALSE, FALSE, 0);
-						label = gtk_label_new (cMaxLabel);
-						gtk_box_pack_start (GTK_BOX (pExtendedWidget), label, FALSE, FALSE, 0);
-						pInteractiveWidget = pExtendedWidget;
-					}
-					else
-						pInteractiveWidget = pScale;
-					
-					if (attr.cButtonsImage != NULL)
-						attr.pActionFunc = (CairoDockActionOnAnswerFunc) cd_dbus_applet_emit_on_answer_scale;
+					GtkWidget *pExtendedWidget = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+					GtkWidget *label = gtk_label_new (cMinLabel);
+					gtk_box_pack_start (GTK_BOX (pExtendedWidget), label, FALSE, FALSE, 0);
+					gtk_box_pack_start (GTK_BOX (pExtendedWidget), pScale, FALSE, FALSE, 0);
+					label = gtk_label_new (cMaxLabel);
+					gtk_box_pack_start (GTK_BOX (pExtendedWidget), label, FALSE, FALSE, 0);
+					pInteractiveWidget = pExtendedWidget;
 				}
-				else if (strcmp (cType, "list") == 0)
+				else
+					pInteractiveWidget = pScale;
+				
+				if (attr.cButtonsImage != NULL)
+					attr.pActionFunc = (CairoDockActionOnAnswerFunc) cd_dbus_applet_emit_on_answer_scale;
+			}
+			else if (strcmp (cType, "list") == 0)
+			{
+				gboolean bEditable = FALSE;
+				const gchar *cValues = NULL;
+				gchar **cValuesList = NULL;
+				const gchar *cInitialText = NULL;
+				int iInitialValue = 0;
+
+				g_variant_dict_lookup (hWidgetAttributes, "editable", "b", &bEditable);
+				g_variant_dict_lookup (hWidgetAttributes, "value", "&s", &cValues);
+				if (cValues != NULL)
+					cValuesList = g_strsplit (cValues, ";", -1);
+
+				if (bEditable)
+					pOneWidget = gtk_combo_box_text_new_with_entry ();
+				else
+					pOneWidget = gtk_combo_box_text_new ();
+				pInteractiveWidget = pOneWidget;
+
+				if (cValuesList != NULL)
 				{
-					gboolean bEditable = FALSE;
-					const gchar *cValues = NULL;
-					gchar **cValuesList = NULL;
-					const gchar *cInitialText = NULL;
-					int iInitialValue = 0;
-
-					v = g_hash_table_lookup (hWidgetAttributes, "editable");
-					if (v && G_VALUE_HOLDS_BOOLEAN (v))
-						bEditable = g_value_get_boolean (v);
-					
-					v = g_hash_table_lookup (hWidgetAttributes, "values");
-					if (v && G_VALUE_HOLDS_STRING (v))
-						cValues = g_value_get_string (v);
-
-					if (cValues != NULL)
-						cValuesList = g_strsplit (cValues, ";", -1);
-
-					if (bEditable)
-						pOneWidget = gtk_combo_box_text_new_with_entry ();
-					else
-						pOneWidget = gtk_combo_box_text_new ();
-					pInteractiveWidget = pOneWidget;
-
-					if (cValuesList != NULL)
+					int i;
+					for (i = 0; cValuesList[i] != NULL; i ++)
 					{
-						int i;
-						for (i = 0; cValuesList[i] != NULL; i ++)
-						{
-							gtk_combo_box_text_append_text (GTK_COMBO_BOX_TEXT (pInteractiveWidget), cValuesList[i]);
-						}
+						gtk_combo_box_text_append_text (GTK_COMBO_BOX_TEXT (pInteractiveWidget), cValuesList[i]);
 					}
-					
-					v = g_hash_table_lookup (hWidgetAttributes, "initial-value");
-					if (bEditable)
+				}
+				
+				
+				if (bEditable)
+				{
+					g_variant_dict_lookup (hWidgetAttributes, "initial-value", "&s", &cInitialText);
+					if (cInitialText != NULL)
 					{
-						if (v && G_VALUE_HOLDS_STRING (v))
-							cInitialText = g_value_get_string (v);
-						if (cInitialText != NULL)
-						{
-							GtkWidget *pEntry = gtk_bin_get_child (GTK_BIN (pInteractiveWidget));
-							gtk_entry_set_text (GTK_ENTRY (pEntry), cInitialText);
-						}
-					}
-					else
-					{
-						if (v && G_VALUE_HOLDS_INT (v))
-							iInitialValue = g_value_get_int (v);
-						gtk_combo_box_set_active (GTK_COMBO_BOX (pInteractiveWidget), iInitialValue);
-					}
-					
-					if (attr.cButtonsImage != NULL)
-					{
-						if (bEditable)
-							attr.pActionFunc = (CairoDockActionOnAnswerFunc) cd_dbus_applet_emit_on_answer_combo_entry;
-						else
-							attr.pActionFunc = (CairoDockActionOnAnswerFunc) cd_dbus_applet_emit_on_answer_combo;
+						GtkWidget *pEntry = gtk_bin_get_child (GTK_BIN (pInteractiveWidget));
+						gtk_entry_set_text (GTK_ENTRY (pEntry), cInitialText);
 					}
 				}
 				else
-					cd_warning ("unknown widget type '%s'", cType);
-			}  // fin du type de widget.
+				{
+					g_variant_dict_lookup (hWidgetAttributes, "initial-value", "i", &iInitialValue);
+					gtk_combo_box_set_active (GTK_COMBO_BOX (pInteractiveWidget), iInitialValue);
+				}
+				
+				if (attr.cButtonsImage != NULL)
+				{
+					if (bEditable)
+						attr.pActionFunc = (CairoDockActionOnAnswerFunc) cd_dbus_applet_emit_on_answer_combo_entry;
+					else
+						attr.pActionFunc = (CairoDockActionOnAnswerFunc) cd_dbus_applet_emit_on_answer_combo;
+				}
+			}
+			else
+				cd_warning ("unknown widget type '%s'", cType);
 		}
 	}
 	attr.pInteractiveWidget = pInteractiveWidget;
@@ -563,9 +506,12 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 	if (pOneWidget)
 		gtk_widget_grab_focus (pOneWidget);
 	
-	g_free (cImageFilePath);
 	if (cButtonsImage)
 		g_strfreev (cButtonsImage);
+	
+	g_variant_dict_unref (hDialogAttributes);
+	if (hWidgetAttributes) g_variant_dict_unref (hWidgetAttributes);
+	
 	return TRUE;
 }
 
@@ -574,74 +520,138 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
  ////////// sub-applet interface methods ///////////
 ///////////////////////////////////////////////////
 
-gboolean cd_dbus_sub_applet_set_quick_info (dbusSubApplet *pDbusSubApplet, const gchar *cQuickInfo, const gchar *cIconID, GError **error)
+static void _sub_applet_set_quick_info (GVariant *pPar, GDBusMethodInvocation *pInv, DBusAppletData *pApplet)
 {
-	return _applet_set_quick_info (pDbusSubApplet->pApplet, cQuickInfo, cIconID, error);
+	const gchar *cQuickInfo, *cIconID;
+	g_variant_get (pPar, "(&s&s)", &cQuickInfo, &cIconID);
+	if (_applet_set_quick_info (pApplet, cQuickInfo, cIconID))
+		g_dbus_method_invocation_return_value (pInv, NULL);
+	else g_dbus_method_invocation_return_error (pInv, G_DBUS_ERROR,
+		G_DBUS_ERROR_INVALID_ARGS, "Icon not found: '%s'", cIconID);
 }
 
-gboolean cd_dbus_sub_applet_set_label (dbusSubApplet *pDbusSubApplet, const gchar *cLabel, const gchar *cIconID, GError **error)
+static void _sub_applet_set_label (GVariant *pPar, GDBusMethodInvocation *pInv, DBusAppletData *pApplet)
 {
-	return _applet_set_label (pDbusSubApplet->pApplet, cLabel, cIconID, error);
+	const gchar *cLabel, *cIconID;
+	g_variant_get (pPar, "(&s&s)", &cLabel, &cIconID);
+	if (_applet_set_label (pApplet, cLabel, cIconID))
+		g_dbus_method_invocation_return_value (pInv, NULL);
+	else g_dbus_method_invocation_return_error (pInv, G_DBUS_ERROR,
+		G_DBUS_ERROR_INVALID_ARGS, "Icon not found: '%s'", cIconID);
 }
 
-gboolean cd_dbus_sub_applet_set_icon (dbusSubApplet *pDbusSubApplet, const gchar *cImage, const gchar *cIconID, GError **error)
+static void _sub_applet_set_icon (GVariant *pPar, GDBusMethodInvocation *pInv, DBusAppletData *pApplet)
 {
-	return _applet_set_icon (pDbusSubApplet->pApplet, cImage, cIconID, error);
+	const gchar *cImage, *cIconID;
+	g_variant_get (pPar, "(&s&s)", &cImage, &cIconID);
+	if (_applet_set_icon (pApplet, cImage, cIconID))
+		g_dbus_method_invocation_return_value (pInv, NULL);
+	else g_dbus_method_invocation_return_error (pInv, G_DBUS_ERROR,
+		G_DBUS_ERROR_INVALID_ARGS, "Icon not found: '%s'", cIconID);
 }
 
-gboolean cd_dbus_sub_applet_set_emblem (dbusSubApplet *pDbusSubApplet, const gchar *cImage, gint iPosition, const gchar *cIconID, GError **error)
+static void _sub_applet_set_emblem (GVariant *pPar, GDBusMethodInvocation *pInv, DBusAppletData *pApplet)
 {
-	return _applet_set_emblem (pDbusSubApplet->pApplet, cImage, iPosition, cIconID, error);
+	const gchar *cImage, *cIconID;
+	gint iPosition;
+	g_variant_get (pPar, "(&si&s)", &cImage, &iPosition, &cIconID);
+	if (_applet_set_emblem (pApplet, cImage, iPosition, cIconID))
+		g_dbus_method_invocation_return_value (pInv, NULL);
+	else g_dbus_method_invocation_return_error (pInv, G_DBUS_ERROR,
+		G_DBUS_ERROR_INVALID_ARGS, "Icon not found: '%s'", cIconID);
 }
 
-gboolean cd_dbus_sub_applet_animate (dbusSubApplet *pDbusSubApplet, const gchar *cAnimation, gint iNbRounds, const gchar *cIconID, GError **error)
+static void _sub_applet_animate (GVariant *pPar, GDBusMethodInvocation *pInv, DBusAppletData *pApplet)
 {
-	return _applet_animate (pDbusSubApplet->pApplet, cAnimation, iNbRounds, cIconID, error);
+	const gchar *cAnimation, *cIconID;
+	gint iNbRounds;
+	g_variant_get (pPar, "(&si&s)", &cAnimation, &iNbRounds, &cIconID);
+	if (_applet_animate (pApplet, cAnimation, iNbRounds, cIconID))
+		g_dbus_method_invocation_return_value (pInv, NULL);
+	else g_dbus_method_invocation_return_error (pInv, G_DBUS_ERROR,
+		G_DBUS_ERROR_INVALID_ARGS, "Icon not found: '%s'", cIconID);
 }
 
-gboolean cd_dbus_sub_applet_show_dialog (dbusSubApplet *pDbusSubApplet, const gchar *cMessage, gint iDuration, const gchar *cIconID, GError **error)
+static void _sub_applet_show_dialog (GVariant *pPar, GDBusMethodInvocation *pInv, DBusAppletData *pApplet)
 {
-	return _applet_show_dialog (pDbusSubApplet->pApplet, cMessage, iDuration, cIconID, error);
+	const gchar *cMessage, *cIconID;
+	gint iDuration;
+	g_variant_get (pPar, "(&si&s)", &cMessage, &iDuration, &cIconID);
+	if (_applet_show_dialog (pApplet, cMessage, iDuration, cIconID))
+		g_dbus_method_invocation_return_value (pInv, NULL);
+	else g_dbus_method_invocation_return_error (pInv, G_DBUS_ERROR,
+		G_DBUS_ERROR_INVALID_ARGS, "Icon not found: '%s'", cIconID);
 }
 
 // deprecated
-gboolean cd_dbus_sub_applet_ask_question (dbusSubApplet *pDbusSubApplet, const gchar *cMessage, const gchar *cIconID, GError **error)
+static void _sub_applet_ask_question (GVariant *pPar, GDBusMethodInvocation *pInv, DBusAppletData *pApplet)
 {
-	return _applet_ask_question (pDbusSubApplet->pApplet, cMessage, cIconID, error);
+	const gchar *cMessage, *cIconID;
+	g_variant_get (pPar, "(&s&s)", &cMessage, &cIconID);
+	if (_applet_ask_question (pApplet, cMessage, cIconID))
+		g_dbus_method_invocation_return_value (pInv, NULL);
+	else g_dbus_method_invocation_return_error (pInv, G_DBUS_ERROR,
+		G_DBUS_ERROR_INVALID_ARGS, "Icon not found: '%s'", cIconID);
 }
 
-gboolean cd_dbus_sub_applet_ask_value (dbusSubApplet *pDbusSubApplet, const gchar *cMessage, gdouble fInitialValue, gdouble fMaxValue, const gchar *cIconID, GError **error)
+static void _sub_applet_ask_value (GVariant *pPar, GDBusMethodInvocation *pInv, DBusAppletData *pApplet)
 {
-	return _applet_ask_value (pDbusSubApplet->pApplet, cMessage, fInitialValue, fMaxValue, cIconID, error);
+	const gchar *cMessage, *cIconID;
+	gdouble fInitialValue, fMaxValue;
+	g_variant_get (pPar, "(&sdd&s)", &cMessage, &fInitialValue, &fMaxValue, &cIconID);
+	if (_applet_ask_value (pApplet, cMessage, fInitialValue, fMaxValue, cIconID))
+		g_dbus_method_invocation_return_value (pInv, NULL);
+	else g_dbus_method_invocation_return_error (pInv, G_DBUS_ERROR,
+		G_DBUS_ERROR_INVALID_ARGS, "Icon not found: '%s'", cIconID);
 }
 
-gboolean cd_dbus_sub_applet_ask_text (dbusSubApplet *pDbusSubApplet, const gchar *cMessage, const gchar *cInitialText, const gchar *cIconID, GError **error)
+static void _sub_applet_ask_text (GVariant *pPar, GDBusMethodInvocation *pInv, DBusAppletData *pApplet)
 {
-	return _applet_ask_text (pDbusSubApplet->pApplet, cMessage, cInitialText, cIconID, error);
+	const gchar *cMessage, *cInitialText, *cIconID;
+	g_variant_get (pPar, "(&s&s&s)", &cMessage, &cInitialText, &cIconID);
+	if (_applet_ask_text (pApplet, cMessage, cInitialText, cIconID))
+		g_dbus_method_invocation_return_value (pInv, NULL);
+	else g_dbus_method_invocation_return_error (pInv, G_DBUS_ERROR,
+		G_DBUS_ERROR_INVALID_ARGS, "Icon not found: '%s'", cIconID);
 }
 // end of deprecated
 
-gboolean cd_dbus_sub_applet_popup_dialog (dbusSubApplet *pDbusSubApplet, GHashTable *hDialogAttributes, GHashTable *hWidgetAttributes, const gchar *cIconID, GError **error)
+static void _sub_applet_popup_dialog (GVariant *pPar, GDBusMethodInvocation *pInv, DBusAppletData *pApplet)
 {
-	return _applet_popup_dialog (pDbusSubApplet->pApplet, hDialogAttributes, hWidgetAttributes, cIconID, error);
+	GVariant *pDialogAttr, *pWidgetAttr;
+	const gchar *cIconID;
+	g_variant_get (pPar, "(@a{sv}@a{sv}&s)", &pDialogAttr, &pWidgetAttr, &cIconID);
+	if (_applet_popup_dialog (pApplet, pDialogAttr, pWidgetAttr, cIconID))
+		g_dbus_method_invocation_return_value (pInv, NULL);
+	else g_dbus_method_invocation_return_error (pInv, G_DBUS_ERROR,
+		G_DBUS_ERROR_INVALID_ARGS, "Icon not found: '%s'", cIconID);
+	g_variant_unref (pDialogAttr);
+	g_variant_unref (pWidgetAttr);
 }
 
 
-gboolean cd_dbus_sub_applet_add_sub_icons (dbusSubApplet *pDbusSubApplet, const gchar **pIconFields, GError **error)
+static void _sub_applet_add_sub_icons (GVariant *pPar, GDBusMethodInvocation *pInv, DBusAppletData *pApplet)
 {
 	//g_print ("%s ()\n", __func__);
-	GldiModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusSubApplet->pApplet);
-	g_return_val_if_fail (pInstance != NULL, FALSE);
-	
-	Icon *pIcon = pInstance->pIcon;
-	g_return_val_if_fail (pIcon != NULL, FALSE);
-	
-	GldiContainer *pContainer = pInstance->pContainer;
-	g_return_val_if_fail (pContainer != NULL, FALSE);
+	GldiModuleInstance *pInstance = pApplet->pModuleInstance;
+	Icon *pIcon = pInstance ? pInstance->pIcon : NULL;
+	GldiContainer *pContainer = pInstance ? pInstance->pContainer : NULL;
+	if (!(pInstance && pIcon && pContainer))
+	{
+		g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR,
+			G_DBUS_ERROR_FAILED, "Applet or its icon does not exist");
+		return;
+	}
 	
 	GList *pCurrentIconsList = (pInstance->pDock ? (pIcon->pSubDock ? pIcon->pSubDock->icons : NULL) : pInstance->pDesklet->icons);
 	Icon *pLastIcon = cairo_dock_get_last_icon (pCurrentIconsList);
 	int n = (pLastIcon ? pLastIcon->fOrder + 1 : 0);
+	
+	const gchar **pIconFields = NULL;
+	g_variant_get (pPar, "(^a&s)", &pIconFields);
+	
+	if (!pIconFields) // happens for empty arrays, should be an error?
+		g_dbus_method_invocation_return_value (pInv, NULL);
 	
 	GList *pIconsList = NULL;
 	Icon *pOneIcon;
@@ -663,33 +673,39 @@ gboolean cd_dbus_sub_applet_add_sub_icons (dbusSubApplet *pDbusSubApplet, const 
 	gpointer data[3] = {GINT_TO_POINTER (0), GINT_TO_POINTER (TRUE), NULL};
 	cairo_dock_insert_icons_in_applet (pInstance, pIconsList, NULL, "Panel", (CairoDeskletRendererConfigPtr) data);  // NULL <=> default sub-docks renderer
 	
-	return TRUE;
+	g_free (pIconFields); // note: no need to free the elements, but need to free the array
+	g_dbus_method_invocation_return_value (pInv, NULL);
 }
 
-gboolean cd_dbus_sub_applet_remove_sub_icon (dbusSubApplet *pDbusSubApplet, const gchar *cIconID, GError **error)
+static void _sub_applet_remove_sub_icon (GVariant *pPar, GDBusMethodInvocation *pInv, DBusAppletData *pApplet)
 {
-	GldiModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusSubApplet->pApplet);
-	g_return_val_if_fail (pInstance != NULL, FALSE);
+	GldiModuleInstance *pInstance = pApplet->pModuleInstance;
+	Icon *pIcon = pInstance ? pInstance->pIcon : NULL;
+	GldiContainer *pContainer = pInstance ? pInstance->pContainer : NULL;
+	if (!(pInstance && pIcon && pContainer))
+	{
+		g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR,
+			G_DBUS_ERROR_FAILED, "Applet or its icon does not exist");
+		return;
+	}
 	
-	Icon *pIcon = pInstance->pIcon;
-	g_return_val_if_fail (pIcon != NULL, FALSE);
+	const gchar *cIconID;
+	g_variant_get (pPar, "(&s)", &cIconID);
 	
-	GldiContainer *pContainer = pInstance->pContainer;
-	g_return_val_if_fail (pContainer != NULL, FALSE);
-	
-	if (cIconID == NULL || strcmp (cIconID, "any") == 0)  // remove all
+	// note: cIconID likely will not be NULL (there are no NULL values in DBus), but can be an empty string
+	if (!cIconID || !*cIconID || !strcmp (cIconID, "any"))  // remove all
 	{
 		cairo_dock_remove_all_icons_from_applet (pInstance);
 	}
 	else
 	{
 		GList *pIconsList = (pInstance->pDock ? (pIcon->pSubDock ? pIcon->pSubDock->icons : NULL) : pInstance->pDesklet->icons);
-		Icon *pOneIcon = cairo_dock_get_icon_with_command (pIconsList, cIconID);
+		Icon *pOneIcon = cairo_dock_get_icon_with_command (pIconsList, cIconID); //!! TODO: should we return an error if not found ?
 		///cairo_dock_remove_icon_from_applet (pInstance, pOneIcon);
 		gldi_object_unref (GLDI_OBJECT(pOneIcon));
 	}
 	
-	return TRUE;
+	g_dbus_method_invocation_return_value (pInv, NULL);
 }
 
 
@@ -697,37 +713,73 @@ gboolean cd_dbus_sub_applet_remove_sub_icon (dbusSubApplet *pDbusSubApplet, cons
  ////////// applet interface methods ///////////
 ///////////////////////////////////////////////
 
-gboolean cd_dbus_applet_set_quick_info (dbusApplet *pDbusApplet, const gchar *cQuickInfo, GError **error)
+static void _m_applet_set_quick_info (GVariant *pPar, GDBusMethodInvocation *pInv, DBusAppletData *pApplet)
 {
-	return _applet_set_quick_info (pDbusApplet, cQuickInfo, NULL, error);
+	const gchar *cQuickInfo;
+	g_variant_get (pPar, "(&s)", &cQuickInfo);
+	if (_applet_set_quick_info (pApplet, cQuickInfo, NULL))
+		g_dbus_method_invocation_return_value (pInv, NULL);
+	else g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR,
+		G_DBUS_ERROR_FAILED, "Applet or its icon does not exist");
 }
 
-gboolean cd_dbus_applet_set_label (dbusApplet *pDbusApplet, const gchar *cLabel, GError **error)
+static void _m_applet_set_label (GVariant *pPar, GDBusMethodInvocation *pInv, DBusAppletData *pApplet)
 {
-	return _applet_set_label (pDbusApplet, cLabel, NULL, error);
+	const gchar *cLabel;
+	g_variant_get (pPar, "(&s)", &cLabel);
+	if (_applet_set_label (pApplet, cLabel, NULL))
+		g_dbus_method_invocation_return_value (pInv, NULL);
+	else g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR,
+		G_DBUS_ERROR_FAILED, "Applet or its icon does not exist");
 }
 
-gboolean cd_dbus_applet_set_icon (dbusApplet *pDbusApplet, const gchar *cImage, GError **error)
+static void _m_applet_set_icon (GVariant *pPar, GDBusMethodInvocation *pInv, DBusAppletData *pApplet)
 {
-	return _applet_set_icon (pDbusApplet, cImage, NULL, error);
+	const gchar *cImage;
+	g_variant_get (pPar, "(&s)", &cImage);
+	if (_applet_set_icon (pApplet, cImage, NULL))
+		g_dbus_method_invocation_return_value (pInv, NULL);
+	else g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR,
+		G_DBUS_ERROR_FAILED, "Applet or its icon does not exist");
 }
 
-gboolean cd_dbus_applet_set_emblem (dbusApplet *pDbusApplet, const gchar *cImage, gint iPosition, GError **error)
+static void _m_applet_set_emblem (GVariant *pPar, GDBusMethodInvocation *pInv, DBusAppletData *pApplet)
 {
-	return _applet_set_emblem (pDbusApplet, cImage, iPosition, NULL, error);
+	const gchar *cImage;
+	gint iPosition;
+	g_variant_get (pPar, "(&si)", &cImage, &iPosition);
+	if (_applet_set_emblem (pApplet, cImage, iPosition, NULL))
+		g_dbus_method_invocation_return_value (pInv, NULL);
+	else g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR,
+		G_DBUS_ERROR_FAILED, "Applet or its icon does not exist");
 }
 
-gboolean cd_dbus_applet_animate (dbusApplet *pDbusApplet, const gchar *cAnimation, gint iNbRounds, GError **error)
+static void _m_applet_animate (GVariant *pPar, GDBusMethodInvocation *pInv, DBusAppletData *pApplet)
 {
-	return _applet_animate (pDbusApplet, cAnimation, iNbRounds, NULL, error);
+	const gchar *cAnimation;
+	gint iNbRounds;
+	g_variant_get (pPar, "(&si)", &cAnimation, &iNbRounds);
+	if (_applet_animate (pApplet, cAnimation, iNbRounds, NULL))
+		g_dbus_method_invocation_return_value (pInv, NULL);
+	else g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR,
+		G_DBUS_ERROR_FAILED, "Applet or its icon does not exist");
 }
 
-gboolean cd_dbus_applet_demands_attention (dbusApplet *pDbusApplet, gboolean bStart, const gchar *cAnimation, GError **error)
+
+static void _m_applet_demands_attention (GVariant *pPar, GDBusMethodInvocation *pInv, DBusAppletData *pApplet)
 {
 	Icon *pIcon;
 	GldiContainer *pContainer;
-	if (! _get_icon_and_container_from_id (pDbusApplet, NULL, &pIcon, &pContainer))
-		return FALSE;
+	if (! _get_icon_and_container_from_id (pApplet, NULL, &pIcon, &pContainer))
+	{
+		g_dbus_method_invocation_return_error (pInv, G_DBUS_ERROR,
+			G_DBUS_ERROR_FAILED, "Applet or its icon does not exist");
+		return;
+	}
+	
+	gboolean bStart;
+	const gchar *cAnimation;
+	g_variant_get (pPar, "(b&s)", &bStart, &cAnimation);
 	
 	if (bStart)
 	{
@@ -740,51 +792,81 @@ gboolean cd_dbus_applet_demands_attention (dbusApplet *pDbusApplet, gboolean bSt
 	{
 		gldi_icon_stop_attention (pIcon);
 	}
-	return TRUE;
+	g_dbus_method_invocation_return_value (pInv, NULL);
 }
 
-gboolean cd_dbus_applet_show_dialog (dbusApplet *pDbusApplet, const gchar *message, gint iDuration, GError **error)
+static void _m_applet_show_dialog (GVariant *pPar, GDBusMethodInvocation *pInv, DBusAppletData *pApplet)
 {
-	cd_debug ("%s (%s)", __func__, message);
-	return _applet_show_dialog (pDbusApplet, message, iDuration, NULL, error);
+	const gchar *cMessage;
+	gint iDuration;
+	g_variant_get (pPar, "(&si)", &cMessage, &iDuration);
+	if (_applet_show_dialog (pApplet, cMessage, iDuration, NULL))
+		g_dbus_method_invocation_return_value (pInv, NULL);
+	else g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR,
+		G_DBUS_ERROR_FAILED, "Applet or its icon does not exist");
 }
 
 // deprecated
-gboolean cd_dbus_applet_ask_question (dbusApplet *pDbusApplet, const gchar *message, GError **error)
+static void _m_applet_ask_question (GVariant *pPar, GDBusMethodInvocation *pInv, DBusAppletData *pApplet)
 {
-	cd_debug ("%s (%s)", __func__, message);
-	return _applet_ask_question (pDbusApplet, message, NULL, error);
+	const gchar *cMessage;
+	g_variant_get (pPar, "(&s)", &cMessage);
+	if (_applet_ask_question (pApplet, cMessage, NULL))
+		g_dbus_method_invocation_return_value (pInv, NULL);
+	else g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR,
+		G_DBUS_ERROR_FAILED, "Applet or its icon does not exist");
 }
 
-gboolean cd_dbus_applet_ask_value (dbusApplet *pDbusApplet, const gchar *message, gdouble fInitialValue, gdouble fMaxValue, GError **error)
+static void _m_applet_ask_value (GVariant *pPar, GDBusMethodInvocation *pInv, DBusAppletData *pApplet)
 {
-	cd_debug ("%s (%s)", __func__, message);
-	return _applet_ask_value (pDbusApplet, message, fInitialValue, fMaxValue, NULL, error);
+	const gchar *cMessage;
+	gdouble fInitialValue, fMaxValue;
+	g_variant_get (pPar, "(&sdd)", &cMessage, &fInitialValue, &fMaxValue);
+	if (_applet_ask_value (pApplet, cMessage, fInitialValue, fMaxValue, NULL))
+		g_dbus_method_invocation_return_value (pInv, NULL);
+	else g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR,
+		G_DBUS_ERROR_FAILED, "Applet or its icon does not exist");
 }
 
-gboolean cd_dbus_applet_ask_text (dbusApplet *pDbusApplet, const gchar *message, const gchar *cInitialText, GError **error)
+static void _m_applet_ask_text (GVariant *pPar, GDBusMethodInvocation *pInv, DBusAppletData *pApplet)
 {
-	cd_debug ("%s (%s)", __func__, message);
-	return _applet_ask_text (pDbusApplet, message, cInitialText, NULL, error);
+	const gchar *cMessage, *cInitialText;
+	g_variant_get (pPar, "(&s&s)", &cMessage, &cInitialText);
+	if (_applet_ask_text (pApplet, cMessage, cInitialText, NULL))
+		g_dbus_method_invocation_return_value (pInv, NULL);
+	else g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR,
+		G_DBUS_ERROR_FAILED, "Applet or its icon does not exist");
 }
 // end of deprecated
 
-gboolean cd_dbus_applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDialogAttributes, GHashTable *hWidgetAttributes, GError **error)
+static void _m_applet_popup_dialog (GVariant *pPar, GDBusMethodInvocation *pInv, DBusAppletData *pApplet)
 {
-	return _applet_popup_dialog (pDbusApplet, hDialogAttributes, hWidgetAttributes, NULL, error);
+	GVariant *pDialogAttr, *pWidgetAttr;
+	g_variant_get (pPar, "(@a{sv}@a{sv})", &pDialogAttr, &pWidgetAttr);
+	if (_applet_popup_dialog (pApplet, pDialogAttr, pWidgetAttr, NULL))
+		g_dbus_method_invocation_return_value (pInv, NULL);
+	else g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR,
+		G_DBUS_ERROR_FAILED, "Applet or its icon does not exist");
+	g_variant_unref (pDialogAttr);
+	g_variant_unref (pWidgetAttr);
 }
 
-
-gboolean cd_dbus_applet_add_data_renderer (dbusApplet *pDbusApplet, const gchar *cType, gint iNbValues, const gchar *cTheme, GError **error)
+static void _applet_add_data_renderer (GVariant *pPar, GDBusMethodInvocation *pInv, DBusAppletData *pApplet)
 {
-	GldiModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
-	g_return_val_if_fail (pInstance != NULL, FALSE);
+	GldiModuleInstance *pInstance = pApplet->pModuleInstance;
+	Icon *pIcon = pInstance ? pInstance->pIcon : NULL;
+	GldiContainer *pContainer = pInstance ? pInstance->pContainer : NULL;
+	if (!(pInstance && pIcon && pContainer))
+	{
+		g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR,
+			G_DBUS_ERROR_FAILED, "Applet or its icon does not exist");
+		return;
+	}
 	
-	Icon *pIcon = pInstance->pIcon;
-	g_return_val_if_fail (pIcon != NULL, FALSE);
+	const gchar *cType, *cTheme;
+	gint iNbValues;
 	
-	GldiContainer *pContainer = pInstance->pContainer;
-	g_return_val_if_fail (pContainer != NULL, FALSE);
+	g_variant_get (pPar, "(&si&s)", &cType, &iNbValues, &cTheme);
 	
 	CairoDataRendererAttribute *pRenderAttr = NULL;  // attributes for the global data-renderer.
 	CairoGaugeAttribute aGaugeAttr;  // gauge attributes.
@@ -816,17 +898,20 @@ gboolean cd_dbus_applet_add_data_renderer (dbusApplet *pDbusApplet, const gchar 
 		else if (strcmp (cTheme, "Plain Circle") == 0)
 			aGraphAttr.iType = CAIRO_DOCK_GRAPH_CIRCLE_PLAIN;
 		aGraphAttr.bMixGraphs = FALSE;
-		fHighColor = g_new (double, iNbValues*3);
-		fLowColor  = g_new (double, iNbValues*3);
-		int i;
-		for (i = 0; i < iNbValues; i ++)
+		if (iNbValues > 0)
 		{
-			fHighColor[3*i] = 1;
-			fHighColor[3*i+1] = 0;
-			fHighColor[3*i+2] = 0;
-			fLowColor[3*i] = 0;
-			fLowColor[3*i+1] = 1;
-			fLowColor[3*i+2] = 1;
+			fHighColor = g_new (double, iNbValues*3);
+			fLowColor  = g_new (double, iNbValues*3);
+			int i;
+			for (i = 0; i < iNbValues; i ++)
+			{
+				fHighColor[3*i] = 1;
+				fHighColor[3*i+1] = 0;
+				fHighColor[3*i+2] = 0;
+				fLowColor[3*i] = 0;
+				fLowColor[3*i+1] = 1;
+				fLowColor[3*i+2] = 1;
+			}
 		}
 		aGraphAttr.fHighColor = fHighColor;
 		aGraphAttr.fLowColor = fLowColor;
@@ -844,7 +929,8 @@ gboolean cd_dbus_applet_add_data_renderer (dbusApplet *pDbusApplet, const gchar 
 	if (pRenderAttr == NULL || iNbValues <= 0)
 	{
 		cairo_dock_remove_data_renderer_on_icon (pIcon);
-		return TRUE;
+		g_dbus_method_invocation_return_value (pInv, NULL);
+		return;
 	}
 	
 	pRenderAttr->cModelName = cType;
@@ -852,42 +938,68 @@ gboolean cd_dbus_applet_add_data_renderer (dbusApplet *pDbusApplet, const gchar 
 	pRenderAttr->iNbValues = iNbValues;
 	//pRenderAttr->bUpdateMinMax = TRUE;
 	//pRenderAttr->bWriteValues = TRUE;
-	g_return_val_if_fail (pIcon->image.pSurface != NULL, FALSE);
-	cairo_dock_add_new_data_renderer_on_icon (pIcon, pContainer, pRenderAttr);
+	if (pIcon->image.pSurface)
+	{
+		cairo_dock_add_new_data_renderer_on_icon (pIcon, pContainer, pRenderAttr);
+		g_dbus_method_invocation_return_value (pInv, NULL);
+	}
+	else g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR,
+			G_DBUS_ERROR_FAILED, "Applet icon does not have an image surface");
 
 	g_free (fHighColor);
 	g_free (fLowColor);
-
-	return TRUE;
 }
 
-gboolean cd_dbus_applet_render_values (dbusApplet *pDbusApplet, GArray *pValues, GError **error)
+static void _applet_render_values (GVariant *pPar, GDBusMethodInvocation *pInv, DBusAppletData *pApplet)
 {
-	GldiModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
-	g_return_val_if_fail (pInstance != NULL, FALSE);
+	GldiModuleInstance *pInstance = pApplet->pModuleInstance;
+	Icon *pIcon = pInstance ? pInstance->pIcon : NULL;
+	GldiContainer *pContainer = pInstance ? pInstance->pContainer : NULL;
+	CairoDataRenderer *pRenderer = pIcon ? cairo_dock_get_icon_data_renderer (pIcon) : NULL;
+	if (!(pInstance && pIcon && pContainer)) g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR,
+		G_DBUS_ERROR_FAILED, "Applet or its icon does not exist");
+	if (!pIcon->image.pSurface) g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR,
+		G_DBUS_ERROR_FAILED, "Applet icon does not have an image surface");
+	if (!pRenderer) g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR,
+		G_DBUS_ERROR_FAILED, "Applet icon does not have a data renderer");
+	if (! (pInstance && pIcon && pContainer && pRenderer && pIcon->image.pSurface)) return;
 	
-	Icon *pIcon = pInstance->pIcon;
-	g_return_val_if_fail (pIcon != NULL, FALSE);
+	CairoDataToRenderer *pData = cairo_data_renderer_get_data (pRenderer);
+	int iNbValues = pData->iNbValues;
 	
-	GldiContainer *pContainer = pInstance->pContainer;
-	g_return_val_if_fail (pContainer != NULL, FALSE);
+	// note: we should make sure that we have at least the expected number of elements,
+	// as cairo_dock_render_new_data_on_icon () will copy without checking the size
+	double *values = g_new0 (double, iNbValues);
+	GVariantIter *iter = NULL;
+	g_variant_get (pPar, "(ad)", &iter);
 	
-	g_return_val_if_fail (pIcon->image.pSurface != NULL, FALSE);
+	int i;
+	for (i = 0; i < iNbValues; i++)
+		if (!g_variant_iter_next (iter, "d", values + i)) break;
+	g_variant_iter_free (iter);
+	
 	cairo_t *pDrawContext = cairo_create (pIcon->image.pSurface);
-	cairo_dock_render_new_data_on_icon (pIcon, pContainer, pDrawContext, (double *)pValues->data);
+	cairo_dock_render_new_data_on_icon (pIcon, pContainer, pDrawContext, values);
 	cairo_destroy (pDrawContext);
+	g_free (values);
 	
 	cairo_dock_redraw_icon (pIcon);
-	return TRUE;
+	g_dbus_method_invocation_return_value (pInv, NULL);
 }
 
-gboolean cd_dbus_applet_control_appli (dbusApplet *pDbusApplet, const gchar *cApplicationClass, GError **error)
+static void _applet_control_appli (GVariant *pPar, GDBusMethodInvocation *pInv, DBusAppletData *pApplet)
 {
-	GldiModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
-	g_return_val_if_fail (pInstance != NULL, FALSE);
+	GldiModuleInstance *pInstance = pApplet->pModuleInstance;
+	Icon *pIcon = pInstance ? pInstance->pIcon : NULL;
+	if (!(pInstance && pIcon))
+	{
+		g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR,
+			G_DBUS_ERROR_FAILED, "Applet or its icon does not exist");
+		return;
+	}
 	
-	Icon *pIcon = pInstance->pIcon;
-	g_return_val_if_fail (pIcon != NULL, FALSE);
+	const gchar *cApplicationClass;
+	g_variant_get (pPar, "(&s)", &cApplicationClass);
 	
 	gchar *cClass = (cApplicationClass ? g_ascii_strdown (cApplicationClass, -1) : NULL);
 	if (cairo_dock_strings_differ (pIcon->cClass, cClass))
@@ -907,34 +1019,48 @@ gboolean cd_dbus_applet_control_appli (dbusApplet *pDbusApplet, const gchar *cAp
 	}
 	
 	g_free (cClass);
-	return TRUE;
+	g_dbus_method_invocation_return_value (pInv, NULL);
 }
 
-gboolean cd_dbus_applet_show_appli (dbusApplet *pDbusApplet, gboolean bShow, GError **error)  // deprecated
+static void _applet_show_appli (GVariant *pPar, GDBusMethodInvocation *pInv, DBusAppletData *pApplet)
 {
-	GldiModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
-	g_return_val_if_fail (pInstance != NULL, FALSE);
+	GldiModuleInstance *pInstance = pApplet->pModuleInstance;
+	Icon *pIcon = pInstance ? pInstance->pIcon : NULL;
+	if (!(pInstance && pIcon)) g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR,
+		G_DBUS_ERROR_FAILED, "Applet or its icon does not exist");
+	if (!pIcon->pAppli) g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR,
+		G_DBUS_ERROR_FAILED, "Applet is not controlling an application");
+	if (!(pInstance && pIcon && pIcon->pAppli)) return;
 	
-	Icon *pIcon = pInstance->pIcon;
-	g_return_val_if_fail (pIcon != NULL && pIcon->pAppli != NULL, FALSE);
+	gboolean bShow;
+	g_variant_get (pPar, "(b)", &bShow);
 	
 	if (bShow)
 		gldi_window_show (pIcon->pAppli);
 	else
 		gldi_window_minimize (pIcon->pAppli);
 	
-	return TRUE;
+	g_dbus_method_invocation_return_value (pInv, NULL);
 }
 
-gboolean cd_dbus_applet_act_on_appli (dbusApplet *pDbusApplet, const gchar *cAction, GError **error)
+static void _applet_act_on_appli (GVariant *pPar, GDBusMethodInvocation *pInv, DBusAppletData *pApplet)
 {
-	GldiModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
-	g_return_val_if_fail (pInstance != NULL, FALSE);
+	GldiModuleInstance *pInstance = pApplet->pModuleInstance;
+	Icon *pIcon = pInstance ? pInstance->pIcon : NULL;
+	if (!(pInstance && pIcon)) g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR,
+		G_DBUS_ERROR_FAILED, "Applet or its icon does not exist");
+	if (!pIcon->pAppli) g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR,
+		G_DBUS_ERROR_FAILED, "Applet is not controlling an application");
+	if (!(pInstance && pIcon && pIcon->pAppli)) return;
 	
-	Icon *pIcon = pInstance->pIcon;
-	g_return_val_if_fail (pIcon != NULL && pIcon->pAppli != NULL, FALSE);
-	
-	g_return_val_if_fail (cAction != NULL, FALSE);
+	const gchar *cAction;
+	g_variant_get (pPar, "(&s)", &cAction);
+	if (!*cAction)
+	{
+		g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR,
+			G_DBUS_ERROR_INVALID_ARGS, "No action given");
+		return;
+	}
 	
 	if (strcmp (cAction, "minimize") == 0)
 		gldi_window_minimize (pIcon->pAppli);
@@ -961,19 +1087,26 @@ gboolean cd_dbus_applet_act_on_appli (dbusApplet *pDbusApplet, const gchar *cAct
 		gldi_window_kill (pIcon->pAppli);
 	else
 	{
-		cd_warning ("invalid action '%s' on window %s", cAction, pIcon->cName);
+		g_dbus_method_invocation_return_error (pInv, G_DBUS_ERROR,
+			G_DBUS_ERROR_INVALID_ARGS, "Invalid action: '%s'", cAction);
+		return;
 	}
 	
-	return TRUE;
+	g_dbus_method_invocation_return_value (pInv, NULL);
 }
 
-gboolean cd_dbus_applet_populate_menu (dbusApplet *pDbusApplet, const gchar **pLabels, GError **error)  // deprecated
+static void _applet_populate_menu (GVariant *pPar, GDBusMethodInvocation *pInv, DBusAppletData *pApplet)  // deprecated
 {
-	if (myData.pModuleMainMenu == NULL || pDbusApplet != myData.pCurrentMenuDbusApplet)
+	if (myData.pModuleMainMenu == NULL || pApplet != myData.pCurrentMenuDbusApplet)
 	{
 		cd_warning ("the 'PopulateMenu' method can only be used to populate the menu that was summoned from a right-click on your applet !\nthat is to say, after you received a 'build-menu' event.");
-		return FALSE;
+		g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR, G_DBUS_ERROR_NOT_SUPPORTED,
+			"the 'PopulateMenu' method can only be used to populate the menu that was summoned from a right-click on your applet !\nthat is to say, after you received a 'build-menu' event.");
+		return;
 	}
+	
+	const gchar **pLabels;
+	g_variant_get (pPar, "(^a&s)", &pLabels);
 	
 	int i;
 	for (i = 0; pLabels[i] != NULL; i ++)
@@ -993,7 +1126,7 @@ gboolean cd_dbus_applet_populate_menu (dbusApplet *pDbusApplet, const gchar **pL
 	}
 	gtk_widget_show_all (myData.pModuleMainMenu);
 	
-	return TRUE;
+	g_dbus_method_invocation_return_value (pInv, NULL);
 }
 
 static void _on_map_menuitem (GtkWidget *pMenuItem, gpointer data)
@@ -1006,12 +1139,14 @@ static void _weak_free_helper (gpointer ptr, G_GNUC_UNUSED GObject* pObj)
 	g_free (ptr);
 }
 
-gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pItems, GError **error)
+static void _applet_add_menu_items (GVariant *pPar, GDBusMethodInvocation *pInv, DBusAppletData *pApplet)
 {
-	if (myData.pModuleMainMenu == NULL/** || myData.pModuleSubMenu == NULL*/ || pDbusApplet != myData.pCurrentMenuDbusApplet)
+	if (myData.pModuleMainMenu == NULL/** || myData.pModuleSubMenu == NULL*/ || pApplet != myData.pCurrentMenuDbusApplet)
 	{
 		cd_warning ("the 'AddMenuItems' method can only be used to populate the menu that was summoned from a right-click on your applet !\nthat is to say, after you received a 'build-menu' event.");
-		return FALSE;
+		g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR, G_DBUS_ERROR_NOT_SUPPORTED,
+			"the 'AddMenuItems' method can only be used to populate the menu that was summoned from a right-click on your applet !\nthat is to say, after you received a 'build-menu' event.");
+		return;
 	}
 	
 	GtkRequisition natural_size;
@@ -1040,14 +1175,19 @@ gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pIte
 		NULL);
 	
 	// on parcours la liste des items.
-	GHashTable *pItem;
 	GtkWidget *pMenu;
 	GSList *group = NULL;
-	GValue *v;
+	// GValue *v;
+	
+	// pItems: "aa{sv}"
+	GVariantIter *iter;
+	g_variant_get (pPar, "(aa{sv})", &iter);
+	GVariant *pItemVar;
+	
 	guint i;
-	for (i = 0; i < pItems->len; i ++)
+	for (i = 0; g_variant_iter_next (iter, "@a{sv}", &pItemVar); i ++)
 	{
-		pItem = g_ptr_array_index (pItems, i);
+		GVariantDict *pItem = g_variant_dict_new (pItemVar);
 		
 		// get its properties.
 		const gchar *cLabel = NULL, *cIcon = NULL, *cToolTip = NULL;
@@ -1055,36 +1195,17 @@ gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pIte
 		gboolean bState = FALSE;
 		gpointer data;
 		
-		v = g_hash_table_lookup (pItem, "type");
-		if (v && G_VALUE_HOLDS_INT (v))
-			iType = g_value_get_int (v);
-		
-		v = g_hash_table_lookup (pItem, "label");
-		if (v && G_VALUE_HOLDS_STRING (v))
-			cLabel = g_value_get_string (v);
-		
-		v = g_hash_table_lookup (pItem, "id");
-		if (v && G_VALUE_HOLDS_INT (v))
-			id = g_value_get_int (v);
+		g_variant_dict_lookup (pItem, "type", "i", &iType);
+		g_variant_dict_lookup (pItem, "label", "&s", &cLabel);
+		g_variant_dict_lookup (pItem, "id", "i", &id);
 		data = GINT_TO_POINTER (id);
 		
 		if (iType == 0 || iType == 1)
-		{
-			v = g_hash_table_lookup (pItem, "icon");
-			if (v && G_VALUE_HOLDS_STRING (v))
-				cIcon = g_value_get_string (v);
-		}
+			g_variant_dict_lookup (pItem, "icon", "&s", &cIcon);
 		
-		v = g_hash_table_lookup (pItem, "state");
-		if (v && G_VALUE_HOLDS_BOOLEAN (v))
-			bState = g_value_get_boolean (v);
-		
-		v = g_hash_table_lookup (pItem, "group");
-		if (v && G_VALUE_HOLDS_INT (v))
-		{
-			iGroupID = g_value_get_int (v);
+		g_variant_dict_lookup (pItem, "state", "b", &bState);
+		if (g_variant_dict_lookup (pItem, "group", "i", &iGroupID))
 			group = g_hash_table_lookup (pGroups, &iGroupID);  // si NULL, ca fera un nouveau groupe.
-		}
 		else  // si on ne definit pas le groupe, c'est donc le groupe en cours qui est utilise, ou un nouveau groupe si encore aucun n'est en cours.
 			iGroupID = id;  // utilise seulement si le groupe est nouvellement cree, pour l'enregistrer.
 		
@@ -1129,15 +1250,13 @@ gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pIte
 		}
 		
 		// set sensitivity
-		v = g_hash_table_lookup (pItem, "sensitive");
-		if (v && G_VALUE_HOLDS_BOOLEAN (v))
-			gtk_widget_set_sensitive (pMenuItem, g_value_get_boolean (v));
+		gboolean tmp;
+		if (g_variant_dict_lookup (pItem, "sensitive", "b", &tmp))
+			gtk_widget_set_sensitive (pMenuItem, tmp);
 		
 		// set the tooltip
-		v = g_hash_table_lookup (pItem, "tooltip");
-		if (v && G_VALUE_HOLDS_STRING (v))
+		if (g_variant_dict_lookup (pItem, "tooltip", "&s", &cToolTip))
 		{
-			cToolTip = g_value_get_string (v);
 			if (gldi_wayland_manager_have_layer_shell ())
 			{
 				/** Need to manage the tooltip ourselves, see e.g.
@@ -1150,9 +1269,7 @@ gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pIte
 		}
 		
 		// insert in its menu.
-		v = g_hash_table_lookup (pItem, "menu");
-		if (v && G_VALUE_HOLDS_INT (v))
-			iMenuID = g_value_get_int (v);
+		g_variant_dict_lookup (pItem, "menu", "i", &iMenuID);
 		if (iMenuID <= 0)
 			pMenu = myData.pModuleMainMenu;
 		else
@@ -1169,8 +1286,12 @@ gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pIte
 			gtk_widget_get_preferred_size (pMenuItem, NULL, &natural_size);
 			iItemHeight += natural_size.height;
 		}
+		
+		g_variant_dict_unref (pItem);
+		g_variant_unref (pItemVar);
 	}
 	
+	g_variant_iter_free (iter);
 	g_hash_table_destroy (pSubMenus);
 	g_hash_table_destroy (pGroups);
 	gtk_widget_show_all (myData.pModuleMainMenu);
@@ -1178,24 +1299,29 @@ gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pIte
 	g_object_set (myData.pModuleMainMenu, "height-request", iMenuHeight + iItemHeight, NULL);  // GTK doesn't resize menus correctly, so we have to force it...
 	gtk_menu_reposition (GTK_MENU (myData.pModuleMainMenu));
 	
-	return TRUE;
+	g_dbus_method_invocation_return_value (pInv, NULL);
 }
 
 
-gboolean cd_dbus_applet_bind_shortkey (dbusApplet *pDbusApplet, const gchar **cShortkeys, GError **error)
+static void _applet_bind_shortkey (GVariant *pPar, GDBusMethodInvocation *pInv, DBusAppletData *pApplet)
 {
-	cd_debug ("%s ()", __func__);
-	g_return_val_if_fail (cShortkeys != NULL, FALSE);
+	GldiModuleInstance *pInstance = pApplet->pModuleInstance;
+	if (!pInstance)
+	{
+		g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR,
+			G_DBUS_ERROR_FAILED, "Applet does not exist");
+		return;
+	}
 	
-	GldiModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
-	g_return_val_if_fail (pInstance != NULL, FALSE);
+	const gchar **cShortkeys;
+	g_variant_get (pPar, "(^a&s)", &cShortkeys);
 	
 	const gchar *cShortkey, *cDescription = "-", *cGroupName = "Configuration", *cKeyName = "shortkey";
 	GldiShortkey *pKeyBinding;
 	int i;
 	GList *kb;
 	
-	if (pDbusApplet->pShortkeyList == NULL)
+	if (pApplet->pShortkeyList == NULL)
 	{
 		for (i = 0; cShortkeys[i] != NULL; i ++)
 		{
@@ -1206,35 +1332,38 @@ gboolean cd_dbus_applet_bind_shortkey (dbusApplet *pDbusApplet, const gchar **cS
 				pInstance->pModule->pVisitCard->cIconFilePath,
 				pInstance->cConfFilePath,
 				cGroupName, cKeyName,
-				(CDBindkeyHandler) cd_dbus_applet_emit_on_shortkey, pDbusApplet),
-			pDbusApplet->pShortkeyList = g_list_append (pDbusApplet->pShortkeyList, pKeyBinding);
+				(CDBindkeyHandler) cd_dbus_applet_emit_on_shortkey, pApplet);
+			pApplet->pShortkeyList = g_list_append (pApplet->pShortkeyList, pKeyBinding);
 		}
 	}
 	else  // just rebind, we consider that the applet wants to rebind the same shortkeys.
 	{
-		for (i = 0, kb = pDbusApplet->pShortkeyList; cShortkeys[i] != NULL && kb != NULL; i ++, kb = kb->next)
+		for (i = 0, kb = pApplet->pShortkeyList; cShortkeys[i] != NULL && kb != NULL; i ++, kb = kb->next)
 		{
 			cShortkey = cShortkeys[i];
 			pKeyBinding = kb->data;
 			gldi_shortkey_rebind (pKeyBinding, cShortkey, NULL);
 		}
 	}
-	return TRUE;
+	g_dbus_method_invocation_return_value (pInv, NULL);
 }
 
 
-gboolean cd_dbus_applet_get (dbusApplet *pDbusApplet, const gchar *cProperty, GValue *v, GError **error)
+// new interface: use DBus properties -- TODO: we need to track changes and send out notifications about them !!
+static GVariant *_applet_get_property (G_GNUC_UNUSED GDBusConnection *pConn, G_GNUC_UNUSED const gchar *cSender,
+	G_GNUC_UNUSED const gchar *cObj, G_GNUC_UNUSED const gchar *cInterface, const gchar* cProperty,
+	GError** error, DBusAppletData *pApplet)
 {
-	cd_debug ("%s (%s)", __func__, cProperty);
-	GldiModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
-	g_return_val_if_fail (pInstance != NULL, FALSE);
+	GldiModuleInstance *pInstance = pApplet->pModuleInstance;
+	Icon *pIcon = pInstance ? pInstance->pIcon : NULL;
+	GldiContainer *pContainer = pInstance ? pInstance->pContainer : NULL;
+	if (!(pApplet && pInstance && pIcon && pContainer))
+	{
+		g_set_error_literal (error, G_DBUS_ERROR, G_DBUS_ERROR_FAILED, "Applet or its icon does not exist");
+		return NULL;
+	}
 	
-	Icon *pIcon = pInstance->pIcon;
-	g_return_val_if_fail (pIcon != NULL, FALSE);
-	
-	GldiContainer *pContainer = pInstance->pContainer;
-	g_return_val_if_fail (pContainer != NULL, FALSE);
-	
+	GVariant *res = NULL;
 	// x, y, orientation, type, width, height
 	if (strcmp (cProperty, "x") == 0)
 	{
@@ -1247,8 +1376,7 @@ gboolean cd_dbus_applet_get (dbusApplet *pDbusApplet, const gchar *cProperty, GV
 		{
 			x = pContainer->iWindowPositionY + pIcon->fDrawY + pIcon->fHeight * pIcon->fScale/2;
 		}
-		g_value_init (v, G_TYPE_INT);
-		g_value_set_int (v, x);
+		res = g_variant_new_int32 (x);
 	}
 	else if (strcmp (cProperty, "y") == 0)
 	{
@@ -1261,65 +1389,104 @@ gboolean cd_dbus_applet_get (dbusApplet *pDbusApplet, const gchar *cProperty, GV
 		{
 			y = pContainer->iWindowPositionX + pIcon->fDrawX + pIcon->fWidth * pIcon->fScale/2;
 		}
-		g_value_init (v, G_TYPE_INT);
-		g_value_set_int (v, y);
+		res = g_variant_new_int32 (y);
 	}
 	else if (strcmp (cProperty, "orientation") == 0)
 	{
 		CairoDockPositionType iScreenBorder = ((! pContainer->bIsHorizontal) << 1) | (! pContainer->bDirectionUp);
-		g_value_init (v, G_TYPE_UINT);
-		g_value_set_uint (v, iScreenBorder);
+		res = g_variant_new_uint32 (iScreenBorder);
 	}
 	else if (strcmp (cProperty, "container") == 0)
 	{
-		g_value_init (v, G_TYPE_UINT);
-		int iType = _get_container_type (pContainer);
-		g_value_set_uint (v, iType);
+		unsigned int iType = _get_container_type (pContainer);
+		res = g_variant_new_uint32 (iType);
 	}
 	else if (strcmp (cProperty, "width") == 0)  // this is the dimension of the icon when it's hovered.
 	{
 		int iWidth, iHeight;
 		cairo_dock_get_icon_extent (pIcon, &iWidth, &iHeight);
-		g_value_init (v, G_TYPE_INT);
-		g_value_set_int (v, iWidth);
+		res = g_variant_new_int32 (iWidth);
 	}
 	else if (strcmp (cProperty, "height") == 0)
 	{
 		int iWidth, iHeight;
 		cairo_dock_get_icon_extent (pIcon, &iWidth, &iHeight);
-		g_value_init (v, G_TYPE_INT);
-		g_value_set_int (v, iHeight);
+		res = g_variant_new_int32 (iHeight);
 	}
 	else if (strncmp (cProperty, "Xid", 3) == 0)
 	{
-		g_value_init (v, G_TYPE_UINT64);
-		g_value_set_uint64 (v, GPOINTER_TO_INT(pIcon->pAppli));
+		// note: this is only used to indicate whether the app is open
+		res = g_variant_new_uint64 (!!pIcon->pAppli);
 	}
 	else if (strcmp (cProperty, "has_focus") == 0)
 	{
 		gboolean bHasFocus = (pIcon->pAppli != NULL && pIcon->pAppli == gldi_windows_get_active ());
-		g_value_init (v, G_TYPE_BOOLEAN);
-		g_value_set_boolean (v, bHasFocus);
+		res = g_variant_new_boolean (bHasFocus);
 	}
 	else
-	{
-		g_set_error (error, 1, 1, "the property %s doesn't exist", cProperty);
-		return FALSE;
-	}
-	return TRUE;
+		g_set_error (error, G_DBUS_ERROR, G_DBUS_ERROR_UNKNOWN_PROPERTY, "Unknown property (%s)", cProperty);
+	return res;
 }
 
-gboolean cd_dbus_applet_get_all (dbusApplet *pDbusApplet, GHashTable **hProperties, GError **error)
+GVariant *cd_dbus_applet_get_property (GDBusConnection *pConn, const gchar *cSender, const gchar *cObj,
+	const gchar *cInterface, const gchar* cProperty, GError** error, gpointer data)
 {
-	cd_debug ("%s ()", __func__);
-	GldiModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
-	g_return_val_if_fail (pInstance != NULL, FALSE);
+	CD_APPLET_ENTER;
 	
-	Icon *pIcon = pInstance->pIcon;
-	g_return_val_if_fail (pIcon != NULL, FALSE);
+	DBusAppletData *pApplet = (DBusAppletData*)data;
 	
-	GldiContainer *pContainer = pInstance->pContainer;
-	g_return_val_if_fail (pContainer != NULL, FALSE);
+	if (!pApplet)
+	{
+		g_set_error_literal (error, G_DBUS_ERROR, G_DBUS_ERROR_FAILED, "Applet does not exist");
+		CD_APPLET_LEAVE (NULL);
+	}
+	
+	GVariant *res = _applet_get_property (pConn, cSender, cObj, cInterface, cProperty, error, pApplet);
+	
+	CD_APPLET_LEAVE (res);
+}
+
+// old interface: our own functions for getting properties
+static void _applet_get (GVariant *pPar, GDBusMethodInvocation *pInv, DBusAppletData *pApplet)
+{
+	GError *err = NULL;
+	const gchar *cProperty;
+	g_variant_get (pPar, "(&s)", &cProperty);
+	
+	GVariant *res = cd_dbus_applet_get_property (NULL, NULL, NULL, NULL, cProperty, &err, pApplet);
+	if (!res)
+	{
+		// error is set in this case
+		g_dbus_method_invocation_return_gerror (pInv, err);
+		g_error_free (err);
+	}
+	else // we need to box the result as "(v)"
+		g_dbus_method_invocation_return_value (pInv, g_variant_new ("(v)", res)); // will take ownership of res (it is a floating reference)
+}
+
+
+static void _applet_get_all (GVariant *pPar, GDBusMethodInvocation *pInv, DBusAppletData *pApplet)
+{
+	GldiModuleInstance *pInstance = pApplet->pModuleInstance;
+	Icon *pIcon = pInstance ? pInstance->pIcon : NULL;
+	GldiContainer *pContainer = pInstance ? pInstance->pContainer : NULL;
+	if (!(pInstance && pIcon && pContainer))
+	{
+		g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR, G_DBUS_ERROR_FAILED, "Applet or its icon does not exist");
+		return;
+	}
+	
+	// return value should be a{sv}
+	GVariantBuilder res;
+	
+	#if GLIB_CHECK_VERSION (2, 84, 0)
+	g_variant_builder_init_static
+	#else
+	g_variant_builder_init
+	#endif
+	(&res, G_VARIANT_TYPE ("(a{sv})"));
+	
+	g_variant_builder_open (&res, G_VARIANT_TYPE ("a{sv}"));
 	
 	int x, y;
 	if (pContainer->bIsHorizontal)
@@ -1338,53 +1505,98 @@ gboolean cd_dbus_applet_get_all (dbusApplet *pDbusApplet, GHashTable **hProperti
 	
 	gboolean bHasFocus = (pIcon->pAppli != NULL && pIcon->pAppli == gldi_windows_get_active ());
 	
-	GHashTable *h = g_hash_table_new_full (g_str_hash,
-		g_str_equal,
-		g_free,
-		g_free);
-	*hProperties = h;
-	GValue *v;
+	g_variant_builder_add (&res, "{sv}", "x", g_variant_new_int32 (x));
+	g_variant_builder_add (&res, "{sv}", "y", g_variant_new_int32 (y));
+	g_variant_builder_add (&res, "{sv}", "orientation", g_variant_new_uint32 (iScreenBorder));
+	g_variant_builder_add (&res, "{sv}", "container", g_variant_new_uint32 (_get_container_type (pContainer)));
+	g_variant_builder_add (&res, "{sv}", "width", g_variant_new_int32 (iWidth));
+	g_variant_builder_add (&res, "{sv}", "height", g_variant_new_int32 (iHeight));
+	g_variant_builder_add (&res, "{sv}", "Xid", g_variant_new_uint64 (!!pIcon->pAppli));
+	g_variant_builder_add (&res, "{sv}", "has_focus", g_variant_new_boolean (bHasFocus));
 	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_INT);
-	g_value_set_int (v, x);
-	g_hash_table_insert (h, g_strdup ("x"), v);
-	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_INT);
-	g_value_set_int (v, y);
-	g_hash_table_insert (h, g_strdup ("y"), v);
-	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_UINT);
-	g_value_set_uint (v, iScreenBorder);
-	g_hash_table_insert (h, g_strdup ("orientation"), v);
-	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_UINT);
-	int iType = _get_container_type (pContainer);
-	g_value_set_uint (v, iType);
-	g_hash_table_insert (h, g_strdup ("container"), v);
-	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_INT);
-	g_value_set_int (v, iWidth);
-	g_hash_table_insert (h, g_strdup ("width"), v);
-	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_INT);
-	g_value_set_int (v, iHeight);
-	g_hash_table_insert (h, g_strdup ("height"), v);
-	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_UINT64);
-	g_value_set_uint64(v, GPOINTER_TO_INT(pIcon->pAppli));
-	g_hash_table_insert (h, g_strdup ("Xid"), v);
-	
-	v = g_new0 (GValue, 1);
-	g_value_init (v, G_TYPE_BOOLEAN);
-	g_value_set_boolean (v, bHasFocus);
-	g_hash_table_insert (h, g_strdup ("has_focus"), v);
-	
-	return TRUE;
+	g_variant_builder_close (&res);
+	g_dbus_method_invocation_return_value (pInv, g_variant_builder_end (&res));
 }
+
+
+void cd_dbus_applet_method_call (G_GNUC_UNUSED GDBusConnection *pConn, G_GNUC_UNUSED const gchar *cSender,
+	G_GNUC_UNUSED const gchar *cObj, // object path -- should we re-check that it matches the applet?
+	G_GNUC_UNUSED const gchar *cInterface, // interface -- will always be org.cairodock.CairoDock.applet
+	const gchar *cMethod, GVariant *pPar, GDBusMethodInvocation* pInv, gpointer data)
+{
+	CD_APPLET_ENTER;
+	
+	DBusAppletData *pApplet = (DBusAppletData*)data;
+	if (!pApplet)
+	{
+		g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR, G_DBUS_ERROR_FAILED, "Applet does not exist");
+		CD_APPLET_LEAVE ();
+	}
+	
+	     if (!strcmp (cMethod, "Get")) _applet_get (pPar, pInv, pApplet);
+	else if (!strcmp (cMethod, "GetAll")) _applet_get_all (pPar, pInv, pApplet);
+	else if (!strcmp (cMethod, "SetQuickInfo")) _m_applet_set_quick_info (pPar, pInv, pApplet);
+	else if (!strcmp (cMethod, "SetLabel")) _m_applet_set_label (pPar, pInv, pApplet);
+	else if (!strcmp (cMethod, "SetIcon")) _m_applet_set_icon (pPar, pInv, pApplet);
+	else if (!strcmp (cMethod, "SetEmblem")) _m_applet_set_emblem (pPar, pInv, pApplet);
+	else if (!strcmp (cMethod, "Animate")) _m_applet_animate (pPar, pInv, pApplet);
+	else if (!strcmp (cMethod, "DemandsAttention")) _m_applet_demands_attention (pPar, pInv, pApplet);
+	else if (!strcmp (cMethod, "ShowDialog")) _m_applet_show_dialog (pPar, pInv, pApplet);
+	else if (!strcmp (cMethod, "PopupDialog")) _m_applet_popup_dialog (pPar, pInv, pApplet);
+	else if (!strcmp (cMethod, "AddDataRenderer")) _applet_add_data_renderer (pPar, pInv, pApplet);
+	else if (!strcmp (cMethod, "RenderValues")) _applet_render_values (pPar, pInv, pApplet);
+	else if (!strcmp (cMethod, "ControlAppli")) _applet_control_appli (pPar, pInv, pApplet);
+	else if (!strcmp (cMethod, "ActOnAppli")) _applet_act_on_appli (pPar, pInv, pApplet);
+	else if (!strcmp (cMethod, "AddMenuItems")) _applet_add_menu_items (pPar, pInv, pApplet);
+	else if (!strcmp (cMethod, "BindShortkey")) _applet_bind_shortkey (pPar, pInv, pApplet);
+	else if (!strcmp (cMethod, "AskQuestion")) _m_applet_ask_question (pPar, pInv, pApplet);
+	else if (!strcmp (cMethod, "AskText")) _m_applet_ask_text (pPar, pInv, pApplet);
+	else if (!strcmp (cMethod, "AskValue")) _m_applet_ask_value (pPar, pInv, pApplet);
+	else if (!strcmp (cMethod, "ShowAppli")) _applet_show_appli (pPar, pInv, pApplet);
+	else if (!strcmp (cMethod, "PopulateMenu")) _applet_populate_menu (pPar, pInv, pApplet);
+	else g_dbus_method_invocation_return_error (pInv, G_DBUS_ERROR, G_DBUS_ERROR_UNKNOWN_METHOD, "Unknown method: '%s'", cMethod);
+	
+	CD_APPLET_LEAVE ();
+}
+
+GVariant *cd_dbus_sub_applet_get_property (G_GNUC_UNUSED GDBusConnection *pConn, G_GNUC_UNUSED const gchar *cSender,
+	G_GNUC_UNUSED const gchar *cObj, G_GNUC_UNUSED const gchar *cInterface, const gchar* cProp,
+	GError** error, G_GNUC_UNUSED gpointer data)
+{
+	// sub-applets don't have any DBus properties
+	g_set_error (error, G_DBUS_ERROR, G_DBUS_ERROR_UNKNOWN_PROPERTY, "Unknown property (%s)", cProp);
+	return NULL;
+}
+
+
+void cd_dbus_sub_applet_method_call (G_GNUC_UNUSED GDBusConnection *pConn, G_GNUC_UNUSED const gchar *cSender,
+	G_GNUC_UNUSED const gchar *cObj, // object path -- should we re-check that it matches the applet?
+	G_GNUC_UNUSED const gchar *cInterface, // interface -- will always be org.cairodock.CairoDock.subapplet
+	const gchar *cMethod, GVariant *pPar, GDBusMethodInvocation* pInv, gpointer data)
+{
+	CD_APPLET_ENTER;
+	
+	DBusAppletData *pApplet = (DBusAppletData*)data;
+	if (!pApplet)
+	{
+		g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR, G_DBUS_ERROR_FAILED, "Applet does not exist");
+		CD_APPLET_LEAVE ();
+	}
+	
+	     if (!strcmp (cMethod, "SetQuickInfo")) _sub_applet_set_quick_info (pPar, pInv, pApplet);
+	else if (!strcmp (cMethod, "SetLabel")) _sub_applet_set_label (pPar, pInv, pApplet);
+	else if (!strcmp (cMethod, "SetIcon")) _sub_applet_set_icon (pPar, pInv, pApplet);
+	else if (!strcmp (cMethod, "SetEmblem")) _sub_applet_set_emblem (pPar, pInv, pApplet);
+	else if (!strcmp (cMethod, "Animate")) _sub_applet_animate (pPar, pInv, pApplet);
+	else if (!strcmp (cMethod, "ShowDialog")) _sub_applet_show_dialog (pPar, pInv, pApplet);
+	else if (!strcmp (cMethod, "PopupDialog")) _sub_applet_popup_dialog (pPar, pInv, pApplet);
+	else if (!strcmp (cMethod, "AskQuestion")) _sub_applet_ask_question (pPar, pInv, pApplet);
+	else if (!strcmp (cMethod, "AskText")) _sub_applet_ask_text (pPar, pInv, pApplet);
+	else if (!strcmp (cMethod, "AskValue")) _sub_applet_ask_value (pPar, pInv, pApplet);
+	else if (!strcmp (cMethod, "AddSubIcons")) _sub_applet_add_sub_icons (pPar, pInv, pApplet);
+	else if (!strcmp (cMethod, "RemoveSubIcon")) _sub_applet_remove_sub_icon (pPar, pInv, pApplet);
+	else g_dbus_method_invocation_return_error (pInv, G_DBUS_ERROR, G_DBUS_ERROR_UNKNOWN_METHOD, "Unknown method: '%s'", cMethod);
+	
+	CD_APPLET_LEAVE ();
+}
+

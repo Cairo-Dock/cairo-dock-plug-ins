@@ -44,35 +44,18 @@ struct _AppletConfig {
 	gboolean bLaunchLauncherAPIDaemon;
 	} ;
 
-
-typedef struct _dbusApplet dbusApplet;
-typedef struct _dbusSubApplet dbusSubApplet;
-
-struct _dbusApplet {
-	GObject parent;
-	DBusGConnection *connection;
-	DBusGProxy *proxy;
+typedef struct _DBusAppletData {
+	GDBusConnection *connection;
 	GldiModuleInstance *pModuleInstance;
 	gchar *cModuleName;
 	gint id;
 	gchar *cBusPath;
-	dbusSubApplet *pSubApplet;
+	gchar *cBusPathSub;
 	CairoDialog *pDialog;
 	GList *pShortkeyList;
-};
-typedef struct {
-	GObjectClass parent_class;
-} dbusAppletClass;
-
-
-struct _dbusSubApplet {
-	GObject parent;
-	dbusApplet *pApplet;
-};
-typedef struct {
-	GObjectClass parent_class;
-} dbusSubAppletClass;
-
+	guint uRegApplet;
+	guint uRegSubApplet;
+} DBusAppletData;
 
 typedef enum {
 	CLIC=0,
@@ -112,7 +95,7 @@ struct _AppletData {
 	gchar *cBasePath;
 	///GtkWidget *pModuleSubMenu;
 	GtkWidget *pModuleMainMenu;
-	dbusApplet *pCurrentMenuDbusApplet;
+	DBusAppletData *pCurrentMenuDbusApplet;
 	gint iMenuPosition;
 	GldiWindowActor *pActiveWindow;;
 	GldiTask *pGetListTask;

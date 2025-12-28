@@ -24,10 +24,6 @@
 #include "applet-struct.h"
 
 
-void cd_dbus_applet_init_signals_once (dbusAppletClass *klass);
-void cd_dbus_sub_applet_init_signals_once (dbusSubAppletClass *klass);
-
-
 gboolean cd_dbus_applet_emit_on_click_icon (gpointer data, Icon *pClickedIcon, GldiContainer *pClickedContainer, guint iButtonState);
 
 gboolean cd_dbus_applet_emit_on_middle_click_icon (gpointer data, Icon *pClickedIcon, GldiContainer *pClickedContainer);
@@ -43,29 +39,29 @@ gboolean cd_dbus_applet_emit_on_drop_data (gpointer data, const gchar *cReceived
 gboolean cd_dbus_applet_emit_on_change_focus (gpointer data, GldiWindowActor *pNewActiveWindow);
 
 
-void cd_dbus_applet_emit_on_answer_question (int iClickedButton, GtkWidget *pInteractiveWidget, dbusApplet *pDbusApplet, CairoDialog *pDialog);
+void cd_dbus_applet_emit_on_answer_question (int iClickedButton, GtkWidget *pInteractiveWidget, DBusAppletData *pDbusApplet, CairoDialog *pDialog);
 
-void cd_dbus_applet_emit_on_answer_value (int iClickedButton, GtkWidget *pInteractiveWidget, dbusApplet *pDbusApplet, CairoDialog *pDialog);
+void cd_dbus_applet_emit_on_answer_value (int iClickedButton, GtkWidget *pInteractiveWidget, DBusAppletData *pDbusApplet, CairoDialog *pDialog);
 
-void cd_dbus_applet_emit_on_answer_text (int iClickedButton, GtkWidget *pInteractiveWidget, dbusApplet *pDbusApplet, CairoDialog *pDialog);
+void cd_dbus_applet_emit_on_answer_text (int iClickedButton, GtkWidget *pInteractiveWidget, DBusAppletData *pDbusApplet, CairoDialog *pDialog);
 
-void cd_dbus_applet_emit_on_answer_buttons (int iClickedButton, GtkWidget *pInteractiveWidget, dbusApplet *pDbusApplet, CairoDialog *pDialog);
+void cd_dbus_applet_emit_on_answer_buttons (int iClickedButton, GtkWidget *pInteractiveWidget, DBusAppletData *pDbusApplet, CairoDialog *pDialog);
 
-void cd_dbus_applet_emit_on_answer_text_entry (int iClickedButton, GtkWidget *pInteractiveWidget, dbusApplet *pDbusApplet, CairoDialog *pDialog);
+void cd_dbus_applet_emit_on_answer_text_entry (int iClickedButton, GtkWidget *pInteractiveWidget, DBusAppletData *pDbusApplet, CairoDialog *pDialog);
 
-void cd_dbus_applet_emit_on_answer_text_view (int iClickedButton, GtkWidget *pInteractiveWidget, dbusApplet *pDbusApplet, CairoDialog *pDialog);
+void cd_dbus_applet_emit_on_answer_text_view (int iClickedButton, GtkWidget *pInteractiveWidget, DBusAppletData *pDbusApplet, CairoDialog *pDialog);
 
-void cd_dbus_applet_emit_on_answer_scale (int iClickedButton, GtkWidget *pInteractiveWidget, dbusApplet *pDbusApplet, CairoDialog *pDialog);
+void cd_dbus_applet_emit_on_answer_scale (int iClickedButton, GtkWidget *pInteractiveWidget, DBusAppletData *pDbusApplet, CairoDialog *pDialog);
 
-void cd_dbus_applet_emit_on_answer_combo_entry (int iClickedButton, GtkWidget *pInteractiveWidget, dbusApplet *pDbusApplet, CairoDialog *pDialog);
+void cd_dbus_applet_emit_on_answer_combo_entry (int iClickedButton, GtkWidget *pInteractiveWidget, DBusAppletData *pDbusApplet, CairoDialog *pDialog);
 
-void cd_dbus_applet_emit_on_answer_combo (int iClickedButton, GtkWidget *pInteractiveWidget, dbusApplet *pDbusApplet, CairoDialog *pDialog);
+void cd_dbus_applet_emit_on_answer_combo (int iClickedButton, GtkWidget *pInteractiveWidget, DBusAppletData *pDbusApplet, CairoDialog *pDialog);
 
-void cd_dbus_applet_emit_on_shortkey (const gchar *cShortkey, dbusApplet *pDbusApplet);
+void cd_dbus_applet_emit_on_shortkey (const gchar *cShortkey, DBusAppletData *pDbusApplet);
 
 
 void cd_dbus_action_on_init_module (GldiModuleInstance *pModuleInstance);
-gboolean cd_dbus_emit_init_module_delayed (dbusApplet *pDbusApplet);
+gboolean cd_dbus_emit_init_module_delayed (DBusAppletData *pDbusApplet);
 void cd_dbus_emit_init_signal (GldiModuleInstance *pModuleInstance);
 void cd_dbus_emit_on_init_module (GldiModuleInstance *pModuleInstance, GKeyFile *pKeyFile);
 
