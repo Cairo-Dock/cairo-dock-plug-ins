@@ -38,8 +38,6 @@ dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.
 #include <signal.h>  // kill
 #include <glib.h>
 #include <glib/gstdio.h>
-#include <dbus/dbus-glib.h>
-#include <dbus/dbus-glib-bindings.h>
 
 #ifdef __FreeBSD__
 #include <kvm.h>
@@ -50,7 +48,6 @@ dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.
 #endif
 
 #include "interface-main-methods.h"
-#include "dbus-main-spec.h"
 #include "interface-applet-object.h"
 #include "interface-applet-signals.h"
 #include "applet-dbus.h"
@@ -71,8 +68,7 @@ static void _on_init_module (GldiModuleInstance *pModuleInstance, GKeyFile *pKey
 	//\_____________ On initialise l'icone.
 	cd_dbus_action_on_init_module (pModuleInstance);
 	//\_____________ On cree l'objet sur le bus.
-	dbusApplet *pDbusApplet = cd_dbus_create_remote_applet_object (pModuleInstance);
-	g_return_if_fail (pDbusApplet != NULL);
+	g_return_if_fail (cd_dbus_create_remote_applet_object (pModuleInstance));
 	
 	//\____________ On met a jour le fichier de conf si necessaire, c'est plus simple pour les applets.
 	if (pKeyFile != NULL)
@@ -87,7 +83,7 @@ static void _on_init_module (GldiModuleInstance *pModuleInstance, GKeyFile *pKey
 	}
 	
 	//\_____________ On (re)lance l'executable de l'applet.
-	cd_dbus_launch_applet_process (pModuleInstance, pDbusApplet);
+	cd_dbus_launch_applet_process (pModuleInstance);
 }
 static gboolean _cd_dbus_register_new_module (const gchar *cModuleName, const gchar *cDescription, const gchar *cAuthor, const gchar *cVersion, gint iCategory, const gchar *cIconName, const gchar *cTitle, const gchar *cShareDataDir, gboolean bMultiInstance, gboolean bActAsLauncher)
 {
@@ -120,7 +116,7 @@ static gboolean _cd_dbus_register_new_module (const gchar *cModuleName, const gc
 		else
 			pVisitCard->cIconFilePath = (cShareDataDir ? g_strdup_printf ("%s/icon", cShareDataDir) : NULL);
 		pVisitCard->iSizeOfConfig = 4;  // au cas ou ...
-		pVisitCard->iSizeOfData = 4;  // au cas ou ...
+		pVisitCard->iSizeOfData = sizeof (DBusAppletData); // data associated with this instance
 		pVisitCard->cDescription = g_strdup (cDescription);
 		pVisitCard->cTitle = cTitle ?
 			g_strdup (dgettext (pVisitCard->cGettextDomain, cTitle)) :
@@ -455,6 +451,8 @@ void cd_dbus_clean_up_processes (gboolean bAll)
 	#endif
 }
 
+gboolean s_bNameAcquiredOrLost = FALSE;
+
 static void _on_name_acquired (GDBusConnection* pConn, G_GNUC_UNUSED const gchar* cName, G_GNUC_UNUSED gpointer data)
 {
 	CD_APPLET_ENTER;
@@ -480,6 +478,8 @@ static void _on_name_acquired (GDBusConnection* pConn, G_GNUC_UNUSED const gchar
 		g_error_free (err);
 	}
 	
+	s_bNameAcquiredOrLost = TRUE;
+	
 	CD_APPLET_LEAVE ();
 }
 
@@ -492,6 +492,8 @@ static void _on_name_lost (GDBusConnection* pConn, G_GNUC_UNUSED const gchar* cN
 		g_dbus_connection_unregister_object (pConn, myData.uRegMainObject);
 		myData.uRegMainObject = 0;
 	}
+	
+	s_bNameAcquiredOrLost = TRUE;
 	
 	CD_APPLET_LEAVE ();
 }
@@ -530,12 +532,15 @@ void cd_dbus_launch_service (void)
 	//\____________ Register the service name (the service name is registerd once by the first gldi instance).
 	g_bus_own_name (G_BUS_TYPE_SESSION, "org.cairodock.CairoDock", G_BUS_NAME_OWNER_FLAGS_DO_NOT_QUEUE, NULL, // bus acquired handler
 		_on_name_acquired, _on_name_lost, NULL, NULL);
-	// cairo_dock_register_service_name ("org.cairodock.CairoDock");  /// what happens if the gldi instance that had registered the name quits while a 2nd instance remains ? do we need to queue ?...
 	
-	//\____________ create the main object on the bus.
-	// myData.pMainObject = g_object_new (cd_dbus_main_get_type(), NULL);  // call cd_dbus_main_class_init() and cd_dbus_main_init().
+	// Wait until we have acquired the bus. This is necessary as we can only load applets if the bus is available.
+	// Note: the first time this function is called from main () in cairo-dock.c, before running the GTK main loop,
+	// so it should be OK to iterate the main context directly.
+	GMainContext *pContext = g_main_context_default ();
+	do g_main_context_iteration (pContext, TRUE);
+	while (!s_bNameAcquiredOrLost);
 	
-	return; // for now, we cannot create applet objects
+	if (!myData.uRegMainObject) return; // no DBus, we cannot create objects for applets
 	
 	//\____________ internationalize the applets (we need to do that before registering applets).
 	gchar *cLocaleDir = g_strdup_printf ("%s/"CD_DBUS_APPLETS_FOLDER"/"LOCALE_DIR_NAME, g_cCairoDockDataDir);  // user version of /usr/share/locale
@@ -658,210 +663,3 @@ void cd_dbus_launch_subprocess (const gchar * const * args, const gchar *cWorkin
 	if (envp) g_strfreev (envp);
 }
 
-  ///////////////////
- /// MARSHALLERS ///
-///////////////////
-// must be in this file, otherwise we get include hell because of the generated code in *-spec.h
-
-void cd_dbus_marshal_VOID__INT_STRING (GClosure *closure,
-	GValue *return_value G_GNUC_UNUSED,
-	guint n_param_values,
-	const GValue *param_values,
-	gpointer invocation_hint G_GNUC_UNUSED,
-	gpointer marshal_data)
-{
-	//g_print ("%s ()\n", __func__);
-	typedef void (*GMarshalFunc_VOID__INT_STRING) (gpointer     data1,
-												gint        arg_1,
-												gchar 	   *arg_2,
-												gpointer     data2);
-	register GMarshalFunc_VOID__INT_STRING callback;
-	register GCClosure *cc = (GCClosure*) closure;
-	register gpointer data1, data2;
-	g_return_if_fail (n_param_values == 3);  // return_value est NULL ici, car la callback ne renvoit rien.
-
-	if (G_CCLOSURE_SWAP_DATA (closure))
-	{
-		data1 = closure->data;
-		data2 = g_value_peek_pointer (param_values + 0);
-	}
-	else
-	{
-		data1 = g_value_peek_pointer (param_values + 0);
-		data2 = closure->data;
-	}
-	callback = (GMarshalFunc_VOID__INT_STRING) (marshal_data ? marshal_data : cc->callback);
-
-	callback (data1,
-		g_marshal_value_peek_int (param_values + 1),
-		g_marshal_value_peek_string (param_values + 2),
-		data2);
-}
-void cd_dbus_marshal_VOID__BOOLEAN_STRING (GClosure *closure,
-	GValue *return_value G_GNUC_UNUSED,
-	guint n_param_values,
-	const GValue *param_values,
-	gpointer invocation_hint G_GNUC_UNUSED,
-	gpointer marshal_data)
-{
-	//g_print ("%s ()\n", __func__);
-	typedef void (*GMarshalFunc_VOID__BOOLEAN_STRING) (gpointer     data1,
-												gboolean    arg_1,
-												gchar 	   *arg_2,
-												gpointer     data2);
-	register GMarshalFunc_VOID__BOOLEAN_STRING callback;
-	register GCClosure *cc = (GCClosure*) closure;
-	register gpointer data1, data2;
-	g_return_if_fail (n_param_values == 3);  // return_value est NULL ici, car la callback ne renvoit rien.
-
-	if (G_CCLOSURE_SWAP_DATA (closure))
-	{
-		data1 = closure->data;
-		data2 = g_value_peek_pointer (param_values + 0);
-	}
-	else
-	{
-		data1 = g_value_peek_pointer (param_values + 0);
-		data2 = closure->data;
-	}
-	callback = (GMarshalFunc_VOID__BOOLEAN_STRING) (marshal_data ? marshal_data : cc->callback);
-
-	callback (data1,
-		g_marshal_value_peek_boolean (param_values + 1),
-		g_marshal_value_peek_string (param_values + 2),
-		data2);
-}
-void cd_dbus_marshal_VOID__STRING_STRING (GClosure *closure,
-	GValue *return_value G_GNUC_UNUSED,
-	guint n_param_values,
-	const GValue *param_values,
-	gpointer invocation_hint G_GNUC_UNUSED,
-	gpointer marshal_data)
-{
-	//g_print ("%s ()\n", __func__);
-	typedef void (*GMarshalFunc_VOID__STRING_STRING) (gpointer     data1,
-												gchar      *arg_1,
-												gchar 	   *arg_2,
-												gpointer     data2);
-	register GMarshalFunc_VOID__STRING_STRING callback;
-	register GCClosure *cc = (GCClosure*) closure;
-	register gpointer data1, data2;
-	g_return_if_fail (n_param_values == 3);  // return_value est NULL ici, car la callback ne renvoit rien.
-
-	if (G_CCLOSURE_SWAP_DATA (closure))
-	{
-		data1 = closure->data;
-		data2 = g_value_peek_pointer (param_values + 0);
-	}
-	else
-	{
-		data1 = g_value_peek_pointer (param_values + 0);
-		data2 = closure->data;
-	}
-	callback = (GMarshalFunc_VOID__STRING_STRING) (marshal_data ? marshal_data : cc->callback);
-
-	callback (data1,
-		g_marshal_value_peek_string (param_values + 1),
-		g_marshal_value_peek_string (param_values + 2),
-		data2);
-}
-void cd_dbus_marshal_VOID__VALUE (GClosure *closure,
-	GValue *return_value G_GNUC_UNUSED,
-	guint n_param_values,
-	const GValue *param_values,
-	gpointer invocation_hint G_GNUC_UNUSED,
-	gpointer marshal_data)
-{
-	//g_print ("%s ()\n", __func__);
-	typedef void (*GMarshalFunc_VOID__VALUE) (gpointer     data1,
-												GValue     *arg_1,
-												gpointer     data2);
-	register GMarshalFunc_VOID__VALUE callback;
-	register GCClosure *cc = (GCClosure*) closure;
-	register gpointer data1, data2;
-	g_return_if_fail (n_param_values == 2);  // return_value est NULL ici, car la callback ne renvoit rien.
-
-	if (G_CCLOSURE_SWAP_DATA (closure))
-	{
-		data1 = closure->data;
-		data2 = g_value_peek_pointer (param_values + 0);
-	}
-	else
-	{
-		data1 = g_value_peek_pointer (param_values + 0);
-		data2 = closure->data;
-	}
-	callback = (GMarshalFunc_VOID__VALUE) (marshal_data ? marshal_data : cc->callback);
-
-	callback (data1,
-		g_marshal_value_peek_pointer (param_values + 1),
-		data2);
-}
-void cd_dbus_marshal_VOID__INT_VALUE (GClosure *closure,
-	GValue *return_value G_GNUC_UNUSED,
-	guint n_param_values,
-	const GValue *param_values,
-	gpointer invocation_hint G_GNUC_UNUSED,
-	gpointer marshal_data)
-{
-	//g_print ("%s ()\n", __func__);
-	typedef void (*GMarshalFunc_VOID__INT_VALUE) (gpointer     data1,
-												gint 		arg_1,
-												GValue     *arg_2,
-												gpointer     data2);
-	register GMarshalFunc_VOID__INT_VALUE callback;
-	register GCClosure *cc = (GCClosure*) closure;
-	register gpointer data1, data2;
-	g_return_if_fail (n_param_values == 3);  // return_value est NULL ici, car la callback ne renvoit rien.
-
-	if (G_CCLOSURE_SWAP_DATA (closure))
-	{
-		data1 = closure->data;
-		data2 = g_value_peek_pointer (param_values + 0);
-	}
-	else
-	{
-		data1 = g_value_peek_pointer (param_values + 0);
-		data2 = closure->data;
-	}
-	callback = (GMarshalFunc_VOID__INT_VALUE) (marshal_data ? marshal_data : cc->callback);
-
-	callback (data1,
-		g_marshal_value_peek_int (param_values + 1),
-		g_marshal_value_peek_pointer (param_values + 2),
-		data2);
-}
-void cd_dbus_marshal_VOID__VALUE_STRING (GClosure *closure,
-	GValue *return_value G_GNUC_UNUSED,
-	guint n_param_values,
-	const GValue *param_values,
-	gpointer invocation_hint G_GNUC_UNUSED,
-	gpointer marshal_data)
-{
-	//g_print ("%s ()\n", __func__);
-	typedef void (*GMarshalFunc_VOID__VALUE_STRING) (gpointer     data1,
-												GValue     *arg_1,
-												gchar 	   *arg_2,
-												gpointer     data2);
-	register GMarshalFunc_VOID__VALUE_STRING callback;
-	register GCClosure *cc = (GCClosure*) closure;
-	register gpointer data1, data2;
-	g_return_if_fail (n_param_values == 3);  // return_value est NULL ici, car la callback ne renvoit rien.
-
-	if (G_CCLOSURE_SWAP_DATA (closure))
-	{
-		data1 = closure->data;
-		data2 = g_value_peek_pointer (param_values + 0);
-	}
-	else
-	{
-		data1 = g_value_peek_pointer (param_values + 0);
-		data2 = closure->data;
-	}
-	callback = (GMarshalFunc_VOID__VALUE_STRING) (marshal_data ? marshal_data : cc->callback);
-
-	callback (data1,
-		g_marshal_value_peek_pointer (param_values + 1),
-		g_marshal_value_peek_string (param_values + 2),
-		data2);
-}
