@@ -81,7 +81,7 @@ gboolean cd_dbus_create_remote_applet_object (GldiModuleInstance *pModuleInstanc
 	pDbusApplet->cModuleName = g_strdup (cModuleName);
 	pDbusApplet->pModuleInstance = pModuleInstance;
 	pDbusApplet->id = s_iModuleId++;
-	pDbusApplet->connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, NULL); // should be immediate and should not fail (we already connected)
+	pDbusApplet->connection = cairo_dock_dbus_get_session_bus (); // should not be NULL if we are here
 	g_return_val_if_fail (pDbusApplet->connection != NULL, FALSE);
 	
 	//\_____________ register it under a unique path.

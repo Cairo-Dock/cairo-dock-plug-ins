@@ -451,53 +451,6 @@ void cd_dbus_clean_up_processes (gboolean bAll)
 	#endif
 }
 
-gboolean s_bNameAcquiredOrLost = FALSE;
-
-static void _on_name_acquired (GDBusConnection* pConn, G_GNUC_UNUSED const gchar* cName, G_GNUC_UNUSED gpointer data)
-{
-	CD_APPLET_ENTER;
-	
-	GDBusNodeInfo* pNodeInfo = g_dbus_node_info_new_for_xml (s_cMainXml, NULL);
-	// note: return value is owned by pNodeInfo
-	GDBusInterfaceInfo *pInfo = g_dbus_node_info_lookup_interface (pNodeInfo, "org.cairodock.CairoDock");
-	
-	GDBusInterfaceVTable vtable;
-	vtable.method_call = cd_dbus_main_method_call;
-	vtable.get_property = cd_dbus_main_get_property;
-	vtable.set_property = NULL;
-	
-	GError *err = NULL;
-	
-	myData.uRegMainObject = g_dbus_connection_register_object (pConn, myData.cBasePath,
-		pInfo, &vtable, NULL, NULL, &err);
-	g_dbus_node_info_unref (pNodeInfo); // the previous call should have taken a ref to pInfo
-	
-	if (err)
-	{
-		cd_warning ("Error registering main DBus object:\n%s", err->message);
-		g_error_free (err);
-	}
-	
-	s_bNameAcquiredOrLost = TRUE;
-	
-	CD_APPLET_LEAVE ();
-}
-
-static void _on_name_lost (GDBusConnection* pConn, G_GNUC_UNUSED const gchar* cName, G_GNUC_UNUSED gpointer data)
-{
-	CD_APPLET_ENTER;
-	
-	if (myData.uRegMainObject)
-	{
-		g_dbus_connection_unregister_object (pConn, myData.uRegMainObject);
-		myData.uRegMainObject = 0;
-	}
-	
-	s_bNameAcquiredOrLost = TRUE;
-	
-	CD_APPLET_LEAVE ();
-}
-
 void cd_dbus_launch_service (void)
 {
 	g_return_if_fail (myData.uRegMainObject == 0);
@@ -529,18 +482,28 @@ void cd_dbus_launch_service (void)
 	//\____________ kill all the orphean applets (for instance if the dock has crashed, or if it was interrupted by a CTRL+C, or if it stopped and the applet was busy and didn't receive the stop event (dbus-timeout)).
 	cd_dbus_clean_up_processes (FALSE);  // FALSE <=> from old gldi instances
 	
-	//\____________ Register the service name (the service name is registerd once by the first gldi instance).
-	g_bus_own_name (G_BUS_TYPE_SESSION, "org.cairodock.CairoDock", G_BUS_NAME_OWNER_FLAGS_DO_NOT_QUEUE, NULL, // bus acquired handler
-		_on_name_acquired, _on_name_lost, NULL, NULL);
+	//\____________ Register our main object (the service name is already registerd in cairo-dock.c).
+	GDBusNodeInfo* pNodeInfo = g_dbus_node_info_new_for_xml (s_cMainXml, NULL);
+	// note: return value is owned by pNodeInfo
+	GDBusInterfaceInfo *pInfo = g_dbus_node_info_lookup_interface (pNodeInfo, "org.cairodock.CairoDock");
 	
-	// Wait until we have acquired the bus. This is necessary as we can only load applets if the bus is available.
-	// Note: the first time this function is called from main () in cairo-dock.c, before running the GTK main loop,
-	// so it should be OK to iterate the main context directly.
-	GMainContext *pContext = g_main_context_default ();
-	do g_main_context_iteration (pContext, TRUE);
-	while (!s_bNameAcquiredOrLost);
+	GDBusInterfaceVTable vtable;
+	vtable.method_call = cd_dbus_main_method_call;
+	vtable.get_property = cd_dbus_main_get_property;
+	vtable.set_property = NULL;
 	
-	if (!myData.uRegMainObject) return; // no DBus, we cannot create objects for applets
+	GError *err = NULL;
+	
+	myData.uRegMainObject = g_dbus_connection_register_object (cairo_dock_dbus_get_session_bus (),
+		myData.cBasePath, pInfo, &vtable, NULL, NULL, &err);
+	g_dbus_node_info_unref (pNodeInfo); // the previous call should have taken a ref to pInfo
+	
+	if (err)
+	{
+		cd_warning ("Error registering main DBus object:\n%s", err->message);
+		g_error_free (err);
+		return; // no DBus, we cannot create objects for applets
+	}
 	
 	//\____________ internationalize the applets (we need to do that before registering applets).
 	gchar *cLocaleDir = g_strdup_printf ("%s/"CD_DBUS_APPLETS_FOLDER"/"LOCALE_DIR_NAME, g_cCairoDockDataDir);  // user version of /usr/share/locale

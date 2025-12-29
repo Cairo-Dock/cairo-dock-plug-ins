@@ -39,6 +39,8 @@ CD_APPLET_DEFINE2_BEGIN ("Dbus",
 	pInterface->initModule = CD_APPLET_INIT_FUNC;  // no stop method -> the plug-in will be auto-loaded.
 	pInterface->read_conf_file = CD_APPLET_READ_CONFIG_FUNC;
 	pInterface->reset_config =  CD_APPLET_RESET_CONFIG_FUNC; // needed to correctly reload the config if Reboot is called
+	//!! TODO: this might lead to a crash if a method call happens when this applet has been deactivated !!
+	/// -> we should add a proper stop function and handle reinitializing
 	pInterface->reset_data = cd_dbus_save_my_data;
 	CD_APPLET_REDEFINE_TITLE ("DBus");
 	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_IS_PLUGIN);
@@ -48,6 +50,7 @@ CD_APPLET_DEFINE2_END
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
 	static gboolean s_bInitialized = FALSE;
+	if (! cairo_dock_dbus_get_owned_name ()) return; // if we don't own a DBus name, we cannot register
 	if (! CD_APPLET_RESERVE_DATA_SLOT ())
 		return;
 	if (!s_bInitialized)  // since the service lives on the bus, only launch it once.
