@@ -22,6 +22,7 @@
 #include "applet-utils.h"
 #include "applet-init.h"
 
+CD_APPLET_INIT_PROTO(pApplet);
 
 CD_APPLET_DEFINE2_BEGIN ("gnome integration",
 	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
@@ -30,7 +31,11 @@ CD_APPLET_DEFINE2_BEGIN ("gnome integration",
 	"It is auto-activated, so you don't need to activate it.\n"
 	"It is designed for the a GNOME version >= 2.22",
 	"Fabounet (Fabrice Rey)")
-	
+	pInterface->initModule = CD_APPLET_INIT_FUNC;  // no stop method -> the plug-in will be auto-loaded.
+	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_IS_PLUGIN);
+CD_APPLET_DEFINE2_END
+
+CD_APPLET_INIT_BEGIN
 	if (g_iDesktopEnv == CAIRO_DOCK_GNOME)
 	{
 		cd_debug ("GNOME");
@@ -38,7 +43,5 @@ CD_APPLET_DEFINE2_BEGIN ("gnome integration",
 		// (this means that if GNOME environment is detected, this applet will always show as "enabled",
 		// but will only be active if the DBus session proxy have been found)
 	}
-	else
-		return FALSE;
-	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_IS_PLUGIN);
-CD_APPLET_DEFINE2_END
+	else gldi_module_disable (myApplet->pModule, D_("Not running in a GNOME or Cinnamon session."));
+CD_APPLET_INIT_END

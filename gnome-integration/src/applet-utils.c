@@ -149,6 +149,7 @@ static void _register_backend (void)
 
 static void _proxy_connected (G_GNUC_UNUSED GObject *obj, GAsyncResult *res, G_GNUC_UNUSED gpointer data)
 {
+	CD_APPLET_ENTER;
 	GError *erreur = NULL;
 	
 	s_pSessionProxy = g_dbus_proxy_new_finish (res, &erreur);
@@ -193,12 +194,16 @@ static void _proxy_connected (G_GNUC_UNUSED GObject *obj, GAsyncResult *res, G_G
 		}
 		else cd_warning ("Cannot find GSettings schema for the session manager");
 	}
+	
+	CD_APPLET_LEAVE ();
 }
 
 static void _on_name_appeared (GDBusConnection *connection, G_GNUC_UNUSED const gchar *name,
 	G_GNUC_UNUSED const gchar *name_owner, G_GNUC_UNUSED gpointer data)
 {
 	g_return_if_fail (s_pSessionProxy == NULL && s_pCancel == NULL);
+	
+	CD_APPLET_ENTER;
 	
 	s_pCancel = g_cancellable_new ();
 	g_dbus_proxy_new (connection,
@@ -210,10 +215,14 @@ static void _on_name_appeared (GDBusConnection *connection, G_GNUC_UNUSED const 
 		s_pCancel, // GCancellable
 		_proxy_connected,
 		NULL);
+	
+	CD_APPLET_LEAVE ();
 }
 
 static void _on_name_vanished (G_GNUC_UNUSED GDBusConnection *connection, G_GNUC_UNUSED const gchar *name, G_GNUC_UNUSED gpointer user_data)
 {
+	CD_APPLET_ENTER;
+	
 	if (s_pCancel || s_pSessionProxy) cd_warning ("gnome-session proxy disappeared");
 	else cd_message ("Not a GNOME or Cinnamon session, not registering"); // this can happen in other DEs if XDG_CURRENT_DESKTOP includes GNOME
 	
@@ -229,6 +238,12 @@ static void _on_name_vanished (G_GNUC_UNUSED GDBusConnection *connection, G_GNUC
 		s_pSessionSettings = NULL;
 	}
 	//!! TODO: we cannot "unregister" our backend
+	// But we can disable the plugin, so it will not show up as enabled
+	// (note: having the setup_time and show_system_monitor functions could be useful though)
+	cd_warning ("%p; %p", myApplet, myApplet ? myApplet->pModule: NULL);
+	gldi_module_disable (myApplet->pModule, D_("Cannot connect to the GNOME or Cinnamon session manager via DBus."));
+	
+	CD_APPLET_LEAVE ();
 }
 
 
