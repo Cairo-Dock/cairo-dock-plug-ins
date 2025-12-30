@@ -29,15 +29,20 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bEnablePopUp 			= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable pop-up");
 	myConfig.bEnableReboot 			= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable reboot");
 	myConfig.bEnableDesklets 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable desklets");
-	myConfig.bEnableReloadModule	= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable reload module");
-	myConfig.bEnableActivateModule	= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable reload module");
 	myConfig.bEnableQuit 			= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable quit");
 	myConfig.bEnableShowDock 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable show dock");
-	myConfig.bEnableTweakingLauncher = CD_CONFIG_GET_BOOLEAN ("Configuration", "enable add launcher");
-	myConfig.bEnableCreateLauncher	= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable add launcher");
 	myConfig.bEnableSetQuickInfo	= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable set quickinfo");
 	myConfig.bEnableSetLabel 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable set label");
 	myConfig.bEnableSetIcon 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable set icon");
 	myConfig.bEnableAnimateIcon		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable animate icon");
+	myConfig.bEnableAddRemove		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable add remove");
+	myConfig.bEnableGetProps		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable get properties");
+	myConfig.bEnableSetMenu			= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable set menu");
+	myConfig.bEnableSetProgress		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable set progress");
 	myConfig.bLaunchLauncherAPIDaemon = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "launcher api daemon", TRUE);
 CD_APPLET_GET_CONFIG_END
+
+CD_APPLET_RESET_CONFIG_BEGIN
+
+CD_APPLET_RESET_CONFIG_END
+

@@ -29,60 +29,32 @@
 struct _AppletConfig {
 	gboolean bEnableReboot;
 	gboolean bEnableDesklets;
-	gboolean bEnableReloadModule;
-	gboolean bEnableActivateModule;
 	gboolean bEnableQuit;
 	gboolean bEnableShowDock;
-	gboolean bEnableTweakingLauncher;
-	gboolean bEnableCreateLauncher;
 	gboolean bEnableSetQuickInfo;
 	gboolean bEnableSetLabel;
 	gboolean bEnableSetIcon;
 	gboolean bEnablePopUp;
 	gboolean bEnableAnimateIcon;
-	gboolean bEnableNewModule;
+	gboolean bEnableAddRemove;
+	gboolean bEnableGetProps;
+	gboolean bEnableSetMenu;
+	gboolean bEnableSetProgress;
 	gboolean bLaunchLauncherAPIDaemon;
 	} ;
 
-
-typedef struct _dbusMainObject dbusMainObject;
-typedef struct _dbusApplet dbusApplet;
-typedef struct _dbusSubApplet dbusSubApplet;
-
-struct _dbusMainObject {
-	GObject parent;
-	DBusGConnection *connection;
-};
-typedef struct {
-	GObjectClass parent_class;
-} dbusMainObjectClass;
-
-
-struct _dbusApplet {
-	GObject parent;
-	DBusGConnection *connection;
-	DBusGProxy *proxy;
+typedef struct _DBusAppletData {
+	GDBusConnection *connection;
 	GldiModuleInstance *pModuleInstance;
 	gchar *cModuleName;
 	gint id;
 	gchar *cBusPath;
-	dbusSubApplet *pSubApplet;
+	gchar *cBusPathSub;
 	CairoDialog *pDialog;
 	GList *pShortkeyList;
-};
-typedef struct {
-	GObjectClass parent_class;
-} dbusAppletClass;
-
-
-struct _dbusSubApplet {
-	GObject parent;
-	dbusApplet *pApplet;
-};
-typedef struct {
-	GObjectClass parent_class;
-} dbusSubAppletClass;
-
+	guint uRegApplet;
+	guint uRegSubApplet;
+} DBusAppletData;
 
 typedef enum {
 	CLIC=0,
@@ -116,16 +88,17 @@ typedef struct _CDIconData {
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
-	dbusMainObject *pMainObject;
+	guint uRegMainObject;
 	const gchar *cProgName;
 	gchar *cBasePath;
 	///GtkWidget *pModuleSubMenu;
 	GtkWidget *pModuleMainMenu;
-	dbusApplet *pCurrentMenuDbusApplet;
+	DBusAppletData *pCurrentMenuDbusApplet;
 	gint iMenuPosition;
 	GldiWindowActor *pActiveWindow;;
 	GldiTask *pGetListTask;
 	GList *pUpdateTasksList;
+	gboolean bDisabled; // if DBus is unavailable
 	} ;
 
 

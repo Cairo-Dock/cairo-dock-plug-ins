@@ -19,114 +19,38 @@
 
 #include <unistd.h>  // getpid
 #include <glib.h>
-#include <dbus/dbus-glib.h>
-#include <dbus/dbus-glib-bindings.h>
 
 #include "interface-applet-signals.h"
 #include "interface-applet-methods.h"
-#include "dbus-applet-spec.h"
-#include "dbus-sub-applet-spec.h"
 #include "interface-applet-object.h"
+#include "interface-applet-info.h"
+#include "interface-sub-applet-info.h"
 #include "applet-dbus.h"
 
 static int s_iModuleId = 1;
-static GList *s_pAppletList = NULL;
+static unsigned int s_uNbInstances = 0;
 
-static void cd_dbus_applet_dispose (GObject *object);
-static void cd_dbus_applet_finalize (GObject *object);
-
-G_DEFINE_TYPE(dbusApplet, cd_dbus_applet, G_TYPE_OBJECT);
-
-G_DEFINE_TYPE(dbusSubApplet, cd_dbus_sub_applet, G_TYPE_OBJECT);
-
-static void cd_dbus_applet_class_init(dbusAppletClass *klass)
+DBusAppletData *cd_dbus_get_dbus_applet_from_instance (GldiModuleInstance *pModuleInstance)
 {
-	cd_debug("");
-	GObjectClass *object_class = G_OBJECT_CLASS (klass);
-	object_class->dispose = cd_dbus_applet_dispose;
-	object_class->finalize = cd_dbus_applet_finalize;
-	
-	cd_dbus_applet_init_signals_once (klass);
-	
-	dbus_g_object_type_install_info (cd_dbus_applet_get_type(), &dbus_glib_cd_dbus_applet_object_info);
-}
-static void cd_dbus_applet_init (dbusApplet *pDbusApplet)
-{
-	cd_debug("");
-	
-	pDbusApplet->connection = cairo_dock_get_session_connection ();
-	pDbusApplet->proxy = cairo_dock_get_main_proxy ();
-	pDbusApplet->pSubApplet = g_object_new (cd_dbus_sub_applet_get_type(), NULL);
-	pDbusApplet->pSubApplet->pApplet = pDbusApplet;
+	return (DBusAppletData*)(pModuleInstance->pData);
 }
 
-static void cd_dbus_applet_dispose (GObject *object)
+gboolean cd_dbus_create_remote_applet_object (GldiModuleInstance *pModuleInstance)
 {
-	dbusApplet *pDbusApplet = (dbusApplet*)object;
-	if (pDbusApplet->pSubApplet != NULL)
-	{
-		g_object_unref (pDbusApplet->pSubApplet);
-		pDbusApplet->pSubApplet = NULL;
-	}
-}
-
-static void cd_dbus_applet_finalize (GObject *object)
-{
-	dbusApplet *pDbusApplet = (dbusApplet*)object;
-	g_free (pDbusApplet->cBusPath);
-	pDbusApplet->cBusPath = NULL;
-}
-
-static void cd_dbus_sub_applet_class_init(dbusSubAppletClass *klass)
-{
-	cd_debug("");
-	
-	cd_dbus_sub_applet_init_signals_once (klass);
-	
-	dbus_g_object_type_install_info (cd_dbus_sub_applet_get_type(), &dbus_glib_cd_dbus_sub_applet_object_info);
-}
-static void cd_dbus_sub_applet_init (dbusSubApplet *pDbusSubApplet)
-{
-	cd_debug("");
-}
-
-
-dbusApplet * cd_dbus_get_dbus_applet_from_instance (GldiModuleInstance *pModuleInstance)
-{
-	dbusApplet *pDbusApplet = NULL;
-	GList *a;
-	for (a = s_pAppletList; a != NULL; a = a->next)
-	{
-		pDbusApplet = a->data;
-		if (pDbusApplet->pModuleInstance == pModuleInstance)
-			return pDbusApplet;
-	}
-	return NULL;
-}
-
-
-#define _applet_list_is_empty() (s_pAppletList == NULL)
-
-dbusApplet *cd_dbus_create_remote_applet_object (GldiModuleInstance *pModuleInstance)
-{
-	g_return_val_if_fail (pModuleInstance != NULL && myData.pMainObject != NULL, NULL);
+	g_return_val_if_fail (pModuleInstance != NULL && myData.uRegMainObject != 0, FALSE);
 	const gchar *cModuleName = pModuleInstance->pModule->pVisitCard->cModuleName;
-	g_return_val_if_fail (cModuleName != NULL, NULL);
+	g_return_val_if_fail (cModuleName != NULL, FALSE);
 	cd_debug ("%s (%s)", __func__, cModuleName);
 	
-	//\_____________ unicity check.
-	dbusApplet *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pModuleInstance);
-	if (pDbusApplet != NULL)  // shouldn't arrive, but let's be cautious.
-	{
-		cd_warning ("this applet (%s) already has a remote object on the bus", cModuleName);
-		return pDbusApplet;
-	}
+	GError *err = NULL;
 	
-	//\_____________ create a DBus object corresponding to the applet.
-	pDbusApplet = g_object_new (cd_dbus_applet_get_type(), NULL);  // appelle cd_dbus_applet_class_init() et cd_dbus_applet_init().
+	//\_____________ initialize a DBus object corresponding to the applet.
+	DBusAppletData *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pModuleInstance);
 	pDbusApplet->cModuleName = g_strdup (cModuleName);
 	pDbusApplet->pModuleInstance = pModuleInstance;
 	pDbusApplet->id = s_iModuleId++;
+	pDbusApplet->connection = cairo_dock_dbus_get_session_bus (); // should not be NULL if we are here
+	g_return_val_if_fail (pDbusApplet->connection != NULL, FALSE);
 	
 	//\_____________ register it under a unique path.
 	gchar *cSuffix = NULL;
@@ -147,14 +71,37 @@ dbusApplet *cd_dbus_create_remote_applet_object (GldiModuleInstance *pModuleInst
 	g_free (cNameWithoutHyphen);
 	g_free (cSuffix);
 	
-	dbus_g_connection_register_g_object (pDbusApplet->connection, pDbusApplet->cBusPath, G_OBJECT(pDbusApplet));
+	GDBusInterfaceVTable vtable;
+	vtable.method_call = cd_dbus_applet_method_call;
+	vtable.get_property = cd_dbus_applet_get_property;
+	vtable.set_property = NULL;
 	
-	gchar *cSubPath = g_strconcat (pDbusApplet->cBusPath, "/sub_icons", NULL);
-	dbus_g_connection_register_g_object (pDbusApplet->connection, cSubPath, G_OBJECT(pDbusApplet->pSubApplet));
-	g_free (cSubPath);
+	// See note about const cast in applet-dbus.c
+	pDbusApplet->uRegApplet = g_dbus_connection_register_object (pDbusApplet->connection, pDbusApplet->cBusPath,
+		(GDBusInterfaceInfo*)&org_cairodock_cairo_dock_applet_interface, &vtable, pDbusApplet, NULL, &err);
+	if (err)
+	{
+		cd_warning ("Error registering applet DBus object: %s", err->message);
+		g_error_free (err);
+		return FALSE;
+	}
+	
+	vtable.method_call = cd_dbus_sub_applet_method_call;
+	vtable.get_property = cd_dbus_sub_applet_get_property;
+	pDbusApplet->cBusPathSub = g_strconcat (pDbusApplet->cBusPath, "/sub_icons", NULL);
+	pDbusApplet->uRegSubApplet = g_dbus_connection_register_object (pDbusApplet->connection, pDbusApplet->cBusPathSub,
+		(GDBusInterfaceInfo*)&org_cairodock_cairo_dock_subapplet_interface, &vtable, pDbusApplet, NULL, &err);
+	if (err)
+	{
+		cd_warning ("Error registering subapplet DBus object: %s", err->message);
+		g_error_free (err);
+		g_dbus_connection_unregister_object (pDbusApplet->connection, pDbusApplet->uRegApplet);
+		pDbusApplet->uRegApplet = 0;
+		return FALSE;
+	}
 	
 	//\_____________ register to the notifications we'll want to propagate on the bus.
-	if (pDbusApplet->proxy != NULL && _applet_list_is_empty ())  // 1ere applet Dbus.
+	if (!s_uNbInstances)  // 1ere applet Dbus.
 	{
 		gldi_object_register_notification (&myContainerObjectMgr,
 			NOTIFICATION_CLICK_ICON,
@@ -184,35 +131,37 @@ dbusApplet *cd_dbus_create_remote_applet_object (GldiModuleInstance *pModuleInst
 		myData.pActiveWindow = gldi_windows_get_active ();
 	}
 	
-	s_pAppletList = g_list_prepend (s_pAppletList, pDbusApplet);
-	return pDbusApplet;
+	s_uNbInstances++;
+	
+	return TRUE;
 }
 
-void cd_dbus_delete_remote_applet_object (dbusApplet *pDbusApplet)
+void cd_dbus_delete_remote_applet_object (DBusAppletData *pDbusApplet)
 {
-	s_pAppletList = g_list_remove (s_pAppletList, pDbusApplet);
-	
-	if (_applet_list_is_empty ())  // si plus d'applet dbus, inutile de garder les notifications actives.
+	if (! s_uNbInstances) cd_warning ("Inconsistent applet instance count!");
+	else
 	{
-		cd_dbus_unregister_notifications ();
+		s_uNbInstances--;
+		if (!s_uNbInstances)  // si plus d'applet dbus, inutile de garder les notifications actives.
+			cd_dbus_unregister_notifications ();
 	}
-	
-	if (pDbusApplet != NULL)
+
+	// on enleve les raccourcis clavier de l'applet.
+	GList *kb;
+	GldiShortkey *pKeyBinding;
+	for (kb = pDbusApplet->pShortkeyList; kb != NULL; kb = kb->next)
 	{
-		// on enleve les raccourcis clavier de l'applet.
-		GList *kb;
-		GldiShortkey *pKeyBinding;
-		for (kb = pDbusApplet->pShortkeyList; kb != NULL; kb = kb->next)
-		{
-			pKeyBinding = kb->data;
-			gldi_object_unref (GLDI_OBJECT(pKeyBinding));
-		}
-		g_list_free (pDbusApplet->pShortkeyList);
-		pDbusApplet->pShortkeyList = NULL;
-		
-		// on detruit l'objet.
-		g_object_unref (pDbusApplet);
+		pKeyBinding = kb->data;
+		gldi_object_unref (GLDI_OBJECT(pKeyBinding));
 	}
+	g_list_free (pDbusApplet->pShortkeyList);
+	pDbusApplet->pShortkeyList = NULL;
+	
+	// on detruit l'objet.
+	if (pDbusApplet->uRegSubApplet)
+		g_dbus_connection_unregister_object (pDbusApplet->connection, pDbusApplet->uRegSubApplet);
+	if (pDbusApplet->uRegApplet)
+		g_dbus_connection_unregister_object (pDbusApplet->connection, pDbusApplet->uRegApplet);
 }
 
 void cd_dbus_unregister_notifications (void)
@@ -240,11 +189,13 @@ void cd_dbus_unregister_notifications (void)
 }
 
 
-void cd_dbus_launch_applet_process (GldiModuleInstance *pModuleInstance, dbusApplet *pDbusApplet)
+void cd_dbus_launch_applet_process (GldiModuleInstance *pModuleInstance)
 {
 	const gchar *cModuleName = pModuleInstance->pModule->pVisitCard->cModuleName;
 	const gchar *cDirPath = pModuleInstance->pModule->pVisitCard->cShareDataDir;
 	cd_message ("%s (%s)", __func__, cModuleName);
+	
+	DBusAppletData *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pModuleInstance);
 	
 	gchar *cExec = g_strdup_printf ("./%s", cModuleName);
 	gchar *cID = g_strdup_printf ("%d", pDbusApplet->id);
@@ -258,3 +209,4 @@ void cd_dbus_launch_applet_process (GldiModuleInstance *pModuleInstance, dbusApp
 	g_free (cID);
 	g_free (cPid);
 }
+

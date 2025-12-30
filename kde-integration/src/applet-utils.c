@@ -22,78 +22,46 @@
 
 #include "applet-utils.h"
 
-/*enum    KWorkSpace::ShutdownConfirm {
-	KWorkSpace::ShutdownConfirmDefault = -1,
-	KWorkSpace::ShutdownConfirmNo = 0,
-	KWorkSpace::ShutdownConfirmYes = 1}
-
-enum    KWorkSpace::ShutdownType {
-	KWorkSpace::ShutdownTypeDefault = -1,
-	KWorkSpace::ShutdownTypeNone = 0,
-	KWorkSpace::ShutdownTypeReboot = 1,
-	KWorkSpace::ShutdownTypeHalt = 2,
-	KWorkSpace::ShutdownTypeLogout = 3}
-
-enum    KWorkSpace::ShutdownMode {
-	KWorkSpace::ShutdownModeDefault = -1,
-	KWorkSpace::ShutdownModeSchedule = 0,
-	KWorkSpace::ShutdownModeTryNow = 1,
-	KWorkSpace::ShutdownModeForceNow = 2,
-	KWorkSpace::ShutdownModeInteractive = 3}*/
-
-static const gchar *logout_args[] = {"qdbus", "org.kde.ksmserver", "/KSMServer", "logout",
-	// ShutdownConfirm; ShutdownType; ShutdownMode
-	"1", "1", "-1", NULL};
-// usr/bin/dbus-send --session --type=method_call --dest=org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout int32:1 int32:2 int32:0
-static const gchar *logout_args6[] = {"qdbus6", "org.kde.LogoutPrompt", "/LogoutPrompt", NULL, NULL};
+/* KDE 5 and 6:
+ * org.kde.LogoutPrompt well-known name, not running by default (cannot detect easily if it will work), but activatable
+ * object: /LogoutPrompt
+ * interface: org.kde.LogoutPrompt
+ * methods: promptLogout, promptShutDown, promptReboot
+ */
 
 void env_backend_logout (G_GNUC_UNUSED CairoDockFMConfirmationFunc cb_confirm, G_GNUC_UNUSED gpointer data)
 {
-	if (get_kde_version () == 6)
-	{
-		logout_args6[3] = "promptLogout";
-		cairo_dock_launch_command_argv (logout_args6);
-	}
-	else
-	{
-		logout_args[5] = "3";
-		cairo_dock_launch_command_argv (logout_args);
-	}
+	GDBusConnection *pConn = cairo_dock_dbus_get_session_bus ();
+	if (!pConn) cd_warning ("No usable DBus connection, cannot trigger logout dialog");
+	// note: this will trigger activating the required component
+	else g_dbus_connection_call (pConn, "org.kde.LogoutPrompt", "/LogoutPrompt", "org.kde.LogoutPrompt",
+		"promptLogout", NULL, NULL, G_DBUS_CALL_FLAGS_NONE, -1, NULL, NULL, NULL);
 }
 
 void env_backend_shutdown (G_GNUC_UNUSED CairoDockFMConfirmationFunc cb_confirm, G_GNUC_UNUSED gpointer data)
 {
-	if (get_kde_version () == 6)
-	{
-		logout_args6[3] = "promptShutDown";
-		cairo_dock_launch_command_argv (logout_args6);
-	}
-	else
-	{
-		logout_args[5] = "2"; // or should we display other options too? => ShutdownTypeDefault?
-		cairo_dock_launch_command_argv (logout_args);
-	}
+	GDBusConnection *pConn = cairo_dock_dbus_get_session_bus ();
+	if (!pConn) cd_warning ("No usable DBus connection, cannot trigger logout dialog");
+	// note: this will trigger activating the required component
+	else g_dbus_connection_call (pConn, "org.kde.LogoutPrompt", "/LogoutPrompt", "org.kde.LogoutPrompt",
+		"promptShutDown", NULL, NULL, G_DBUS_CALL_FLAGS_NONE, -1, NULL, NULL, NULL);
 }
 
 void env_backend_reboot (G_GNUC_UNUSED CairoDockFMConfirmationFunc cb_confirm, G_GNUC_UNUSED gpointer data)
 {
-	if (get_kde_version () == 6)
-	{
-		logout_args6[3] = "promptReboot";
-		cairo_dock_launch_command_argv (logout_args6);
-	}
-	else
-	{
-		logout_args[5] = "1";
-		cairo_dock_launch_command_argv (logout_args);
-	}
+	GDBusConnection *pConn = cairo_dock_dbus_get_session_bus ();
+	if (!pConn) cd_warning ("No usable DBus connection, cannot trigger logout dialog");
+	// note: this will trigger activating the required component
+	else g_dbus_connection_call (pConn, "org.kde.LogoutPrompt", "/LogoutPrompt", "org.kde.LogoutPrompt",
+		"promptReboot", NULL, NULL, G_DBUS_CALL_FLAGS_NONE, -1, NULL, NULL, NULL);
 }
 
 void env_backend_lock_screen (void)
 {
-	const char * const args[] = { (get_kde_version () == 6) ? "qdbus6" : "qdbus",
-		"org.freedesktop.ScreenSaver", "/ScreenSaver", "Lock", NULL};
-	cairo_dock_launch_command_argv (args);
+	GDBusConnection *pConn = cairo_dock_dbus_get_session_bus ();
+	if (!pConn) cd_warning ("No usable DBus connection, cannot trigger screensaver");
+	else g_dbus_connection_call (pConn, "org.freedesktop.ScreenSaver", "/ScreenSaver", "org.freedesktop.ScreenSaver",
+		"Lock", NULL, NULL, G_DBUS_CALL_FLAGS_NONE, -1, NULL, NULL, NULL);
 }
 
 void env_backend_setup_time (void)

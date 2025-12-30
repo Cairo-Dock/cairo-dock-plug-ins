@@ -115,5 +115,20 @@
 		<signal name="on_reload_module">
 			<arg name="bConfigHasChanged" type="b"/>
 		</signal>
+		
+		<!-- Properties; NOTE: to limit the number of messages, the
+		org.freedesktop.DBus.Properties.PropertiesChanged signal will NOT
+		be emitted for these! You will need to read the property values
+		directly with the org.freedesktop.DBus.Properties.Get or
+		org.cairodock.CairoDock.applet.Get methods. -->
+		<property type="i" name="x" access="read" />
+		<property type="i" name="y" access="read" />
+		<property type="i" name="width" access="read" />
+		<property type="i" name="height" access="read" />
+		<property type="u" name="orientation" access="read" />
+		<property type="u" name="container" access="read" />
+		<property type="t" name="Xid" access="read" />
+		<property type="b" name="has_focus" access="read" />
+		
 	</interface>
 </node>
