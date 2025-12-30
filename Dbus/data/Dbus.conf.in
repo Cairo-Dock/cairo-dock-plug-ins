@@ -3,39 +3,45 @@
 #[preferences-system]
 [Configuration]
 
+#b Let external applications add or remove items in the dock?
+enable add remove=false
+
+#b Let external applications get information about the current items in the dock?
+enable get properties=false
+
 #b Let external applications pop up dialogs in the dock?
-enable pop-up = true
+enable pop-up=true
 
 #b Let external applications reboot the dock?
-enable reboot = true
+enable reboot=true
 
 #b Let external applications quit the dock?
-enable quit = true
+enable quit=true
 
 #b Let external applications show/hide desklets?
-enable desklets = true
-
-#b Let external applications reload applets?
-enable reload module = true
+enable desklets=true
 
 #b Let external applications show/hide docks?
-enable show dock = true
-
-#b Let extern applications add launchers to the docks?
-enable add launcher = true
+enable show dock=true
 
 #b Let external applications modify the labels of icons?
-enable set label = true
+enable set label=true
 
 #b Let extern applications modify the quick-infos on icons?
-enable set quickinfo = true
+enable set quickinfo=true
+
+#b Let extern applications set custom menus on icons?
+enable set menu=false
+
+#b Let extern applications modify the progress indicator on icons?
+enable set progress=true
 
 #b Let extern applications modify the icons' image?
-enable set icon = true
+enable set icon=true
 
 #b Let extern applications animate icons?
-enable animate icon = true
+enable animate icon=true
 
 #b Launch the Launcher API daemon?
 #{The dock will catch DBus signals to Launcher API and act as Unity}
-launcher api daemon = true
+launcher api daemon=true

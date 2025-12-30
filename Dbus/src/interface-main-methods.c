@@ -549,7 +549,11 @@ static void root_changed (DbusmenuGtkClient * client, DbusmenuMenuitem * newroot
 
 static void _main_set_menu (GVariant *pPar, GDBusMethodInvocation *pInv)
 {
-	//!! TODO: add a setting to disable this function as well !!
+	if (! myConfig.bEnableSetMenu)
+	{
+		g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR, G_DBUS_ERROR_ACCESS_DENIED, "SetMenu disabled in config");
+		return;
+	}
 	
 	const gchar *cBusName;
 	const gchar *cMenuPath;
@@ -638,7 +642,11 @@ static void _main_set_menu (GVariant *pPar, GDBusMethodInvocation *pInv)
 
 static void _main_set_progress (GVariant *pPar, GDBusMethodInvocation *pInv)
 {
-	//!! TODO: add a setting to disable this function as well !!
+	if (! myConfig.bEnableSetProgress)
+	{
+		g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR, G_DBUS_ERROR_ACCESS_DENIED, "SetProgress disabled in config");
+		return;
+	}
 	
 	double fPercent;
 	gchar *cIconQuery;
@@ -682,7 +690,11 @@ static void _main_set_progress (GVariant *pPar, GDBusMethodInvocation *pInv)
 
 static void _main_add (GVariant *pPar, GDBusMethodInvocation *pInv)
 {
-	//!! TODO: add a setting to disable this function as well !!
+	if (! myConfig.bEnableAddRemove)
+	{
+		g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR, G_DBUS_ERROR_ACCESS_DENIED, "Adding and removing items disabled in config");
+		return;
+	}
 	
 	GVariant *pProperties;
 	g_variant_get (pPar, "(@a{sv})", &pProperties);
@@ -947,7 +959,11 @@ static void _main_add (GVariant *pPar, GDBusMethodInvocation *pInv)
 
 static void _main_reload (GVariant *pPar, GDBusMethodInvocation *pInv)
 {
-	//!! TODO: access control with settings !!
+	if (! myConfig.bEnableAddRemove)
+	{
+		g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR, G_DBUS_ERROR_ACCESS_DENIED, "Adding and removing items disabled in config");
+		return;
+	}
 	
 	gchar *cQuery = NULL;
 	g_variant_get_child (pPar, 0, "s", &cQuery);
@@ -976,7 +992,11 @@ static gboolean _on_object_deleted (GList *o, G_GNUC_UNUSED GldiObject *obj)
 }
 static void _main_remove (GVariant *pPar, GDBusMethodInvocation *pInv)
 {
-	//!! TODO: access control with settings !!
+	if (! myConfig.bEnableAddRemove)
+	{
+		g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR, G_DBUS_ERROR_ACCESS_DENIED, "Adding and removing items disabled in config");
+		return;
+	}
 	
 	gchar *cQuery = NULL;
 	g_variant_get_child (pPar, 0, "s", &cQuery);
@@ -1210,7 +1230,11 @@ static void _add_module_instance_properties (GldiModuleInstance *pModuleInstance
 
 static void _main_get_properties (GVariant *pPar, GDBusMethodInvocation *pInv)
 {
-	//!! TODO: access control with settings !!
+	if (! myConfig.bEnableGetProps)
+	{
+		g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR, G_DBUS_ERROR_ACCESS_DENIED, "Getting information about items is disabled in config");
+		return;
+	}
 	
 	gchar *cQuery = NULL;
 	g_variant_get_child (pPar, 0, "s", &cQuery);

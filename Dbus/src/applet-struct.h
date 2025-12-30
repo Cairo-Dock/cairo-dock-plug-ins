@@ -29,18 +29,17 @@
 struct _AppletConfig {
 	gboolean bEnableReboot;
 	gboolean bEnableDesklets;
-	gboolean bEnableReloadModule;
-	gboolean bEnableActivateModule;
 	gboolean bEnableQuit;
 	gboolean bEnableShowDock;
-	gboolean bEnableTweakingLauncher;
-	gboolean bEnableCreateLauncher;
 	gboolean bEnableSetQuickInfo;
 	gboolean bEnableSetLabel;
 	gboolean bEnableSetIcon;
 	gboolean bEnablePopUp;
 	gboolean bEnableAnimateIcon;
-	gboolean bEnableNewModule;
+	gboolean bEnableAddRemove;
+	gboolean bEnableGetProps;
+	gboolean bEnableSetMenu;
+	gboolean bEnableSetProgress;
 	gboolean bLaunchLauncherAPIDaemon;
 	} ;
 

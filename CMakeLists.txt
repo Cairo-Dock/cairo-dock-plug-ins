@@ -541,7 +541,7 @@ endif()
 
 
 set (GETTEXT_DBUS ${GETTEXT_PLUGINS})
-set (VERSION_DBUS "1.2.3")
+set (VERSION_DBUS "1.3.0")
 set (PACKAGE_DBUS "cd-Dbus")
 set (dbusdatadir "${pluginsdatadir}/Dbus")
 configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Dbus/data/Dbus.conf.in ${CMAKE_CURRENT_BINARY_DIR}/Dbus/data/Dbus.conf)
