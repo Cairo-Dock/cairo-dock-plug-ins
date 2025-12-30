@@ -134,6 +134,8 @@ static gboolean _cd_dbus_register_new_module (const gchar *cModuleName, const gc
 			cd_warning ("registration of '%s' has failed.", cModuleName);
 			return FALSE;
 		}
+		if (myData.bDisabled)
+			gldi_module_disable (pModule, _("This plug-in requires DBus, but the DBus name 'org.cairodock.CairoDock' is unavailable.\nPlease check that you have a session bus and that no other instance of Cairo-Dock is running."));
 	}
 	return TRUE;
 }
@@ -482,28 +484,32 @@ void cd_dbus_launch_service (void)
 	//\____________ kill all the orphean applets (for instance if the dock has crashed, or if it was interrupted by a CTRL+C, or if it stopped and the applet was busy and didn't receive the stop event (dbus-timeout)).
 	cd_dbus_clean_up_processes (FALSE);  // FALSE <=> from old gldi instances
 	
-	//\____________ Register our main object (the service name is already registerd in cairo-dock.c).
-	GDBusNodeInfo* pNodeInfo = g_dbus_node_info_new_for_xml (s_cMainXml, NULL);
-	// note: return value is owned by pNodeInfo
-	GDBusInterfaceInfo *pInfo = g_dbus_node_info_lookup_interface (pNodeInfo, "org.cairodock.CairoDock");
-	
-	GDBusInterfaceVTable vtable;
-	vtable.method_call = cd_dbus_main_method_call;
-	vtable.get_property = cd_dbus_main_get_property;
-	vtable.set_property = NULL;
-	
-	GError *err = NULL;
-	
-	myData.uRegMainObject = g_dbus_connection_register_object (cairo_dock_dbus_get_session_bus (),
-		myData.cBasePath, pInfo, &vtable, NULL, NULL, &err);
-	g_dbus_node_info_unref (pNodeInfo); // the previous call should have taken a ref to pInfo
-	
-	if (err)
+	if (cairo_dock_dbus_get_owned_name ())
 	{
-		cd_warning ("Error registering main DBus object:\n%s", err->message);
-		g_error_free (err);
-		return; // no DBus, we cannot create objects for applets
+		//\____________ Register our main object (the service name is already registerd in cairo-dock.c).
+		GDBusNodeInfo* pNodeInfo = g_dbus_node_info_new_for_xml (s_cMainXml, NULL);
+		// note: return value is owned by pNodeInfo
+		GDBusInterfaceInfo *pInfo = g_dbus_node_info_lookup_interface (pNodeInfo, "org.cairodock.CairoDock");
+		
+		GDBusInterfaceVTable vtable;
+		vtable.method_call = cd_dbus_main_method_call;
+		vtable.get_property = cd_dbus_main_get_property;
+		vtable.set_property = NULL;
+		
+		GError *err = NULL;
+		
+		myData.uRegMainObject = g_dbus_connection_register_object (cairo_dock_dbus_get_session_bus (),
+			myData.cBasePath, pInfo, &vtable, NULL, NULL, &err);
+		g_dbus_node_info_unref (pNodeInfo); // the previous call should have taken a ref to pInfo
+		
+		if (err)
+		{
+			cd_warning ("Error registering main DBus object:\n%s", err->message);
+			g_error_free (err);
+			myData.bDisabled = TRUE; // no DBus, we cannot create objects for applets
+		}
 	}
+	else myData.bDisabled = TRUE; // all applets will show up as disabled as well
 	
 	//\____________ internationalize the applets (we need to do that before registering applets).
 	gchar *cLocaleDir = g_strdup_printf ("%s/"CD_DBUS_APPLETS_FOLDER"/"LOCALE_DIR_NAME, g_cCairoDockDataDir);  // user version of /usr/share/locale
@@ -549,7 +555,7 @@ void cd_dbus_launch_service (void)
 	bAppletRegistered |= _cd_dbus_register_all_applets_in_dir (g_cCairoDockDataDir);
 	
 	//\____________ download in background the list of existing applets.
-	if (bAppletRegistered)  // only if some third-party applets are present on the disk.
+	if (!myData.bDisabled && bAppletRegistered)  // only if some third-party applets are present on the disk.
 	{
 		const gchar *cSharePackagesDir = NULL;  // no share data dir, since we can't write in /usr
 		gchar *cUserPackagesDir = g_strdup_printf ("%s/%s", g_cCairoDockDataDir, CD_DBUS_APPLETS_FOLDER);
@@ -568,12 +574,14 @@ void cd_dbus_launch_service (void)
 	 * the messages will be emitted on the bus, and we might miss them.
 	 */
 	#ifdef DBUSMENU_GTK_FOUND // need SetMenu => DBusMenu
-	if (myConfig.bLaunchLauncherAPIDaemon)
+	if (!myData.bDisabled && myConfig.bLaunchLauncherAPIDaemon)
 	{
 		const char *tmp[] = {CD_PLUGINS_DIR"/cairo-dock-launcher-API-daemon", NULL};
 		cd_dbus_launch_subprocess (tmp, NULL);
 	}
 	#endif
+	
+	if (myData.bDisabled) gldi_module_disable (myApplet->pModule, _("Could not register the 'org.cairodock.CairoDock' DBus name.\nPlease check that you have a session bus and that no other instance of Cairo-Dock is running."));
 }
 
 static void _child_watch_dummy (GPid pid, G_GNUC_UNUSED gint status, G_GNUC_UNUSED gpointer dummy)

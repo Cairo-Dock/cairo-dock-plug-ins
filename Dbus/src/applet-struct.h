@@ -89,7 +89,6 @@ typedef struct _CDIconData {
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
-	// dbusMainObject *pMainObject;
 	guint uRegMainObject;
 	const gchar *cProgName;
 	gchar *cBasePath;
@@ -100,6 +99,7 @@ struct _AppletData {
 	GldiWindowActor *pActiveWindow;;
 	GldiTask *pGetListTask;
 	GList *pUpdateTasksList;
+	gboolean bDisabled; // if DBus is unavailable
 	} ;
 
 
