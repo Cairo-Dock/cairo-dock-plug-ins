@@ -17,21 +17,15 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/******************************************************************************
-exemples : 
-----------
+/** Generate DBusInterfaceInfo with the following commands:
+gdbus-codegen --interface-info-body   --output interface-main-info.c dbus_introspectable.xml
+gdbus-codegen --interface-info-header --output interface-main-info.h dbus_introspectable.xml
+gdbus-codegen --interface-info-body   --output interface-applet-info.c dbus_applet_introspectable.xml
+gdbus-codegen --interface-info-header --output interface-applet-info.h dbus_applet_introspectable.xml
+gdbus-codegen --interface-info-body   --output interface-sub-applet-info.c dbus_sub_applet_introspectable.xml
+gdbus-codegen --interface-info-header --output interface-sub-applet-info.h dbus_sub_applet_introspectable.xml
+*/
 
-dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.cairodock.CairoDock.CreateLauncherFromScratch string:inkscape string:yep string:rien string:none
-
-dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.cairodock.CairoDock.SetLabel string:new_label string:icon_name string:any string:none
-
-dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.cairodock.CairoDock.SetQuickInfo string:123 string:none string:none string:dustbin
-
-dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.cairodock.CairoDock.Animate string:default int32:2 string:any string:firefox string:none
-
-dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.cairodock.CairoDock.SetIcon string:firefox-3.0 string:any string:nautilus string:none
-
-******************************************************************************/
 
 #include <fcntl.h>  // O_RDONLY
 #include <unistd.h>  // open, read, close
@@ -48,6 +42,7 @@ dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.
 #endif
 
 #include "interface-main-methods.h"
+#include "interface-main-info.h"
 #include "interface-applet-object.h"
 #include "interface-applet-signals.h"
 #include "applet-dbus.h"
@@ -487,10 +482,6 @@ void cd_dbus_launch_service (void)
 	if (cairo_dock_dbus_get_owned_name ())
 	{
 		//\____________ Register our main object (the service name is already registerd in cairo-dock.c).
-		GDBusNodeInfo* pNodeInfo = g_dbus_node_info_new_for_xml (s_cMainXml, NULL);
-		// note: return value is owned by pNodeInfo
-		GDBusInterfaceInfo *pInfo = g_dbus_node_info_lookup_interface (pNodeInfo, "org.cairodock.CairoDock");
-		
 		GDBusInterfaceVTable vtable;
 		vtable.method_call = cd_dbus_main_method_call;
 		vtable.get_property = cd_dbus_main_get_property;
@@ -498,9 +489,11 @@ void cd_dbus_launch_service (void)
 		
 		GError *err = NULL;
 		
+		// Note: this has an ugly cast for the interface info to non-const, but it will not be modified, so
+		// this should be OK (method argument is not const as it would increase the refcount of an info struct
+		// that is not statically allocated).
 		myData.uRegMainObject = g_dbus_connection_register_object (cairo_dock_dbus_get_session_bus (),
-			myData.cBasePath, pInfo, &vtable, NULL, NULL, &err);
-		g_dbus_node_info_unref (pNodeInfo); // the previous call should have taken a ref to pInfo
+			myData.cBasePath, (GDBusInterfaceInfo*)&org_cairodock_cairo_dock_interface, &vtable, NULL, NULL, &err);
 		
 		if (err)
 		{

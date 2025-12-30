@@ -23,49 +23,17 @@
 #include "interface-applet-signals.h"
 #include "interface-applet-methods.h"
 #include "interface-applet-object.h"
+#include "interface-applet-info.h"
+#include "interface-sub-applet-info.h"
 #include "applet-dbus.h"
 
 static int s_iModuleId = 1;
 static unsigned int s_uNbInstances = 0;
 
-static const char *s_cAppletXml;
-static const char *s_cSubAppletXml;
-
-static GDBusNodeInfo *s_pAppletNodeInfo = NULL;
-static GDBusNodeInfo *s_pSubAppletNodeInfo = NULL;
-
 DBusAppletData *cd_dbus_get_dbus_applet_from_instance (GldiModuleInstance *pModuleInstance)
 {
 	return (DBusAppletData*)(pModuleInstance->pData);
 }
-
-static void _parse_interface_xml (void)
-{
-	GError *err = NULL;
-	
-	if (!s_pAppletNodeInfo)
-	{
-		s_pAppletNodeInfo = g_dbus_node_info_new_for_xml (s_cAppletXml, &err);
-		if (err)
-		{
-			cd_warning ("Cannot parse DBus interface XML: %s", err->message);
-			g_error_free (err);
-			return;
-		}
-	}
-	
-	if (!s_pSubAppletNodeInfo)
-	{
-		s_pSubAppletNodeInfo = g_dbus_node_info_new_for_xml (s_cSubAppletXml, &err);
-		if (err)
-		{
-			cd_warning ("Cannot parse DBus interface XML: %s", err->message);
-			g_error_free (err);
-			return;
-		}
-	}
-}
-
 
 gboolean cd_dbus_create_remote_applet_object (GldiModuleInstance *pModuleInstance)
 {
@@ -103,18 +71,14 @@ gboolean cd_dbus_create_remote_applet_object (GldiModuleInstance *pModuleInstanc
 	g_free (cNameWithoutHyphen);
 	g_free (cSuffix);
 	
-	_parse_interface_xml ();
-	if (! (s_pAppletNodeInfo && s_pSubAppletNodeInfo)) return FALSE;
-	
-	// note: return value is owned by pNodeInfo
-	GDBusInterfaceInfo *pInfo = g_dbus_node_info_lookup_interface (s_pAppletNodeInfo, "org.cairodock.CairoDock.applet");
-	
 	GDBusInterfaceVTable vtable;
 	vtable.method_call = cd_dbus_applet_method_call;
 	vtable.get_property = cd_dbus_applet_get_property;
 	vtable.set_property = NULL;
 	
-	pDbusApplet->uRegApplet = g_dbus_connection_register_object (pDbusApplet->connection, pDbusApplet->cBusPath, pInfo, &vtable, pDbusApplet, NULL, &err);
+	// See note about const cast in applet-dbus.c
+	pDbusApplet->uRegApplet = g_dbus_connection_register_object (pDbusApplet->connection, pDbusApplet->cBusPath,
+		(GDBusInterfaceInfo*)&org_cairodock_cairo_dock_applet_interface, &vtable, pDbusApplet, NULL, &err);
 	if (err)
 	{
 		cd_warning ("Error registering applet DBus object: %s", err->message);
@@ -122,11 +86,11 @@ gboolean cd_dbus_create_remote_applet_object (GldiModuleInstance *pModuleInstanc
 		return FALSE;
 	}
 	
-	pInfo = g_dbus_node_info_lookup_interface (s_pSubAppletNodeInfo, "org.cairodock.CairoDock.subapplet");
 	vtable.method_call = cd_dbus_sub_applet_method_call;
 	vtable.get_property = cd_dbus_sub_applet_get_property;
 	pDbusApplet->cBusPathSub = g_strconcat (pDbusApplet->cBusPath, "/sub_icons", NULL);
-	pDbusApplet->uRegSubApplet = g_dbus_connection_register_object (pDbusApplet->connection, pDbusApplet->cBusPathSub, pInfo, &vtable, pDbusApplet, NULL, &err);
+	pDbusApplet->uRegSubApplet = g_dbus_connection_register_object (pDbusApplet->connection, pDbusApplet->cBusPathSub,
+		(GDBusInterfaceInfo*)&org_cairodock_cairo_dock_subapplet_interface, &vtable, pDbusApplet, NULL, &err);
 	if (err)
 	{
 		cd_warning ("Error registering subapplet DBus object: %s", err->message);
@@ -245,227 +209,4 @@ void cd_dbus_launch_applet_process (GldiModuleInstance *pModuleInstance)
 	g_free (cID);
 	g_free (cPid);
 }
-
-
-
-static const char *s_cAppletXml = 
-"<!DOCTYPE node PUBLIC \"-//freedesktop//DTD D-BUS Object Introspection 1.0//EN\""
-"\"http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd\">"
-"<node name=\"/org/cairodock/CairoDock\">"
-"	<interface name=\"org.cairodock.CairoDock.applet\">"
-"		<method name=\"Get\">"
-"			<arg name=\"cProperty\" direction=\"in\" type=\"s\"/>"
-"			<arg name=\"value\" direction=\"out\" type=\"v\"/>"
-"		</method>"
-"		<method name=\"GetAll\">"
-"			<arg name=\"hProperties\" direction=\"out\" type=\"a{sv}\"/>"
-"		</method>"
-"		"
-"		<method name=\"SetQuickInfo\">"
-"			<arg name=\"cQuickInfo\" type=\"s\" direction=\"in\"/>"
-"		</method>"
-"		<method name=\"SetLabel\">"
-"			<arg name=\"cLabel\" type=\"s\" direction=\"in\"/>"
-"		</method>"
-"		<method name=\"SetIcon\">"
-"			<arg name=\"cImage\" type=\"s\" direction=\"in\"/>"
-"		</method>"
-"		<method name=\"SetEmblem\">"
-"			<arg name=\"cImage\" type=\"s\" direction=\"in\"/>"
-"			<arg name=\"iPosition\" type=\"i\" direction=\"in\"/>"
-"		</method>"
-"		<method name=\"Animate\">"
-"			<arg name=\"cAnimation\" type=\"s\" direction=\"in\"/>"
-"			<arg name=\"iNbRounds\" type=\"i\" direction=\"in\"/>"
-"		</method>"
-"		<method name=\"DemandsAttention\">"
-"			<arg name=\"bStart\" type=\"b\" direction=\"in\"/>"
-"			<arg name=\"cAnimation\" type=\"s\" direction=\"in\"/>"
-"		</method>"
-"		<method name=\"ShowDialog\">"
-"			<arg name=\"cMessage\" type=\"s\" direction=\"in\"/>"
-"			<arg name=\"iDuration\" type=\"i\" direction=\"in\"/>"
-"		</method>"
-"		<method name=\"PopupDialog\">"
-"			<arg name=\"hDialogAttributes\" direction=\"in\" type=\"a{sv}\"/>"
-"			<arg name=\"hWidgetAttributes\" direction=\"in\" type=\"a{sv}\"/>"
-"		</method>"
-"		<method name=\"AddDataRenderer\">"
-"			<arg name=\"cType\" type=\"s\" direction=\"in\"/>"
-"			<arg name=\"iNbValues\" type=\"i\" direction=\"in\"/>"
-"			<arg name=\"cTheme\" type=\"s\" direction=\"in\"/>"
-"		</method>"
-"		<method name=\"RenderValues\">"
-"			<arg name=\"pValues\" type=\"ad\" direction=\"in\"/>"
-"		</method>"
-"		<method name=\"ControlAppli\">"
-"			<arg name=\"cApplicationClass\" type=\"s\" direction=\"in\"/>"
-"		</method>"
-"		<method name=\"ActOnAppli\">"
-"			<arg name=\"cAction\" type=\"s\" direction=\"in\"/>"
-"		</method>"
-"		<method name=\"AddMenuItems\">"
-"			<arg name=\"pItems\" type=\"aa{sv}\" direction=\"in\"/>"
-"		</method>"
-"		<method name=\"BindShortkey\">"
-"			<arg name=\"cShortkeys\" type=\"as\" direction=\"in\"/>"
-"		</method>"
-"		<!-- Deprecated since 3.0 -->"
-"		<method name=\"AskQuestion\">"
-"			<arg name=\"cMessage\" type=\"s\" direction=\"in\"/>"
-"		</method>"
-"		<method name=\"AskValue\">"
-"			<arg name=\"cMessage\" type=\"s\" direction=\"in\"/>"
-"			<arg name=\"fInitialValue\" type=\"d\" direction=\"in\"/>"
-"			<arg name=\"fMaxlValue\" type=\"d\" direction=\"in\"/>"
-"		</method>"
-"		<method name=\"AskText\">"
-"			<arg name=\"cMessage\" type=\"s\" direction=\"in\"/>"
-"			<arg name=\"cInitialText\" type=\"s\" direction=\"in\"/>"
-"		</method>"
-"		<method name=\"ShowAppli\">"
-"			<arg name=\"bShow\" type=\"b\" direction=\"in\"/>"
-"		</method>"
-"		<method name=\"PopulateMenu\">"
-"			<arg name=\"pLabels\" type=\"as\" direction=\"in\"/>"
-"		</method>"
-"		<!-- End of deprecated -->"
-"		"
-"		<signal name=\"on_click\">"
-"			<arg name=\"iButtonState\" type=\"i\"/>"
-"		</signal>"
-"		<signal name=\"on_middle_click\">"
-"		</signal>"
-"		<signal name=\"on_scroll\">"
-"			<arg name=\"bDirectionUp\" type=\"b\"/>"
-"		</signal>"
-"		<signal name=\"on_build_menu\">"
-"		</signal>"
-"		<signal name=\"on_menu_select\">"
-"			<arg name=\"iNumEntry\" type=\"i\"/>"
-"		</signal>"
-"		<signal name=\"on_drop_data\">"
-"			<arg name=\"cReceivedData\" type=\"s\"/>"
-"		</signal>"
-"		<signal name=\"on_change_focus\">"
-"			<arg name=\"is_active\" type=\"b\"/>"
-"		</signal>"
-"		<signal name=\"on_answer\">"
-"			<arg name=\"answer\" type=\"v\"/>"
-"		</signal>"
-"		<signal name=\"on_answer_dialog\">"
-"			<arg name=\"iClickedButton\" type=\"i\"/>"
-"			<arg name=\"answer\" type=\"v\"/>"
-"		</signal>"
-"		<signal name=\"on_shortkey\">"
-"			<arg name=\"cShortkey\" type=\"s\"/>"
-"		</signal>"
-"		"
-"		<signal name=\"on_stop_module\">"
-"		</signal>"
-"		<signal name=\"on_reload_module\">"
-"			<arg name=\"bConfigHasChanged\" type=\"b\"/>"
-"		</signal>"
-"		"
-"		<!-- Properties; NOTE: to limit the number of messages, the"
-"		org.freedesktop.DBus.Properties.PropertiesChanged signal will NOT"
-"		be emitted for these! You will need to read the property values"
-"		directly with the org.freedesktop.DBus.Properties.Get or"
-"		org.cairodock.CairoDock.applet.Get methods. -->"
-"		<property type=\"i\" name=\"x\" access=\"read\" />"
-"		<property type=\"i\" name=\"y\" access=\"read\" />"
-"		<property type=\"i\" name=\"width\" access=\"read\" />"
-"		<property type=\"i\" name=\"height\" access=\"read\" />"
-"		<property type=\"u\" name=\"orientation\" access=\"read\" />"
-"		<property type=\"u\" name=\"container\" access=\"read\" />"
-"		<property type=\"t\" name=\"Xid\" access=\"read\" />"
-"		<property type=\"b\" name=\"has_focus\" access=\"read\" />"
-"		"
-"	</interface>"
-"</node>";
-
-static const char *s_cSubAppletXml = 
-"<!DOCTYPE node PUBLIC \"-//freedesktop//DTD D-BUS Object Introspection 1.0//EN\""
-"\"http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd\">"
-"<node name=\"/org/cairodock/CairoDock\">"
-"	<interface name=\"org.cairodock.CairoDock.subapplet\">"
-"		<method name=\"SetQuickInfo\">"
-"			<arg name=\"cQuickInfo\" type=\"s\" direction=\"in\"/>"
-"			<arg name=\"cIconID\" type=\"s\" direction=\"in\"/>"
-"		</method>"
-"		<method name=\"SetLabel\">"
-"			<arg name=\"cLabel\" type=\"s\" direction=\"in\"/>"
-"			<arg name=\"cIconID\" type=\"s\" direction=\"in\"/>"
-"		</method>"
-"		<method name=\"SetIcon\">"
-"			<arg name=\"cImage\" type=\"s\" direction=\"in\"/>"
-"			<arg name=\"cIconID\" type=\"s\" direction=\"in\"/>"
-"		</method>"
-"		<method name=\"SetEmblem\">"
-"			<arg name=\"cImage\" type=\"s\" direction=\"in\"/>"
-"			<arg name=\"iPosition\" type=\"i\" direction=\"in\"/>"
-"			<arg name=\"cIconID\" type=\"s\" direction=\"in\"/>"
-"		</method>"
-"		<method name=\"Animate\">"
-"			<arg name=\"cAnimation\" type=\"s\" direction=\"in\"/>"
-"			<arg name=\"iNbRounds\" type=\"i\" direction=\"in\"/>"
-"			<arg name=\"cIconID\" type=\"s\" direction=\"in\"/>"
-"		</method>"
-"		<method name=\"ShowDialog\">"
-"			<arg name=\"message\" type=\"s\" direction=\"in\"/>"
-"			<arg name=\"iDuration\" type=\"i\" direction=\"in\"/>"
-"			<arg name=\"cIconID\" type=\"s\" direction=\"in\"/>"
-"		</method>>"
-"		<!-- Deprecated since 3.0 -->"
-"		<method name=\"AskQuestion\">"
-"			<arg name=\"cMessage\" type=\"s\" direction=\"in\"/>"
-"			<arg name=\"cIconID\" type=\"s\" direction=\"in\"/>"
-"		</method>"
-"		<method name=\"AskValue\">"
-"			<arg name=\"cMessage\" type=\"s\" direction=\"in\"/>"
-"			<arg name=\"fInitialValue\" type=\"d\" direction=\"in\"/>"
-"			<arg name=\"fMaxlValue\" type=\"d\" direction=\"in\"/>"
-"			<arg name=\"cIconID\" type=\"s\" direction=\"in\"/>"
-"		</method>"
-"		<method name=\"AskText\">"
-"			<arg name=\"cMessage\" type=\"s\" direction=\"in\"/>"
-"			<arg name=\"cInitialText\" type=\"s\" direction=\"in\"/>"
-"			<arg name=\"cIconID\" type=\"s\" direction=\"in\"/>"
-"		</method>"
-"		<!-- End of deprecated -->"
-"		"
-"		<method name=\"PopupDialog\">"
-"			<arg name=\"hDialogAttributes\" direction=\"in\" type=\"a{sv}\"/>"
-"			<arg name=\"hWidgetAttributes\" direction=\"in\" type=\"a{sv}\"/>"
-"			<arg name=\"cIconID\" direction=\"in\" type=\"s\" />"
-"		</method>"
-"		"
-"		"
-"		<method name=\"AddSubIcons\">"
-"			<arg name=\"pIconFields\" type=\"as\" direction=\"in\"/>"
-"		</method>"
-"		<method name=\"RemoveSubIcon\">"
-"			<arg name=\"cIconID\" type=\"s\" direction=\"in\"/>"
-"		</method>"
-"		"
-"		<signal name=\"on_click_sub_icon\">"
-"			<arg name=\"iButtonState\" type=\"i\"/>"
-"			<arg name=\"cIconID\" type=\"s\"/>"
-"		</signal>"
-"		<signal name=\"on_middle_click_sub_icon\">"
-"			<arg name=\"cIconID\" type=\"s\"/>"
-"		</signal>"
-"		<signal name=\"on_scroll_sub_icon\">"
-"			<arg name=\"bDirectionUp\" type=\"b\"/>"
-"			<arg name=\"cIconID\" type=\"s\"/>"
-"		</signal>"
-"		<signal name=\"on_build_menu_sub_icon\">"
-"			<arg name=\"cIconID\" type=\"s\"/>"
-"		</signal>"
-"		<signal name=\"on_drop_data_sub_icon\">"
-"			<arg name=\"cReceivedData\" type=\"s\"/>"
-"			<arg name=\"cIconID\" type=\"s\"/>"
-"		</signal>"
-"	</interface>"
-"</node>";
 
