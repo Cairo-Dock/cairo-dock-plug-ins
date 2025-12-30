@@ -1273,6 +1273,11 @@ void cd_dbus_main_method_call (G_GNUC_UNUSED GDBusConnection *pConn, G_GNUC_UNUS
 	const gchar *cMethod, GVariant *pPar, GDBusMethodInvocation* pInv, G_GNUC_UNUSED gpointer data)
 {
 	CD_APPLET_ENTER;
+	if (! myConfigPtr || ! g_pMainDock)
+	{
+		g_dbus_method_invocation_return_error_literal (pInv, G_DBUS_ERROR, G_DBUS_ERROR_NOT_SUPPORTED, "Cairo-Dock is reloading, DBus interface is unavailable");
+		CD_APPLET_LEAVE ();
+	}
 	
 	     if (!strcmp (cMethod, "Reboot")) _main_reboot (pPar, pInv);
 	else if (!strcmp (cMethod, "Quit")) _main_quit (pPar, pInv);
