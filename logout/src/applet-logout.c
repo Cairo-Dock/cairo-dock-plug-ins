@@ -26,90 +26,35 @@
 #include "applet-logout.h"
 
 
-typedef struct {
-	gchar *cUserName;
-	gchar *cIconFile;
-	gchar *cRealName;
-} CDUser;
-
 static void cd_logout_shut_down_full (gboolean bDemandConfirmation);
 static void cd_logout_restart (void);
 static void cd_logout_suspend (GtkMenuItem*, gpointer);
 static void cd_logout_hibernate (GtkMenuItem*, gpointer);
 static void cd_logout_hybridSleep (GtkMenuItem*, gpointer);
-static void cd_logout_switch_to_user (const gchar *cUser);
-static void cd_logout_switch_to_guest (void);
+static void cd_logout_switch_to_user (GtkMenuItem*, const gchar *cUser);
 static void cd_logoout_lock_screen (void);
-//static gboolean cd_logout_switch_to_greeter (void);
-
-static void _free_user (CDUser *pUser);
-static GList *cd_logout_get_users_list (void);
-
-static void _display_menu (const GdkEvent *pEvent);
+static void cd_logout_switch_to_greeter (GtkMenuItem*, gpointer);
 
 
-  ////////////////////
- /// CAPABILITIES ///
-////////////////////
+/*
+ * New user switching: use only logind (DisplayManager interfaces do not exist anymore)
+ * org.freedesktop.login1 interface:
+ * /org/freedesktop/login1 -> org.freedesktop.login1.Manager:
+ * 		-> ListSessions method (returns ID, object path (not needed) and user)
+ * 		-> SessionNew signal: only ID and object path, need to get user separately
+ * + get user names from org.freedesktop.Accounts (as done currently)
+ * 
+ * Switch to login screen
+ * org.gnome.DisplayManager -> /org/gnome/DisplayManager/LocalDisplayFactory
+ *   -> org.gnome.DisplayManager.LocalDisplayFactory -> CreateTransientDisplay
+ * (not sure how to do for other cases -- logind allows VT switching, but we
+ * would need to guess the VT number)
+ *
+ * If there is at least one more session or we can switch to login screen:
+ * display menu, with the user names (typical case: only one session per user)
+ * + "new session" to activate the login screen
+ */
 
-static void _cd_logout_check_capabilities_async (CDSharedMemory *pSharedMemory)
-{
-	// get capabilities from DisplayManager -- others have been moved to core
-	const gchar *seat = g_getenv ("XDG_SEAT_PATH"); // TODO: this does not seem to work anymore, check for alternatives?
-	if (seat)  // else, we could possibly get it by: ck -> GetCurrentSession -> session -> GetSeatId
-	{
-		DBusGProxy *pProxy = cairo_dock_create_new_system_proxy (
-			"org.freedesktop.DisplayManager",
-			seat,
-			DBUS_INTERFACE_PROPERTIES);
-		pSharedMemory->bHasGuestAccount = cairo_dock_dbus_get_property_as_boolean (pProxy, "org.freedesktop.DisplayManager.Seat", "HasGuestAccount");
-		g_object_unref (pProxy);
-	}
-	else
-	{
-		pSharedMemory->bHasGuestAccount = cairo_dock_dbus_detect_system_application ("org.gnome.DisplayManager");
-	}
-}
-
-static gboolean _cd_logout_got_capabilities (CDSharedMemory *pSharedMemory)
-{
-	CD_APPLET_ENTER;
-	
-	// fetch the capabilities.
-	myData.bCapabilitiesChecked = TRUE;
-	myData.bHasGuestAccount = pSharedMemory->bHasGuestAccount;
-	cd_debug ("capabilities: %d", myData.bHasGuestAccount);
-	
-	// sayonara task-san ^^
-	gldi_task_discard (myData.pTask);
-	myData.pTask = NULL;
-	
-	CD_APPLET_LEAVE (FALSE);
-}
-
-static void _free_memory (CDSharedMemory *pSharedMemory)
-{
-	if (pSharedMemory) g_free (pSharedMemory);
-}
-
-void cd_logout_check_capabilities (guint delay)
-{
-	CDSharedMemory *pSharedMemory = g_new0 (CDSharedMemory, 1);
-	myData.pTask = gldi_task_new_full (0,
-		(GldiGetDataAsyncFunc) _cd_logout_check_capabilities_async,
-		(GldiUpdateSyncFunc) _cd_logout_got_capabilities,
-		(GFreeFunc) _free_memory,
-		pSharedMemory);
-	if (delay) gldi_task_launch_delayed (myData.pTask, delay);
-	else gldi_task_launch (myData.pTask);
-}
-
-void cd_logout_display_actions (void)
-{
-	if (! myData.bCapabilitiesChecked)
-		cd_logout_check_capabilities (0);
-	_display_menu (NULL);
-}
 
 
   ////////////
@@ -125,17 +70,6 @@ gchar *cd_logout_check_icon (const gchar *cIconStock, gint iIconSize)
 		return NULL;
 }
 
-static void _switch_to_user (GtkMenuItem *menu_item, gchar *cUserName)
-{
-	if (cUserName != NULL)
-	{
-		cd_logout_switch_to_user (cUserName);
-	}
-	else  // guest
-	{
-		cd_logout_switch_to_guest ();
-	}
-}
 
 static GtkWidget *_build_menu (GtkWidget **pShutdownMenuItem)
 {
@@ -207,37 +141,62 @@ static GtkWidget *_build_menu (GtkWidget **pShutdownMenuItem)
 	if (!bCanLogout && !myConfig.cUserAction)
 		gtk_widget_set_sensitive (pMenuItem, FALSE);
 	
-	if (myData.pUserList != NULL)  // refresh the users list (we could listen for the UserAdded,UserDeleted, UserChanged signals too).
+	// display the switch account menu
+	gboolean bCanSwitchToLogin = (myData.pGdmProxy != NULL); //!! TODO: chech if there are actually multiple users?
+	gboolean bMultipleSession = FALSE;
+	const char *cCurrentSession = g_getenv ("XDG_SESSION_ID");
+	GList *it;
+	CDLogoutSession *session;
+	for (it = myData.pSessionList; it; it = it->next)
 	{
-		g_list_foreach (myData.pUserList, (GFunc)_free_user, NULL);
-		g_list_free (myData.pUserList);
+		//!! TODO: user not added for all sessions !!
+		session = (CDLogoutSession*)it->data;
+		if (session->uid && session->pUser && (session->pUser->cUserName || session->pUser->cRealName)
+			&& strcmp (session->cID, cCurrentSession))
+		{
+			// only display the menu to switch if there is at least one session with a
+			// known user which is not the current session
+			bMultipleSession = TRUE;
+			break;
+		}
 	}
-	myData.pUserList = cd_logout_get_users_list ();
-	if (myData.pUserList != NULL && (myData.bHasGuestAccount || myData.pUserList->next != NULL))  // at least 2 users
+	
+	if (bMultipleSession)
 	{
 		GtkWidget *pUsersSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Switch user"), pMenu, GLDI_ICON_NAME_JUMP_TO);
 		
-		gboolean bFoundUser = FALSE;
-		const gchar *cCurrentUser = g_getenv ("USER");
-		CDUser *pUser;
-		GList *u;
-		for (u = myData.pUserList; u != NULL; u = u->next)
+		for (it = myData.pSessionList; it; it = it->next)
 		{
-			pUser = u->data;
-			pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (
-				(pUser->cRealName && *(pUser->cRealName) != '\0') ? pUser->cRealName : pUser->cUserName,
-				pUser->cIconFile, _switch_to_user, pUsersSubMenu, pUser->cUserName);
-			if (! bFoundUser && cCurrentUser && strcmp (cCurrentUser, pUser->cUserName) == 0)
+			session = (CDLogoutSession*)it->data;
+			if (session->uid && session->pUser && (session->pUser->cUserName || session->pUser->cRealName))
 			{
-				bFoundUser = TRUE;
-				gtk_widget_set_sensitive (pMenuItem, FALSE);
+				gchar *cID = NULL; // copy of the session ID to stay alive with the menu item
+				if (strcmp (session->cID, cCurrentSession)) cID = g_strdup (session->cID);
+				
+				pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_DATA (
+					(session->pUser->cRealName && *session->pUser->cRealName) ?
+						session->pUser->cRealName : session->pUser->cUserName,
+					cd_logout_switch_to_user, pUsersSubMenu, cID);
+				if (cID) g_object_set_data_full (G_OBJECT (pMenuItem), "cd-session-id", cID, g_free); // this is so that cID is not leaked
+				else gtk_widget_set_sensitive (pMenuItem, FALSE); // disable switching to our own session
 			}
 		}
-
-		if (myData.bHasGuestAccount && bFoundUser)  // if we didn't find the user yet, it means we are the guest, so don't show this entry.
+		
+		if (bCanSwitchToLogin)
 		{
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Guest session"), NULL, _switch_to_user, pUsersSubMenu, NULL);  // NULL will mean "guest"
+			CD_APPLET_ADD_IN_MENU_WITH_TOOLTIP_AND_DATA (D_("New session"),
+				NULL,
+				D_("Switch to the login screen where you can start a new session."),
+				cd_logout_switch_to_greeter, pUsersSubMenu, NULL);
 		}
+	}
+	else if (bCanSwitchToLogin)
+	{
+		// just display one menu item to switch to the login screen
+		CD_APPLET_ADD_IN_MENU_WITH_TOOLTIP_AND_DATA (D_("Switch user"),
+			GLDI_ICON_NAME_JUMP_TO,
+			D_("Switch to the login screen where you can start a new session."),
+			cd_logout_switch_to_greeter, pMenu, NULL);
 	}
 	
 	CD_APPLET_ADD_SEPARATOR_IN_MENU (pMenu);
@@ -271,12 +230,13 @@ static GtkWidget *_build_menu (GtkWidget **pShutdownMenuItem)
 	return pMenu;
 }
 
-static void _display_menu (const GdkEvent *pEvent)
+
+void cd_logout_display_actions (void)
 {
 	// build and show the menu
 	GtkWidget *pShutdownMenuItem = NULL;
 	GtkWidget *pMenu = _build_menu (&pShutdownMenuItem);
-	CD_APPLET_POPUP_MENU_ON_MY_ICON_WITH_EVENT (pMenu, pEvent);
+	CD_APPLET_POPUP_MENU_ON_MY_ICON (pMenu);
 	
 	// select the first (or last) item, which corresponds to the 'shutdown' action.
 	gtk_menu_shell_select_item (GTK_MENU_SHELL (pMenu), pShutdownMenuItem);  // must be done here, after the menu has been realized.
@@ -297,11 +257,6 @@ static void _exec_action (int iClickedButton, GtkWidget *pInteractiveWidget, voi
 {
 	if (iClickedButton == 0 || iClickedButton == -1)  // 'OK' button or 'Enter', execute the action.
 		callback ();
-	else if (myData.iSidShutDown != 0)  // 'Cancel' or 'Escap', if a countdown was scheduled, remove it.
-	{
-		g_source_remove (myData.iSidShutDown);
-		myData.iSidShutDown = 0;
-	}
 	myData.pConfirmationDialog = NULL;
 }
 
@@ -318,58 +273,6 @@ static void _demand_confirmation (const gchar *cMessage, const gchar *cIconStock
 	gldi_object_register_notification (myData.pConfirmationDialog, NOTIFICATION_DESTROY, (GldiNotificationFunc) _on_dialog_destroyed, GLDI_RUN_AFTER, NULL);
 	g_free (cImagePath);
 }
-
-/*
-static void _shut_down (void)
-{
-	if (myConfig.cUserActionShutdown)
-	{
-		gldi_object_notify (&myModuleObjectMgr, NOTIFICATION_LOGOUT);
-		cairo_dock_launch_command (myConfig.cUserActionShutdown);
-	}
-	else cairo_dock_fm_shutdown ();
-}
-static inline gchar *_info_msg (void)
-{
-	gchar *cInfo = g_strdup_printf (D_("It will automatically shut-down in %ds"), myData.iCountDown);
-	gchar *cMessage = g_strdup_printf ("%s\n\n (%s)", D_("Shut down the computer?"), cInfo);
-	g_free (cInfo);
-	if (! cd_logout_can_safety_shutdown ())
-	{
-		cInfo = g_strdup_printf ("%s\n\n%s", cMessage,
-			D_("It seems your system is being updated!\n"
-			   "Please be sure that you can shut down your computer right now."));
-		g_free (cMessage);
-		return cInfo;
-	}
-	return cMessage;
-}
-static gboolean _auto_shot_down (gpointer data)
-{
-	myData.iCountDown --;
-	if (myData.iCountDown <= 0)
-	{
-		myData.iSidShutDown = 0;
-		if (myData.pConfirmationDialog)
-		{
-			gldi_object_unref (GLDI_OBJECT(myData.pConfirmationDialog));
-			myData.pConfirmationDialog = NULL;
-		}
-		_shut_down ();
-		return FALSE;
-	}
-	else
-	{
-		if (myData.pConfirmationDialog)  // paranoia
-		{
-			gchar *cMessage = _info_msg ();
-			gldi_dialog_set_message (myData.pConfirmationDialog, cMessage);
-			g_free (cMessage);
-		}
-		return TRUE;
-	}
-}
-*/
 
 static void _confirm_action (gpointer data, CairoDockFMUserActionFunc action)
 {
@@ -403,22 +306,6 @@ static void _logout_custom (void)
 
 static void cd_logout_shut_down_full (gboolean bDemandConfirmation)
 {
-/*	if (bDemandConfirmation)
-	{
-		myData.iCountDown = 60;
-		gchar *cMessage = _info_msg ();
-		_demand_confirmation (cMessage, "system-shutdown", MY_APPLET_SHARE_DATA_DIR"/system-shutdown.svg", _shut_down);
-		g_free (cMessage);
-		if (myData.iSidShutDown == 0)
-		{
-			myData.iSidShutDown = g_timeout_add_seconds (1, _auto_shot_down, NULL);
-		}
-	}
-	else
-	{
-		_shut_down ();
-	} */
-	
 	if (myConfig.cUserActionShutdown)
 	{
 		if (bDemandConfirmation) _confirm_action (GINT_TO_POINTER (CD_LOGOUT_SHUTDOWN), _shutdown_custom);
@@ -440,24 +327,15 @@ void cd_logout_timer_shutdown (void)
 	cd_logout_shut_down_full (FALSE);
 }
 
-/*
-static void _restart (void)
-{
-	cairo_dock_fm_reboot ();
-}
-*/
-
 static void cd_logout_restart (void)
 {
 	if (myConfig.bConfirmAction)
 	{
 		cairo_dock_fm_reboot (_confirm_action, GINT_TO_POINTER (CD_LOGOUT_REBOOT));
-		// _demand_confirmation (D_("Restart the computer?"), GLDI_ICON_NAME_REFRESH, MY_APPLET_SHARE_DATA_DIR"/system-restart.svg", _restart);
 	}
 	else
 	{
 		cairo_dock_fm_reboot (NULL, NULL);
-		// _restart ();
 	}
 }
 
@@ -475,18 +353,8 @@ static void cd_logout_hybridSleep (G_GNUC_UNUSED GtkMenuItem *pMenuItem, G_GNUC_
 {
 	cairo_dock_fm_hybrid_sleep ();
 }
-/*
-static void _logout (void)
-{
-	if (myConfig.cUserAction != NULL)
-	{
-		gldi_object_notify (&myModuleObjectMgr, NOTIFICATION_LOGOUT);
-		cairo_dock_launch_command (myConfig.cUserAction);
-	}
-	else cairo_dock_fm_logout ();
-}
-*/
-void cd_logout_close_session (G_GNUC_UNUSED GtkMenuItem *pMenuItem, G_GNUC_UNUSED gpointer dummy)  // could use org.gnome.SessionManager.Logout
+
+void cd_logout_close_session (G_GNUC_UNUSED GtkMenuItem *pMenuItem, G_GNUC_UNUSED gpointer dummy)
 {
 	if (myConfig.cUserAction != NULL)
 	{
@@ -498,109 +366,46 @@ void cd_logout_close_session (G_GNUC_UNUSED GtkMenuItem *pMenuItem, G_GNUC_UNUSE
 		if (myConfig.bConfirmAction) cairo_dock_fm_logout (_confirm_action, GINT_TO_POINTER (CD_LOGOUT_LOGOUT));
 		else cairo_dock_fm_logout (NULL, NULL);
 	}
-	/*
-	if (myConfig.bConfirmAction)
-	{
-		_demand_confirmation (D_("Close the current session?"), "system-log-out", MY_APPLET_SHARE_DATA_DIR"/system-log-out.svg", _logout);  /// same question, see above...
-	}
-	else
-	{
-		_logout ();
-	} */
 }
 
-static void cd_logout_switch_to_user (const gchar *cUser)
+static void cd_logout_switch_to_user (G_GNUC_UNUSED GtkMenuItem *pMenuItem, const gchar *cID)
 {
-	const gchar *seat = g_getenv ("XDG_SEAT_PATH");
-	GError *error = NULL;
-	gboolean bSuccess = FALSE;
-	if (seat)  // else, we could possibly get it by: ck -> GetCurrentSession -> session -> GetSeatId
+	CD_APPLET_ENTER;
+	if (!myData.pLogin1Proxy)
 	{
-		DBusGProxy *pProxy = cairo_dock_create_new_system_proxy (
-			"org.freedesktop.DisplayManager",
-			seat,
-			"org.freedesktop.DisplayManager.Seat");
-		dbus_g_proxy_call (pProxy, "SwitchToUser", &error,
-			G_TYPE_STRING, cUser,
-			G_TYPE_STRING, "",  // session, but actually it can be NULL so why bother?
-			G_TYPE_INVALID,
-			G_TYPE_INVALID);
-		if (error)
-		{
-			cd_warning ("DisplayManager (LocalDisplay) error: %s", error->message);
-			g_error_free (error);
-		}
-		else bSuccess = TRUE;
-		g_object_unref (pProxy);
-	}
-	else // try with gdm
-	{
-		DBusGProxy *pProxy = cairo_dock_create_new_system_proxy (
-			"org.gnome.DisplayManager",
-			"/org/gnome/DisplayManager/LocalDisplayFactory",
-			"org.gnome.DisplayManager.LocalDisplayFactory");
-		dbus_g_proxy_call (pProxy, "SwitchToUser", &error,
-			G_TYPE_STRING, cUser,
-			G_TYPE_INVALID,
-			G_TYPE_INVALID);  // we don't care the 'id' object path returned
-		if (error)
-		{
-			cd_warning ("DisplayManager error: %s", error->message);
-			g_error_free (error);
-		}
-		else bSuccess = TRUE;
-		g_object_unref (pProxy);
+		cd_warning ("No connection to logind, cannot switch session");
+		CD_APPLET_LEAVE ();
 	}
 	
-	if (!bSuccess && myConfig.cUserActionSwitchUser)
-	{
-		const gchar * const args[] = {myConfig.cUserActionSwitchUser, cUser, NULL};
-		cairo_dock_launch_command_argv (args);
-	}
+	g_dbus_proxy_call (myData.pLogin1Proxy, "ActivateSession",
+		g_variant_new ("(s)", cID),
+		G_DBUS_CALL_FLAGS_ALLOW_INTERACTIVE_AUTHORIZATION,
+		-1, // timeout
+		NULL, // cancellable
+		NULL, // callback -- we don't care of the result
+		NULL);
+	
+	CD_APPLET_LEAVE ();
 }
 
-static void cd_logout_switch_to_guest (void)
+static void cd_logout_switch_to_greeter (G_GNUC_UNUSED GtkMenuItem *pMenuItem, G_GNUC_UNUSED gpointer dummy)
 {
-	const gchar *seat = g_getenv ("XDG_SEAT_PATH");
-	GError *error = NULL;
-	if (seat)  // else, we could possibly get it by: ck -> GetCurrentSession -> session -> GetSeatId
+	CD_APPLET_ENTER;
+	if (!myData.pGdmProxy)
 	{
-		DBusGProxy *pProxy = cairo_dock_create_new_system_proxy (
-			"org.freedesktop.DisplayManager",
-			seat,
-			"org.freedesktop.DisplayManager.Seat");
-		dbus_g_proxy_call (pProxy, "SwitchToGuest", &error,
-			G_TYPE_STRING, "",  // session, but actually it can be NULL so why bother?
-			G_TYPE_INVALID,
-			G_TYPE_INVALID);
-		if (error)
-		{
-			cd_warning ("DisplayManager error: %s", error->message);
-			g_error_free (error);
-			if (myConfig.cUserActionSwitchUser != NULL)
-				cairo_dock_launch_command (myConfig.cUserActionSwitchUser);
-		}
-		g_object_unref (pProxy);
+		cd_warning ("No connection to GDM, cannot switch to login screen");
+		CD_APPLET_LEAVE ();
 	}
-	else // try with gdm
-	{
-		DBusGProxy *pProxy = cairo_dock_create_new_system_proxy (
-			"org.gnome.DisplayManager",
-			"/org/gnome/DisplayManager/LocalDisplayFactory",
-			"org.gnome.DisplayManager.LocalDisplayFactory");
-		dbus_g_proxy_call (pProxy, "StartGuestSession", &error,
-			G_TYPE_STRING, "",  // current user session, but actually it can be NULL so why bother?
-			G_TYPE_INVALID,
-			G_TYPE_INVALID);  // we don't care the 'id' object path returned
-		if (error)
-		{
-			cd_warning ("DisplayManager (LocalDisplay) error: %s", error->message);
-			g_error_free (error);
-			if (myConfig.cUserActionSwitchUser != NULL)
-				cairo_dock_launch_command (myConfig.cUserActionSwitchUser);
-		}
-		g_object_unref (pProxy);
-	}
+	
+	g_dbus_proxy_call (myData.pGdmProxy, "CreateTransientDisplay",
+		NULL,
+		G_DBUS_CALL_FLAGS_ALLOW_INTERACTIVE_AUTHORIZATION,
+		-1, // timeout
+		NULL, // cancellable
+		NULL, // callback -- we don't care of the result
+		NULL);
+	
+	CD_APPLET_LEAVE ();
 }
 
 static void cd_logoout_lock_screen (void)
@@ -611,50 +416,12 @@ static void cd_logoout_lock_screen (void)
 		cairo_dock_fm_lock_screen ();
 }
 
-/*
-static gboolean cd_logout_switch_to_greeter (void)  // not really sure how to use it.
-{
-	const gchar *seat = g_getenv ("XDG_SEAT_PATH");
-	if (!seat)
-		return FALSE;
-	
-	GError *error = NULL;
-	DBusGProxy *pProxy = cairo_dock_create_new_system_proxy (
-		"org.freedesktop.DisplayManager",
-		seat,
-		"org.freedesktop.DisplayManager.Seat");
-	dbus_g_proxy_call (pProxy, "SwitchToGreeter", &error,
-		G_TYPE_INVALID,
-		G_TYPE_INVALID);
-	if (error)
-	{
-		cd_warning ("DisplayManager error: %s", error->message);
-		g_error_free (error);
-		g_object_unref (pProxy);
-		return FALSE;
-	}
-	g_object_unref (pProxy);
-	return TRUE;
-}
-*/
 
-  //////////////////
- /// USERS LIST ///
-//////////////////
+  /////////////////////////////
+ /// USER AND SESSION LIST ///
+/////////////////////////////
 
-static void _free_user (CDUser *pUser)
-{
-	g_free (pUser->cUserName);
-	g_free (pUser->cIconFile);
-	g_free (pUser->cRealName);
-	g_free (pUser);
-}
-
-static int _compare_user_name (CDUser *pUser1, CDUser *pUser2)
-{
-	return strcmp (pUser1->cUserName, pUser2->cUserName);
-}
-
+/* -- maybe we could use this as a fallback if org.freedesktop.Accounts is not available
 static GList* _get_users_list_fallback (void)
 {
 	// read from /etc/passwd
@@ -698,131 +465,573 @@ static GList* _get_users_list_fallback (void)
 	g_strfreev (cUsers);
 	return pUserList;
 }
+*/
 
-static GList* _get_users_list_gdm (void)
+static void _free_user (gpointer ptr)
 {
-	GError *error = NULL;
-	DBusGProxy *pProxy = cairo_dock_create_new_system_proxy ("org.gnome.DisplayManager",
-		"/org/gnome/DisplayManager/UserManager",
-		"org.gnome.DisplayManager.UserManager");
-	GArray *users =  NULL;
-	dbus_g_proxy_call (pProxy, "GetUserList", &error,
-		G_TYPE_INVALID,
-		dbus_g_type_get_collection ("GArray", G_TYPE_INT64), &users,
-		G_TYPE_INVALID);
-	if (error)
-	{
-		cd_warning ("Couldn't get users on the bus from org.gnome.DisplayManager (%s)\n-> Using a fallback method.", error->message);
-		g_error_free (error);
-		users =  NULL;
-	}
-	if (users == NULL)
-		return _get_users_list_fallback ();
-	
-	GType g_type_ptrarray = dbus_g_type_get_collection ("GPtrArray",
-		dbus_g_type_get_struct("GValueArray",
-			G_TYPE_INT64,  // uid
-			G_TYPE_STRING,  // user name
-			G_TYPE_STRING,  // real name
-			G_TYPE_STRING,  // shell
-			G_TYPE_INT,  // login frequency
-			G_TYPE_STRING,  // icon URL
-			G_TYPE_INVALID));
-	GPtrArray *info =  NULL;
-	dbus_g_proxy_call (pProxy, "GetUsersInfo", &error,
-		dbus_g_type_get_collection ("GArray", G_TYPE_INT64), users,
-		G_TYPE_INVALID,
-		g_type_ptrarray, &info,
-		G_TYPE_INVALID);
-	if (error)
-	{
-		cd_warning ("Couldn't get info on the bus from org.gnome.DisplayManager (%s)\n-> Using a fallback method.", error->message);
-		g_error_free (error);
-		info =  NULL;
-	}
-	if (info == NULL)
-		return _get_users_list_fallback ();
-	
-	CDUser *pUser;
-	GList *pUserList = NULL;
-	GValueArray *va;
-	GValue *v;
-	guint i;
-	for (i = 0; i < info->len; i ++)
-	{
-		va = info->pdata[i];
-		if (! va)
-			continue;
-		
-		pUser = g_new0 (CDUser, 1);
-		v = g_value_array_get_nth (va, 1);  // GValueArray is deprecated from 2.32, yet it's so convenient to map the g_type_ptrarray type ...
-		if (v && G_VALUE_HOLDS_STRING (v))
-			pUser->cUserName = g_strdup (g_value_get_string (v));
-		if (pUser->cUserName == NULL) // shouldn't happen
-			continue;
-		
-		v = g_value_array_get_nth (va, 2);
-		if (v && G_VALUE_HOLDS_STRING (v))
-			pUser->cRealName = g_strdup (g_value_get_string (v));
-		
-		v = g_value_array_get_nth (va, 5);
-		if (v && G_VALUE_HOLDS_STRING (v))
-			pUser->cIconFile = g_strdup (g_value_get_string (v));
-		
-		pUserList = g_list_insert_sorted (pUserList, pUser, (GCompareFunc)_compare_user_name);
-	}
-	g_ptr_array_free (info, TRUE);
-	g_array_free (users, TRUE);
-	
-	g_object_unref (pProxy);
-	return pUserList;
+	CDLogoutUser *user = (CDLogoutUser*)ptr;
+	g_free (user->cUserName);
+	g_free (user->cRealName);
+	g_free (user->cObjectPath);
+	g_cancellable_cancel (user->pCancel);
+	g_object_unref (G_OBJECT (user->pCancel));
+	g_free (user);
 }
 
-static GList *cd_logout_get_users_list (void)
+static void _free_session (gpointer ptr)
 {
-	// get the list of users
-	GError *error = NULL;
-	DBusGProxy *pProxy = cairo_dock_create_new_system_proxy ("org.freedesktop.Accounts",
+	CDLogoutSession *session = (CDLogoutSession*)ptr;
+	g_free (session->cID);
+	if (session->pCancel)
+	{
+		g_cancellable_cancel (session->pCancel);
+		g_object_unref (G_OBJECT (session->pCancel));
+	}
+	g_free (session);
+}
+
+
+static void _on_got_uid (GObject *pObj, GAsyncResult *pRes, gpointer ptr)
+{
+	CD_APPLET_ENTER;
+	
+	GError *err = NULL;
+	GVariant *res = g_dbus_connection_call_finish (G_DBUS_CONNECTION (pObj), pRes, &err);
+	if (err)
+	{
+		if (! g_error_matches (err, G_IO_ERROR, G_IO_ERROR_CANCELLED))
+		{
+			cd_warning ("Cannot get DBus property for user: %s", err->message);
+			//!! TODO: remove user object?
+		}
+		g_error_free (err);
+		CD_APPLET_LEAVE ();
+	}
+	
+	// res is (v) where v should be an uint32
+	CDLogoutUser *user = (CDLogoutUser*)ptr;
+	gboolean bValid = FALSE;
+	if (g_variant_is_of_type (res, G_VARIANT_TYPE ("(v)")))
+	{
+		GVariant *tmp1 = g_variant_get_child_value (res, 0);
+		GVariant *tmp2 = g_variant_get_variant (tmp1);
+		if (g_variant_is_of_type (tmp2, G_VARIANT_TYPE ("t")))
+		{
+			user->uid = g_variant_get_uint64 (tmp2);
+			bValid = TRUE;
+		}
+		g_variant_unref (tmp2);
+		g_variant_unref (tmp1);
+	}
+	g_variant_unref (res);
+	if (!bValid)
+	{
+		cd_warning ("Unexpected value for user ID property");
+		CD_APPLET_LEAVE ();
+	}
+	
+	// check if uid matches any sessions without a user
+	GList *it;
+	CDLogoutSession *session;
+	for (it = myData.pSessionList; it; it = it->next)
+	{
+		session = (CDLogoutSession*)it->data;
+		if (!session->pUser && session->uid == user->uid)
+			session->pUser = user;
+	}
+	
+	CD_APPLET_LEAVE ();
+}
+
+static void _on_got_user_name (GObject *pObj, GAsyncResult *pRes, gpointer ptr) // ptr points to either cUserName or cRealName
+{
+	CD_APPLET_ENTER;
+	
+	GError *err = NULL;
+	GVariant *res = g_dbus_connection_call_finish (G_DBUS_CONNECTION (pObj), pRes, &err);
+	if (err)
+	{
+		if (! g_error_matches (err, G_IO_ERROR, G_IO_ERROR_CANCELLED))
+		{
+			cd_warning ("Cannot get DBus property for user: %s", err->message);
+			//!! TODO: remove user object?
+		}
+		g_error_free (err);
+		CD_APPLET_LEAVE ();
+	}
+	
+	// res is (v) where v should be a string
+	gboolean bValid = FALSE;
+	if (g_variant_is_of_type (res, G_VARIANT_TYPE ("(v)")))
+	{
+		GVariant *tmp1 = g_variant_get_child_value (res, 0);
+		GVariant *tmp2 = g_variant_get_variant (tmp1);
+		if (g_variant_is_of_type (tmp2, G_VARIANT_TYPE ("s")))
+		{
+			gchar **name = (gchar**)ptr;
+			g_free (*name); // in case we call this multiple times (we should listen to changes in user names)
+			*name = g_variant_dup_string (tmp2, NULL);
+			bValid = TRUE;
+		}
+		g_variant_unref (tmp2);
+		g_variant_unref (tmp1);
+	}
+	g_variant_unref (res);
+	if (!bValid) cd_warning ("Unexpected value for user name property");
+	
+	CD_APPLET_LEAVE ();
+}
+
+static void _add_one_user (const gchar *cPath, GDBusConnection *pConn)
+{
+	GList *it = myData.pUserList;
+	CDLogoutUser *user;
+	for (; it; it = it->next)
+	{
+		user = (CDLogoutUser*) it->data;
+		if (!strcmp (user->cObjectPath, cPath)) return;
+	}
+	
+	user = g_new0 (CDLogoutUser, 1);
+	user->pCancel = g_cancellable_new ();
+	user->cObjectPath = g_strdup (cPath);
+	myData.pUserList = g_list_prepend (myData.pUserList, user);
+	// get the properties
+	g_dbus_connection_call (pConn, "org.freedesktop.Accounts", cPath, "org.freedesktop.DBus.Properties",
+		"Get", g_variant_new ("(ss)", "org.freedesktop.Accounts.User", "Uid"), G_VARIANT_TYPE ("(v)"),
+		G_DBUS_CALL_FLAGS_NO_AUTO_START, -1, user->pCancel, _on_got_uid, user);
+	g_dbus_connection_call (pConn, "org.freedesktop.Accounts", cPath, "org.freedesktop.DBus.Properties",
+		"Get", g_variant_new ("(ss)", "org.freedesktop.Accounts.User", "UserName"), G_VARIANT_TYPE ("(v)"),
+		G_DBUS_CALL_FLAGS_NO_AUTO_START, -1, user->pCancel, _on_got_user_name, &user->cUserName);
+	g_dbus_connection_call (pConn, "org.freedesktop.Accounts", cPath, "org.freedesktop.DBus.Properties",
+		"Get", g_variant_new ("(ss)", "org.freedesktop.Accounts.User", "RealName"), G_VARIANT_TYPE ("(v)"),
+		G_DBUS_CALL_FLAGS_NO_AUTO_START, -1, user->pCancel, _on_got_user_name, &user->cRealName);
+}
+
+static void _on_got_users (GObject *pObj, GAsyncResult *pRes, G_GNUC_UNUSED gpointer ptr)
+{
+	CD_APPLET_ENTER;
+	
+	GDBusProxy *pProxy = G_DBUS_PROXY (pObj);
+	GError *err = NULL;
+	GVariant *res = g_dbus_proxy_call_finish (pProxy, pRes, &err);
+	if (err)
+	{
+		if (! g_error_matches (err, G_IO_ERROR, G_IO_ERROR_CANCELLED))
+		{
+			cd_warning ("Cannot get DBus property for user: %s", err->message);
+			//!! TODO: remove user account proxy?
+		}
+		g_error_free (err);
+		CD_APPLET_LEAVE ();
+	}
+	
+	// result should be an array of object path: (ao)
+	if (g_variant_is_of_type (res, G_VARIANT_TYPE ("(ao)")))
+	{
+		const gchar **objs = NULL;
+		g_variant_get (res, "(^a&o)", &objs);
+		if (objs) // can be NULL for empty array
+		{
+			GDBusConnection *pConn = g_dbus_proxy_get_connection (pProxy);
+			int i;
+			for (i = 0; objs[i]; i++) _add_one_user (objs[i], pConn);
+			g_free (objs);
+		}
+	}
+	else cd_warning ("Unexpected return type for the list of users");
+	
+	CD_APPLET_LEAVE ();
+}
+
+static void _accounts_signal (GDBusProxy *pProxy, G_GNUC_UNUSED const gchar *cSender, const gchar *cSignal,
+	GVariant* pPar, G_GNUC_UNUSED gpointer data)
+{
+	CD_APPLET_ENTER;
+	
+	gboolean bAdded = !strcmp (cSignal, "UserAdded");
+	gboolean bRemoved = !bAdded && !strcmp (cSignal, "UserDeleted");
+	
+	if (bAdded || bRemoved)
+	{
+		if (g_variant_is_of_type (pPar, G_VARIANT_TYPE ("(o)")))
+		{
+			const gchar *cPath = NULL;
+			g_variant_get (pPar, "(&o)", &cPath);
+			if (cPath && *cPath)
+			{
+				if (bAdded) _add_one_user (cPath, g_dbus_proxy_get_connection (pProxy));
+				else
+				{
+					// find and remove this user and any session related to them
+					GList *it;
+					CDLogoutUser *user = NULL;
+					CDLogoutSession *session;
+					for (it = myData.pUserList; it; it = it->next)
+					{
+						user = (CDLogoutUser*)it->data;
+						if (!strcmp (user->cObjectPath, cPath)) break;
+					}
+					
+					if (it)
+					{
+						myData.pUserList = g_list_delete_link (myData.pUserList, it); // frees it but not user
+						// remove match from any session
+						for (it = myData.pSessionList; it; it = it->next)
+						{
+							session = (CDLogoutSession*)it->data;
+							if (session->pUser == user) session->pUser = NULL;
+						}
+						_free_user (user);
+					}
+					// note: not an error if not found? (could be a user removed before we got the initial list)
+				}
+			}
+			else cd_warning ("Empty object path");
+		}
+		else cd_warning ("Unexpected parameter for '%s' signal", cSignal);
+	}
+	
+	CD_APPLET_LEAVE ();
+}
+
+static void _on_user_changed (GDBusConnection *pConn, G_GNUC_UNUSED const gchar* cSender,
+	const gchar* cPath, G_GNUC_UNUSED const gchar* cInterface, G_GNUC_UNUSED const gchar* cSignal,
+	G_GNUC_UNUSED GVariant* pPar, G_GNUC_UNUSED gpointer ptr)
+{
+	CD_APPLET_ENTER;
+	
+	// find the user among our known users (it is OK if not found as we might not have received this user yet)
+	GList *it;
+	CDLogoutUser *user;
+	for (it = myData.pUserList; it; it = it->next)
+	{
+		user = (CDLogoutUser*)it->data;
+		if (!strcmp (user->cObjectPath, cPath))
+		{
+			// found, update the name properties (user IDs should not change)
+			g_dbus_connection_call (pConn, "org.freedesktop.Accounts", cPath, "org.freedesktop.DBus.Properties",
+				"Get", g_variant_new ("(ss)", "org.freedesktop.Accounts.User", "UserName"), G_VARIANT_TYPE ("(v)"),
+				G_DBUS_CALL_FLAGS_NO_AUTO_START, -1, user->pCancel, _on_got_user_name, &user->cUserName);
+			g_dbus_connection_call (pConn, "org.freedesktop.Accounts", cPath, "org.freedesktop.DBus.Properties",
+				"Get", g_variant_new ("(ss)", "org.freedesktop.Accounts.User", "RealName"), G_VARIANT_TYPE ("(v)"),
+				G_DBUS_CALL_FLAGS_NO_AUTO_START, -1, user->pCancel, _on_got_user_name, &user->cRealName);
+			break;
+		}
+	}
+	
+	CD_APPLET_LEAVE ();
+}
+
+
+static void _add_user_to_session (CDLogoutSession *session)
+{
+	// check if user is already known
+	GList *it;
+	CDLogoutUser *user;
+	for (it = myData.pUserList; it; it = it->next)
+	{
+		user = (CDLogoutUser*)it->data;
+		if (user->uid == session->uid)
+		{
+			session->pUser = user;
+			break;
+		}
+	}
+}
+
+static void _on_got_sessions (GObject *pObj, GAsyncResult *pRes, G_GNUC_UNUSED gpointer ptr)
+{
+	CD_APPLET_ENTER;
+	
+	GError *err = NULL;
+	GVariant *res = g_dbus_proxy_call_finish (G_DBUS_PROXY (pObj), pRes, &err);
+	if (err)
+	{
+		if (! g_error_matches (err, G_IO_ERROR, G_IO_ERROR_CANCELLED))
+		{
+			cd_warning ("Cannot get DBus property for user: %s", err->message);
+			//!! TODO: remove session proxy?
+		}
+		g_error_free (err);
+		CD_APPLET_LEAVE ();
+	}
+	
+	// result should be an array: (a(susso))
+	if (g_variant_is_of_type (res, G_VARIANT_TYPE ("(a(susso))")))
+	{
+		GVariantIter *it = NULL;
+		g_variant_get (res, "(a(susso))", &it);
+		const gchar *cID;
+		guint32 uid;
+		while (g_variant_iter_loop (it, "(&susso)", &cID, &uid, NULL, NULL, NULL))
+		{
+			// we assume that the session does not exist
+			CDLogoutSession *session = g_new0 (CDLogoutSession, 1);
+			session->cID = g_strdup (cID);
+			session->uid = uid;
+			myData.pSessionList = g_list_prepend (myData.pSessionList, session);
+			
+			// check if any users match
+			_add_user_to_session (session);
+		}
+	}
+	else cd_warning ("Unexpected return type for the list of sessions");
+	
+	CD_APPLET_LEAVE ();
+}
+
+static void _on_got_session_uid (GObject *pObj, GAsyncResult *pRes, gpointer ptr)
+{
+	CD_APPLET_ENTER;
+	
+	GError *err = NULL;
+	GVariant *res = g_dbus_connection_call_finish (G_DBUS_CONNECTION (pObj), pRes, &err);
+	if (err)
+	{
+		if (! g_error_matches (err, G_IO_ERROR, G_IO_ERROR_CANCELLED))
+		{
+			cd_warning ("Cannot get DBus property for user: %s", err->message);
+			//!! TODO: remove session object?
+		}
+		g_error_free (err);
+		CD_APPLET_LEAVE ();
+	}
+	
+	// res is (v) where v should be uo
+	gboolean bValid = FALSE;
+	if (g_variant_is_of_type (res, G_VARIANT_TYPE ("(v)")))
+	{
+		GVariant *tmp1 = g_variant_get_child_value (res, 0);
+		GVariant *tmp2 = g_variant_get_variant (tmp1);
+		if (g_variant_is_of_type (tmp2, G_VARIANT_TYPE ("(uo)")))
+		{
+			bValid = TRUE;
+			guint32 uid;
+			CDLogoutSession *session = (CDLogoutSession*)ptr;
+			g_variant_get (tmp2, "(uo)", &uid, NULL);
+			session->uid = uid; // extend to 64 bits, org.freedesktop.Accounts IDs are 64-bit
+			
+			// check if any users match
+			_add_user_to_session (session);
+		}
+		g_variant_unref (tmp2);
+		g_variant_unref (tmp1);
+	}
+	if (!bValid) cd_warning ("Unexpected value for user ID property");
+	g_variant_unref (res);
+	
+	CD_APPLET_LEAVE ();
+}
+
+static void _login1_signal (GDBusProxy *pProxy, G_GNUC_UNUSED const gchar *cSender, const gchar *cSignal,
+	GVariant* pPar, G_GNUC_UNUSED gpointer data)
+{
+	CD_APPLET_ENTER;
+	
+	gboolean bNew = !strcmp (cSignal, "SessionNew");
+	gboolean bRemoved = !bNew && !strcmp (cSignal, "SessionRemoved");
+	
+	if (bNew || bRemoved)
+	{
+		if (g_variant_is_of_type (pPar, G_VARIANT_TYPE ("(so)")))
+		{
+			const gchar *cID = NULL, *cObj = NULL;
+			g_variant_get (pPar, "(&s&o)", &cID, &cObj);
+			if (cID && *cID && (!bNew || (cObj && *cObj)))
+			{
+				if (bRemoved)
+				{
+					GList *it;
+					CDLogoutSession *session;
+					for (it = myData.pSessionList; it; it = it->next)
+					{
+						session = (CDLogoutSession*)it->data;
+						if (!strcmp (session->cID, cID))
+						break;
+					}
+					
+					if (it)
+					{
+						myData.pSessionList = g_list_delete_link (myData.pSessionList, it);
+						_free_session (session);
+					}
+				}
+				else if (bNew)
+				{
+					CDLogoutSession *session = g_new0 (CDLogoutSession, 1);
+					session->cID = g_strdup (cID);
+					// note: uid is left at 0, which corresponds to root and should be ignored
+					session->pCancel = g_cancellable_new ();
+					myData.pSessionList = g_list_prepend (myData.pSessionList, session);
+					// get the uid -- we need to read the corresponding DBus property
+					GDBusConnection *pConn = g_dbus_proxy_get_connection (pProxy);
+					g_dbus_connection_call (pConn, "org.freedesktop.login1", cObj, "org.freedesktop.DBus.Properties",
+						"Get", g_variant_new ("(ss)", "org.freedesktop.login1.Session", "User"), G_VARIANT_TYPE ("(v)"),
+						G_DBUS_CALL_FLAGS_NO_AUTO_START, -1, session->pCancel, _on_got_session_uid, session);
+				}
+			}
+			else cd_warning ("Empty session name or object path");
+		}
+		else cd_warning ("Unexpected parameter for '%s' signal", cSignal);
+	}
+	
+	CD_APPLET_LEAVE ();
+}
+
+
+static void _on_accounts_proxy_created (G_GNUC_UNUSED GObject *pObj, GAsyncResult *pRes, G_GNUC_UNUSED gpointer ptr)
+{
+	CD_APPLET_ENTER;
+	
+	GError *err = NULL;
+	GDBusProxy *pProxy = g_dbus_proxy_new_for_bus_finish (pRes, &err);
+	if (err)
+	{
+		if (! g_error_matches (err, G_IO_ERROR, G_IO_ERROR_CANCELLED))
+			cd_warning ("Cannot create DBus proxy: %s", err->message);
+		CD_APPLET_LEAVE ();
+	}
+	
+	gchar *tmp = g_dbus_proxy_get_name_owner (pProxy);
+	if (!tmp)
+	{
+		cd_message ("No name owner for 'org.freedesktop.Accounts', will not track users");
+		g_object_unref (G_OBJECT (pProxy));
+		CD_APPLET_LEAVE (); //!! TODO: cancel creating the login1 proxy (it is useless without the user list)? Or just read /etc/passwd...
+	}
+	g_free (tmp);
+	
+	myData.pAccountsProxy = pProxy;
+	
+	// connect to signals + list initial users
+	g_signal_connect (G_OBJECT(pProxy), "g-signal", G_CALLBACK (_accounts_signal), NULL);
+	myData.uRegUserChanged = g_dbus_connection_signal_subscribe (
+		g_dbus_proxy_get_connection (pProxy),
+		"org.freedesktop.Accounts",
+		"org.freedesktop.Accounts.User",
+		"Changed",
+		NULL, // object path -- any object (i.e. all users)
+		NULL, // arg0 -- not needed
+		G_DBUS_SIGNAL_FLAGS_NONE,
+		_on_user_changed,
+		NULL, // user data
+		NULL);
+	g_dbus_proxy_call (pProxy, "ListCachedUsers", NULL, G_DBUS_CALL_FLAGS_NONE, -1, myData.pCancellable, _on_got_users, NULL);
+	
+	CD_APPLET_LEAVE ();
+}
+
+static void _on_login1_proxy_created (G_GNUC_UNUSED GObject *pObj, GAsyncResult *pRes, G_GNUC_UNUSED gpointer ptr)
+{
+	CD_APPLET_ENTER;
+	
+	GError *err = NULL;
+	GDBusProxy *pProxy = g_dbus_proxy_new_for_bus_finish (pRes, &err);
+	if (err)
+	{
+		if (! g_error_matches (err, G_IO_ERROR, G_IO_ERROR_CANCELLED))
+			cd_warning ("Cannot create DBus proxy: %s", err->message);
+		CD_APPLET_LEAVE ();
+	}
+	
+	gchar *tmp = g_dbus_proxy_get_name_owner (pProxy);
+	if (!tmp)
+	{
+		cd_message ("No name owner for 'org.freedesktop.login1', will not track sessions");
+		g_object_unref (G_OBJECT (pProxy));
+		CD_APPLET_LEAVE (); //!! TODO: cancel creating the Accounts proxy as there is not use for it
+	}
+	g_free (tmp);
+	
+	myData.pLogin1Proxy = pProxy;
+	
+	// connect to signals + list sessions
+	g_signal_connect (G_OBJECT(pProxy), "g-signal", G_CALLBACK (_login1_signal), NULL);
+	g_dbus_proxy_call (pProxy, "ListSessions", NULL, G_DBUS_CALL_FLAGS_NONE, -1, myData.pCancellable, _on_got_sessions, NULL);
+	
+	CD_APPLET_LEAVE ();
+}
+
+
+static void _on_gdm_proxy_created (G_GNUC_UNUSED GObject *pObj, GAsyncResult *pRes, G_GNUC_UNUSED gpointer ptr)
+{
+	CD_APPLET_ENTER;
+	
+	GError *err = NULL;
+	GDBusProxy *pProxy = g_dbus_proxy_new_for_bus_finish (pRes, &err);
+	if (err)
+	{
+		if (! g_error_matches (err, G_IO_ERROR, G_IO_ERROR_CANCELLED))
+			cd_warning ("Cannot create DBus proxy: %s", err->message);
+		CD_APPLET_LEAVE ();
+	}
+	
+	gchar *tmp = g_dbus_proxy_get_name_owner (pProxy);
+	if (!tmp)
+	{
+		cd_message ("No name owner for 'org.gnome.DisplayManager', will not be able to switch to the login screen");
+		g_object_unref (G_OBJECT (pProxy));
+		CD_APPLET_LEAVE ();
+	}
+	g_free (tmp);
+	
+	myData.pGdmProxy = pProxy;
+	// nothing more to do, we just assume that it will work
+	
+	CD_APPLET_LEAVE ();
+}
+
+void cd_logout_start_watch_sessions (void)
+{
+	// connect our proxies
+	myData.pCancellable = g_cancellable_new ();
+	g_dbus_proxy_new_for_bus (G_BUS_TYPE_SYSTEM,
+		G_DBUS_PROXY_FLAGS_DO_NOT_LOAD_PROPERTIES | G_DBUS_PROXY_FLAGS_DO_NOT_AUTO_START,
+		NULL, // InterfaceInfo
+		"org.freedesktop.Accounts",
 		"/org/freedesktop/Accounts",
-		"org.freedesktop.Accounts");
-	
-	GPtrArray *users =  NULL;
-	dbus_g_proxy_call (pProxy, "ListCachedUsers", &error,
-		G_TYPE_INVALID,
-		dbus_g_type_get_collection ("GPtrArray", DBUS_TYPE_G_OBJECT_PATH), &users,
-		G_TYPE_INVALID);
-	g_object_unref (pProxy);
-	
-	if (error)
-	{
-		cd_warning ("Couldn't get info on the bus from org.freedesktop.Accounts (%s)\n-> Trying from GnomeDisplayManager.", error->message);
-		g_error_free (error);
-		users =  NULL;
-	}
-	if (users == NULL)
-		return _get_users_list_gdm ();
-	
-	// foreach user, get its properties (name & icon).
-	CDUser *pUser;
-	GList *pUserList = NULL;
-	gchar *cUserObjectPath;
-	guint i;
-	for (i = 0; i < users->len; i++)
-	{
-		cUserObjectPath = g_ptr_array_index (users, i);
-		pProxy = cairo_dock_create_new_system_proxy ("org.freedesktop.Accounts",
-			cUserObjectPath,
-			DBUS_INTERFACE_PROPERTIES);
-		
-		pUser = g_new0 (CDUser, 1);
-		pUser->cUserName = cairo_dock_dbus_get_property_as_string (pProxy, "org.freedesktop.Accounts.User", "UserName");  // used to identify the user in SwitchToUser()
-		if (pUser->cUserName == NULL) // shouldn't happen
-			continue;
-		pUser->cIconFile = cairo_dock_dbus_get_property_as_string (pProxy, "org.freedesktop.Accounts.User", "IconFile");
-		pUser->cRealName = cairo_dock_dbus_get_property_as_string (pProxy, "org.freedesktop.Accounts.User", "RealName");
-		pUserList = g_list_insert_sorted (pUserList, pUser, (GCompareFunc)_compare_user_name);
-		
-		g_object_unref (pProxy);
-	}
-	return pUserList;
+		"org.freedesktop.Accounts",
+		myData.pCancellable,
+		_on_accounts_proxy_created,
+		NULL);
+	g_dbus_proxy_new_for_bus (G_BUS_TYPE_SYSTEM,
+		G_DBUS_PROXY_FLAGS_DO_NOT_LOAD_PROPERTIES | G_DBUS_PROXY_FLAGS_DO_NOT_AUTO_START,
+		NULL, // InterfaceInfo
+		"org.freedesktop.login1",
+		"/org/freedesktop/login1",
+		"org.freedesktop.login1.Manager",
+		myData.pCancellable,
+		_on_login1_proxy_created,
+		NULL);
+	g_dbus_proxy_new_for_bus (G_BUS_TYPE_SYSTEM,
+		G_DBUS_PROXY_FLAGS_DO_NOT_LOAD_PROPERTIES | G_DBUS_PROXY_FLAGS_DO_NOT_AUTO_START,
+		NULL, // InterfaceInfo
+		"org.gnome.DisplayManager",
+		"/org/gnome/DisplayManager/LocalDisplayFactory",
+		"org.gnome.DisplayManager.LocalDisplayFactory",
+		myData.pCancellable,
+		_on_gdm_proxy_created,
+		NULL);
 }
+
+void cd_logout_stop_watch_sessions (void)
+{
+	if (myData.pCancellable)
+	{
+		g_cancellable_cancel (myData.pCancellable);
+		g_object_unref (G_OBJECT (myData.pCancellable));
+	}
+	if (myData.pAccountsProxy)
+	{
+		if (myData.uRegUserChanged) g_dbus_connection_signal_unsubscribe (
+			g_dbus_proxy_get_connection (myData.pAccountsProxy), myData.uRegUserChanged);
+		g_object_unref (G_OBJECT (myData.pAccountsProxy));
+	}
+	if (myData.pLogin1Proxy) g_object_unref (G_OBJECT (myData.pLogin1Proxy));
+	if (myData.pGdmProxy) g_object_unref (G_OBJECT (myData.pGdmProxy));
+	
+	g_list_free_full (myData.pUserList, _free_user);
+	g_list_free_full (myData.pSessionList, _free_session);
+}
+
