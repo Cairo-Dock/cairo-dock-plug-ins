@@ -240,7 +240,6 @@ static void _on_name_vanished (G_GNUC_UNUSED GDBusConnection *connection, G_GNUC
 	//!! TODO: we cannot "unregister" our backend
 	// But we can disable the plugin, so it will not show up as enabled
 	// (note: having the setup_time and show_system_monitor functions could be useful though)
-	cd_warning ("%p; %p", myApplet, myApplet ? myApplet->pModule: NULL);
 	gldi_module_disable (myApplet->pModule, D_("Cannot connect to the GNOME or Cinnamon session manager via DBus."));
 	
 	CD_APPLET_LEAVE ();
