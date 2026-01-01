@@ -299,12 +299,10 @@ const gchar *cBaseUrl = "https://api.open-meteo.com/v1/forecast";
 	
 static void cd_weather_get_distant_data (CDSharedMemory *pSharedMemory)
 {
-	pSharedMemory->bErrorInThread = FALSE;
-	
 	if (isnan (pSharedMemory->lat) || isnan (pSharedMemory->lon))
 	{
 		cd_warning ("No location");
-		pSharedMemory->bErrorInThread = TRUE;
+		pSharedMemory->uNumError = 1;
 		return;
 	}
 	
@@ -324,7 +322,7 @@ static void cd_weather_get_distant_data (CDSharedMemory *pSharedMemory)
 	gchar *cCCData = cairo_dock_get_url_data (cURL, &erreur);
 	if (erreur != NULL)
 	{
-		cd_warning ("while downloading current conditions data:\n%s -> %s", cURL, erreur->message);
+		cd_warning ("%s", erreur->message);
 		g_error_free (erreur);
 		erreur = NULL;
 	}
@@ -332,7 +330,7 @@ static void cd_weather_get_distant_data (CDSharedMemory *pSharedMemory)
 	
 	if (cCCData == NULL)
 	{
-		pSharedMemory->bErrorInThread = TRUE;
+		pSharedMemory->uNumError++;
 		return;
 	}
 	
@@ -340,8 +338,9 @@ static void cd_weather_get_distant_data (CDSharedMemory *pSharedMemory)
 	if (!_cd_weather_parse_data (pSharedMemory, cCCData))
 	{
 		cd_warning ("weather : error parsing forecast data");
-		pSharedMemory->bErrorInThread = TRUE;
+		pSharedMemory->uNumError++;
 	}
+	else pSharedMemory->uNumError = 0;
 	g_free (cCCData);
 }
 

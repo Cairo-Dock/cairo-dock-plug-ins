@@ -91,7 +91,7 @@ typedef struct {
 	gboolean bISUnits;
 	gboolean bCurrentConditions;
 	CDWeatherData wdata;
-	gboolean bErrorInThread;
+	guint uNumError;
 	GldiModuleInstance *pApplet;
 	} CDSharedMemory;
 
