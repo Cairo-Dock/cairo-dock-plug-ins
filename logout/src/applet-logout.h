@@ -27,12 +27,15 @@ void cd_logout_display_actions (void);
 
 gchar *cd_logout_check_icon (const gchar *cIconStock, gint iIconSize);
 
-void cd_logout_check_capabilities (guint delay);
-
 void cd_logout_timer_shutdown (void); // called from applet-timer.c
 
 void cd_logout_shut_down (void);
 
 void cd_logout_close_session (GtkMenuItem *pMenuItem, gpointer dummy);
 
+void cd_logout_start_watch_sessions (void);
+
+void cd_logout_stop_watch_sessions (void);
+
 #endif
+

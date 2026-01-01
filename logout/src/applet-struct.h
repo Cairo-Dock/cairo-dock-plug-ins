@@ -55,23 +55,37 @@ struct _AppletConfig {
 	CDDisplayRebootNeeded iRebootNeededImage;
 	} ;
 
-typedef struct {
-	GdkEvent *pEvent;
-	gboolean bHasGuestAccount;
-	} CDSharedMemory;
+
+// struct representing one user, as got from org.freedesktop.Accounts
+typedef struct _CDLogoutUser {
+	guint64 uid; // user ID
+	gchar *cUserName; // user name
+	gchar *cRealName; // display name
+	gchar *cObjectPath; // DBus object path -- mainly to track the UserDeleted signal
+	GCancellable *pCancel; // needed to cancel getting the user name if user if removed quickly (should not happen though)
+	} CDLogoutUser;
+
+// struct representing one active session as got from logind
+typedef struct _CDLogoutSession {
+	gchar *cID; // session ID (to be used when activating)
+	guint64 uid; // user ID (to be matched with CDLogoutUser)
+	CDLogoutUser *pUser; // user struct (can be NULL if user is not known)
+	GCancellable *pCancel; // needed to cancel getting properties for a newly added session
+	} CDLogoutSession;
 
 struct _AppletData {
 	guint iSidTimer;
 	// manual capabilities.
-	GldiTask *pTask;
-	gboolean bCapabilitiesChecked;
-	gboolean bHasGuestAccount;
 	GldiShortkey *pKeyBinding;
 	GldiShortkey *pKeyBinding2;
-	GList *pUserList;
+	GList *pUserList; // CDLogoutUser
+	GList *pSessionList; // CDLogoutSession
+	GDBusProxy *pAccountsProxy; // -> org.freedesktop.Accounts
+	guint uRegUserChanged; // subscription ID to the org.freedesktop.Accounts.User.Changed signal (for any user)
+	GDBusProxy *pLogin1Proxy; // -> org.freedesktop.login1
+	GDBusProxy *pGdmProxy; // -> org.gnome.DisplayManager
+	GCancellable *pCancellable; // to cancel DBus calls related to the above
 	// shut-down confirmation
-	gint iCountDown;
-	guint iSidShutDown;
 	CairoDialog *pConfirmationDialog;
 	gint iDesiredIconSize;
 	} ;

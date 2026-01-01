@@ -82,7 +82,7 @@ CD_APPLET_INIT_BEGIN
 	// maybe not very clean to directly use 'CD_REBOOT_NEEDED' but it's just to not use two new variables for this tiny enum ;)
 	cd_logout_check_reboot_required_init ();
 	
-	cd_logout_check_capabilities (2000);
+	cd_logout_start_watch_sessions ();
 
 CD_APPLET_INIT_END
 
@@ -99,7 +99,7 @@ CD_APPLET_STOP_BEGIN
 	gchar *cNull = NULL;
 	CD_APPLET_MANAGE_APPLICATION (cNull);  // on relache le controle de l'icone de la fenetre.
 	
-	gldi_task_discard (myData.pTask);
+	cd_logout_stop_watch_sessions ();
 	
 	if (myData.iSidTimer != 0)
 		g_source_remove (myData.iSidTimer);

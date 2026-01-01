@@ -116,7 +116,7 @@ gboolean cd_weather_update_from_data (CDSharedMemory *pSharedMemory)
 	}
 	
 	//\_______________________ in case an error occured, keep the current data, and just redraw the main icon.
-	if (pSharedMemory->bErrorInThread)
+	if (pSharedMemory->uNumError)
 	{
 		if (!myData.bErrorRetrievingData)  // no previous error, draw an emblem.
 		{
@@ -130,15 +130,34 @@ gboolean cd_weather_update_from_data (CDSharedMemory *pSharedMemory)
 				gldi_task_discard (myData.pTask);
 				myData.pTask = NULL;
 			}
-			
-			// otherwise retry in 20s, in case it's just a temporary network loss, or a slow connection on startup.
-			else if (myData.pTask->iPeriod > 20)
-			{
-				cd_message ("no data, will re-try in 20s");
-				gldi_task_change_frequency (myData.pTask, 20);
-			}
-			
 		}
+		
+		// readjust the download frequency
+		if (myData.pTask)
+		{
+			unsigned int freq;
+			switch (pSharedMemory->uNumError)
+			{
+				case 1:
+					freq = 20; // first error: retry in 20s (maybe we have not connected to the network yet)
+					break;
+				case 2:
+					freq = 60; // 2nd error: retry in 1 minute (could be a slow network or busy service)
+					break;
+				case 3:
+					freq = 180; // 3rd error: retry in 3 minutes
+					break;
+				case 4:
+					freq = 600; // 4th error: retry in 10 minutes
+					break;
+				default:
+					freq = 3600; // 4+ errors: retry in only 1 hour
+					break;
+			}
+			cd_message ("no data, will re-try in %us", freq);
+			gldi_task_change_frequency (myData.pTask, freq);
+		}
+		
 		cd_weather_reset_weather_data (&pSharedMemory->wdata);  // discard the results, since they are probably empty or incomplete.
 		memset (&pSharedMemory->wdata, 0, sizeof (CDWeatherData));
 		
