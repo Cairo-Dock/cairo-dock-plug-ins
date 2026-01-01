@@ -70,9 +70,6 @@ CD_APPLET_RESET_CONFIG_END
 CD_APPLET_RESET_DATA_BEGIN
 	gldi_task_free (myData.pPeriodicTask);
 	
-	if (myData.dbus_proxy_nm != NULL)
-		g_object_unref (myData.dbus_proxy_nm);
-	
 	CD_APPLET_REMOVE_MY_DATA_RENDERER;
 	
 	g_timer_destroy (myData.pClock);

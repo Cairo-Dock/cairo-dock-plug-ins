@@ -68,7 +68,6 @@ struct _AppletData {
 	gint iMaxUpRate, iMaxDownRate;
 	// end of shared memory
 	GldiTask *pPeriodicTask;
-	DBusGProxy *dbus_proxy_nm;
 } ;
 
 
