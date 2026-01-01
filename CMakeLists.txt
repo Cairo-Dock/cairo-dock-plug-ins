@@ -235,11 +235,6 @@ if (INDICATOR_APPLET_FOUND)
 	if (with_indicator3)
 		add_subdirectory (Indicator-applet3)
 	endif()
-	## DBusMenu is needed for Indicator-applet
-	if (DBUSMENU_FOUND AND DBUSMENU_GTK_FOUND)
-		add_subdirectory (Indicator-applet)
-		set (with_indicator "yes")
-	endif()
 endif()
 
 if (NOT DBUSMENU_FOUND OR NOT DBUSMENU_GTK_FOUND OR NOT INDICATOR_APPLET_FOUND)
@@ -808,11 +803,9 @@ endif()
 
 ############# MESSAGING_MENU #################
 set (with_messaging_menu no)
-if (with_indicator)
+if (with_indicator3)
 	message (STATUS "> Messaging-Menu:")
-	if (with_indicator3)
-		set (INDICATOR_MESSAGES_WITH_IND3 TRUE) # If it's supported, it's maybe better to use it
-	endif()
+	set (INDICATOR_MESSAGES_WITH_IND3 TRUE)
 	set (GETTEXT_MESSAGING_MENU ${GETTEXT_PLUGINS})
 	set (VERSION_MESSAGING_MENU "1.0.7")
 	set (PACKAGE_MESSAGING_MENU "cd-Messaging-Menu")
