@@ -37,9 +37,6 @@
 #define CD_APP_MENU_REGISTRAR_OBJ "/com/canonical/AppMenu/Registrar"
 #define CD_APP_MENU_REGISTRAR_IFACE "com.canonical.AppMenu.Registrar"
 
-static DBusGProxyCall *s_pDetectRegistrarCall = NULL;
-static DBusGProxyCall *s_pGetMenuCall = NULL;
-
 
   ///////////////////////
  /// WINDOW CONTROLS ///
@@ -72,89 +69,174 @@ void cd_app_menu_set_windows_borders (gboolean bWithBorder)
  /// APPLICATION MENU ///
 ////////////////////////
 
-static void cd_app_menu_launch_our_registrar (void)
+static void _child_watch (GPid pid, G_GNUC_UNUSED gint wait_status, gpointer ptr)
 {
-	cairo_dock_launch_command (CD_PLUGINS_DIR"/appmenu-registrar");
-	myData.bOwnRegistrar = TRUE;
-}
-
-static void _on_registrar_owner_changed (const gchar *cName, gboolean bOwned, gpointer data)
-{
-	cd_debug ("Registrar is on the bus (%d)", bOwned);
 	CD_APPLET_ENTER;
 	
-	if (bOwned)
+	AppChildWatchData *pData = (AppChildWatchData*)ptr;
+	if (pData->pApplet)
 	{
-		// set up a proxy to the Registrar
-		myData.pProxyRegistrar = cairo_dock_create_new_session_proxy (
-			CD_APP_MENU_REGISTRAR_ADDR,
-			CD_APP_MENU_REGISTRAR_OBJ,
-			CD_APP_MENU_REGISTRAR_IFACE);  // whenever it appears on the bus, we'll get it.
-		
-		// get the controls and menu of the current window.
-		GldiWindowActor *actor = gldi_windows_get_active ();
-		
-		cd_app_menu_set_current_window (actor);
+		pData->pApplet->bOwnRegistrar = FALSE;
+		pData->pApplet->pChildWatch = NULL;
 	}
-	else  // no more registrar on the bus.
-	{
-		g_object_unref (myData.pProxyRegistrar);
-		myData.pProxyRegistrar = NULL;
-		
-		cd_app_menu_launch_our_registrar ();
-	}
+	g_free (pData);
+	g_spawn_close_pid (pid);
+	
 	CD_APPLET_LEAVE ();
 }
 
-static void _on_detect_registrar (gboolean bPresent, gpointer data)
+static void _kill_our_registrar (void)
 {
-	cd_debug ("Registrar is present: %d", bPresent);
-	CD_APPLET_ENTER;
-	s_pDetectRegistrarCall = NULL;
-	// if present, set up proxy.
-	if (bPresent)
+	if (myData.bOwnRegistrar)
 	{
-		_on_registrar_owner_changed (CD_APP_MENU_REGISTRAR_ADDR, TRUE, NULL);
+		myData.pChildWatch->pApplet = NULL; // so that the child watch function will not mess with myData
+		myData.pChildWatch = NULL;
+		myData.bOwnRegistrar = FALSE;
+		kill (myData.pidOwnRegistrar, SIGTERM);
+	}
+}
+
+static void cd_app_menu_launch_our_registrar (void)
+{
+	_kill_our_registrar (); // In case it was running, but stopped working
+	
+	const gchar *args[] = {CD_PLUGINS_DIR"/appmenu-registrar", NULL};
+	
+	GError *err = NULL;
+	gboolean ret = g_spawn_async (NULL, (gchar**)args, NULL,
+		// note: posix_spawn (and clone on Linux) will be used if we include the following
+		// two flags, but this requires to later add a child watch and also adds a risk of
+		// fd leakage (although it has not been an issue before with system() as well)
+		G_SPAWN_DO_NOT_REAP_CHILD | G_SPAWN_LEAVE_DESCRIPTORS_OPEN |
+		G_SPAWN_STDOUT_TO_DEV_NULL | G_SPAWN_STDERR_TO_DEV_NULL,
+		NULL, NULL,
+		&myData.pidOwnRegistrar, &err);
+	if (!ret)
+	{
+		cd_warning ("couldn't launch this command (%s : %s)", args[0], err->message);
+		g_error_free (err);
 	}
 	else
 	{
-		cd_app_menu_launch_our_registrar ();  // when it has been launched, we'll get notified by Dbus.
+		myData.bOwnRegistrar = TRUE;
+		myData.pChildWatch = g_new (AppChildWatchData, 1);
+		myData.pChildWatch->pApplet = &myData;
+		g_child_watch_add (myData.pidOwnRegistrar, _child_watch, myData.pChildWatch);
+	}
+}
+
+static void _registrar_proxy_created (G_GNUC_UNUSED GObject *pObj, GAsyncResult* pRes, G_GNUC_UNUSED gpointer ptr)
+{
+	CD_APPLET_ENTER;
+	
+	GError *err = NULL;
+	GDBusProxy *pProxy = g_dbus_proxy_new_finish (pRes, &err);
+	if (err)
+	{
+		if (! g_error_matches (err, G_IO_ERROR, G_IO_ERROR_CANCELLED))
+			cd_warning ("Cannot create app registrar DBus proxy: %s", err->message);
+		g_error_free (err);
+	}
+	else
+	{
+		// note: we can only set it here, since myData might not be valid
+		// if the call was canceled
+		myData.pProxyRegistrar = pProxy;
+		
+		// get the controls and menu of the current window.
+		GldiWindowActor *actor = gldi_windows_get_active ();
+		cd_app_menu_set_current_window (actor);
 	}
 	
-	// watch whenever the Registrar goes up or down.
-	cairo_dock_watch_dbus_name_owner (CD_APP_MENU_REGISTRAR_ADDR,
-		(CairoDockDbusNameOwnerChangedFunc) _on_registrar_owner_changed,
-		NULL);
 	CD_APPLET_LEAVE ();
 }
+
+
+static void _on_registrar_appeared (GDBusConnection *pConn, G_GNUC_UNUSED const gchar *cName,
+	G_GNUC_UNUSED const gchar* cOwner, G_GNUC_UNUSED gpointer ptr)
+{
+	cd_debug ("Registrar is on the bus");
+	CD_APPLET_ENTER;
+	
+	if (!myData.pCancel) myData.pCancel = g_cancellable_new ();
+	g_dbus_proxy_new (pConn,
+		G_DBUS_PROXY_FLAGS_DO_NOT_LOAD_PROPERTIES |
+		G_DBUS_PROXY_FLAGS_DO_NOT_CONNECT_SIGNALS |
+		G_DBUS_PROXY_FLAGS_DO_NOT_AUTO_START,
+		NULL, // interface info
+		CD_APP_MENU_REGISTRAR_ADDR,
+		CD_APP_MENU_REGISTRAR_OBJ,
+		CD_APP_MENU_REGISTRAR_IFACE,
+		myData.pCancel,
+		_registrar_proxy_created,
+		NULL);
+	
+	CD_APPLET_LEAVE ();
+}
+
+
+static void _on_registrar_vanished (G_GNUC_UNUSED GDBusConnection *pConn,
+	G_GNUC_UNUSED const gchar *cName, G_GNUC_UNUSED gpointer ptr)
+{
+	cd_debug ("Registrar is not on the bus");
+	CD_APPLET_ENTER;
+	
+	if (myData.pCancel)
+	{
+		g_cancellable_cancel (myData.pCancel);
+		g_object_unref (G_OBJECT (myData.pCancel));
+		myData.pCancel = NULL;
+	}
+	
+	if (myData.pProxyRegistrar)
+	{
+		g_object_unref (myData.pProxyRegistrar);
+		myData.pProxyRegistrar = NULL;
+	}
+	cd_app_menu_launch_our_registrar ();
+	
+	CD_APPLET_LEAVE ();
+}
+
 void cd_app_detect_registrar (void)
 {
-	if (s_pDetectRegistrarCall == NULL)
-		s_pDetectRegistrarCall = cairo_dock_dbus_detect_application_async (CD_APP_MENU_REGISTRAR_ADDR,
-			(CairoDockOnAppliPresentOnDbus) _on_detect_registrar,
+	if (!myData.uRegWatch)
+		myData.uRegWatch = g_bus_watch_name (G_BUS_TYPE_SESSION,
+			CD_APP_MENU_REGISTRAR_ADDR,
+			G_BUS_NAME_WATCHER_FLAGS_NONE,
+			_on_registrar_appeared,
+			_on_registrar_vanished,
+			NULL,
 			NULL);
 }
 
 
 void cd_app_disconnect_from_registrar (void)
 {
-	// stop detecting/watching the registrar
-	cairo_dock_stop_watching_dbus_name_owner (CD_APP_MENU_REGISTRAR_ADDR,
-		(CairoDockDbusNameOwnerChangedFunc) _on_registrar_owner_changed);
-	
-	if (s_pDetectRegistrarCall != NULL)
+	if (myData.uRegWatch)
 	{
-		DBusGProxy *pProxy = cairo_dock_get_main_proxy ();
-		dbus_g_proxy_cancel_call (pProxy, s_pDetectRegistrarCall);
-		s_pDetectRegistrarCall = NULL;
+		g_bus_unwatch_name (myData.uRegWatch);
+		myData.uRegWatch = 0;
 	}
 	
-	// discard the menu
-	if (s_pGetMenuCall != NULL)
+	if (myData.pCancel)
 	{
-		DBusGProxy *pProxy = cairo_dock_get_main_proxy ();
-		dbus_g_proxy_cancel_call (pProxy, s_pGetMenuCall);
-		s_pGetMenuCall = NULL;
+		g_cancellable_cancel (myData.pCancel);
+		g_object_unref (G_OBJECT (myData.pCancel));
+		myData.pCancel = NULL;
+	}
+	
+	if (myData.pCancelMenu)
+	{
+		g_cancellable_cancel (myData.pCancelMenu);
+		g_object_unref (G_OBJECT (myData.pCancelMenu));
+		myData.pCancelMenu = NULL;
+	}
+	
+	if (myData.pProxyRegistrar)
+	{
+		g_object_unref (G_OBJECT (myData.pProxyRegistrar));
+		myData.pProxyRegistrar = NULL;
 	}
 	
 	if (myData.pMenu != NULL)
@@ -163,20 +245,14 @@ void cd_app_disconnect_from_registrar (void)
 		myData.pMenu = NULL;
 	}
 	
-	if (myData.pTask != NULL)
+/*	if (myData.pTask != NULL)
 	{
 		gldi_task_discard (myData.pTask);
 		myData.pTask = NULL;
-	}
+	} */
 	
 	// kill the registrar if it's our own one
-	if (myData.bOwnRegistrar)
-	{
-		int r = system ("pkill appmenu-registr");  // 15 chars limit; 'pkill -f' doesn't work :-/ this is not very clean, we should get the PID when we spawn it, and use it.
-		if (r < 0)
-			cd_warning ("Not able to launch this command: pkill");
-		myData.bOwnRegistrar = FALSE;
-	}
+	_kill_our_registrar ();
 }
 
 
@@ -220,31 +296,30 @@ static gboolean _fetch_menu (CDSharedMemory *pSharedMemory)
 }*/
 
 static void _connect_to_menu (const gchar *cService, const gchar *cMenuObject);
-static void _on_got_menu (DBusGProxy *proxy, DBusGProxyCall *call_id, GldiModuleInstance *myApplet)
+static void _on_got_menu (GObject *pObj, GAsyncResult *pRes, gpointer ptr)
 {
 	cd_debug ("%s ()", __func__);
 	CD_APPLET_ENTER;
-	s_pGetMenuCall = NULL;
 	
 	GError *erreur = NULL;
-	gchar *cService = NULL, *cMenuObject = NULL;
-	
-	gboolean bSuccess = dbus_g_proxy_end_call (proxy,
-		call_id,
-		&erreur,
-		G_TYPE_STRING, &cService,
-		DBUS_TYPE_G_OBJECT_PATH, &cMenuObject,
-		G_TYPE_INVALID);
+	const gchar *cService = NULL, *cMenuObject = NULL;
+	GVariant *res = g_dbus_proxy_call_finish (G_DBUS_PROXY (pObj), pRes, &erreur);
 	if (erreur)
 	{
 		cd_warning ("couldn't get the application menu (%s)", erreur->message);
 		g_error_free (erreur);
 	}
-	if (bSuccess)
-		_connect_to_menu (cService, cMenuObject);
-		
-	///g_free (cService);
-	///g_free (cMenuObject);
+	else
+	{
+		if (g_variant_is_of_type (res, G_VARIANT_TYPE ("(so)")))
+			g_variant_get (res, "(&s&o)", &cService, &cMenuObject);
+		else if (g_variant_is_of_type (res, G_VARIANT_TYPE ("(ss)"))) // just to be safe
+			g_variant_get (res, "(&s&s)", &cService, &cMenuObject);
+		else cd_warning ("Unexpected result type: %s", g_variant_get_type_string (res));
+		if (cService && cMenuObject) _connect_to_menu (cService, cMenuObject);
+		g_variant_unref (res);
+	}
+	
 	CD_APPLET_LEAVE ();
 }
 		
@@ -270,7 +345,8 @@ static void _connect_to_menu (const gchar *cService, const gchar *cMenuObject)
 		gldi_task_launch_delayed (myData.pTask, 0);*/
 		/// TODO: it seems to hang he dock for a second, even with a task :-/
 		/// so maybe we need to cache the {window,menu} couples...
-		myData.pMenu = dbusmenu_gtkmenu_new (cService, cMenuObject);  /// can this object disappear by itself ? it seems to crash with 2 instances of inkscape, when closing one of them... 
+		// note: parameters are not const, but not modified (a copy is made)
+		myData.pMenu = dbusmenu_gtkmenu_new ((gchar*)cService, (gchar*)cMenuObject);  /// can this object disappear by itself ? it seems to crash with 2 instances of inkscape, when closing one of them...
 		if (g_object_is_floating (myData.pMenu))  // claim ownership on the menu.
 			g_object_ref_sink (myData.pMenu);
 		if (myData.pMenu)
@@ -292,18 +368,18 @@ static void _get_application_menu (GldiWindowActor *actor)
 		myData.pMenu = NULL;
 	}
 
-	if (s_pGetMenuCall != NULL)
+	if (myData.pCancelMenu != NULL)
 	{
-		DBusGProxy *pProxy = cairo_dock_get_main_proxy ();
-		dbus_g_proxy_cancel_call (pProxy, s_pGetMenuCall);
-		s_pGetMenuCall = NULL;
+		g_cancellable_cancel (myData.pCancelMenu);
+		g_object_unref (G_OBJECT (myData.pCancelMenu));
+		myData.pCancelMenu = NULL;
 	}
 	
-	if (myData.pTask != NULL)
+/*	if (myData.pTask != NULL)
 	{
 		gldi_task_discard (myData.pTask);
 		myData.pTask = NULL;
-	}
+	} */
 	
 	// get the new one.
 	if (actor != NULL)
@@ -316,15 +392,18 @@ static void _get_application_menu (GldiWindowActor *actor)
 			_connect_to_menu (cService, cMenuObject);
 		else if (myData.pProxyRegistrar != NULL)
 		{
+			if (!myData.pCancelMenu) myData.pCancelMenu = g_cancellable_new ();
+			
 			guint id = gldi_window_get_id (actor);
 			
-			s_pGetMenuCall = dbus_g_proxy_begin_call (myData.pProxyRegistrar,
+			g_dbus_proxy_call (myData.pProxyRegistrar,
 				"GetMenuForWindow",
-				(DBusGProxyCallNotify)_on_got_menu,
-				myApplet,
-				(GDestroyNotify) NULL,
-				G_TYPE_UINT, id,
-				G_TYPE_INVALID);
+				g_variant_new ("(u)", id),
+				G_DBUS_CALL_FLAGS_NO_AUTO_START,
+				-1,
+				myData.pCancelMenu,
+				_on_got_menu,
+				myApplet);
 		}
 	}
 }
