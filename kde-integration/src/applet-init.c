@@ -27,9 +27,8 @@
 CD_APPLET_DEFINE2_BEGIN ("kde integration",
 	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_APPLET_SYSTEM,
-	"This applet provides functions for a better integration into a KDE environnement.\n"
-	"It is auto-activated, so you don't need to activate it.\n"
-	"It is designed for KDE4",
+	N_("This applet provides functions for a better integration into a KDE environnement.\n"
+	"It is auto-activated, so you don't need to activate it.\n"),
 	"Fabounet (Fabrice Rey)")
 	if (g_iDesktopEnv == CAIRO_DOCK_KDE)
 	{
