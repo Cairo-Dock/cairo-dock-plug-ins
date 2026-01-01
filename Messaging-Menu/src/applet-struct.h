@@ -23,36 +23,20 @@
 
 #include <cairo-dock.h>
 
-#ifndef INDICATOR_MESSAGES_WITH_IND3
-#include "indicator-applet.h"
-#define FORCE_REMOVE_DOUBLE_SEPARATORS
-// let's include the Dbus name shere, so that we don't duplicate the logic.
-// we could put it directly in the .h, but having several .h will be easier to cope with further changes.
-#include "dbus-data.h"
-
-#else
-
 #include "indicator-applet3.h"
-#endif
 
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
 	gchar *cAnimationName;
 	gchar *cShortkey;
 	gchar *defaultTitle;
-	#ifdef INDICATOR_MESSAGES_WITH_IND3
 	gchar *cIndicatorName;
-	#endif
 	} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
-	#ifndef INDICATOR_MESSAGES_WITH_IND3
-	CDAppletIndicator *pIndicator;
-	#else
 	IndicatorObject *pIndicator;
 	IndicatorObjectEntry *pEntry;
-	#endif
 	GldiShortkey *pKeyBinding;
 	} ;
 
