@@ -85,78 +85,51 @@ static void _relaunch_timer (GldiModuleInstance *myApplet)
 	}
 }
 
-static void _on_prepare_for_sleep (G_GNUC_UNUSED DBusGProxy *proxy_item, gboolean bSuspend, GldiModuleInstance *myApplet)
+static void _on_prepare_for_sleep (G_GNUC_UNUSED GDBusConnection *pConn, G_GNUC_UNUSED const gchar *cSender,
+	G_GNUC_UNUSED const gchar *cObj, G_GNUC_UNUSED const gchar *cInterface, G_GNUC_UNUSED const gchar *cSignal,
+	GVariant *pPar, gpointer ptr)
 {
-	cd_debug ("Refresh timer after resuming: login1 (%d)", bSuspend);
-	if (! bSuspend) // bSuspend <=> false when resuming
-		_relaunch_timer (myApplet);
+	GldiModuleInstance *myApplet = (GldiModuleInstance*)ptr;
+	CD_APPLET_ENTER;
+	
+	if (g_variant_is_of_type (pPar, G_VARIANT_TYPE ("(b)")))
+	{
+		gboolean bSuspend;
+		g_variant_get (pPar, "(b)", &bSuspend);
+		cd_debug ("Refresh timer after resuming: login1 (%d)", bSuspend);
+		if (! bSuspend) // bSuspend <=> false when resuming
+			_relaunch_timer (myApplet);
+	}
+	else cd_warning ("Unexpected parameter for PrepareForSleep signal: %s", g_variant_get_type_string (pPar));
+	
+	CD_APPLET_LEAVE ();
 }
-
-static void _on_resuming (G_GNUC_UNUSED DBusGProxy *proxy_item, GldiModuleInstance *myApplet)
-{
-	cd_debug ("Refresh timer after resuming: UPower");
-	_relaunch_timer (myApplet);
-}
-
-static gboolean s_bUsedLogind;
 
 static void _cd_connect_to_resuming_signal (GldiModuleInstance *myApplet)
 {
-	if ((s_bUsedLogind = cairo_dock_dbus_detect_system_application ("org.freedesktop.login1")))
-		myData.pProxyResuming = cairo_dock_create_new_system_proxy (
-			"org.freedesktop.login1",
-			"/org/freedesktop/login1",
-			"org.freedesktop.login1.Manager");
-	else if (cairo_dock_dbus_detect_system_application ("org.freedesktop.UPower"))
-		myData.pProxyResuming = cairo_dock_create_new_system_proxy (
-			"org.freedesktop.UPower",
-			"/org/freedesktop/UPower",
-			"org.freedesktop.UPower");
-
-	if (myData.pProxyResuming == NULL) // no proxy found
-	{
-		cd_debug ("LoginD and UPower bus are not available, can't connect to 'resuming' signal");
-		return;
-	}
-
-	if (s_bUsedLogind)
-	{
-		dbus_g_object_register_marshaller (
-			g_cclosure_marshal_VOID__BOOLEAN,
-			G_TYPE_BOOLEAN,
-			G_TYPE_INVALID);
-
-		dbus_g_proxy_add_signal (myData.pProxyResuming, "PrepareForSleep",
-			G_TYPE_BOOLEAN, G_TYPE_INVALID);
-		dbus_g_proxy_connect_signal (myData.pProxyResuming, "PrepareForSleep",
-			G_CALLBACK (_on_prepare_for_sleep), myApplet, NULL);
-	}
-	else // UPower
-	{
-		dbus_g_object_register_marshaller (
-			g_cclosure_marshal_VOID__VOID,
-			G_TYPE_NONE,
-			G_TYPE_INVALID);
-
-		dbus_g_proxy_add_signal (myData.pProxyResuming, "Resuming",
-			G_TYPE_INVALID);
-		dbus_g_proxy_connect_signal (myData.pProxyResuming, "Resuming",
-			G_CALLBACK (_on_resuming), myApplet, NULL);
-	}
+	// currently, we only support logind -- just connect to the PrepareForSleep signal
+	myData.pConn = g_bus_get_sync (G_BUS_TYPE_SYSTEM, NULL, NULL); // we should already be connected, so this should return immediately
+	g_return_if_fail (myData.pConn != NULL);
+	
+	myData.uRegSleep = g_dbus_connection_signal_subscribe (myData.pConn,
+		"org.freedesktop.login1",
+		"org.freedesktop.login1.Manager",
+		"PrepareForSleep",
+		"/org/freedesktop/login1",
+		NULL,
+		G_DBUS_SIGNAL_FLAGS_NONE,
+		_on_prepare_for_sleep,
+		myApplet,
+		NULL);
 }
 
 static void _cd_disconnect_from_resuming_signal (GldiModuleInstance *myApplet)
 {
-	if (myData.pProxyResuming)
+	if (myData.pConn)
 	{
-		if (s_bUsedLogind)
-			dbus_g_proxy_disconnect_signal (myData.pProxyResuming, "PrepareForSleep",
-				G_CALLBACK (_on_prepare_for_sleep), myApplet);
-		else
-			dbus_g_proxy_disconnect_signal (myData.pProxyResuming, "Resuming",
-				G_CALLBACK (_on_resuming), myApplet);
-
-		g_object_unref (myData.pProxyResuming);
+		if (myData.uRegSleep) g_dbus_connection_signal_unsubscribe (
+			myData.pConn, myData.uRegSleep);
+		g_object_unref (G_OBJECT (myData.pConn));
 	}
 }
 
