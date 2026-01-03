@@ -30,13 +30,6 @@
 #include "applet-cover.h"
 #include "applet-mpris2.h"
 
-static DBusGProxyCall *s_pGetSongInfosCall = NULL;
-static DBusGProxyCall *s_pGetStatusCall = NULL;
-
-static void cd_mpris2_getSongInfos_async (void);
-static gboolean cd_mpris2_is_loop (void);
-static gboolean cd_mpris2_is_shuffle (void);
-
 /*
 Interface MediaPlayer2
 
@@ -100,72 +93,49 @@ Loop_Status Enum s
  // Les Fonctions propres a MP. //
 /////////////////////////////////
 static gboolean s_bIsLoop = FALSE;
-static gboolean s_bGotLoopStatus = FALSE;
+// static gboolean s_bGotLoopStatus = FALSE;
 static gboolean s_bIsShuffle = FALSE;
-static gboolean s_bGotShuffleStatus = FALSE;
+// static gboolean s_bGotShuffleStatus = FALSE;
 static gboolean s_bCanRaise = FALSE;
-static gboolean s_bGotCanRaise = FALSE;
+// static gboolean s_bGotCanRaise = FALSE;
 static gboolean s_bCanQuit = FALSE;
-static gboolean s_bGotCanQuit = FALSE;
+// static gboolean s_bGotCanQuit = FALSE;
+static gboolean s_bCanPlay = TRUE;
+static gboolean s_bCanPause = TRUE;
+static gboolean s_bCanGoNext = TRUE;
+static gboolean s_bCanGoPrev = TRUE;
+static gboolean s_bCanControl = TRUE;
+static gboolean s_bHasTrackList = FALSE;
+static gdouble s_fVolume = 0.0;
 
 static gboolean get_loop_status (void)
 {
-	if (! s_bGotLoopStatus)
-	{
-		s_bIsLoop = cd_mpris2_is_loop ();
-		s_bGotLoopStatus = TRUE;
-	}
 	return s_bIsLoop;
 }
 
 static gboolean get_shuffle_status (void)
 {
-	if (! s_bGotShuffleStatus)
-	{
-		s_bIsShuffle = cd_mpris2_is_shuffle ();
-		s_bGotShuffleStatus = TRUE;
-	}
 	return s_bIsShuffle;
 }
 
 static gboolean _raise (void)
 {
-	if (! s_bGotCanRaise)
-	{
-		s_bCanRaise = cairo_dock_dbus_get_property_as_boolean_with_timeout (myData.dbus_proxy_shell, "org.mpris.MediaPlayer2", "CanRaise", 1000);
-		cd_debug ("s_bCanRaise : %d", s_bCanRaise);
-		s_bGotCanRaise = TRUE;
-	}
-	
 	if (s_bCanRaise)
 	{
-		cairo_dock_dbus_call (myData.dbus_proxy_shell, "Raise");
+		g_dbus_proxy_call (myData.pProxyMain, "Raise", NULL, G_DBUS_CALL_FLAGS_NONE, -1, NULL, NULL, NULL);
 		return TRUE;
 	}
-	else
-	{
-		return FALSE;
-	}
+	else return FALSE;
 }
 
 static gboolean _quit (void)
 {
-	if (! s_bGotCanQuit)
-	{
-		s_bCanQuit = cairo_dock_dbus_get_property_as_boolean_with_timeout (myData.dbus_proxy_shell, "org.mpris.MediaPlayer2", "CanQuit", 1000);
-		cd_debug ("s_bCanQuit : %d", s_bCanQuit);
-		s_bGotCanQuit = TRUE;
-	}
-	
 	if (s_bCanQuit)
 	{
-		cairo_dock_dbus_call (myData.dbus_proxy_shell, "Quit");
+		g_dbus_proxy_call (myData.pProxyMain, "Quit", NULL, G_DBUS_CALL_FLAGS_NONE, -1, NULL, NULL, NULL);
 		return TRUE;
 	}
-	else
-	{
-		return FALSE;
-	}
+	else return FALSE;
 }
 
 static MyPlayerStatus _extract_status (const gchar *cStatus)
@@ -181,100 +151,39 @@ static MyPlayerStatus _extract_status (const gchar *cStatus)
 	return PLAYER_BROKEN;
 }
 
-static void _on_got_playing_status (DBusGProxy *proxy, DBusGProxyCall *call_id, GldiModuleInstance *myApplet)
-{
-	cd_debug ("=== %s ()", __func__);
-	CD_APPLET_ENTER;
-	s_pGetStatusCall = NULL;
-	
-	gchar *cStatus = NULL;
-	GValue v = G_VALUE_INIT;
-	GError *erreur = NULL;
-	dbus_g_proxy_end_call (proxy,
-		call_id,
-		&erreur,
-		G_TYPE_VALUE, &v,
-		G_TYPE_INVALID);
-	if (erreur != NULL)
-	{
-		cd_warning ("couldn't get MPRIS status (%s)\n", erreur->message);
-		g_error_free (erreur);
-	}
-	else
-	{
-		if (G_VALUE_HOLDS_STRING (&v))
-		{
-			cStatus = (gchar*)g_value_get_string (&v);
-			myData.iPlayingStatus = _extract_status (cStatus);
-			g_free (cStatus);  // since we don't destroy the value, we destroy its content.
-		}
-	}
-	
-	cd_mpris2_getSongInfos_async ();
-	
-	CD_APPLET_LEAVE ();
-}
-static void cd_mpris2_getPlaying_async (void)
-{
-	if (s_pGetStatusCall != NULL)
-		return;
-	s_pGetStatusCall = dbus_g_proxy_begin_call (myData.dbus_proxy_player,
-		"Get",
-		(DBusGProxyCallNotify)_on_got_playing_status,
-		myApplet,
-		(GDestroyNotify) NULL,
-		G_TYPE_STRING, "org.mpris.MediaPlayer2.Player",
-		G_TYPE_STRING, "PlaybackStatus",
-		G_TYPE_INVALID);
-}
-
-static gboolean cd_mpris2_is_loop (void)
-{
-	gchar *cLoopStatus = cairo_dock_dbus_get_property_as_string_with_timeout (myData.dbus_proxy_player, "org.mpris.MediaPlayer2.Player", "LoopStatus", 500);
-	gboolean bLoop = (cLoopStatus != NULL && strcmp (cLoopStatus, "Playlist") == 0);
-	g_free (cLoopStatus);
-	return bLoop;
-}
-
-static gboolean cd_mpris2_is_shuffle (void)
-{
-	return cairo_dock_dbus_get_property_as_boolean_with_timeout (myData.dbus_proxy_player, "org.mpris.MediaPlayer2.Player", "Shuffle", 500);
-}
-
 static void cd_mpris2_get_time_elapsed (void)
 {
-	GValue v = G_VALUE_INIT;
-	cairo_dock_dbus_get_property_in_value_with_timeout (myData.dbus_proxy_player, "org.mpris.MediaPlayer2.Player", "Position", &v, 250); // will be call each second, 250ms is already a big timeout, we can wait the next call.
-	if (G_VALUE_HOLDS_INT64 (&v))
-		myData.iCurrentTime =  g_value_get_int64 (&v) / 1e6;
-	else if (G_VALUE_HOLDS_UINT64 (&v))
-		myData.iCurrentTime =  g_value_get_uint64 (&v) / 1e6;
-	else if (G_VALUE_HOLDS_INT (&v))
-		myData.iCurrentTime =  g_value_get_int (&v) / 1e6;
-	else if (G_VALUE_HOLDS_STRING (&v))  // this is bad ! (gmusicbrowser v1.1.7)
-		myData.iCurrentTime = atoi (g_value_get_string (&v)) / 1e6;
-	else
+	// this function runs in a separate thread, we can just use the _sync method and wait
+	GVariant *res = g_dbus_connection_call_sync (g_dbus_proxy_get_connection (myData.pProxyPlayer),
+		myData.pCurrentHandler->cMprisService, CD_MPRIS2_OBJ, "org.freedesktop.DBus.Properties",
+		"Get", g_variant_new ("(ss)", CD_MPRIS2_PLAYER_IFACE, "Position"), G_VARIANT_TYPE ("(v)"),
+		G_DBUS_CALL_FLAGS_NONE, 500, NULL, NULL);
+	
+	if (res)
 	{
-		if (G_IS_VALUE(&v)) //  when changing song, we don't receive this value => no need to display a warning message each time
-			cd_warning ("wrong type for the 'Position' property, please report this bug to the %s team", myData.pCurrentHandler->appclass);
-		myData.iCurrentTime = -1;
+		GVariant *tmp1 = g_variant_get_child_value (res, 0);
+		GVariant *tmp2 = g_variant_get_variant (tmp1);
+		
+		if (g_variant_is_of_type (tmp2, G_VARIANT_TYPE ("x")))
+			myData.iCurrentTime = g_variant_get_int64 (tmp2) / 1e6;
+		else if (g_variant_is_of_type (tmp2, G_VARIANT_TYPE ("t")))
+			myData.iCurrentTime = g_variant_get_uint64 (tmp2) / 1e6;
+		else if (g_variant_is_of_type (tmp2, G_VARIANT_TYPE ("i")))
+			myData.iCurrentTime = g_variant_get_int32 (tmp2) / 1e6;
+		else myData.iCurrentTime = -1;
+		//!! TODO: gmusicbrowser v1.1.7 -> string; show a warning the first time?
+		
+		g_variant_unref (tmp2);
+		g_variant_unref (tmp1);
+		g_variant_unref (res);
 	}
-}
-
-/*static gboolean _can_control (void)
-{
-	return cairo_dock_dbus_get_property_as_int (myData.dbus_proxy_player, "org.mpris.MediaPlayer2.Player", "CanControl");
-}*/
-
-static double cd_mpris2_get_volume (void)
-{
-	return cairo_dock_dbus_get_property_as_double_with_timeout (myData.dbus_proxy_player, "org.mpris.MediaPlayer2.Player", "Volume", 500);
+	else myData.iCurrentTime = -1;
 }
 
 static gboolean _is_a_new_track (const gchar *cTrackID)
 {
 	cd_message ("  TrackId <- %s (was: %s)", cTrackID, myData.cTrackID);
-	if (cairo_dock_strings_differ (myData.cTrackID, cTrackID))  // track has changed.
+	if (g_strcmp0 (myData.cTrackID, cTrackID))  // track has changed.
 	{
 		g_free (myData.cTrackID);
 		myData.cTrackID = g_strdup (cTrackID);
@@ -283,245 +192,294 @@ static gboolean _is_a_new_track (const gchar *cTrackID)
 	return FALSE;
 }
 
-static gboolean _extract_metadata (GHashTable *pMetadata)
+static gboolean _extract_metadata (GVariant *v1)
 {
 	gboolean bTrackHasChanged = FALSE;
-	GValue *v;
-	const gchar *str = NULL;
+	GVariantDict *pMetadata = g_variant_dict_new (v1);
+	GVariant *v;
 	
-	v = g_hash_table_lookup (pMetadata, "mpris:trackid");  // a string or a dbus object path that uniquely identifies the track within the scope of the playlist
+	// a string or a dbus object path that uniquely identifies the track within the scope of the playlist
+	v = g_variant_dict_lookup_value (pMetadata, "mpris:trackid", NULL);
 	if (v != NULL)
 	{
-		if (G_VALUE_HOLDS (v, DBUS_TYPE_G_OBJECT_PATH)) // now this attribute should be of D-Bus type "o"
-			str = (gchar*) g_value_get_boxed (v);
-		else if (G_VALUE_HOLDS_STRING (v)) // but can be a string... e.g. with Rhythmbox
-			str = g_value_get_string (v);
-		bTrackHasChanged = _is_a_new_track (str);
+		if (g_variant_is_of_type (v, G_VARIANT_TYPE ("s")) || g_variant_is_of_type (v, G_VARIANT_TYPE ("o")))
+			bTrackHasChanged = _is_a_new_track (g_variant_get_string (v, NULL));
+		else cd_warning ("Unexpected type for 'mpris:trackid': %s", g_variant_get_type_string (v));
+		g_variant_unref (v);
 	}
 
-	v = g_hash_table_lookup (pMetadata, "mpris:length");  // length of the track, in microseconds (signed 64-bit integer)
+	v = g_variant_dict_lookup_value (pMetadata, "mpris:length", NULL);
 	if (v != NULL)
 	{
-		if (G_VALUE_HOLDS_INT64 (v)) // should be a int64
-			myData.iSongLength = g_value_get_int64 (v) / 1000000;
-		else if (G_VALUE_HOLDS_INT (v)) // but some players doesn't respect that... maybe a limitation?
-			myData.iSongLength = g_value_get_int (v) / 1000000;
+		if (g_variant_is_of_type (v, G_VARIANT_TYPE("x"))) // should be a int64
+			myData.iSongLength = g_variant_get_int64 (v) / 1000000;
+		else if (g_variant_is_of_type (v, G_VARIANT_TYPE("i"))) // but some players doesn't respect that... maybe a limitation?
+			myData.iSongLength = g_variant_get_int32 (v) / 1000000;
 		else
-			cd_warning ("Length has a wrong type");
+			cd_warning ("Length has a wrong type: %s", g_variant_get_type_string (v));
 		cd_debug ("Length: %d", myData.iSongLength);
+		g_variant_unref (v);
 	}
 
 	gchar *cOldArtist = myData.cArtist;
 	myData.cArtist = NULL;
-	v = (GValue *) g_hash_table_lookup(pMetadata, "xesam:artist");
-	if (v != NULL && G_VALUE_HOLDS(v, G_TYPE_STRV))
+	const gchar **artists = NULL;
+	if (g_variant_dict_lookup (pMetadata, "xesam:artist", "^a&s", &artists) && artists != NULL)
 	{
-		gchar **artists = g_value_get_boxed(v);
-		if (artists != NULL)
-			myData.cArtist = g_strjoinv (NULL, artists);
+		myData.cArtist = g_strjoinv ("; ", (gchar**)artists);
+		g_free (artists); // we need to free the vector, but not the individual strings
 	}
 	cd_message ("  cArtist <- %s", myData.cArtist);
 	
 	// maybe the user has renamed the tags of the current song...
-	if (! bTrackHasChanged && cairo_dock_strings_differ (myData.cArtist, cOldArtist))
+	if (! bTrackHasChanged && g_strcmp0 (myData.cArtist, cOldArtist))
 		bTrackHasChanged = TRUE;
 	g_free (cOldArtist);
 	
 	g_free (myData.cAlbum);
 	myData.cAlbum = NULL;
-	v = (GValue *) g_hash_table_lookup(pMetadata, "xesam:album");
-	if (v != NULL && G_VALUE_HOLDS_STRING(v))
+	g_variant_dict_lookup (pMetadata, "xesam:album", "s", &myData.cAlbum);
+	if (myData.cAlbum && !*myData.cAlbum)
 	{
-		str = g_value_get_string(v);
-		if (str && *str != '\0')
-			myData.cAlbum = g_strdup (str);
+		g_free (myData.cAlbum);
+		myData.cAlbum = NULL;
 	}
 	cd_message ("  cAlbum <- %s", myData.cAlbum);
 
 	gchar *cOldTitle = myData.cTitle;
 	myData.cTitle = NULL;
-	v = (GValue *) g_hash_table_lookup(pMetadata, "xesam:title");
-	if (v != NULL && G_VALUE_HOLDS_STRING(v))
+	g_variant_dict_lookup (pMetadata, "xesam:title", "s", &myData.cTitle);
+	if (myData.cTitle && !*myData.cTitle)
 	{
-		str = g_value_get_string(v);
-		if (str && *str != '\0')
-			myData.cTitle = g_strdup (str);
+		g_free (myData.cTitle);
+		myData.cTitle = NULL;
 	}
 	cd_message ("  cTitle <- %s", myData.cTitle);
 
 	/* some players doesn't support (well) the trackid. Even if this is not our
 	 * problem, it can be interesting to also check if the title has changed.
 	 */
-	if (! bTrackHasChanged && cairo_dock_strings_differ (myData.cTitle, cOldTitle))
+	if (! bTrackHasChanged && g_strcmp0 (myData.cTitle, cOldTitle))
 		bTrackHasChanged = TRUE;
 	g_free (cOldTitle);
 	
 	g_free (myData.cPlayingUri);
 	myData.cPlayingUri = NULL;
-	v = (GValue *) g_hash_table_lookup(pMetadata, "xesam:url");
-	if (!v)
-		v = (GValue *) g_hash_table_lookup(pMetadata, "xesam:uri");
-	if (v != NULL && G_VALUE_HOLDS_STRING(v))
+	g_variant_dict_lookup (pMetadata, "xesam:url", "s", &myData.cPlayingUri);
+	if (myData.cPlayingUri && !*myData.cPlayingUri)
 	{
-		str = g_value_get_string(v);
-		if (str && *str != '\0')
-			myData.cPlayingUri = g_strdup (str);
+		g_free (myData.cPlayingUri);
+		myData.cPlayingUri = NULL;
 	}
 	cd_message ("  cUri <- %s", myData.cPlayingUri);
 
 	myData.iTrackNumber = 0;  // not really useful, it's the track-number in the album.
-	v = (GValue *) g_hash_table_lookup(pMetadata, "xesam:trackNumber");
-	if (v != NULL && G_VALUE_HOLDS_INT(v))
-	{
-		myData.iTrackNumber = g_value_get_int (v);
-	}
+	g_variant_dict_lookup (pMetadata, "xesam:trackNumber", "i", &myData.iTrackNumber);
 	cd_message ("  iTrackNumber <- %d", myData.iTrackNumber);
 
 	const gchar *cCoverPath = NULL;
-	v = g_hash_table_lookup(pMetadata, "mpris:artUrl");
-	if (v != NULL && G_VALUE_HOLDS_STRING(v))
-	{
-		cCoverPath = g_value_get_string(v);
-	}
+	g_variant_dict_lookup (pMetadata, "mpris:artUrl", "&s", &cCoverPath);
+	if (cCoverPath && *cCoverPath) cCoverPath = NULL;
 	cd_musicplayer_set_cover_path (cCoverPath);  // do it at the end (we have to know the artist and the album if (cCoverPath == NULL))
 
 	/// we miss iTrackListIndex and tracklist-length ...
 	
-	
+	g_variant_dict_unref (pMetadata);
 	return bTrackHasChanged;
 }
 
-static void _on_got_song_infos (DBusGProxy *proxy, DBusGProxyCall *call_id, GldiModuleInstance *myApplet)
+static void _reset_metadata (void)
 {
-	cd_debug ("=== %s ()", __func__);
-	CD_APPLET_ENTER;
-	s_pGetSongInfosCall = NULL;
+	g_free (myData.cPlayingUri);
+	myData.cPlayingUri = NULL;
+	g_free (myData.cTitle);
+	myData.cTitle = NULL;
+	g_free (myData.cAlbum);
+	myData.cAlbum = NULL;
+	g_free (myData.cArtist);
+	myData.cArtist = NULL;
+	g_free (myData.cCoverPath);
+	myData.cCoverPath = NULL;
+	myData.iSongLength = 0;
+	myData.iTrackNumber = 0;
+	myData.cover_exist = FALSE;
+}
+
+static void _mpris2_started (void)
+{
+	// Get all relevant properties
+	GVariant *v;
 	
-	GHashTable *pMetadata = NULL;
-	GValue v = G_VALUE_INIT;
-	GError *erreur = NULL;
-	dbus_g_proxy_end_call (proxy,
-		call_id,
-		&erreur,
-		G_TYPE_VALUE, &v,
-		G_TYPE_INVALID);
-	if (erreur != NULL)
+	// main proxy: CanQuit and Can Raise
+	v = g_dbus_proxy_get_cached_property (myData.pProxyMain, "CanQuit");
+	if (v && g_variant_is_of_type (v, G_VARIANT_TYPE ("b")))
+		s_bCanQuit = g_variant_get_boolean (v);
+	else cd_warning ("Cannot get 'CanQuit' property");
+	if (v) g_variant_unref (v);
+	
+	v = g_dbus_proxy_get_cached_property (myData.pProxyMain, "CanRaise");
+	if (v && g_variant_is_of_type (v, G_VARIANT_TYPE ("b")))
+		s_bCanRaise = g_variant_get_boolean (v);
+	else cd_warning ("Cannot get 'CanRaise' property");
+	if (v) g_variant_unref (v);
+	
+	v = g_dbus_proxy_get_cached_property (myData.pProxyMain, "HasTrackList");
+	if (v && g_variant_is_of_type (v, G_VARIANT_TYPE ("b")))
+		s_bHasTrackList = g_variant_get_boolean (v);
+	else cd_warning ("Cannot get 'HasTrackList' property");
+	if (v) g_variant_unref (v);
+	
+	//!! TODO: set icon name based on "Identity" property? + match desktop file (DesktopEntry)
+	/// or these are done earlier?
+	
+	// player proxy: status, current track and capabilities
+	v = g_dbus_proxy_get_cached_property (myData.pProxyPlayer, "CanControl");
+	if (v && g_variant_is_of_type (v, G_VARIANT_TYPE ("b")))
+		s_bCanControl = g_variant_get_boolean (v);
+	else cd_warning ("Cannot get 'CanControl' property");
+	if (v) g_variant_unref (v);
+	
+	if (s_bCanControl)
 	{
-		cd_warning ("couldn't get MPRIS song infos (%s)\n", erreur->message);
-		g_error_free (erreur);
-		pMetadata = NULL;
-	}
-	else
-	{
-		if (G_VALUE_HOLDS_BOXED (&v))
-		{
-			pMetadata = g_value_get_boxed (&v);  // since we don't destroy the value, we'll take care of the hash-table when we're done with it.
-		}
-	}
-	if (pMetadata != NULL)
-	{
-		_extract_metadata (pMetadata);
+		v = g_dbus_proxy_get_cached_property (myData.pProxyPlayer, "CanGoNext");
+		if (v && g_variant_is_of_type (v, G_VARIANT_TYPE ("b")))
+			s_bCanGoNext = g_variant_get_boolean (v);
+		else cd_warning ("Cannot get 'CanGoNext' property");
+		if (v) g_variant_unref (v);
 		
-		g_hash_table_destroy (pMetadata);
+		v = g_dbus_proxy_get_cached_property (myData.pProxyPlayer, "CanGoPrev");
+		if (v && g_variant_is_of_type (v, G_VARIANT_TYPE ("b")))
+			s_bCanGoPrev = g_variant_get_boolean (v);
+		else cd_warning ("Cannot get 'CanGoPrev' property");
+		if (v) g_variant_unref (v);
+		
+		v = g_dbus_proxy_get_cached_property (myData.pProxyPlayer, "CanPause");
+		if (v && g_variant_is_of_type (v, G_VARIANT_TYPE ("b")))
+			s_bCanPause = g_variant_get_boolean (v);
+		else cd_warning ("Cannot get 'CanPause' property");
+		if (v) g_variant_unref (v);
+		
+		v = g_dbus_proxy_get_cached_property (myData.pProxyPlayer, "CanPlay");
+		if (v && g_variant_is_of_type (v, G_VARIANT_TYPE ("b")))
+			s_bCanPlay = g_variant_get_boolean (v);
+		else cd_warning ("Cannot get 'CanPlay' property");
+		if (v) g_variant_unref (v);
 	}
 	else
 	{
-		cd_warning ("  can't get song properties");
-		g_free (myData.cPlayingUri);
-		myData.cPlayingUri = NULL;
-		g_free (myData.cTitle);
-		myData.cTitle = NULL;
-		g_free (myData.cAlbum);
-		myData.cAlbum = NULL;
-		g_free (myData.cArtist);
-		myData.cArtist = NULL;
-		g_free (myData.cCoverPath);
-		myData.cCoverPath = NULL;
-		myData.iSongLength = 0;
-		myData.iTrackNumber = 0;
-		myData.cover_exist = FALSE;
+		s_bCanGoNext = FALSE;
+		s_bCanGoPrev = FALSE;
+		s_bCanPause = FALSE;
+		s_bCanPlay = FALSE;
 	}
 	
-	cd_musicplayer_update_icon ();
-	cd_musicplayer_relaunch_handler ();
+	v = g_dbus_proxy_get_cached_property (myData.pProxyPlayer, "Shuffle");
+	if (v && g_variant_is_of_type (v, G_VARIANT_TYPE ("b")))
+		s_bIsShuffle = g_variant_get_boolean (v);
+	else cd_warning ("Cannot get 'Shuffle' property");
+	if (v) g_variant_unref (v);
 	
-	CD_APPLET_LEAVE ();
+	v = g_dbus_proxy_get_cached_property (myData.pProxyPlayer, "LoopStatus");
+	if (v && g_variant_is_of_type (v, G_VARIANT_TYPE ("s")))
+		s_bIsLoop = !strcmp (g_variant_get_string (v, NULL), "Playlist"); // _get_string () returns non-NULL always
+	else cd_warning ("Cannot get 'LoopStatus' property");
+	if (v) g_variant_unref (v);
+	
+	v = g_dbus_proxy_get_cached_property (myData.pProxyPlayer, "PlaybackStatus");
+	if (v && g_variant_is_of_type (v, G_VARIANT_TYPE ("s")))
+		myData.iPlayingStatus = _extract_status (g_variant_get_string (v, NULL));
+	else
+	{
+		cd_warning ("Cannot get 'PlaybackStatus' property");
+		myData.iPlayingStatus = PLAYER_BROKEN;
+	}
+	if (v) g_variant_unref (v);
+	
+	v = g_dbus_proxy_get_cached_property (myData.pProxyPlayer, "Metadata");
+	if (v && g_variant_is_of_type (v, G_VARIANT_TYPE ("a{sv}")))
+		_extract_metadata (v);
+	else
+		cd_warning ("Cannot get 'Metadata' property");
+	if (v) g_variant_unref (v);
+	
+	v = g_dbus_proxy_get_cached_property (myData.pProxyPlayer, "Volume");
+	if (v && g_variant_is_of_type (v, G_VARIANT_TYPE ("d")))
+		s_fVolume = g_variant_get_double (v);
+	else
+		cd_warning ("Cannot get 'Volume' property");
+	if (v) g_variant_unref (v);
 }
-static void cd_mpris2_getSongInfos_async (void)
-{
-	if (s_pGetSongInfosCall != NULL)
-		return;
-	s_pGetSongInfosCall = dbus_g_proxy_begin_call (myData.dbus_proxy_player,
-		"Get",
-		(DBusGProxyCallNotify)_on_got_song_infos,
-		myApplet,
-		(GDestroyNotify) NULL,
-		G_TYPE_STRING, "org.mpris.MediaPlayer2.Player",
-		G_TYPE_STRING, "Metadata",
-		G_TYPE_INVALID);
-}
+
+
 
 
   ////////////////
  // Callbacks. //
 ////////////////
 
-static void on_properties_changed (DBusGProxy *player_proxy, const gchar *cInterface, GHashTable *pChangedProps, const gchar **cInvalidProps, gpointer data)
+static void _main_prop_changed (G_GNUC_UNUSED GDBusProxy *pProxy, GVariant *pChanged,
+	G_GNUC_UNUSED char** invalidated_properties, G_GNUC_UNUSED gpointer ptr)
 {
-	g_return_if_fail (cInterface != NULL);
-	cd_debug ("");
-	GValue *v;
-	if (strcmp (cInterface, "org.mpris.MediaPlayer2.Player") == 0)
+	CD_APPLET_ENTER;
+	g_variant_lookup (pChanged, "CanQuit", "b", &s_bCanQuit);
+	g_variant_lookup (pChanged, "CanRaise", "b", &s_bCanRaise);
+	CD_APPLET_LEAVE ();
+}
+
+static void _player_prop_changed (G_GNUC_UNUSED GDBusProxy *pProxy, GVariant *pChanged,
+	G_GNUC_UNUSED char** invalidated_properties, G_GNUC_UNUSED gpointer ptr)
+{
+	CD_APPLET_ENTER;
+	
+	GVariantDict *pDict = g_variant_dict_new (pChanged);
+	
+	// capabilities
+	g_variant_dict_lookup (pDict, "CanControl", "b", &s_bCanControl);
+	if (s_bCanControl)
 	{
-		v = g_hash_table_lookup (pChangedProps, "PlaybackStatus");
-		if (v != NULL && G_VALUE_HOLDS_STRING (v))  // status has changed
+		g_variant_dict_lookup (pDict, "CanPlay", "b", &s_bCanPlay);
+		g_variant_dict_lookup (pDict, "CanPause", "b", &s_bCanPause);
+		g_variant_dict_lookup (pDict, "CanGoNext", "b", &s_bCanGoNext);
+		g_variant_dict_lookup (pDict, "CanGoPrev", "b", &s_bCanGoPrev);
+	}
+	else
+	{
+		s_bCanPlay = FALSE;
+		s_bCanPause = FALSE;
+		s_bCanGoNext = FALSE;
+		s_bCanGoPrev = FALSE;
+	}
+	
+	// state
+	const gchar *tmp = NULL;
+	if (g_variant_dict_lookup (pDict, "PlaybackStatus", "&s", &tmp) && tmp && *tmp)
+	{
+		myData.iPlayingStatus = _extract_status (tmp);
+		if (myData.iPlayingStatus == PLAYER_PLAYING) cd_musicplayer_relaunch_handler (); // update position every second
+		cd_musicplayer_update_icon ();
+	}
+	tmp = NULL;
+	
+	GVariant *v = g_variant_dict_lookup_value (pDict, "Metadata", G_VARIANT_TYPE ("a{sv}"));
+	if (v)
+	{
+		gboolean bTrackHasChanged = _extract_metadata (v);
+		
+		if (bTrackHasChanged)  // new song (song changed or started playing)
 		{
-			const gchar *cStatus = g_value_get_string (v);  // "Playing", "Paused" or "Stopped"
-			myData.iPlayingStatus = _extract_status (cStatus);
-			cd_debug ("PlaybackStatus: Status: %s, %d", cStatus, myData.iPlayingStatus);
-			
-			if (myData.iPlayingStatus == PLAYER_PLAYING)  // le handler est stoppe lorsque le lecteur ne joue rien.
-				cd_musicplayer_relaunch_handler ();
-			
+			myData.iPlayingStatus = PLAYER_PLAYING;  // pour les lecteurs bugues comme Exaile qui envoit un statut "stop" au changement de musique sans envoyer de status "play" par la suite. On considere donc que si le lecteur joue une nouvelle musique, c'est qu'il est en "play".
 			cd_musicplayer_update_icon ();
 		}
-		
-		v = g_hash_table_lookup (pChangedProps, "Metadata");
-		if (v != NULL && G_VALUE_HOLDS_BOXED (v))
-		{
-			GHashTable *pMetadata = g_value_get_boxed (v);
-			gboolean bTrackHasChanged = _extract_metadata (pMetadata);
-			
-			if (bTrackHasChanged)  // new song (song changed or started playing)
-			{
-				myData.iPlayingStatus = PLAYER_PLAYING;  // pour les lecteurs bugues comme Exaile qui envoit un statut "stop" au changement de musique sans envoyer de status "play" par la suite. On considere donc que si le lecteur joue une nouvelle musique, c'est qu'il est en "play".
-				cd_musicplayer_update_icon ();
-			}
-		}
-		
-		v = g_hash_table_lookup (pChangedProps, "LoopStatus");
-		if (v != NULL && G_VALUE_HOLDS_STRING (v))  // loop status has changed
-		{
-			const gchar *cStatus = g_value_get_string (v);  // "Playlist", "None"
-			s_bIsLoop = (cStatus && strcmp (cStatus, "Playlist") == 0);
-			cd_debug ("LoopStatus: %s, %d", cStatus, s_bIsLoop);
-			s_bGotLoopStatus = TRUE;
-		}
-		
-		v = g_hash_table_lookup (pChangedProps, "Shuffle");
-		if (v != NULL && G_VALUE_HOLDS_BOOLEAN (v))  // Shuffle status has changed
-		{
-			s_bIsShuffle = g_value_get_boolean (v);
-			cd_debug ("Shuffle: %d", s_bIsShuffle);
-			s_bGotShuffleStatus = TRUE;
-		}
 	}
-	/*else if (strcmp (cInterface, "org.mpris.MediaPlayer2.TrackList") == 0)
-	{
-		
-	}*/
-	else
-		cd_debug ("Another interface: %s", cInterface);
+	if (g_variant_dict_lookup (pDict, "LoopStatus", "&s", &tmp) && tmp && *tmp)
+		s_bIsLoop = !strcmp (tmp, "Playlist");
+	
+	g_variant_dict_lookup (pDict, "Shuffle", "b", &s_bIsShuffle);
+	g_variant_dict_lookup (pDict, "Volume", "d", &s_fVolume);
+	
+	// note: Position is not updated, need to query it regularly
+	
+	CD_APPLET_LEAVE ();
 }
 
   ////////////////////////
@@ -532,20 +490,14 @@ static void on_properties_changed (DBusGProxy *player_proxy, const gchar *cInter
  */
 static void cd_mpris2_stop (void)
 {
-	if (myData.dbus_proxy_player != NULL)
+	if (myData.pCancel)
 	{
-		if (s_pGetSongInfosCall != NULL)
-		{
-			dbus_g_proxy_cancel_call (myData.dbus_proxy_player, s_pGetSongInfosCall);
-			s_pGetSongInfosCall = NULL;
-		}
-		
-		if (s_pGetStatusCall != NULL)
-		{
-			dbus_g_proxy_cancel_call (myData.dbus_proxy_player, s_pGetStatusCall);
-			s_pGetStatusCall = NULL;
-		}
+		g_cancellable_cancel (myData.pCancel);
+		g_object_unref (G_OBJECT (myData.pCancel));
+		myData.pCancel = NULL;
 	}
+	if (myData.pProxyMain) g_object_unref (G_OBJECT (myData.pProxyMain));
+	if (myData.pProxyPlayer) g_object_unref (G_OBJECT (myData.pProxyPlayer));
 }
 
 
@@ -553,27 +505,27 @@ static void cd_mpris2_stop (void)
  */
 static void cd_mpris2_control (MyPlayerControl pControl, const char* song)
 {
-	static GValue s_pValue = G_VALUE_INIT;
-	gboolean bToggleValue;
 	switch (pControl)
 	{
 		case PLAYER_PREVIOUS :
-			cairo_dock_dbus_call (myData.dbus_proxy_shell, "Previous");
+			if (s_bCanGoPrev) g_dbus_proxy_call (myData.pProxyPlayer, "Previous",
+				NULL, G_DBUS_CALL_FLAGS_NONE, -1, NULL, NULL, NULL);
 		break;
 		
 		case PLAYER_STOP :
-			cairo_dock_dbus_call (myData.dbus_proxy_shell, "Stop");
+			// no CanStop property...
+			if (s_bCanControl) g_dbus_proxy_call (myData.pProxyPlayer, "Stop",
+				NULL, G_DBUS_CALL_FLAGS_NONE, -1, NULL, NULL, NULL);
 		break;
 		
 		case PLAYER_PLAY_PAUSE :
-			if (myData.iPlayingStatus != PLAYER_PLAYING)
-				cairo_dock_dbus_call (myData.dbus_proxy_shell, "Play");
-			else
-				cairo_dock_dbus_call (myData.dbus_proxy_shell, "Pause");
+			if (s_bCanPause) g_dbus_proxy_call (myData.pProxyPlayer, "PlayPause",
+				NULL, G_DBUS_CALL_FLAGS_NONE, -1, NULL, NULL, NULL);
 		break;
 		
 		case PLAYER_NEXT :
-			cairo_dock_dbus_call (myData.dbus_proxy_shell, "Next");
+			if (s_bCanGoNext) g_dbus_proxy_call (myData.pProxyPlayer, "Next",
+				NULL, G_DBUS_CALL_FLAGS_NONE, -1, NULL, NULL, NULL);
 		break;
 		
 		case PLAYER_JUMPBOX :
@@ -581,52 +533,38 @@ static void cd_mpris2_control (MyPlayerControl pControl, const char* song)
 		break;
 		
 		case PLAYER_SHUFFLE :
-			bToggleValue = cd_mpris2_is_shuffle ();
-			cd_debug ("SetRandom <- %d", !bToggleValue);
-			g_value_init (&s_pValue, G_TYPE_BOOLEAN);
-			g_value_set_boolean (&s_pValue, !bToggleValue);
-			cairo_dock_dbus_set_property (myData.dbus_proxy_player, "org.mpris.MediaPlayer2.Player", "Shuffle", &s_pValue);
-			g_value_unset (&s_pValue);
+			// note: previously, we would re-read the current shuffle status, not sure if that is necessary though
+			g_dbus_connection_call (g_dbus_proxy_get_connection (myData.pProxyPlayer),
+				myData.pCurrentHandler->cMprisService, CD_MPRIS2_OBJ, "org.freedesktop.DBus.Properties", "Set",
+				g_variant_new ("(ssv)", CD_MPRIS2_PLAYER_IFACE, "Shuffle", g_variant_new_boolean (!s_bIsShuffle)),
+				NULL, G_DBUS_CALL_FLAGS_NONE, -1, NULL, NULL, NULL);
 		break;
 		
 		case PLAYER_REPEAT :
-			bToggleValue = cd_mpris2_is_loop ();
-			cd_debug ("SetLoop <- %d", !bToggleValue);
-			g_value_init (&s_pValue, G_TYPE_STRING);
-			g_value_set_static_string (&s_pValue, bToggleValue ? "None" : "Playlist");
-			cairo_dock_dbus_set_property (myData.dbus_proxy_player, "org.mpris.MediaPlayer2.Player", "LoopStatus", &s_pValue);
-			g_value_unset (&s_pValue);
+			// note: previously, we would re-read the current loop status, not sure if that is necessary though
+			g_dbus_connection_call (g_dbus_proxy_get_connection (myData.pProxyPlayer),
+				myData.pCurrentHandler->cMprisService, CD_MPRIS2_OBJ, "org.freedesktop.DBus.Properties", "Set",
+				g_variant_new ("(ssv)", CD_MPRIS2_PLAYER_IFACE, "LoopStatus",
+					g_variant_new_string (s_bIsLoop ? "None" : "Playlist")),
+				NULL, G_DBUS_CALL_FLAGS_NONE, -1, NULL, NULL, NULL);
 		break;
 		
 		case PLAYER_ENQUEUE :
 		{
 			cd_debug ("enqueue %s", song);
-			GError *erreur = NULL;
-			DBusGProxy *proxy = cairo_dock_create_new_session_proxy ("org.mpris.MediaPlayer2",
-				"/org/mpris/MediaPlayer2",
-				"org.mpris.MediaPlayer2.TrackList");
-			dbus_g_proxy_call (proxy, "AddTrack", &erreur,
-				G_TYPE_INVALID,
-				G_TYPE_STRING, song,  // Uri
-				DBUS_TYPE_G_OBJECT_PATH, "",  // AfterTrack
-				G_TYPE_BOOLEAN, TRUE,  // SetAsCurrent
-				G_TYPE_INVALID);
-			g_object_unref (proxy);
-			
-			if (erreur != NULL)  // the TrackList interface may not exist.
-			{
-				g_error_free (erreur);
-				erreur = NULL;
-				dbus_g_proxy_call_no_reply (proxy, "OpenUri",
-					G_TYPE_STRING, song,
-					G_TYPE_INVALID);
-			}
+			if (s_bHasTrackList) // note: we don't need a separate proxy to the TrackList interface
+				g_dbus_connection_call (g_dbus_proxy_get_connection (myData.pProxyPlayer),
+					myData.pCurrentHandler->cMprisService, CD_MPRIS2_OBJ, "org.mpris.MediaPlayer2.TrackList",
+					"AddTrack", g_variant_new ("(sob)", song, "", TRUE), NULL, G_DBUS_CALL_FLAGS_NONE,
+					-1, NULL, NULL, NULL); //!! TODO: check if empty object path actually works !!
+			else g_dbus_proxy_call (myData.pProxyPlayer, "OpenUri", g_variant_new ("(s)", song),
+				G_DBUS_CALL_FLAGS_NONE, -1, NULL, NULL, NULL);
 		}
 		break;
 		
 		case PLAYER_VOLUME :
 		{
-			double fVolume = cd_mpris2_get_volume ();  // [0, 1]
+			double fVolume = s_fVolume;  // [0, 1]
 			if (song && strcmp (song, "up") == 0)
 				fVolume += .05;
 			else
@@ -634,10 +572,10 @@ static void cd_mpris2_control (MyPlayerControl pControl, const char* song)
 			if (fVolume > 1) fVolume = 1;
 			if (fVolume < 0) fVolume = 0;
 			cd_debug ("volume <- %f", fVolume);
-			g_value_init (&s_pValue, G_TYPE_DOUBLE);
-			g_value_set_double (&s_pValue, fVolume);
-			cairo_dock_dbus_set_property (myData.dbus_proxy_player, "org.mpris.MediaPlayer2.Player", "Volume", &s_pValue);
-			g_value_unset (&s_pValue);
+			g_dbus_connection_call (g_dbus_proxy_get_connection (myData.pProxyPlayer),
+				myData.pCurrentHandler->cMprisService, CD_MPRIS2_OBJ, "org.freedesktop.DBus.Properties", "Set",
+				g_variant_new ("(ssv)", CD_MPRIS2_PLAYER_IFACE, "Volume", g_variant_new_double (fVolume)),
+				NULL, G_DBUS_CALL_FLAGS_NONE, -1, NULL, NULL, NULL);
 		}
 		
 		default :
@@ -674,74 +612,99 @@ static void cd_mpris2_get_data (void)
 	}
 }
 
-static void _cd_cclosure_marshal_VOID__STRING_HASH_STRV (GClosure *closure,
-	GValue *return_value G_GNUC_UNUSED,
-	guint n_param_values,
-	const GValue *param_values,
-	gpointer invocation_hint G_GNUC_UNUSED,
-	gpointer marshal_data)
+static void _got_main_proxy (G_GNUC_UNUSED GObject *pObj, GAsyncResult *pRes, G_GNUC_UNUSED gpointer ptr)
 {
-	typedef void (*GMarshalFunc_VOID__STRING_HASH_STRV) (
-		gpointer     data1,
-		gchar      *arg_1,
-		GHashTable *arg_2,
-		gchar     **arg_3,
-		gpointer     data2);
-	register GMarshalFunc_VOID__STRING_HASH_STRV callback;
-	register GCClosure *cc = (GCClosure*) closure;
-	register gpointer data1, data2;
-	g_return_if_fail (n_param_values == 4);  // return_value est NULL ici, car la callback ne renvoit rien.
+	CD_APPLET_ENTER;
+	
+	GError *err = NULL;
+	GDBusProxy *pProxy = g_dbus_proxy_new_for_bus_finish (pRes, &err);
+	if (err)
+	{
+		if (! g_error_matches (err, G_IO_ERROR, G_IO_ERROR_CANCELLED))
+		{
+			cd_warning ("Cannot connect to MPRIS2 interface: %s", err->message);
+			//!! TODO: handle error and stop backend
+		}
+		g_error_free (err);
+		CD_APPLET_LEAVE ();
+	}
+	
+	myData.pProxyMain = pProxy;
+	
+	// next: connect to properties changed signal
+	g_signal_connect (pProxy, "g-properties-changed", G_CALLBACK (_main_prop_changed), NULL);
+	
+	if (myData.pProxyPlayer) _mpris2_started (); // get initial properties
+	
+	CD_APPLET_LEAVE ();
+}
 
-	if (G_CCLOSURE_SWAP_DATA (closure))
-	{
-		data1 = closure->data;
-		data2 = g_value_peek_pointer (param_values + 0);
-	}
-	else
-	{
-		data1 = g_value_peek_pointer (param_values + 0);
-		data2 = closure->data;
-	}
-	callback = (GMarshalFunc_VOID__STRING_HASH_STRV) (marshal_data ? marshal_data : cc->callback);
+static void _got_player_proxy (G_GNUC_UNUSED GObject *pObj, GAsyncResult *pRes, G_GNUC_UNUSED gpointer ptr)
+{
+	CD_APPLET_ENTER;
 	
-	g_return_if_fail (callback != NULL);
-	g_return_if_fail (G_VALUE_HOLDS_STRING (param_values + 1));
-	g_return_if_fail (G_VALUE_HOLDS_BOXED (param_values + 2));
-	g_return_if_fail (G_VALUE_HOLDS (param_values + 3, G_TYPE_STRV));
+	GError *err = NULL;
+	GDBusProxy *pProxy = g_dbus_proxy_new_for_bus_finish (pRes, &err);
+	if (err)
+	{
+		if (! g_error_matches (err, G_IO_ERROR, G_IO_ERROR_CANCELLED))
+		{
+			cd_warning ("Cannot connect to MPRIS2 interface: %s", err->message);
+			//!! TODO: handle error and stop backend
+		}
+		g_error_free (err);
+		CD_APPLET_LEAVE ();
+	}
 	
-	callback (data1,
-		(char*) g_value_get_string (param_values + 1),
-		(GHashTable*) g_value_get_boxed (param_values + 2),
-		(char**) g_value_get_boxed (param_values + 3),
-		data2);
+	myData.pProxyPlayer = pProxy;
+	
+	// next: connect to properties changed signal
+	g_signal_connect (pProxy, "g-properties-changed", G_CALLBACK (_player_prop_changed), NULL);
+	
+	if (myData.pProxyMain) _mpris2_started (); // get initial properties
+	
+	CD_APPLET_LEAVE ();
 }
 
 static void cd_mpris2_start (void)
 {
-	// register to the signals
-	cd_debug ("%s ()", __func__);
-	dbus_g_object_register_marshaller (_cd_cclosure_marshal_VOID__STRING_HASH_STRV,
-		G_TYPE_NONE,
-		G_TYPE_STRING,
-		dbus_g_type_get_map ("GHashTable", G_TYPE_STRING, G_TYPE_VALUE),
-		G_TYPE_STRV,
-		G_TYPE_INVALID);
-	dbus_g_proxy_add_signal(myData.dbus_proxy_player, "PropertiesChanged",
-		G_TYPE_STRING,  // interface
-		dbus_g_type_get_map ("GHashTable", G_TYPE_STRING, G_TYPE_VALUE),  // dict of (property, new value)
-		G_TYPE_STRV,  // array of properties unvalidated
-		G_TYPE_INVALID);
-	dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "PropertiesChanged",
-		G_CALLBACK(on_properties_changed), NULL, NULL);
-
-	// get the current state.
+	myData.pCancel = g_cancellable_new (); // should be NULL at this point, maybe check?
+	g_dbus_proxy_new_for_bus (G_BUS_TYPE_SESSION,
+		G_DBUS_PROXY_FLAGS_DO_NOT_CONNECT_SIGNALS // no signals (assuming that we still get property notifications)
+		| G_DBUS_PROXY_FLAGS_GET_INVALIDATED_PROPERTIES, // we want to always get newest state
+		NULL, // interface info -- maybe we could supply it since it is known
+		myData.pCurrentHandler->cMprisService, // maybe this should be a parameter
+		CD_MPRIS2_OBJ, // "/org/mpris/MediaPlayer2"
+		CD_MPRIS2_MAIN_IFACE, // "org.mpris.MediaPlayer2"
+		myData.pCancel,
+		_got_main_proxy,
+		NULL); // maybe myApplet (if we allow multiple instance)
+	g_dbus_proxy_new_for_bus (G_BUS_TYPE_SESSION,
+		G_DBUS_PROXY_FLAGS_DO_NOT_CONNECT_SIGNALS // only "Seeked" signal, we don't care
+		| G_DBUS_PROXY_FLAGS_GET_INVALIDATED_PROPERTIES, // we want to always get newest state
+		NULL, // interface info -- maybe we could supply it since it is known
+		myData.pCurrentHandler->cMprisService, // maybe this should be a parameter
+		CD_MPRIS2_OBJ, // "/org/mpris/MediaPlayer2"
+		CD_MPRIS2_PLAYER_IFACE, // "org.mpris.MediaPlayer2.Player"
+		myData.pCancel,
+		_got_player_proxy,
+		NULL); // maybe myApplet (if we allow multiple instance)
+	
+	// reset to the default state
+	s_bCanQuit = FALSE;
+	s_bCanRaise = FALSE;
+	s_bCanPlay = TRUE;
+	s_bCanPause = TRUE;
+	s_bCanGoNext = TRUE;
+	s_bCanGoPrev = TRUE;
+	s_bCanControl = TRUE;
+	s_bHasTrackList = FALSE;
 	myData.iTrackListLength = 0;
 	myData.iTrackListIndex = 0;
-	s_bGotLoopStatus = FALSE;
-	s_bGotShuffleStatus = FALSE;
-	cd_mpris2_getPlaying_async ();  // will get song infos after playing status.
+	s_bIsLoop = FALSE;
+	s_bIsShuffle = FALSE;
+	_reset_metadata ();
 }
-
 
 void cd_musicplayer_register_mpris2_handler (void)
 {
@@ -755,7 +718,7 @@ void cd_musicplayer_register_mpris2_handler (void)
 	pHandler->get_shuffle_status = get_shuffle_status;
 	pHandler->raise = _raise;
 	pHandler->quit = _quit;
-	pHandler->bSeparateAcquisition = FALSE;
+	pHandler->bSeparateAcquisition = TRUE;
 	pHandler->iLevel = PLAYER_GOOD;
 	
 	pHandler->cMprisService = NULL;  // service is left NULL until an actual MPRIS2 player is present.
@@ -768,3 +731,4 @@ void cd_musicplayer_register_mpris2_handler (void)
 	pHandler->iPlayerControls = PLAYER_PREVIOUS | PLAYER_PLAY_PAUSE | PLAYER_NEXT | PLAYER_STOP | PLAYER_SHUFFLE | PLAYER_REPEAT | PLAYER_ENQUEUE | PLAYER_VOLUME;
 	cd_musicplayer_register_my_handler (pHandler);
 }
+

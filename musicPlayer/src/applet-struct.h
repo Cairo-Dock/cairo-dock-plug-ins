@@ -109,6 +109,7 @@ typedef enum {
 #define CD_MPRIS2_SERVICE_BASE "org.mpris.MediaPlayer2"
 #define CD_MPRIS2_OBJ "/org/mpris/MediaPlayer2"
 #define CD_MPRIS2_MAIN_IFACE "org.mpris.MediaPlayer2"
+#define CD_MPRIS2_PLAYER_IFACE "org.mpris.MediaPlayer2.Player"
 
 struct _AppletConfig {
 	gboolean bEnableDialogs;
@@ -163,6 +164,9 @@ struct _AppletData {
 	gint iRating;
 	gint iTrackListLength;
 	gint iTrackListIndex;
+	GDBusProxy *pProxyMain; // new proxy for MPRIS2 using DBus -- org.mpris.MediaPlayer2
+	GDBusProxy *pProxyPlayer; // new proxy for MPRIS2 using DBus --  org.mpris.MediaPlayer2.Player
+	GCancellable *pCancel; // cancellable for the above
 	
 	// Pour les lecteurs utilisant DBus
 	gboolean bIsRunning;

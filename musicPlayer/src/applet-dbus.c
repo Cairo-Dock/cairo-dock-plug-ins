@@ -29,7 +29,8 @@
 
 gboolean cd_musicplayer_dbus_connect_handler (MusicPlayerHandler *pHandler)
 {
-	g_return_val_if_fail (pHandler != NULL && pHandler->cMprisService != NULL, FALSE);
+	g_return_val_if_fail (pHandler != NULL, FALSE);
+	if (pHandler->cMprisService == NULL) return TRUE; // will be handled as MPRIS2
 	if (cairo_dock_dbus_is_enabled ())
 	{
 		if (pHandler->path != NULL)
