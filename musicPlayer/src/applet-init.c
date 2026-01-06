@@ -48,6 +48,28 @@ CD_APPLET_DEFINE2_BEGIN (N_("musicPlayer"),
 CD_APPLET_DEFINE2_END
 
 
+static void _set_handler_from_config (void)
+{
+	const gchar *cName = myConfig.cMusicPlayer;
+	const gchar *cID = myConfig.cLastKnownDesktopFile;
+	const gchar *cMpris = myConfig.cMpris2Name;
+	
+	if (cName && !(cMpris && cID))
+	{
+		const CDKnownMusicPlayer *player = cd_musicplayer_find_known_player (cName);
+		if (player)
+		{
+			if (!cMpris) cMpris = player->mpris2;
+			if (!cID) cID = player->id;
+		}
+	}
+	
+	if (!cMpris) return; // it is no use setting a player that will not be detected
+	
+	cd_musicplayer_set_current_handler (cMpris, cName, cID, FALSE, TRUE);
+}
+
+
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
 	// Register the players -- for now, we only support MPRIS2, so
@@ -69,9 +91,8 @@ CD_APPLET_INIT_BEGIN
 	}
 	else if (myIcon->cName == NULL || *myIcon->cName == '\0')
 	{
-		gchar *cDefaultName = cd_musicplayer_get_string_with_first_char_to_upper (myConfig.cMusicPlayer);
-		CD_APPLET_SET_NAME_FOR_MY_ICON (cDefaultName);
-		g_free (cDefaultName);
+		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cMusicPlayer ? myConfig.cMusicPlayer :
+			myApplet->pModule->pVisitCard->cTitle);
 	}
 	
 	cairo_dock_set_icon_ignore_quicklist (myIcon);  // ignore additional actions in the menu, as the applet already adds the actions supported by any player.
@@ -88,7 +109,8 @@ CD_APPLET_INIT_BEGIN
 	myData.iPreviousTrackNumber = -1;
 	myData.iPreviousCurrentTime = -1;
 	
-	cd_musicplayer_set_current_handler (myConfig.cMusicPlayer);
+	_set_handler_from_config ();
+	cd_musicplayer_apply_status_surface (PLAYER_NONE);
 	
 	//\_______________ On s'abonne aux notifications.
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
@@ -123,14 +145,8 @@ CD_APPLET_STOP_BEGIN
 		(GldiNotificationFunc) cd_opengl_test_mouse_over_buttons,
 		myApplet);
 	
-	// stop the current handler.
-	cd_musicplayer_stop_current_handler (TRUE);
-	
-	MusicPlayerHandler *pHandler = cd_musicplayer_get_handler_by_name ("Mpris2");  // Mpris2 handler has dynamic fields, free them.
-	g_free ((gchar*)pHandler->cDisplayedName);
-	pHandler->cDisplayedName = NULL;
-	g_free ((gchar*)pHandler->cMprisService);
-	pHandler->cMprisService = NULL;
+	// stop and unset the current handler.
+	cd_musicplayer_set_current_handler (NULL, NULL, NULL, FALSE, FALSE);
 	
 	// On stoppe les boucles de recup de la pochette.
 	if (myData.iSidCheckCover != 0)
@@ -143,10 +159,6 @@ CD_APPLET_STOP_BEGIN
 		g_cancellable_cancel (myData.pCancelMain);
 		g_object_unref (G_OBJECT (myData.pCancelMain));
 	}
-	
-	// on libere la classe.
-	gchar *cNull = NULL;
-	CD_APPLET_MANAGE_APPLICATION (cNull);
 CD_APPLET_STOP_END
 
 
@@ -221,10 +233,9 @@ CD_APPLET_RELOAD_BEGIN
 		// on stoppe l'ancien backend et on relance le nouveau.
 		cd_musicplayer_stop_current_handler (TRUE);  // libere tout ce qu'occupe notre ancien handler.
 
-		gchar *cNull = NULL;
-		CD_APPLET_MANAGE_APPLICATION (cNull);
+		CD_APPLET_MANAGE_APPLICATION (NULL);
 		
-		cd_musicplayer_set_current_handler (myConfig.cMusicPlayer);
+		_set_handler_from_config ();
 	}
 	else  // on redessine juste l'icone.
 	{

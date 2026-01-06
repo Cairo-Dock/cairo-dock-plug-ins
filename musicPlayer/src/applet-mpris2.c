@@ -25,7 +25,6 @@
 
 #include "applet-struct.h"
 #include "applet-musicplayer.h"
-#include "applet-dbus.h"
 #include "applet-draw.h"
 #include "applet-cover.h"
 #include "applet-mpris2.h"
@@ -155,7 +154,7 @@ static void cd_mpris2_get_time_elapsed (void)
 {
 	// this function runs in a separate thread, we can just use the _sync method and wait
 	GVariant *res = g_dbus_connection_call_sync (g_dbus_proxy_get_connection (myData.pProxyPlayer),
-		myData.pCurrentHandler->cMprisService, CD_MPRIS2_OBJ, "org.freedesktop.DBus.Properties",
+		myData.cMpris2Service, CD_MPRIS2_OBJ, "org.freedesktop.DBus.Properties",
 		"Get", g_variant_new ("(ss)", CD_MPRIS2_PLAYER_IFACE, "Position"), G_VARIANT_TYPE ("(v)"),
 		G_DBUS_CALL_FLAGS_NONE, 500, NULL, NULL);
 	
@@ -310,7 +309,7 @@ static void _mpris2_started (void)
 	// Get all relevant properties
 	GVariant *v;
 	
-	// main proxy: CanQuit and Can Raise
+	// main proxy: general properties
 	v = g_dbus_proxy_get_cached_property (myData.pProxyMain, "CanQuit");
 	if (v && g_variant_is_of_type (v, G_VARIANT_TYPE ("b")))
 		s_bCanQuit = g_variant_get_boolean (v);
@@ -329,8 +328,17 @@ static void _mpris2_started (void)
 	else cd_warning ("Cannot get 'HasTrackList' property");
 	if (v) g_variant_unref (v);
 	
-	//!! TODO: set icon name based on "Identity" property? + match desktop file (DesktopEntry)
-	/// or these are done earlier?
+	v = g_dbus_proxy_get_cached_property (myData.pProxyMain, "DesktopEntry");
+	if (v && g_variant_is_of_type (v, G_VARIANT_TYPE ("s")))
+	{
+		gsize len;
+		const gchar *v2 = g_variant_get_string (v, &len);
+		gchar *tmp = g_ascii_strdown (v2, len);
+		cd_musicplayer_on_got_desktop_entry (tmp);
+		g_free (tmp);
+	}
+	else cd_warning ("Cannot get 'DesktopEntry' property");
+	if (v) g_variant_unref (v);
 	
 	// player proxy: status, current track and capabilities
 	v = g_dbus_proxy_get_cached_property (myData.pProxyPlayer, "CanControl");
@@ -347,10 +355,10 @@ static void _mpris2_started (void)
 		else cd_warning ("Cannot get 'CanGoNext' property");
 		if (v) g_variant_unref (v);
 		
-		v = g_dbus_proxy_get_cached_property (myData.pProxyPlayer, "CanGoPrev");
+		v = g_dbus_proxy_get_cached_property (myData.pProxyPlayer, "CanGoPrevious");
 		if (v && g_variant_is_of_type (v, G_VARIANT_TYPE ("b")))
 			s_bCanGoPrev = g_variant_get_boolean (v);
-		else cd_warning ("Cannot get 'CanGoPrev' property");
+		else cd_warning ("Cannot get 'CanGoPrevious' property");
 		if (v) g_variant_unref (v);
 		
 		v = g_dbus_proxy_get_cached_property (myData.pProxyPlayer, "CanPause");
@@ -496,8 +504,16 @@ static void cd_mpris2_stop (void)
 		g_object_unref (G_OBJECT (myData.pCancel));
 		myData.pCancel = NULL;
 	}
-	if (myData.pProxyMain) g_object_unref (G_OBJECT (myData.pProxyMain));
-	if (myData.pProxyPlayer) g_object_unref (G_OBJECT (myData.pProxyPlayer));
+	if (myData.pProxyMain)
+	{
+		g_object_unref (G_OBJECT (myData.pProxyMain));
+		myData.pProxyMain = NULL;
+	}
+	if (myData.pProxyPlayer)
+	{
+		g_object_unref (G_OBJECT (myData.pProxyPlayer));
+		myData.pProxyPlayer = NULL;
+	}
 }
 
 
@@ -535,7 +551,7 @@ static void cd_mpris2_control (MyPlayerControl pControl, const char* song)
 		case PLAYER_SHUFFLE :
 			// note: previously, we would re-read the current shuffle status, not sure if that is necessary though
 			g_dbus_connection_call (g_dbus_proxy_get_connection (myData.pProxyPlayer),
-				myData.pCurrentHandler->cMprisService, CD_MPRIS2_OBJ, "org.freedesktop.DBus.Properties", "Set",
+				myData.cMpris2Service, CD_MPRIS2_OBJ, "org.freedesktop.DBus.Properties", "Set",
 				g_variant_new ("(ssv)", CD_MPRIS2_PLAYER_IFACE, "Shuffle", g_variant_new_boolean (!s_bIsShuffle)),
 				NULL, G_DBUS_CALL_FLAGS_NONE, -1, NULL, NULL, NULL);
 		break;
@@ -543,7 +559,7 @@ static void cd_mpris2_control (MyPlayerControl pControl, const char* song)
 		case PLAYER_REPEAT :
 			// note: previously, we would re-read the current loop status, not sure if that is necessary though
 			g_dbus_connection_call (g_dbus_proxy_get_connection (myData.pProxyPlayer),
-				myData.pCurrentHandler->cMprisService, CD_MPRIS2_OBJ, "org.freedesktop.DBus.Properties", "Set",
+				myData.cMpris2Service, CD_MPRIS2_OBJ, "org.freedesktop.DBus.Properties", "Set",
 				g_variant_new ("(ssv)", CD_MPRIS2_PLAYER_IFACE, "LoopStatus",
 					g_variant_new_string (s_bIsLoop ? "None" : "Playlist")),
 				NULL, G_DBUS_CALL_FLAGS_NONE, -1, NULL, NULL, NULL);
@@ -554,7 +570,7 @@ static void cd_mpris2_control (MyPlayerControl pControl, const char* song)
 			cd_debug ("enqueue %s", song);
 			if (s_bHasTrackList) // note: we don't need a separate proxy to the TrackList interface
 				g_dbus_connection_call (g_dbus_proxy_get_connection (myData.pProxyPlayer),
-					myData.pCurrentHandler->cMprisService, CD_MPRIS2_OBJ, "org.mpris.MediaPlayer2.TrackList",
+					myData.cMpris2Service, CD_MPRIS2_OBJ, "org.mpris.MediaPlayer2.TrackList",
 					"AddTrack", g_variant_new ("(sob)", song, "", TRUE), NULL, G_DBUS_CALL_FLAGS_NONE,
 					-1, NULL, NULL, NULL); //!! TODO: check if empty object path actually works !!
 			else g_dbus_proxy_call (myData.pProxyPlayer, "OpenUri", g_variant_new ("(s)", song),
@@ -573,7 +589,7 @@ static void cd_mpris2_control (MyPlayerControl pControl, const char* song)
 			if (fVolume < 0) fVolume = 0;
 			cd_debug ("volume <- %f", fVolume);
 			g_dbus_connection_call (g_dbus_proxy_get_connection (myData.pProxyPlayer),
-				myData.pCurrentHandler->cMprisService, CD_MPRIS2_OBJ, "org.freedesktop.DBus.Properties", "Set",
+				myData.cMpris2Service, CD_MPRIS2_OBJ, "org.freedesktop.DBus.Properties", "Set",
 				g_variant_new ("(ssv)", CD_MPRIS2_PLAYER_IFACE, "Volume", g_variant_new_double (fVolume)),
 				NULL, G_DBUS_CALL_FLAGS_NONE, -1, NULL, NULL, NULL);
 		}
@@ -673,7 +689,7 @@ static void cd_mpris2_start (void)
 		G_DBUS_PROXY_FLAGS_DO_NOT_CONNECT_SIGNALS // no signals (assuming that we still get property notifications)
 		| G_DBUS_PROXY_FLAGS_GET_INVALIDATED_PROPERTIES, // we want to always get newest state
 		NULL, // interface info -- maybe we could supply it since it is known
-		myData.pCurrentHandler->cMprisService, // maybe this should be a parameter
+		myData.cMpris2Service, // maybe this should be a parameter
 		CD_MPRIS2_OBJ, // "/org/mpris/MediaPlayer2"
 		CD_MPRIS2_MAIN_IFACE, // "org.mpris.MediaPlayer2"
 		myData.pCancel,
@@ -683,7 +699,7 @@ static void cd_mpris2_start (void)
 		G_DBUS_PROXY_FLAGS_DO_NOT_CONNECT_SIGNALS // only "Seeked" signal, we don't care
 		| G_DBUS_PROXY_FLAGS_GET_INVALIDATED_PROPERTIES, // we want to always get newest state
 		NULL, // interface info -- maybe we could supply it since it is known
-		myData.pCurrentHandler->cMprisService, // maybe this should be a parameter
+		myData.cMpris2Service, // maybe this should be a parameter
 		CD_MPRIS2_OBJ, // "/org/mpris/MediaPlayer2"
 		CD_MPRIS2_PLAYER_IFACE, // "org.mpris.MediaPlayer2.Player"
 		myData.pCancel,
@@ -720,12 +736,6 @@ void cd_musicplayer_register_mpris2_handler (void)
 	pHandler->quit = _quit;
 	pHandler->bSeparateAcquisition = TRUE;
 	pHandler->iLevel = PLAYER_GOOD;
-	
-	pHandler->cMprisService = NULL;  // service is left NULL until an actual MPRIS2 player is present.
-	pHandler->path = "/org/mpris/MediaPlayer2";
-	pHandler->interface = DBUS_INTERFACE_PROPERTIES;  // "org.mpris.MediaPlayer2.Player"
-	pHandler->path2 = "/org/mpris/MediaPlayer2";
-	pHandler->interface2 = "org.mpris.MediaPlayer2.Player";
 	
 	pHandler->appclass = NULL;  // will be filled later.
 	pHandler->iPlayerControls = PLAYER_PREVIOUS | PLAYER_PLAY_PAUSE | PLAYER_NEXT | PLAYER_STOP | PLAYER_SHUFFLE | PLAYER_REPEAT | PLAYER_ENQUEUE | PLAYER_VOLUME;
