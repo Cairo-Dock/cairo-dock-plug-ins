@@ -149,8 +149,6 @@ struct _AppletData {
 	gchar *cMpris2Service;  // MPRIS2 service associated with the current handler.
 	
 	//Informations essentielles
-	DBusGProxy *dbus_proxy_player;
-	DBusGProxy *dbus_proxy_shell;
 	gchar *cRawTitle, *cPreviousRawTitle; 
 	gchar *cTitle;
 	gchar *cArtist;
@@ -167,11 +165,10 @@ struct _AppletData {
 	GDBusProxy *pProxyMain; // new proxy for MPRIS2 using DBus -- org.mpris.MediaPlayer2
 	GDBusProxy *pProxyPlayer; // new proxy for MPRIS2 using DBus --  org.mpris.MediaPlayer2.Player
 	GCancellable *pCancel; // cancellable for the above
+	GCancellable *pCancelMain; // cancellable to be used for DBus calls outside of the handler
 	
 	// Pour les lecteurs utilisant DBus
 	gboolean bIsRunning;
-	DBusGProxyCall *pDetectPlayerCall;
-	DBusGProxyCall *pGetPropsCall;
 	
 	//Donnees de dessin
 	cairo_surface_t *pSurfaces[PLAYER_NB_STATUS];

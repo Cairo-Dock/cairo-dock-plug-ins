@@ -23,11 +23,9 @@
 #include <cairo-dock.h>
 
 #include "applet-struct.h"
-#include "applet-dbus.h"
 #include "3dcover-draw.h"
 #include "applet-musicplayer.h"
 #include "applet-cover.h"
-#include "applet-dbus.h"
 #include "applet-draw.h"
 
 static const gchar *s_cDefaultIconName[PLAYER_NB_STATUS] = {"default.svg", "play.svg", "pause.svg", "stop.svg", "broken.svg"};

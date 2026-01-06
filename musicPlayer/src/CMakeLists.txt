@@ -6,7 +6,6 @@ SET(cd-musicPlayer_LIB_SRCS
 	applet-init.c			applet-init.h
 	applet-config.c			applet-config.h
 	applet-notifications.c		applet-notifications.h
-	applet-dbus.c			applet-dbus.h
 	applet-musicplayer.c		applet-musicplayer.h
 	applet-cover.c			applet-cover.h
 	applet-amazon.c			applet-amazon.h

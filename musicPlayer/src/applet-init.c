@@ -26,7 +26,6 @@
 #include "applet-init.h"
 #include "applet-draw.h"
 #include "applet-musicplayer.h"
-#include "applet-dbus.h" 
 #include "3dcover-draw.h"
 
 #include "applet-mpris2.h"
@@ -137,6 +136,13 @@ CD_APPLET_STOP_BEGIN
 	if (myData.iSidCheckCover != 0)
 		g_source_remove (myData.iSidCheckCover);
 	gldi_task_free (myData.pCoverTask);
+	
+	// cancel any pending DBus call
+	if (myData.pCancelMain)
+	{
+		g_cancellable_cancel (myData.pCancelMain);
+		g_object_unref (G_OBJECT (myData.pCancelMain));
+	}
 	
 	// on libere la classe.
 	gchar *cNull = NULL;
