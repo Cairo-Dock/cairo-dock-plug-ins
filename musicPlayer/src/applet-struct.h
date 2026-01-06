@@ -54,6 +54,13 @@ typedef enum {
 	PLAYER_NB_LEVELS
 } MyLevel;  // niveau du lecteur.
 
+typedef struct _CDKnownMusicPlayer
+{
+	const gchar *id; // desktop file ID (case insensitive)
+	const gchar *alt_id; // alternative (currently we know of at most two .desktop file IDs for each player)
+	const gchar *mpris2; // MPRIS2 DBus name
+	const gchar *name; // display name + name in config file
+} CDKnownMusicPlayer;
 
 typedef void (*MusicPlayerGetDataFunc) (void);  // acquisition des donnees, threade.
 typedef void (*MusicPlayerStopFunc) (void);  // libere les ressources specifiques au backend (deconnexion des signaux, etc)
@@ -77,18 +84,12 @@ struct _MusicPlayerHandler {
 	MusicPlayerGetShuffleStatusFunc get_shuffle_status;
 	MusicPlayerRaiseFunc raise;
 	MusicPlayerQuitFunc quit;
-	const gchar *cMprisService;  // old Dbus service name (may not even follow the MPRIS protocole)
-	const gchar *path;  // Player object
-	const gchar *interface;
-	const gchar *path2;  // TrackList object.
-	const gchar *interface2;
 	gchar *appclass;  // classe de l'appli.
 	gchar *cDisplayedName;  // displayed name, or NULL
 	gchar *cCoverDir;  // repertoire utilisateur de l'appli, contenant les couvertures.
 	gboolean bSeparateAcquisition;  // Sert a activer le thread ou pas (TRUE = active; False = desactive)
 	MyPlayerControl iPlayerControls;  // un masque "OU" de MyPlayerControl.
 	MyLevel iLevel;
-	const gchar *cMpris2Service;  // MPRIS2 dbus name.
 	GldiAppInfo *pAppInfo; // registered application (used for launching it)
 };
 
@@ -119,6 +120,7 @@ struct _AppletConfig {
 	gchar *cChangeAnimation;
 	gchar *cMusicPlayer;
 	gchar *cLastKnownDesktopFile;  // "desktop-entry" property of the MPRIS2 service. Since we can't have it until we connect to the service, and therefore until the player is running, we can't launch the player (the MPRIS2 name and the binary name are not necessarily the same).
+	gchar *cMpris2Name; // DBus name of an MPRIS2 player
 	MyAppletQuickInfoType iQuickInfoType;
 	gchar *cDefaultTitle;
 	gchar *cUserImage[PLAYER_NB_STATUS];
@@ -162,13 +164,14 @@ struct _AppletData {
 	gint iRating;
 	gint iTrackListLength;
 	gint iTrackListIndex;
-	GDBusProxy *pProxyMain; // new proxy for MPRIS2 using DBus -- org.mpris.MediaPlayer2
-	GDBusProxy *pProxyPlayer; // new proxy for MPRIS2 using DBus --  org.mpris.MediaPlayer2.Player
-	GCancellable *pCancel; // cancellable for the above
 	GCancellable *pCancelMain; // cancellable to be used for DBus calls outside of the handler
+	guint uNameWatch;
 	
 	// Pour les lecteurs utilisant DBus
 	gboolean bIsRunning;
+	GDBusProxy *pProxyMain; // new proxy for MPRIS2 using DBus -- org.mpris.MediaPlayer2
+	GDBusProxy *pProxyPlayer; // new proxy for MPRIS2 using DBus --  org.mpris.MediaPlayer2.Player
+	GCancellable *pCancel; // cancellable for the above
 	
 	//Donnees de dessin
 	cairo_surface_t *pSurfaces[PLAYER_NB_STATUS];
