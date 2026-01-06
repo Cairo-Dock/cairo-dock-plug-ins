@@ -13,18 +13,7 @@ SET(cd-musicPlayer_LIB_SRCS
 	applet-draw.c			applet-draw.h
 	3dcover-draw.c			3dcover-draw.h
 	# backends
-	applet-mpris.c			applet-mpris.h
 	applet-mpris2.c			applet-mpris2.h
-	applet-amarok2.c			applet-amarok2.h
-	applet-clementine.c		applet-clementine.h
-	applet-exaile3.c			applet-exaile3.h
-	applet-gmusicbrowser.c		applet-gmusicbrowser.h
-	applet-guayadeque.c		applet-guayadeque.h
-	applet-qmmp.c			applet-qmmp.h
-	applet-quodlibet.c		applet-quodlibet.h
-	applet-rhythmbox.c		applet-rhythmbox.h
-	applet-audacious.c		applet-audacious.h
-	applet-xmms2.c			applet-xmms2.h
 )
 
 add_library(${PACKAGE_MUSICPLAYER} SHARED ${cd-musicPlayer_LIB_SRCS})
