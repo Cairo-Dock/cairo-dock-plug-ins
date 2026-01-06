@@ -29,17 +29,7 @@
 #include "applet-dbus.h" 
 #include "3dcover-draw.h"
 
-#include "applet-xmms2.h" //Support XMMS2
-#include "applet-exaile3.h" //Support Exaile 0.3
-#include "applet-rhythmbox.h" //Support Rhythmbox
-#include "applet-qmmp.h" //Support Qmmp
-#include "applet-gmusicbrowser.h" //Support GMusicBrowser
-#include "applet-guayadeque.h" //Support Guayadeque
-#include "applet-quodlibet.h" //Support QuodLibet
-#include "applet-amarok2.h" //Support Amarok 2
-#include "applet-audacious.h" //Support Audacious
-#include "applet-clementine.h" // Support Clementine
-#include "applet-mpris2.h" // Support Clementine
+#include "applet-mpris2.h"
 
 CD_APPLET_DEFINE2_BEGIN (N_("musicPlayer"),
 	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
@@ -61,19 +51,8 @@ CD_APPLET_DEFINE2_END
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
-	// Register the players
-	// Note: with MPRIS2, we don't need to register a custom handler for each player. We only register handlers of old interfaces (MPRIS1 and before).
-	// Once all players use MPRIS2, we can drop all handlers but the MPRIS2 one.
-	cd_musicplayer_register_exaile3_handler();
-	cd_musicplayer_register_rhythmbox_handler();
-	cd_musicplayer_register_qmmp_handler();
-	cd_musicplayer_register_quodlibet_handler();
-	cd_musicplayer_register_amarok2_handler();
-	cd_musicplayer_register_xmms2_handler();
-	cd_musicplayer_register_audacious_handler();
-	cd_musicplayer_register_guayadeque_handler();
-	cd_musicplayer_register_clementine_handler();
-	cd_musicplayer_register_gmusicbrowser_handler();
+	// Register the players -- for now, we only support MPRIS2, so
+	// we don't need to register a custom handler for each player.
 	cd_musicplayer_register_mpris2_handler();
 	
 	gchar *cCoverPath = g_strdup_printf ("%s/musicplayer", g_cCairoDockDataDir);
