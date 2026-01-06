@@ -108,7 +108,7 @@ fg alpha = 1
 
 #F[Audio Player;media-optical]
 frame_player =
-#E[;Amarok 2;Audacious;Clementine;Exaile;GMusicBrowser;Guayadeque;Qmmp;QuodLibet;Rhythmbox;XMMS 2] Player to control:
+#E[;Amarok;Audacious;Clementine;Exaile;GMusicBrowser;Guayadeque;Qmmp;QuodLibet;Rhythmbox] Player to control:
 current-player=
 
 #b Steal the player's icon from the taskbar?
