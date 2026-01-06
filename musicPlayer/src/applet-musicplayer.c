@@ -23,7 +23,6 @@
 
 #include "applet-struct.h"
 #include "applet-draw.h"
-#include "applet-dbus.h"
 #include "applet-musicplayer.h"
 
 static void _on_name_owner_changed (const gchar *cName, gboolean bOwned, gpointer data);
@@ -176,10 +175,7 @@ static gboolean _cd_musicplayer_get_data_and_update (gpointer data) {
 void cd_musicplayer_launch_handler (void)
 { 
 	cd_debug ("%s (%s, %s)", __func__, myData.pCurrentHandler->name, myData.pCurrentHandler->appclass);
-	// connect to the player.
-	if (myData.dbus_proxy_player != NULL)  // don't start twice.
-		return;
-	if (! cd_musicplayer_dbus_connect_handler (myData.pCurrentHandler))
+	if (myData.pProxyMain != NULL)  // don't start twice.
 		return;
 	
 	// start the handler (connect to signals, or whatever the handler has to do internally).
