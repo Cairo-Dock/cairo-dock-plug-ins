@@ -58,9 +58,19 @@ struct _AppletConfig {
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 #define CD_ANIM_STEPS 15
 
+typedef struct _AppChildWatchData
+{
+	AppletData *pApplet; // set to NULL if not valid anymore
+} AppChildWatchData;
+
 struct _AppletData {
-	DBusGProxy *pProxyRegistrar;
+	GDBusProxy *pProxyRegistrar;
+	GCancellable *pCancel;
+	GCancellable *pCancelMenu;
+	guint uRegWatch;
 	gboolean bOwnRegistrar;
+	GPid pidOwnRegistrar;
+	AppChildWatchData *pChildWatch;
 	GldiWindowActor *pPreviousWindow, *pCurrentWindow;  // window currently controlled.
 	gboolean bCanClose;
 	gboolean bCanMinimize;
@@ -76,7 +86,7 @@ struct _AppletData {
 	gboolean bButtonAnimating;
 	guint iSidInitIdle;
 	guint iSidInitIdle2;
-	GldiTask *pTask;
+	// GldiTask *pTask;
 	gint iNbButtons;
 	GHashTable *windows;
 	gboolean bReversedButtonsOrder;

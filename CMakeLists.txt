@@ -13,9 +13,9 @@ include (GNUInstallDirs)
 
 ########### project ###############
 
-set (VERSION "3.6.96")
+set (VERSION "3.6.97")
 # can be different from VERSION, e.g. if a new version of plugins does not depend on things added to core
-set (CORE_REQUIRED_VERSION "3.6.96")
+set (CORE_REQUIRED_VERSION "3.6.97")
 
 add_definitions (-std=gnu99 -Wall -Werror-implicit-function-declaration) # -Wextra -Wwrite-strings -Wuninitialized -Werror-implicit-function-declaration -Wstrict-prototypes -Wreturn-type -Wparentheses -Warray-bounds)
 if (NOT DEFINED CMAKE_BUILD_TYPE)
@@ -234,11 +234,6 @@ if (INDICATOR_APPLET_FOUND)
 	STRING (REGEX REPLACE "\n" "" INDICATORICONSDIR "${INDICATORICONSDIR}")  # la commande rajoute un retour chariot ...
 	if (with_indicator3)
 		add_subdirectory (Indicator-applet3)
-	endif()
-	## DBusMenu is needed for Indicator-applet
-	if (DBUSMENU_FOUND AND DBUSMENU_GTK_FOUND)
-		add_subdirectory (Indicator-applet)
-		set (with_indicator "yes")
 	endif()
 endif()
 
@@ -808,11 +803,9 @@ endif()
 
 ############# MESSAGING_MENU #################
 set (with_messaging_menu no)
-if (with_indicator)
+if (with_indicator3)
 	message (STATUS "> Messaging-Menu:")
-	if (with_indicator3)
-		set (INDICATOR_MESSAGES_WITH_IND3 TRUE) # If it's supported, it's maybe better to use it
-	endif()
+	set (INDICATOR_MESSAGES_WITH_IND3 TRUE)
 	set (GETTEXT_MESSAGING_MENU ${GETTEXT_PLUGINS})
 	set (VERSION_MESSAGING_MENU "1.0.7")
 	set (PACKAGE_MESSAGING_MENU "cd-Messaging-Menu")

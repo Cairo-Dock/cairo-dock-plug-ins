@@ -56,34 +56,9 @@ CD_APPLET_ON_CLICK_BEGIN
 	}
 CD_APPLET_ON_CLICK_END
 
-static void _nm_sleep (GldiModuleInstance *myApplet)
-{
-	DBusGProxy *pDbusProxy = cairo_dock_create_new_system_proxy (
-			"org.freedesktop.NetworkManager",
-			"/org/freedesktop/NetworkManager",
-			"org.freedesktop.DBus.Properties");
-	g_return_if_fail (pDbusProxy != NULL);
-	
-	guint state = cairo_dock_dbus_get_property_as_uint (pDbusProxy,
-		"org.freedesktop.NetworkManager",
-		"State");
-	g_object_unref (pDbusProxy);
-	cd_debug ("current network state : %d", state);
-	
-	pDbusProxy = cairo_dock_create_new_system_proxy (
-			"org.freedesktop.NetworkManager",
-			"/org/freedesktop/NetworkManager",
-			"org.freedesktop.NetworkManager");
-	g_return_if_fail (pDbusProxy != NULL);
-	dbus_g_proxy_call_no_reply (pDbusProxy, "Sleep",
-		G_TYPE_INVALID,
-		G_TYPE_BOOLEAN, state == 3,  // 3 = actif
-		G_TYPE_INVALID);
-	g_object_unref (pDbusProxy);
-}
 static void _netspeed_sleep (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
-	_nm_sleep (myApplet);
+	cairo_dock_fm_toggle_network ();
 }
 static void _netspeed_recheck (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
@@ -118,6 +93,6 @@ CD_APPLET_ON_BUILD_MENU_END
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	
-	_nm_sleep (myApplet);
+	cairo_dock_fm_toggle_network ();
 	
 CD_APPLET_ON_MIDDLE_CLICK_END

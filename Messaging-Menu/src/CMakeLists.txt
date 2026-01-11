@@ -6,14 +6,8 @@ SET(MODULE_SRCS
 	applet-init.c 				applet-init.h
 	applet-config.c 			applet-config.h
 	applet-notifications.c 		applet-notifications.h
+	applet-indicator3.c			applet-indicator3.h
 )
-
-# 12.10
-if (INDICATOR_MESSAGES_WITH_IND3)
-	list (APPEND MODULE_SRCS applet-indicator3.c)
-else ()
-	list (APPEND MODULE_SRCS applet-messaging.c applet-menu.c)
-endif()
 
 add_library(${PACKAGE_MESSAGING_MENU} SHARED ${MODULE_SRCS})
 
@@ -32,32 +26,20 @@ add_definitions (-DINDICATOR_MESSAGES_HAS_LOZENGE=${INDICATOR_MESSAGES_HAS_LOZEN
 ### uncomment the following line to allow extended OpenGL drawing.
 #add_definitions (-DGL_GLEXT_PROTOTYPES="1")
 
-if (INDICATOR_MESSAGES_WITH_IND3)
-	message (STATUS "   With Indicator-Applet3")
-	add_definitions (-DINDICATOR_MESSAGES_WITH_IND3=1)
-	set (EXTRAS_INCLUDE_DIRS ${CMAKE_SOURCE_DIR}/Indicator-applet3)
-	set (EXTRAS_LIBRARY_DIRS ${CMAKE_SOURCE_DIR}/Indicator-applet3)
-	set (EXTRAS_LIBRARIES indicator-applet3)
-else()
-	set (EXTRAS_INCLUDE_DIRS ${DBUSMENU_INCLUDE_DIRS} ${DBUSMENU_GTK_INCLUDE_DIRS} ${CMAKE_SOURCE_DIR}/Indicator-applet)
-	set (EXTRAS_LIBRARY_DIRS ${DBUSMENU_LIBRARY_DIRS} ${DBUSMENU_GTK_LIBRARY_DIRS} ${CMAKE_SOURCE_DIR}/Indicator-applet)
-	set (EXTRAS_LIBRARIES ${DBUSMENU_LIBRARIES} ${DBUSMENU_GTK_LIBRARIES} indicator-applet)
-endif()
-
 include_directories (
 	${PACKAGE_INCLUDE_DIRS}
 	${INDICATOR_APPLET_INCLUDE_DIRS}
-	${EXTRAS_INCLUDE_DIRS})
+	${CMAKE_SOURCE_DIR}/Indicator-applet3)
 
 link_directories (
 	${PACKAGE_LIBRARY_DIRS}
 	${INDICATOR_APPLET_LIBRARY_DIRS}
-	${EXTRAS_LIBRARY_DIRS})
+	${CMAKE_SOURCE_DIR}/Indicator-applet3)
 
 target_link_libraries (${PACKAGE_MESSAGING_MENU}
 	${PACKAGE_LIBRARIES}
 	${INDICATOR_APPLET_LIBRARIES}
-	${EXTRAS_LIBRARIES})
+	indicator-applet3)
 ########### install files ###############
 
 install(TARGETS ${PACKAGE_MESSAGING_MENU} DESTINATION ${pluginsdir})

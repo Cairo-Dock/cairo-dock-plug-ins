@@ -21,12 +21,7 @@
 
 #include "applet-config.h"
 #include "applet-notifications.h"
-#ifndef INDICATOR_MESSAGES_WITH_IND3
-#include "applet-messaging.h"
-#include "applet-menu.h"
-#else
 #include "applet-indicator3.h"
-#endif
 #include "applet-struct.h"
 #include "applet-init.h"
 
@@ -49,18 +44,6 @@ CD_APPLET_INIT_BEGIN
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");  // set a desklet renderer.
 	}
 
-	#ifndef INDICATOR_MESSAGES_WITH_IND3
-	myData.pIndicator = cd_indicator_new (myApplet,
-		INDICATOR_MESSAGES_DBUS_NAME,
-		INDICATOR_MESSAGES_DBUS_SERVICE_OBJECT,
-		INDICATOR_MESSAGES_DBUS_SERVICE_INTERFACE,
-		INDICATOR_MESSAGES_DBUS_OBJECT,
-		INDICATOR_APPLET_DEFAULT_VERSION);
-	myData.pIndicator->on_connect 			= cd_messaging_on_connect;
-	myData.pIndicator->on_disconnect 		= cd_messaging_on_disconnect;
-	myData.pIndicator->get_initial_values 	= cd_messaging_get_initial_values;
-	myData.pIndicator->add_menu_handler 	= cd_messaging_add_menu_handler;
-	#else
 	if (myDock)
 		gldi_icon_detach (myIcon); // the icon is inserted when the entry will be added
 
@@ -95,7 +78,6 @@ CD_APPLET_INIT_BEGIN
 		if (! myData.pIndicator)
 			CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 	}
-	#endif
 	
 	// mouse events
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
@@ -120,9 +102,6 @@ CD_APPLET_STOP_BEGIN
 
 	if (myData.pIndicator)
 	{
-		#ifndef INDICATOR_MESSAGES_WITH_IND3
-		cd_indicator_destroy (myData.pIndicator);
-		#else
 		// It seems we doesn't need to free the indicator (object and event)
 		cd_messaging_destroy (myData.pIndicator, myData.pEntry, myApplet); // remove the connection to signals (menu)
 		cd_indicator3_unload (myData.pIndicator, // remove the connection to signals (indicator)
@@ -131,17 +110,12 @@ CD_APPLET_STOP_BEGIN
 			cd_messaging_accessible_desc_update,
 			NULL,
 			myApplet);
-		#endif
 	}
 CD_APPLET_STOP_END
 
 
 //\___________ The reload occurs in 2 occasions : when the user changes the applet's config, and when the user reload the cairo-dock's config or modify the desklet's size. The macro CD_APPLET_MY_CONFIG_CHANGED can tell you this. myConfig has already been reloaded at this point if you're in the first case, myData is untouched. You also have the macro CD_APPLET_MY_CONTAINER_TYPE_CHANGED that can tell you if you switched from dock/desklet to desklet/dock mode.
 CD_APPLET_RELOAD_BEGIN
-	#ifndef INDICATOR_MESSAGES_WITH_IND3
-	cd_indicator_reload_icon (myData.pIndicator);  // we reload the icon (if we didn't have an icon, now we have a path). It will not consider a change of icon theme, so we return the original icon.
-	#endif
-	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
 		if (myDesklet && CD_APPLET_MY_CONTAINER_TYPE_CHANGED)  // we are now in a desklet, set a renderer.
@@ -149,10 +123,8 @@ CD_APPLET_RELOAD_BEGIN
 			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 		}
 		
-		#ifdef INDICATOR_MESSAGES_WITH_IND3
 		// check if the name has changed and reload the icon
 		cd_messaging_reload (myData.pIndicator, myData.pEntry, myApplet);
-		#endif
 		gldi_shortkey_rebind (myData.pKeyBinding, myConfig.cShortkey, NULL);
 	}
 CD_APPLET_RELOAD_END

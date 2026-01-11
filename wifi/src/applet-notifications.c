@@ -53,32 +53,7 @@ static void _cd_wifi_show_config (GtkMenuItem *menu_item, gpointer data)
 
 static void toggle_wlan (void)
 {
-	DBusGProxy *dbus_proxy_nm = cairo_dock_create_new_system_proxy (
-			"org.freedesktop.NetworkManager",
-			"/org/freedesktop/NetworkManager",
-			"org.freedesktop.NetworkManager");
-	g_return_if_fail (dbus_proxy_nm != NULL);
-	
-	guint state = 0;
-	dbus_g_proxy_call (dbus_proxy_nm, "state", NULL,
-		G_TYPE_INVALID,
-		G_TYPE_UINT, &state,
-		G_TYPE_INVALID);
-	cd_debug ("current network state : %d", state);
-	if (state == 3)  // actif
-	{
-		dbus_g_proxy_call_no_reply (dbus_proxy_nm, "sleep",
-			G_TYPE_INVALID,
-			G_TYPE_INVALID);
-	}
-	else if (state == 1)  // inactif
-	{
-		dbus_g_proxy_call_no_reply (dbus_proxy_nm, "wake",
-			G_TYPE_INVALID,
-			G_TYPE_INVALID);
-	}
-	
-	g_object_unref (dbus_proxy_nm);
+	cairo_dock_fm_toggle_wifi ();
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	if (! myData.bWirelessExt)

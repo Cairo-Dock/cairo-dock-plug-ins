@@ -21,11 +21,7 @@
 #include <string.h>
 
 #include "applet-struct.h"
-#ifndef INDICATOR_MESSAGES_WITH_IND3
-#include "applet-menu.h"
-#else
 #include "applet-indicator3.h"
-#endif
 #include "applet-notifications.h"
 
 /*
@@ -67,14 +63,10 @@ static inline void _show_menu (void)
 	_remove_double_separators (GTK_CONTAINER (myData.pIndicator->pMenu));
 	#endif
 
-	#ifndef INDICATOR_MESSAGES_WITH_IND3
-	if (! cd_indicator_show_menu (myData.pIndicator))
-	#else
 	GtkMenu *pMenu = cd_indicator3_get_menu (myData.pEntry);
 	if (pMenu)
 		gldi_menu_popup (GTK_WIDGET (pMenu));
 	else
-	#endif
 		gldi_dialog_show_temporary_with_icon (D_("The Messaging service did not reply.\nPlease check that it is correctly installed."), myIcon, myContainer, 8000., "same icon");
 }
 
