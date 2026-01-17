@@ -306,7 +306,13 @@ static void _on_got_menu (GObject *pObj, GAsyncResult *pRes, gpointer ptr)
 	GVariant *res = g_dbus_proxy_call_finish (G_DBUS_PROXY (pObj), pRes, &erreur);
 	if (erreur)
 	{
-		cd_warning ("couldn't get the application menu (%s)", erreur->message);
+		if ( !(g_error_matches (erreur, G_IO_ERROR, G_IO_ERROR_CANCELLED) ||
+			g_error_matches (erreur, G_DBUS_ERROR, G_DBUS_ERROR_INVALID_ARGS)))
+		{
+			// Note: invalid args error is returned by our registrar if the window is not known.
+			// This happens for apps that do not support global menus, so no need to display a warning.
+			cd_warning ("couldn't get the application menu (%s)", erreur->message);
+		}
 		g_error_free (erreur);
 	}
 	else
