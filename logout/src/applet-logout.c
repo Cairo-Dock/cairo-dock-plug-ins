@@ -144,15 +144,14 @@ static GtkWidget *_build_menu (GtkWidget **pShutdownMenuItem)
 	// display the switch account menu
 	gboolean bCanSwitchToLogin = (myData.pGdmProxy != NULL); //!! TODO: chech if there are actually multiple users?
 	gboolean bMultipleSession = FALSE;
-	const char *cCurrentSession = g_getenv ("XDG_SESSION_ID");
 	GList *it;
 	CDLogoutSession *session;
 	for (it = myData.pSessionList; it; it = it->next)
 	{
 		//!! TODO: user not added for all sessions !!
 		session = (CDLogoutSession*)it->data;
-		if (session->uid && session->pUser && (session->pUser->cUserName || session->pUser->cRealName)
-			&& strcmp (session->cID, cCurrentSession))
+		if (session->uid && session->pUser && (session->pUser->cUserName || session->pUser->cRealName) &&
+			!session->bOwnSession)
 		{
 			// only display the menu to switch if there is at least one session with a
 			// known user which is not the current session
@@ -171,7 +170,7 @@ static GtkWidget *_build_menu (GtkWidget **pShutdownMenuItem)
 			if (session->uid && session->pUser && (session->pUser->cUserName || session->pUser->cRealName))
 			{
 				gchar *cID = NULL; // copy of the session ID to stay alive with the menu item
-				if (strcmp (session->cID, cCurrentSession)) cID = g_strdup (session->cID);
+				if (!session->bOwnSession) cID = g_strdup (session->cID);
 				
 				pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_DATA (
 					(session->pUser->cRealName && *session->pUser->cRealName) ?
@@ -770,6 +769,8 @@ static void _on_got_sessions (GObject *pObj, GAsyncResult *pRes, G_GNUC_UNUSED g
 			CDLogoutSession *session = g_new0 (CDLogoutSession, 1);
 			session->cID = g_strdup (cID);
 			session->uid = uid;
+			if (myData.cOwnSessionID && !strcmp (session->cID, myData.cOwnSessionID))
+				session->bOwnSession = TRUE;
 			myData.pSessionList = g_list_prepend (myData.pSessionList, session);
 			
 			// check if any users match
@@ -861,6 +862,8 @@ static void _login1_signal (GDBusProxy *pProxy, G_GNUC_UNUSED const gchar *cSend
 				{
 					CDLogoutSession *session = g_new0 (CDLogoutSession, 1);
 					session->cID = g_strdup (cID);
+					if (myData.cOwnSessionID && !strcmp (session->cID, myData.cOwnSessionID))
+						session->bOwnSession = TRUE;
 					// note: uid is left at 0, which corresponds to root and should be ignored
 					session->pCancel = g_cancellable_new ();
 					myData.pSessionList = g_list_prepend (myData.pSessionList, session);
@@ -875,6 +878,88 @@ static void _login1_signal (GDBusProxy *pProxy, G_GNUC_UNUSED const gchar *cSend
 		}
 		else cd_warning ("Unexpected parameter for '%s' signal", cSignal);
 	}
+	
+	CD_APPLET_LEAVE ();
+}
+
+static void _on_got_own_session_id (GObject *pObj, GAsyncResult *pRes, G_GNUC_UNUSED gpointer ptr)
+{
+	CD_APPLET_ENTER;
+	
+	GError *err = NULL;
+	GVariant *res = g_dbus_connection_call_finish (G_DBUS_CONNECTION (pObj), pRes, &err);
+	if (err)
+	{
+		if (! g_error_matches (err, G_IO_ERROR, G_IO_ERROR_CANCELLED))
+		{
+			cd_warning ("Cannot get DBus property for session id: %s", err->message);
+			//!! TODO: remove session objects?
+		}
+		g_error_free (err);
+		CD_APPLET_LEAVE ();
+	}
+	
+	// res is (v) where v should be s
+	if (g_variant_is_of_type (res, G_VARIANT_TYPE ("(v)")))
+	{
+		GVariant *tmp1 = g_variant_get_child_value (res, 0);
+		GVariant *tmp2 = g_variant_get_variant (tmp1);
+		if (g_variant_is_of_type (tmp2, G_VARIANT_TYPE ("s")))
+		{
+			g_variant_get (tmp2, "s", &myData.cOwnSessionID);
+			GList *it;
+			CDLogoutSession *session;
+			for (it = myData.pSessionList; it; it = it->next)
+			{
+				session = (CDLogoutSession*)it->data;
+				if (!strcmp (session->cID, myData.cOwnSessionID))
+				{
+					session->bOwnSession = TRUE;
+					break;
+				}
+			}
+		}
+		else cd_warning ("Unexpected property type for session ID: %s", g_variant_get_type_string (tmp2));
+		
+		g_variant_unref (tmp2);
+		g_variant_unref (tmp1);
+	}
+	else cd_warning ("Unexpected property type for session ID (Get): %s", g_variant_get_type_string (res));
+	
+	g_variant_unref (res);
+	
+	CD_APPLET_LEAVE ();
+}
+
+static void _on_got_own_session_path (GObject *pObj, GAsyncResult *pRes, G_GNUC_UNUSED gpointer ptr)
+{
+	CD_APPLET_ENTER;
+	
+	GDBusProxy *pProxy = G_DBUS_PROXY (pObj);
+	GError *err = NULL;
+	GVariant *res = g_dbus_proxy_call_finish (pProxy, pRes, &err);
+	if (err)
+	{
+		if (! g_error_matches (err, G_IO_ERROR, G_IO_ERROR_CANCELLED))
+		{
+			cd_warning ("Cannot get own session path: %s", err->message);
+		}
+		g_error_free (err);
+		CD_APPLET_LEAVE ();
+	}
+	
+	if (g_variant_is_of_type (res, G_VARIANT_TYPE ("(o)")))
+	{
+		const char *cPath = NULL;
+		g_variant_get (res, "(&o)", &cPath);
+		if (cPath && *cPath)
+		g_dbus_connection_call (g_dbus_proxy_get_connection (pProxy),
+			"org.freedesktop.login1", cPath, "org.freedesktop.DBus.Properties",
+			"Get", g_variant_new ("(ss)", "org.freedesktop.login1.Session", "Id"), G_VARIANT_TYPE ("(v)"),
+			G_DBUS_CALL_FLAGS_NO_AUTO_START, -1, myData.pCancellable, _on_got_own_session_id, NULL);
+	}
+	else cd_warning ("Unexpected return type for GetSession: %s", g_variant_get_type_string (res));
+	g_variant_unref (res);
 	
 	CD_APPLET_LEAVE ();
 }
@@ -949,6 +1034,11 @@ static void _on_login1_proxy_created (G_GNUC_UNUSED GObject *pObj, GAsyncResult 
 	// connect to signals + list sessions
 	g_signal_connect (G_OBJECT(pProxy), "g-signal", G_CALLBACK (_login1_signal), NULL);
 	g_dbus_proxy_call (pProxy, "ListSessions", NULL, G_DBUS_CALL_FLAGS_NONE, -1, myData.pCancellable, _on_got_sessions, NULL);
+	
+	const gchar *cID = g_getenv ("XDG_SESSION_ID");
+	if (cID) myData.cOwnSessionID = g_strdup (cID);
+	else g_dbus_proxy_call (pProxy, "GetSession", g_variant_new ("(s)", "auto"), G_DBUS_CALL_FLAGS_NONE,
+		-1, myData.pCancellable, _on_got_own_session_path, NULL);
 	
 	CD_APPLET_LEAVE ();
 }
@@ -1033,5 +1123,6 @@ void cd_logout_stop_watch_sessions (void)
 	
 	g_list_free_full (myData.pUserList, _free_user);
 	g_list_free_full (myData.pSessionList, _free_session);
+	g_free (myData.cOwnSessionID);
 }
 

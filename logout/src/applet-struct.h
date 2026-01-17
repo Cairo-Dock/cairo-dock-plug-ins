@@ -71,6 +71,7 @@ typedef struct _CDLogoutSession {
 	guint64 uid; // user ID (to be matched with CDLogoutUser)
 	CDLogoutUser *pUser; // user struct (can be NULL if user is not known)
 	GCancellable *pCancel; // needed to cancel getting properties for a newly added session
+	gboolean bOwnSession; // whether this is the session we are running in
 	} CDLogoutSession;
 
 struct _AppletData {
@@ -80,6 +81,7 @@ struct _AppletData {
 	GldiShortkey *pKeyBinding2;
 	GList *pUserList; // CDLogoutUser
 	GList *pSessionList; // CDLogoutSession
+	gchar *cOwnSessionID; // ID of our current session
 	GDBusProxy *pAccountsProxy; // -> org.freedesktop.Accounts
 	guint uRegUserChanged; // subscription ID to the org.freedesktop.Accounts.User.Changed signal (for any user)
 	GDBusProxy *pLogin1Proxy; // -> org.freedesktop.login1
