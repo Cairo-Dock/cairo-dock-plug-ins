@@ -76,16 +76,16 @@ static void _show_menu (gboolean bOnMouse)
 	if (myData.pMenu != NULL)
 	{
 		#ifdef FORCE_REMOVE_DOUBLE_SEPARATORS
-		_remove_double_separators (GTK_WIDGET (myData.pMenu));
+		_remove_double_separators (myData.pMenu);
 		#endif
 		if (bOnMouse)
 		{
-			gtk_widget_show_all (GTK_WIDGET (myData.pMenu));
+			gtk_widget_show_all (myData.pMenu);
 			gtk_menu_popup_at_pointer (GTK_MENU (myData.pMenu), NULL);
 		}
 		else
 		{
-			CD_APPLET_POPUP_MENU_ON_MY_ICON (GTK_WIDGET (myData.pMenu));
+			CD_APPLET_POPUP_MENU_ON_MY_ICON (myData.pMenu);
 		}
 	}
 	else  /// either show a message, or remember the user demand, so that we pop the menu as soon as we get it...

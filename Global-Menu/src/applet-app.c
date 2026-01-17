@@ -241,7 +241,7 @@ void cd_app_disconnect_from_registrar (void)
 	
 	if (myData.pMenu != NULL)
 	{
-		gtk_widget_destroy (GTK_WIDGET (myData.pMenu));
+		gtk_widget_destroy (myData.pMenu);
 		myData.pMenu = NULL;
 	}
 	
@@ -295,7 +295,7 @@ static gboolean _fetch_menu (CDSharedMemory *pSharedMemory)
 	CD_APPLET_LEAVE (TRUE);
 }*/
 
-static void _connect_to_menu (const gchar *cService, const gchar *cMenuObject);
+static void _connect_to_menu_dbusmenu (const gchar *cService, const gchar *cMenuObject);
 static void _on_got_menu (GObject *pObj, GAsyncResult *pRes, gpointer ptr)
 {
 	cd_debug ("%s ()", __func__);
@@ -322,14 +322,14 @@ static void _on_got_menu (GObject *pObj, GAsyncResult *pRes, gpointer ptr)
 		else if (g_variant_is_of_type (res, G_VARIANT_TYPE ("(ss)"))) // just to be safe
 			g_variant_get (res, "(&s&s)", &cService, &cMenuObject);
 		else cd_warning ("Unexpected result type: %s", g_variant_get_type_string (res));
-		if (cService && cMenuObject) _connect_to_menu (cService, cMenuObject);
+		if (cService && cMenuObject) _connect_to_menu_dbusmenu (cService, cMenuObject);
 		g_variant_unref (res);
 	}
 	
 	CD_APPLET_LEAVE ();
 }
 		
-static void _connect_to_menu (const gchar *cService, const gchar *cMenuObject)
+static void _connect_to_menu_dbusmenu (const gchar *cService, const gchar *cMenuObject)
 {
 	cd_debug (" -> %s", cService);
 	cd_debug ("    %s", cMenuObject);
@@ -352,7 +352,7 @@ static void _connect_to_menu (const gchar *cService, const gchar *cMenuObject)
 		/// TODO: it seems to hang he dock for a second, even with a task :-/
 		/// so maybe we need to cache the {window,menu} couples...
 		// note: parameters are not const, but not modified (a copy is made)
-		myData.pMenu = dbusmenu_gtkmenu_new ((gchar*)cService, (gchar*)cMenuObject);  /// can this object disappear by itself ? it seems to crash with 2 instances of inkscape, when closing one of them...
+		myData.pMenu = GTK_WIDGET (dbusmenu_gtkmenu_new ((gchar*)cService, (gchar*)cMenuObject));  /// can this object disappear by itself ? it seems to crash with 2 instances of inkscape, when closing one of them...
 		if (g_object_is_floating (myData.pMenu))  // claim ownership on the menu.
 			g_object_ref_sink (myData.pMenu);
 		if (myData.pMenu)
@@ -360,9 +360,56 @@ static void _connect_to_menu (const gchar *cService, const gchar *cMenuObject)
 			g_object_weak_ref (G_OBJECT (myData.pMenu),
 				(GWeakNotify)_on_menu_destroyed,
 				myApplet);
-			gldi_menu_init (GTK_WIDGET(myData.pMenu), myIcon);
+			gldi_menu_init (myData.pMenu, myIcon);
 		}
 	}
+}
+
+static void _connect_to_menu_gtkmenu (const gchar *name, const gchar *menubar_path, const gchar *window_path, const gchar *app_path)
+{
+	GDBusConnection *bus = cairo_dock_dbus_get_session_bus ();
+	GDBusMenuModel *model = g_dbus_menu_model_get (bus, name, menubar_path);
+	if (!model)
+	{
+		cd_warning ("Cannot retrieve menu model for app: %s, %s", name, menubar_path);
+		return;
+	}
+	GtkWidget *pMenu = gtk_menu_new_from_model (G_MENU_MODEL (model));
+	g_object_unref (model);
+	gldi_menu_init (pMenu, myIcon);
+	
+	if (window_path)
+	{
+		GDBusActionGroup *grp = g_dbus_action_group_get (bus, name, window_path);
+		if (grp)
+		{
+			gtk_widget_insert_action_group (pMenu, "win", G_ACTION_GROUP (grp));
+			g_object_unref (grp);
+		}
+		else cd_warning ("Error retrieving window action group: %s, %s", name, window_path);
+	}	
+	
+	if (app_path)
+	{
+		GDBusActionGroup *grp = g_dbus_action_group_get (bus, name, app_path);
+		if (grp)
+		{
+			gtk_widget_insert_action_group (pMenu, "app", G_ACTION_GROUP (grp));
+			g_object_unref (grp);
+		}
+		else cd_warning ("Error retrieving app action group: %s, %s", name, app_path);
+	}
+	
+	// default -- used by some apps
+	GDBusActionGroup *grp = g_dbus_action_group_get (bus, name, menubar_path);
+	if (grp)
+	{
+		gtk_widget_insert_action_group (pMenu, "unity", G_ACTION_GROUP (grp));
+		g_object_unref (grp);
+	}
+	else cd_warning ("Error retrieving app action group: %s, %s", name, menubar_path);
+	
+	myData.pMenu = pMenu;
 }
 	
 static void _get_application_menu (GldiWindowActor *actor)
@@ -370,7 +417,7 @@ static void _get_application_menu (GldiWindowActor *actor)
 	// destroy the current menu
 	if (myData.pMenu != NULL)
 	{
-		gtk_widget_destroy (GTK_WIDGET (myData.pMenu));
+		gtk_widget_destroy (myData.pMenu);
 		myData.pMenu = NULL;
 	}
 
@@ -390,12 +437,11 @@ static void _get_application_menu (GldiWindowActor *actor)
 	// get the new one.
 	if (actor != NULL)
 	{
-		char *cService = NULL;
-		char *cMenuObject = NULL;
-		gldi_window_get_menu_address (actor, &cService, &cMenuObject);
-		
-		if (cService && cMenuObject)
-			_connect_to_menu (cService, cMenuObject);
+		const GldiWindowDBusProperties *props = gldi_window_get_dbus_props (actor);
+		if (props && props->cGTKBusName && props->cGTKMenuBarPath)
+			_connect_to_menu_gtkmenu (props->cGTKBusName, props->cGTKMenuBarPath, props->cGTKWindowPath, props->cGTKAppPath);
+		else if (props && props->cKDEObjectPath && props->cKDEServiceName)
+			_connect_to_menu_dbusmenu (props->cKDEServiceName, props->cKDEObjectPath);
 		else if (myData.pProxyRegistrar != NULL)
 		{
 			if (!myData.pCancelMenu) myData.pCancelMenu = g_cancellable_new ();

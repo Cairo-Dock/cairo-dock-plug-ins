@@ -75,7 +75,7 @@ struct _AppletData {
 	gboolean bCanClose;
 	gboolean bCanMinimize;
 	gboolean bCanMaximize;
-	DbusmenuGtkMenu *pMenu;
+	GtkWidget *pMenu;
 	GldiShortkey *pKeyBinding;
 	CairoDockImageBuffer defaultIcon;
 	CairoDockImageBuffer minimizeButton;
