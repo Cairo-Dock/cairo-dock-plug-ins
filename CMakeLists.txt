@@ -827,7 +827,7 @@ add_subdirectory (motion-blur)
 ############# MUSICPLAYER #################
 message (STATUS "> MusicPlayer:")
 set (GETTEXT_MUSICPLAYER ${GETTEXT_PLUGINS})
-set (VERSION_MUSICPLAYER "2.1.0")
+set (VERSION_MUSICPLAYER "2.2.0")
 set (PACKAGE_MUSICPLAYER "cd-musicPlayer")
 set (musicplayerdatadir "${pluginsdatadir}/musicPlayer")
 configure_file (${CMAKE_CURRENT_SOURCE_DIR}/musicPlayer/data/musicPlayer.conf.in ${CMAKE_CURRENT_BINARY_DIR}/musicPlayer/data/musicPlayer.conf)

@@ -31,6 +31,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.cMusicPlayer 			= CD_CONFIG_GET_STRING ("Configuration", "current-player");  // NULL by default
 	myConfig.cLastKnownDesktopFile 	= CD_CONFIG_GET_STRING ("Configuration", "desktop-entry");  // see applet-struct.h
+	myConfig.cMpris2Name			= CD_CONFIG_GET_STRING ("Configuration", "mpris2-name");
 	myConfig.cDefaultTitle			= CD_CONFIG_GET_STRING ("Icon", "name");
 	
 	myConfig.bEnableDialogs 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable_dialogs");

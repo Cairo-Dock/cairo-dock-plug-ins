@@ -40,9 +40,21 @@ void cd_musicplayer_register_my_handler (MusicPlayerHandler *pHandler);
 
 void cd_musicplayer_free_handler (gpointer data);
 
-void cd_musicplayer_set_current_handler (const gchar *cName);
+/**
+Set the current handler from its MPRIS2 service name.
+@param cMpris2Service the DBus well-known name to use (required; set to NULL to set no handler)
+@param cAppName the name to display (optional; will be retrieved from DBus)
+@param cDesktopFileName the desktop file name (optional; will be retrieved from DBus)
+@param bUpdateConfig whether to update the config file (set to FALSE when initially loading)
+@param bUpdateIcon whether to update the icon surface
+*/
+void cd_musicplayer_set_current_handler (const gchar *cMpris2Service, const gchar *cAppName, const gchar *cDesktopFileName,
+	gboolean bUpdateConfig, gboolean bUpdateIcon);
 
-gchar *cd_musicplayer_get_string_with_first_char_to_upper (const gchar *cName);
+/** Update the .desktop file name of the current handler and save it in the config if needed. */
+void cd_musicplayer_on_got_desktop_entry (const gchar *cDesktopFileName);
 
+// in applet-notifications.c
+const CDKnownMusicPlayer *cd_musicplayer_find_known_player (const gchar *cName);
 
 #endif

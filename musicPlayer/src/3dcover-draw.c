@@ -24,7 +24,6 @@
 #include "applet-config.h"
 #include "applet-draw.h"
 #include "3dcover-draw.h"
-#include "applet-dbus.h"
 
 #define _check_error(erreur) \
 	if (erreur != NULL) { \
