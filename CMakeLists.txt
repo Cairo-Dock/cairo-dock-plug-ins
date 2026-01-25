@@ -632,17 +632,18 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Folders/data/Folders.conf.in ${CMAKE
 add_subdirectory (Folders)
 
 ############# GLOBAL-MENU #################
-set (with_global_menu no) # unstable
-if (enable-global-menu AND DBUSMENU_FOUND AND DBUSMENU_GTK_FOUND)  # currently only supported with new name of the indicator module and with newer version of dbusmenu
+enable_if_not_defined (enable-global-menu)
+set (with_global_menu no)
+if (enable-global-menu AND DBUSMENU_FOUND AND DBUSMENU_GTK_FOUND)
 	message (STATUS "> Global-Menu:")
 	set (GETTEXT_GLOBAL_MENU ${GETTEXT_PLUGINS})
-	set (VERSION_GLOBAL_MENU "0.1.3")
+	set (VERSION_GLOBAL_MENU "0.1.4")
 	set (PACKAGE_GLOBAL_MENU "cd-Global-Menu")
 	set (with_global_menu yes)
 	set (global_menudatadir "${pluginsdatadir}/Global-Menu")
 	configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Global-Menu/data/Global-Menu.conf.in ${CMAKE_CURRENT_BINARY_DIR}/Global-Menu/data/Global-Menu.conf)
 	add_subdirectory (Global-Menu)
-endif()
+endif() # note: warning already shown above if dbusmenu libraries are not available
 
 ############# GMENU #################
 message (STATUS "> GMenu:")
@@ -1261,13 +1262,13 @@ message (STATUS " - with Sensors support:           ${with_sensors}")
 message (STATUS " - with UPower support:            ${with_upower_support}")
 message (STATUS " - with iCal support:              ${with_ical}")
 message (STATUS " - with Exif support:              ${with_exif}")
+message (STATUS " - with Global-Menu applet:        ${with_global_menu}")
 message (STATUS "Third Party Interfaces:")
 message (STATUS " - with Python3 interface:         ${with_python3}")
 message (STATUS " - with Ruby interface:            ${with_ruby}")
 message (STATUS " - with Mono interface:            ${with_mono}")
 message (STATUS " - with Vala interface:            ${with_vala}")
 message (STATUS "Unstable:")
-message (STATUS " - with Global-Menu applet:        ${with_global_menu}")
 message (STATUS " - with Disks applet:              ${with_disks}")
 message (STATUS " - with Doncky applet:             ${with_doncky}")
 message (STATUS " - with Network-Monitor applet:    ${with_network_monitor}")
