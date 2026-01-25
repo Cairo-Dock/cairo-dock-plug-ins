@@ -100,7 +100,7 @@ fg alpha = 1
 #Y[Steal window menu;1;2;Steal window decoration;3;2;Steal window menu and border;1;4] Behaviour
 #{The applet can steal the top border of maximized windows, in which case it will display the window control buttons.
 # The applet can steal the menu from the windows, in which case it will display a button to pop up the menu of the current window.}
-steal = 2
+steal = 0
 
 #k Shortkey to pop up the menu
 shortkey = <Alt>F1
