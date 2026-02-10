@@ -175,7 +175,7 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		
 		if (myConfig.iVolumeDisplay != VOLUME_ON_ICON)
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (NULL);
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 		
 		// reload or remove the data renderer
 		if (myConfig.iVolumeEffect == VOLUME_EFFECT_NONE)
