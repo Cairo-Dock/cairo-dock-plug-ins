@@ -103,7 +103,7 @@ const char *cd_clock_get_date_format (void)
 			if (found) break;
 		}
 		
-		cFormat = month_first ? "%b %e (%a)" : "%e %b (%a)";
+		cFormat = month_first ? "%a %b %e" : "%a %e %b";
 	}
 	return cFormat;
 }
@@ -175,6 +175,24 @@ void cd_clock_draw_text (GldiModuleInstance *myApplet, int iWidth, int iHeight, 
 			++off;
 			strftime (s_cCmbBuffer + off, 2 * CD_CLOCK_DATE_BUFFER_LENGTH + 1 - off, cDateFormat, pTime);
 		}
+		else if (myData.iTextLayout == CD_TEXT_LAYOUT_3_LINES)
+		{
+    		char cTimeBuf[CD_CLOCK_DATE_BUFFER_LENGTH];
+    		char cDayBuf[CD_CLOCK_DATE_BUFFER_LENGTH];
+    		char cDateBuf[CD_CLOCK_DATE_BUFFER_LENGTH];
+
+    		// Format each part separately
+    		strftime(cTimeBuf, CD_CLOCK_DATE_BUFFER_LENGTH, cTimeFormat, pTime);
+    		strftime(cDayBuf, CD_CLOCK_DATE_BUFFER_LENGTH, "%a", pTime);
+    		strftime(cDateBuf, CD_CLOCK_DATE_BUFFER_LENGTH, "%b %e", pTime);
+
+    		// Combine them using Pango Markup
+    		// we make the time 1.2x bigger than the rest
+    		snprintf(s_cCmbBuffer, 2 * CD_CLOCK_DATE_BUFFER_LENGTH, 
+            		 "<span size='x-large' weight='bold'>%s</span>\n%s\n%s", 
+            		 cTimeBuf, cDayBuf, cDateBuf);
+		}
+
 		else
 		{
 			// one line layout, date goes first
@@ -187,99 +205,63 @@ void cd_clock_draw_text (GldiModuleInstance *myApplet, int iWidth, int iHeight, 
 	else strftime (s_cCmbBuffer, 2 * CD_CLOCK_DATE_BUFFER_LENGTH - 1, cTimeFormat, pTime);
 	
 	// layout
-	PangoFontDescription *pDesc = myConfig.textDescription.fd;
-	pango_font_description_set_absolute_size (pDesc, myIcon->fHeight * 72 / myData.fDpi * PANGO_SCALE); // pixel converted to point, converted to pango dimension.
+    // 1. Layout setup
+    PangoFontDescription *pDesc = myConfig.textDescription.fd;
+    pango_font_description_set_absolute_size (pDesc, myIcon->fHeight * 72 / myData.fDpi * PANGO_SCALE);
 
-	PangoLayout *pLayout = pango_cairo_create_layout (myDrawContext);
-	pango_layout_set_font_description (pLayout, pDesc);
-	pango_layout_set_alignment (pLayout, PANGO_ALIGN_CENTER);
+    PangoLayout *pLayout = pango_cairo_create_layout (myDrawContext); // Declaration
+    pango_layout_set_font_description (pLayout, pDesc);
+    pango_layout_set_alignment (pLayout, PANGO_ALIGN_CENTER);
+	pango_layout_set_markup (pLayout, s_cCmbBuffer, -1);
 
-	pango_layout_set_text (pLayout, s_cCmbBuffer, -1);
-	PangoRectangle log;
-	pango_layout_get_pixel_extents (pLayout, NULL, &log);
+
+    // 2. Measure the text
+	PangoRectangle ink, log;
+	pango_layout_get_pixel_extents (pLayout, &ink, &log);
+
+	// 3. Precise vertical alignment for 3 lines
+	if (myData.iTextLayout == CD_TEXT_LAYOUT_3_LINES)
+	{
+    	log.height = ink.height;
+    	log.y = ink.y; 
+	}
+
 	if (myConfig.iOutlineWidth)
 	{
-		log.width += myConfig.iOutlineWidth / 2;
-		log.height += myConfig.iOutlineWidth / 2;
+    	log.width += myConfig.iOutlineWidth / 2;
+    	log.height += myConfig.iOutlineWidth / 2;
 	}
-	
-	// scaling with the current layout
+
+	// 4. Scaling: We remove the MIN_TEXT_HEIGHT constraint for 3 lines
 	double fZoomX = (double) iWidth / log.width;
 	double fZoomY = (double) iHeight / log.height;
-	// keep the ratio of the text, until 12px height.
+
 	fZoomX = MIN (fZoomX, fZoomY);
 	fZoomY = fZoomX * myConfig.fTextRatio;
-	if (fZoomY * log.height < MIN_TEXT_HEIGHT)
-		fZoomY = MIN_TEXT_HEIGHT / log.height;
-	
-	if (myConfig.iShowDate == CAIRO_DOCK_INFO_ON_ICON && myData.iTextLayout == CD_TEXT_LAYOUT_AUTO)
+
+	// CRITICAL: Only apply MIN_TEXT_HEIGHT for 1 or 2 lines. 
+	// For 3 lines, we let it shrink as much as needed to stop the cropping.
+	if (myData.iTextLayout != CD_TEXT_LAYOUT_3_LINES)
 	{
-		// If the orientation is no longer defined, we define it just once at startup (if we are close
-		// to the limit, the size of the text could change enough to change the layout).
-		// We test both layouts for this -- note: currently, the bufer includes the one line layout,
-		// we should test the two line alternative.
-		snprintf (s_cCmbBuffer, 2 * CD_CLOCK_DATE_BUFFER_LENGTH + 1, "%s\n%s", s_cDateBuffer2, s_cDateBuffer1);
-
-		PangoLayout *pLayout2 = pango_cairo_create_layout (myDrawContext);
-		pango_layout_set_font_description (pLayout2, pDesc);
-		pango_layout_set_alignment (pLayout2, PANGO_ALIGN_CENTER);
-
-		pango_layout_set_text (pLayout2, s_cCmbBuffer, -1);
-		PangoRectangle log2;
-		pango_layout_get_pixel_extents (pLayout2, NULL, &log2);
-		if (myConfig.iOutlineWidth)
-		{
-			log2.width += myConfig.iOutlineWidth / 2;
-			log2.height += myConfig.iOutlineWidth / 2;
-		}
-		
-		// scaling with the current layout
-		double fZoomX2 = (double) iWidth / log2.width;
-		double fZoomY2 = (double) iHeight / log2.height;
-		// keep the ratio of the text, until 12px height.
-		fZoomX2 = MIN (fZoomX2, fZoomY2);
-		fZoomY2 = fZoomX2 * myConfig.fTextRatio;
-		if (fZoomY2 * log2.height < MIN_TEXT_HEIGHT)
-			fZoomY2 = MIN_TEXT_HEIGHT / log2.height;
-		
-		// 1. check distortion, i.e. which case differs more from the expected ratio
-		double exp_Y1 = fZoomX * myConfig.fTextRatio;
-		double exp_Y2 = fZoomX2 * myConfig.fTextRatio;
-		double def1 = (fZoomY  > exp_Y1 ? fZoomY  / exp_Y1 : exp_Y1 / fZoomY );  // deformation.
-		double def2 = (fZoomY2 > exp_Y2 ? fZoomY2 / exp_Y2 : exp_Y2 / fZoomY2);
-		if (def1 > def2 * 1.001) myData.iTextLayout = CD_TEXT_LAYOUT_2_LINES;
-		else if (def2 > def1 * 1.001) myData.iTextLayout = CD_TEXT_LAYOUT_1_LINE;
-		else
-		{
-			// 2. check which case shrinks the text more
-			if (fZoomX < fZoomX2) myData.iTextLayout = CD_TEXT_LAYOUT_2_LINES;
-			else myData.iTextLayout = CD_TEXT_LAYOUT_1_LINE;
-		}
-		
-		if (myData.iTextLayout == CD_TEXT_LAYOUT_2_LINES)
-		{
-			g_object_unref (pLayout);
-			pLayout = pLayout2;
-			fZoomX = fZoomX2;
-			fZoomY = fZoomY2;
-			log.width = log2.width;
-			log.height = log2.height;
-		}
-		else g_object_unref (pLayout2);
+    	if (fZoomY * log.height < MIN_TEXT_HEIGHT)
+    	    fZoomY = MIN_TEXT_HEIGHT / log.height;
 	}
 
-	//\______________ We draw the text.
+	// 5. Drawing with Y-offset correction
 	cairo_save (myDrawContext);
 
 	cairo_translate (myDrawContext,
-		(iWidth - fZoomX * log.width)/2,
-		(iHeight - fZoomY * log.height)/2);  // text will be centred.
+    	(iWidth - fZoomX * log.width) / 2.0,
+    	(iHeight - fZoomY * log.height) / 2.0 - (fZoomY * log.y));
+
 	cairo_scale (myDrawContext, fZoomX, fZoomY);
+
 	if (myConfig.iOutlineWidth)
-		_outlined_pango_cairo (myApplet, pLayout);
+    	_outlined_pango_cairo (myApplet, pLayout);
 	pango_cairo_show_layout (myDrawContext, pLayout);
 
-	cairo_restore (myDrawContext);
+	cairo_restore (myDrawContext);	
+
 	g_object_unref (pLayout);
 
 	CD_APPLET_FINISH_DRAWING_MY_ICON_CAIRO;
