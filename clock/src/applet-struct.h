@@ -208,7 +208,8 @@ struct _AppletData {
 	GList *pMissedTasks;
 	
 	GtkWidget *pLocationEntry;
-	DBusGProxy *pProxyResuming;
+	guint uRegSleep; // registration for the org.freedesktop.login1.Manager.PrepareForSleep signal
+	GDBusConnection *pConn; // system DBus connection
 	GTimeZone *tz;
 	} ;
 
