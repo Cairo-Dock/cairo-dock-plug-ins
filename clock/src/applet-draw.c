@@ -45,30 +45,39 @@ static char s_cCmbBuffer[2*CD_CLOCK_DATE_BUFFER_LENGTH+1];
  * the weekday as well. However, what is a good way to represent this information
  * varies by language.
  */
-const char *cd_clock_get_date_format (void)
+
+static const CdClockDateParts *_cd_clock_get_date_parts (void)
 {
-	static const char *cFormat = NULL;
-	
-	if (cFormat) return cFormat;
-	
-	const char *cLocale = setlocale (LC_TIME, NULL); // contrary to the name, this will get the current locale setting
-	
+	static CdClockDateParts parts;
+	static gboolean initialized = FALSE;
+	if (initialized)
+		return &parts;
+	initialized = TRUE;
+
+	const char *cLocale = setlocale (LC_TIME, NULL);// contrary to the name, this will get the current locale setting
 	// Chinese and Japanese: %b and %B are equivalent to %m月, better to specify explicitly, and also use
 	// the 日 character to indicate the day of the month
 	// note: %- is a glibc extension to print a number without padding; it is also supported by musl, see:
 	// https://git.musl-libc.org/cgit/musl/tree/src/time/strftime.c#n235
 	// and the BSD libc implementation: https://man.freebsd.org/cgi/man.cgi?strftime
 	// However, it might cause problems on systems with other libc implementations (e.g. ulibc-ng, newlib, etc.).
-	if (!strncmp (cLocale, "ja", 2))
-		cFormat = "%-m月%e日 (%a)"; // Japanese: one character abbreviation of weekday should be clear
-	else if (!strncmp (cLocale, "zh", 2))
-		cFormat = "%-m月%e日 (%A)"; // Chinese: use the full weekday names, as %a only gives numbers / 日
+
+	if (!strncmp (cLocale, "ja", 2))	// Japanese: one character abbreviation of weekday should be clear
+	{
+		parts.weekday_fmt = "%a";
+		parts.date_fmt = "%-m月%e日";
+		parts.combined_fmt = "%-m月%e日 (%a)";
+	}
+	else if (!strncmp (cLocale, "zh", 2))	// Chinese: use the full weekday names, as %a only gives numbers / 日
+	{
+		parts.weekday_fmt = "%A";
+		parts.date_fmt = "%-m月%e日";
+		parts.combined_fmt = "%-m月%e日 (%A)";
+	}
 	else
 	{
-		// try to determine if months should go before days or otherwise
 		const char *tmp = nl_langinfo (D_FMT);
 		gboolean month_first = FALSE;
-		
 		for (; *tmp; ++tmp) if (*tmp == '%')
 		{
 			gboolean found = FALSE;
@@ -79,7 +88,6 @@ const char *cd_clock_get_date_format (void)
 			while (isdigit (*tmp)) ++tmp;
 			// alternate number selector flag supported by glibc
 			if (*tmp == 'O') ++tmp;
-			
 			switch (*tmp)
 			{
 				case 'b':
@@ -99,70 +107,18 @@ const char *cd_clock_get_date_format (void)
 				default:
 					break;
 			}
-			
 			if (found) break;
 		}
-		
-		cFormat = month_first ? "%b %e (%a)" : "%e %b (%a)";
+		parts.weekday_fmt = "%a";
+		parts.date_fmt = month_first ? "%b %e" : "%e %b";
+		parts.combined_fmt = month_first ? "%b %e (%a)": "%e %b (%a)";
 	}
-	return cFormat;
+	return &parts;
 }
 
-const char *cd_clock_get_weekday_format (void)
+const char *cd_clock_get_date_format (void)
 {
-	const char *cLocale = setlocale (LC_TIME, NULL);
-	if (!strncmp (cLocale, "ja", 2))
-		return "%a";   // one character weekday
-	else if (!strncmp (cLocale, "zh", 2))
-		return "%A";   // full weekday
-	else
-	return "%a";
-}
-
-const char *cd_clock_get_date_without_weekday_format (void)
-{
-	static const char *cFormat = NULL;
-	if (cFormat) return cFormat;
-	const char *cLocale = setlocale (LC_TIME, NULL);
-	if (!strncmp (cLocale, "ja", 2))
-		cFormat = "%-m月%e日";
-	else if (!strncmp (cLocale, "zh", 2))
-		cFormat = "%-m月%e日";
-	else
-	{
-		const char *tmp = nl_langinfo (D_FMT);
-		gboolean month_first = FALSE;
-		for (; *tmp; ++tmp) if (*tmp == '%')
-		{
-			gboolean found = FALSE;
-			++tmp;
-			if (*tmp == '-' || *tmp == '_' || *tmp == '0' || *tmp == '^' || *tmp == '#') ++tmp;
-			while (isdigit (*tmp)) ++tmp;
-			if (*tmp == 'O') ++tmp;
-			switch (*tmp)
-			{
-				case 'b':
-				case 'h':
-				case 'B':
-				case 'm':
-				case 'D':
-					month_first = TRUE;
-					found = TRUE;
-					break;
-				case 'd':
-				case 'e':
-				case 'F':
-				case 0:
-					found = TRUE;
-					break;
-				default:
-					break;
-			}
-			if (found) break;
-        }
-		cFormat = month_first ? "%b %e" : "%e %b";
-	}
-	return cFormat;
+	return _cd_clock_get_date_parts()->combined_fmt;
 }
 
 static void _outlined_pango_cairo (GldiModuleInstance *myApplet, PangoLayout *pLayout)
@@ -240,8 +196,8 @@ void cd_clock_draw_text (GldiModuleInstance *myApplet, int iWidth, int iHeight, 
 
 			// Format each part separately
 			strftime(cTimeBuf, CD_CLOCK_DATE_BUFFER_LENGTH, cTimeFormat, pTime);
-			strftime(cDayBuf, CD_CLOCK_DATE_BUFFER_LENGTH, cd_clock_get_weekday_format(), pTime);
-			strftime(cDateBuf, CD_CLOCK_DATE_BUFFER_LENGTH, cd_clock_get_date_without_weekday_format(), pTime);
+			strftime(cDayBuf, CD_CLOCK_DATE_BUFFER_LENGTH, parts->weekday_fmt, pTime);
+			strftime(cDateBuf, CD_CLOCK_DATE_BUFFER_LENGTH, parts->date_fmt, pTime);
 
 			// Combine them using Pango Markup
 			// we make the time 1.2x bigger than the rest
