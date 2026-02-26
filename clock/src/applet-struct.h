@@ -213,11 +213,5 @@ struct _AppletData {
 	GTimeZone *tz;
 	} ;
 
-typedef struct{
-	const char *weekday_fmt;
-	const char *date_fmt;
-	const char *combined_fmt;
-} CdClockDateParts;
-
 #endif
 

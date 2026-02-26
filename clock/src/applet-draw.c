@@ -46,6 +46,12 @@ static char s_cCmbBuffer[2*CD_CLOCK_DATE_BUFFER_LENGTH+1];
  * varies by language.
  */
 
+typedef struct{
+	const char *weekday_fmt;
+	const char *date_fmt;
+	const char *combined_fmt;
+} CdClockDateParts;
+
 static const CdClockDateParts *_cd_clock_get_date_parts (void)
 {
 	static CdClockDateParts parts;
@@ -190,6 +196,7 @@ void cd_clock_draw_text (GldiModuleInstance *myApplet, int iWidth, int iHeight, 
 		}
 		else if (myData.iTextLayout == CD_TEXT_LAYOUT_3_LINES)
 		{
+			const CdClockDateParts *parts = _cd_clock_get_date_parts();
 			char cTimeBuf[CD_CLOCK_DATE_BUFFER_LENGTH];
 			char cDayBuf[CD_CLOCK_DATE_BUFFER_LENGTH];
 			char cDateBuf[CD_CLOCK_DATE_BUFFER_LENGTH];
