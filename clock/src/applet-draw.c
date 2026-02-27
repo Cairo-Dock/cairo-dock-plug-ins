@@ -45,30 +45,45 @@ static char s_cCmbBuffer[2*CD_CLOCK_DATE_BUFFER_LENGTH+1];
  * the weekday as well. However, what is a good way to represent this information
  * varies by language.
  */
-const char *cd_clock_get_date_format (void)
+
+typedef struct{
+	const char *weekday_fmt;
+	const char *date_fmt;
+	const char *combined_fmt;
+} CdClockDateParts;
+
+static const CdClockDateParts *_cd_clock_get_date_parts (void)
 {
-	static const char *cFormat = NULL;
-	
-	if (cFormat) return cFormat;
-	
-	const char *cLocale = setlocale (LC_TIME, NULL); // contrary to the name, this will get the current locale setting
-	
+	static CdClockDateParts parts;
+	static gboolean initialized = FALSE;
+	if (initialized)
+		return &parts;
+	initialized = TRUE;
+
+	const char *cLocale = setlocale (LC_TIME, NULL);// contrary to the name, this will get the current locale setting
 	// Chinese and Japanese: %b and %B are equivalent to %m月, better to specify explicitly, and also use
 	// the 日 character to indicate the day of the month
 	// note: %- is a glibc extension to print a number without padding; it is also supported by musl, see:
 	// https://git.musl-libc.org/cgit/musl/tree/src/time/strftime.c#n235
 	// and the BSD libc implementation: https://man.freebsd.org/cgi/man.cgi?strftime
 	// However, it might cause problems on systems with other libc implementations (e.g. ulibc-ng, newlib, etc.).
-	if (!strncmp (cLocale, "ja", 2))
-		cFormat = "%-m月%e日 (%a)"; // Japanese: one character abbreviation of weekday should be clear
-	else if (!strncmp (cLocale, "zh", 2))
-		cFormat = "%-m月%e日 (%A)"; // Chinese: use the full weekday names, as %a only gives numbers / 日
+
+	if (!strncmp (cLocale, "ja", 2))	// Japanese: one character abbreviation of weekday should be clear
+	{
+		parts.weekday_fmt = "%a";
+		parts.date_fmt = "%-m月%e日";
+		parts.combined_fmt = "%-m月%e日 (%a)";
+	}
+	else if (!strncmp (cLocale, "zh", 2))	// Chinese: use the full weekday names, as %a only gives numbers / 日
+	{
+		parts.weekday_fmt = "%A";
+		parts.date_fmt = "%-m月%e日";
+		parts.combined_fmt = "%-m月%e日 (%A)";
+	}
 	else
 	{
-		// try to determine if months should go before days or otherwise
 		const char *tmp = nl_langinfo (D_FMT);
 		gboolean month_first = FALSE;
-		
 		for (; *tmp; ++tmp) if (*tmp == '%')
 		{
 			gboolean found = FALSE;
@@ -79,7 +94,6 @@ const char *cd_clock_get_date_format (void)
 			while (isdigit (*tmp)) ++tmp;
 			// alternate number selector flag supported by glibc
 			if (*tmp == 'O') ++tmp;
-			
 			switch (*tmp)
 			{
 				case 'b':
@@ -99,13 +113,18 @@ const char *cd_clock_get_date_format (void)
 				default:
 					break;
 			}
-			
 			if (found) break;
 		}
-		
-		cFormat = month_first ? "%b %e (%a)" : "%e %b (%a)";
+		parts.weekday_fmt = "%a";
+		parts.date_fmt = month_first ? "%b %e" : "%e %b";
+		parts.combined_fmt = month_first ? "%b %e (%a)": "%e %b (%a)";
 	}
-	return cFormat;
+	return &parts;
+}
+
+const char *cd_clock_get_date_format (void)
+{
+	return _cd_clock_get_date_parts()->combined_fmt;
 }
 
 static void _outlined_pango_cairo (GldiModuleInstance *myApplet, PangoLayout *pLayout)
@@ -175,6 +194,24 @@ void cd_clock_draw_text (GldiModuleInstance *myApplet, int iWidth, int iHeight, 
 			++off;
 			strftime (s_cCmbBuffer + off, 2 * CD_CLOCK_DATE_BUFFER_LENGTH + 1 - off, cDateFormat, pTime);
 		}
+		else if (myData.iTextLayout == CD_TEXT_LAYOUT_3_LINES)
+		{
+			const CdClockDateParts *parts = _cd_clock_get_date_parts();
+			char cTimeBuf[CD_CLOCK_DATE_BUFFER_LENGTH];
+			char cDayBuf[CD_CLOCK_DATE_BUFFER_LENGTH];
+			char cDateBuf[CD_CLOCK_DATE_BUFFER_LENGTH];
+
+			// Format each part separately
+			strftime(cTimeBuf, CD_CLOCK_DATE_BUFFER_LENGTH, cTimeFormat, pTime);
+			strftime(cDayBuf, CD_CLOCK_DATE_BUFFER_LENGTH, parts->weekday_fmt, pTime);
+			strftime(cDateBuf, CD_CLOCK_DATE_BUFFER_LENGTH, parts->date_fmt, pTime);
+
+			// Combine them using Pango Markup
+			// we make the time 1.2x bigger than the rest
+			snprintf(s_cCmbBuffer, 2 * CD_CLOCK_DATE_BUFFER_LENGTH + 1, 
+					"<span size='125%%' weight='bold'>%s</span>\n%s\n%s", 
+					cTimeBuf, cDayBuf, cDateBuf);
+		}
 		else
 		{
 			// one line layout, date goes first
@@ -194,7 +231,7 @@ void cd_clock_draw_text (GldiModuleInstance *myApplet, int iWidth, int iHeight, 
 	pango_layout_set_font_description (pLayout, pDesc);
 	pango_layout_set_alignment (pLayout, PANGO_ALIGN_CENTER);
 
-	pango_layout_set_text (pLayout, s_cCmbBuffer, -1);
+	pango_layout_set_markup (pLayout, s_cCmbBuffer, -1);
 	PangoRectangle log;
 	pango_layout_get_pixel_extents (pLayout, NULL, &log);
 	if (myConfig.iOutlineWidth)

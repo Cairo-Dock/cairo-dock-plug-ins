@@ -137,7 +137,8 @@ typedef enum _CDClockTextLayout
 {
 	CD_TEXT_LAYOUT_AUTO = 0,
 	CD_TEXT_LAYOUT_1_LINE,
-	CD_TEXT_LAYOUT_2_LINES
+	CD_TEXT_LAYOUT_2_LINES,
+	CD_TEXT_LAYOUT_3_LINES
 } CDClockTextLayout;
 
 struct _AppletConfig {
