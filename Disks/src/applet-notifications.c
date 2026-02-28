@@ -78,34 +78,3 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	//~ }
 CD_APPLET_ON_BUILD_MENU_END
 
-/*
-CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-	
-	//~ if (myData.dbus_proxy_nm == NULL)
-		//~ myData.dbus_proxy_nm = cairo_dock_create_new_system_proxy (
-			//~ "org.freedesktop.NetworkManager",
-			//~ "/org/freedesktop/NetworkManager",
-			//~ "org.freedesktop.NetworkManager");
-	//~ g_return_val_if_fail (myData.dbus_proxy_nm != NULL, GLDI_NOTIFICATION_LET_PASS);
-	//~ 
-	//~ guint state = 0;
-	//~ dbus_g_proxy_call (myData.dbus_proxy_nm, "state", NULL,
-		//~ G_TYPE_INVALID,
-		//~ G_TYPE_UINT, &state,
-		//~ G_TYPE_INVALID);
-	//~ cd_debug ("current network state : %d", state);
-	//~ if (state == 3)  // actif
-	//~ {
-		//~ dbus_g_proxy_call_no_reply (myData.dbus_proxy_nm, "sleep",
-			//~ G_TYPE_INVALID,
-			//~ G_TYPE_INVALID);
-	//~ }
-	//~ else if (state == 1)  // inactif
-	//~ {
-		//~ dbus_g_proxy_call_no_reply (myData.dbus_proxy_nm, "wake",
-			//~ G_TYPE_INVALID,
-			//~ G_TYPE_INVALID);
-	//~ }
-	
-CD_APPLET_ON_MIDDLE_CLICK_END
-*/
