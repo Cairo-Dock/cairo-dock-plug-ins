@@ -339,7 +339,7 @@ msgstr "顯示視窗元件圖層"
 
 #: ../Dbus/src/applet-init.c:36
 msgid ""
-"This plug-in lets extern applications interact on the dock.\n"
+"This plug-in lets external applications interact on the dock.\n"
 "The communication between both sides is based on Dbus"
 msgstr ""
 "此插件能讓外部應用程式與 Dock 互動。\n"
@@ -5385,7 +5385,7 @@ msgid "Let external applications show/hide docks?"
 msgstr "讓外部的應用程式可以 顯示/隱藏 Dock？"
 
 #: ../Dbus/data/messages:15
-msgid "Let extern applications add launchers to the docks?"
+msgid "Let external applications add launchers to the docks?"
 msgstr "讓外部的應用程式可以增加快速啟動到 Dock 上？"
 
 #: ../Dbus/data/messages:17
@@ -5393,15 +5393,15 @@ msgid "Let external applications modify the labels of icons?"
 msgstr "讓外部的應用程式可以修改圖示的標籤名稱？"
 
 #: ../Dbus/data/messages:19
-msgid "Let extern applications modify the quick-infos on icons?"
+msgid "Let external applications modify the quick-infos on icons?"
 msgstr "讓外部的應用程式可以修改圖示的快速資訊？"
 
 #: ../Dbus/data/messages:21
-msgid "Let extern applications modify the icons' image?"
+msgid "Let external applications modify the icons' image?"
 msgstr "讓外部的應用程式可以修改圖示的圖形？"
 
 #: ../Dbus/data/messages:23
-msgid "Let extern applications animate icons?"
+msgid "Let external applications animate icons?"
 msgstr "讓外部的應用程式可以用動畫圖示？"
 
 #: ../Dbus/data/messages:25

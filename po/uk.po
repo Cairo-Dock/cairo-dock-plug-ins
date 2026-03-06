@@ -353,7 +353,7 @@ msgstr "Показати шар віджетів"
 
 #: ../Dbus/src/applet-init.c:36
 msgid ""
-"This plug-in lets extern applications interact on the dock.\n"
+"This plug-in lets external applications interact on the dock.\n"
 "The communication between both sides is based on Dbus"
 msgstr ""
 "Цей додаток дозволяє зовнішнім програмам взаємодіяти з панеллю.\n"
@@ -5592,7 +5592,7 @@ msgid "Let external applications show/hide docks?"
 msgstr "Дозволити стороннім програмам показувати приховувати панелі?"
 
 #: ../Dbus/data/messages:15
-msgid "Let extern applications add launchers to the docks?"
+msgid "Let external applications add launchers to the docks?"
 msgstr "Дозволити стороннім програмам додавати значки на панель?"
 
 #: ../Dbus/data/messages:17
@@ -5600,15 +5600,15 @@ msgid "Let external applications modify the labels of icons?"
 msgstr "Дозволити стороннім програмам змінювати підписи до іконок?"
 
 #: ../Dbus/data/messages:19
-msgid "Let extern applications modify the quick-infos on icons?"
+msgid "Let external applications modify the quick-infos on icons?"
 msgstr "Дозволити стороннім програмам змінювати повідомлення на іконках?"
 
 #: ../Dbus/data/messages:21
-msgid "Let extern applications modify the icons' image?"
+msgid "Let external applications modify the icons' image?"
 msgstr "Дозволити стороннім програмам змінювати зображення іконок?"
 
 #: ../Dbus/data/messages:23
-msgid "Let extern applications animate icons?"
+msgid "Let external applications animate icons?"
 msgstr "Дозволити стороннім програмам анімувати іконки?"
 
 #: ../Dbus/data/messages:25

@@ -351,7 +351,7 @@ msgstr "ສະແດງຊັ້ນວິດເຈັດ"
 
 #: ../Dbus/src/applet-init.c:36
 msgid ""
-"This plug-in lets extern applications interact on the dock.\n"
+"This plug-in lets external applications interact on the dock.\n"
 "The communication between both sides is based on Dbus"
 msgstr ""
 "ປລັກອິນນີ້ອະນຸຍາດໃຫ້ແອັບພລິເຄຊັນພາຍນອກໂຕ້ຕອບເທິງດ໋ອກໄດ້.\n"
@@ -5607,7 +5607,7 @@ msgid "Let external applications show/hide docks?"
 msgstr "ອະນຸຍາດໃຫ້ແອັບພລິເຄຊັນພາຍນອກສະແດງ/ເຊື່ອງດັອກບໍ່?"
 
 #: ../Dbus/data/messages:15
-msgid "Let extern applications add launchers to the docks?"
+msgid "Let external applications add launchers to the docks?"
 msgstr "ອະນຸຍາດໃຫ້ແອັບພລິເຄຊັນພາຍນອກເພີ່ມຕົວເປີດໃສ່ດັອກບໍ່?"
 
 #: ../Dbus/data/messages:17
@@ -5615,15 +5615,15 @@ msgid "Let external applications modify the labels of icons?"
 msgstr "ອະນຸຍາດໃຫ້ແອັບພລິເຄຊັນພາຍນອກແກ້ໄຂປ້າຍຊື່ຂອງໄອຄອນບໍ່?"
 
 #: ../Dbus/data/messages:19
-msgid "Let extern applications modify the quick-infos on icons?"
+msgid "Let external applications modify the quick-infos on icons?"
 msgstr "ອະນຸຍາດໃຫ້ແອັບພລິເຄຊັນພາຍນອກແກ້ໄຂຂໍ້ມູນດ່ວນເທິງໄອຄອນບໍ່?"
 
 #: ../Dbus/data/messages:21
-msgid "Let extern applications modify the icons' image?"
+msgid "Let external applications modify the icons' image?"
 msgstr "ອະນຸຍາດໃຫ້ແອັບພລິເຄຊັນພາຍນອກແກ້ໄຂຮູບພາບຂອງໄອຄອນບໍ່?"
 
 #: ../Dbus/data/messages:23
-msgid "Let extern applications animate icons?"
+msgid "Let external applications animate icons?"
 msgstr "ອະນຸຍາດໃຫ້ແອັບພລິເຄຊັນພາຍນອກເຮັດໃຫ້ໄອຄອນເຄື່ອນໄຫວບໍ່?"
 
 #: ../Dbus/data/messages:25

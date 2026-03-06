@@ -352,7 +352,7 @@ msgstr "Mostra la Sezione Widget"
 
 #: ../Dbus/src/applet-init.c:36
 msgid ""
-"This plug-in lets extern applications interact on the dock.\n"
+"This plug-in lets external applications interact on the dock.\n"
 "The communication between both sides is based on Dbus"
 msgstr ""
 "Questo plugin permette ad applicazioni esterne di interagire con la dock.\n"
@@ -5637,7 +5637,7 @@ msgid "Let external applications show/hide docks?"
 msgstr "Autorizza le applicazioni esterne a mostrare/nascondere le dock?"
 
 #: ../Dbus/data/messages:15
-msgid "Let extern applications add launchers to the docks?"
+msgid "Let external applications add launchers to the docks?"
 msgstr "Le applicazioni esterne possono aggiungere lanciatori nella dock?"
 
 #: ../Dbus/data/messages:17
@@ -5645,15 +5645,15 @@ msgid "Let external applications modify the labels of icons?"
 msgstr "Le applicazioni esterne possono modificare le etichette delle icone?"
 
 #: ../Dbus/data/messages:19
-msgid "Let extern applications modify the quick-infos on icons?"
+msgid "Let external applications modify the quick-infos on icons?"
 msgstr "Le applicazioni esterne possono modificare le info veloci delle icone?"
 
 #: ../Dbus/data/messages:21
-msgid "Let extern applications modify the icons' image?"
+msgid "Let external applications modify the icons' image?"
 msgstr "Le applicazioni esterne possono modificare l'immagine delle icone?"
 
 #: ../Dbus/data/messages:23
-msgid "Let extern applications animate icons?"
+msgid "Let external applications animate icons?"
 msgstr "Le applicazioni esterne possono animare le icone?"
 
 #: ../Dbus/data/messages:25

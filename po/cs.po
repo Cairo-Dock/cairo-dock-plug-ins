@@ -339,7 +339,7 @@ msgstr ""
 
 #: ../Dbus/src/applet-init.c:36
 msgid ""
-"This plug-in lets extern applications interact on the dock.\n"
+"This plug-in lets external applications interact on the dock.\n"
 "The communication between both sides is based on Dbus"
 msgstr ""
 "Tento zásuvný modul umožňuje externím aplikacím integraci do docku.\n"
@@ -5342,7 +5342,7 @@ msgid "Let external applications show/hide docks?"
 msgstr "Povolit externím aplikacím zobrazit/schovat docky ?"
 
 #: ../Dbus/data/messages:15
-msgid "Let extern applications add launchers to the docks?"
+msgid "Let external applications add launchers to the docks?"
 msgstr "Povolit externím aplikacím přidávat spouštěče do docků ?"
 
 #: ../Dbus/data/messages:17
@@ -5350,15 +5350,15 @@ msgid "Let external applications modify the labels of icons?"
 msgstr "Povolit externím aplikacím upravovat označení ikon ?"
 
 #: ../Dbus/data/messages:19
-msgid "Let extern applications modify the quick-infos on icons?"
+msgid "Let external applications modify the quick-infos on icons?"
 msgstr "Povolit externím aplikacím upravovat rychlé-info na ikonách ?"
 
 #: ../Dbus/data/messages:21
-msgid "Let extern applications modify the icons' image?"
+msgid "Let external applications modify the icons' image?"
 msgstr "Povolit externím aplikacím upravovat obrázky ikon ?"
 
 #: ../Dbus/data/messages:23
-msgid "Let extern applications animate icons?"
+msgid "Let external applications animate icons?"
 msgstr "Povolit externím aplikacím animovat ikony ?"
 
 #: ../Dbus/data/messages:25

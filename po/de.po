@@ -361,7 +361,7 @@ msgstr "Die Widget-Schicht zeigen"
 
 #: ../Dbus/src/applet-init.c:36
 msgid ""
-"This plug-in lets extern applications interact on the dock.\n"
+"This plug-in lets external applications interact on the dock.\n"
 "The communication between both sides is based on Dbus"
 msgstr ""
 "Diese Erweiterung lässt eine Interaktion externer Anwendungen mit dem Dock "
@@ -5693,7 +5693,7 @@ msgid "Let external applications show/hide docks?"
 msgstr "Anzeigen oder verstecken der Docks durch externe Anwendungen zulassen?"
 
 #: ../Dbus/data/messages:15
-msgid "Let extern applications add launchers to the docks?"
+msgid "Let external applications add launchers to the docks?"
 msgstr ""
 "Hinzufügen von Startern in das Dock durch externe Anwendungen zulassen?"
 
@@ -5702,16 +5702,16 @@ msgid "Let external applications modify the labels of icons?"
 msgstr "Ändern von Symbolbeschriftungen durch externe Anwendungen zulassen?"
 
 #: ../Dbus/data/messages:19
-msgid "Let extern applications modify the quick-infos on icons?"
+msgid "Let external applications modify the quick-infos on icons?"
 msgstr ""
 "Ändern von Schnellinfos auf Symbolen durch externe Anwendungen zulassen?"
 
 #: ../Dbus/data/messages:21
-msgid "Let extern applications modify the icons' image?"
+msgid "Let external applications modify the icons' image?"
 msgstr "Ändern von Symbolbildern durch externe Anwendungen zulassen?"
 
 #: ../Dbus/data/messages:23
-msgid "Let extern applications animate icons?"
+msgid "Let external applications animate icons?"
 msgstr "Symbolanimationen durch externe Anwendungen zulassen?"
 
 #: ../Dbus/data/messages:25

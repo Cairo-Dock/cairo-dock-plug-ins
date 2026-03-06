@@ -341,7 +341,7 @@ msgstr ""
 
 #: ../Dbus/src/applet-init.c:36
 msgid ""
-"This plug-in lets extern applications interact on the dock.\n"
+"This plug-in lets external applications interact on the dock.\n"
 "The communication between both sides is based on Dbus"
 msgstr ""
 "Tento plug-in umožňuje externým aplikáciam komunikovať s dockom.\n"
@@ -5434,7 +5434,7 @@ msgid "Let external applications show/hide docks?"
 msgstr "Povolit externým aplikáciam zobrazovať/schovávať docky ?"
 
 #: ../Dbus/data/messages:15
-msgid "Let extern applications add launchers to the docks?"
+msgid "Let external applications add launchers to the docks?"
 msgstr "Povolit externým aplikáciam pridávať spúšťače v dockoch ?"
 
 #: ../Dbus/data/messages:17
@@ -5442,15 +5442,15 @@ msgid "Let external applications modify the labels of icons?"
 msgstr "Povolit externým aplikáciam upravovať označenie ikôn ?"
 
 #: ../Dbus/data/messages:19
-msgid "Let extern applications modify the quick-infos on icons?"
+msgid "Let external applications modify the quick-infos on icons?"
 msgstr "Povoliť externým aplikáciam upravovať info na ikonách ?"
 
 #: ../Dbus/data/messages:21
-msgid "Let extern applications modify the icons' image?"
+msgid "Let external applications modify the icons' image?"
 msgstr "Povoliť externým aplikáciam upravovať obrázky ikôn ?"
 
 #: ../Dbus/data/messages:23
-msgid "Let extern applications animate icons?"
+msgid "Let external applications animate icons?"
 msgstr "Povoliť externým aplikáciam animovať ikony ?"
 
 #: ../Dbus/data/messages:25

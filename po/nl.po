@@ -353,7 +353,7 @@ msgstr "De Widget Layer tonen"
 
 #: ../Dbus/src/applet-init.c:36
 msgid ""
-"This plug-in lets extern applications interact on the dock.\n"
+"This plug-in lets external applications interact on the dock.\n"
 "The communication between both sides is based on Dbus"
 msgstr ""
 "Deze plug-in verzorgt de interactie met externe programma´s in het dock.\n"
@@ -5615,7 +5615,7 @@ msgid "Let external applications show/hide docks?"
 msgstr "Mogen externe toepassingen de docks tonen/verbergen ?"
 
 #: ../Dbus/data/messages:15
-msgid "Let extern applications add launchers to the docks?"
+msgid "Let external applications add launchers to the docks?"
 msgstr "Mogen externe toepassingen starters toevoegen aan de docks ?"
 
 #: ../Dbus/data/messages:17
@@ -5623,16 +5623,16 @@ msgid "Let external applications modify the labels of icons?"
 msgstr "Mogen externe toepassingen de labels van de pictogrammen bewerken ?"
 
 #: ../Dbus/data/messages:19
-msgid "Let extern applications modify the quick-infos on icons?"
+msgid "Let external applications modify the quick-infos on icons?"
 msgstr "Mogen externe toepassingen de snel-info van de pictogrammen bewerken ?"
 
 #: ../Dbus/data/messages:21
-msgid "Let extern applications modify the icons' image?"
+msgid "Let external applications modify the icons' image?"
 msgstr ""
 "Mogen externe toepassingen de afbeelding van de pictogrammen bewerken ?"
 
 #: ../Dbus/data/messages:23
-msgid "Let extern applications animate icons?"
+msgid "Let external applications animate icons?"
 msgstr "Mogen externe toepassingen de pictogrammen animeren ?"
 
 #: ../Dbus/data/messages:25
