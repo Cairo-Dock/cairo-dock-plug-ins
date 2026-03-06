@@ -276,17 +276,17 @@ msgstr "Alternar composição LIGADO/DESLIGADO"
 msgid "Toggle composite?"
 msgstr "Alternar composição?"
 
-#: ../Composite-Manager/src/applet-notifications.c:124
+#: ../Composite-Manager/src/applet-notifications.c:125
 #: ../Composite-Manager/data/messages:125
 msgid "Edit Window-Manager settings"
 msgstr "Editar as configurações do Gerenciador de Janelas"
 
-#: ../Composite-Manager/src/applet-notifications.c:124
-#: ../Composite-Manager/src/applet-notifications.c:131
-#: ../Composite-Manager/src/applet-notifications.c:140
-#: ../Composite-Manager/src/applet-notifications.c:149
-#: ../Composite-Manager/src/applet-notifications.c:158
-#: ../Composite-Manager/src/applet-notifications.c:167
+#: ../Composite-Manager/src/applet-notifications.c:125
+#: ../Composite-Manager/src/applet-notifications.c:132
+#: ../Composite-Manager/src/applet-notifications.c:141
+#: ../Composite-Manager/src/applet-notifications.c:150
+#: ../Composite-Manager/src/applet-notifications.c:159
+#: ../Composite-Manager/src/applet-notifications.c:168
 #: ../Folders/src/applet-notifications.c:378
 #: ../GMenu/src/applet-notifications.c:64
 #: ../RSSreader/src/applet-notifications.c:132
@@ -297,7 +297,7 @@ msgstr "Editar as configurações do Gerenciador de Janelas"
 #: ../dustbin/src/applet-notifications.c:149
 #: ../mail/src/cd-mail-applet-notifications.c:153
 #: ../musicPlayer/src/applet-notifications.c:313
-#: ../netspeed/src/applet-notifications.c:105
+#: ../netspeed/src/applet-notifications.c:80
 #: ../quick-browser/src/applet-notifications.c:41
 #: ../shortcuts/src/applet-notifications.c:304
 #: ../shortcuts/src/applet-notifications.c:342
@@ -312,16 +312,16 @@ msgstr "Editar as configurações do Gerenciador de Janelas"
 #: ../switcher/src/applet-notifications.c:324
 #: ../switcher/src/applet-notifications.c:333
 #: ../tomboy/src/tomboy-notifications.c:216
-#: ../wifi/src/applet-notifications.c:88
+#: ../wifi/src/applet-notifications.c:63
 msgid "middle-click"
 msgstr "Clique com o botão do meio"
 
-#: ../Composite-Manager/src/applet-notifications.c:131
+#: ../Composite-Manager/src/applet-notifications.c:132
 #: ../Composite-Manager/data/messages:127
 msgid "Reload Window-Manager"
 msgstr "Recarregar Gerenciador de Janelas"
 
-#: ../Composite-Manager/src/applet-notifications.c:140
+#: ../Composite-Manager/src/applet-notifications.c:141
 #: ../showDesktop/src/applet-notifications.c:181
 #: ../showDesktop/src/applet-notifications.c:183
 #: ../Composite-Manager/data/messages:129 ../showDesktop/data/messages:99
@@ -329,7 +329,7 @@ msgstr "Recarregar Gerenciador de Janelas"
 msgid "Show desktop"
 msgstr "Mostrar área de trabalho"
 
-#: ../Composite-Manager/src/applet-notifications.c:149
+#: ../Composite-Manager/src/applet-notifications.c:150
 #: ../showDesktop/src/applet-notifications.c:193
 #: ../showDesktop/src/applet-notifications.c:195
 #: ../switcher/src/applet-notifications.c:324
@@ -338,19 +338,34 @@ msgstr "Mostrar área de trabalho"
 msgid "Expose all the desktops"
 msgstr "Mostrar todas as Áreas de Trabalho"
 
-#: ../Composite-Manager/src/applet-notifications.c:158
+#: ../Composite-Manager/src/applet-notifications.c:159
 #: ../switcher/src/applet-notifications.c:333
 #: ../Composite-Manager/data/messages:133 ../switcher/data/messages:143
 msgid "Expose all the windows"
 msgstr "Mostrar todas as janelas"
 
-#: ../Composite-Manager/src/applet-notifications.c:167
+#: ../Composite-Manager/src/applet-notifications.c:168
 #: ../showDesktop/src/applet-notifications.c:205
 #: ../showDesktop/src/applet-notifications.c:207
 #: ../Composite-Manager/data/messages:135 ../showDesktop/data/messages:105
 #: ../showDesktop/data/messages:119
 msgid "Show the Widget Layer"
 msgstr "Mostrar a camada do Widget"
+
+#: ../Dbus/src/applet-dbus.c:133
+msgid ""
+"This plug-in requires DBus, but the DBus name 'org.cairodock.CairoDock' is "
+"unavailable.\n"
+"Please check that you have a session bus and that no other instance of Cairo-"
+"Dock is running."
+msgstr ""
+
+#: ../Dbus/src/applet-dbus.c:577
+msgid ""
+"Could not register the 'org.cairodock.CairoDock' DBus name.\n"
+"Please check that you have a session bus and that no other instance of Cairo-"
+"Dock is running."
+msgstr ""
 
 #: ../Dbus/src/applet-init.c:36
 msgid ""
@@ -360,24 +375,24 @@ msgstr ""
 "Este plugin deixa que aplicativos externos interajam com o dock.\n"
 "A comunicação entre ambos os lados é baseada no Dbus"
 
-#: ../Dbus/src/interface-applet-signals.c:433
-#: ../Dbus/src/interface-applet-signals.c:464
+#: ../Dbus/src/interface-applet-signals.c:200
+#: ../Dbus/src/interface-applet-signals.c:231
 msgid "Sorry, this module couldn't be added."
 msgstr "Desculpe, este módulo não pode ser adicionado."
 
-#: ../Dbus/src/interface-applet-signals.c:468
-#: ../Dbus/src/interface-applet-signals.c:474
+#: ../Dbus/src/interface-applet-signals.c:235
+#: ../Dbus/src/interface-applet-signals.c:241
 msgid "The module has been added, but couldn't be launched."
 msgstr "O módulo foi adicionado, mas não pode ser executado."
 
-#: ../Dbus/src/interface-applet-signals.c:477
+#: ../Dbus/src/interface-applet-signals.c:244
 #, c-format
 msgid "The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 "O mini-aplicativo '%s' foi atualizado com sucesso e automaticamente "
 "recarregado"
 
-#: ../Dbus/src/interface-applet-signals.c:477
+#: ../Dbus/src/interface-applet-signals.c:244
 #, c-format
 msgid ""
 "The applet '%s' has been succefully installed and automatically launched"
@@ -872,22 +887,22 @@ msgid ""
 "Please check that '%s' is correctly installed and its daemon is running."
 msgstr ""
 
-#: ../Messaging-Menu/src/applet-init.c:34
+#: ../Messaging-Menu/src/applet-init.c:29
 msgid "Messaging Menu"
 msgstr "Menu de Mensagens"
 
-#: ../Messaging-Menu/src/applet-init.c:37
+#: ../Messaging-Menu/src/applet-init.c:32
 msgid ""
 "A menu that notices you about new messages from Mail or Chat applications.\n"
 "It handles Evolution, Pidgin, Empathy, etc\n"
 "It requires the Messaging service, which is available on Ubuntu by default."
 msgstr ""
 
-#: ../Messaging-Menu/src/applet-init.c:106
+#: ../Messaging-Menu/src/applet-init.c:88
 msgid "Show/hide the Messaging menu"
 msgstr "Mostrar/esconder o menu Mensagens"
 
-#: ../Messaging-Menu/src/applet-notifications.c:78
+#: ../Messaging-Menu/src/applet-notifications.c:70
 msgid ""
 "The Messaging service did not reply.\n"
 "Please check that it is correctly installed."
@@ -993,12 +1008,12 @@ msgid "Loading"
 msgstr "Carregando"
 
 #: ../Network-Monitor/src/applet-notifications.c:81
-#: ../wifi/src/applet-notifications.c:85
+#: ../wifi/src/applet-notifications.c:60
 msgid "Check for Wireless Extension"
 msgstr "Verificar por extensão Sem fio"
 
 #: ../Network-Monitor/src/applet-notifications.c:82
-#: ../wifi/src/applet-notifications.c:92
+#: ../wifi/src/applet-notifications.c:67
 msgid "Network Administration"
 msgstr "Administração de rede"
 
@@ -1522,7 +1537,7 @@ msgstr ""
 "Você deve remover o dado que não pode ser trazido."
 
 #: ../System-Monitor/src/applet-notifications.c:109
-#: ../netspeed/src/applet-notifications.c:109
+#: ../netspeed/src/applet-notifications.c:84
 msgid "Open the System-Monitor"
 msgstr "Abrir o Monitor do Sistema"
 
@@ -1770,7 +1785,7 @@ msgstr "Editar tarefas"
 msgid "Calendar and tasks"
 msgstr "Calendário e tarefas"
 
-#: ../clock/src/applet-config.c:36 ../clock/data/messages:187
+#: ../clock/src/applet-config.c:36 ../clock/data/messages:189
 msgid "Alarm"
 msgstr "Alarme"
 
@@ -2420,6 +2435,14 @@ msgstr " arquivo(s)"
 msgid "calculating"
 msgstr "calculando"
 
+#: ../gnome-integration/src/applet-init.c:46
+msgid "Not running in a GNOME or Cinnamon session."
+msgstr ""
+
+#: ../gnome-integration/src/applet-utils.c:243
+msgid "Cannot connect to the GNOME or Cinnamon session manager via DBus."
+msgstr ""
+
 #: ../icon-effect/src/applet-init.c:34
 msgid "icon effects"
 msgstr "Efeitos dos ícones"
@@ -2475,6 +2498,13 @@ msgid ""
 msgstr ""
 "Este plugin provê animações para o aparecimento e desaparecimento dos ícones."
 
+#: ../kde-integration/src/applet-init.c:30
+msgid ""
+"This applet provides functions for a better integration into a KDE "
+"environnement.\n"
+"It is auto-activated, so you don't need to activate it.\n"
+msgstr ""
+
 #: ../keyboard-indicator/src/applet-init.c:32
 msgid "keyboard indicator"
 msgstr "Indicador do teclado"
@@ -2511,7 +2541,7 @@ msgid ""
 "You can bind a <b>shortcut</b> to it, and also to lock the screen."
 msgstr ""
 
-#: ../logout/src/applet-init.c:40 ../logout/src/applet-logout.c:380
+#: ../logout/src/applet-init.c:40 ../logout/src/applet-logout.c:136
 #: ../logout/data/messages:95
 msgid "Log out"
 msgstr "Encerrar sessão"
@@ -2524,94 +2554,77 @@ msgstr "Bloquear a tela"
 msgid "Show the log-out menu"
 msgstr "Mostrar o menu deslogar"
 
-#: ../logout/src/applet-logout.c:343 ../logout/data/messages:97
+#: ../logout/src/applet-logout.c:99 ../logout/data/messages:97
 msgid "Shut down"
 msgstr "Desligar"
 
-#: ../logout/src/applet-logout.c:350
+#: ../logout/src/applet-logout.c:106
 msgid "Restart"
 msgstr "Reiniciar"
 
-#: ../logout/src/applet-logout.c:356
+#: ../logout/src/applet-logout.c:112
 msgid "Hibernate"
 msgstr "Hibernar"
 
-#: ../logout/src/applet-logout.c:358
+#: ../logout/src/applet-logout.c:114
 msgid "Your computer will not consume any energy."
 msgstr "Seu computador não consumirá mais energia."
 
-#: ../logout/src/applet-logout.c:364
+#: ../logout/src/applet-logout.c:120
 msgid "Hybrid Sleep"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:366
+#: ../logout/src/applet-logout.c:122
 msgid ""
 "Your computer will still consume a small amount of energy but after some "
 "time, the computer will suspend to disk and not consume any energy."
 msgstr ""
 
-#: ../logout/src/applet-logout.c:371
+#: ../logout/src/applet-logout.c:127
 msgid "Suspend"
 msgstr "Suspender"
 
-#: ../logout/src/applet-logout.c:373
+#: ../logout/src/applet-logout.c:129
 msgid "Your computer will still consume a small amount of energy."
 msgstr "Seu computador ainda consumirá um pouco de energia."
 
-#: ../logout/src/applet-logout.c:382
+#: ../logout/src/applet-logout.c:138
 msgid "Close your session and allow to open a new one."
 msgstr "Feche sua sessão e permite abrir uma nova."
 
-#: ../logout/src/applet-logout.c:396
+#: ../logout/src/applet-logout.c:165 ../logout/src/applet-logout.c:195
 msgid "Switch user"
 msgstr "Alternar usuário"
 
-#: ../logout/src/applet-logout.c:417
-msgid "Guest session"
-msgstr "Sessão de convidado"
+#: ../logout/src/applet-logout.c:186
+msgid "New session"
+msgstr ""
 
-#: ../logout/src/applet-logout.c:424 ../logout/data/messages:99
+#: ../logout/src/applet-logout.c:188 ../logout/src/applet-logout.c:197
+msgid "Switch to the login screen where you can start a new session."
+msgstr ""
+
+#: ../logout/src/applet-logout.c:204 ../logout/data/messages:99
 msgid "Lock screen"
 msgstr "Bloquear tela"
 
-#: ../logout/src/applet-logout.c:429
+#: ../logout/src/applet-logout.c:212
 msgid "Program an automatic shut-down"
 msgstr "Programar um desligamento automático"
 
-#: ../logout/src/applet-logout.c:500
-msgid "Logind has returned this error:"
-msgstr ""
-
-#: ../logout/src/applet-logout.c:502
-msgid ""
-"Please check that you can do this action\n"
-"(e.g. you can't power the computer off if another session is active)"
-msgstr ""
-
-#: ../logout/src/applet-logout.c:575
-#, c-format
-msgid "It will automatically shut-down in %ds"
-msgstr "desligará automaticamente em  %ds"
-
-#: ../logout/src/applet-logout.c:576
-msgid "Shut down the computer?"
-msgstr "Desligar o computador?"
-
-#: ../logout/src/applet-logout.c:581
-msgid ""
-"It seems your system is being updated!\n"
-"Please be sure that you can shut down your computer right now."
-msgstr ""
-
-#: ../logout/src/applet-logout.c:668
-msgid "Restart the computer?"
-msgstr "Reiniciar o computador?"
-
-#: ../logout/src/applet-logout.c:721
+#: ../logout/src/applet-logout.c:282
 msgid "Close the current session?"
 msgstr "Fechar a sessão atual?"
 
-#: ../logout/src/applet-notifications.c:103
+#: ../logout/src/applet-logout.c:285
+msgid "Restart the computer?"
+msgstr "Reiniciar o computador?"
+
+#: ../logout/src/applet-logout.c:289
+msgid "Shut down the computer?"
+msgstr "Desligar o computador?"
+
+#: ../logout/src/applet-notifications.c:73
 msgid "Manage users"
 msgstr "Gerenciar usuários"
 
@@ -3019,11 +3032,11 @@ msgid ""
 "Do you want to do it now?"
 msgstr ""
 
-#: ../netspeed/src/applet-notifications.c:105
+#: ../netspeed/src/applet-notifications.c:80
 msgid "Enable/disable network"
 msgstr "Habilitar/Desabilitar rede"
 
-#: ../netspeed/src/applet-notifications.c:113
+#: ../netspeed/src/applet-notifications.c:88
 msgid "Re-check interface"
 msgstr "Verificar novamente a interface"
 
@@ -3576,11 +3589,11 @@ msgstr ""
 msgid "Notification Area Old"
 msgstr "Área de Notificação Antiga"
 
-#: ../systray/src/systray-init.c:65
+#: ../systray/src/systray-init.c:63
 msgid "Show/hide the systray"
 msgstr "Mostrar/esconder a Bandeja do Sistema"
 
-#: ../systray/src/systray-interface.c:74
+#: ../systray/src/systray-interface.c:47
 msgid ""
 "Another systray is already running (probably on your panel)\n"
 "Since there can only be one systray at once, you should remove it to avoid "
@@ -3927,14 +3940,9 @@ msgstr ""
 msgid "Wifi"
 msgstr "Wi-fi"
 
-#: ../wifi/src/applet-notifications.c:88
+#: ../wifi/src/applet-notifications.c:63
 msgid "Toggle wifi ON/OFF"
 msgstr "Ligar/Desligar Wifi"
-
-#: ../gvfs-integration/cairo-dock-gio-vfs.c:328
-#: ../gvfs-integration/cairo-dock-gio-vfs.c:513
-msgid "File System"
-msgstr "Sistema de Arquivos"
 
 #: ../Animated-icons/data/messages:1 ../icon-effect/data/messages:1
 #: ../illusion/data/messages:1
@@ -4970,7 +4978,7 @@ msgstr ""
 #: ../Status-Notifier/data/messages:75 ../System-Monitor/data/messages:71
 #: ../Toons/data/messages:71 ../Xgamma/data/messages:65
 #: ../alsaMixer/data/messages:71 ../clock/data/messages:73
-#: ../clock/data/messages:179 ../dnd2share/data/messages:59
+#: ../clock/data/messages:181 ../dnd2share/data/messages:59
 #: ../dustbin/data/messages:61 ../keyboard-indicator/data/messages:71
 #: ../keyboard-indicator/data/messages:135 ../logout/data/messages:63
 #: ../mail/data/messages:71 ../musicPlayer/data/messages:73
@@ -5488,32 +5496,34 @@ msgid "Shortkey to toggle the composite ON/OFF:"
 msgstr "Atalho para ligar/desligar a composição"
 
 #: ../Dbus/data/messages:3
+msgid "Let external applications add or remove items in the dock?"
+msgstr ""
+
+#: ../Dbus/data/messages:5
+msgid ""
+"Let external applications get information about the current items in the "
+"dock?"
+msgstr ""
+
+#: ../Dbus/data/messages:7
 msgid "Let external applications pop up dialogs in the dock?"
 msgstr "Permitir que aplicações externas incluam diálogos pop-up nos docks?"
 
-#: ../Dbus/data/messages:5
+#: ../Dbus/data/messages:9
 msgid "Let external applications reboot the dock?"
 msgstr "Permitir que aplicações externas reiniciem os docks?"
 
-#: ../Dbus/data/messages:7
+#: ../Dbus/data/messages:11
 msgid "Let external applications quit the dock?"
 msgstr "Permitir que aplicações externas fechem os docks?"
 
-#: ../Dbus/data/messages:9
+#: ../Dbus/data/messages:13
 msgid "Let external applications show/hide desklets?"
 msgstr "Permitir que aplicações externas mostrem/ocultem os desklets?"
 
-#: ../Dbus/data/messages:11
-msgid "Let external applications reload applets?"
-msgstr "Permitir que aplicações externas recarreguem os applets?"
-
-#: ../Dbus/data/messages:13
+#: ../Dbus/data/messages:15
 msgid "Let external applications show/hide docks?"
 msgstr "Permitir que aplicações externas mostrem/ocultem os docks?"
-
-#: ../Dbus/data/messages:15
-msgid "Let external applications add launchers to the docks?"
-msgstr "Permitir que aplicações externas adicionem lançadores nos docks?"
 
 #: ../Dbus/data/messages:17
 msgid "Let external applications modify the labels of icons?"
@@ -5526,18 +5536,26 @@ msgstr ""
 "ícones?"
 
 #: ../Dbus/data/messages:21
+msgid "Let external applications set custom menus on icons?"
+msgstr ""
+
+#: ../Dbus/data/messages:23
+msgid "Let external applications modify the progress indicator on icons?"
+msgstr ""
+
+#: ../Dbus/data/messages:25
 msgid "Let external applications modify the icons' image?"
 msgstr "Permitir que aplicações externas modifiquem as imagens dos ícnones?"
 
-#: ../Dbus/data/messages:23
+#: ../Dbus/data/messages:27
 msgid "Let external applications animate icons?"
 msgstr "Permitir que aplicações externas animem os ícones?"
 
-#: ../Dbus/data/messages:25
+#: ../Dbus/data/messages:29
 msgid "The dock will catch DBus signals to Launcher API and act as Unity"
 msgstr ""
 
-#: ../Dbus/data/messages:27
+#: ../Dbus/data/messages:31
 msgid "Launch the Launcher API daemon?"
 msgstr ""
 
@@ -7167,29 +7185,33 @@ msgid "On 2 lines"
 msgstr "Em 2 linhas"
 
 #: ../clock/data/messages:177
+msgid "On 3 lines"
+msgstr ""
+
+#: ../clock/data/messages:179
 msgid "Ratio to apply on text :"
 msgstr "Relação a aplicar-se no texto:"
 
-#: ../clock/data/messages:181
+#: ../clock/data/messages:183
 msgid "Configure time and date"
 msgstr "Configuração de data e hora"
 
-#: ../clock/data/messages:183 ../logout/data/messages:121
+#: ../clock/data/messages:185 ../logout/data/messages:121
 #: ../logout/data/messages:133
 msgid "Leave empty to execute the default command."
 msgstr "Deixe vazio para executar o comando padrão."
 
-#: ../clock/data/messages:185
+#: ../clock/data/messages:187
 msgid "Specific command to run:"
 msgstr "Especifique o comando para executar:"
 
-#: ../clock/data/messages:189
+#: ../clock/data/messages:191
 msgid ""
 "The new alarm will be added to the end / the last alarm will be removed."
 msgstr ""
 "O novo alarme será adicionado ao final / o último alarme será removido."
 
-#: ../clock/data/messages:191
+#: ../clock/data/messages:193
 msgid "Add or remove an alarm:"
 msgstr "Adicionar ou remover um alarme:"
 
@@ -9180,6 +9202,19 @@ msgid "Alternative command line to launch Wireless Configuration :"
 msgstr ""
 "Alternativa para iniciar um linha de comando de configuração sem fio "
 "(wireless):"
+
+#, c-format
+#~ msgid "It will automatically shut-down in %ds"
+#~ msgstr "desligará automaticamente em  %ds"
+
+#~ msgid "File System"
+#~ msgstr "Sistema de Arquivos"
+
+#~ msgid "Let external applications reload applets?"
+#~ msgstr "Permitir que aplicações externas recarreguem os applets?"
+
+#~ msgid "Let external applications add launchers to the docks?"
+#~ msgstr "Permitir que aplicações externas adicionem lançadores nos docks?"
 
 #~ msgid "Me Menu"
 #~ msgstr "Me Menu"
