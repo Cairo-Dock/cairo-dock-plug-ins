@@ -33,7 +33,7 @@ static void cd_dbus_save_my_data (GldiModuleInstance *myApplet);
 CD_APPLET_DEFINE2_BEGIN ("Dbus",
 	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_APPLET_SYSTEM,
-	N_("This plug-in lets extern applications interact on the dock.\n"
+	N_("This plug-in lets external applications interact on the dock.\n"
 	"The communication between both sides is based on Dbus"),
 	"Necropotame & Fabounet")
 	pInterface->initModule = CD_APPLET_INIT_FUNC;  // no stop method -> the plug-in will be auto-loaded.

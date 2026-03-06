@@ -277,17 +277,17 @@ msgstr "Växla sammansättning PÅ/AV"
 msgid "Toggle composite?"
 msgstr "Växla sammansatt grafik?"
 
-#: ../Composite-Manager/src/applet-notifications.c:124
+#: ../Composite-Manager/src/applet-notifications.c:125
 #: ../Composite-Manager/data/messages:125
 msgid "Edit Window-Manager settings"
 msgstr "Redigera inställningar för fönsterhanteraren"
 
-#: ../Composite-Manager/src/applet-notifications.c:124
-#: ../Composite-Manager/src/applet-notifications.c:131
-#: ../Composite-Manager/src/applet-notifications.c:140
-#: ../Composite-Manager/src/applet-notifications.c:149
-#: ../Composite-Manager/src/applet-notifications.c:158
-#: ../Composite-Manager/src/applet-notifications.c:167
+#: ../Composite-Manager/src/applet-notifications.c:125
+#: ../Composite-Manager/src/applet-notifications.c:132
+#: ../Composite-Manager/src/applet-notifications.c:141
+#: ../Composite-Manager/src/applet-notifications.c:150
+#: ../Composite-Manager/src/applet-notifications.c:159
+#: ../Composite-Manager/src/applet-notifications.c:168
 #: ../Folders/src/applet-notifications.c:378
 #: ../GMenu/src/applet-notifications.c:64
 #: ../RSSreader/src/applet-notifications.c:132
@@ -298,7 +298,7 @@ msgstr "Redigera inställningar för fönsterhanteraren"
 #: ../dustbin/src/applet-notifications.c:149
 #: ../mail/src/cd-mail-applet-notifications.c:153
 #: ../musicPlayer/src/applet-notifications.c:313
-#: ../netspeed/src/applet-notifications.c:105
+#: ../netspeed/src/applet-notifications.c:80
 #: ../quick-browser/src/applet-notifications.c:41
 #: ../shortcuts/src/applet-notifications.c:304
 #: ../shortcuts/src/applet-notifications.c:342
@@ -313,16 +313,16 @@ msgstr "Redigera inställningar för fönsterhanteraren"
 #: ../switcher/src/applet-notifications.c:324
 #: ../switcher/src/applet-notifications.c:333
 #: ../tomboy/src/tomboy-notifications.c:216
-#: ../wifi/src/applet-notifications.c:88
+#: ../wifi/src/applet-notifications.c:63
 msgid "middle-click"
 msgstr "mittenklick"
 
-#: ../Composite-Manager/src/applet-notifications.c:131
+#: ../Composite-Manager/src/applet-notifications.c:132
 #: ../Composite-Manager/data/messages:127
 msgid "Reload Window-Manager"
 msgstr "Ladda om fönsterhanterare"
 
-#: ../Composite-Manager/src/applet-notifications.c:140
+#: ../Composite-Manager/src/applet-notifications.c:141
 #: ../showDesktop/src/applet-notifications.c:181
 #: ../showDesktop/src/applet-notifications.c:183
 #: ../Composite-Manager/data/messages:129 ../showDesktop/data/messages:99
@@ -330,7 +330,7 @@ msgstr "Ladda om fönsterhanterare"
 msgid "Show desktop"
 msgstr "Visa skrivbordet"
 
-#: ../Composite-Manager/src/applet-notifications.c:149
+#: ../Composite-Manager/src/applet-notifications.c:150
 #: ../showDesktop/src/applet-notifications.c:193
 #: ../showDesktop/src/applet-notifications.c:195
 #: ../switcher/src/applet-notifications.c:324
@@ -339,13 +339,13 @@ msgstr "Visa skrivbordet"
 msgid "Expose all the desktops"
 msgstr "Visa alla skrivbord"
 
-#: ../Composite-Manager/src/applet-notifications.c:158
+#: ../Composite-Manager/src/applet-notifications.c:159
 #: ../switcher/src/applet-notifications.c:333
 #: ../Composite-Manager/data/messages:133 ../switcher/data/messages:143
 msgid "Expose all the windows"
 msgstr "Visa alla fönster"
 
-#: ../Composite-Manager/src/applet-notifications.c:167
+#: ../Composite-Manager/src/applet-notifications.c:168
 #: ../showDesktop/src/applet-notifications.c:205
 #: ../showDesktop/src/applet-notifications.c:207
 #: ../Composite-Manager/data/messages:135 ../showDesktop/data/messages:105
@@ -353,30 +353,45 @@ msgstr "Visa alla fönster"
 msgid "Show the Widget Layer"
 msgstr "Visa Widget-lagret"
 
+#: ../Dbus/src/applet-dbus.c:133
+msgid ""
+"This plug-in requires DBus, but the DBus name 'org.cairodock.CairoDock' is "
+"unavailable.\n"
+"Please check that you have a session bus and that no other instance of Cairo-"
+"Dock is running."
+msgstr ""
+
+#: ../Dbus/src/applet-dbus.c:577
+msgid ""
+"Could not register the 'org.cairodock.CairoDock' DBus name.\n"
+"Please check that you have a session bus and that no other instance of Cairo-"
+"Dock is running."
+msgstr ""
+
 #: ../Dbus/src/applet-init.c:36
 msgid ""
-"This plug-in lets extern applications interact on the dock.\n"
+"This plug-in lets external applications interact on the dock.\n"
 "The communication between both sides is based on Dbus"
 msgstr ""
 "Detta insticksprogram låter externa program interagera på dockan.\n"
 "Kommunikationen mellan båda sidor baseras på Dbus."
 
-#: ../Dbus/src/interface-applet-signals.c:433
-#: ../Dbus/src/interface-applet-signals.c:464
+#: ../Dbus/src/interface-applet-signals.c:200
+#: ../Dbus/src/interface-applet-signals.c:231
 msgid "Sorry, this module couldn't be added."
 msgstr "Tyvärr, denna modul kunde inte läggas till."
 
-#: ../Dbus/src/interface-applet-signals.c:468
-#: ../Dbus/src/interface-applet-signals.c:474
+#: ../Dbus/src/interface-applet-signals.c:235
+#: ../Dbus/src/interface-applet-signals.c:241
 msgid "The module has been added, but couldn't be launched."
 msgstr "Modulen har lagts till, men kunde inte startas."
 
-#: ../Dbus/src/interface-applet-signals.c:477
+#: ../Dbus/src/interface-applet-signals.c:244
 #, c-format
 msgid "The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "Applet '%s' har uppdaterats och lästs om automatiskt."
 
-#: ../Dbus/src/interface-applet-signals.c:477
+#: ../Dbus/src/interface-applet-signals.c:244
 #, c-format
 msgid ""
 "The applet '%s' has been succefully installed and automatically launched"
@@ -909,11 +924,11 @@ msgstr ""
 "Denna indikatortjänst svarade inte.\n"
 "Kontrollera att '%s' är korrekt installerat och att dess demon körs."
 
-#: ../Messaging-Menu/src/applet-init.c:34
+#: ../Messaging-Menu/src/applet-init.c:29
 msgid "Messaging Menu"
 msgstr "Meddelandemeny"
 
-#: ../Messaging-Menu/src/applet-init.c:37
+#: ../Messaging-Menu/src/applet-init.c:32
 msgid ""
 "A menu that notices you about new messages from Mail or Chat applications.\n"
 "It handles Evolution, Pidgin, Empathy, etc\n"
@@ -924,11 +939,11 @@ msgstr ""
 "Den hanterar Evolution, Pidgin, Empathy, etc+n\n"
 "Den kräver Meddelandetjänsten, som är tillgänglig i Ubuntu som standard."
 
-#: ../Messaging-Menu/src/applet-init.c:106
+#: ../Messaging-Menu/src/applet-init.c:88
 msgid "Show/hide the Messaging menu"
 msgstr "Visa/dölj Meddelandemenyn"
 
-#: ../Messaging-Menu/src/applet-notifications.c:78
+#: ../Messaging-Menu/src/applet-notifications.c:70
 msgid ""
 "The Messaging service did not reply.\n"
 "Please check that it is correctly installed."
@@ -1034,12 +1049,12 @@ msgid "Loading"
 msgstr "Läser in"
 
 #: ../Network-Monitor/src/applet-notifications.c:81
-#: ../wifi/src/applet-notifications.c:85
+#: ../wifi/src/applet-notifications.c:60
 msgid "Check for Wireless Extension"
 msgstr "Leta efter trådlösa nätverk"
 
 #: ../Network-Monitor/src/applet-notifications.c:82
-#: ../wifi/src/applet-notifications.c:92
+#: ../wifi/src/applet-notifications.c:67
 msgid "Network Administration"
 msgstr "Nätverksadministration"
 
@@ -1584,7 +1599,7 @@ msgstr ""
 "Du bör ta bort datan som inte kunde hämtas."
 
 #: ../System-Monitor/src/applet-notifications.c:109
-#: ../netspeed/src/applet-notifications.c:109
+#: ../netspeed/src/applet-notifications.c:84
 msgid "Open the System-Monitor"
 msgstr "Öppna systemövervakaren"
 
@@ -1838,7 +1853,7 @@ msgstr "Redigera uppgifter"
 msgid "Calendar and tasks"
 msgstr "Kalender och uppgifter"
 
-#: ../clock/src/applet-config.c:36 ../clock/data/messages:187
+#: ../clock/src/applet-config.c:36 ../clock/data/messages:189
 msgid "Alarm"
 msgstr "Alarm"
 
@@ -2489,6 +2504,14 @@ msgstr " fil(er)"
 msgid "calculating"
 msgstr "beräknar"
 
+#: ../gnome-integration/src/applet-init.c:46
+msgid "Not running in a GNOME or Cinnamon session."
+msgstr ""
+
+#: ../gnome-integration/src/applet-utils.c:243
+msgid "Cannot connect to the GNOME or Cinnamon session manager via DBus."
+msgstr ""
+
 #: ../icon-effect/src/applet-init.c:34
 msgid "icon effects"
 msgstr "ikoneffekter"
@@ -2546,6 +2569,13 @@ msgstr ""
 "Detta insticksprogram tillhandahåller animeringar för framträdande & "
 "försvinnande av ikoner."
 
+#: ../kde-integration/src/applet-init.c:30
+msgid ""
+"This applet provides functions for a better integration into a KDE "
+"environnement.\n"
+"It is auto-activated, so you don't need to activate it.\n"
+msgstr ""
+
 #: ../keyboard-indicator/src/applet-init.c:32
 msgid "keyboard indicator"
 msgstr "tangentbordsindikator"
@@ -2589,7 +2619,7 @@ msgstr ""
 "<b>Klicka</b> på ikonen för att få fram menyn.\n"
 "Du kan skapa ett <b>kortkommando</b> för den, och även låsa skärmen."
 
-#: ../logout/src/applet-init.c:40 ../logout/src/applet-logout.c:380
+#: ../logout/src/applet-init.c:40 ../logout/src/applet-logout.c:136
 #: ../logout/data/messages:95
 msgid "Log out"
 msgstr "Logga ut"
@@ -2602,27 +2632,27 @@ msgstr "Lås skärmen"
 msgid "Show the log-out menu"
 msgstr "Visa utloggningsmenyn"
 
-#: ../logout/src/applet-logout.c:343 ../logout/data/messages:97
+#: ../logout/src/applet-logout.c:99 ../logout/data/messages:97
 msgid "Shut down"
 msgstr "Stäng av"
 
-#: ../logout/src/applet-logout.c:350
+#: ../logout/src/applet-logout.c:106
 msgid "Restart"
 msgstr "Starta om"
 
-#: ../logout/src/applet-logout.c:356
+#: ../logout/src/applet-logout.c:112
 msgid "Hibernate"
 msgstr "Viloläge"
 
-#: ../logout/src/applet-logout.c:358
+#: ../logout/src/applet-logout.c:114
 msgid "Your computer will not consume any energy."
 msgstr "Din dator kommer inte att förbruka någon energi."
 
-#: ../logout/src/applet-logout.c:364
+#: ../logout/src/applet-logout.c:120
 msgid "Hybrid Sleep"
 msgstr "Hybridsömn"
 
-#: ../logout/src/applet-logout.c:366
+#: ../logout/src/applet-logout.c:122
 msgid ""
 "Your computer will still consume a small amount of energy but after some "
 "time, the computer will suspend to disk and not consume any energy."
@@ -2630,72 +2660,51 @@ msgstr ""
 "Din dator kommer fortfarande att förbruka lite energi men efter ett tag, "
 "kommer datorn att försättas i viloläge och inte konsumera någon energi."
 
-#: ../logout/src/applet-logout.c:371
+#: ../logout/src/applet-logout.c:127
 msgid "Suspend"
 msgstr "Vänteläge"
 
-#: ../logout/src/applet-logout.c:373
+#: ../logout/src/applet-logout.c:129
 msgid "Your computer will still consume a small amount of energy."
 msgstr "Din dator kommer fortfarande att förbruka lite energi."
 
-#: ../logout/src/applet-logout.c:382
+#: ../logout/src/applet-logout.c:138
 msgid "Close your session and allow to open a new one."
 msgstr "Stäng din session och tillåt att öppna en ny."
 
-#: ../logout/src/applet-logout.c:396
+#: ../logout/src/applet-logout.c:165 ../logout/src/applet-logout.c:195
 msgid "Switch user"
 msgstr "Byt användare"
 
-#: ../logout/src/applet-logout.c:417
-msgid "Guest session"
-msgstr "Gästsession"
+#: ../logout/src/applet-logout.c:186
+msgid "New session"
+msgstr ""
 
-#: ../logout/src/applet-logout.c:424 ../logout/data/messages:99
+#: ../logout/src/applet-logout.c:188 ../logout/src/applet-logout.c:197
+msgid "Switch to the login screen where you can start a new session."
+msgstr ""
+
+#: ../logout/src/applet-logout.c:204 ../logout/data/messages:99
 msgid "Lock screen"
 msgstr "Lås skärm"
 
-#: ../logout/src/applet-logout.c:429
+#: ../logout/src/applet-logout.c:212
 msgid "Program an automatic shut-down"
 msgstr "Programmera en  automatisk avstängning"
 
-#: ../logout/src/applet-logout.c:500
-msgid "Logind has returned this error:"
-msgstr "Logind har returnerat detta del:"
-
-#: ../logout/src/applet-logout.c:502
-msgid ""
-"Please check that you can do this action\n"
-"(e.g. you can't power the computer off if another session is active)"
-msgstr ""
-"Kontrollera att du kan utföra denna åtgärd\n"
-"(t. ex. du kan inte stänga av datorn om en annan session är aktiv)"
-
-#: ../logout/src/applet-logout.c:575
-#, c-format
-msgid "It will automatically shut-down in %ds"
-msgstr "Den kommer att stängas av om %ds"
-
-#: ../logout/src/applet-logout.c:576
-msgid "Shut down the computer?"
-msgstr "Stäng av datorn?"
-
-#: ../logout/src/applet-logout.c:581
-msgid ""
-"It seems your system is being updated!\n"
-"Please be sure that you can shut down your computer right now."
-msgstr ""
-"Det verkar som om ditt system håller på att uppdateras!\n"
-"Förvissa dig om att du kan stänga av datorn just nu."
-
-#: ../logout/src/applet-logout.c:668
-msgid "Restart the computer?"
-msgstr "Starta om datorn?"
-
-#: ../logout/src/applet-logout.c:721
+#: ../logout/src/applet-logout.c:282
 msgid "Close the current session?"
 msgstr "Stäng nuvarande session?"
 
-#: ../logout/src/applet-notifications.c:103
+#: ../logout/src/applet-logout.c:285
+msgid "Restart the computer?"
+msgstr "Starta om datorn?"
+
+#: ../logout/src/applet-logout.c:289
+msgid "Shut down the computer?"
+msgstr "Stäng av datorn?"
+
+#: ../logout/src/applet-notifications.c:73
 msgid "Manage users"
 msgstr "Hantera användare"
 
@@ -3116,11 +3125,11 @@ msgstr ""
 "Du kan behöva ställa in gränssnittet du vill övervaka.\n"
 "Vill du göra det nu?"
 
-#: ../netspeed/src/applet-notifications.c:105
+#: ../netspeed/src/applet-notifications.c:80
 msgid "Enable/disable network"
 msgstr "Aktivera/inaktivera nätverk"
 
-#: ../netspeed/src/applet-notifications.c:113
+#: ../netspeed/src/applet-notifications.c:88
 msgid "Re-check interface"
 msgstr "Kontrollera gränssnitt igen"
 
@@ -3672,11 +3681,11 @@ msgstr ""
 msgid "Notification Area Old"
 msgstr "Gammal notifieringsyta"
 
-#: ../systray/src/systray-init.c:65
+#: ../systray/src/systray-init.c:63
 msgid "Show/hide the systray"
 msgstr "Visa/dölj systembrickan"
 
-#: ../systray/src/systray-interface.c:74
+#: ../systray/src/systray-interface.c:47
 msgid ""
 "Another systray is already running (probably on your panel)\n"
 "Since there can only be one systray at once, you should remove it to avoid "
@@ -4018,14 +4027,9 @@ msgstr ""
 msgid "Wifi"
 msgstr "Wifi"
 
-#: ../wifi/src/applet-notifications.c:88
+#: ../wifi/src/applet-notifications.c:63
 msgid "Toggle wifi ON/OFF"
 msgstr "Växla wifi PÅ/AV"
-
-#: ../gvfs-integration/cairo-dock-gio-vfs.c:328
-#: ../gvfs-integration/cairo-dock-gio-vfs.c:513
-msgid "File System"
-msgstr "Filsystem"
 
 #: ../Animated-icons/data/messages:1 ../icon-effect/data/messages:1
 #: ../illusion/data/messages:1
@@ -5058,7 +5062,7 @@ msgstr ""
 #: ../Status-Notifier/data/messages:75 ../System-Monitor/data/messages:71
 #: ../Toons/data/messages:71 ../Xgamma/data/messages:65
 #: ../alsaMixer/data/messages:71 ../clock/data/messages:73
-#: ../clock/data/messages:179 ../dnd2share/data/messages:59
+#: ../clock/data/messages:181 ../dnd2share/data/messages:59
 #: ../dustbin/data/messages:61 ../keyboard-indicator/data/messages:71
 #: ../keyboard-indicator/data/messages:135 ../logout/data/messages:63
 #: ../mail/data/messages:71 ../musicPlayer/data/messages:73
@@ -5573,56 +5577,66 @@ msgid "Shortkey to toggle the composite ON/OFF:"
 msgstr "Kortkommando för att växla sammansättning PÅ/AV:"
 
 #: ../Dbus/data/messages:3
+msgid "Let external applications add or remove items in the dock?"
+msgstr ""
+
+#: ../Dbus/data/messages:5
+msgid ""
+"Let external applications get information about the current items in the "
+"dock?"
+msgstr ""
+
+#: ../Dbus/data/messages:7
 msgid "Let external applications pop up dialogs in the dock?"
 msgstr "Tillåt externa program att visa dialoger i dockan?"
 
-#: ../Dbus/data/messages:5
+#: ../Dbus/data/messages:9
 msgid "Let external applications reboot the dock?"
 msgstr "Tillåt externa program att starta om dockan?"
 
 # läman eller avsluta?
-#: ../Dbus/data/messages:7
+#: ../Dbus/data/messages:11
 msgid "Let external applications quit the dock?"
 msgstr "Tillåt externa program att avsluta dockan?"
 
-#: ../Dbus/data/messages:9
+#: ../Dbus/data/messages:13
 msgid "Let external applications show/hide desklets?"
 msgstr "Tillåt externa program att visa/dölja desklets?"
 
-#: ../Dbus/data/messages:11
-msgid "Let external applications reload applets?"
-msgstr "Tillåt externa program att starta om applets?"
-
-#: ../Dbus/data/messages:13
+#: ../Dbus/data/messages:15
 msgid "Let external applications show/hide docks?"
 msgstr "Tillåt externa program visa/dölja dockor?"
-
-#: ../Dbus/data/messages:15
-msgid "Let extern applications add launchers to the docks?"
-msgstr "Tillåt externa program lägga till startare i dockorna?"
 
 #: ../Dbus/data/messages:17
 msgid "Let external applications modify the labels of icons?"
 msgstr "Tillåt externa program modifiera ikonetiketter?"
 
 #: ../Dbus/data/messages:19
-msgid "Let extern applications modify the quick-infos on icons?"
+msgid "Let external applications modify the quick-infos on icons?"
 msgstr "Tillåt externa program modifiera snabbinfon på ikoner?"
 
 #: ../Dbus/data/messages:21
-msgid "Let extern applications modify the icons' image?"
-msgstr "Tillåt externa program modifiera ikonens bild?"
+msgid "Let external applications set custom menus on icons?"
+msgstr ""
 
 #: ../Dbus/data/messages:23
-msgid "Let extern applications animate icons?"
-msgstr "Tillåt externa program animera ikoner?"
+msgid "Let external applications modify the progress indicator on icons?"
+msgstr ""
 
 #: ../Dbus/data/messages:25
+msgid "Let external applications modify the icons' image?"
+msgstr "Tillåt externa program modifiera ikonens bild?"
+
+#: ../Dbus/data/messages:27
+msgid "Let external applications animate icons?"
+msgstr "Tillåt externa program animera ikoner?"
+
+#: ../Dbus/data/messages:29
 msgid "The dock will catch DBus signals to Launcher API and act as Unity"
 msgstr ""
 "Dockan kommer att fånga DBus-signaler till Launcher API och agera som Unity"
 
-#: ../Dbus/data/messages:27
+#: ../Dbus/data/messages:31
 msgid "Launch the Launcher API daemon?"
 msgstr "Starta Launcher API-daemonen?"
 
@@ -7259,29 +7273,34 @@ msgid "On 2 lines"
 msgstr "På 2 rader"
 
 #: ../clock/data/messages:177
+msgid "On 3 lines"
+msgstr ""
+
+#: ../clock/data/messages:179
 msgid "Ratio to apply on text :"
 msgstr "Förhållande att applicera på text :"
 
-#: ../clock/data/messages:181
+#: ../clock/data/messages:183
 msgid "Configure time and date"
 msgstr "Ställ in tid och datum"
 
-#: ../clock/data/messages:183 ../logout/data/messages:121
+#: ../clock/data/messages:185 ../logout/data/messages:121
+#: ../logout/data/messages:133
 msgid "Leave empty to execute the default command."
 msgstr "Lämna tomt för att köra standardkommandot."
 
-#: ../clock/data/messages:185
+#: ../clock/data/messages:187
 msgid "Specific command to run:"
 msgstr "Särskilt kommando att köra:"
 
-#: ../clock/data/messages:189
+#: ../clock/data/messages:191
 msgid ""
 "The new alarm will be added to the end / the last alarm will be removed."
 msgstr ""
 "Det nya larmet kommer att läggas till på slutet / det sista larmet kommer "
 "att tas bort."
 
-#: ../clock/data/messages:191
+#: ../clock/data/messages:193
 msgid "Add or remove an alarm:"
 msgstr "Lägg till eller ta bort ett larm:"
 
@@ -9271,6 +9290,36 @@ msgstr ""
 #: ../wifi/data/messages:165
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr "Alternativ kommandorad för att starta trådlös inställning :"
+
+#~ msgid "Logind has returned this error:"
+#~ msgstr "Logind har returnerat detta del:"
+
+#~ msgid ""
+#~ "Please check that you can do this action\n"
+#~ "(e.g. you can't power the computer off if another session is active)"
+#~ msgstr ""
+#~ "Kontrollera att du kan utföra denna åtgärd\n"
+#~ "(t. ex. du kan inte stänga av datorn om en annan session är aktiv)"
+
+#, c-format
+#~ msgid "It will automatically shut-down in %ds"
+#~ msgstr "Den kommer att stängas av om %ds"
+
+#~ msgid ""
+#~ "It seems your system is being updated!\n"
+#~ "Please be sure that you can shut down your computer right now."
+#~ msgstr ""
+#~ "Det verkar som om ditt system håller på att uppdateras!\n"
+#~ "Förvissa dig om att du kan stänga av datorn just nu."
+
+#~ msgid "File System"
+#~ msgstr "Filsystem"
+
+#~ msgid "Let external applications reload applets?"
+#~ msgstr "Tillåt externa program att starta om applets?"
+
+#~ msgid "Let external applications add launchers to the docks?"
+#~ msgstr "Tillåt externa program lägga till startare i dockorna?"
 
 #~ msgid "Me Menu"
 #~ msgstr "Mig-meny"

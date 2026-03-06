@@ -7,16 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"POT-Creation-Date: 2025-09-21 19:12+0000\n"
-"PO-Revision-Date: 2025-11-15 00:00+0000\n"
-"Last-Translator: fossil <Unknown>\n"
+"PO-Revision-Date: 2025-12-08 00:33+0000\n"
+"Last-Translator: Sergej <Unknown>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2025-11-16 20:04+0000\n"
-"X-Generator: Launchpad (build 1d08ffb47b836b8a4c9a0f11318dfdea7420ab6d)\n"
+"X-Launchpad-Export-Date: 2026-03-06 22:52+0000\n"
+"X-Generator: Launchpad (build 2b2e09fee12efee48836b36f2ca9a800f38d982a)\n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:55
@@ -182,14 +181,15 @@ msgid ""
 "Drop text on the icon to create persistent items, and middle-clck to recall "
 "them."
 msgstr ""
-"Этот апплет отслеживает буфер обмена и выделения, сделанные мышью,\n"
+"Этот апплет сохраняет данные о буфере обмена и действия по выделению мышью,\n"
 "для того, чтобы вы в любой момент могли их вызвать. Клон популярного "
 "Klipper.\n"
-"Поддерживает буфер обмена и выделения мышью, предустановленные действия и "
-"постоянные элементы.\n"
-"Левый щелчок, чтобы показать историю буфера обмена и выделения мышью,\n"
-"затем перетащите текст на значок, чтобы создать постоянный элемент; средний "
-"щелчок - для его вызова."
+"Поддерживает действия с буфером обмена и выделения мышью, предустановленные "
+"действия и постоянные элементы.\n"
+"Щёлкните левой кнопкой мыши, чтобы показать историю буфера обмена и действия "
+"по выделению мышью,\n"
+"перетащите выделенный текст на значок, чтобы создать постоянный элемент; "
+"щёлкните средней кнопкой мыши - для его вызова."
 
 #: ../Clipper/src/applet-init.c:39
 msgid "Clipboard history"
@@ -277,17 +277,17 @@ msgstr "Переключить композитность ВКЛ/ВЫКЛ"
 msgid "Toggle composite?"
 msgstr "Переключить композитность?"
 
-#: ../Composite-Manager/src/applet-notifications.c:124
+#: ../Composite-Manager/src/applet-notifications.c:125
 #: ../Composite-Manager/data/messages:125
 msgid "Edit Window-Manager settings"
 msgstr "Настроить Менеджер Окон"
 
-#: ../Composite-Manager/src/applet-notifications.c:124
-#: ../Composite-Manager/src/applet-notifications.c:131
-#: ../Composite-Manager/src/applet-notifications.c:140
-#: ../Composite-Manager/src/applet-notifications.c:149
-#: ../Composite-Manager/src/applet-notifications.c:158
-#: ../Composite-Manager/src/applet-notifications.c:167
+#: ../Composite-Manager/src/applet-notifications.c:125
+#: ../Composite-Manager/src/applet-notifications.c:132
+#: ../Composite-Manager/src/applet-notifications.c:141
+#: ../Composite-Manager/src/applet-notifications.c:150
+#: ../Composite-Manager/src/applet-notifications.c:159
+#: ../Composite-Manager/src/applet-notifications.c:168
 #: ../Folders/src/applet-notifications.c:378
 #: ../GMenu/src/applet-notifications.c:64
 #: ../RSSreader/src/applet-notifications.c:132
@@ -298,7 +298,7 @@ msgstr "Настроить Менеджер Окон"
 #: ../dustbin/src/applet-notifications.c:149
 #: ../mail/src/cd-mail-applet-notifications.c:153
 #: ../musicPlayer/src/applet-notifications.c:313
-#: ../netspeed/src/applet-notifications.c:105
+#: ../netspeed/src/applet-notifications.c:80
 #: ../quick-browser/src/applet-notifications.c:41
 #: ../shortcuts/src/applet-notifications.c:304
 #: ../shortcuts/src/applet-notifications.c:342
@@ -313,16 +313,16 @@ msgstr "Настроить Менеджер Окон"
 #: ../switcher/src/applet-notifications.c:324
 #: ../switcher/src/applet-notifications.c:333
 #: ../tomboy/src/tomboy-notifications.c:216
-#: ../wifi/src/applet-notifications.c:88
+#: ../wifi/src/applet-notifications.c:63
 msgid "middle-click"
 msgstr "средний щелчок"
 
-#: ../Composite-Manager/src/applet-notifications.c:131
+#: ../Composite-Manager/src/applet-notifications.c:132
 #: ../Composite-Manager/data/messages:127
 msgid "Reload Window-Manager"
 msgstr "Перезапустить Менеджер Окон"
 
-#: ../Composite-Manager/src/applet-notifications.c:140
+#: ../Composite-Manager/src/applet-notifications.c:141
 #: ../showDesktop/src/applet-notifications.c:181
 #: ../showDesktop/src/applet-notifications.c:183
 #: ../Composite-Manager/data/messages:129 ../showDesktop/data/messages:99
@@ -330,7 +330,7 @@ msgstr "Перезапустить Менеджер Окон"
 msgid "Show desktop"
 msgstr "Показать рабочий стол"
 
-#: ../Composite-Manager/src/applet-notifications.c:149
+#: ../Composite-Manager/src/applet-notifications.c:150
 #: ../showDesktop/src/applet-notifications.c:193
 #: ../showDesktop/src/applet-notifications.c:195
 #: ../switcher/src/applet-notifications.c:324
@@ -339,13 +339,13 @@ msgstr "Показать рабочий стол"
 msgid "Expose all the desktops"
 msgstr "Экспонировать все рабочие столы"
 
-#: ../Composite-Manager/src/applet-notifications.c:158
+#: ../Composite-Manager/src/applet-notifications.c:159
 #: ../switcher/src/applet-notifications.c:333
 #: ../Composite-Manager/data/messages:133 ../switcher/data/messages:143
 msgid "Expose all the windows"
 msgstr "Экспонировать все окна"
 
-#: ../Composite-Manager/src/applet-notifications.c:167
+#: ../Composite-Manager/src/applet-notifications.c:168
 #: ../showDesktop/src/applet-notifications.c:205
 #: ../showDesktop/src/applet-notifications.c:207
 #: ../Composite-Manager/data/messages:135 ../showDesktop/data/messages:105
@@ -353,30 +353,45 @@ msgstr "Экспонировать все окна"
 msgid "Show the Widget Layer"
 msgstr "Показать Слой Виджетов"
 
+#: ../Dbus/src/applet-dbus.c:133
+msgid ""
+"This plug-in requires DBus, but the DBus name 'org.cairodock.CairoDock' is "
+"unavailable.\n"
+"Please check that you have a session bus and that no other instance of Cairo-"
+"Dock is running."
+msgstr ""
+
+#: ../Dbus/src/applet-dbus.c:577
+msgid ""
+"Could not register the 'org.cairodock.CairoDock' DBus name.\n"
+"Please check that you have a session bus and that no other instance of Cairo-"
+"Dock is running."
+msgstr ""
+
 #: ../Dbus/src/applet-init.c:36
 msgid ""
-"This plug-in lets extern applications interact on the dock.\n"
+"This plug-in lets external applications interact on the dock.\n"
 "The communication between both sides is based on Dbus"
 msgstr ""
 "Этот плагин позволяет внешним приложениям взаимодействовать с панелью.\n"
-"Коммуникация основана на Dbus."
+"Коммуникация основана на Dbus"
 
-#: ../Dbus/src/interface-applet-signals.c:433
-#: ../Dbus/src/interface-applet-signals.c:464
+#: ../Dbus/src/interface-applet-signals.c:200
+#: ../Dbus/src/interface-applet-signals.c:231
 msgid "Sorry, this module couldn't be added."
 msgstr "К сожалению, этот модуль не может быть добавлен."
 
-#: ../Dbus/src/interface-applet-signals.c:468
-#: ../Dbus/src/interface-applet-signals.c:474
+#: ../Dbus/src/interface-applet-signals.c:235
+#: ../Dbus/src/interface-applet-signals.c:241
 msgid "The module has been added, but couldn't be launched."
 msgstr "Модуль был добавлен, но запустить его не удалось."
 
-#: ../Dbus/src/interface-applet-signals.c:477
+#: ../Dbus/src/interface-applet-signals.c:244
 #, c-format
 msgid "The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "Апплет '%s' успешно обновлён и автоматически перезагружен"
 
-#: ../Dbus/src/interface-applet-signals.c:477
+#: ../Dbus/src/interface-applet-signals.c:244
 #, c-format
 msgid ""
 "The applet '%s' has been succefully installed and automatically launched"
@@ -914,11 +929,11 @@ msgstr ""
 "Служба индикатора не отвечает.\n"
 "Пожалуйста, убедитесь, что «%s» установлен правильно и его демон запущен."
 
-#: ../Messaging-Menu/src/applet-init.c:34
+#: ../Messaging-Menu/src/applet-init.c:29
 msgid "Messaging Menu"
 msgstr "Меню сообщений"
 
-#: ../Messaging-Menu/src/applet-init.c:37
+#: ../Messaging-Menu/src/applet-init.c:32
 msgid ""
 "A menu that notices you about new messages from Mail or Chat applications.\n"
 "It handles Evolution, Pidgin, Empathy, etc\n"
@@ -929,11 +944,11 @@ msgstr ""
 "Для этого требуется служба обмена сообщениями, которая обычно доступна в "
 "Ubuntu по умолчанию."
 
-#: ../Messaging-Menu/src/applet-init.c:106
+#: ../Messaging-Menu/src/applet-init.c:88
 msgid "Show/hide the Messaging menu"
 msgstr "Показать или скрыть меню сообщений"
 
-#: ../Messaging-Menu/src/applet-notifications.c:78
+#: ../Messaging-Menu/src/applet-notifications.c:70
 msgid ""
 "The Messaging service did not reply.\n"
 "Please check that it is correctly installed."
@@ -1038,12 +1053,12 @@ msgid "Loading"
 msgstr "Загрузка"
 
 #: ../Network-Monitor/src/applet-notifications.c:81
-#: ../wifi/src/applet-notifications.c:85
+#: ../wifi/src/applet-notifications.c:60
 msgid "Check for Wireless Extension"
 msgstr "Проверить беспроводное соединение"
 
 #: ../Network-Monitor/src/applet-notifications.c:82
-#: ../wifi/src/applet-notifications.c:92
+#: ../wifi/src/applet-notifications.c:67
 msgid "Network Administration"
 msgstr "Администрирование сети"
 
@@ -1540,7 +1555,7 @@ msgstr ""
 "Приложения используют её для отображения уведомлений.\n"
 "Если приложение не появляется там где нужно, возможно оно пока не "
 "поддерживается. Сообщите об этом разработчикам, чтобы они попытались "
-"исправить"
+"исправить."
 
 #: ../Status-Notifier/src/applet-init.c:38
 msgid "Notification Area"
@@ -1592,7 +1607,7 @@ msgstr ""
 "Вам следует удалить информацию, которую не удалось получить."
 
 #: ../System-Monitor/src/applet-notifications.c:109
-#: ../netspeed/src/applet-notifications.c:109
+#: ../netspeed/src/applet-notifications.c:84
 msgid "Open the System-Monitor"
 msgstr "Открыть системный монитор"
 
@@ -1849,7 +1864,7 @@ msgstr "Редактировать задачи"
 msgid "Calendar and tasks"
 msgstr "Календарь и задачи"
 
-#: ../clock/src/applet-config.c:36 ../clock/data/messages:187
+#: ../clock/src/applet-config.c:36 ../clock/data/messages:189
 msgid "Alarm"
 msgstr "Напоминание"
 
@@ -2498,6 +2513,14 @@ msgstr " файл(ов)"
 msgid "calculating"
 msgstr "вычисляю"
 
+#: ../gnome-integration/src/applet-init.c:46
+msgid "Not running in a GNOME or Cinnamon session."
+msgstr ""
+
+#: ../gnome-integration/src/applet-utils.c:243
+msgid "Cannot connect to the GNOME or Cinnamon session manager via DBus."
+msgstr ""
+
 #: ../icon-effect/src/applet-init.c:34
 msgid "icon effects"
 msgstr "Эффекты значков"
@@ -2552,6 +2575,13 @@ msgid ""
 "icons."
 msgstr "Этот плагин предлагает эффекты появления и исчезновения значков."
 
+#: ../kde-integration/src/applet-init.c:30
+msgid ""
+"This applet provides functions for a better integration into a KDE "
+"environnement.\n"
+"It is auto-activated, so you don't need to activate it.\n"
+msgstr ""
+
 #: ../keyboard-indicator/src/applet-init.c:32
 msgid "keyboard indicator"
 msgstr "Индикатор раскладки"
@@ -2596,7 +2626,7 @@ msgstr ""
 "К нему также можно привязать <b>комбинации клавиш</b>, а также заблокировать "
 "экран."
 
-#: ../logout/src/applet-init.c:40 ../logout/src/applet-logout.c:380
+#: ../logout/src/applet-init.c:40 ../logout/src/applet-logout.c:136
 #: ../logout/data/messages:95
 msgid "Log out"
 msgstr "Завершить сеанс"
@@ -2609,27 +2639,27 @@ msgstr "Заблокировать экран"
 msgid "Show the log-out menu"
 msgstr "Показать меню выхода из системы"
 
-#: ../logout/src/applet-logout.c:343 ../logout/data/messages:97
+#: ../logout/src/applet-logout.c:99 ../logout/data/messages:97
 msgid "Shut down"
 msgstr "Завершить работу"
 
-#: ../logout/src/applet-logout.c:350
+#: ../logout/src/applet-logout.c:106
 msgid "Restart"
 msgstr "Перезагрузка"
 
-#: ../logout/src/applet-logout.c:356
+#: ../logout/src/applet-logout.c:112
 msgid "Hibernate"
 msgstr "Спящий режим"
 
-#: ../logout/src/applet-logout.c:358
+#: ../logout/src/applet-logout.c:114
 msgid "Your computer will not consume any energy."
 msgstr "Компьютер не будет потреблять энергии."
 
-#: ../logout/src/applet-logout.c:364
+#: ../logout/src/applet-logout.c:120
 msgid "Hybrid Sleep"
 msgstr "Гибридный спящий режим"
 
-#: ../logout/src/applet-logout.c:366
+#: ../logout/src/applet-logout.c:122
 msgid ""
 "Your computer will still consume a small amount of energy but after some "
 "time, the computer will suspend to disk and not consume any energy."
@@ -2638,72 +2668,51 @@ msgstr ""
 "через некоторое время компьютер приостановит работу с диском и перестанет "
 "потреблять энергию."
 
-#: ../logout/src/applet-logout.c:371
+#: ../logout/src/applet-logout.c:127
 msgid "Suspend"
 msgstr "Ждущий режим"
 
-#: ../logout/src/applet-logout.c:373
+#: ../logout/src/applet-logout.c:129
 msgid "Your computer will still consume a small amount of energy."
 msgstr "Компьютер по-прежнему потребляет небольшое количество энергии."
 
-#: ../logout/src/applet-logout.c:382
+#: ../logout/src/applet-logout.c:138
 msgid "Close your session and allow to open a new one."
 msgstr "Завершить сессию и позволить создать новую."
 
-#: ../logout/src/applet-logout.c:396
+#: ../logout/src/applet-logout.c:165 ../logout/src/applet-logout.c:195
 msgid "Switch user"
 msgstr "Переключить пользователя"
 
-#: ../logout/src/applet-logout.c:417
-msgid "Guest session"
-msgstr "Гостевой сеанс"
+#: ../logout/src/applet-logout.c:186
+msgid "New session"
+msgstr ""
 
-#: ../logout/src/applet-logout.c:424 ../logout/data/messages:99
+#: ../logout/src/applet-logout.c:188 ../logout/src/applet-logout.c:197
+msgid "Switch to the login screen where you can start a new session."
+msgstr ""
+
+#: ../logout/src/applet-logout.c:204 ../logout/data/messages:99
 msgid "Lock screen"
 msgstr "Заблокировать экран"
 
-#: ../logout/src/applet-logout.c:429
+#: ../logout/src/applet-logout.c:212
 msgid "Program an automatic shut-down"
 msgstr "Автоматическое завершение"
 
-#: ../logout/src/applet-logout.c:500
-msgid "Logind has returned this error:"
-msgstr "Logind вернул эту ошибку:"
-
-#: ../logout/src/applet-logout.c:502
-msgid ""
-"Please check that you can do this action\n"
-"(e.g. you can't power the computer off if another session is active)"
-msgstr ""
-"Пожалуйста, убедитесь, что вы можете выполнить это действие\n"
-"(например, можно ли выключить компьютер, если активен другой сеанс)"
-
-#: ../logout/src/applet-logout.c:575
-#, c-format
-msgid "It will automatically shut-down in %ds"
-msgstr "Выключение компьютера будет произведено через %dс"
-
-#: ../logout/src/applet-logout.c:576
-msgid "Shut down the computer?"
-msgstr "Выключить компьютер?"
-
-#: ../logout/src/applet-logout.c:581
-msgid ""
-"It seems your system is being updated!\n"
-"Please be sure that you can shut down your computer right now."
-msgstr ""
-"Кажется, ваша система обновляется!\n"
-"Пожалуйста, убедитесь, что вы можете отключить компьютер прямо сейчас."
-
-#: ../logout/src/applet-logout.c:668
-msgid "Restart the computer?"
-msgstr "Перезагрузить компьютер?"
-
-#: ../logout/src/applet-logout.c:721
+#: ../logout/src/applet-logout.c:282
 msgid "Close the current session?"
 msgstr "Выйти из системы?"
 
-#: ../logout/src/applet-notifications.c:103
+#: ../logout/src/applet-logout.c:285
+msgid "Restart the computer?"
+msgstr "Перезагрузить компьютер?"
+
+#: ../logout/src/applet-logout.c:289
+msgid "Shut down the computer?"
+msgstr "Выключить компьютер?"
+
+#: ../logout/src/applet-notifications.c:73
 msgid "Manage users"
 msgstr "Пользователи"
 
@@ -2749,7 +2758,7 @@ msgid ""
 "995 for POP3S."
 msgstr ""
 "Введите 0, чтобы использовать порт по умолчанию. Это будут 110 для POP3 или "
-"APOP и 995 для POP3S"
+"APOP и 995 для POP3S."
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid ""
@@ -3127,11 +3136,11 @@ msgstr ""
 "Возможно, вам придется сначала настроить интерфейс, чтобы управлять им.\n"
 "Хотите сделать это сейчас?"
 
-#: ../netspeed/src/applet-notifications.c:105
+#: ../netspeed/src/applet-notifications.c:80
 msgid "Enable/disable network"
 msgstr "Включить/выключить сеть"
 
-#: ../netspeed/src/applet-notifications.c:113
+#: ../netspeed/src/applet-notifications.c:88
 msgid "Re-check interface"
 msgstr "Перепроверить интерфейс"
 
@@ -3221,7 +3230,7 @@ msgid ""
 "Your battery is now charged"
 msgstr ""
 "PowerManager.\n"
-"Батарея заряжена полностью."
+"Батарея заряжена полностью"
 
 #: ../powermanager/src/powermanager-init.c:32
 msgid "PowerManager"
@@ -3682,11 +3691,11 @@ msgstr ""
 msgid "Notification Area Old"
 msgstr "Старая область уведомлений"
 
-#: ../systray/src/systray-init.c:65
+#: ../systray/src/systray-init.c:63
 msgid "Show/hide the systray"
 msgstr "Показать/скрыть область уведомлений"
 
-#: ../systray/src/systray-interface.c:74
+#: ../systray/src/systray-interface.c:47
 msgid ""
 "Another systray is already running (probably on your panel)\n"
 "Since there can only be one systray at once, you should remove it to avoid "
@@ -4031,14 +4040,9 @@ msgstr ""
 msgid "Wifi"
 msgstr "WiFi"
 
-#: ../wifi/src/applet-notifications.c:88
+#: ../wifi/src/applet-notifications.c:63
 msgid "Toggle wifi ON/OFF"
 msgstr "Использовать или выключить Wi-Fi"
-
-#: ../gvfs-integration/cairo-dock-gio-vfs.c:328
-#: ../gvfs-integration/cairo-dock-gio-vfs.c:513
-msgid "File System"
-msgstr "Файловая система"
 
 #: ../Animated-icons/data/messages:1 ../icon-effect/data/messages:1
 #: ../illusion/data/messages:1
@@ -5076,7 +5080,7 @@ msgstr ""
 #: ../Status-Notifier/data/messages:75 ../System-Monitor/data/messages:71
 #: ../Toons/data/messages:71 ../Xgamma/data/messages:65
 #: ../alsaMixer/data/messages:71 ../clock/data/messages:73
-#: ../clock/data/messages:179 ../dnd2share/data/messages:59
+#: ../clock/data/messages:181 ../dnd2share/data/messages:59
 #: ../dustbin/data/messages:61 ../keyboard-indicator/data/messages:71
 #: ../keyboard-indicator/data/messages:135 ../logout/data/messages:63
 #: ../mail/data/messages:71 ../musicPlayer/data/messages:73
@@ -5592,56 +5596,66 @@ msgid "Shortkey to toggle the composite ON/OFF:"
 msgstr "Быстрая клавиша, для переключения ВКЛ/ВЫКЛ:"
 
 #: ../Dbus/data/messages:3
+msgid "Let external applications add or remove items in the dock?"
+msgstr ""
+
+#: ../Dbus/data/messages:5
+msgid ""
+"Let external applications get information about the current items in the "
+"dock?"
+msgstr ""
+
+#: ../Dbus/data/messages:7
 msgid "Let external applications pop up dialogs in the dock?"
 msgstr "Позволить сторонним приложениям вызывать окна на панели?"
 
-#: ../Dbus/data/messages:5
+#: ../Dbus/data/messages:9
 msgid "Let external applications reboot the dock?"
 msgstr "Позволить сторонним приложениям перезапускать панель?"
 
-#: ../Dbus/data/messages:7
+#: ../Dbus/data/messages:11
 msgid "Let external applications quit the dock?"
 msgstr "Позволить сторонним приложениям завершать работу панели?"
 
-#: ../Dbus/data/messages:9
+#: ../Dbus/data/messages:13
 msgid "Let external applications show/hide desklets?"
 msgstr "Позволить сторонним приложениям показывать/скрывать десклеты?"
 
-#: ../Dbus/data/messages:11
-msgid "Let external applications reload applets?"
-msgstr "Позволить стороним приложениям перезапускать апплеты?"
-
-#: ../Dbus/data/messages:13
+#: ../Dbus/data/messages:15
 msgid "Let external applications show/hide docks?"
 msgstr "Позволить сторонним приложениям показывать/скрывать панели?"
-
-#: ../Dbus/data/messages:15
-msgid "Let extern applications add launchers to the docks?"
-msgstr "Позволить сторонним приложениям добавлять значки на панель?"
 
 #: ../Dbus/data/messages:17
 msgid "Let external applications modify the labels of icons?"
 msgstr "Позволить сторонним приложениям изменять подписи значков?"
 
 #: ../Dbus/data/messages:19
-msgid "Let extern applications modify the quick-infos on icons?"
+msgid "Let external applications modify the quick-infos on icons?"
 msgstr "Позволить сторонним приложениям изменять сообщения на значках?"
 
 #: ../Dbus/data/messages:21
-msgid "Let extern applications modify the icons' image?"
-msgstr "Позволить сторонним приложениям изменять изображения значков?"
+msgid "Let external applications set custom menus on icons?"
+msgstr ""
 
 #: ../Dbus/data/messages:23
-msgid "Let extern applications animate icons?"
-msgstr "Позволить внешним приложениям анимировать значки?"
+msgid "Let external applications modify the progress indicator on icons?"
+msgstr ""
 
 #: ../Dbus/data/messages:25
+msgid "Let external applications modify the icons' image?"
+msgstr "Позволить сторонним приложениям изменять изображения значков?"
+
+#: ../Dbus/data/messages:27
+msgid "Let external applications animate icons?"
+msgstr "Позволить внешним приложениям анимировать значки?"
+
+#: ../Dbus/data/messages:29
 msgid "The dock will catch DBus signals to Launcher API and act as Unity"
 msgstr ""
 "Док-панель будет перехватывать сигналы DBus к Launcher API и действовать как "
 "Unity"
 
-#: ../Dbus/data/messages:27
+#: ../Dbus/data/messages:31
 msgid "Launch the Launcher API daemon?"
 msgstr "Запустить демон Launcher API?"
 
@@ -7282,30 +7296,34 @@ msgid "On 2 lines"
 msgstr "На две строки"
 
 #: ../clock/data/messages:177
+msgid "On 3 lines"
+msgstr ""
+
+#: ../clock/data/messages:179
 msgid "Ratio to apply on text :"
 msgstr "Пропорция текста:"
 
-#: ../clock/data/messages:181
+#: ../clock/data/messages:183
 msgid "Configure time and date"
 msgstr "Настроить время и дату"
 
-#: ../clock/data/messages:183 ../logout/data/messages:121
+#: ../clock/data/messages:185 ../logout/data/messages:121
 #: ../logout/data/messages:133
 msgid "Leave empty to execute the default command."
 msgstr "Оставьте пустым, чтобы использовать стандартную."
 
-#: ../clock/data/messages:185
+#: ../clock/data/messages:187
 msgid "Specific command to run:"
 msgstr "Пользовательская команда запуска:"
 
-#: ../clock/data/messages:189
+#: ../clock/data/messages:191
 msgid ""
 "The new alarm will be added to the end / the last alarm will be removed."
 msgstr ""
 "Новое напоминание будет добавлено к концу / последнее напоминание будет "
 "удалено."
 
-#: ../clock/data/messages:191
+#: ../clock/data/messages:193
 msgid "Add or remove an alarm:"
 msgstr "Добавить или удалить напоминание:"
 
@@ -9306,3 +9324,33 @@ msgstr ""
 #: ../wifi/data/messages:165
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr "Альтернативная команда запуска Настройки Беспроводного Соединения:"
+
+#~ msgid "Logind has returned this error:"
+#~ msgstr "Logind вернул эту ошибку:"
+
+#~ msgid ""
+#~ "Please check that you can do this action\n"
+#~ "(e.g. you can't power the computer off if another session is active)"
+#~ msgstr ""
+#~ "Пожалуйста, убедитесь, что вы можете выполнить это действие\n"
+#~ "(например, можно ли выключить компьютер, если активен другой сеанс)"
+
+#, c-format
+#~ msgid "It will automatically shut-down in %ds"
+#~ msgstr "Выключение компьютера будет произведено через %dс"
+
+#~ msgid ""
+#~ "It seems your system is being updated!\n"
+#~ "Please be sure that you can shut down your computer right now."
+#~ msgstr ""
+#~ "Кажется, ваша система обновляется!\n"
+#~ "Пожалуйста, убедитесь, что вы можете отключить компьютер прямо сейчас."
+
+#~ msgid "File System"
+#~ msgstr "Файловая система"
+
+#~ msgid "Let external applications reload applets?"
+#~ msgstr "Позволить стороним приложениям перезапускать апплеты?"
+
+#~ msgid "Let external applications add launchers to the docks?"
+#~ msgstr "Позволить сторонним приложениям добавлять значки на панель?"

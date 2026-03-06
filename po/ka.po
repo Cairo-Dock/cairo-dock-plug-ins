@@ -1,78 +1,77 @@
-# Catalan translation for cairo-dock-plug-ins
-# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# Georgian translation for cairo-dock-plug-ins
+# Copyright (c) 2026 Rosetta Contributors and Canonical Ltd 2026
 # This file is distributed under the same license as the cairo-dock-plug-ins package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2014-06-22 08:57+0000\n"
-"Last-Translator: JoanColl <Unknown>\n"
-"Language-Team: Catalan <ca@li.org>\n"
-"Language: ca\n"
+"PO-Revision-Date: 2026-02-21 08:30+0000\n"
+"Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
+"Language-Team: Georgian <ka@li.org>\n"
+"Language: ka\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-10-19 06:31+0000\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Launchpad-Export-Date: 2026-03-06 22:52+0000\n"
+"X-Generator: Launchpad (build 2b2e09fee12efee48836b36f2ca9a800f38d982a)\n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:55
 #: ../Animated-icons/data/messages:173
 msgid "Blink"
-msgstr "Parpelleig"
+msgstr "ციმციმი"
 
 #: ../Animated-icons/src/applet-bounce.c:182 ../Animated-icons/data/messages:7
 #: ../Animated-icons/data/messages:27 ../Animated-icons/data/messages:51
 #: ../Animated-icons/data/messages:159
 msgid "Bounce"
-msgstr "Rebot"
+msgstr "ხტუნვა"
 
 #: ../Animated-icons/src/applet-busy.c:111 ../Animated-icons/data/messages:21
 #: ../Animated-icons/data/messages:41 ../Animated-icons/data/messages:65
 #: ../Animated-icons/data/messages:181
 msgid "Busy"
-msgstr "Ocupat"
+msgstr "დაკავებული"
 
 #: ../Animated-icons/src/applet-init.c:39
 msgid "Animated icons"
-msgstr "Icones animades"
+msgstr ""
 
 #: ../Animated-icons/src/applet-init.c:42
 msgid "This plug-in provides many different animations for your icons."
 msgstr ""
-"Aquest complement proporciona diversos tipus d'animació per a les icones."
 
 #: ../Animated-icons/src/applet-pulse.c:106 ../Animated-icons/data/messages:13
 #: ../Animated-icons/data/messages:33 ../Animated-icons/data/messages:57
 #: ../Animated-icons/data/messages:147
 msgid "Pulse"
-msgstr "Pulsació"
+msgstr "პულსი"
 
 #: ../Animated-icons/src/applet-rotation.c:389
 #: ../Animated-icons/data/messages:9 ../Animated-icons/data/messages:29
 #: ../Animated-icons/data/messages:53
 msgid "Rotate"
-msgstr "Gir"
+msgstr "შემობრუნება"
 
 #: ../Animated-icons/src/applet-spot.c:266 ../Animated-icons/data/messages:19
 #: ../Animated-icons/data/messages:39 ../Animated-icons/data/messages:63
 #: ../Animated-icons/data/messages:87 ../Animated-icons/data/messages:95
 msgid "Spot"
-msgstr "Taca"
+msgstr "წერტილოვანი"
 
 #: ../Animated-icons/src/applet-wave.c:287 ../Animated-icons/data/messages:17
 #: ../Animated-icons/data/messages:37 ../Animated-icons/data/messages:61
 #: ../Animated-icons/data/messages:135
 msgid "Wave"
-msgstr "Ona"
+msgstr "ტალღა"
 
 #: ../Animated-icons/src/applet-wobbly.c:532 ../Animated-icons/data/messages:15
 #: ../Animated-icons/data/messages:35 ../Animated-icons/data/messages:59
 #: ../Animated-icons/data/messages:119
 msgid "Wobbly"
-msgstr "oscil·lant"
+msgstr ""
 
 #: ../Cairo-Penguin/src/applet-init.c:33
 msgid ""
@@ -82,95 +81,86 @@ msgid ""
 "Tux images are taken from Pingus, some other characters are available or can "
 "be added easily."
 msgstr ""
-"Afegiu un pingüí ben viu al quadre!\n"
-"Amb un clic esquerre podreu canviar l'animació.\n"
-"Un clic per destorbar-lo ^_^\n"
-"Les imatges de Tux s'han agafat de Pingus; es poden agafar altres "
-"caricatures o se'n poden afegir fàcilment."
 
 #: ../Cairo-Penguin/src/applet-init.c:39
 msgid "Cairo-Penguin"
-msgstr "El pinguí de Cairo"
+msgstr ""
 
 #: ../Cairo-Penguin/src/applet-notifications.c:29
 msgid "Hey, I'm here!"
-msgstr "Ep! Sóc aquí!"
+msgstr ""
 
 #: ../Cairo-Penguin/src/applet-notifications.c:30
 msgid "Sorry but I'm busy right now."
-msgstr "Ho sento, ara tinc una altra feina."
+msgstr ""
 
 #: ../Cairo-Penguin/src/applet-notifications.c:31
 msgid ""
 "I don't have time to play with you, I have to dig and mine all these icons."
 msgstr ""
-"No tinc temps per jugar amb vosaltres, he de fer marxar totes aquestes "
-"icones."
 
 #: ../Cairo-Penguin/src/applet-notifications.c:32
 msgid "Your dock is so messy! Let me clean it."
-msgstr "El quadre està molt desordenat. L'endreçaré."
+msgstr ""
 
 #: ../Cairo-Penguin/src/applet-notifications.c:33
 msgid "Admit my superiority on you as a penguin!"
-msgstr "Heu d'admetre que com a pinguí us passo al davant!"
+msgstr ""
 
 #: ../Cairo-Penguin/src/applet-notifications.c:34
 msgid "Wait, do you want to kill me?!"
-msgstr "Ara voleu matar-me?"
+msgstr ""
 
 #: ../Cairo-Penguin/src/applet-notifications.c:35
 msgid "Do you know how painful it is to be clicked on??"
-msgstr "Arribeu a saber el mal que fa un clic a l'ala??"
+msgstr ""
 
 #: ../Cairo-Penguin/src/applet-notifications.c:36
 msgid "It's my dock now, mwahahaha!"
-msgstr "Ara és el meu quadre, elis elis!"
+msgstr ""
 
 #: ../Cairo-Penguin/src/applet-notifications.c:37
 msgid "I want to be a pirate!"
-msgstr "Vull ser un pirata!"
+msgstr ""
 
 #: ../Cairo-Penguin/src/applet-notifications.c:38
 msgid "You shall not pass!"
-msgstr "No podreu passar!"
+msgstr ""
 
 #: ../Cairo-Penguin/src/applet-notifications.c:39
 msgid "I'm your father!"
-msgstr "Sóc el pare!"
+msgstr ""
 
 #: ../Cairo-Penguin/src/applet-notifications.c:40
 msgid ""
 "- Gee, Brain, what do you want to do tonight?\n"
 "- The same thing we do every night, Pinky : try to take over the Dock!"
 msgstr ""
-"- Ep, Cervell, què vols fer aquesta nit?\n"
-"- El mateix que fem cada vespre; au, llestos, intenteu controlar el quadre!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:41
 msgid "For Aiur!"
-msgstr "Per Aiur!"
+msgstr ""
 
 #: ../Cairo-Penguin/src/applet-notifications.c:139
 msgid "Wake up"
-msgstr "Desperta't"
+msgstr "გაღვიძება"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:143
 msgid "Keep quiet"
-msgstr "Calma't"
+msgstr ""
 
 #: ../Cairo-Penguin/src/applet-notifications.c:158
 msgid "Start XPenguins"
-msgstr "Comença XPenguins"
+msgstr ""
 
 #: ../Cairo-Penguin/src/applet-notifications.c:159
 msgid "Stop XPenguins"
-msgstr "Atura XPenguins"
+msgstr ""
 
 #: ../Cairo-Penguin/src/applet-notifications.c:176
 #: ../Cairo-Penguin/src/applet-notifications.c:177
 msgid "Zzzzz"
-msgstr "Zzzzz"
+msgstr ""
 
 #: ../Clipper/src/applet-init.c:32
 msgid ""
@@ -182,71 +172,59 @@ msgid ""
 "Drop text on the icon to create persistent items, and middle-clck to recall "
 "them."
 msgstr ""
-"Aquest complement conserva una traça del porta-retalls i les seleccions del "
-"ratolí,\n"
-"a fi de recobrar-los ràpidament. És una còpia del Klipper.\n"
-"Suporta selecció de retalls i del ratolí, accions predefinides i elements "
-"persistents.\n"
-"Feu un clic esquerre per desplegar la llista de retalls i les seleccions del "
-"ratolí,\n"
-"Arrossegueu text cap a la icona per crear elements persistents, i clic mig "
-"per recobrar-los."
 
 #: ../Clipper/src/applet-init.c:39
 msgid "Clipboard history"
-msgstr "Historial del porta-retalls"
+msgstr "ბუფერის ისტორია"
 
 #: ../Clipper/src/applet-init.c:87
 msgid "Pop-up the items menu"
-msgstr "Desplega el menú d'elements"
+msgstr ""
 
 #: ../Clipper/src/applet-notifications.c:33
 msgid "The clipboard history is empty."
-msgstr "L'historial del porta-retalls és buit"
+msgstr ""
 
 #: ../Clipper/src/applet-notifications.c:89
 msgid "Clear clipboard History"
-msgstr "Neteja l'historial del porta-retalls"
+msgstr ""
 
 #: ../Clipper/src/applet-notifications.c:91
 msgid "Paste all copied items"
-msgstr "Enganxa tots els elements copiats"
+msgstr ""
 
 #: ../Clipper/src/applet-notifications.c:99
 msgid ""
 "No persistent items.\n"
 "You can add some by drag and dropping some text on the icon."
 msgstr ""
-"No hi ha elements persistents-\n"
-"En podeu afegir algun arrossegant i deixant anar fragments de text cap a la "
-"icona."
 
 #: ../Clipper/src/applet-notifications.c:143
 msgid "No items yet."
-msgstr "Encara no hi ha elements."
+msgstr ""
 
 #: ../Composite-Manager/src/applet-composite-manager.c:429
 #: ../Composite-Manager/src/applet-composite-manager.c:444
 msgid "No compositor is available."
-msgstr "Cap compositor està disponible."
+msgstr ""
 
 #: ../Composite-Manager/src/applet-composite-manager.c:452
 #: ../Composite-Manager/src/applet-composite-manager.c:467
 msgid "No fallback is available."
-msgstr "No es disposa de cap reserva."
+msgstr ""
 
 #: ../Composite-Manager/src/applet-composite-manager.c:507
 #, c-format
 msgid "You need to install '%s'"
-msgstr "Cal que instal·leu '%s'"
+msgstr ""
 
 #: ../Composite-Manager/src/applet-composite-manager.c:518
 msgid "No configuration tool is available."
-msgstr "No hi ha cap eina de configuració disponible."
+msgstr ""
 
 #: ../Composite-Manager/src/applet-init.c:27
 msgid "Composite-Manager"
-msgstr "Administració del compositor"
+msgstr ""
 
 #: ../Composite-Manager/src/applet-init.c:30
 msgid ""
@@ -260,28 +238,19 @@ msgid ""
 "You can define in the configuration a Window-Manager that will provide the "
 "composite, and another as a fallback."
 msgstr ""
-"Aquest complement permet activar i desactivar el compositor.\n"
-"El compositor gestiona la transparència a l'escriptori, però podria alentir "
-"el treball de l'ordinador, especialment amb els jocs.\n"
-"Feu clic a la icona per commutar el compositor. Podeu definir una drecera de "
-"teclat per a aquesta acció.\n"
-"A més, el complement us facilita l'accés a algunes opcions del gestor de "
-"finestres, amb el clic mig i amb el menú.\n"
-"Podeu decidir quin gestor de finestres proporcionarà la funcionalitat del "
-"compositor, i un altre de reserva."
 
 #: ../Composite-Manager/src/applet-init.c:52
 msgid "Toggle the composite ON/OFF"
-msgstr "Canvia l'estat del compositor (actiu/inactiu)"
+msgstr ""
 
 #: ../Composite-Manager/src/applet-notifications.c:42
 msgid "Toggle composite?"
-msgstr "Commuto el compositor?"
+msgstr ""
 
 #: ../Composite-Manager/src/applet-notifications.c:125
 #: ../Composite-Manager/data/messages:125
 msgid "Edit Window-Manager settings"
-msgstr "Edita els paràmetres del gestor de finestres"
+msgstr ""
 
 #: ../Composite-Manager/src/applet-notifications.c:125
 #: ../Composite-Manager/src/applet-notifications.c:132
@@ -316,12 +285,12 @@ msgstr "Edita els paràmetres del gestor de finestres"
 #: ../tomboy/src/tomboy-notifications.c:216
 #: ../wifi/src/applet-notifications.c:63
 msgid "middle-click"
-msgstr "Clic del mig"
+msgstr ""
 
 #: ../Composite-Manager/src/applet-notifications.c:132
 #: ../Composite-Manager/data/messages:127
 msgid "Reload Window-Manager"
-msgstr "Recarrega el gestor de finestres"
+msgstr ""
 
 #: ../Composite-Manager/src/applet-notifications.c:141
 #: ../showDesktop/src/applet-notifications.c:181
@@ -329,7 +298,7 @@ msgstr "Recarrega el gestor de finestres"
 #: ../Composite-Manager/data/messages:129 ../showDesktop/data/messages:99
 #: ../showDesktop/data/messages:113 ../switcher/data/messages:139
 msgid "Show desktop"
-msgstr "Mostra l'escriptori"
+msgstr "სამუშაო მაგიდის ჩვენება"
 
 #: ../Composite-Manager/src/applet-notifications.c:150
 #: ../showDesktop/src/applet-notifications.c:193
@@ -338,13 +307,13 @@ msgstr "Mostra l'escriptori"
 #: ../Composite-Manager/data/messages:131 ../showDesktop/data/messages:107
 #: ../showDesktop/data/messages:121 ../switcher/data/messages:141
 msgid "Expose all the desktops"
-msgstr "Mostra tots els escriptoris"
+msgstr ""
 
 #: ../Composite-Manager/src/applet-notifications.c:159
 #: ../switcher/src/applet-notifications.c:333
 #: ../Composite-Manager/data/messages:133 ../switcher/data/messages:143
 msgid "Expose all the windows"
-msgstr "Mostra totes les finestres"
+msgstr ""
 
 #: ../Composite-Manager/src/applet-notifications.c:168
 #: ../showDesktop/src/applet-notifications.c:205
@@ -352,7 +321,7 @@ msgstr "Mostra totes les finestres"
 #: ../Composite-Manager/data/messages:135 ../showDesktop/data/messages:105
 #: ../showDesktop/data/messages:119
 msgid "Show the Widget Layer"
-msgstr "Mostra el giny de capes"
+msgstr ""
 
 #: ../Dbus/src/applet-dbus.c:133
 msgid ""
@@ -374,32 +343,27 @@ msgid ""
 "This plug-in lets external applications interact on the dock.\n"
 "The communication between both sides is based on Dbus"
 msgstr ""
-"Aquest complement permet que aplicacions externes interactuïn amb el "
-"quadre.\n"
-"La comunicació de costat a costat es basa en Dbus."
 
 #: ../Dbus/src/interface-applet-signals.c:200
 #: ../Dbus/src/interface-applet-signals.c:231
 msgid "Sorry, this module couldn't be added."
-msgstr "Ho sento, no es pot afegir aquest mòdul."
+msgstr ""
 
 #: ../Dbus/src/interface-applet-signals.c:235
 #: ../Dbus/src/interface-applet-signals.c:241
 msgid "The module has been added, but couldn't be launched."
-msgstr "S'ha afegit el mòdul, però caldrà fer-lo arrencar."
+msgstr ""
 
 #: ../Dbus/src/interface-applet-signals.c:244
 #, c-format
 msgid "The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
-"El complement '%s' s'ha actualitzat correctament i recarregat automàticament."
 
 #: ../Dbus/src/interface-applet-signals.c:244
 #, c-format
 msgid ""
 "The applet '%s' has been succefully installed and automatically launched"
 msgstr ""
-"El complement '%s' s'ha instal·lat correctament i recarregat automàticament."
 
 #: ../Disks/src/applet-disks.c:45 ../Disks/src/applet-disks.c:53
 #: ../Network-Monitor/src/applet-netspeed.c:42
@@ -412,7 +376,7 @@ msgstr "B"
 #: ../Network-Monitor/src/applet-netspeed.c:58
 #: ../netspeed/src/applet-netspeed.c:64
 msgid "KB"
-msgstr "kB"
+msgstr "კბ"
 
 #: ../Disks/src/applet-disks.c:69 ../Folders/src/applet-notifications.c:137
 #: ../Network-Monitor/src/applet-netspeed.c:66
@@ -420,17 +384,17 @@ msgstr "kB"
 #: ../netspeed/src/applet-notifications.c:37
 #: ../netspeed/src/applet-notifications.c:38
 msgid "MB"
-msgstr "MiB"
+msgstr "მბ"
 
 #: ../Disks/src/applet-disks.c:77 ../Network-Monitor/src/applet-netspeed.c:74
 #: ../netspeed/src/applet-netspeed.c:80
 msgid "GB"
-msgstr "GB"
+msgstr "გბ"
 
 #: ../Disks/src/applet-disks.c:85 ../Network-Monitor/src/applet-netspeed.c:82
 #: ../netspeed/src/applet-netspeed.c:88
 msgid "TB"
-msgstr "TB"
+msgstr "ტბ"
 
 #: ../Disks/src/applet-disks.c:171
 msgid "r"
@@ -438,15 +402,15 @@ msgstr "r"
 
 #: ../Disks/src/applet-disks.c:171
 msgid "w"
-msgstr "w"
+msgstr "კვ"
 
 #: ../Disks/src/applet-disks.c:175
 msgid "N/A"
-msgstr "N/D"
+msgstr "ა/მ"
 
 #: ../Disks/src/applet-init.c:29
 msgid "Disks"
-msgstr "Discs"
+msgstr "დისკები"
 
 #: ../Disks/src/applet-init.c:32
 msgid ""
@@ -482,60 +446,16 @@ msgid ""
 " - Find actions : left, middle click, drop and wheel.\n"
 " - Fill menu with actions.\n"
 msgstr ""
-"<b>Monitoritza la velocitat del disc i l'espai</b>\n"
-"\n"
-"El complement proporciona informació sobre els discos. Podeu activar totes "
-"dues opcions d'un plegat, però funcionarà millor si teniu dues icones de "
-"l'aplicació. En un mateix espai, podria ser que la velocitat no quedés ben "
-"indicada.\n"
-"\n"
-"<b>Espai de disc</b>: mostra la velocitat de transferència de dades. Fins a "
-"10 particions.\n"
-"<ul>\n"
-"<li>Cal que indiqueu el punt de muntatge de cada partició, com ara / o /"
-"home</li>\n"
-"<li>Es veurà més bé en una escala, amb una relació de refresc de 30 o 60s i "
-"una demora de refresc petita o nul·la.\n"
-"</ul>\n"
-"\n"
-"<b>Espai de disc</b>: mostra la velocitat de transferència del disc. Fins a "
-"5 discos.\n"
-"<ul>\n"
-"<li>Cal que indiqueu el nom de cada disc controlat amb el nom del "
-"dispositiu, com ara sda o sdb</li>\n"
-"<li>Es veurà més bé en una gràfica amb una relació de refresc de 2 o 3s i "
-"sense demora entre transicions.</li>\n"
-"</ul>\n"
-"\n"
-"A la segona revisió, una pila més d'indicacions per incloure:\n"
-"<u>Espai lliure</u>:\n"
-"<ul>\n"
-"<li>informació detallada en una finestra emergent</li>\n"
-"<li>Etiquetes editables ?</li>\n"
-"</ul>\n"
-"<u>Velocitat:</u>:\n"
-"<ul>\n"
-"<li>Totes les opcions de disc.</li>\n"
-"<li>Informació de disc per saber què afegir a la llista en una finestra "
-"emergent.</li>\n"
-"<li>Etiquetes editables?</li>\n"
-"<li>Obtenir la mida real dels blocs del disc</b>\n"
-"</ul>\n"
-"<u>Global</u>\n"
-"<ul>\n"
-"<li>Accions de cerca: clic esquerre i mig, left, deixar anar i roda.</li>\n"
-"<li>Menú per emplenar amb accions.</li>\n"
-"</ul>\n"
 
 #: ../Disks/src/applet-notifications.c:72
 #: ../System-Monitor/src/applet-init.c:33
 msgid "System Monitor"
-msgstr "Monitor del sistema"
+msgstr "სისტემური მონიტორი"
 
 #: ../Doncky/src/applet-cpusage.c:67 ../System-Monitor/src/applet-cpusage.c:60
 #: ../System-Monitor/src/applet-cpusage.c:65
 msgid "day(s)"
-msgstr "dia(dies)"
+msgstr "დღე"
 
 #: ../Doncky/src/applet-init.c:35
 msgid ""
@@ -545,24 +465,18 @@ msgid ""
 "  - NEED TO BE DETACHED FROM THE DOCK TO WORK !\n"
 "  - Middle-clic to reload values"
 msgstr ""
-"Aquest complement permet escriure textos i controlar el sistema amb un "
-"\"espai d'escriptori de text\".\n"
-"Ús:\n"
-"<ul>\n"
-"<li>S'ha de desvincular del quadre per utilitzar-lo!</lI>\n"
-"<li>Clic mig per recarregar els valors</li>"
 
 #: ../Doncky/src/applet-notifications.c:210
 msgid "It doesn't seem to be a valid XML file."
-msgstr "sembla que el fitxer XML no està ben etiquetat."
+msgstr ""
 
 #: ../Doncky/src/applet-xml.c:311
 msgid "Please wait..."
-msgstr "Espereu..."
+msgstr "გთხოვთ, მოითმინეთ..."
 
 #: ../Folders/src/applet-init.c:29
 msgid "Folders"
-msgstr "Carpetes"
+msgstr "საქაღალდეები"
 
 #: ../Folders/src/applet-init.c:32
 msgid ""
@@ -574,62 +488,51 @@ msgid ""
 " - or just drop a folder into the dock\n"
 "Middle-click on the main icon opens the folder.\n"
 msgstr ""
-"Aquest complement permet carpetes al quadre\n"
-"Podeu tenir-ne tantes instal·lacions com vulgueu, cadascuna amb una carpeta "
-"diferent.\n"
-"Per afegir una carpeta al quadre:\n"
-"<ul>\n"
-"<li>activeu el complement, obriu-ne el configurador i seleccioneu una "
-"carpeta.</li>\n"
-"<li>o simplement arrossegueu una carpeta al quadre</li>\n"
-"</ul>\n"
-"Un clic mig a la icona principal obre la carpeta.\n"
 
 #: ../Folders/src/applet-init.c:87 ../Folders/src/applet-init.c:156
 #: ../Folders/src/applet-notifications.c:41
 msgid "Open the configuration of the applet to choose a folder to import."
 msgstr ""
-"Obriu el configurador del complement per seleccionar la carpeta per importar."
 
 #: ../Folders/src/applet-notifications.c:53
 msgid "Empty or unreadable folder."
-msgstr "Carpeta buida o il·legible."
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:115
 msgid "Properties:"
-msgstr "Propietats:"
+msgstr "თვისებები:"
 
 #: ../Folders/src/applet-notifications.c:135 ../Folders/data/messages:115
 msgid "Size"
-msgstr "Mida"
+msgstr "ზომა"
 
 #: ../Folders/src/applet-notifications.c:135
 msgid "bytes"
-msgstr "bytes"
+msgstr "ბაიტი"
 
 #: ../Folders/src/applet-notifications.c:149
 msgid "Last Modification"
-msgstr "Darrera modificació"
+msgstr "ბოლო ცვლილება"
 
 #: ../Folders/src/applet-notifications.c:158
 msgid "Mime Type"
-msgstr "Tipus mime"
+msgstr "MIME ტიპი"
 
 #: ../Folders/src/applet-notifications.c:168
 msgid "User ID"
-msgstr "Identificador d'usuari"
+msgstr "მომხმარებლის ID"
 
 #: ../Folders/src/applet-notifications.c:168
 msgid "Group ID"
-msgstr "Identificador del Grup"
+msgstr "ჯგუფის ID"
 
 #: ../Folders/src/applet-notifications.c:178
 msgid "Permissions"
-msgstr "Permisos"
+msgstr "უფლებები"
 
 #: ../Folders/src/applet-notifications.c:178
 msgid "Read"
-msgstr "Lectura"
+msgstr "წაკითხვა"
 
 #: ../Folders/src/applet-notifications.c:179
 #: ../Folders/src/applet-notifications.c:180
@@ -637,7 +540,7 @@ msgstr "Lectura"
 #: ../System-Monitor/data/messages:115 ../alsaMixer/data/messages:129
 #: ../netspeed/data/messages:115 ../slider/data/messages:169
 msgid "Yes"
-msgstr "Sí"
+msgstr "დიახ"
 
 #: ../Folders/src/applet-notifications.c:179
 #: ../Folders/src/applet-notifications.c:180
@@ -657,24 +560,22 @@ msgstr "Sí"
 #: ../slider/data/messages:167 ../weather/data/messages:19
 #: ../wifi/data/messages:17
 msgid "No"
-msgstr "No"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:179
 msgid "Write"
-msgstr "Escriptura"
+msgstr "ჩაწერა"
 
 #: ../Folders/src/applet-notifications.c:180
 #: ../Scooby-Do/src/applet-backend-command.c:95
 msgid "Execute"
-msgstr "Execució"
+msgstr "შესრულება"
 
 #: ../Folders/src/applet-notifications.c:206
 msgid ""
 "Warning: could not delete this file.\n"
 "Please check file permissions."
 msgstr ""
-"Compte: potser no podreu esborrar aquest fitxer.\n"
-"Si us plau, reviseu els permisos del fitxer."
 
 #: ../Folders/src/applet-notifications.c:220
 #, c-format
@@ -683,9 +584,6 @@ msgid ""
 "  (%s)\n"
 "from your hard-disk. Sure ?"
 msgstr ""
-"Esteu a punt d'esborrar el fitxer\n"
-"<ul><li>(%s)</li></ul>\n"
-"Segur que voleu esborrar-lo?"
 
 #: ../Folders/src/applet-notifications.c:239
 #, c-format
@@ -694,31 +592,28 @@ msgid ""
 "Check file permissions \n"
 "and that the new name does not already exist."
 msgstr ""
-"Compte: potser no es podrà canviar el nom %s.\n"
-"Reviseu els permisos del fitxer i comproveu que el nom nou no coincideixi "
-"amb cap altre."
 
 #: ../Folders/src/applet-notifications.c:248
 msgid "Rename to:"
-msgstr "Canvia el nom:"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:263
 #: ../Scooby-Do/src/applet-backend-files.c:390
 #: ../Screenshot/src/applet-screenshot.c:407
 msgid "Pick up a directory"
-msgstr "Trieu un directori"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:266
 #: ../Scooby-Do/src/applet-backend-files.c:393
 #: ../Screenshot/src/applet-screenshot.c:410
 msgid "Ok"
-msgstr ""
+msgstr "დიახ"
 
 #: ../Folders/src/applet-notifications.c:268
 #: ../Scooby-Do/src/applet-backend-files.c:395
 #: ../Screenshot/src/applet-screenshot.c:412
 msgid "Cancel"
-msgstr ""
+msgstr "გაუქმება"
 
 #: ../Folders/src/applet-notifications.c:300
 #, c-format
@@ -727,29 +622,26 @@ msgid ""
 "Check file permissions \n"
 "and that the new name does not already exist."
 msgstr ""
-"Compte: no es pot crear %s.\n"
-"Comproveu els permisos de fitxers i que el nom nou no estigui assignat a un "
-"altre fitxer."
 
 #: ../Folders/src/applet-notifications.c:310
 msgid "Enter a file name:"
-msgstr "Escriviu un nom de fitxer:"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:378
 msgid "Open the folder"
-msgstr "Obre la carpeta"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:385
 msgid "Rename this file"
-msgstr "Canvia el nom d'aquest fitxer"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:386
 msgid "Delete this file"
-msgstr "Suprimeix aquest fitxer"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:387
 msgid "Move this file"
-msgstr "Mou aquest fitxer"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:394
 #: ../Recent-Events/src/applet-dialog.c:288
@@ -757,55 +649,55 @@ msgstr "Mou aquest fitxer"
 #: ../quick-browser/src/applet-menu.c:289
 #: ../slider/src/applet-notifications.c:232
 msgid "Open with"
-msgstr "Obre amb"
+msgstr "გამხსნელი პროგრამა"
 
 #: ../Folders/src/applet-notifications.c:399
 msgid "Properties"
-msgstr "Propietats"
+msgstr "თვისებები"
 
 #: ../Folders/src/applet-notifications.c:402
 msgid "Create a new file"
-msgstr "Crea un fitxer"
+msgstr "ახალი ფაილის შექმნა"
 
 #: ../Folders/src/applet-notifications.c:403
 msgid "Create a new folder"
-msgstr "Crea una carpeta"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:408
 msgid "Sort by"
-msgstr "Ordena per"
+msgstr "დალაგების პირობა"
 
 #: ../Folders/src/applet-notifications.c:409
 msgid "By name"
-msgstr "Pel nom"
+msgstr "სახელით"
 
 #: ../Folders/src/applet-notifications.c:410
 msgid "By date"
-msgstr "Per data"
+msgstr "თარიღით"
 
 #: ../Folders/src/applet-notifications.c:411
 msgid "By size"
-msgstr "Per mida"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:412
 msgid "By type"
-msgstr "Per tipus"
+msgstr "ტიპით"
 
 #: ../Folders/src/applet-notifications.c:450
 msgid "The folder has been imported."
-msgstr "S'ha importat la carpeta"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:505
 msgid "Do you want to import the content of the folder too?"
-msgstr "Voleu importar el contingut  de la carpeta, també?"
+msgstr ""
 
 #: ../GMenu/src/applet-apps.c:116
 msgid "Launch this new application?"
-msgstr "Carrega aquesta aplicació?"
+msgstr ""
 
 #: ../GMenu/src/applet-entry.c:483
 msgid "Launch this command"
-msgstr "Executa aquesta comanda"
+msgstr ""
 
 #: ../GMenu/src/applet-init.c:32
 msgid ""
@@ -815,60 +707,58 @@ msgid ""
 "a shortkey for it, like ALT+F2)\n"
 "You can also set up a shortkey to pop up the menu (like ALT+F1)"
 msgstr ""
-"Visualitza el menú de les aplicacions i la llista dels fitxers usats "
-"recentment."
 
 #: ../GMenu/src/applet-init.c:38
 msgid "Applications Menu"
-msgstr "Menú d'aplicacions"
+msgstr "პროგრამების მენიუ"
 
 #: ../GMenu/src/applet-init.c:71
 msgid "Show/hide the Applications menu"
-msgstr "Mostra/oculta el menú d'aplicacions"
+msgstr ""
 
 #: ../GMenu/src/applet-init.c:76
 msgid "Show/hide the quick-launch dialog"
-msgstr "Mostra/oculta el diàleg de càrrega ràpida"
+msgstr ""
 
 #: ../GMenu/src/applet-menu.c:148 ../GMenu/data/messages:115
 msgid "Logout"
-msgstr "Surt de la Sessió"
+msgstr "გასვლა"
 
 #: ../GMenu/src/applet-menu.c:151 ../GMenu/data/messages:117
 msgid "Shutdown"
-msgstr "Atura"
+msgstr "გამორთვა"
 
 #: ../GMenu/src/applet-notifications.c:64
 msgid "Quick launch"
-msgstr "Càrrega ràpida"
+msgstr ""
 
 #: ../GMenu/src/applet-notifications.c:83
 msgid "Configure menu"
-msgstr "Configuració del menú"
+msgstr "მენიუს მორგება"
 
 #: ../GMenu/src/applet-notifications.c:88
 msgid "None of these applications seems available:"
-msgstr "Cap d'aquestes aplicacions sembla disponible:"
+msgstr ""
 
 #: ../GMenu/src/applet-notifications.c:96
 msgid "Clear recent"
-msgstr "Neteja els elements recents"
+msgstr ""
 
 #: ../GMenu/src/applet-recent.c:53
 msgid "Recent Documents"
-msgstr "Documents recents"
+msgstr "ახლახან გახსნილი დოკუმენტები"
 
 #: ../GMenu/src/applet-recent.c:109
 msgid "Clear the list of the recently used documents?"
-msgstr "Neteja la llista dels documents recents?"
+msgstr ""
 
 #: ../GMenu/src/applet-run-dialog.c:366 ../Scooby-Do/data/messages:113
 msgid "Enter a command to launch:"
-msgstr "Escriviu la comanda per executar"
+msgstr ""
 
 #: ../Global-Menu/src/applet-init.c:30
 msgid "Global Menu"
-msgstr "Menú global"
+msgstr "გლობალური მენიუ"
 
 #: ../Global-Menu/src/applet-init.c:33
 msgid ""
@@ -878,21 +768,14 @@ msgid ""
 "by default.\n"
 "You can bind a shortkey to this action."
 msgstr ""
-"Aquest complement us permet controlar la finestra activa:\n"
-"<ul>\n"
-"<li> tancar, minimitzar, maximitzar i mostrar el menú de l'aplicació.</li>\n"
-"</ul>\n"
-"Per  mostrar el menú, les aplicacions han de tenir el suport de la "
-"característica; a Ubuntu, això sol passar per defecte.\n"
-"Podeu forçar una drecera de teclat per realitzar aquesta acció."
 
 #: ../Global-Menu/src/applet-init.c:112 ../Global-Menu/src/applet-init.c:211
 msgid "Show/hide the current application menu"
-msgstr "Mostra/oculta el menú de l'aplicació"
+msgstr ""
 
 #: ../Global-Menu/src/applet-notifications.c:93
 msgid "The application didn't send its menu to us."
-msgstr "L'aplicació no ens envia cap menú."
+msgstr ""
 
 #: ../Impulse/src/applet-impulse.c:176
 msgid ""
@@ -900,9 +783,6 @@ msgid ""
 "Can you check its status (installed? running? version?) and report this bug "
 "(if any) to forum.glx-dock.org"
 msgstr ""
-"Alguna cosa passa amb el PulseAudio.\n"
-"Podeu comprovar com està (instal·lat? carregat? versió?) i enviar un informe "
-"de l'error (si existeix) al fòrum de glx-dock.org"
 
 #: ../Impulse/src/applet-init.c:32
 msgid ""
@@ -911,14 +791,10 @@ msgid ""
 "In fact, you will have a graphical equalizer into the dock\n"
 "It will analyse the signal given by PulseAudio."
 msgstr ""
-"Sabíeu que el vostre acoblador pot ballar? :) \n"
-"Si feu clic en aquesta icona, l'acoblador ballarà!\n"
-"De fet, hi tindreu un equalitzador gràfic.\n"
-"Analitzarà el senyal del PulseAudio."
 
 #: ../Indicator-Generic/src/applet-init.c:30
 msgid "Indicator-Generic"
-msgstr "Indicador genèric."
+msgstr ""
 
 #: ../Indicator-Generic/src/applet-init.c:33
 msgid ""
@@ -928,12 +804,6 @@ msgid ""
 "automatically hidden.\n"
 "You can also blacklist indicators you don't want to see."
 msgstr ""
-"Aquest complement pot mostrar tots els indicadors a dins de l'acoblador.\n"
-"Els indicadors proporcionen informació sobre algun comportament, i un menú "
-"per actuar-hi:\n"
-"per exemple, un indicador per controlar els treballs d'impressió. Els "
-"indicadors inactius s'amaguen automàticament.\n"
-"També podeu rebutjar els indicadors que no vulgueu."
 
 #: ../Indicator-Generic/src/applet-notifications.c:34
 #, c-format
@@ -941,13 +811,10 @@ msgid ""
 "This indicator service did not reply.\n"
 "Please check that '%s' is correctly installed and its daemon is running."
 msgstr ""
-"El servei d'aquest indicador no ha respost.\n"
-"Si us plau, comproveu que '%s' estigui correctament instal·lat i que el seu "
-"dimoni s'estigui executant."
 
 #: ../Messaging-Menu/src/applet-init.c:29
 msgid "Messaging Menu"
-msgstr "Menú de missatges"
+msgstr "შეტყობინებების მენიუ"
 
 #: ../Messaging-Menu/src/applet-init.c:32
 msgid ""
@@ -955,76 +822,68 @@ msgid ""
 "It handles Evolution, Pidgin, Empathy, etc\n"
 "It requires the Messaging service, which is available on Ubuntu by default."
 msgstr ""
-"Un menú que us comunica l'arribada de missatges a l'aplicació de correu o "
-"del xat.\n"
-"Comprova l'Evolution, Pidgin, Empathy, etc.\n"
-"Necessita el servei de missatgeria, que a l'Ubuntu es té per defecte."
 
 #: ../Messaging-Menu/src/applet-init.c:88
 msgid "Show/hide the Messaging menu"
-msgstr "Mostra/oculta el menú de missatgeria"
+msgstr ""
 
 #: ../Messaging-Menu/src/applet-notifications.c:70
 msgid ""
 "The Messaging service did not reply.\n"
 "Please check that it is correctly installed."
 msgstr ""
-"El servei de missatgeria no ha respost.\n"
-"Si us plau, comproveu que estigui instal·lat correctament."
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:67
 msgid "Network connection state changed to inactive."
-msgstr "La connexió ha canviat a l'estat d'inactivitat."
+msgstr ""
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:73
 msgid "Connecting..."
-msgstr "S'està connectant..."
+msgstr "დაკავშირება..."
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:80
 msgid "Network connection is established."
-msgstr "S'ha establert la connexió de xarxa"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:86
 msgid "Network connection state changed to disconnected."
-msgstr "S'ha desactivat la connexió de xarxa"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:148
 msgid "A cable has been plugged"
-msgstr "S'ha connectat un cable"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:148
 msgid "A cable has been unplugged"
-msgstr "S?ha desconnectat un cable"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-draw.c:128 ../wifi/src/applet-draw.c:130
 msgid ""
 "Checking connection...\n"
 "Please retry in a few seconds"
 msgstr ""
-"Comprovació de la connexió ...\n"
-"Si us plau, torneu a provar al cap de pocs segons"
 
 #: ../Network-Monitor/src/applet-draw.c:136
 msgid "Wired Connection."
-msgstr "Connexió per cable."
+msgstr ""
 
 #: ../Network-Monitor/src/applet-draw.c:138
 #: ../Network-Monitor/src/applet-draw.c:153 ../wifi/src/applet-draw.c:147
 msgid "Interface"
-msgstr "Interfície"
+msgstr "ინტერფეისი"
 
 #: ../Network-Monitor/src/applet-draw.c:139
 #: ../Network-Monitor/src/applet-draw.c:151
 msgid "Speed"
-msgstr "Velocitat"
+msgstr "სიჩქარე"
 
 #: ../Network-Monitor/src/applet-draw.c:148 ../wifi/src/applet-draw.c:143
 msgid "Wifi enabled."
-msgstr "Wifi activada."
+msgstr ""
 
 #: ../Network-Monitor/src/applet-draw.c:150 ../wifi/src/applet-draw.c:145
 msgid "Network ID"
-msgstr "Identificador de xarxa"
+msgstr "ქსელის ID"
 
 #: ../Network-Monitor/src/applet-draw.c:150
 #: ../musicPlayer/src/applet-draw.c:167 ../musicPlayer/src/applet-draw.c:169
@@ -1032,15 +891,15 @@ msgstr "Identificador de xarxa"
 #: ../powermanager/src/powermanager-draw.c:260
 #: ../powermanager/src/powermanager-draw.c:315
 msgid "Unknown"
-msgstr "Desconegut"
+msgstr "უცნობი"
 
 #: ../Network-Monitor/src/applet-draw.c:152 ../wifi/src/applet-draw.c:146
 msgid "Access point"
-msgstr "Punt d'accés"
+msgstr "წვდომის წერტილი"
 
 #: ../Network-Monitor/src/applet-draw.c:154 ../wifi/src/applet-draw.c:148
 msgid "Signal Quality"
-msgstr "Qualitat del senyal"
+msgstr "სიგნალის ხარისხი"
 
 #: ../Network-Monitor/src/applet-init.c:34
 msgid ""
@@ -1051,49 +910,42 @@ msgid ""
 "Left-click to pop-up some info,Scroll on the icon to switch the display "
 "between net speed and wifi."
 msgstr ""
-"Aquest complement permet observar les connexions de xarxa.\n"
-"Pot mostrar les velocitats de descàrrega i de pujada i la qualitat del "
-"senyal wifi.\n"
-"Si teniu el network-manager treballant, també us permet triar la xarxa "
-"wifi.\n"
-"Amb un clic esquerre obtindreu una mica d'informació, desplaceu-vos per la "
-"icona per intercanviar velocitat de la xarxa i wifi."
 
 #: ../Network-Monitor/src/applet-init.c:41
 msgid "Network Monitor"
-msgstr "Monitor de xarxa"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-netspeed.c:202
 #: ../System-Monitor/src/applet-monitor.c:97
 #: ../System-Monitor/src/applet-top.c:427 ../netspeed/src/applet-netspeed.c:243
 msgid "Loading"
-msgstr "S’està carregant"
+msgstr "იტვირთება"
 
 #: ../Network-Monitor/src/applet-notifications.c:81
 #: ../wifi/src/applet-notifications.c:60
 msgid "Check for Wireless Extension"
-msgstr "Comprova l'extensió de la connexió inalàmbrica"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-notifications.c:82
 #: ../wifi/src/applet-notifications.c:67
 msgid "Network Administration"
-msgstr "Administració de xarxa"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-notifications.c:86
 msgid "Activate network"
-msgstr "Activa xarxa"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-notifications.c:86
 msgid "Deactivate network"
-msgstr "Desactiva xarxa"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-notifications.c:90
 msgid "Deactivate wifi"
-msgstr "Desactiva la wifi"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-notifications.c:90
 msgid "Activate wifi"
-msgstr "Activa la wifi"
+msgstr ""
 
 #: ../RSSreader/src/applet-init.c:31
 msgid "RSSreader"
@@ -1111,24 +963,15 @@ msgid ""
 "    or copy it and use \"Paste a new RSS Url\" in the menu.\n"
 "    or edit the Configuration Panel."
 msgstr ""
-"Aquesta miniaplicació és un lector de canals RSS/Atom.\n"
-"Podeu cridar-la tants de cops com vulgueu.\n"
-"ÚS:\n"
-" - Clic esquerra : mostra les línies completes del canal en un diàleg.\n"
-" - Clic central : refresca el canal.\n"
-" - Desplaça al miniescriptori : fa que les línees del canal es desplacin.\n"
-" - Arrossega i deixa anar una URL vàlida a l'icona per utilitzar-la,\n"
-"    o copia'l i utilitza \"Enganxa una nova url RSS\" al menú.\n"
-"    o edita el Tauler de configuració."
 
 #: ../RSSreader/src/applet-init.c:65 ../RSSreader/src/applet-init.c:125
 #: ../RSSreader/src/applet-notifications.c:56
 msgid "Retrieving data..."
-msgstr "Rebent dades..."
+msgstr ""
 
 #: ../RSSreader/src/applet-notifications.c:69
 msgid "It doesn't seem to be a valid URL."
-msgstr "Sembla no ser una URL vàlida."
+msgstr ""
 
 #: ../RSSreader/src/applet-notifications.c:127
 msgid "Paste a new RSS Url (drag and drop)"
@@ -1136,41 +979,40 @@ msgstr ""
 
 #: ../RSSreader/src/applet-notifications.c:131
 msgid "Open with your web browser"
-msgstr "Obre amb el teu navegador"
+msgstr ""
 
 #: ../RSSreader/src/applet-notifications.c:132
 #: ../switcher/src/applet-notifications.c:342
 msgid "Refresh"
-msgstr "Actualitza"
+msgstr "განახლება"
 
 #: ../RSSreader/src/applet-rss.c:400
 msgid "Warning: couldn't retrieve data last time we tried."
 msgstr ""
-"Advertència: no es van poder rebre dades l'últim cop que es va intentar."
 
 #: ../RSSreader/src/applet-rss.c:436
 msgid "No URL is defined."
-msgstr "No està definida una URL."
+msgstr ""
 
 #: ../RSSreader/src/applet-rss.c:437
 msgid "No data (no connection?)"
-msgstr "Sense dades (sense connexió?)"
+msgstr ""
 
 #: ../RSSreader/src/applet-rss.c:468 ../RSSreader/src/applet-rss.c:487
 msgid "Invalid data (invalid RSS/Atom feed?)"
-msgstr "Dades invalides (canal RSS/Atom invàlid?)"
+msgstr ""
 
 #: ../RSSreader/src/applet-rss.c:551
 msgid "No data"
-msgstr "Sense dades"
+msgstr "მონაცემების გარეშე"
 
 #: ../RSSreader/src/applet-rss.c:589
 msgid "No modification"
-msgstr "Cap modificació"
+msgstr ""
 
 #: ../RSSreader/src/applet-rss.c:614
 msgid "This RSS feed has been modified..."
-msgstr "Aquest canal RSS ha estat modificat..."
+msgstr ""
 
 #: ../RSSreader/src/applet-rss.c:776
 msgid ""
@@ -1178,9 +1020,6 @@ msgid ""
 "You can define one by copying the URL in the clipboard,\n"
 " and selecting \"Paste the URL\" in the menu."
 msgstr ""
-"Cap URL definida\n"
-"Pots definir una copiant la URL al portapapers,\n"
-" i seleccionant \"Enganxa la URL\" al menú."
 
 #: ../RSSreader/src/applet-rss.c:782
 msgid ""
@@ -1188,9 +1027,6 @@ msgid ""
 "Did you set a valid RSS feed?\n"
 "Is your connection alive?"
 msgstr ""
-"Cap dada\n"
-"Has establert un canal RSS vàlid?\n"
-"Està la teva connexió activa?"
 
 #: ../Recent-Events/src/applet-dialog.c:292
 #: ../Screenshot/src/applet-screenshot.c:307
@@ -1203,51 +1039,51 @@ msgstr ""
 #: ../Screenshot/src/applet-screenshot.c:275
 #: ../quick-browser/src/applet-menu.c:295
 msgid "Copy the location"
-msgstr "Copia la localització"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:297
 msgid "Delete this event"
-msgstr "Esborra aquest esdeveneniment"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:375
 msgid "All"
-msgstr "Tot"
+msgstr "ყველა"
 
 #: ../Recent-Events/src/applet-dialog.c:376
 msgid "Applications"
-msgstr "Aplicacions"
+msgstr "აპლიკაციები"
 
 #: ../Recent-Events/src/applet-dialog.c:377
 msgid "Documents"
-msgstr ""
+msgstr "დოკუმენტები"
 
 #: ../Recent-Events/src/applet-dialog.c:379 ../drop-indicator/data/messages:3
 msgid "Images"
-msgstr ""
+msgstr "გამოსახულებები"
 
 #: ../Recent-Events/src/applet-dialog.c:380
 msgid "Audio"
-msgstr "Àudio"
+msgstr "აუდიო"
 
 #: ../Recent-Events/src/applet-dialog.c:381
 msgid "Videos"
-msgstr ""
+msgstr "ვიდეოები"
 
 #: ../Recent-Events/src/applet-dialog.c:382
 msgid "Web"
-msgstr "Web"
+msgstr "ვები"
 
 #: ../Recent-Events/src/applet-dialog.c:383
 msgid "Others"
-msgstr ""
+msgstr "სხვები"
 
 #: ../Recent-Events/src/applet-dialog.c:384
 msgid "Top Results"
-msgstr "Resultats principals"
+msgstr "საუკეთესო შედეგები"
 
 #: ../Recent-Events/src/applet-dialog.c:390
 msgid "Look for events"
-msgstr "Cerca esdeveniments"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:398
 msgid ""
@@ -1261,11 +1097,11 @@ msgstr ""
 #: ../Recent-Events/src/applet-dialog.c:440
 #: ../Screenshot/src/applet-screenshot.c:467
 msgid "File name"
-msgstr "Nom del fitxer"
+msgstr "ფაილის სახელი"
 
 #: ../Recent-Events/src/applet-dialog.c:447
 msgid "Last access"
-msgstr "Darrer accés"
+msgstr "1"
 
 #: ../Recent-Events/src/applet-dialog.c:489
 msgid "You need to install the Zeitgeist data engine."
@@ -1273,20 +1109,20 @@ msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:537
 msgid "Browse and search in recent events"
-msgstr "Navega i cerca als esdeveniments recents"
+msgstr ""
 
 #: ../Recent-Events/src/applet-init.c:29
 msgid "Recent-Events"
-msgstr "Esdeveniments recents"
+msgstr ""
 
 #: ../Recent-Events/src/applet-init.c:58
 msgid "Show/hide the Recent Events"
-msgstr "Mostra/oculta els esdeveniments recents"
+msgstr ""
 
 #: ../Recent-Events/src/applet-notifications.c:84
 #, c-format
 msgid "%d event(s) deleted"
-msgstr "%d esdeveniment(s) esborrat(s)"
+msgstr ""
 
 #: ../Recent-Events/src/applet-notifications.c:122
 msgid "No related files"
@@ -1294,16 +1130,16 @@ msgstr ""
 
 #: ../Recent-Events/src/applet-notifications.c:198
 msgid "Delete today's events"
-msgstr "Esborra els esdeveniments d'avui"
+msgstr ""
 
 #: ../Recent-Events/src/applet-notifications.c:200
 msgid "Delete all events"
-msgstr "Esborra tots els esdeveniments"
+msgstr ""
 
 #: ../Recent-Events/src/applet-notifications.c:209
 #: ../Scooby-Do/src/applet-backend-recent.c:213 ../Scooby-Do/data/messages:107
 msgid "Recent files"
-msgstr "Fitxers recents"
+msgstr "უახლესი ფაილები"
 
 #: ../Remote-Control/src/applet-init.c:33
 msgid ""
@@ -1318,20 +1154,10 @@ msgid ""
 "middle click, and Ctrl+Enter for left click\n"
 "Escape or the same shortkey will cancel."
 msgstr ""
-"Aquest complement et permet controlar el teu dock des del teclat\n"
-"Prem la drecera (per defecte Super + Retorn), llavors:\n"
-" - prem el número de l'icona que desitges activar - o fes servir les fletxes "
-"per navegar als docks i els sub-docks (Ctrl + Re/Av Pàg per canviar a un "
-"altre dock principal)\n"
-" - o escriu el nom de un llançador i prem Tab per automàticament saltar al "
-"següent llançador apropiat\n"
-"Prem Intro per clicar a l'icona, Shift+Intro per Shift+clicar, Alt+Intro per "
-"un clic central, i Ctrl+Intro per un clic esquerra\n"
-"Esc o la mateixa drecera ho cancel·larà."
 
 #: ../Remote-Control/src/applet-init.c:48
 msgid "Control from keyboard"
-msgstr "Control des del teclat"
+msgstr ""
 
 #: ../Remote-Control/src/applet-init.c:62
 msgid "Enable/disable the keyboard control of the dock"
@@ -1353,22 +1179,22 @@ msgstr ""
 #: ../Scooby-Do/src/applet-backend-files.c:177
 #: ../Scooby-Do/src/applet-backend-files.c:251
 msgid "Move to"
-msgstr ""
+msgstr "გადაადგილება"
 
 #: ../Scooby-Do/src/applet-backend-files.c:185
 #: ../Scooby-Do/src/applet-backend-files.c:259
 #: ../Scooby-Do/src/applet-backend-firefox.c:391
 msgid "Copy URL"
-msgstr ""
+msgstr "URL-ის კოპირება"
 
 #: ../Scooby-Do/src/applet-backend-files.c:227
 #: ../Scooby-Do/src/applet-backend-recent.c:146
 msgid "Open location"
-msgstr ""
+msgstr "მდებარეობის გახსნა"
 
 #: ../Scooby-Do/src/applet-backend-files.c:235
 msgid "Zip file"
-msgstr ""
+msgstr "Zip ფაილი"
 
 #: ../Scooby-Do/src/applet-backend-files.c:243
 msgid "Mail file"
@@ -1376,21 +1202,21 @@ msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-files.c:524 ../Scooby-Do/data/messages:101
 msgid "Files"
-msgstr ""
+msgstr "ფაილები"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:375
 #: ../Screenshot/src/applet-screenshot.c:277
 msgid "Open"
-msgstr ""
+msgstr "გახსნა"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:383
 msgid "Open in new window"
-msgstr ""
+msgstr "ახალ ფანჯარაში გახსნა"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:450
 #: ../dnd2share/src/applet-notifications.c:478
 msgid "Open file"
-msgstr ""
+msgstr "ფაილის გახსნა"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:512 ../Scooby-Do/data/messages:105
 msgid "Firefox bookmarks"
@@ -1398,15 +1224,15 @@ msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-web.c:99
 msgid "Wikipedia"
-msgstr ""
+msgstr "Wikipedia"
 
 #: ../Scooby-Do/src/applet-backend-web.c:107
 msgid "Yahoo!"
-msgstr ""
+msgstr "Yahoo!"
 
 #: ../Scooby-Do/src/applet-backend-web.c:115
 msgid "Google"
-msgstr ""
+msgstr "Google"
 
 #: ../Scooby-Do/src/applet-backend-web.c:125
 msgid "Search on the web"
@@ -1418,7 +1244,7 @@ msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-web.c:147
 msgid "Amazon"
-msgstr ""
+msgstr "ამაზონი"
 
 #: ../Scooby-Do/src/applet-init.c:82
 msgid "Enable/disable the Finder"
@@ -1454,7 +1280,7 @@ msgstr ""
 
 #: ../Scooby-Do/src/applet-listing.c:649 ../Scooby-Do/src/applet-search.c:362
 msgid "No result"
-msgstr ""
+msgstr "შედეგის გარეშე"
 
 #: ../Scooby-Do/src/applet-listing.c:653 ../Scooby-Do/src/applet-search.c:358
 #: ../tomboy/src/tomboy-draw.c:203
@@ -1464,11 +1290,11 @@ msgstr ""
 #: ../Scooby-Do/src/applet-listing.c:653 ../Scooby-Do/src/applet-search.c:358
 #: ../tomboy/src/tomboy-draw.c:203
 msgid "result"
-msgstr ""
+msgstr "შედეგი"
 
 #: ../Scooby-Do/src/applet-search.c:132
 msgid "Searching ..."
-msgstr ""
+msgstr "ძებნა ..."
 
 #: ../Scooby-Do/src/applet-session.c:70
 msgid "Enter your search"
@@ -1484,11 +1310,11 @@ msgstr ""
 
 #: ../Screenshot/src/applet-init.c:53
 msgid "Take a screenshot"
-msgstr ""
+msgstr "ეკრანის ანაბეჭდის გადაღება"
 
 #: ../Screenshot/src/applet-notifications.c:49
 msgid "Screenshot"
-msgstr ""
+msgstr "ეკრანის ანაბეჭდი"
 
 #: ../Screenshot/src/applet-notifications.c:61
 msgid "Screenshot with options"
@@ -1516,7 +1342,7 @@ msgstr ""
 
 #: ../Screenshot/src/applet-screenshot.c:439
 msgid "Delay"
-msgstr ""
+msgstr "დაყოვნება"
 
 #: ../Screenshot/src/applet-screenshot.c:457
 msgid "Grab the current window instead of the all screen"
@@ -1524,7 +1350,7 @@ msgstr ""
 
 #: ../Screenshot/src/applet-screenshot.c:458
 msgid "Grab the current window"
-msgstr ""
+msgstr "მიმდინარე ფანჯრის დათრევა"
 
 #: ../Screenshot/src/applet-screenshot.c:466
 #: ../Screenshot/src/applet-screenshot.c:475
@@ -1535,11 +1361,11 @@ msgstr ""
 
 #: ../Screenshot/src/applet-screenshot.c:476
 msgid "Directory"
-msgstr ""
+msgstr "საქაღალდე"
 
 #: ../Sound-Effects/src/applet-init.c:29
 msgid "Sound Effects"
-msgstr ""
+msgstr "ხმის ეფექტები"
 
 #: ../Sound-Effects/src/applet-init.c:32
 msgid ""
@@ -1561,7 +1387,7 @@ msgstr ""
 
 #: ../System-Monitor/src/applet-cpusage.c:59
 msgid "Uptime"
-msgstr ""
+msgstr "ჩართულობის დრო"
 
 #: ../System-Monitor/src/applet-cpusage.c:64
 msgid "Activity time"
@@ -1573,7 +1399,7 @@ msgstr ""
 
 #: ../System-Monitor/src/applet-cpusage.c:148
 msgid "Frequency"
-msgstr ""
+msgstr "სიხშირე"
 
 #: ../System-Monitor/src/applet-cpusage.c:149
 msgid "core(s)"
@@ -1617,7 +1443,7 @@ msgstr ""
 #: ../System-Monitor/src/applet-rame.c:106
 #: ../System-Monitor/src/applet-top.c:294
 msgid "Mb"
-msgstr ""
+msgstr "მბ"
 
 #: ../System-Monitor/src/applet-nvidia.c:148
 msgid "Driver Version"
@@ -1634,36 +1460,36 @@ msgstr ""
 
 #: ../System-Monitor/src/applet-rame.c:106
 msgid "Gb"
-msgstr ""
+msgstr "გბ"
 
 #: ../System-Monitor/src/applet-rame.c:118
 msgid "Memory"
-msgstr ""
+msgstr "მეხსიერება"
 
 #: ../System-Monitor/src/applet-rame.c:121
 msgid "Available"
-msgstr ""
+msgstr "ხელმისაწვდომია"
 
 #: ../System-Monitor/src/applet-rame.c:124
 msgid "Cached"
-msgstr ""
+msgstr "დაქეშილი"
 
 #: ../System-Monitor/src/applet-rame.c:127
 msgid "Buffers"
-msgstr ""
+msgstr "ბუფერები"
 
 #: ../System-Monitor/src/applet-sensors.c:358
 msgid "min"
-msgstr ""
+msgstr "წთ"
 
 #: ../System-Monitor/src/applet-sensors.c:360
 msgid "max"
-msgstr ""
+msgstr "მაქს"
 
 #: ../System-Monitor/src/applet-sensors.c:363
 #: ../System-Monitor/src/applet-sensors.c:396
 msgid "alarm"
-msgstr ""
+msgstr "მაღვიძარა"
 
 #: ../System-Monitor/src/applet-sensors.c:394
 msgid "rpm"
@@ -1739,7 +1565,7 @@ msgstr ""
 
 #: ../Xgamma/src/applet-xgamma.c:335
 msgid "Luminosity"
-msgstr ""
+msgstr "სიკაშკაშე"
 
 #: ../alsaMixer/src/applet-backend-alsamixer.c:72
 #, c-format
@@ -1773,7 +1599,7 @@ msgstr ""
 
 #: ../alsaMixer/src/applet-draw.c:37
 msgid "Volume"
-msgstr ""
+msgstr "ხმის სიმაღლე"
 
 #: ../alsaMixer/src/applet-init.c:32
 msgid ""
@@ -1805,11 +1631,11 @@ msgstr ""
 
 #: ../alsaMixer/src/applet-notifications.c:85
 msgid "Unmute"
-msgstr ""
+msgstr "დადუმების გამორთვა"
 
 #: ../alsaMixer/src/applet-notifications.c:85
 msgid "Mute"
-msgstr ""
+msgstr "დადუმება"
 
 #: ../clock/src/applet-calendar.c:191 ../clock/src/applet-calendar.c:270
 #: ../clock/src/applet-calendar.c:522 ../clock/src/applet-calendar.c:527
@@ -1820,15 +1646,15 @@ msgstr ""
 #: ../tomboy/src/applet-notes.c:98 ../tomboy/src/applet-notes.c:101
 #: ../tomboy/src/applet-notes.c:406
 msgid "No title"
-msgstr ""
+msgstr "სათაურის გარეშე"
 
 #: ../clock/src/applet-calendar.c:523
 msgid "years"
-msgstr ""
+msgstr "წელი"
 
 #: ../clock/src/applet-calendar.c:596 ../clock/src/applet-task-editor.c:154
 msgid "Add a new task"
-msgstr ""
+msgstr "ახალი ამოცანის დამატება"
 
 #: ../clock/src/applet-calendar.c:599
 msgid "Edit tasks"
@@ -1840,7 +1666,7 @@ msgstr ""
 
 #: ../clock/src/applet-config.c:36 ../clock/data/messages:189
 msgid "Alarm"
-msgstr ""
+msgstr "განგაში"
 
 #: ../clock/src/applet-config.c:36
 msgid "Time you want to be notified:"
@@ -1852,43 +1678,43 @@ msgstr ""
 
 #: ../clock/src/applet-config.c:36
 msgid "Never"
-msgstr ""
+msgstr "არასდროს"
 
 #: ../clock/src/applet-config.c:36
 msgid "Day"
-msgstr ""
+msgstr "დღე"
 
 #: ../clock/src/applet-config.c:36
 msgid "Monday"
-msgstr "Dilluns"
+msgstr "ორშაბათი"
 
 #: ../clock/src/applet-config.c:36
 msgid "Tuesday"
-msgstr "Dimarts"
+msgstr "სამშაბათი"
 
 #: ../clock/src/applet-config.c:36
 msgid "Wednesday"
-msgstr "Dimecres"
+msgstr "ოთხშაბათი"
 
 #: ../clock/src/applet-config.c:36
 msgid "Thursday"
-msgstr "Dijous"
+msgstr "ხუთშაბათი"
 
 #: ../clock/src/applet-config.c:36
 msgid "Friday"
-msgstr "Divendres"
+msgstr "პარასკევი"
 
 #: ../clock/src/applet-config.c:36
 msgid "Saturday"
-msgstr "Dissabte"
+msgstr "შაბათი"
 
 #: ../clock/src/applet-config.c:36
 msgid "Sunday"
-msgstr "Diumenge"
+msgstr "კვირა"
 
 #: ../clock/src/applet-config.c:36
 msgid "Week Day"
-msgstr ""
+msgstr "კვირის დღე"
 
 #: ../clock/src/applet-config.c:36
 msgid "Week End"
@@ -1896,11 +1722,11 @@ msgstr ""
 
 #: ../clock/src/applet-config.c:36
 msgid "Month"
-msgstr ""
+msgstr "თვე"
 
 #: ../clock/src/applet-config.c:36
 msgid "Repeat every:"
-msgstr ""
+msgstr "გამეორება ყოველ:"
 
 #: ../clock/src/applet-config.c:36
 msgid "If every month, which day of the month?"
@@ -1928,7 +1754,7 @@ msgstr ""
 
 #: ../clock/src/applet-init.c:35
 msgid "clock"
-msgstr ""
+msgstr "საათი"
 
 #: ../clock/src/applet-init.c:38
 msgid ""
@@ -1977,7 +1803,7 @@ msgstr ""
 
 #: ../clock/src/applet-task-editor.c:207
 msgid "Don't repeat"
-msgstr ""
+msgstr "არ გაიმეორო"
 
 #: ../clock/src/applet-task-editor.c:213
 msgid "Each month"
@@ -2002,25 +1828,25 @@ msgstr ""
 #: ../clock/src/applet-task-editor.c:408 ../musicPlayer/src/applet-draw.c:168
 #: ../RSSreader/data/messages:133
 msgid "Title"
-msgstr ""
+msgstr "სათაური"
 
 #: ../clock/src/applet-task-editor.c:415
 #: ../dnd2share/src/applet-notifications.c:397 ../Doncky/data/messages:95
 #: ../RSSreader/data/messages:149 ../Scooby-Do/data/messages:27
 msgid "Text"
-msgstr ""
+msgstr "ტექსტი"
 
 #: ../clock/src/applet-task-editor.c:422
 msgid "Time"
-msgstr ""
+msgstr "დრო"
 
 #: ../clock/src/applet-task-editor.c:436
 msgid "Freq."
-msgstr ""
+msgstr "სიხშ."
 
 #: ../clock/src/applet-task-editor.c:443
 msgid "Tags"
-msgstr ""
+msgstr "ჭდეები"
 
 #: ../clock/src/applet-timer.c:59
 msgid "1mn"
@@ -2077,15 +1903,15 @@ msgstr ""
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:81
 msgid "dark"
-msgstr ""
+msgstr "ბნელი"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:89
 msgid "clear"
-msgstr ""
+msgstr "clear"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:97
 msgid "light"
-msgstr ""
+msgstr "ღია"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:105
 msgid "water drop"
@@ -2093,7 +1919,7 @@ msgstr ""
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:113
 msgid "water"
-msgstr ""
+msgstr "წყალი"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:121
 msgid "futuristic"
@@ -2102,11 +1928,11 @@ msgstr ""
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:129
 #: ../slider/data/messages:137
 msgid "none"
-msgstr ""
+msgstr "არცერთი"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:137
 msgid "board"
-msgstr ""
+msgstr "დაფა"
 
 #: ../dialog-rendering/src/applet-decorator-3Dplane.h:26
 msgid "3Dplane"
@@ -2118,7 +1944,7 @@ msgstr ""
 
 #: ../dialog-rendering/src/applet-decorator-curly.h:26
 msgid "curly"
-msgstr ""
+msgstr "curly"
 
 #: ../dialog-rendering/src/applet-decorator-modern.h:26
 msgid "modern"
@@ -2126,7 +1952,7 @@ msgstr ""
 
 #: ../dialog-rendering/src/applet-decorator-tooltip.h:26
 msgid "tooltip"
-msgstr ""
+msgstr "მინიშნება"
 
 #: ../dnd2share/src/applet-backend-codepad.c:34
 #: ../dnd2share/src/applet-backend-custom.c:28
@@ -2156,28 +1982,28 @@ msgstr ""
 
 #: ../dnd2share/src/applet-backend-imgur.c:32
 msgid "Display Image"
-msgstr ""
+msgstr "გამოსახულების ჩვენება"
 
 #: ../dnd2share/src/applet-backend-imgur.c:32
 msgid "Large"
-msgstr ""
+msgstr "დიდი"
 
 #: ../dnd2share/src/applet-backend-imgur.c:32
 #: ../dock-rendering/data/messages:41
 msgid "Small"
-msgstr ""
+msgstr "პატარა"
 
 #: ../dnd2share/src/applet-backend-uppix.c:30
 msgid "Thumbnail"
-msgstr ""
+msgstr "მინიატურა"
 
 #: ../dnd2share/src/applet-dnd2share.c:43
 msgid "No text"
-msgstr ""
+msgstr "ტექსტი გარეშე"
 
 #: ../dnd2share/src/applet-dnd2share.c:54
 msgid "Text:"
-msgstr ""
+msgstr "ტექსტი:"
 
 #: ../dnd2share/src/applet-dnd2share.c:316
 msgid ""
@@ -2285,7 +2111,7 @@ msgstr ""
 
 #: ../dnd2share/src/applet-notifications.c:397
 msgid "File"
-msgstr ""
+msgstr "ფაილი"
 
 #: ../dnd2share/src/applet-notifications.c:400
 msgid "Click on the icon to copy the URL into the clipboard."
@@ -2297,7 +2123,7 @@ msgstr ""
 
 #: ../dnd2share/src/applet-notifications.c:415
 msgid "History"
-msgstr ""
+msgstr "ისტორია"
 
 #: ../dnd2share/src/applet-notifications.c:480
 msgid "Get text"
@@ -2305,11 +2131,11 @@ msgstr ""
 
 #: ../dnd2share/src/applet-notifications.c:482
 msgid "Remove from history"
-msgstr ""
+msgstr "ისტორიიდან წაშლა"
 
 #: ../dnd2share/src/applet-notifications.c:485
 msgid "Clear History"
-msgstr ""
+msgstr "ისტორიის გაწმენდა"
 
 #: ../dnd2share/src/applet-notifications.c:490
 msgid "Use only a files hosting site"
@@ -2330,20 +2156,20 @@ msgstr ""
 #: ../dock-rendering/src/rendering-init.c:37
 #: ../dock-rendering/data/messages:115
 msgid "Rainbow"
-msgstr ""
+msgstr "ცისარტყელა"
 
 #: ../dock-rendering/src/rendering-init.c:39 ../dock-rendering/data/messages:29
 #: ../shortcuts/data/messages:109 ../stack/data/messages:101
 msgid "Slide"
-msgstr ""
+msgstr "სლაიდი"
 
 #: ../dock-rendering/src/rendering-init.c:40 ../dock-rendering/data/messages:7
 msgid "Curve"
-msgstr ""
+msgstr "მრუდი"
 
 #: ../dock-rendering/src/rendering-init.c:41 ../dock-rendering/data/messages:17
 msgid "Panel"
-msgstr ""
+msgstr "პანელი"
 
 #: ../drop-indicator/src/applet-init.c:28
 msgid "drop indicator"
@@ -2371,15 +2197,15 @@ msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:105
 msgid "files"
-msgstr ""
+msgstr "ფაილები"
 
 #: ../dustbin/src/applet-notifications.c:105
 msgid "elements"
-msgstr ""
+msgstr "ელემენტები"
 
 #: ../dustbin/src/applet-notifications.c:107
 msgid "Mo"
-msgstr ""
+msgstr "თვ"
 
 #: ../dustbin/src/applet-notifications.c:107
 msgid "Ko"
@@ -2395,7 +2221,7 @@ msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:149
 msgid "Empty Trash"
-msgstr ""
+msgstr "ნაგვის ყუთის დაცარიელება"
 
 #: ../dustbin/src/applet-notifications.c:153
 msgid "Display dustbins information"
@@ -2429,7 +2255,7 @@ msgstr ""
 #: ../dustbin/src/applet-trashes-manager.c:113
 #: ../dustbin/src/applet-trashes-manager.c:152
 msgid "calculating"
-msgstr ""
+msgstr "გამოთვლა"
 
 #: ../gnome-integration/src/applet-init.c:46
 msgid "Not running in a GNOME or Cinnamon session."
@@ -2451,31 +2277,31 @@ msgstr ""
 #: ../icon-effect/data/messages:23 ../icon-effect/data/messages:41
 #: ../icon-effect/data/messages:57
 msgid "Fire"
-msgstr ""
+msgstr "ცეცხლი"
 
 #: ../icon-effect/src/applet-init.c:102 ../icon-effect/data/messages:9
 #: ../icon-effect/data/messages:25 ../icon-effect/data/messages:43
 #: ../icon-effect/data/messages:85
 msgid "Stars"
-msgstr ""
+msgstr "ვარსკვლავი"
 
 #: ../icon-effect/src/applet-init.c:105 ../icon-effect/data/messages:11
 #: ../icon-effect/data/messages:27 ../icon-effect/data/messages:45
 #: ../icon-effect/data/messages:129
 msgid "Rain"
-msgstr ""
+msgstr "წვიმა"
 
 #: ../icon-effect/src/applet-init.c:108 ../icon-effect/data/messages:13
 #: ../icon-effect/data/messages:29 ../icon-effect/data/messages:47
 #: ../icon-effect/data/messages:107
 msgid "Snow"
-msgstr ""
+msgstr "თოვლი"
 
 #: ../icon-effect/src/applet-init.c:111 ../icon-effect/data/messages:15
 #: ../icon-effect/data/messages:31 ../icon-effect/data/messages:49
 #: ../icon-effect/data/messages:151
 msgid "Storm"
-msgstr ""
+msgstr "ქარიშხალი"
 
 #: ../icon-effect/src/applet-init.c:114 ../icon-effect/data/messages:17
 #: ../icon-effect/data/messages:33 ../icon-effect/data/messages:51
@@ -2534,11 +2360,11 @@ msgstr ""
 #: ../logout/src/applet-init.c:40 ../logout/src/applet-logout.c:136
 #: ../logout/data/messages:95
 msgid "Log out"
-msgstr ""
+msgstr "გასვლა"
 
 #: ../logout/src/applet-init.c:69
 msgid "Lock the screen"
-msgstr ""
+msgstr "ეკრანის ჩაკეტვა"
 
 #: ../logout/src/applet-init.c:73
 msgid "Show the log-out menu"
@@ -2546,15 +2372,15 @@ msgstr ""
 
 #: ../logout/src/applet-logout.c:99 ../logout/data/messages:97
 msgid "Shut down"
-msgstr ""
+msgstr "გამორთვა"
 
 #: ../logout/src/applet-logout.c:106
 msgid "Restart"
-msgstr ""
+msgstr "გადატვირთვა"
 
 #: ../logout/src/applet-logout.c:112
 msgid "Hibernate"
-msgstr ""
+msgstr "პროგრამული ძილი"
 
 #: ../logout/src/applet-logout.c:114
 msgid "Your computer will not consume any energy."
@@ -2572,7 +2398,7 @@ msgstr ""
 
 #: ../logout/src/applet-logout.c:127
 msgid "Suspend"
-msgstr ""
+msgstr "ძილი"
 
 #: ../logout/src/applet-logout.c:129
 msgid "Your computer will still consume a small amount of energy."
@@ -2584,7 +2410,7 @@ msgstr ""
 
 #: ../logout/src/applet-logout.c:165 ../logout/src/applet-logout.c:195
 msgid "Switch user"
-msgstr ""
+msgstr "მომხმარებლის გადართვა"
 
 #: ../logout/src/applet-logout.c:186
 msgid "New session"
@@ -2596,7 +2422,7 @@ msgstr ""
 
 #: ../logout/src/applet-logout.c:204 ../logout/data/messages:99
 msgid "Lock screen"
-msgstr ""
+msgstr "ეკრანის დაბლოკვა"
 
 #: ../logout/src/applet-logout.c:212
 msgid "Program an automatic shut-down"
@@ -2616,7 +2442,7 @@ msgstr ""
 
 #: ../logout/src/applet-notifications.c:73
 msgid "Manage users"
-msgstr ""
+msgstr "მომხმარებლების მართვა"
 
 #: ../logout/src/applet-reboot-required.c:62
 msgid "Please do that at the end of the update."
@@ -2632,7 +2458,7 @@ msgstr ""
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Server address:"
-msgstr ""
+msgstr "სერვერის მისამართი:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "myHost"
@@ -2640,11 +2466,11 @@ msgstr ""
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Username:"
-msgstr ""
+msgstr "მომხმარებელი:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Password:"
-msgstr ""
+msgstr "პაროლი:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "The password will be crypted."
@@ -2652,7 +2478,7 @@ msgstr ""
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Port:"
-msgstr ""
+msgstr "პორტი:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid ""
@@ -2673,7 +2499,7 @@ msgstr ""
 #: ../mail/src/cd-mail-applet-accounts.c:39 ../RSSreader/data/messages:107
 #: ../netspeed/data/messages:151 ../powermanager/data/messages:159
 msgid "Refresh time:"
-msgstr ""
+msgstr "განახლების დრო:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39 ../RSSreader/data/messages:105
 msgid "In minutes."
@@ -2709,7 +2535,7 @@ msgstr ""
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Remove this account"
-msgstr ""
+msgstr "ამ ანგარიშის წაშლა"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid ""
@@ -2741,11 +2567,11 @@ msgstr ""
 
 #: ../mail/src/cd-mail-applet-config.c:428
 msgid "Remove Account"
-msgstr ""
+msgstr "ანგარიშის წაშლა"
 
 #: ../mail/src/cd-mail-applet-etpan.c:237 ../wifi/src/applet-draw.c:145
 msgid "unknown"
-msgstr ""
+msgstr "უცნობი"
 
 #: ../mail/src/cd-mail-applet-etpan.c:237
 msgid "no subject"
@@ -2766,7 +2592,7 @@ msgstr ""
 
 #: ../mail/src/cd-mail-applet-init.c:33
 msgid "mail"
-msgstr ""
+msgstr "ფოსტა"
 
 #: ../mail/src/cd-mail-applet-init.c:36
 msgid ""
@@ -2796,7 +2622,7 @@ msgstr ""
 
 #: ../mail/src/cd-mail-applet-notifications.c:153
 msgid "Refresh all"
-msgstr ""
+msgstr "ყველას განახლება"
 
 #: ../mail/src/cd-mail-applet-notifications.c:160
 #, c-format
@@ -2810,11 +2636,11 @@ msgstr ""
 #: ../mail/src/cd-mail-applet-notifications.c:169
 #, c-format
 msgid "Launch %s"
-msgstr ""
+msgstr "%s-ის გაშვება"
 
 #: ../mail/src/cd-mail-applet-notifications.c:349
 msgid "Mail"
-msgstr ""
+msgstr "ფოსტა"
 
 #: ../motion-blur/src/applet-init.c:28
 msgid "motion blur"
@@ -2826,15 +2652,15 @@ msgstr ""
 
 #: ../musicPlayer/src/applet-draw.c:59
 msgid "Unknown artist"
-msgstr ""
+msgstr "უცნობი შემსრულებელი"
 
 #: ../musicPlayer/src/applet-draw.c:59
 msgid "Unknown title"
-msgstr ""
+msgstr "უცნობი სათაური"
 
 #: ../musicPlayer/src/applet-draw.c:65 ../musicPlayer/src/applet-mpris.c:336
 msgid "Track"
-msgstr ""
+msgstr "ტრეკი"
 
 #: ../musicPlayer/src/applet-draw.c:150
 msgid "Track n°"
@@ -2846,15 +2672,15 @@ msgstr ""
 
 #: ../musicPlayer/src/applet-draw.c:166
 msgid "Artist"
-msgstr ""
+msgstr "შემსრულებელი"
 
 #: ../musicPlayer/src/applet-draw.c:170
 msgid "Album"
-msgstr ""
+msgstr "ალბომი"
 
 #: ../musicPlayer/src/applet-draw.c:172
 msgid "Length"
-msgstr ""
+msgstr "სიგრძე"
 
 #: ../musicPlayer/src/applet-draw.c:192
 msgid "Current song"
@@ -2902,7 +2728,7 @@ msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:307
 msgid "Previous"
-msgstr ""
+msgstr "წინა"
 
 #: ../musicPlayer/src/applet-notifications.c:307
 msgid "scroll-up"
@@ -2910,7 +2736,7 @@ msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:313
 msgid "Play/Pause"
-msgstr ""
+msgstr "დაკვრა/პაუზა"
 
 #: ../musicPlayer/src/applet-notifications.c:313
 msgid "left-click"
@@ -2918,7 +2744,7 @@ msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:319
 msgid "Next"
-msgstr ""
+msgstr "შემდეგი"
 
 #: ../musicPlayer/src/applet-notifications.c:319
 msgid "scroll-down"
@@ -2926,11 +2752,11 @@ msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:324
 msgid "Stop"
-msgstr ""
+msgstr "გაჩერება"
 
 #: ../musicPlayer/src/applet-notifications.c:328
 msgid "Information"
-msgstr ""
+msgstr "ინფორმაცია"
 
 #: ../musicPlayer/src/applet-notifications.c:333
 msgid "Show JumpBox"
@@ -2938,11 +2764,11 @@ msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:336
 msgid "Shuffle"
-msgstr ""
+msgstr "შემთხვევით"
 
 #: ../musicPlayer/src/applet-notifications.c:344
 msgid "Repeat"
-msgstr ""
+msgstr "გამეორება"
 
 #: ../musicPlayer/src/applet-notifications.c:352
 msgid "Rate this song"
@@ -2950,11 +2776,11 @@ msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:356
 msgid "Show"
-msgstr ""
+msgstr "ჩვენება"
 
 #: ../musicPlayer/src/applet-notifications.c:357
 msgid "Quit"
-msgstr ""
+msgstr "გასვლა"
 
 #: ../netspeed/src/applet-init.c:29
 msgid "netspeed"
@@ -3009,15 +2835,15 @@ msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:202
 msgid "h"
-msgstr ""
+msgstr "h"
 
 #: ../powermanager/src/powermanager-draw.c:204
 msgid "mn"
-msgstr ""
+msgstr "mn"
 
 #: ../powermanager/src/powermanager-draw.c:213
 msgid "remaining"
-msgstr ""
+msgstr "დარჩენილია"
 
 #: ../powermanager/src/powermanager-draw.c:213
 msgid "until charged"
@@ -3028,7 +2854,7 @@ msgstr ""
 #: ../Network-Monitor/data/messages:221 ../dnd2share/data/messages:109
 #: ../dustbin/data/messages:101 ../wifi/data/messages:145
 msgid "None"
-msgstr ""
+msgstr "არცერთი"
 
 #: ../powermanager/src/powermanager-draw.c:266
 msgid "Laptop on Battery."
@@ -3053,11 +2879,11 @@ msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:284
 msgid "Model:"
-msgstr ""
+msgstr "მოდელი:"
 
 #: ../powermanager/src/powermanager-draw.c:290
 msgid "Technology:"
-msgstr ""
+msgstr "ტექნოლოგია:"
 
 #: ../powermanager/src/powermanager-draw.c:294
 msgid "Maximum capacity:"
@@ -3130,36 +2956,36 @@ msgstr ""
 
 #: ../quick-browser/src/applet-notifications.c:41
 msgid "Open folder"
-msgstr ""
+msgstr "საქაღალდის გახსნა"
 
 #: ../shortcuts/src/applet-bookmarks.c:92
 #: ../shortcuts/src/applet-bookmarks.c:100 ../shortcuts/src/applet-drives.c:291
 msgid "Unmounted"
-msgstr ""
+msgstr "მოხსნილია"
 
 #: ../shortcuts/src/applet-bookmarks.c:425
 msgid "Home Folder"
-msgstr ""
+msgstr "საწყისი საქაღალდე"
 
 #: ../shortcuts/src/applet-disk-usage.c:183
 #: ../shortcuts/src/applet-disk-usage.c:212
 msgid "Mount point:"
-msgstr ""
+msgstr "მიმაგრების წერტილი:"
 
 #: ../shortcuts/src/applet-disk-usage.c:184
 #: ../shortcuts/src/applet-disk-usage.c:213
 msgid "File system:"
-msgstr ""
+msgstr "ფაილური სისტემა:"
 
 #: ../shortcuts/src/applet-disk-usage.c:185
 #: ../shortcuts/src/applet-disk-usage.c:214
 msgid "Device:"
-msgstr ""
+msgstr "მოწყობილობა:"
 
 #: ../shortcuts/src/applet-disk-usage.c:186
 #: ../shortcuts/src/applet-disk-usage.c:215
 msgid "Mount options:"
-msgstr ""
+msgstr "მიმაგრების პარამეტრები:"
 
 #: ../shortcuts/src/applet-disk-usage.c:218
 msgid "Backup frequency:"
@@ -3167,29 +2993,29 @@ msgstr ""
 
 #: ../shortcuts/src/applet-disk-usage.c:218
 msgid "days"
-msgstr ""
+msgstr "დღე"
 
 #: ../shortcuts/src/applet-disk-usage.c:241
 #: ../shortcuts/src/applet-disk-usage.c:251
 #: ../shortcuts/src/applet-disk-usage.c:256
 msgid "Name:"
-msgstr ""
+msgstr "სახელი:"
 
 #: ../shortcuts/src/applet-disk-usage.c:242
 msgid "Capacity:"
-msgstr ""
+msgstr "მოცულობა:"
 
 #: ../shortcuts/src/applet-disk-usage.c:243
 msgid "Free space:"
-msgstr ""
+msgstr "თავისუფალი ადგილი:"
 
 #: ../shortcuts/src/applet-disk-usage.c:251
 msgid "Not mounted"
-msgstr ""
+msgstr "მიმაგრებული არაა"
 
 #: ../shortcuts/src/applet-disk-usage.c:257 ../RSSreader/data/messages:97
 msgid "URL:"
-msgstr ""
+msgstr "URL:"
 
 #: ../shortcuts/src/applet-drives.c:132 ../shortcuts/src/applet-drives.c:200
 #, c-format
@@ -3247,7 +3073,7 @@ msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:309
 msgid "Browse Network"
-msgstr ""
+msgstr "ქსელის დათვალიერება"
 
 #: ../shortcuts/src/applet-notifications.c:312
 msgid "Browse recent files"
@@ -3255,7 +3081,7 @@ msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:315
 msgid "Open Trash"
-msgstr ""
+msgstr "ნაგვის გახსნა"
 
 #: ../shortcuts/src/applet-notifications.c:323
 msgid "Rename this bookmark"
@@ -3267,15 +3093,15 @@ msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:334
 msgid "Eject"
-msgstr ""
+msgstr "გამოღება"
 
 #: ../shortcuts/src/applet-notifications.c:342
 msgid "Unmount"
-msgstr ""
+msgstr "მოხსნა"
 
 #: ../shortcuts/src/applet-notifications.c:342
 msgid "Mount"
-msgstr ""
+msgstr "მიმაგრება"
 
 #: ../shortcuts/src/applet-notifications.c:347
 msgid "Get disk info"
@@ -3312,11 +3138,11 @@ msgstr ""
 
 #: ../showDesktop/src/applet-notifications.c:220
 msgid "Change screen resolution"
-msgstr ""
+msgstr "ეკრანის გარჩევადობის შეცვლა"
 
 #: ../slider/src/applet-init.c:29
 msgid "slider"
-msgstr ""
+msgstr "ცოცია"
 
 #: ../slider/src/applet-init.c:32
 msgid ""
@@ -3332,11 +3158,11 @@ msgstr ""
 
 #: ../slider/src/applet-notifications.c:214
 msgid "Play"
-msgstr ""
+msgstr "დაკვრა"
 
 #: ../slider/src/applet-notifications.c:214
 msgid "Pause"
-msgstr ""
+msgstr "შეჩერება"
 
 #: ../slider/src/applet-notifications.c:222
 #: ../slider/src/applet-notifications.c:224
@@ -3354,7 +3180,7 @@ msgstr ""
 
 #: ../stack/src/applet-init.c:31
 msgid "stack"
-msgstr ""
+msgstr "stack"
 
 #: ../stack/src/applet-init.c:34
 msgid ""
@@ -3396,11 +3222,11 @@ msgstr ""
 #: ../stack/src/applet-notifications.c:214
 #: ../terminal/src/terminal-widget.c:413
 msgid "Copy"
-msgstr ""
+msgstr "კოპირება"
 
 #: ../stack/src/applet-notifications.c:217
 msgid "Cut"
-msgstr ""
+msgstr "ამოჭრა"
 
 #: ../stack/src/applet-notifications.c:220
 msgid "Rename this item"
@@ -3422,7 +3248,7 @@ msgstr ""
 #: ../switcher/src/applet-load-icons.c:54
 #: ../switcher/src/applet-notifications.c:418
 msgid "Current"
-msgstr ""
+msgstr "მიმდინარე"
 
 #: ../switcher/src/applet-draw.c:630 ../switcher/src/applet-draw.c:632
 #: ../switcher/src/applet-load-icons.c:60
@@ -3431,7 +3257,7 @@ msgstr ""
 #: ../switcher/src/applet-notifications.c:410
 #: ../switcher/src/applet-notifications.c:517
 msgid "Desktop"
-msgstr ""
+msgstr "სამუშაო მაგიდა"
 
 #: ../switcher/src/applet-init.c:32
 msgid "switcher"
@@ -3477,7 +3303,7 @@ msgstr ""
 
 #: ../switcher/src/applet-notifications.c:315
 msgid "Show the desktop"
-msgstr ""
+msgstr "სამუშაო მაგიდის ჩვენება"
 
 #: ../systray/src/systray-init.c:35
 msgid ""
@@ -3516,11 +3342,11 @@ msgstr ""
 #: ../terminal/src/terminal-callbacks.c:82
 #: ../terminal/src/terminal-widget.c:415
 msgid "Paste"
-msgstr ""
+msgstr "ჩასმა"
 
 #: ../terminal/src/terminal-init.c:31
 msgid "terminal"
-msgstr ""
+msgstr "ტერმინალი"
 
 #: ../terminal/src/terminal-init.c:34
 msgid ""
@@ -3541,7 +3367,7 @@ msgstr ""
 #: ../terminal/src/terminal-menu-functions.c:77
 #: ../terminal/src/terminal-widget.c:421
 msgid "New Tab"
-msgstr ""
+msgstr "ახალი ჩანართი"
 
 #: ../terminal/src/terminal-menu-functions.c:78
 msgid "Rename current Tab"
@@ -3553,7 +3379,7 @@ msgstr ""
 
 #: ../terminal/src/terminal-widget.c:49 ../terminal/data/messages:115
 msgid "Terminal"
-msgstr ""
+msgstr "ტერმინალი"
 
 #: ../terminal/src/terminal-widget.c:177
 msgid "Set title for this tab:"
@@ -3561,7 +3387,7 @@ msgstr ""
 
 #: ../terminal/src/terminal-widget.c:226
 msgid "Select a color"
-msgstr ""
+msgstr "ფერის არჩევა"
 
 #: ../terminal/src/terminal-widget.c:371
 #, c-format
@@ -3582,15 +3408,15 @@ msgstr ""
 
 #: ../tomboy/src/applet-backend-default.c:159
 msgid "Note:"
-msgstr ""
+msgstr "შენიშვნა:"
 
 #: ../tomboy/src/applet-backend-default.c:207
 msgid "Title:"
-msgstr ""
+msgstr "სათაური:"
 
 #: ../tomboy/src/tomboy-draw.c:188
 msgid "Open all"
-msgstr ""
+msgstr "ყველას გახსნა"
 
 #: ../tomboy/src/tomboy-init.c:32
 msgid "Note-Taking"
@@ -3614,7 +3440,7 @@ msgstr ""
 
 #: ../tomboy/src/tomboy-notifications.c:152
 msgid "Search for:"
-msgstr ""
+msgstr "ძებნა:"
 
 #: ../tomboy/src/tomboy-notifications.c:177
 msgid "Search for tag:"
@@ -3622,7 +3448,7 @@ msgstr ""
 
 #: ../tomboy/src/tomboy-notifications.c:216
 msgid "Add a note"
-msgstr ""
+msgstr "შენიშვნის დამატება"
 
 #: ../tomboy/src/tomboy-notifications.c:222
 msgid "Delete this note"
@@ -3634,7 +3460,7 @@ msgstr ""
 
 #: ../tomboy/src/tomboy-notifications.c:229
 msgid "Search"
-msgstr ""
+msgstr "ძებნა"
 
 #: ../tomboy/src/tomboy-notifications.c:230
 msgid "Search for tag"
@@ -3658,15 +3484,13 @@ msgstr ""
 
 #: ../tomboy/src/tomboy-notifications.c:276
 msgid "No description"
-msgstr ""
+msgstr "აღწერის გარეშე"
 
 #: ../weather/src/applet-config.c:121
 msgid ""
 "I couldn't get the info\n"
 " Is connexion alive ?"
 msgstr ""
-"No reb informació\n"
-" Esteu connectat?"
 
 #: ../weather/src/applet-config.c:127
 msgid "Couldn't get the location code (is connection alive?)"
@@ -3674,7 +3498,7 @@ msgstr ""
 
 #: ../weather/src/applet-config.c:135
 msgid "I couldn't find this location"
-msgstr "No es troba aquest lloc"
+msgstr ""
 
 #: ../weather/src/applet-config.c:183
 msgid "Searching the location code..."
@@ -3683,11 +3507,11 @@ msgstr ""
 #: ../weather/src/applet-config.c:216
 msgid ""
 "Enter the name of your location and press Enter to choose amongst results."
-msgstr "Escriviu el nom del lloc i premeu Enter per entre els resultats"
+msgstr ""
 
 #: ../weather/src/applet-init.c:29
 msgid "weather"
-msgstr "el temps"
+msgstr ""
 
 #: ../weather/src/applet-init.c:32
 msgid ""
@@ -3698,17 +3522,10 @@ msgid ""
 "Middle-click on the main icon to have current conditions information, left-"
 "click on a sub-icon to have forcast information.\n"
 msgstr ""
-"Aquest sub-programa mostra el temps en el Dock.\n"
-"El web open-meteo.com és el proveïdor de les dades. Podeu cercar la vostra "
-"localitat en el panell de configuració.\n"
-"Es pot despendre del Dock per convertir-se en un memento en el escriptori.\n"
-"Clicant el botó del mig del ratolí sobre la icona apareix un text emergent "
-"amb informació detallada. Clic amb el botó esquerra sobre una sub-icona de "
-"la previsió per veure més informació.\n"
 
 #: ../weather/src/applet-notifications.c:55
 msgid "Data are being retrieved, please wait a moment."
-msgstr "Espereu mentre es rebent les dades"
+msgstr ""
 
 #: ../weather/src/applet-notifications.c:94
 msgid "Show current conditions (middle-click)"
@@ -3720,48 +3537,46 @@ msgstr ""
 
 #: ../weather/src/applet-notifications.c:101
 msgid "Reload now"
-msgstr "Torna a carregar"
+msgstr ""
 
 #: ../weather/src/applet-notifications.c:142
 #: ../weather/src/applet-notifications.c:177
 msgid "Temperature"
-msgstr "Temperatura"
+msgstr "ტემპერატურა"
 
 #: ../weather/src/applet-notifications.c:143
 msgid "Rain or snow"
-msgstr ""
+msgstr "წვიმა ან თოვლი"
 
 #: ../weather/src/applet-notifications.c:153
 msgid "Data are being fetched, please re-try in a few seconds."
-msgstr "Dades recuperades, torneu a intentar en uns segons."
+msgstr ""
 
 #: ../weather/src/applet-notifications.c:163
 msgid ""
 "No data available\n"
 "Retrying now..."
 msgstr ""
-"Cap dada disponible\n"
-"Tornant a intentar-ho..."
 
 #: ../weather/src/applet-notifications.c:178
 msgid "Wind"
-msgstr "Vent"
+msgstr "ქარი"
 
 #: ../weather/src/applet-notifications.c:179
 msgid "Humidity"
-msgstr "Humitat"
+msgstr "ტენიანბა"
 
 #: ../weather/src/applet-notifications.c:180
 msgid "Pressure"
-msgstr "Pressió"
+msgstr "წნევა"
 
 #: ../weather/src/applet-notifications.c:181
 msgid "Sunrise"
-msgstr "Alba"
+msgstr "აისი"
 
 #: ../weather/src/applet-notifications.c:181
 msgid "Sunset"
-msgstr "Ocàs"
+msgstr "დაისი"
 
 #: ../weblets/src/applet-init.c:28
 msgid "weblets"
@@ -3781,27 +3596,27 @@ msgstr ""
 
 #: ../wifi/src/applet-draw.c:30
 msgid "Very Low"
-msgstr ""
+msgstr "ძალიან დაბალი"
 
 #: ../wifi/src/applet-draw.c:30 ../Sound-Effects/data/messages:23
 msgid "Low"
-msgstr ""
+msgstr "დაბალი"
 
 #: ../wifi/src/applet-draw.c:30
 msgid "Middle"
-msgstr ""
+msgstr "შუა"
 
 #: ../wifi/src/applet-draw.c:30
 msgid "Good"
-msgstr ""
+msgstr "კარგი"
 
 #: ../wifi/src/applet-draw.c:30
 msgid "Excellent"
-msgstr ""
+msgstr "შესანიშნავი"
 
 #: ../wifi/src/applet-draw.c:138
 msgid "WiFi disabled."
-msgstr "WiFi desactivada."
+msgstr ""
 
 #: ../wifi/src/applet-init.c:33
 msgid ""
@@ -3812,7 +3627,7 @@ msgstr ""
 
 #: ../wifi/src/applet-init.c:39 ../Network-Monitor/data/messages:179
 msgid "Wifi"
-msgstr ""
+msgstr "Wifi"
 
 #: ../wifi/src/applet-notifications.c:63
 msgid "Toggle wifi ON/OFF"
@@ -3821,7 +3636,7 @@ msgstr ""
 #: ../Animated-icons/data/messages:1 ../icon-effect/data/messages:1
 #: ../illusion/data/messages:1
 msgid "Global"
-msgstr "Global"
+msgstr "გლობალური"
 
 #: ../Animated-icons/data/messages:3 ../icon-effect/data/messages:3
 msgid "when hovering over an icon"
@@ -3857,7 +3672,7 @@ msgstr ""
 
 #: ../Animated-icons/data/messages:69
 msgid "Rotation"
-msgstr ""
+msgstr "შემობრუნება"
 
 #: ../Animated-icons/data/messages:71 ../Animated-icons/data/messages:89
 #: ../Animated-icons/data/messages:137 ../Animated-icons/data/messages:149
@@ -3918,11 +3733,11 @@ msgstr ""
 #: ../tomboy/data/messages:55 ../weather/data/messages:53
 #: ../weblets/data/messages:43 ../wifi/data/messages:51
 msgid "Normal"
-msgstr ""
+msgstr "ნორმალური"
 
 #: ../Animated-icons/data/messages:81
 msgid "Cube"
-msgstr ""
+msgstr "კუბი"
 
 #: ../Animated-icons/data/messages:83
 msgid "Capsule"
@@ -4068,7 +3883,7 @@ msgstr ""
 
 #: ../Animated-icons/data/messages:193
 msgid "Image size"
-msgstr ""
+msgstr "გამოსახულების ზომა"
 
 #: ../Cairo-Penguin/data/messages:1 ../Cairo-Penguin/data/messages:3
 #: ../Clipper/data/messages:1 ../Clipper/data/messages:3
@@ -4112,7 +3927,7 @@ msgstr ""
 #: ../weblets/data/messages:3 ../wifi/data/messages:1 ../wifi/data/messages:3
 #: ../wifi/data/messages:135
 msgid "Icon"
-msgstr ""
+msgstr "ხატულა"
 
 #: ../Cairo-Penguin/data/messages:5 ../Clipper/data/messages:5
 #: ../Composite-Manager/data/messages:5 ../Doncky/data/messages:5
@@ -4182,7 +3997,7 @@ msgstr ""
 #: ../tomboy/data/messages:9 ../tomboy/data/messages:131
 #: ../tomboy/data/messages:143 ../weblets/data/messages:9
 msgid "Default"
-msgstr ""
+msgstr "ნაგულისხმევი"
 
 #: ../Cairo-Penguin/data/messages:11 ../Clipper/data/messages:13
 #: ../Composite-Manager/data/messages:11 ../Disks/data/messages:11
@@ -4258,7 +4073,7 @@ msgstr ""
 #: ../weather/data/messages:99 ../weather/data/messages:101
 #: ../weblets/data/messages:89 ../wifi/data/messages:97
 msgid "Configuration"
-msgstr ""
+msgstr "მორგება"
 
 #: ../Cairo-Penguin/data/messages:17 ../Disks/data/messages:97
 #: ../Network-Monitor/data/messages:147 ../Network-Monitor/data/messages:191
@@ -4348,7 +4163,7 @@ msgstr ""
 #: ../weather/data/messages:29 ../weblets/data/messages:19
 #: ../wifi/data/messages:27
 msgid "Position"
-msgstr ""
+msgstr "პოზიცია"
 
 #: ../Clipper/data/messages:21 ../Composite-Manager/data/messages:19
 #: ../Disks/data/messages:41 ../Doncky/data/messages:21
@@ -4537,7 +4352,7 @@ msgstr ""
 #: ../weather/data/messages:45 ../weblets/data/messages:35
 #: ../wifi/data/messages:43
 msgid "Rotation:"
-msgstr ""
+msgstr "შემობრუნება:"
 
 #: ../Clipper/data/messages:37 ../Composite-Manager/data/messages:35
 #: ../Doncky/data/messages:37 ../Folders/data/messages:49
@@ -4560,7 +4375,7 @@ msgstr ""
 #: ../tomboy/data/messages:49 ../weather/data/messages:47
 #: ../weblets/data/messages:37 ../wifi/data/messages:45
 msgid "Visibility"
-msgstr ""
+msgstr "ხილვადობა"
 
 #: ../Clipper/data/messages:39 ../Composite-Manager/data/messages:37
 #: ../Disks/data/messages:19 ../Doncky/data/messages:39
@@ -4608,7 +4423,7 @@ msgstr ""
 #: ../weather/data/messages:51 ../weblets/data/messages:41
 #: ../wifi/data/messages:49
 msgid "Visibility:"
-msgstr ""
+msgstr "ხილვადობა:"
 
 #: ../Clipper/data/messages:45 ../Composite-Manager/data/messages:43
 #: ../Disks/data/messages:29 ../Doncky/data/messages:45
@@ -4632,7 +4447,7 @@ msgstr ""
 #: ../weather/data/messages:55 ../weblets/data/messages:45
 #: ../wifi/data/messages:53
 msgid "Keep above"
-msgstr ""
+msgstr "ზემოდან დატოვება"
 
 #: ../Clipper/data/messages:47 ../Composite-Manager/data/messages:45
 #: ../Disks/data/messages:31 ../Doncky/data/messages:47
@@ -4656,7 +4471,7 @@ msgstr ""
 #: ../weather/data/messages:57 ../weblets/data/messages:47
 #: ../wifi/data/messages:55
 msgid "Keep below"
-msgstr ""
+msgstr "ქვემოთ ქონა"
 
 #: ../Clipper/data/messages:49 ../Composite-Manager/data/messages:47
 #: ../Disks/data/messages:33 ../Doncky/data/messages:49
@@ -4752,7 +4567,7 @@ msgstr ""
 #: ../weather/data/messages:65 ../weblets/data/messages:55
 #: ../wifi/data/messages:63
 msgid "Decorations"
-msgstr ""
+msgstr "დეკორაციები"
 
 #: ../Clipper/data/messages:57 ../Composite-Manager/data/messages:55
 #: ../Disks/data/messages:55 ../Doncky/data/messages:57
@@ -4850,7 +4665,7 @@ msgstr ""
 #: ../weather/data/messages:73 ../weblets/data/messages:63
 #: ../wifi/data/messages:71
 msgid "Background image:"
-msgstr ""
+msgstr "ფონის გამოსახულება:"
 
 #: ../Clipper/data/messages:65 ../Composite-Manager/data/messages:63
 #: ../Disks/data/messages:63 ../Doncky/data/messages:65
@@ -5144,7 +4959,7 @@ msgstr ""
 
 #: ../Clipper/data/messages:91
 msgid "Items"
-msgstr ""
+msgstr "ელემენტები"
 
 #: ../Clipper/data/messages:93
 msgid ""
@@ -5158,16 +4973,16 @@ msgstr ""
 
 #: ../Clipper/data/messages:99
 msgid "Clipboard"
-msgstr ""
+msgstr "გაცვლის ბუფერი"
 
 #: ../Clipper/data/messages:101
 msgid "Selection"
-msgstr ""
+msgstr "მონიშნული"
 
 #: ../Clipper/data/messages:103 ../GMenu/data/messages:119
 #: ../show-mouse/data/messages:15
 msgid "Both"
-msgstr ""
+msgstr "ორივე"
 
 #: ../Clipper/data/messages:105
 msgid "Number of items:"
@@ -5220,7 +5035,7 @@ msgstr ""
 
 #: ../Clipper/data/messages:127
 msgid "Actions"
-msgstr ""
+msgstr "ქმედებები"
 
 #: ../Clipper/data/messages:129
 msgid ""
@@ -5269,7 +5084,7 @@ msgstr ""
 #: ../dock-rendering/data/messages:57 ../keyboard-indicator/data/messages:115
 #: ../switcher/data/messages:147
 msgid "Style"
-msgstr ""
+msgstr "სტილი"
 
 #: ../Composite-Manager/data/messages:91
 msgid "Image when composite is active:"
@@ -5285,7 +5100,7 @@ msgstr ""
 #: ../showDesktop/data/messages:93 ../slider/data/messages:115
 #: ../terminal/data/messages:101
 msgid "Behaviour"
-msgstr ""
+msgstr "ქცევა"
 
 #: ../Composite-Manager/data/messages:97 ../Composite-Manager/data/messages:109
 msgid ""
@@ -5300,12 +5115,12 @@ msgstr ""
 #: ../Composite-Manager/data/messages:101
 #: ../Composite-Manager/data/messages:113
 msgid "Compiz"
-msgstr ""
+msgstr "Compiz"
 
 #: ../Composite-Manager/data/messages:103
 #: ../Composite-Manager/data/messages:115
 msgid "KWin"
-msgstr ""
+msgstr "KWin"
 
 #: ../Composite-Manager/data/messages:105
 #: ../Composite-Manager/data/messages:117
@@ -5419,7 +5234,7 @@ msgstr ""
 #: ../powermanager/data/messages:109 ../wifi/data/messages:101
 #: ../wifi/data/messages:107
 msgid "Gauge"
-msgstr ""
+msgstr "მზომი"
 
 #: ../Disks/data/messages:93 ../Disks/data/messages:107
 #: ../Network-Monitor/data/messages:143 ../Network-Monitor/data/messages:149
@@ -5429,7 +5244,7 @@ msgstr ""
 #: ../powermanager/data/messages:105 ../powermanager/data/messages:113
 #: ../wifi/data/messages:103 ../wifi/data/messages:111
 msgid "Graph"
-msgstr ""
+msgstr "გრაფიკი"
 
 #: ../Disks/data/messages:99 ../System-Monitor/data/messages:109
 #: ../alsaMixer/data/messages:123 ../netspeed/data/messages:109
@@ -5453,28 +5268,28 @@ msgstr ""
 #: ../netspeed/data/messages:121 ../powermanager/data/messages:117
 #: ../wifi/data/messages:115
 msgid "Line"
-msgstr ""
+msgstr "ხაზი"
 
 #: ../Disks/data/messages:113 ../Network-Monitor/data/messages:155
 #: ../Network-Monitor/data/messages:199 ../System-Monitor/data/messages:123
 #: ../netspeed/data/messages:123 ../powermanager/data/messages:119
 #: ../wifi/data/messages:117
 msgid "Plain"
-msgstr ""
+msgstr "უბრალო"
 
 #: ../Disks/data/messages:115 ../Network-Monitor/data/messages:157
 #: ../Network-Monitor/data/messages:201 ../System-Monitor/data/messages:125
 #: ../netspeed/data/messages:125 ../powermanager/data/messages:121
 #: ../wifi/data/messages:119
 msgid "Bar"
-msgstr ""
+msgstr "ბარი"
 
 #: ../Disks/data/messages:117 ../Network-Monitor/data/messages:159
 #: ../Network-Monitor/data/messages:203 ../System-Monitor/data/messages:127
 #: ../netspeed/data/messages:127 ../powermanager/data/messages:123
 #: ../wifi/data/messages:121
 msgid "Circle"
-msgstr ""
+msgstr "წრე"
 
 #: ../Disks/data/messages:119 ../Network-Monitor/data/messages:161
 #: ../Network-Monitor/data/messages:205 ../System-Monitor/data/messages:129
@@ -5525,11 +5340,11 @@ msgstr ""
 #: ../stack/data/messages:93 ../tomboy/data/messages:103
 #: ../weather/data/messages:127
 msgid "Display"
-msgstr ""
+msgstr "ჩვენება"
 
 #: ../Disks/data/messages:135
 msgid "Display values"
-msgstr ""
+msgstr "მნიშვნელობების ჩვენება"
 
 #: ../Disks/data/messages:139 ../Network-Monitor/data/messages:119
 #: ../System-Monitor/data/messages:165 ../alsaMixer/data/messages:107
@@ -5575,7 +5390,7 @@ msgstr ""
 
 #: ../Disks/data/messages:159
 msgid "Preferences"
-msgstr ""
+msgstr "მორგება"
 
 #: ../Disks/data/messages:161 ../Network-Monitor/data/messages:133
 #: ../netspeed/data/messages:165
@@ -5593,7 +5408,7 @@ msgstr ""
 #: ../Doncky/data/messages:93 ../RSSreader/data/messages:131
 #: ../terminal/data/messages:91
 msgid "Appearance"
-msgstr ""
+msgstr "გარეგნობა"
 
 #: ../Doncky/data/messages:97
 msgid "Font to be used by default if none is specify in the .xml"
@@ -5601,7 +5416,7 @@ msgstr ""
 
 #: ../Doncky/data/messages:99
 msgid "Default Font:"
-msgstr ""
+msgstr "ნაგულისხმევი ფონტი:"
 
 #: ../Doncky/data/messages:101
 msgid "Color to be used by default if none is specify in the .xml"
@@ -5629,7 +5444,7 @@ msgstr ""
 
 #: ../Doncky/data/messages:113 ../RSSreader/data/messages:177
 msgid "Background"
-msgstr ""
+msgstr "ფონი"
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
 msgid "You can have more attractive backgrounds using the Desklet decorations"
@@ -5685,7 +5500,7 @@ msgstr ""
 
 #: ../Folders/data/messages:11 ../quick-browser/data/messages:11
 msgid "Folder name"
-msgstr ""
+msgstr "საქაღალდის სახელი"
 
 #: ../Folders/data/messages:13
 msgid "How to render the icon :"
@@ -5727,11 +5542,11 @@ msgstr ""
 
 #: ../Folders/data/messages:111 ../stack/data/messages:127
 msgid "Name"
-msgstr ""
+msgstr "სახელი"
 
 #: ../Folders/data/messages:113 ../stack/data/messages:129
 msgid "Date"
-msgstr ""
+msgstr "თარიღი"
 
 #: ../Folders/data/messages:117
 msgid "Sort folders before files?"
@@ -5823,7 +5638,7 @@ msgstr ""
 
 #: ../Global-Menu/data/messages:103
 msgid "Auto"
-msgstr ""
+msgstr "ავტო"
 
 #: ../Global-Menu/data/messages:105
 msgid "Close button at the end"
@@ -5865,7 +5680,7 @@ msgstr ""
 
 #: ../Impulse/data/messages:93 ../alsaMixer/data/messages:133
 msgid "Control"
-msgstr ""
+msgstr "Control"
 
 #: ../Impulse/data/messages:95
 msgid ""
@@ -5878,11 +5693,11 @@ msgstr ""
 
 #: ../Impulse/data/messages:99 ../Impulse/data/messages:109
 msgid "More"
-msgstr ""
+msgstr "მეტი"
 
 #: ../Impulse/data/messages:101 ../Impulse/data/messages:107
 msgid "Less"
-msgstr ""
+msgstr "ნაკლები"
 
 #: ../Impulse/data/messages:103
 msgid "in ms."
@@ -5919,7 +5734,7 @@ msgstr ""
 
 #: ../Impulse/data/messages:125
 msgid "PulseAudio"
-msgstr ""
+msgstr "PulseAudio"
 
 #: ../Impulse/data/messages:127
 msgid "0 in most cases"
@@ -5935,15 +5750,15 @@ msgstr ""
 
 #: ../Impulse/data/messages:133
 msgid "Monitor"
-msgstr ""
+msgstr "მონიტორი"
 
 #: ../Impulse/data/messages:135
 msgid "Source"
-msgstr ""
+msgstr "წყარო"
 
 #: ../Impulse/data/messages:137
 msgid "Sink"
-msgstr ""
+msgstr "მიმღები"
 
 #: ../Indicator-Generic/data/messages:91
 msgid "Separated by a semi-colon ';'"
@@ -6015,7 +5830,7 @@ msgstr ""
 #: ../netspeed/data/messages:143 ../powermanager/data/messages:143
 #: ../tomboy/data/messages:123 ../wifi/data/messages:153
 msgid "Parameters"
-msgstr ""
+msgstr "პარამეტრები"
 
 #: ../Network-Monitor/data/messages:103
 msgid "You can quickly switch to the other mode by scrolling on the icon."
@@ -6100,7 +5915,7 @@ msgstr ""
 #: ../Network-Monitor/data/messages:187 ../Network-Monitor/data/messages:217
 #: ../powermanager/data/messages:137
 msgid "Icons"
-msgstr ""
+msgstr "ხატულები"
 
 #: ../Network-Monitor/data/messages:219
 msgid "Effect to apply on the icon according to strength :"
@@ -6108,11 +5923,11 @@ msgstr ""
 
 #: ../Network-Monitor/data/messages:223
 msgid "Zoom"
-msgstr ""
+msgstr "მასშტაბი"
 
 #: ../Network-Monitor/data/messages:225
 msgid "Transparency"
-msgstr ""
+msgstr "გამჭვირვალობა"
 
 #: ../Network-Monitor/data/messages:227
 msgid "Draw Bar"
@@ -6176,7 +5991,7 @@ msgstr ""
 
 #: ../RSSreader/data/messages:93
 msgid "RSS Feed"
-msgstr ""
+msgstr "RSS ლენტა"
 
 #: ../RSSreader/data/messages:95
 msgid "Enter a valid atom/rss feed"
@@ -6233,7 +6048,7 @@ msgstr ""
 
 #: ../RSSreader/data/messages:137
 msgid "Title font:"
-msgstr ""
+msgstr "სათაურის ფონტი:"
 
 #: ../RSSreader/data/messages:139
 msgid "Colour to be used for the title"
@@ -6249,11 +6064,11 @@ msgstr ""
 
 #: ../RSSreader/data/messages:145
 msgid "left"
-msgstr ""
+msgstr "დარჩა"
 
 #: ../RSSreader/data/messages:147
 msgid "right"
-msgstr ""
+msgstr "მარჯვენა"
 
 #: ../RSSreader/data/messages:151
 msgid "Font to be used for the feed lines"
@@ -6281,7 +6096,7 @@ msgstr ""
 
 #: ../RSSreader/data/messages:163
 msgid "Logo"
-msgstr ""
+msgstr "ლოგო"
 
 #: ../RSSreader/data/messages:165
 msgid "The default logo is the applet's icon"
@@ -6302,11 +6117,11 @@ msgstr ""
 #: ../RSSreader/data/messages:173 ../dock-rendering/data/messages:47
 #: ../keyboard-indicator/data/messages:133
 msgid "normal"
-msgstr ""
+msgstr "ნორმალური"
 
 #: ../RSSreader/data/messages:175 ../dock-rendering/data/messages:49
 msgid "big"
-msgstr ""
+msgstr "დიდი"
 
 #: ../Recent-Events/data/messages:91
 msgid "Shortkey to show/hide the search dialog"
@@ -6318,7 +6133,7 @@ msgstr ""
 
 #: ../Remote-Control/data/messages:1 ../Scooby-Do/data/messages:1
 msgid "Help"
-msgstr ""
+msgstr "დახმარება"
 
 #: ../Remote-Control/data/messages:5
 msgid "Shortkey to trigger the applet:"
@@ -6362,7 +6177,7 @@ msgstr ""
 
 #: ../Scooby-Do/data/messages:15
 msgid "Animations"
-msgstr ""
+msgstr "ანიმაციები"
 
 #: ../Scooby-Do/data/messages:19
 msgid "Duration of the appearance animation :"
@@ -6541,7 +6356,7 @@ msgstr ""
 #: ../Sound-Effects/data/messages:7 ../Sound-Effects/data/messages:13
 #: ../Sound-Effects/data/messages:19
 msgid "Sound file"
-msgstr ""
+msgstr "ხმის ფაილი"
 
 #: ../Sound-Effects/data/messages:9
 msgid "Play a sound on middle click ?"
@@ -6553,11 +6368,11 @@ msgstr ""
 
 #: ../Sound-Effects/data/messages:21
 msgid "Volume:"
-msgstr ""
+msgstr "ხმა:"
 
 #: ../Sound-Effects/data/messages:25
 msgid "High"
-msgstr ""
+msgstr "მაღალი"
 
 #: ../Status-Notifier/data/messages:13
 msgid "Image's filename :"
@@ -6573,7 +6388,7 @@ msgstr ""
 
 #: ../Status-Notifier/data/messages:109
 msgid "Compact"
-msgstr ""
+msgstr "დაპატარავება"
 
 #: ../Status-Notifier/data/messages:111
 msgid "Sub-dock"
@@ -6655,7 +6470,7 @@ msgstr ""
 
 #: ../System-Monitor/data/messages:177
 msgid "Alerts"
-msgstr ""
+msgstr "შეტყობინებები"
 
 #: ../System-Monitor/data/messages:179
 msgid "Show alerts?"
@@ -6900,7 +6715,7 @@ msgstr ""
 
 #: ../clock/data/messages:125
 msgid "Timezone:"
-msgstr ""
+msgstr "დროის სარტყელი:"
 
 #: ../clock/data/messages:127
 msgid "Use the tasks from the following task-manager:"
@@ -6926,7 +6741,7 @@ msgstr ""
 
 #: ../clock/data/messages:141
 msgid "Digital"
-msgstr ""
+msgstr "ციფრული"
 
 #: ../clock/data/messages:143
 msgid "Analogue View"
@@ -6949,14 +6764,14 @@ msgstr ""
 #: ../switcher/data/messages:101 ../switcher/data/messages:117
 #: ../switcher/data/messages:149
 msgid "Automatic"
-msgstr ""
+msgstr "ავტომატური"
 
 #: ../clock/data/messages:155 ../dnd2share/data/messages:127
 #: ../dnd2share/data/messages:139 ../dnd2share/data/messages:149
 #: ../dnd2share/data/messages:155 ../dock-rendering/data/messages:61
 #: ../keyboard-indicator/data/messages:119 ../switcher/data/messages:151
 msgid "Custom"
-msgstr ""
+msgstr "ხელით"
 
 #: ../clock/data/messages:159 ../keyboard-indicator/data/messages:125
 msgid "Use a custom font"
@@ -6964,7 +6779,7 @@ msgstr ""
 
 #: ../clock/data/messages:161 ../keyboard-indicator/data/messages:127
 msgid "Font:"
-msgstr ""
+msgstr "ფონტი:"
 
 #: ../clock/data/messages:163
 msgid "Set to 0 to not have it"
@@ -7074,11 +6889,11 @@ msgstr ""
 
 #: ../dnd2share/data/messages:119
 msgid "Maximum upload rate:"
-msgstr ""
+msgstr "მაქსიმალური ატვირთვის სიჩქარე:"
 
 #: ../dnd2share/data/messages:121
 msgid "Sites"
-msgstr ""
+msgstr "საიტები"
 
 #: ../dnd2share/data/messages:123
 msgid "Use files hosting site for any kind of files?"
@@ -7225,7 +7040,7 @@ msgstr ""
 
 #: ../dock-rendering/data/messages:31
 msgid "Grid"
-msgstr ""
+msgstr "ბადე"
 
 #: ../dock-rendering/data/messages:33
 msgid "Space between columns:"
@@ -7245,7 +7060,7 @@ msgstr ""
 
 #: ../dock-rendering/data/messages:43
 msgid "Full screen"
-msgstr ""
+msgstr "სრულ ეკრანზე"
 
 #: ../dock-rendering/data/messages:45
 msgid "Zoom when mouse hovers an icon:"
@@ -7265,7 +7080,7 @@ msgstr ""
 
 #: ../dock-rendering/data/messages:63 ../slider/data/messages:171
 msgid "Frame"
-msgstr ""
+msgstr "კადრი"
 
 #: ../dock-rendering/data/messages:65
 msgid "First gradient colour :"
@@ -7285,7 +7100,7 @@ msgstr ""
 
 #: ../dock-rendering/data/messages:73
 msgid "Corner radius:"
-msgstr ""
+msgstr "კუთხის რადიუსი:"
 
 #: ../dock-rendering/data/messages:75
 msgid "Border line width :"
@@ -7305,7 +7120,7 @@ msgstr ""
 
 #: ../dock-rendering/data/messages:83
 msgid "Scroll bar"
-msgstr ""
+msgstr "ჩოჩია"
 
 #: ../dock-rendering/data/messages:85
 msgid "Color of the scroll bar's outline:"
@@ -7478,11 +7293,11 @@ msgstr ""
 
 #: ../drop-indicator/data/messages:13
 msgid "Animation"
-msgstr ""
+msgstr "ანიმაცია"
 
 #: ../drop-indicator/data/messages:15
 msgid "Speed:"
-msgstr ""
+msgstr "სიჩქარე:"
 
 #: ../drop-indicator/data/messages:17
 msgid "Number of round per second."
@@ -7495,7 +7310,7 @@ msgstr ""
 
 #: ../dustbin/data/messages:89
 msgid "Theme"
-msgstr ""
+msgstr "თემა"
 
 #: ../dustbin/data/messages:93
 msgid "Name of the image to overwrite the theme's empty image :"
@@ -7507,7 +7322,7 @@ msgstr ""
 
 #: ../dustbin/data/messages:97
 msgid "Config"
-msgstr ""
+msgstr "პარამ"
 
 #: ../dustbin/data/messages:99
 msgid "Display the following quick info :"
@@ -7523,7 +7338,7 @@ msgstr ""
 
 #: ../dustbin/data/messages:107
 msgid "Total weight"
-msgstr ""
+msgstr "ჯამური პრიორიტეტი"
 
 #: ../dustbin/data/messages:109
 msgid "Ask confirmation before emptying Dustbin?"
@@ -7546,7 +7361,7 @@ msgstr ""
 #: ../icon-effect/data/messages:159 ../icon-effect/data/messages:179
 #: ../illusion/data/messages:35
 msgid "Colours"
-msgstr ""
+msgstr "ფერები"
 
 #: ../icon-effect/data/messages:73
 msgid "This will slightly alter your colours, so you may have to modify them."
@@ -7561,7 +7376,7 @@ msgstr ""
 #: ../icon-effect/data/messages:165 ../icon-effect/data/messages:189
 #: ../illusion/data/messages:43
 msgid "Particles"
-msgstr ""
+msgstr "ნაწილაკები"
 
 #: ../icon-effect/data/messages:79 ../icon-effect/data/messages:103
 #: ../icon-effect/data/messages:123 ../icon-effect/data/messages:145
@@ -7621,26 +7436,26 @@ msgstr ""
 #: ../illusion/data/messages:7 ../illusion/data/messages:21
 #: ../illusion/data/messages:53
 msgid "Fade out"
-msgstr ""
+msgstr "მინავლება"
 
 #: ../illusion/data/messages:9 ../illusion/data/messages:23
 #: ../illusion/data/messages:57
 msgid "Explode"
-msgstr ""
+msgstr "აფეთქება"
 
 #: ../illusion/data/messages:11 ../illusion/data/messages:25
 #: ../illusion/data/messages:67
 msgid "Break"
-msgstr ""
+msgstr "გაჩერება"
 
 #: ../illusion/data/messages:13 ../illusion/data/messages:27
 #: ../illusion/data/messages:73
 msgid "Black Hole"
-msgstr ""
+msgstr "შავი ხვრელი"
 
 #: ../illusion/data/messages:15 ../illusion/data/messages:29
 msgid "Random"
-msgstr ""
+msgstr "შემთხვევითი"
 
 #: ../illusion/data/messages:17
 msgid "Animation on appearance:"
@@ -7676,7 +7491,7 @@ msgstr ""
 
 #: ../keyboard-indicator/data/messages:99
 msgid "General"
-msgstr ""
+msgstr "ზოგადი"
 
 #: ../keyboard-indicator/data/messages:101
 msgid "caps lock, num lock, etc."
@@ -7718,7 +7533,7 @@ msgstr ""
 
 #: ../logout/data/messages:91
 msgid "Action"
-msgstr ""
+msgstr "ქმედება"
 
 #: ../logout/data/messages:101
 msgid "Shortkey to lock the screen"
@@ -7748,15 +7563,15 @@ msgstr ""
 
 #: ../logout/data/messages:115
 msgid "Emblem"
-msgstr ""
+msgstr "ემბლემა"
 
 #: ../logout/data/messages:117
 msgid "Image"
-msgstr "Imatge"
+msgstr "გამოსახულება"
 
 #: ../logout/data/messages:119
 msgid "Commands"
-msgstr ""
+msgstr "ბრძანებები"
 
 #: ../logout/data/messages:123
 msgid "Fallback user-defined command to execute for logout in case of problem:"
@@ -7901,7 +7716,7 @@ msgstr ""
 
 #: ../musicPlayer/data/messages:101
 msgid "Audio Player"
-msgstr ""
+msgstr "მუსიკის დამკვრელი"
 
 #: ../musicPlayer/data/messages:103
 msgid "Player to control:"
@@ -7917,11 +7732,11 @@ msgstr ""
 
 #: ../musicPlayer/data/messages:109
 msgid "Clementine"
-msgstr ""
+msgstr "Clementine"
 
 #: ../musicPlayer/data/messages:111
 msgid "Exaile"
-msgstr ""
+msgstr "Exaile"
 
 #: ../musicPlayer/data/messages:113
 msgid "GMusicBrowser"
@@ -7941,7 +7756,7 @@ msgstr ""
 
 #: ../musicPlayer/data/messages:121
 msgid "Rhythmbox"
-msgstr ""
+msgstr "Rhythmbox"
 
 #: ../musicPlayer/data/messages:123
 msgid "XMMS 2"
@@ -8004,19 +7819,19 @@ msgstr ""
 
 #: ../musicPlayer/data/messages:155 ../powermanager/data/messages:147
 msgid "Nothing"
-msgstr ""
+msgstr "არაფერი"
 
 #: ../musicPlayer/data/messages:157
 msgid "Time Elapsed"
-msgstr ""
+msgstr "გასული დრო"
 
 #: ../musicPlayer/data/messages:159
 msgid "Time Remaining"
-msgstr ""
+msgstr "დარჩენილი დრო"
 
 #: ../musicPlayer/data/messages:161
 msgid "Track number"
-msgstr ""
+msgstr "აუდიობილიკის ნომერი"
 
 #: ../musicPlayer/data/messages:163
 msgid "Display album's cover?"
@@ -8080,7 +7895,7 @@ msgstr ""
 
 #: ../powermanager/data/messages:11
 msgid "Current status"
-msgstr ""
+msgstr "მიმდინარე სტატუსი"
 
 #: ../powermanager/data/messages:139
 msgid "'On-battery' icon filename:"
@@ -8092,7 +7907,7 @@ msgstr ""
 
 #: ../powermanager/data/messages:149
 msgid "charge"
-msgstr ""
+msgstr "მუხტი"
 
 #: ../powermanager/data/messages:151
 msgid "Timelength"
@@ -8108,7 +7923,7 @@ msgstr ""
 
 #: ../powermanager/data/messages:161
 msgid "Notification"
-msgstr ""
+msgstr "შეტყობინება"
 
 #: ../powermanager/data/messages:163
 msgid "Notification when battery charged ?"
@@ -8146,7 +7961,7 @@ msgstr ""
 
 #: ../powermanager/data/messages:187
 msgid "Notification type:"
-msgstr ""
+msgstr "გაფრთხილების ტიპი:"
 
 #: ../quick-browser/data/messages:7
 msgid "Leave empty to use the folder's name."
@@ -8154,7 +7969,7 @@ msgstr ""
 
 #: ../quick-browser/data/messages:93 ../slider/data/messages:99
 msgid "Folder"
-msgstr ""
+msgstr "საქაღალდე"
 
 #: ../quick-browser/data/messages:95
 msgid "Folder to browse :"
@@ -8170,7 +7985,7 @@ msgstr ""
 
 #: ../quick-browser/data/messages:103
 msgid "Menu"
-msgstr ""
+msgstr "მენიუ"
 
 #: ../quick-browser/data/messages:105
 msgid "It can be CPU intense to load a lot of icons."
@@ -8212,7 +8027,7 @@ msgstr ""
 
 #: ../shortcuts/data/messages:111 ../stack/data/messages:103
 msgid "Tree"
-msgstr ""
+msgstr "ხე"
 
 #: ../shortcuts/data/messages:113
 msgid "Disk usage"
@@ -8224,7 +8039,7 @@ msgstr ""
 
 #: ../shortcuts/data/messages:119
 msgid "Free space"
-msgstr ""
+msgstr "თავისუფალი ადგილი"
 
 #: ../shortcuts/data/messages:121
 msgid "Used space"
@@ -8256,7 +8071,7 @@ msgstr ""
 
 #: ../show-mouse/data/messages:11
 msgid "Dock"
-msgstr ""
+msgstr "მიმაგრება"
 
 #: ../show-mouse/data/messages:21
 msgid "Particle life time:"
@@ -8373,15 +8188,15 @@ msgstr ""
 
 #: ../slider/data/messages:151
 msgid "shrink"
-msgstr ""
+msgstr "შემცირება"
 
 #: ../slider/data/messages:153
 msgid "cube"
-msgstr ""
+msgstr "კუბი"
 
 #: ../slider/data/messages:155
 msgid "random"
-msgstr ""
+msgstr "შემთხვევითი"
 
 #: ../slider/data/messages:157
 msgid "Number of steps for transitions:"
@@ -8389,11 +8204,11 @@ msgstr ""
 
 #: ../slider/data/messages:159
 msgid "fast"
-msgstr ""
+msgstr "სწრაფი"
 
 #: ../slider/data/messages:161
 msgid "slow"
-msgstr ""
+msgstr "ნელი"
 
 #: ../slider/data/messages:165
 msgid "Add a background to the image?"
@@ -8451,7 +8266,7 @@ msgstr ""
 
 #: ../stack/data/messages:113
 msgid "Options"
-msgstr ""
+msgstr "მორგება"
 
 #: ../stack/data/messages:115
 msgid "Separate the items by type (file/web page/text)"
@@ -8481,7 +8296,7 @@ msgstr ""
 
 #: ../stack/data/messages:131
 msgid "Type"
-msgstr ""
+msgstr "ტიპი"
 
 #: ../stack/data/messages:133
 msgid "Manual order"
@@ -8521,11 +8336,11 @@ msgstr ""
 
 #: ../switcher/data/messages:111
 msgid "Wallpaper"
-msgstr ""
+msgstr "ფონის სურათი"
 
 #: ../switcher/data/messages:113 ../switcher/data/messages:119
 msgid "Custom image"
-msgstr ""
+msgstr "ხელით მითითებული ასლი"
 
 #: ../switcher/data/messages:115 ../switcher/data/messages:123
 msgid "Custom colour"
@@ -8559,7 +8374,7 @@ msgstr ""
 
 #: ../switcher/data/messages:145
 msgid "Display options"
-msgstr ""
+msgstr "ეკრანის მორგება"
 
 #: ../switcher/data/messages:153
 msgid "Size of the inside lines :"
@@ -8595,7 +8410,7 @@ msgstr ""
 
 #: ../switcher/data/messages:177
 msgid "fill"
-msgstr ""
+msgstr "შევსება"
 
 #: ../switcher/data/messages:179
 msgid "fill others"
@@ -8627,11 +8442,11 @@ msgstr ""
 
 #: ../systray/data/messages:87
 msgid "horizontal"
-msgstr ""
+msgstr "ჰორიზონტალური"
 
 #: ../systray/data/messages:89
 msgid "vertical"
-msgstr ""
+msgstr "ვერტიკალური"
 
 #: ../template/data/messages:91
 msgid "This is a tooltip for this parameter."
@@ -8663,7 +8478,7 @@ msgstr ""
 
 #: ../terminal/data/messages:99
 msgid "Custom font:"
-msgstr ""
+msgstr "ფონტის ხელით მითითება:"
 
 #: ../terminal/data/messages:103
 msgid "Automatically scroll to the bottom when new data are received"
@@ -8741,7 +8556,7 @@ msgstr ""
 
 #: ../tomboy/data/messages:129
 msgid "Tomboy"
-msgstr ""
+msgstr "Tomboy"
 
 #: ../tomboy/data/messages:133
 msgid "Ask for confirmation before deleting a note?"
@@ -8784,7 +8599,7 @@ msgstr ""
 
 #: ../weather/data/messages:11
 msgid "City name"
-msgstr ""
+msgstr "ქალაქის სახელი"
 
 #: ../weather/data/messages:103
 msgid ""
@@ -8798,11 +8613,11 @@ msgstr ""
 
 #: ../weather/data/messages:107
 msgid "Latitude"
-msgstr ""
+msgstr "განედი"
 
 #: ../weather/data/messages:109
 msgid "Longitude"
-msgstr ""
+msgstr "გრძედი"
 
 #: ../weather/data/messages:111
 msgid "If so, degrees will be displayed in Celsius, otherwise in Fahrenheit."
@@ -8822,7 +8637,7 @@ msgstr ""
 
 #: ../weather/data/messages:119 ../wifi/data/messages:141
 msgid "Info"
-msgstr ""
+msgstr "ინფორმაცია"
 
 #: ../weather/data/messages:121
 msgid "Display current conditions on the icon instead of the default one?"
@@ -8830,7 +8645,7 @@ msgstr ""
 
 #: ../weather/data/messages:123
 msgid "Number of days to forecast:"
-msgstr "Dies de previsió:"
+msgstr ""
 
 #: ../weather/data/messages:125
 msgid "Display temperature as quick info?"
@@ -8899,7 +8714,7 @@ msgstr ""
 
 #: ../wifi/data/messages:147
 msgid "Signal Strength"
-msgstr ""
+msgstr "სიგნალის სიძლიერე"
 
 #: ../wifi/data/messages:149
 msgid "Signal Strength in percent"
@@ -8923,57 +8738,5 @@ msgstr ""
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr ""
 
-#~ msgid "Me Menu"
-#~ msgstr "Menú Jo"
-
-#~ msgid ""
-#~ "A menu that lets you access quickly to your information, your online "
-#~ "status, your friends."
-#~ msgstr ""
-#~ "Un menú que us permet accedir ràpidament a la vostra informació, l'estat "
-#~ "de la connexió, als contactes."
-
-#~ msgid "It seems that the Me-Menu is not installed on your system"
-#~ msgstr "Sembla que el Menú Jo no està instal·lat en aquest sistema"
-
-#~ msgid "Jan"
-#~ msgstr "Gen"
-
-#~ msgid "Feb"
-#~ msgstr "Feb"
-
-#~ msgid "Mar"
-#~ msgstr "Mar"
-
-#~ msgid "Apr"
-#~ msgstr "Abr"
-
-#~ msgid "May"
-#~ msgstr "Mai"
-
-#~ msgid "Jun"
-#~ msgstr "Jun"
-
-#~ msgid "Jui"
-#~ msgstr "Jul"
-
-#~ msgid "Aug"
-#~ msgstr "Ago"
-
-#~ msgid "Sep"
-#~ msgstr "Set"
-
-#~ msgid "Oct"
-#~ msgstr "Oct"
-
-#~ msgid "Nov"
-#~ msgstr "Nov"
-
-#~ msgid "Dec"
-#~ msgstr "Des"
-
-#~ msgid "Precipitation probability"
-#~ msgstr "Probabilitat de precipitacions"
-
-#~ msgid "Feels like"
-#~ msgstr "Sembla"
+#~ msgid "File System"
+#~ msgstr "ფაილური სისტემა"
