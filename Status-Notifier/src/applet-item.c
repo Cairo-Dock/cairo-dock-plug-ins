@@ -806,7 +806,7 @@ static void _item_proxy_created (G_GNUC_UNUSED GObject *pObj, GAsyncResult *pRes
 		NULL, // GDBusInterfaceInfo
 		pItem->cService,
 		g_dbus_proxy_get_object_path (pProxyItem),
-		DBUS_INTERFACE_PROPERTIES,
+		"org.freedesktop.DBus.Properties",
 		NULL,
 		&err
 	);
