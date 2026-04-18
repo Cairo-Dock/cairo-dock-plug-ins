@@ -248,8 +248,6 @@ static void _on_name_vanished (G_GNUC_UNUSED GDBusConnection *pConn, G_GNUC_UNUS
 	CD_APPLET_LEAVE ();
 }
 
-static gboolean s_bNeedConfigUpdate = FALSE;
-
 static void _update_handler_appinfo (MusicPlayerHandler *pHandler, const gchar *cDesktopFileName)
 {
 	pHandler->appclass = cairo_dock_register_class (cDesktopFileName);
@@ -291,7 +289,6 @@ void cd_musicplayer_set_current_handler (const gchar *cMpris2Service, const gcha
 	// stop the association with any appli
 	CD_APPLET_MANAGE_APPLICATION (NULL);
 	
-	s_bNeedConfigUpdate = FALSE;
 	if (bUpdateConfig)
 	{
 		cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
@@ -306,11 +303,10 @@ void cd_musicplayer_set_current_handler (const gchar *cMpris2Service, const gcha
 		myConfig.cLastKnownDesktopFile = cDesktopFileName ? g_strdup (cDesktopFileName) : NULL;
 		g_free (myConfig.cMusicPlayer);
 		myConfig.cMusicPlayer = cAppName ? g_strdup (cAppName) : NULL;
-		if (cMpris2Service && !cDesktopFileName) s_bNeedConfigUpdate = TRUE;
 	}
 	
 	// if no handler is defined, go to a neutral state.
-	if (!cMpris2Service)
+	if (!(cMpris2Service && cDesktopFileName))
 	{
 		myData.cMpris2Service = NULL;
 		myData.pCurrentHandler = NULL;
@@ -364,27 +360,271 @@ void cd_musicplayer_set_current_handler (const gchar *cMpris2Service, const gcha
 		CD_APPLET_MANAGE_APPLICATION (myData.pCurrentHandler->appclass);
 }
 
-void cd_musicplayer_on_got_desktop_entry (const gchar *cDesktopFileName)
+
+typedef struct _CDKnownMusicPlayer
 {
-	MusicPlayerHandler *pHandler = myData.pCurrentHandler;
-	if (!pHandler->pAppInfo) // we did not have a desktop file name originally
+	const gchar *id; // desktop file ID (case insensitive)
+	const gchar *alt_id; // alternative (currently we know of at most two .desktop file IDs for each player)
+	const gchar *mpris2; // MPRIS2 DBus name
+	const gchar *name; // display name + name in config file
+} CDKnownMusicPlayer;
+
+static const CDKnownMusicPlayer s_players[] =
+{
+	{"org.kde.amarok", NULL, "org.mpris.MediaPlayer2.amarok", "Amarok"},
+	{"audacious", "audacious2", "org.mpris.MediaPlayer2.audacious", "Audacious"},
+	{"org.clementine_player.clementine", NULL, "org.mpris.MediaPlayer2.clementine", "Clementine"},
+	{"exaile", NULL, "org.mpris.MediaPlayer2.exaile", "Exaile"},
+	{"gmusicbrowser", NULL, "org.mpris.MediaPlayer2.gmusicbrowser", "GMusicBrowser"},
+	{"org.guayadeque.guayadeque", "guayadeque", "org.mpris.MediaPlayer2.guayadeque", "Guayadeque"},
+	{"qmmp-1", "qmmp", "org.mpris.MediaPlayer2.qmmp", "Qmmp"},
+	{"io.github.quodlibet.quodlibet", "quodlibet", "org.mpris.MediaPlayer2.quodlibet", "QuodLibet"},
+	{"org.gnome.rhythmbox3", "rhythmbox3", "org.mpris.MediaPlayer2.rhythmbox", "Rhythmbox"},
+	{NULL, NULL, NULL, NULL}
+};
+
+
+void cd_musicplayer_info_free (CDMPInfo *pInfo)
+{
+	if (pInfo)
 	{
-		g_free (pHandler->appclass);
-		g_free (pHandler->cDisplayedName);
-		_update_handler_appinfo (pHandler, cDesktopFileName);
-		
-		if (s_bNeedConfigUpdate)
-		{
-			cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
-				G_TYPE_STRING, "Configuration", "current-player", pHandler->cDisplayedName,
-				G_TYPE_STRING, "Configuration", "desktop-entry", cDesktopFileName,
-				G_TYPE_INVALID);
-			g_free (myConfig.cLastKnownDesktopFile);
-			myConfig.cLastKnownDesktopFile = g_strdup (cDesktopFileName);
-			s_bNeedConfigUpdate = FALSE;
-			g_free (myConfig.cMusicPlayer);
-			myConfig.cMusicPlayer = g_strdup (pHandler->cDisplayedName);
-		}
+		g_free (pInfo->cName);
+		g_free (pInfo->cDesktopFile);
+		g_free (pInfo->cMpris2Name);
+		g_free (pInfo);
 	}
+}
+
+typedef struct _CDMPInfoData {
+	GCancellable *pCancel;
+	CDMPInfoCB cb;
+	gpointer user_data;
+	GList *res;
+	unsigned int to_process;
+} CDMPInfoData;
+
+
+static int _info_cmp (gconstpointer x, gconstpointer y)
+{
+	const CDMPInfo *pInfo = (const CDMPInfo*)x;
+	const char *cMPRIS2 = (const char*)y;
+	if (!pInfo->cMpris2Name || !cMPRIS2) return -1;
+	return strcmp (pInfo->cMpris2Name, cMPRIS2);
+}
+
+static gboolean _get_players_finish (gpointer ptr)
+{
+	CD_APPLET_ENTER;
+	
+	CDMPInfoData *pData = (CDMPInfoData*)ptr;
+	
+	if (!pData->pCancel || !g_cancellable_is_cancelled (pData->pCancel))
+	{
+		GList *to_add = NULL;
+		int i;
+		for (i = 0; s_players[i].id; i++)
+		{
+			GList *x = g_list_find_custom (pData->res, s_players[i].mpris2, _info_cmp);
+			if (x) continue; // already found
+			
+			gboolean bAlt = FALSE;
+			gchar *tmp = cairo_dock_register_class (s_players[i].id);
+			if (!tmp && s_players[i].alt_id)
+			{
+				bAlt = TRUE;
+				tmp = cairo_dock_register_class (s_players[i].alt_id);
+			}
+			if (tmp)
+			{
+				CDMPInfo *pInfo = g_new0 (CDMPInfo, 1);
+				pInfo->cDesktopFile = g_strdup (bAlt ? s_players[i].alt_id : s_players[i].id);
+				pInfo->cMpris2Name = g_strdup (s_players[i].mpris2);
+				pInfo->cName = g_strdup (s_players[i].name);
+				to_add = g_list_prepend (to_add, pInfo);
+				g_free (tmp);
+			}
+		}
+		GList *res = g_list_concat (to_add, pData->res);
+		pData->cb (TRUE, res);
+	}
+	
+	// already canceled, need to free partial results
+	g_list_free_full (pData->res, (GDestroyNotify)cd_musicplayer_info_free);
+	
+	if (pData->pCancel) g_object_unref (pData->pCancel);
+	g_free (pData);
+	
+	CD_APPLET_LEAVE (G_SOURCE_REMOVE);
+}
+
+typedef struct _CDMPQueryData {
+	CDMPInfoData *pData;
+	CDMPInfo *pInfo;
+} CDMPQueryData;
+
+static void _on_got_info (GObject *pObj, GAsyncResult *pRes, gpointer data, gboolean bName)
+{
+	CD_APPLET_ENTER;
+	
+	CDMPQueryData *pQuery = (CDMPQueryData*)data;
+	CDMPInfoData *pData = pQuery->pData;
+	
+	gboolean bFinished = FALSE;
+	gboolean bError = FALSE;
+	if (! pQuery->pInfo->bIsRunning)
+	{
+		bFinished = TRUE;
+		bError = TRUE; // previous error
+	}
+	else if ( (bName && pQuery->pInfo->cDesktopFile) ||
+		(!bName && pQuery->pInfo->cName)) bFinished = TRUE; // other data is ready
+	
+	GError *err = NULL;
+	GDBusConnection *pConn = G_DBUS_CONNECTION (pObj);
+	GVariant *res = g_dbus_connection_call_finish (pConn, pRes, &err);
+	if (err)
+	{
+		// note: error can happen if player exited in the meantime
+		pQuery->pInfo->bIsRunning = FALSE; // signal an error
+		bError = TRUE;
+	}
+	else
+	{
+		if (!bError)
+		{
+			GVariant *tmp1 = g_variant_get_child_value (res, 0);
+			GVariant *tmp2 = g_variant_get_variant (tmp1);
+			if (g_variant_is_of_type (tmp2, G_VARIANT_TYPE ("s")))
+			{
+				if (bName) g_variant_get (tmp2, "s", &pQuery->pInfo->cName);
+				else
+				{
+					gsize len;
+					const gchar *v2 = g_variant_get_string (tmp2, &len);
+					pQuery->pInfo->cDesktopFile = g_ascii_strdown (v2, len);
+				}
+			}
+			else
+			{
+				pQuery->pInfo->bIsRunning = FALSE; // signal an error
+				bError = TRUE;
+				cd_warning ("Unexpected property type: %s", g_variant_get_type_string (tmp2));
+			}
+			
+			g_variant_unref (tmp2);
+			g_variant_unref (tmp1);
+		}
+		
+		g_variant_unref (res);
+	}
+	
+	if (bFinished)
+	{
+		if (!bError)
+			pData->res = g_list_prepend (pData->res, pQuery->pInfo);
+		else cd_musicplayer_info_free (pQuery->pInfo);
+		g_free (pQuery);
+		
+		pData->to_process--;
+		if (!pData->to_process)
+			// processed all running players, check the rest and call back
+			g_idle_add (_get_players_finish, pData);
+	}
+	
+	CD_APPLET_LEAVE ();
+}
+
+static void _on_got_name (GObject *pObj, GAsyncResult *pRes, gpointer data)
+{
+	_on_got_info (pObj, pRes, data, TRUE);
+}
+
+static void _on_got_desktop (GObject *pObj, GAsyncResult *pRes, gpointer data)
+{
+	_on_got_info (pObj, pRes, data, FALSE);
+}
+
+static void _on_got_players_running (GObject *pObj, GAsyncResult *pRes, gpointer ptr)
+{
+	CD_APPLET_ENTER;
+	
+	CDMPInfoData *pData = (CDMPInfoData*)ptr;
+	GError *err = NULL;
+	GDBusConnection *pConn = G_DBUS_CONNECTION (pObj);
+	GVariant *res = g_dbus_connection_call_finish (pConn, pRes, &err);
+	if (err)
+	{
+		if (!g_error_matches (err, G_IO_ERROR, G_IO_ERROR_CANCELLED))
+			cd_warning ("Error getting the list of active DBus services: %s", err->message);
+		
+		// we need to free our data (note: in this case, pData->res == NULL)
+		g_error_free (err);
+		if (pData->pCancel) g_object_unref (pData->pCancel); // ref was taken before this call
+		pData->cb (FALSE, NULL);
+		g_free (pData);
+		CD_APPLET_LEAVE ();
+	}
+	else
+	{
+		// type of res is (as), checked by GLib
+		GVariantIter *it = NULL;
+		const gchar *cName;
+		const size_t len1 = strlen (CD_MPRIS2_SERVICE_BASE);
+		g_variant_get (res, "(as)", &it);
+		while (g_variant_iter_loop (it, "&s", &cName))
+			if (strncmp (cName, CD_MPRIS2_SERVICE_BASE, len1) == 0)  // it's an MPRIS2 player.
+			{
+				if (cName[len1] != '.') continue; // check just in case
+				// leave out firefox, it is for controlling whatever media is currently playing
+				// (TODO: identify other browsers as well)
+				if (strncmp (cName + len1 + 1, "firefox", 7) == 0) continue;
+				
+				pData->to_process++;
+				
+				// need to get name and desktop file as properties
+				CDMPQueryData *pQuery = g_new0 (CDMPQueryData, 1);
+				pQuery->pData = pData;
+				pQuery->pInfo = g_new0 (CDMPInfo, 1);
+				pQuery->pInfo->cMpris2Name = g_strdup (cName);
+				pQuery->pInfo->bIsRunning = TRUE;
+				
+				g_dbus_connection_call (pConn, cName, CD_MPRIS2_OBJ, "org.freedesktop.DBus.Properties",
+					"Get", g_variant_new ("(ss)", CD_MPRIS2_MAIN_IFACE, "Identity"), G_VARIANT_TYPE ("(v)"),
+					G_DBUS_CALL_FLAGS_NONE, 500, pData->pCancel, _on_got_name, pQuery);
+				g_dbus_connection_call (pConn, cName, CD_MPRIS2_OBJ, "org.freedesktop.DBus.Properties",
+					"Get", g_variant_new ("(ss)", CD_MPRIS2_MAIN_IFACE, "DesktopEntry"), G_VARIANT_TYPE ("(v)"),
+					G_DBUS_CALL_FLAGS_NONE, 500, pData->pCancel, _on_got_desktop, pQuery);
+			}
+		g_variant_iter_free (it);
+		g_variant_unref (res);
+	}
+	
+	if (!pData->to_process)
+		// no running players, just check the rest and call back
+		g_idle_add (_get_players_finish, pData);
+	
+	CD_APPLET_LEAVE ();
+}
+
+void cd_musicplayer_get_known_players (CDMPInfoCB cb, GCancellable *pCancel)
+{
+	g_return_if_fail (cb != NULL);
+	
+	GDBusConnection *pConn = cairo_dock_dbus_get_session_bus ();
+	if (!pConn)
+	{
+		cd_warning ("DBus not available, cannot find music players");
+		cb (FALSE, NULL);
+		return;
+	}
+	
+	CDMPInfoData *pData = g_new0 (CDMPInfoData, 1);
+	pData->pCancel = pCancel;
+	pData->cb = cb;
+	if (pCancel) g_object_ref (pCancel);
+	
+	g_dbus_connection_call (pConn, "org.freedesktop.DBus", "/org/freedesktop/DBus", "org.freedesktop.DBus",
+		"ListNames", NULL, G_VARIANT_TYPE ("(as)"), G_DBUS_CALL_FLAGS_NONE, -1,
+		pCancel, _on_got_players_running, pData);
 }
 

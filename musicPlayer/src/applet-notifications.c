@@ -91,40 +91,25 @@ static void _cd_musicplayer_choose_player (GtkMenuItem *menu_item, gpointer *dat
 	CD_APPLET_LEAVE ();
 }
 
-static void _on_got_players_running (GObject *pObj, GAsyncResult *pRes, G_GNUC_UNUSED gpointer ptr)
+static void _on_got_players_running (gboolean bSuccess, GList *res)
 {
 	CD_APPLET_ENTER;
 	
-	GError *err = NULL;
 	gboolean bFound = FALSE;
-	GVariant *res = g_dbus_connection_call_finish (G_DBUS_CONNECTION (pObj), pRes, &err);
-	if (err)
+	
+	if (bSuccess && res)
 	{
-		if (g_error_matches (err, G_IO_ERROR, G_IO_ERROR_CANCELLED))
+		GList *it;
+		for (it = res; it; it = it->next)
 		{
-			// do not show warning, likely we are exiting
-			g_error_free (err);
-			CD_APPLET_LEAVE ();
-		}
-		
-		cd_warning ("Error getting the list of active DBus services: %s", err->message);
-		g_error_free (err);
-	}
-	else
-	{
-		// type of res is (as), checked by GLib
-		GVariantIter *it = NULL;
-		const gchar *cName;
-		g_variant_get (res, "(as)", &it);
-		while (g_variant_iter_loop (it, "&s", &cName))
-			if (strncmp (cName, CD_MPRIS2_SERVICE_BASE, strlen (CD_MPRIS2_SERVICE_BASE)) == 0)  // it's an MPRIS2 player.
+			CDMPInfo *pInfo = (CDMPInfo*)it->data;
+			if (pInfo->bIsRunning)
 			{
-				cd_musicplayer_set_current_handler (cName, NULL, NULL, TRUE, TRUE);
+				cd_musicplayer_set_current_handler (pInfo->cMpris2Name, pInfo->cName, pInfo->cDesktopFile, TRUE, TRUE);
 				bFound = TRUE;
 				break;
 			}
-		g_variant_iter_free (it);
-		g_variant_unref (res);
+		}
 	}
 	
 	if (!bFound)
@@ -135,6 +120,7 @@ static void _on_got_players_running (GObject *pObj, GAsyncResult *pRes, G_GNUC_U
 			7000,
 			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 	}
+	
 	CD_APPLET_LEAVE ();
 }
 
@@ -142,49 +128,12 @@ static void _cd_musicplayer_find_player (G_GNUC_UNUSED GtkMenuItem *menu_item, G
 {
 	CD_APPLET_ENTER;
 	
-	GDBusConnection *pConn = cairo_dock_dbus_get_session_bus ();
-	if (!pConn)
-	{
-		cd_warning ("DBus not available, cannot find music player");
-		CD_APPLET_LEAVE ();
-	}
-	
 	if (!myData.pCancelMain) myData.pCancelMain = g_cancellable_new ();
-	g_dbus_connection_call (pConn, "org.freedesktop.DBus", "/org/freedesktop/DBus", "org.freedesktop.DBus",
-		"ListNames", NULL, G_VARIANT_TYPE ("(as)"), G_DBUS_CALL_FLAGS_NONE, -1,
-		myData.pCancelMain, _on_got_players_running, NULL);
+	cd_musicplayer_get_known_players (_on_got_players_running, myData.pCancelMain);
 	
 	CD_APPLET_LEAVE ();
 }
 
-
-static const CDKnownMusicPlayer s_players[] = 
-{
-	{"org.kde.amarok", NULL, "org.mpris.MediaPlayer2.amarok", "Amarok"},
-	{"audacious", "audacious2", "org.mpris.MediaPlayer2.audacious", "Audacious"},
-	{"org.clementine_player.clementine", NULL, "org.mpris.MediaPlayer2.clementine", "Clementine"},
-	{"exaile", NULL, "org.mpris.MediaPlayer2.exaile", "Exaile"},
-	{"gmusicbrowser", NULL, "org.mpris.MediaPlayer2.gmusicbrowser", "GMusicBrowser"},
-	{"org.guayadeque.guayadeque", "guayadeque", "org.mpris.MediaPlayer2.guayadeque", "Guayadeque"},
-	{"qmmp-1", "qmmp", "org.mpris.MediaPlayer2.qmmp", "Qmmp"},
-	{"io.github.quodlibet.quodlibet", "quodlibet", "org.mpris.MediaPlayer2.quodlibet", "QuodLibet"},
-	{"org.gnome.rhythmbox3", "rhythmbox3", "org.mpris.MediaPlayer2.rhythmbox", "Rhythmbox"},
-	{NULL, NULL, NULL, NULL}
-};
-
-const CDKnownMusicPlayer *cd_musicplayer_find_known_player (const gchar *cName)
-{
-	int i;
-	for (i = 0; s_players[i].id; i++) if (!strcmp (cName, s_players[i].name))
-		return s_players + i;
-	return NULL;
-}
-
-typedef enum {
-	CD_MP_NAME = 0, // name displayed to the user
-	CD_MP_IX, // index to the above array
-	CD_MP_ALT_ID // whether the alternative desktop ID should be used
-} MusicPlayerDialogModel;
 
 static void _choice_dialog_action (int iClickedButton, GtkWidget *pInteractiveWidget, gpointer data, CairoDialog *pDialog)
 {
@@ -201,45 +150,26 @@ static void _choice_dialog_action (int iClickedButton, GtkWidget *pInteractiveWi
 	
 	GtkTreeModel *pModel = gtk_combo_box_get_model (pCombo);
 	
-	int ix;
-	gboolean pAlt;
-	gtk_tree_model_get (pModel, &iter, CD_MP_IX, &ix, CD_MP_ALT_ID, &pAlt, -1);
+	gchar *name;
+	gchar *id;
+	gchar *mpris2;
 	
-	cd_musicplayer_set_current_handler (s_players[ix].mpris2, s_players[ix].name, pAlt ? s_players[ix].alt_id :
-		s_players[ix].id, TRUE, TRUE);
+	gtk_tree_model_get (pModel, &iter, 0, &name, 1, &id, 2, &mpris2, -1);
+	
+	cd_musicplayer_set_current_handler (mpris2, name, id, TRUE, TRUE);
+	
+	g_free (name);
+	g_free (id);
+	g_free (mpris2);
 	
 	//!! TODO: launch it
 	/// gldi_app_info_launch (cairo_dock_get_class_app_info (cClass), NULL);
 }
-static void _show_players_list_dialog (void)
+
+static void _on_get_players (gboolean bSuccess, GList *res)
 {
-	// build a list of the available groups.
-	GtkListStore *pItems = gtk_list_store_new (3, G_TYPE_STRING, G_TYPE_INT, G_TYPE_BOOLEAN);
-	gboolean bAnyFound = FALSE;
-	int i;
-	for (i = 0; s_players[i].id; i++)
+	if (!(bSuccess && res))
 	{
-		gboolean bAlt = FALSE;
-		gchar *tmp = cairo_dock_register_class (s_players[i].id);
-		if (!tmp && s_players[i].alt_id)
-		{
-			bAlt = TRUE;
-			tmp = cairo_dock_register_class (s_players[i].alt_id);
-		}
-		if (tmp)
-		{
-			bAnyFound = TRUE;
-			GtkTreeIter iter;
-			gtk_list_store_append (pItems, &iter);
-			gtk_list_store_set (pItems, &iter, CD_MP_NAME, cairo_dock_get_class_name (tmp),
-				CD_MP_IX, i, CD_MP_ALT_ID, bAlt, -1);
-			g_free (tmp);
-		}
-	}
-	
-	if (!bAnyFound)
-	{
-		g_object_unref (G_OBJECT (pItems));
 		gldi_dialog_show_temporary_with_icon (D_(
 "No known music players were found. You may need to start your music player manually\n"
 "and use the 'Find opened player' option from the menu to detect it."),
@@ -250,17 +180,26 @@ static void _show_players_list_dialog (void)
 		return;
 	}
 	
-	gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (pItems), CD_MP_NAME, GTK_SORT_ASCENDING);
+	// build a list of the available groups.
+	GtkListStore *pItems = gtk_list_store_new (3, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
+	GList *it;
+	for (it = res; it; it = it->next)
+	{
+		CDMPInfo *pInfo = (CDMPInfo*)it->data;
+		GtkTreeIter iter;
+		gtk_list_store_append (pItems, &iter);
+		gtk_list_store_set (pItems, &iter, 0, pInfo->cName, 1, pInfo->cDesktopFile, 2, pInfo->cMpris2Name, -1);
+	}
+	
+	gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (pItems), 0, GTK_SORT_ASCENDING);
 	GtkWidget *pComboBox = gtk_combo_box_new_with_model (GTK_TREE_MODEL (pItems));
 	g_object_unref (G_OBJECT (pItems)); /// ref should be taken by the combo box
 	
 	GtkCellRenderer *rend = gtk_cell_renderer_text_new ();
 	gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (pComboBox), rend, FALSE);
-	gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (pComboBox), rend, "text", CD_MP_NAME, NULL);
+	gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (pComboBox), rend, "text", 0, NULL);
 	
 	/// maybe try to set the dialog color (text and bg colors)...
-
-	//!! TODO: find any running music players and add to the list?
 
 	// build the dialog.
 	CairoDialogAttr attr;
@@ -277,6 +216,12 @@ static void _show_players_list_dialog (void)
 	attr.pContainer = myContainer;
 
 	gldi_dialog_new (&attr);
+}
+
+static void _show_players_list_dialog (void)
+{
+	if (!myData.pCancelMain) myData.pCancelMain = g_cancellable_new ();
+	cd_musicplayer_get_known_players (_on_get_players, myData.pCancelMain);
 }
 
 //\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.

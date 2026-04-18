@@ -45,28 +45,14 @@ CD_APPLET_DEFINE2_BEGIN (N_("musicPlayer"),
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	CD_APPLET_ALLOW_EMPTY_TITLE
 	CD_APPLET_ACT_AS_LAUNCHER
+	pInterface->load_custom_widget = cd_musicplayer_load_custom_widget;
+	pInterface->save_custom_widget = cd_musicplayer_save_custom_widget;
 CD_APPLET_DEFINE2_END
 
 
 static void _set_handler_from_config (void)
 {
-	const gchar *cName = myConfig.cMusicPlayer;
-	const gchar *cID = myConfig.cLastKnownDesktopFile;
-	const gchar *cMpris = myConfig.cMpris2Name;
-	
-	if (cName && !(cMpris && cID))
-	{
-		const CDKnownMusicPlayer *player = cd_musicplayer_find_known_player (cName);
-		if (player)
-		{
-			if (!cMpris) cMpris = player->mpris2;
-			if (!cID) cID = player->id;
-		}
-	}
-	
-	if (!cMpris) return; // it is no use setting a player that will not be detected
-	
-	cd_musicplayer_set_current_handler (cMpris, cName, cID, FALSE, TRUE);
+	cd_musicplayer_set_current_handler (myConfig.cMpris2Name, myConfig.cMusicPlayer, myConfig.cLastKnownDesktopFile, FALSE, TRUE);
 }
 
 

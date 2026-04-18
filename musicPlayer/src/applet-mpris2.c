@@ -328,6 +328,9 @@ static void _mpris2_started (void)
 	else cd_warning ("Cannot get 'HasTrackList' property");
 	if (v) g_variant_unref (v);
 	
+	/* TODO: update our config? (maybe this can change e.g. if the player was updated?)
+	 * But if the desktop entry is wrong in our config, it is unlikely we got here
+	 * (we cannot start our player).
 	v = g_dbus_proxy_get_cached_property (myData.pProxyMain, "DesktopEntry");
 	if (v && g_variant_is_of_type (v, G_VARIANT_TYPE ("s")))
 	{
@@ -339,6 +342,7 @@ static void _mpris2_started (void)
 	}
 	else cd_warning ("Cannot get 'DesktopEntry' property");
 	if (v) g_variant_unref (v);
+	*/
 	
 	// player proxy: status, current track and capabilities
 	v = g_dbus_proxy_get_cached_property (myData.pProxyPlayer, "CanControl");

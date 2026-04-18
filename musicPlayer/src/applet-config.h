@@ -26,5 +26,8 @@
 
 CD_APPLET_CONFIG_H
 
+void cd_musicplayer_load_custom_widget (GldiModuleInstance *myApplet, GKeyFile* pKeyFile, GSList *pWidgetList);
+
+void cd_musicplayer_save_custom_widget (GldiModuleInstance *myApplet, GKeyFile *pKeyFile, GSList *pWidgetList);
 
 #endif

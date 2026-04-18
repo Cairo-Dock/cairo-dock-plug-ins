@@ -54,13 +54,6 @@ typedef enum {
 	PLAYER_NB_LEVELS
 } MyLevel;  // niveau du lecteur.
 
-typedef struct _CDKnownMusicPlayer
-{
-	const gchar *id; // desktop file ID (case insensitive)
-	const gchar *alt_id; // alternative (currently we know of at most two .desktop file IDs for each player)
-	const gchar *mpris2; // MPRIS2 DBus name
-	const gchar *name; // display name + name in config file
-} CDKnownMusicPlayer;
 
 typedef void (*MusicPlayerGetDataFunc) (void);  // acquisition des donnees, threade.
 typedef void (*MusicPlayerStopFunc) (void);  // libere les ressources specifiques au backend (deconnexion des signaux, etc)
