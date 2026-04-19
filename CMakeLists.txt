@@ -846,14 +846,15 @@ add_subdirectory (netspeed)
 ############# NETWORK_MONITOR #################
 set (with_network_monitor no) # unstable
 if (enable-network-monitor)
-	message (STATUS "> Network Monitor:")
-	set (GETTEXT_NETWORK_MONITOR ${GETTEXT_PLUGINS})
-	set (VERSION_NETWORK_MONITOR "0.2.10")
-	set (PACKAGE_NETWORK_MONITOR "cd-network-monitor")
-	set (with_network_monitor yes)
-	set (network_monitordatadir "${pluginsdatadir}/Network-Monitor")
-	configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Network-Monitor/data/Network-Monitor.conf.in ${CMAKE_CURRENT_BINARY_DIR}/Network-Monitor/data/Network-Monitor.conf)
-	add_subdirectory (Network-Monitor)
+	message(FATAL_ERROR "The Network Monitor plugin is deprecated and cannot be built anymore. Please do not try to enable it.")
+	# message (STATUS "> Network Monitor:")
+	# set (GETTEXT_NETWORK_MONITOR ${GETTEXT_PLUGINS})
+	# set (VERSION_NETWORK_MONITOR "0.2.10")
+	# set (PACKAGE_NETWORK_MONITOR "cd-network-monitor")
+	# set (with_network_monitor yes)
+	# set (network_monitordatadir "${pluginsdatadir}/Network-Monitor")
+	# configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Network-Monitor/data/Network-Monitor.conf.in ${CMAKE_CURRENT_BINARY_DIR}/Network-Monitor/data/Network-Monitor.conf)
+	# add_subdirectory (Network-Monitor)
 endif()
 
 ############# POWERMANAGER #################
