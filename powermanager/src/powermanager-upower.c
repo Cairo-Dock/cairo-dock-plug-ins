@@ -20,7 +20,6 @@
 #include <math.h>
 #include <string.h>
 #include <dirent.h>
-#include <dbus/dbus-glib.h>
 
 #include "powermanager-struct.h"
 #include "powermanager-draw.h"
