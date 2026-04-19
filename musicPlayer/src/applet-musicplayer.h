@@ -40,9 +40,44 @@ void cd_musicplayer_register_my_handler (MusicPlayerHandler *pHandler);
 
 void cd_musicplayer_free_handler (gpointer data);
 
-void cd_musicplayer_set_current_handler (const gchar *cName);
+/**
+Set the current handler from its MPRIS2 service name.
+@param cMpris2Service the DBus well-known name to use (required; set to NULL to set no handler)
+@param cAppName the name to display (optional; will be retrieved from DBus)
+@param cDesktopFileName the desktop file name (required; should come from the DBus property)
+@param bUpdateConfig whether to update the config file (set to FALSE when initially loading)
+@param bUpdateIcon whether to update the icon surface
+*/
+void cd_musicplayer_set_current_handler (const gchar *cMpris2Service, const gchar *cAppName, const gchar *cDesktopFileName,
+	gboolean bUpdateConfig, gboolean bUpdateIcon);
 
-gchar *cd_musicplayer_get_string_with_first_char_to_upper (const gchar *cName);
+
+/**
+Information on a music player that is installed on the system (and is potentially running right now).
+*/
+typedef struct _CDMPInfo {
+	char *cName; // display name
+	char *cDesktopFile; // desktop file base name, converted to lowercase
+	char *cMpris2Name; // DBus name (full name including the prefix)
+	gboolean bIsRunning; // is the player currently running? (detected on DBus)
+} CDMPInfo;
+
+/** Convenience function to free the above struct including all members. Any members including pInfo can be NULL. */
+void cd_musicplayer_info_free (CDMPInfo *pInfo);
+
+/** Callback function for below.
+@param bSuccess whether we could get the list of running music players (if not, the result is empy)
+@param res List of CDMPInfo with all detected music players. Can be NULL if no known players were detected.
+*/
+typedef void (*CDMPInfoCB) (gboolean bSuccess, GList *res);
+
+/**
+Asynchronously get the list of available players including currently running and installed ones. The result
+includes known installed players along with any MPRIS2-compatible player that is currently running.
+@param the callback to call with the result (see above).
+@param pCancel optionally to cancel the operation; if the call is canceled, the callback will not be called
+*/
+void cd_musicplayer_get_known_players (CDMPInfoCB cb, GCancellable *pCancel);
 
 
 #endif

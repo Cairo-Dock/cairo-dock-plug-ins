@@ -233,7 +233,7 @@ static void _on_register_host (GObject *pObj, GAsyncResult *pRes, G_GNUC_UNUSED 
 			NULL, // GDBusInterfaceInfo -- we could use the info from the XML we parse when creating the main proxy
 			CD_STATUS_NOTIFIER_WATCHER_ADDR,
 			CD_STATUS_NOTIFIER_WATCHER_OBJ,
-			DBUS_INTERFACE_PROPERTIES,
+			"org.freedesktop.DBus.Properties",
 			NULL,
 			&error
 		);

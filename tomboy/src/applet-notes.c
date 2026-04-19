@@ -18,7 +18,6 @@
 */
 
 #include <string.h>
-#include <dbus/dbus-glib.h>
 #include <time.h>
 
 #include <glib-object.h>
@@ -30,12 +29,7 @@
 #include "applet-backend-tomboy.h"
 #include "applet-backend-default.h"
 
-static DBusGProxy *dbus_proxy_tomboy = NULL;
-
 extern struct tm *localtime_r (const time_t *timer, struct tm *tp);
-
-#define g_marshal_value_peek_string(v)   (char*) g_value_get_string (v)
-#define g_marshal_value_peek_object(v)   g_value_get_object (v)
 
 // start -> get notes {ID+title+content+date} -> load list into icons/treeview
 // click main -> show sub-dock/dialog
@@ -113,11 +107,12 @@ Icon *cd_notes_create_icon_for_note (CDNote *pNote)
 		0);
 	pNote->cTitle = NULL;
 	pNote->cID = NULL;
+	
+	pIcon->cClass = pNote->cContent;
+	pNote->cContent = NULL;
 
 	if (myConfig.bDrawContent)
 	{
-		pIcon->cClass = pNote->cContent;
-		pNote->cContent = NULL;
 		cairo_dock_set_icon_static (pIcon, TRUE);  // pour la lisibilite, pas d'animation.
 		pIcon->iface.load_image = _load_note_image;
 	}
@@ -141,19 +136,12 @@ static void free_all_notes (void)
  /// FIND ///
 ////////////
 
-static gchar **_cd_tomboy_get_note_names_with_tag (const gchar *cTag)
-{
-	gchar **cNoteNames = NULL;
-	dbus_g_proxy_call (dbus_proxy_tomboy, "GetAllNotesWithTag", NULL,
-		G_TYPE_STRING, cTag,
-		G_TYPE_INVALID,
-		G_TYPE_STRV, &cNoteNames,
-		G_TYPE_INVALID);
-	return cNoteNames;
-}
 GList *cd_tomboy_find_notes_with_tag (const gchar *cTag)
 {
-	gchar **cNoteNames = _cd_tomboy_get_note_names_with_tag (cTag);
+	gchar **cNoteNames = NULL;
+	if (myData.backend.get_notes_with_tag)
+		cNoteNames = myData.backend.get_notes_with_tag (cTag);
+	
 	if (cNoteNames == NULL)
 		return NULL;
 	
@@ -172,30 +160,6 @@ GList *cd_tomboy_find_notes_with_tag (const gchar *cTag)
 }
 
 
-static gboolean _cd_tomboy_note_has_contents (const gchar *cNoteName, const gchar **cContents)
-{
-	gchar *cNoteContent = NULL;
-	if (dbus_g_proxy_call (dbus_proxy_tomboy, "GetNoteContents", NULL,
-		G_TYPE_STRING, cNoteName,
-		G_TYPE_INVALID,
-		G_TYPE_STRING, &cNoteContent,
-		G_TYPE_INVALID))
-	{
-		int i = 0;
-		while (cContents[i] != NULL)
-		{
-			cd_debug (" %s : %s", cNoteName, cContents[i]);
-			if (g_strstr_len (cNoteContent, strlen (cNoteContent), cContents[i]) != NULL)
-			{
-				g_free (cNoteContent);
-				return TRUE;
-			}
-			i ++;
-		}
-	}
-	g_free (cNoteContent);
-	return FALSE;
-}
 GList *cd_tomboy_find_notes_with_contents (const gchar **cContents)
 {
 	g_return_val_if_fail (cContents != NULL, NULL);
@@ -206,7 +170,21 @@ GList *cd_tomboy_find_notes_with_contents (const gchar **cContents)
 	for (ic = pList; ic != NULL; ic = ic->next)
 	{
 		icon = ic->data;
-		if (_cd_tomboy_note_has_contents (icon->cCommand, cContents))
+		if (!icon->cClass) continue;
+		
+		int i = 0;
+		gboolean bFound = FALSE;
+		while (cContents[i] != NULL)
+		{
+			if (strstr (icon->cClass, cContents[i]) != NULL)
+			{
+				bFound = TRUE;
+				break;
+			}
+			i++;
+		}
+		
+		if (bFound)
 		{
 			pMatchList = g_list_prepend (pMatchList, icon);
 		}
@@ -365,7 +343,11 @@ void cd_notes_store_load_notes (GList *pNotes)
 	for (n = pNotes; n != NULL; n = n->next)
 	{
 		pNote = n->data;
-		Icon *pIcon = cd_notes_create_icon_for_note (pNote);
+		Icon *pIcon = _cd_tomboy_find_note_from_uri (pNote->cID);
+		if (pIcon != NULL)
+			continue;
+		
+		pIcon = cd_notes_create_icon_for_note (pNote);
 		pIcon->fOrder = i++;
 		_cd_tomboy_register_note (pIcon);
 	}
@@ -417,31 +399,37 @@ void cd_notes_store_update_note (CDNote *pUpdatedNote)
 		gldi_icon_set_name (pIcon, _get_display_title (pUpdatedNote->cTitle));
 	}
 	
-	if (myConfig.bDrawContent)
+	gboolean bUpdate = FALSE;
+	
+	if (g_strcmp0 (pIcon->cClass, pUpdatedNote->cContent) != 0)
 	{
-		cd_debug ("  %s -> %s", pIcon->cClass, pUpdatedNote->cContent);
-		if (g_strcmp0 (pIcon->cClass, pUpdatedNote->cContent) != 0)
+		g_free (pIcon->cClass);
+		pIcon->cClass = pUpdatedNote->cContent;
+		pUpdatedNote->cContent = NULL;
+		bUpdate = TRUE;
+	}
+	
+	if (myConfig.bDrawContent && bUpdate) 
+	{	
+		cd_debug ("  %s", pIcon->cClass);
+	
+		if (pIcon->image.pSurface)
 		{
-			g_free (pIcon->cClass);
-			pIcon->cClass = pUpdatedNote->cContent;
-			pUpdatedNote->cContent = NULL;
-			if (pIcon->image.pSurface)
+			cairo_t *pIconContext = cairo_dock_begin_draw_icon_cairo (pIcon, 0, NULL);
+			g_return_if_fail (pIconContext != NULL);
+			if (myData.pSurfaceNote == NULL)
 			{
-				cairo_t *pIconContext = cairo_dock_begin_draw_icon_cairo (pIcon, 0, NULL);
-				g_return_if_fail (pIconContext != NULL);
-				if (myData.pSurfaceNote == NULL)
-				{
-					int iWidth, iHeight;
-					cairo_dock_get_icon_extent (pIcon, &iWidth, &iHeight);
-					cd_tomboy_load_note_surface (iWidth, iHeight);
-				}
-				cairo_dock_set_icon_surface (pIconContext, myData.pSurfaceNote, pIcon);  // on efface l'ancien texte.
-				cd_tomboy_draw_content_on_icon (pIconContext, pIcon);
-				cairo_dock_end_draw_icon_cairo (pIcon);
-				cairo_destroy (pIconContext);
+				int iWidth, iHeight;
+				cairo_dock_get_icon_extent (pIcon, &iWidth, &iHeight);
+				cd_tomboy_load_note_surface (iWidth, iHeight);
 			}
+			cairo_dock_set_icon_surface (pIconContext, myData.pSurfaceNote, pIcon);  // on efface l'ancien texte.
+			cd_tomboy_draw_content_on_icon (pIconContext, pIcon);
+			cairo_dock_end_draw_icon_cairo (pIcon);
+			cairo_destroy (pIconContext);
 		}
 	}
+
 	if (myDesklet)
 		cairo_dock_redraw_container (myContainer);
 }

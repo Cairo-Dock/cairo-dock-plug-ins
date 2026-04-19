@@ -65,6 +65,7 @@ typedef struct {
 	gchar * (*get_note_content) (const gchar *cNoteID);
 	gchar * (*create_note) (const gchar *cTitle);
 	void (*run_manager) (void);
+	gchar ** (*get_notes_with_tag) (const gchar *cTag);
 } CDNotesBackend;
 	
 struct _AppletData {
@@ -75,8 +76,6 @@ struct _AppletData {
 	GHashTable *hNoteTable;
 	guint iSidResetQuickInfo;
 	guint iSidPopupDialog;
-	DBusGProxyCall *pDetectTomboyCall;
-	DBusGProxyCall *pGetNotesCall;
 	GldiTask *pTask;
 	CDNotesBackend backend;
 	} ;

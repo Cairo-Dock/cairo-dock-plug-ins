@@ -23,7 +23,6 @@
 #include "applet-struct.h"
 #include "applet-musicplayer.h"
 #include "applet-draw.h"
-#include "applet-dbus.h"
 #include "3dcover-draw.h"
 #include "applet-cover.h"
 #include "applet-notifications.h"
@@ -92,11 +91,28 @@ static void _cd_musicplayer_choose_player (GtkMenuItem *menu_item, gpointer *dat
 	CD_APPLET_LEAVE ();
 }
 
-static void _cd_musicplayer_find_player (GtkMenuItem *menu_item, gpointer *data)
+static void _on_got_players_running (gboolean bSuccess, GList *res)
 {
 	CD_APPLET_ENTER;
-	MusicPlayerHandler *pHandler = cd_musicplayer_dbus_find_opened_player ();
-	if (pHandler == NULL)
+	
+	gboolean bFound = FALSE;
+	
+	if (bSuccess && res)
+	{
+		GList *it;
+		for (it = res; it; it = it->next)
+		{
+			CDMPInfo *pInfo = (CDMPInfo*)it->data;
+			if (pInfo->bIsRunning)
+			{
+				cd_musicplayer_set_current_handler (pInfo->cMpris2Name, pInfo->cName, pInfo->cDesktopFile, TRUE, TRUE);
+				bFound = TRUE;
+				break;
+			}
+		}
+	}
+	
+	if (!bFound)
 	{
 		gldi_dialog_show_temporary_with_icon (D_("Sorry, I couldn't detect any player.\nIf it is running, it is maybe because its version is too old and does not offer such service."),
 			myIcon,
@@ -104,88 +120,86 @@ static void _cd_musicplayer_find_player (GtkMenuItem *menu_item, gpointer *data)
 			7000,
 			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 	}
-	else if (pHandler != myData.pCurrentHandler || !strcmp (pHandler->name, "Mpris2"))
-	{
-		if (myData.pCurrentHandler != NULL)
-		{
-			cd_musicplayer_stop_current_handler (TRUE);
-		}
-		
-		// get the name of the running player.
-		const gchar *cPlayerName;
-		if (strcmp (pHandler->name, "Mpris2") == 0)  // generic MPRIS2 handler, use the class.
-			cPlayerName = pHandler->appclass;
-		else
-			cPlayerName = pHandler->name;
-		cd_debug ("found %s (%s)", pHandler->name, cPlayerName);
-		
-		// write it down into our conf file
-		cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
-			G_TYPE_STRING, "Configuration", "current-player", cPlayerName,
-			G_TYPE_STRING, "Configuration", "desktop-entry", "",  // reset the desktop filename, we'll get the new one from the "DesktopEntry" property of the new player
-			G_TYPE_INVALID);
-		g_free (myConfig.cMusicPlayer);
-		myConfig.cMusicPlayer = g_strdup (cPlayerName);
-		g_free (myConfig.cLastKnownDesktopFile);
-		myConfig.cLastKnownDesktopFile = NULL;
-		
-		// set the handler with this value.
-		cd_musicplayer_set_current_handler (myConfig.cMusicPlayer);
-	}
+	
+	CD_APPLET_LEAVE ();
+}
+
+static void _cd_musicplayer_find_player (G_GNUC_UNUSED GtkMenuItem *menu_item, G_GNUC_UNUSED gpointer *data)
+{
+	CD_APPLET_ENTER;
+	
+	if (!myData.pCancelMain) myData.pCancelMain = g_cancellable_new ();
+	cd_musicplayer_get_known_players (_on_got_players_running, myData.pCancelMain);
+	
 	CD_APPLET_LEAVE ();
 }
 
 
 static void _choice_dialog_action (int iClickedButton, GtkWidget *pInteractiveWidget, gpointer data, CairoDialog *pDialog)
 {
+	CD_APPLET_ENTER;
+	
 	if (iClickedButton == 1 || iClickedButton == -2)  // click on "cancel", or Escape
-		return;
+		CD_APPLET_LEAVE ();
 	// get the value in the widget.
-	GtkWidget *pEntry = gtk_bin_get_child (GTK_BIN (pInteractiveWidget));
-	const gchar *cPlayerName = gtk_entry_get_text (GTK_ENTRY (pEntry));
-	if (cPlayerName == NULL || *cPlayerName == '\0')
-		return;
-	// write it down into our conf file
-	cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
-		G_TYPE_STRING, "Configuration", "current-player", cPlayerName,
-		G_TYPE_STRING, "Configuration", "desktop-entry", "",  // reset the desktop filename, we'll get the new one from the "DesktopEntry" property of the new player
-		G_TYPE_INVALID);
-	g_free (myConfig.cMusicPlayer);
-	myConfig.cMusicPlayer = g_strdup (cPlayerName);
-	g_free (myConfig.cLastKnownDesktopFile);
-	myConfig.cLastKnownDesktopFile = NULL;
-	// set the handler with this value.
-	cd_musicplayer_set_current_handler (myConfig.cMusicPlayer);
-	// launch it, if it's already running, it's likely to have no effect
-	gldi_app_info_launch (myData.pCurrentHandler->pAppInfo, NULL);
+	GtkComboBox *pCombo = GTK_COMBO_BOX (pInteractiveWidget);
+	
+	GtkTreeIter iter;
+	if (!gtk_combo_box_get_active_iter (pCombo, &iter))
+		CD_APPLET_LEAVE ();
+	
+	GtkTreeModel *pModel = gtk_combo_box_get_model (pCombo);
+	
+	gchar *name;
+	gchar *id;
+	gchar *mpris2;
+	
+	gtk_tree_model_get (pModel, &iter, 0, &name, 1, &id, 2, &mpris2, -1);
+	
+	cd_musicplayer_set_current_handler (mpris2, name, id, TRUE, TRUE);
+	
+	g_free (name);
+	g_free (id);
+	g_free (mpris2);
+	
+	//!! TODO: launch it
+	/// gldi_app_info_launch (cairo_dock_get_class_app_info (cClass), NULL);
 }
-static void _show_players_list_dialog (void)
-{
-	// build a list of the available groups.
-	GtkWidget *pComboBox = gtk_combo_box_text_new_with_entry ();
-	GList *h;
-	MusicPlayerHandler *handler;
-	for (h = myData.pHandlers; h != NULL; h = h->next)
-	{
-		handler = h->data;
-		if (handler->cMprisService != NULL)
-			gtk_combo_box_text_append_text (GTK_COMBO_BOX_TEXT (pComboBox), handler->name);
-	}
-	GtkTreeModel *pModel = gtk_combo_box_get_model (GTK_COMBO_BOX (pComboBox));
-	if (pModel)
-		gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (pModel), CAIRO_DOCK_MODEL_NAME, GTK_SORT_ASCENDING);
-	/// maybe try to set the dialog color (text and bg colors)...
 
-	// detect a running player and set it as the current choice.
-	MusicPlayerHandler *pRunningHandler = cd_musicplayer_dbus_find_opened_player ();
-	if (pRunningHandler != NULL)
+static void _on_get_players (gboolean bSuccess, GList *res)
+{
+	if (!(bSuccess && res))
 	{
-		GtkWidget *pEntry = gtk_bin_get_child (GTK_BIN (pComboBox));
-		if (strcmp (pRunningHandler->name, "Mpris2") == 0)  // generic MPRIS2 handler, use the app class.
-			gtk_entry_set_text (GTK_ENTRY (pEntry), pRunningHandler->appclass);
-		else
-			gtk_entry_set_text (GTK_ENTRY (pEntry), pRunningHandler->name);
+		gldi_dialog_show_temporary_with_icon (D_(
+"No known music players were found. You may need to start your music player manually\n"
+"and use the 'Find opened player' option from the menu to detect it."),
+			myIcon,
+			myContainer,
+			7000,
+			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+		return;
 	}
+	
+	// build a list of the available groups.
+	GtkListStore *pItems = gtk_list_store_new (3, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
+	GList *it;
+	for (it = res; it; it = it->next)
+	{
+		CDMPInfo *pInfo = (CDMPInfo*)it->data;
+		GtkTreeIter iter;
+		gtk_list_store_append (pItems, &iter);
+		gtk_list_store_set (pItems, &iter, 0, pInfo->cName, 1, pInfo->cDesktopFile, 2, pInfo->cMpris2Name, -1);
+	}
+	
+	gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (pItems), 0, GTK_SORT_ASCENDING);
+	GtkWidget *pComboBox = gtk_combo_box_new_with_model (GTK_TREE_MODEL (pItems));
+	g_object_unref (G_OBJECT (pItems)); /// ref should be taken by the combo box
+	
+	GtkCellRenderer *rend = gtk_cell_renderer_text_new ();
+	gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (pComboBox), rend, FALSE);
+	gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (pComboBox), rend, "text", 0, NULL);
+	
+	/// maybe try to set the dialog color (text and bg colors)...
 
 	// build the dialog.
 	CairoDialogAttr attr;
@@ -202,6 +216,12 @@ static void _show_players_list_dialog (void)
 	attr.pContainer = myContainer;
 
 	gldi_dialog_new (&attr);
+}
+
+static void _show_players_list_dialog (void)
+{
+	if (!myData.pCancelMain) myData.pCancelMain = g_cancellable_new ();
+	cd_musicplayer_get_known_players (_on_get_players, myData.pCancelMain);
 }
 
 //\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
@@ -294,11 +314,10 @@ CD_APPLET_ON_CLICK_END
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	if (! myData.bIsRunning)
 	{
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Find opened player"), GLDI_ICON_NAME_FIND, _cd_musicplayer_find_player, CD_APPLET_MY_MENU);
 		if (myData.pCurrentHandler != NULL)
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK (myData.pCurrentHandler->cDisplayedName?myData.pCurrentHandler->cDisplayedName:myData.pCurrentHandler->name, GLDI_ICON_NAME_MEDIA_PLAY, _cd_musicplayer_launch, CD_APPLET_MY_MENU);
-		else
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Choose a player"), GLDI_ICON_NAME_MEDIA_PLAY, _cd_musicplayer_choose_player, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Find opened player"), GLDI_ICON_NAME_FIND, _cd_musicplayer_find_player, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Choose a player"), GLDI_ICON_NAME_MEDIA_PLAY, _cd_musicplayer_choose_player, CD_APPLET_MY_MENU);
 	}
 	else
 	{
