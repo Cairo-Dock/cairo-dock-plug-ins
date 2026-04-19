@@ -314,11 +314,10 @@ CD_APPLET_ON_CLICK_END
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	if (! myData.bIsRunning)
 	{
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Find opened player"), GLDI_ICON_NAME_FIND, _cd_musicplayer_find_player, CD_APPLET_MY_MENU);
 		if (myData.pCurrentHandler != NULL)
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK (myData.pCurrentHandler->cDisplayedName?myData.pCurrentHandler->cDisplayedName:myData.pCurrentHandler->name, GLDI_ICON_NAME_MEDIA_PLAY, _cd_musicplayer_launch, CD_APPLET_MY_MENU);
-		else
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Choose a player"), GLDI_ICON_NAME_MEDIA_PLAY, _cd_musicplayer_choose_player, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Find opened player"), GLDI_ICON_NAME_FIND, _cd_musicplayer_find_player, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Choose a player"), GLDI_ICON_NAME_MEDIA_PLAY, _cd_musicplayer_choose_player, CD_APPLET_MY_MENU);
 	}
 	else
 	{
