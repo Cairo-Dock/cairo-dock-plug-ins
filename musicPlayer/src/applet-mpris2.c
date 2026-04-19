@@ -92,13 +92,9 @@ Loop_Status Enum s
  // Les Fonctions propres a MP. //
 /////////////////////////////////
 static gboolean s_bIsLoop = FALSE;
-// static gboolean s_bGotLoopStatus = FALSE;
 static gboolean s_bIsShuffle = FALSE;
-// static gboolean s_bGotShuffleStatus = FALSE;
 static gboolean s_bCanRaise = FALSE;
-// static gboolean s_bGotCanRaise = FALSE;
 static gboolean s_bCanQuit = FALSE;
-// static gboolean s_bGotCanQuit = FALSE;
 static gboolean s_bCanPlay = TRUE;
 static gboolean s_bCanPause = TRUE;
 static gboolean s_bCanGoNext = TRUE;
@@ -150,15 +146,29 @@ static MyPlayerStatus _extract_status (const gchar *cStatus)
 	return PLAYER_BROKEN;
 }
 
-static void cd_mpris2_get_time_elapsed (void)
+static void cd_mpris2_get_time_elapsed (GAsyncReadyCallback cb, gpointer data)
 {
-	// this function runs in a separate thread, we can just use the _sync method and wait
-	GVariant *res = g_dbus_connection_call_sync (g_dbus_proxy_get_connection (myData.pProxyPlayer),
+	g_dbus_connection_call (g_dbus_proxy_get_connection (myData.pProxyPlayer),
 		myData.cMpris2Service, CD_MPRIS2_OBJ, "org.freedesktop.DBus.Properties",
 		"Get", g_variant_new ("(ss)", CD_MPRIS2_PLAYER_IFACE, "Position"), G_VARIANT_TYPE ("(v)"),
-		G_DBUS_CALL_FLAGS_NONE, 500, NULL, NULL);
-	
-	if (res)
+		G_DBUS_CALL_FLAGS_NONE, 500, myData.pCancel, cb, data);
+}
+
+/* Recupere le temps ecoule chaque seconde (pas de signal pour ca).
+ */
+static gboolean cd_mpris2_get_time_elapsed_finish (GObject *pObj, GAsyncResult* pRes)
+{
+	GError *erreur = NULL;
+	GVariant *res = g_dbus_connection_call_finish (G_DBUS_CONNECTION (pObj), pRes, &erreur);
+	if (erreur)
+	{
+		gboolean bCancelled = g_error_matches (erreur, G_IO_ERROR, G_IO_ERROR_CANCELLED);
+		if (! bCancelled) cd_warning ("Cannot get time elapsed from MPRIS2 interface: %s", erreur->message);
+		g_error_free (erreur);
+		if (bCancelled) return FALSE; // should not touch myData, might have been freed (if stopping the applet)
+		myData.iCurrentTime = -1;
+	}
+	else
 	{
 		GVariant *tmp1 = g_variant_get_child_value (res, 0);
 		GVariant *tmp2 = g_variant_get_variant (tmp1);
@@ -176,7 +186,30 @@ static void cd_mpris2_get_time_elapsed (void)
 		g_variant_unref (tmp1);
 		g_variant_unref (res);
 	}
-	else myData.iCurrentTime = -1;
+
+	if (myData.iPlayingStatus == PLAYER_PLAYING)
+	{
+		if (myData.iCurrentTime < 0)  // aucune info de temps sur le bus => lecteur ferme.
+		{
+			myData.iGetTimeFailed ++;  // certains lecteurs (qmmp par exemple) envoient le signal 'playing' trop tot lorsqu'on les relance, ils ne fournissent pas de duree tout de suite, et donc l'applet stoppe. On fait donc 3 tentatives avant de declarer le lecteur ferme.
+			cd_debug ("failed to get time %d time(s)", myData.iGetTimeFailed);
+			if (myData.iGetTimeFailed > 2)
+			{
+				cd_debug (" => player is likely closed");
+				myData.iPlayingStatus = PLAYER_NONE;
+				myData.iCurrentTime = -2;  // le temps etait a -1, on le change pour provoquer un redraw.
+			}
+		}
+		else
+			myData.iGetTimeFailed = 0;
+	}
+	else if (myData.iPlayingStatus != PLAYER_PAUSED)  // en pause le temps reste constant.
+	{
+		myData.iCurrentTime = 0;
+		myData.iGetTimeFailed = 0;
+	}
+	
+	return TRUE;
 }
 
 static gboolean _is_a_new_track (const gchar *cTrackID)
@@ -603,35 +636,6 @@ static void cd_mpris2_control (MyPlayerControl pControl, const char* song)
 	}
 }
 
-
-/* Recupere le temps ecoule chaque seconde (pas de signal pour ca).
- */
-static void cd_mpris2_get_data (void)
-{
-	if (myData.iPlayingStatus == PLAYER_PLAYING)
-	{
-		cd_mpris2_get_time_elapsed ();
-		if (myData.iCurrentTime < 0)  // aucune info de temps sur le bus => lecteur ferme.
-		{
-			myData.iGetTimeFailed ++;  // certains lecteurs (qmmp par exemple) envoient le signal 'playing' trop tot lorsqu'on les relance, ils ne fournissent pas de duree tout de suite, et donc l'applet stoppe. On fait donc 3 tentatives avant de declarer le lecteur ferme.
-			cd_debug ("failed to get time %d time(s)", myData.iGetTimeFailed);
-			if (myData.iGetTimeFailed > 2)
-			{
-				cd_debug (" => player is likely closed");
-				myData.iPlayingStatus = PLAYER_NONE;
-				myData.iCurrentTime = -2;  // le temps etait a -1, on le change pour provoquer un redraw.
-			}
-		}
-		else
-			myData.iGetTimeFailed = 0;
-	}
-	else if (myData.iPlayingStatus != PLAYER_PAUSED)  // en pause le temps reste constant.
-	{
-		myData.iCurrentTime = 0;
-		myData.iGetTimeFailed = 0;
-	}
-}
-
 static void _got_main_proxy (G_GNUC_UNUSED GObject *pObj, GAsyncResult *pRes, G_GNUC_UNUSED gpointer ptr)
 {
 	CD_APPLET_ENTER;
@@ -730,7 +734,8 @@ void cd_musicplayer_register_mpris2_handler (void)
 {
 	MusicPlayerHandler *pHandler = g_new0 (MusicPlayerHandler, 1);
 	pHandler->name = "Mpris2";
-	pHandler->get_data = cd_mpris2_get_data;
+	pHandler->get_data_async = cd_mpris2_get_time_elapsed;
+	pHandler->get_data_finish = cd_mpris2_get_time_elapsed_finish;
 	pHandler->stop = cd_mpris2_stop;
 	pHandler->start = cd_mpris2_start;
 	pHandler->control = cd_mpris2_control;

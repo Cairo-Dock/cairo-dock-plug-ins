@@ -55,7 +55,8 @@ typedef enum {
 } MyLevel;  // niveau du lecteur.
 
 
-typedef void (*MusicPlayerGetDataFunc) (void);  // acquisition des donnees, threade.
+typedef void (*MusicPlayerGetDataAsyncFunc) (GAsyncReadyCallback cb, gpointer data);
+typedef gboolean (*MusicPlayerGetDataFinishFunc) (GObject *pObj, GAsyncResult* res);
 typedef void (*MusicPlayerStopFunc) (void);  // libere les ressources specifiques au backend (deconnexion des signaux, etc)
 typedef void (*MusicPlayerStartFunc) (void);  // initialise le backend (connexion des signaux, etc)
 typedef void (*MusicPlayerControlerFunc) (MyPlayerControl pControl, const gchar *cFile);  // controle du lecteur (play/pause/next/etc)
@@ -68,15 +69,16 @@ typedef gboolean (*MusicPlayerQuitFunc) (void);  // quit when within the systray
 
 struct _MusicPlayerHandler {
 	const gchar *name;  // nom du backend.
-	MusicPlayerGetDataFunc 		get_data;
-	MusicPlayerStopFunc 		stop;
-	MusicPlayerStartFunc		start;
-	MusicPlayerControlerFunc	control;
-	MusicPlayerGetCoverFunc		get_cover;  // actually deprecated, since now most players will send a signal when the 'cover' param is changed.
-	MusicPlayerGetLoopStatusFunc get_loop_status;
-	MusicPlayerGetShuffleStatusFunc get_shuffle_status;
-	MusicPlayerRaiseFunc raise;
-	MusicPlayerQuitFunc quit;
+	MusicPlayerGetDataAsyncFunc		get_data_async;
+	MusicPlayerGetDataFinishFunc	get_data_finish;
+	MusicPlayerStopFunc 			stop;
+	MusicPlayerStartFunc			start;
+	MusicPlayerControlerFunc		control;
+	MusicPlayerGetCoverFunc			get_cover;  // actually deprecated, since now most players will send a signal when the 'cover' param is changed.
+	MusicPlayerGetLoopStatusFunc	get_loop_status;
+	MusicPlayerGetShuffleStatusFunc	get_shuffle_status;
+	MusicPlayerRaiseFunc			raise;
+	MusicPlayerQuitFunc				quit;
 	gchar *appclass;  // classe de l'appli.
 	gchar *cDisplayedName;  // displayed name, or NULL
 	gchar *cCoverDir;  // repertoire utilisateur de l'appli, contenant les couvertures.
@@ -138,7 +140,7 @@ typedef struct {
 
 struct _AppletData {
 	// general
-	GldiTask *pTask;
+	guint uSidGetData;
 	GList *pHandlers;
 	MusicPlayerHandler *pCurrentHandler;
 	gchar *cMpris2Service;  // MPRIS2 service associated with the current handler.

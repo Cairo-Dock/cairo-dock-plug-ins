@@ -41,16 +41,14 @@ MusicPlayerHandler *cd_musicplayer_get_handler_by_name (const gchar *cName)
 }
 
 
-static void _cd_musicplayer_get_data_async (gpointer data) {
-	if (myData.pCurrentHandler->get_data)
-		myData.pCurrentHandler->get_data();
-}
-
-static gboolean _cd_musicplayer_update_from_data (gpointer data)
+static void _cd_musicplayer_got_data_and_update (GObject *pObj, GAsyncResult *pRes, gpointer data)
 {
-	g_return_val_if_fail (myData.pCurrentHandler->iLevel != PLAYER_EXCELLENT, FALSE);
-	//cd_debug ("MP - %s (%d : %d -> %d)", __func__, myData.iPlayingStatus, myData.iPreviousCurrentTime, myData.iCurrentTime);
 	CD_APPLET_ENTER;
+	MusicPlayerGetDataFinishFunc finish_func = (MusicPlayerGetDataFinishFunc)data;
+	if (! finish_func (pObj, pRes))
+		CD_APPLET_LEAVE (); // already stopped
+	
+	// we are still running and have a possibly valid result
 	gboolean bNeedRedraw = FALSE;
 	
 	// All players: update the time.
@@ -103,14 +101,17 @@ static gboolean _cd_musicplayer_update_from_data (gpointer data)
 	if (bNeedRedraw)
 		CD_APPLET_REDRAW_MY_ICON;
 	
-	CD_APPLET_LEAVE (myData.pCurrentHandler->iLevel == PLAYER_BAD || (myData.pCurrentHandler->iLevel == PLAYER_GOOD && myData.iPlayingStatus == PLAYER_PLAYING));
+	CD_APPLET_LEAVE ();
 }
 
-static gboolean _cd_musicplayer_get_data_and_update (gpointer data) {
+static gboolean _get_data_periodic (G_GNUC_UNUSED gpointer data) {
 	CD_APPLET_ENTER;
-	if (myData.pCurrentHandler->get_data)
-		myData.pCurrentHandler->get_data();
-	return _cd_musicplayer_update_from_data (data);  // cette fonction sort.
+	
+	// note: we need to save the _finish function since myData.pCurrentHandler might be cleared by the time we get
+	// to our callback
+	myData.pCurrentHandler->get_data_async(_cd_musicplayer_got_data_and_update, myData.pCurrentHandler->get_data_finish);
+	
+	CD_APPLET_LEAVE (G_SOURCE_CONTINUE);
 }
 
 /* Initialise le backend et lance la tache periodique si necessaire.
@@ -127,24 +128,12 @@ void cd_musicplayer_launch_handler (void)
 		myData.pCurrentHandler->start();
 	}
 	
-	// start the timer.
-	if (myData.pCurrentHandler->get_data && (myData.pCurrentHandler->iLevel == PLAYER_BAD || (myData.pCurrentHandler->iLevel == PLAYER_GOOD && (myConfig.iQuickInfoType == MY_APPLET_TIME_ELAPSED || myConfig.iQuickInfoType == MY_APPLET_TIME_LEFT))))  // il y'a de l'acquisition de donnees periodique a faire.
+	// start the timer if needed
+	if (myData.pCurrentHandler->get_data_async &&
+		(myConfig.iQuickInfoType == MY_APPLET_TIME_ELAPSED || myConfig.iQuickInfoType == MY_APPLET_TIME_LEFT))
 	{
-		if (myData.pCurrentHandler->bSeparateAcquisition == TRUE)  // Utilisation du thread pour les actions longues
-		{
-  			myData.pTask = gldi_task_new (1,
-  				(GldiGetDataAsyncFunc) _cd_musicplayer_get_data_async,
-  				(GldiUpdateSyncFunc) _cd_musicplayer_update_from_data,
-  				NULL);
-		}
-		else
-		{
-  			myData.pTask = gldi_task_new (1,
-  				NULL,
-  				(GldiUpdateSyncFunc) _cd_musicplayer_get_data_and_update,
-  				NULL);
-		}
-		gldi_task_launch (myData.pTask);
+		// schedule regularly updating the elapsed time
+		myData.uSidGetData = g_timeout_add_seconds (1, _get_data_periodic, NULL);
 	}  // else all is done by signals.
 	
 	myData.bIsRunning = TRUE;
@@ -154,10 +143,15 @@ void cd_musicplayer_launch_handler (void)
  */
 void cd_musicplayer_relaunch_handler (void)
 {
-	if (myData.pCurrentHandler->get_data && (myData.pCurrentHandler->iLevel == PLAYER_BAD || (myData.pCurrentHandler->iLevel == PLAYER_GOOD && (myConfig.iQuickInfoType == MY_APPLET_TIME_ELAPSED || myConfig.iQuickInfoType == MY_APPLET_TIME_LEFT))))  // il y'a de l'acquisition de donnees periodique a faire.
+	if (myData.pCurrentHandler->get_data_async && (myConfig.iQuickInfoType == MY_APPLET_TIME_ELAPSED || myConfig.iQuickInfoType == MY_APPLET_TIME_LEFT))  // il y'a de l'acquisition de donnees periodique a faire.
 	{
-		if (!gldi_task_is_active (myData.pTask))
-			gldi_task_launch (myData.pTask);
+		if (!myData.uSidGetData)
+			myData.uSidGetData = g_timeout_add_seconds (1, _get_data_periodic, NULL);
+	}
+	else if (myData.uSidGetData)
+	{
+		g_source_remove (myData.uSidGetData);
+		myData.uSidGetData = 0;
 	}
 }
 
@@ -175,12 +169,15 @@ void cd_musicplayer_stop_current_handler (gboolean bStopWatching)
 		myData.uNameWatch = 0;
 	}
 	
+	if (myData.uSidGetData)
+	{
+		g_source_remove (myData.uSidGetData);
+		myData.uSidGetData = 0;
+	}
+	
 	// stop whatever the handler was doing internally.
 	if (myData.pCurrentHandler->stop != NULL)
 		myData.pCurrentHandler->stop();
-	
-	gldi_task_free (myData.pTask);
-	myData.pTask = NULL;
 	
 	// return to initial state.
 	myData.bIsRunning = FALSE;
