@@ -82,7 +82,6 @@ struct _AppletData {
 	
 	// end of shared memory
 	GldiTask *pPeriodicTask;
-	DBusGProxy *dbus_proxy_nm;
 } ;
 
 
