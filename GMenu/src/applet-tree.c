@@ -381,7 +381,7 @@ static gchar * _check_file_exists (const gchar *cDir, const gchar *cPrefix, cons
 
 static const gchar *cPrefixNames[] = {"", "gnome-", "kde-", "kde4-", "xfce-", "lxde-", NULL};
 
-static gchar * cd_find_menu_file (const gchar *cMenuFile)
+gchar * cd_find_menu_file (const gchar *cMenuFile)
 {
 	gchar *cMenuFileName = NULL, *cXdgMenuPath = NULL;
 	const gchar *cMenuPrefix = g_getenv ("XDG_MENU_PREFIX"); // e.g. on xfce, it contains "xfce-", nothing on gnome
@@ -437,17 +437,3 @@ static gchar * cd_find_menu_file (const gchar *cMenuFile)
 	return cMenuFileName;
 }
 
-GMenuTree *cd_load_tree_from_file (const gchar *cMenuFile)
-{
-	gchar *cMenuFileName = cd_find_menu_file (cMenuFile);
-	GMenuTree *tree = gmenu_tree_new (cMenuFileName,
-		GMENU_TREE_FLAGS_INCLUDE_NODISPLAY| GMENU_TREE_FLAGS_INCLUDE_EXCLUDED);
-	// this does all the heavy work of parsing the .menu and each desktop files:
-	if (! gmenu_tree_load_sync (tree, NULL))
-	{
-		g_object_unref (tree);
-		tree = NULL;
-	}
-	g_free (cMenuFileName);
-	return tree;
-}
