@@ -83,17 +83,17 @@ struct _AppletConfig {
 typedef struct {
 	UpClient *pUPowerClient;
 	GList *pBatteryDeviceList;
+	gboolean bFirstUpdate;
 	} CDSharedMemory;
 #endif
 
 struct _AppletData {
-	GldiTask *pTask;  // async task to find the available backend (launched on startup)
-	
 	// UPower
 	#ifdef CD_UPOWER_AVAILABLE
 	UpClient *pUPowerClient;
 	gint iSignalIDAdded;
 	gint iSignalIDRemoved;
+	GCancellable *pCancel;
 	#endif
 	GList *pBatteryDeviceList;
 	

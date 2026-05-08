@@ -41,44 +41,73 @@ static GList * _cd_upower_add_and_ref_device_if_battery (UpDevice *pDevice, GLis
 	return pBatteryDeviceList;
 }
 
-static void _cd_upower_connect_async (CDSharedMemory *pSharedMemory)
+static void _cd_upower_update_state (CDSharedMemory *pSharedMemory);
+
+static void _on_got_devices (G_GNUC_UNUSED GObject *pObj, GAsyncResult *pRes, gpointer data)
 {
-	// connect to UPower on Dbus.
-	UpClient *pUPowerClient = up_client_new ();
+	CD_APPLET_ENTER;
+	CDSharedMemory *pSharedMemory = (CDSharedMemory*)data;
 	
-	// get the list of devices.
-	if (pUPowerClient == NULL
-	#ifndef CD_UPOWER_0_99 // no longer available with UPower 0.99+
-		|| ! up_client_enumerate_devices_sync (pUPowerClient, NULL, NULL)
-	#endif
-		)
-	{	
-		cd_warning ("couldn't get devices from UPower daemon");
-		if (pUPowerClient)
-			g_object_unref (pUPowerClient);
-		return;
-	}
-	
-	// find the battery device.
-	GPtrArray *pDevices = up_client_get_devices (pUPowerClient);
-	g_return_if_fail (pDevices != NULL);  // just to be sure.
-	UpDevice *pDevice;
-	GList *pBatteryDeviceList = NULL;
-	guint i;
-	for (i = 0; i < pDevices->len; i ++)
+	// find the battery devices.
+	GError *err = NULL;
+	GPtrArray *pDevices = up_client_get_devices_finish (pSharedMemory->pUPowerClient, pRes, &err);
+	if (!pDevices)
 	{
-		pDevice = g_ptr_array_index (pDevices, i);
-		pBatteryDeviceList = _cd_upower_add_and_ref_device_if_battery (pDevice, pBatteryDeviceList);
+		if (! g_error_matches (err, G_IO_ERROR, G_IO_ERROR_CANCELLED))
+		{
+			cd_warning ("Error getting devices from UPower daemon: %s", err->message);
+			_cd_upower_update_state (TRUE); // try fallback in this case (note: if cancelled, we should not call this function)
+		}
+		g_error_free (err);
+		g_object_unref (pSharedMemory->pUPowerClient);
 	}
-	if (pBatteryDeviceList == NULL)
+	else
 	{
-		cd_debug ("no battery found amongst %d devices", pDevices->len);
-		/* g_object_unref (pUPowerClient); // => if we launch the dock without any battery and then connect the battery, we need to be notified
-		return;*/ 
+		UpDevice *pDevice;
+		GList *pBatteryDeviceList = NULL;
+		guint i;
+		for (i = 0; i < pDevices->len; i ++)
+		{
+			pDevice = g_ptr_array_index (pDevices, i);
+			pBatteryDeviceList = _cd_upower_add_and_ref_device_if_battery (pDevice, pBatteryDeviceList);
+		}
+		if (pBatteryDeviceList == NULL)
+			cd_debug ("no battery found amongst %d devices", pDevices->len);
+			// we keep pUPowerClient since a battery might be added later
+		g_ptr_array_unref (pDevices);
+		
+		pSharedMemory->pBatteryDeviceList = pBatteryDeviceList;
+		_cd_upower_update_state (pSharedMemory);
 	}
 	
-	pSharedMemory->pUPowerClient = pUPowerClient;
-	pSharedMemory->pBatteryDeviceList = pBatteryDeviceList;
+	g_free (pSharedMemory); // not needed anymore
+	CD_APPLET_LEAVE ();
+}
+
+static void _on_got_upower (G_GNUC_UNUSED GObject *pObj, GAsyncResult *pRes, gpointer data)
+{
+	CD_APPLET_ENTER;
+	CDSharedMemory *pSharedMemory = (CDSharedMemory*)data;
+	
+	GError *err = NULL;
+	UpClient *pUPowerClient = up_client_new_finish (pRes, &err);
+	if (!pUPowerClient)
+	{
+		if (! g_error_matches (err, G_IO_ERROR, G_IO_ERROR_CANCELLED))
+		{
+			cd_warning ("Error connecting to UPower daemon: %s", err->message);
+			_cd_upower_update_state (TRUE); // try fallback in this case (note: if cancelled, we should not call this function)
+		}
+		g_error_free (err);
+		g_free (pSharedMemory);
+	}
+	else
+	{
+		pSharedMemory->pUPowerClient = pUPowerClient;
+		up_client_get_devices_async (pUPowerClient, myData.pCancel, _on_got_devices, pSharedMemory);
+	}
+	
+	CD_APPLET_LEAVE ();
 }
 
 static void _fetch_current_values (GList *pBatteryDeviceList)
@@ -136,8 +165,6 @@ static void _on_device_list_changed_free_data (void)
 	myData.cModel = NULL;
 }
 
-static gboolean _cd_upower_update_state (CDSharedMemory *pSharedMemory);
-
 static void _on_device_added (UpClient *pClient, UpDevice *pDevice, gpointer data)
 {
 	CD_APPLET_ENTER;
@@ -156,6 +183,7 @@ static void _on_device_added (UpClient *pClient, UpDevice *pDevice, gpointer dat
 		CDSharedMemory SharedMemory;
 		SharedMemory.pBatteryDeviceList = _cd_upower_add_and_ref_device_if_battery (pDevice, myData.pBatteryDeviceList);
 		SharedMemory.pUPowerClient = pClient;
+		SharedMemory.bFirstUpdate = FALSE;
 		_cd_upower_update_state (&SharedMemory);
 	}
 	CD_APPLET_LEAVE ();
@@ -180,16 +208,13 @@ static void _on_device_removed (UpClient *pClient, UpDevice *pDevice, gpointer d
 		CDSharedMemory SharedMemory;
 		SharedMemory.pBatteryDeviceList = g_list_delete_link (myData.pBatteryDeviceList, pOldDevice);
 		SharedMemory.pUPowerClient = pClient;
+		SharedMemory.bFirstUpdate = FALSE;
 		_cd_upower_update_state (&SharedMemory);
 	}
 	CD_APPLET_LEAVE ();
 }
 
-#ifdef CD_UPOWER_0_99 // one more param
 static void _on_device_changed (G_GNUC_UNUSED UpDevice *pDevice, G_GNUC_UNUSED GParamSpec *pSpec, G_GNUC_UNUSED gpointer data)
-#else
-static void _on_device_changed (G_GNUC_UNUSED UpDevice *pDevice, G_GNUC_UNUSED gpointer data)
-#endif
 {
 	// The applet is removed just before an update...
 	if (myApplet == NULL)
@@ -207,9 +232,8 @@ static void _on_device_changed (G_GNUC_UNUSED UpDevice *pDevice, G_GNUC_UNUSED g
 }
 
 // Can be launched the first time (with the Task) or when a device is added/removed after.
-static gboolean _cd_upower_update_state (CDSharedMemory *pSharedMemory)
+static void _cd_upower_update_state (CDSharedMemory *pSharedMemory)
 {
-	CD_APPLET_ENTER;
 	if (pSharedMemory->pUPowerClient == NULL)  // no UPower available, try to find the battery by ourselves.
 	{
 		cd_debug ("no UPower available");
@@ -258,7 +282,7 @@ static gboolean _cd_upower_update_state (CDSharedMemory *pSharedMemory)
 			g_free (cVendor);
 			g_free (cModel);
 
-			if (myData.pTask != NULL // only the first time
+			if (pSharedMemory->bFirstUpdate // only the first time
 				|| myData.pBatteryDeviceList == NULL // or if it's a new device
 				|| g_list_find (myData.pBatteryDeviceList, pDevice) == NULL)
 				// or compare the up_device_get_object_path (pDevice) ?
@@ -270,11 +294,7 @@ static gboolean _cd_upower_update_state (CDSharedMemory *pSharedMemory)
 				 * find a battery device, it will stay here forever, so we don't
 				 * need to watch for the destruction/creation of a battery device.
 				 */
-				#ifdef CD_UPOWER_0_99 // Now called notify
 				g_signal_connect (pDevice, "notify", G_CALLBACK (_on_device_changed), NULL);
-				#else
-				g_signal_connect (pDevice, "changed", G_CALLBACK (_on_device_changed), NULL);
-				#endif
 			}
 
 			bFirst = FALSE;
@@ -289,7 +309,7 @@ static gboolean _cd_upower_update_state (CDSharedMemory *pSharedMemory)
 			myData.cModel = g_string_free (sModel, FALSE);
 		}
 
-		if (myData.pTask != NULL // only the first time
+		if (pSharedMemory->bFirstUpdate // only the first time
 			|| pSharedMemory->pUPowerClient != myData.pUPowerClient) // or a new client (should not happen...)
 		{
 			myData.iSignalIDAdded = g_signal_connect (pSharedMemory->pUPowerClient,
@@ -308,40 +328,14 @@ static gboolean _cd_upower_update_state (CDSharedMemory *pSharedMemory)
 	
 	// in any case, update the icon to show the current state we are in.
 	update_icon ();
-
-	if (myData.pTask != NULL)
-	{
-		gldi_task_discard (myData.pTask);
-		myData.pTask = NULL;
-	}
-	
-	CD_APPLET_LEAVE (FALSE);
-}
-
-static void _free_shared_memory (CDSharedMemory *pSharedMemory)
-{
-	if (pSharedMemory->pUPowerClient)
-		g_object_unref (pSharedMemory->pUPowerClient);
-	if (pSharedMemory->pBatteryDeviceList)
-		g_list_foreach (pSharedMemory->pBatteryDeviceList, (GFunc) g_object_unref, NULL);  // remove the ref we took on it.
-	g_free (pSharedMemory);
 }
 
 void cd_powermanager_start (void)
 {
-	if (myData.pTask != NULL)
-	{
-		gldi_task_discard (myData.pTask);
-		myData.pTask = NULL;
-	}
-	
+	myData.pCancel = g_cancellable_new ();
 	CDSharedMemory *pSharedMemory = g_new0 (CDSharedMemory, 1);
-	myData.pTask = gldi_task_new_full (0,
-		(GldiGetDataAsyncFunc) _cd_upower_connect_async,
-		(GldiUpdateSyncFunc) _cd_upower_update_state,
-		(GFreeFunc) _free_shared_memory,
-		pSharedMemory);
-	gldi_task_launch (myData.pTask);
+	pSharedMemory->bFirstUpdate = TRUE;
+	up_client_new_async (myData.pCancel, _on_got_upower, pSharedMemory);
 }
 
 static void _free_battery_dev (gpointer ptr)
@@ -353,6 +347,13 @@ static void _free_battery_dev (gpointer ptr)
 
 void cd_upower_stop (void)
 {
+	if (myData.pCancel != NULL)
+	{
+		g_cancellable_cancel (myData.pCancel);
+		g_object_unref (myData.pCancel);
+		myData.pCancel = NULL;
+	}
+	
 	if (myData.pUPowerClient != NULL)
 	{
 		if (myData.iSignalIDAdded != 0)
