@@ -79,14 +79,6 @@ struct _AppletConfig {
 } ;
 
 
-#ifdef CD_UPOWER_AVAILABLE
-typedef struct {
-	UpClient *pUPowerClient;
-	GList *pBatteryDeviceList;
-	gboolean bFirstUpdate;
-	} CDSharedMemory;
-#endif
-
 struct _AppletData {
 	// UPower
 	#ifdef CD_UPOWER_AVAILABLE
