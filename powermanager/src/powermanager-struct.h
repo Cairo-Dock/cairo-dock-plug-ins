@@ -131,6 +131,12 @@ struct _AppletData {
 	gint iStatTimeCount;
 	
 	gint iOnBatteryImage;  // -1 = no image yet, 0 = charging, 1 = on battery
+	
+	// menu commands
+	gboolean bPowerMenuChecked;
+	const gchar * const * cPowerPrefCmd; // set to a static string, do not free
+	GAppInfo *pPowerPrefApp; // helper for launching the above (can be NULL)
+	GldiAppInfo *pPowerStatsApp; // our own app info for the preferences app (since no custom command is required)
 	} ;
 
 

@@ -31,60 +31,66 @@ CD_APPLET_ON_CLICK_BEGIN
 	cd_powermanager_bubble ();
 CD_APPLET_ON_CLICK_END
 
-static void power_launch_cmd (GtkMenuItem *menu_item, const gchar *cCommand)
+static void _power_launch_settings (G_GNUC_UNUSED GtkMenuItem *menu_item, G_GNUC_UNUSED gpointer data)
 {
-	GError *erreur = NULL;
-	g_spawn_command_line_async (cCommand, &erreur);
-
-	if (erreur != NULL)
+	CD_APPLET_ENTER;
+	
+	if (myData.cPowerPrefCmd)
 	{
-		cd_warning ("PM : %s", erreur->message);
-		g_error_free (erreur);
+		
+		cairo_dock_launch_command_argv_full2 (myData.cPowerPrefCmd, NULL,
+			GLDI_LAUNCH_GUI | GLDI_LAUNCH_SLICE, myData.pPowerPrefApp);
 	}
+	
+	CD_APPLET_LEAVE ();
 }
+
+static void _power_launch_stats (G_GNUC_UNUSED GtkMenuItem *menu_item, G_GNUC_UNUSED gpointer data)
+{
+	CD_APPLET_ENTER;
+	
+	if (myData.pPowerStatsApp)
+		gldi_app_info_launch (myData.pPowerStatsApp, NULL);
+	
+	CD_APPLET_LEAVE ();
+}
+
+static const char * const s_gnome_power_settings[] = {"gnome-control-center", "power", NULL};
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	gboolean bAddSeparator = FALSE;
 	// Power preferences
-	static gboolean bPowerPrefChecked = FALSE;
-	static const gchar *cPowerPrefCmd = NULL;
-	if (!bPowerPrefChecked)
+	if (!myData.bPowerMenuChecked)
 	{
-		bPowerPrefChecked = TRUE;
+		myData.bPowerMenuChecked = TRUE;
+		
+		// preferences
 		gchar *cResult = cairo_dock_launch_command_sync ("which gnome-control-center");  // Gnome3
 		if (cResult != NULL && *cResult == '/')
 		{
-			cPowerPrefCmd = "gnome-control-center power";
-		}
-		else
-		{
-			g_free (cResult);
-			cResult = cairo_dock_launch_command_sync ("which gnome-power-preferences");  // Gnome2
-			if (cResult != NULL && *cResult == '/')
-				cPowerPrefCmd = "gnome-power-preferences";
-		}  /// TODO: handle other DE ...
+			myData.cPowerPrefCmd = s_gnome_power_settings;
+			GDesktopAppInfo *tmp = g_desktop_app_info_new ("org.gnome.Settings.desktop");
+			myData.pPowerPrefApp = tmp ? G_APP_INFO (tmp) : NULL;
+		}  /// TODO: handle other DE ... (should be moved to *-integration?)
 		g_free (cResult);
+		
+		// stats
+		cResult = cairo_dock_register_class ("org.gnome.powerstats");
+		if (cResult)
+		{
+			myData.pPowerStatsApp = cairo_dock_get_class_app_info (cResult);
+			if (myData.pPowerStatsApp) gldi_object_ref (GLDI_OBJECT (myData.pPowerStatsApp));
+			g_free (cResult);
+		}
 	}
-	if (cPowerPrefCmd)
+	if (myData.cPowerPrefCmd)
 	{
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Set up power management"), MY_APPLET_SHARE_DATA_DIR"/default-charge.svg", power_launch_cmd, CD_APPLET_MY_MENU, (gpointer)cPowerPrefCmd);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Set up power management"), MY_APPLET_SHARE_DATA_DIR"/default-charge.svg", _power_launch_settings, CD_APPLET_MY_MENU, NULL);
 		bAddSeparator = TRUE;
 	}
-	
-	// Power statistics
-	static gboolean bPowerStatsChecked = FALSE;
-	static const gchar *cPowerStatsCmd = NULL;
-	if (!bPowerStatsChecked)
+	if (myData.pPowerStatsApp)
 	{
-		bPowerStatsChecked = TRUE;
-		gchar *cResult = cairo_dock_launch_command_sync ("which gnome-power-statistics");
-		if (cResult != NULL && *cResult == '/')  /// TODO: other DE...
-			cPowerStatsCmd = "gnome-power-statistics";
-		g_free (cResult);
-	}
-	if (cPowerStatsCmd)
-	{
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Power statistics"), MY_APPLET_SHARE_DATA_DIR"/default-charge.svg", power_launch_cmd, CD_APPLET_MY_MENU, (gpointer)cPowerStatsCmd);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Power statistics"), MY_APPLET_SHARE_DATA_DIR"/default-charge.svg", _power_launch_stats, CD_APPLET_MY_MENU, NULL);
 		bAddSeparator = TRUE;
 	}
 	

@@ -66,6 +66,11 @@ CD_APPLET_STOP_BEGIN
 	{
 		g_source_remove (myData.checkLoop);
 	}
+	
+	if (myData.pPowerPrefApp)
+		g_object_unref (myData.pPowerPrefApp);
+	if (myData.pPowerStatsApp)
+		gldi_object_unref (GLDI_OBJECT (myData.pPowerStatsApp));
 CD_APPLET_STOP_END
 
 
