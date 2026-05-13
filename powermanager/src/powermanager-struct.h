@@ -79,21 +79,13 @@ struct _AppletConfig {
 } ;
 
 
-#ifdef CD_UPOWER_AVAILABLE
-typedef struct {
-	UpClient *pUPowerClient;
-	GList *pBatteryDeviceList;
-	} CDSharedMemory;
-#endif
-
 struct _AppletData {
-	GldiTask *pTask;  // async task to find the available backend (launched on startup)
-	
 	// UPower
 	#ifdef CD_UPOWER_AVAILABLE
 	UpClient *pUPowerClient;
 	gint iSignalIDAdded;
 	gint iSignalIDRemoved;
+	GCancellable *pCancel;
 	#endif
 	GList *pBatteryDeviceList;
 	
@@ -131,6 +123,12 @@ struct _AppletData {
 	gint iStatTimeCount;
 	
 	gint iOnBatteryImage;  // -1 = no image yet, 0 = charging, 1 = on battery
+	
+	// menu commands
+	gboolean bPowerMenuChecked;
+	const gchar * const * cPowerPrefCmd; // set to a static string, do not free
+	GAppInfo *pPowerPrefApp; // helper for launching the above (can be NULL)
+	GldiAppInfo *pPowerStatsApp; // our own app info for the preferences app (since no custom command is required)
 	} ;
 
 

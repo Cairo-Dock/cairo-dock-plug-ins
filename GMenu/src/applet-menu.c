@@ -72,23 +72,37 @@ static gboolean _make_menu_from_trees (CDSharedMemory *pSharedMemory)
 
 static void _load_trees_async (CDSharedMemory *pSharedMemory)
 {
-	GMenuTree *tree = cd_load_tree_from_file ("applications.menu");
-	if (tree)
-		pSharedMemory->pTrees = g_list_append (pSharedMemory->pTrees, tree);
-
-	if (myConfig.bLoadSettingsMenu)
+	GMenuTree *tree;
+	GList *t;
+	for (t = pSharedMemory->pTrees; t != NULL; t = t->next)
 	{
-		tree = cd_load_tree_from_file ("settings.menu");
-		if (tree)
-			pSharedMemory->pTrees = g_list_append (pSharedMemory->pTrees, tree);
+		tree = t->data;
+		// this does all the heavy work of parsing the .menu and each desktop files:
+		if (! gmenu_tree_load_sync (tree, NULL))
+		{
+			// free this tree if it failed to load (will be removed later)
+			g_object_unref (tree);
+			t->data = NULL;
+		}
 	}
+	// remove all menu trees that failed to load
+	pSharedMemory->pTrees = g_list_remove_all (pSharedMemory->pTrees, NULL);
 }
 
 static void _free_shared_memory (CDSharedMemory *pSharedMemory)
 {
-	g_list_foreach (pSharedMemory->pTrees, (GFunc)g_object_unref, NULL);
-	g_list_free (pSharedMemory->pTrees);
+	g_list_free_full (pSharedMemory->pTrees, g_object_unref);
 	g_free (pSharedMemory);
+}
+
+static GMenuTree *_create_tree (const char *cMenuFile)
+{
+	gchar *cMenuFileName = cd_find_menu_file (cMenuFile);
+	GMenuTree *tree = cMenuFileName ? gmenu_tree_new (cMenuFileName,
+		GMENU_TREE_FLAGS_INCLUDE_NODISPLAY| GMENU_TREE_FLAGS_INCLUDE_EXCLUDED)
+		: NULL;
+	g_free (cMenuFileName);
+	return tree;
 }
 
 void cd_menu_start (void)
@@ -103,6 +117,22 @@ void cd_menu_start (void)
 		(GFreeFunc) _free_shared_memory,
 		pSharedMemory);
 	
+	/** Note: we create the GMenuTree objects here to ensure the
+	 * corresponding GObject is registered. This is to avoid a bug
+	 * in GLib where registering types from multiple threads can
+	 * lead to a deadlock, see:
+	 * https://github.com/Cairo-Dock/cairo-dock-core/issues/247
+	 * https://gitlab.gnome.org/GNOME/glib/-/issues/541
+	 */
+	GMenuTree *tree = _create_tree ("applications.menu");
+	if (tree) pSharedMemory->pTrees = g_list_append (pSharedMemory->pTrees, tree);
+	if (myConfig.bLoadSettingsMenu)
+	{
+		tree = _create_tree ("settings.menu");
+		if (tree) pSharedMemory->pTrees = g_list_append (pSharedMemory->pTrees, tree);
+	}
+	
+	// loading trees is then done in a worker thread
 	if (cairo_dock_is_loading ())
 		gldi_task_launch_delayed (myData.pTask, 0);  // 0 <=> g_idle
 	else

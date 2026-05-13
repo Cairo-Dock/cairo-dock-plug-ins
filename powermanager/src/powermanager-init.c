@@ -58,8 +58,6 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	
-	gldi_task_discard (myData.pTask);
-	
 	// stop UPower monitoring
 	cd_upower_stop ();
 	
@@ -68,6 +66,11 @@ CD_APPLET_STOP_BEGIN
 	{
 		g_source_remove (myData.checkLoop);
 	}
+	
+	if (myData.pPowerPrefApp)
+		g_object_unref (myData.pPowerPrefApp);
+	if (myData.pPowerStatsApp)
+		gldi_object_unref (GLDI_OBJECT (myData.pPowerStatsApp));
 CD_APPLET_STOP_END
 
 

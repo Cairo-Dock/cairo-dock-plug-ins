@@ -246,23 +246,14 @@ endif()
 message (STATUS "> UPower:")
 enable_if_not_defined (enable-upower-support)
 if (enable-upower-support)
-	pkg_check_modules (UPOWER upower-glib)  # useful for Powermanager too.
+	pkg_check_modules (UPOWER "upower-glib>=0.99.14") # used by Powermanager
 endif()
 if (UPOWER_FOUND)
 	set (with_upower_support yes)
-	STRING (REGEX REPLACE "\\..*" "" UPOWER_MAJOR "${UPOWER_VERSION}") # 2.28.3 => 2
-	STRING (REGEX REPLACE "[0-9]*\\.([^ ]+)" "\\1" UPOWER_MINOR "${UPOWER_VERSION}")  # 2.28.3 => 2.28
-	STRING (REGEX REPLACE "\\.[0-9]*" "" UPOWER_MINOR "${UPOWER_MINOR}") # 2.28 => 28
-	if (${UPOWER_MAJOR} GREATER 0 OR ${UPOWER_MINOR} GREATER 89)
-		message (STATUS "   Your version of UPower no longer supports suspend/hibernate features")
-		set (with_upower_support "yes (0.99+)")
-	else()
-		set (UPOWER_SUPPORTS_SUSPEND_HIBERNATE 1)
-	endif()
 else()
 	set (with_upower_support no)
-	message (STATUS "Could not find upower-glib; Logout and PowerManager plugin won't be built with UPower support.")
-	message (WARNING "This module is required to compile LogOut and PowerManager applet with UPower support: upower-glib")
+	message (STATUS "Could not find upower-glib>=0.99.14; PowerManager plugin won't be built with UPower support.")
+	message (WARNING "This module is required to compile PowerManager applet with UPower support: upower-glib>=0.99.14")
 	set (MODULES_MISSING "${MODULES_MISSING} upower-glib")
 endif()
 

@@ -24,14 +24,11 @@
 #define GMENU_I_KNOW_THIS_IS_UNSTABLE
 #include <gmenu-tree.h>
 
-
 void reload_image_menu_items (void);
-
-
-GMenuTree *cd_load_tree_from_file (const gchar *cMenuFile);
-
 
 void cd_append_tree_in_menu (GMenuTree *tree, GtkWidget *pMenu);
 
+gchar *cd_find_menu_file (const gchar *cMenuFile);
 
 #endif
+
