@@ -32,13 +32,9 @@ void cd_switcher_get_current_desktop (void)
 {
 	gldi_desktop_get_current (&myData.switcher.iCurrentDesktop, &myData.switcher.iCurrentViewportX, &myData.switcher.iCurrentViewportY);
 	
-	myData.switcher.iNbViewportTotal = g_desktopGeometry.iNbDesktops * g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY;
-	if (myData.switcher.iNbViewportTotal == 0) // obviously, having 0 desktop cannot be true, so we force to 1 to avoid any "division by 0" later.
-		myData.switcher.iNbViewportTotal = 1;
-	
 	cd_switcher_compute_coordinates_from_desktop (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY, &myData.switcher.iCurrentLine, &myData.switcher.iCurrentColumn);
 	
-	cd_debug ("desktop: %d;%d;%d, %dx%d", g_desktopGeometry.iNbDesktops, g_desktopGeometry.iNbViewportX, g_desktopGeometry.iNbViewportY, myData.switcher.iCurrentLine, myData.switcher.iCurrentColumn);
+	cd_debug ("desktop: %dx%d", myData.switcher.iCurrentLine, myData.switcher.iCurrentColumn);
 }
 
 
@@ -91,42 +87,51 @@ static void _cd_switcher_get_best_agencement (int iNbViewports, int *iBestNbLine
 }
 void cd_switcher_compute_nb_lines_and_columns (void)
 {
+	myData.switcher.iNbDesktopsPriv = g_desktopGeometry.iNbDesktops;
+
+	if (myData.switcher.iNbDesktopsPriv > 1 && gldi_desktop_have_multiple_viewports ())
+	{
+		/* complex cases (not fully supported):
+			-- Compiz avec N cubes -- should not happen on newer versions
+			-- Wayland compositor with multiple workspace sets and multiple workspaces (no known case)
+			-- X11 WM with both _NET_NUMBER_OF_DESKTOPS and _NET_DESKTOP_GEOMETRY > 1 (no known case, could be possible to set)
+		   -> we only show the first desktop
+		*/
+		myData.switcher.iNbDesktopsPriv = 1;
+		
+		/// previous behavior
+		/// myData.switcher.iNbLines = g_desktopGeometry.iNbDesktops;  // on respecte l'agencement de l'utilisateur (groupement par bureau).
+		/// myData.switcher.iNbColumns = g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY;
+	}
+	
+	if (myData.switcher.iNbDesktopsPriv > 1) myData.switcher.iNbViewportTotal = myData.switcher.iNbDesktopsPriv;
+	else myData.switcher.iNbViewportTotal = g_desktopGeometry.pViewportsX[0] * g_desktopGeometry.pViewportsY[0];
+	if (myData.switcher.iNbViewportTotal == 0) // obviously, having 0 desktop cannot be true, so we force to 1 to avoid any "division by 0" later.
+		myData.switcher.iNbViewportTotal = 1;
+	
 	if (myConfig.iDesktopsLayout == SWICTHER_LAYOUT_AUTO || myConfig.iDesktopsLayout == SWITCHER_LAYOUT_STRICT)
 	{
-		if (g_desktopGeometry.iNbDesktops > 1)  // plusieurs bureaux simples (Metacity) ou etendus (Compiz avec 2 cubes).
+		if (myData.switcher.iNbDesktopsPriv > 1)  // plusieurs bureaux simples (Metacity)
 		{
-			if (g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY > 1)
+			if (myConfig.iDesktopsLayout == SWITCHER_LAYOUT_STRICT)
 			{
-				/* complex cases (not expected):
-				    -- Compiz avec N cubes -- should not happen on newer versions
-				    -- Wayland compositor with multiple workspace sets and multiple workspaces (no known case)
-				    -- X11 WM with both _NET_NUMBER_OF_DESKTOPS and _NET_DESKTOP_GEOMETRY > 1 (no known case, could be possible to set)
-				   in these cases, we ignore SWITCHER_LAYOUT_STRICT
-				*/
-				myData.switcher.iNbLines = g_desktopGeometry.iNbDesktops;  // on respecte l'agencement de l'utilisateur (groupement par bureau).
-				myData.switcher.iNbColumns = g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY;
+				myData.switcher.iNbLines = 1;
+				myData.switcher.iNbColumns = myData.switcher.iNbDesktopsPriv;
 			}
-			else  // plusieurs bureaux simples (e.g. Metacity, Openbox, Labwc)
-			{
-				if (myConfig.iDesktopsLayout == SWITCHER_LAYOUT_STRICT)
-				{
-					myData.switcher.iNbLines = 1;
-					myData.switcher.iNbColumns = g_desktopGeometry.iNbDesktops;
-				}
-				else _cd_switcher_get_best_agencement (g_desktopGeometry.iNbDesktops,
-					&myData.switcher.iNbLines, &myData.switcher.iNbColumns);
-			}
+			else _cd_switcher_get_best_agencement (myData.switcher.iNbDesktopsPriv,
+				&myData.switcher.iNbLines, &myData.switcher.iNbColumns);
 		}
 		else  // un seul bureau etendu.
 		{
-			if (g_desktopGeometry.iNbViewportY > 1 || myConfig.iDesktopsLayout == SWITCHER_LAYOUT_STRICT)  // desktop wall.
+			if (g_desktopGeometry.pViewportsY[0] > 1 || myConfig.iDesktopsLayout == SWITCHER_LAYOUT_STRICT)  // desktop wall.
 			{
-				myData.switcher.iNbLines = g_desktopGeometry.iNbViewportY;  // on respecte l'agencement de l'utilisateur.
-				myData.switcher.iNbColumns = g_desktopGeometry.iNbViewportX;
+				// we only use the first desktop
+				myData.switcher.iNbLines = g_desktopGeometry.pViewportsY[0];  // on respecte l'agencement de l'utilisateur.
+				myData.switcher.iNbColumns = g_desktopGeometry.pViewportsX[0];
 			}
 			else  // cube.
 			{
-				_cd_switcher_get_best_agencement (g_desktopGeometry.iNbViewportX, &myData.switcher.iNbLines, &myData.switcher.iNbColumns);
+				_cd_switcher_get_best_agencement (g_desktopGeometry.pViewportsX[0], &myData.switcher.iNbLines, &myData.switcher.iNbColumns);
 			}
 		}
 	}
@@ -137,12 +142,12 @@ void cd_switcher_compute_nb_lines_and_columns (void)
 		if (w >= h)  // icon is wide.
 		{
 			myData.switcher.iNbLines = myConfig.iDesktopsLayout;  // single-line, 2-lines, etc. Note: currently the config window only gives us access to the "single-line" choice, we might add more.
-			myData.switcher.iNbColumns = ceil ((double) g_desktopGeometry.iNbDesktops * g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY / myData.switcher.iNbLines);
+			myData.switcher.iNbColumns = ceil ((double) myData.switcher.iNbViewportTotal / myData.switcher.iNbLines);
 		}
 		else  // icon is high
 		{
 			myData.switcher.iNbColumns = myConfig.iDesktopsLayout;
-			myData.switcher.iNbLines = ceil ((double) g_desktopGeometry.iNbDesktops * g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY / myData.switcher.iNbColumns);
+			myData.switcher.iNbLines = ceil ((double) myData.switcher.iNbViewportTotal / myData.switcher.iNbColumns);
 		}
 	}
 	myData.iPrevIndexHovered = -1;  // cela invalide le dernier bureau survole.
@@ -157,35 +162,16 @@ void cd_switcher_compute_coordinates_from_desktop (int iNumDesktop, int iNumView
 		*iNumColumn = 0;
 		return;
 	}
+	if (iNumDesktop >= myData.switcher.iNbDesktopsPriv)
+	{
+		// the desktop we want is not displayed
+		*iNumLine = -1;
+		*iNumColumn = -1;
+		return;
+	}
 	int index = cd_switcher_compute_index_from_desktop (iNumDesktop, iNumViewportX, iNumViewportY);
 	cd_switcher_compute_coordinates_from_index (index, iNumLine, iNumColumn);
 	cd_debug ("(%d;%d;%d) -> %d -> (%d;%d)", iNumDesktop, iNumViewportX, iNumViewportY, index, *iNumLine, *iNumColumn);
-	/**if (g_desktopGeometry.iNbDesktops > 1)  // plusieurs bureaux simples (Metacity) ou etendus (Compiz avec 2 cubes).
-	{
-		if (g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY > 1)  // plusieurs bureaux etendus (Compiz avec N cubes).
-		{
-			*iNumLine = iNumDesktop;
-			*iNumColumn = iNumViewportY * g_desktopGeometry.iNbViewportX + iNumViewportX;
-		}
-		else  // plusieurs bureaux simples (Metacity)
-		{
-			*iNumLine = iNumDesktop / myData.switcher.iNbColumns;
-			*iNumColumn = iNumDesktop % myData.switcher.iNbColumns;
-		}
-	}
-	else  // un seul bureau etendu.
-	{
-		if (g_desktopGeometry.iNbViewportY > 1)  // desktop wall.
-		{
-			*iNumLine = iNumViewportY;
-			*iNumColumn = iNumViewportX;
-		}
-		else  // cube.
-		{
-			*iNumLine = iNumViewportX / myData.switcher.iNbColumns;
-			*iNumColumn = iNumViewportX % myData.switcher.iNbColumns;
-		}
-	}*/
 }
 
 
@@ -194,41 +180,12 @@ void cd_switcher_compute_desktop_from_coordinates (int iNumLine, int iNumColumn,
 	int index = cd_switcher_compute_index_from_coordinates (iNumLine, iNumColumn);
 	cd_switcher_compute_desktop_from_index (index, iNumDesktop, iNumViewportX, iNumViewportY);
 	cd_debug ("(%d;%d) -> %d -> (%d;%d;%d)", iNumLine, iNumColumn, index, *iNumDesktop, *iNumViewportX, *iNumViewportY);
-	/**if (g_desktopGeometry.iNbDesktops > 1)  // plusieurs bureaux simples (Metacity) ou etendus (Compiz avec 2 cubes).
-	{
-		if (g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY > 1)  // plusieurs bureaux etendus (Compiz avec N cubes).
-		{
-			*iNumDesktop = iNumLine;
-			*iNumViewportX = iNumColumn % g_desktopGeometry.iNbViewportX;
-			*iNumViewportY = iNumColumn / g_desktopGeometry.iNbViewportX;
-		}
-		else  // plusieurs bureaux simples (Metacity)
-		{
-			*iNumDesktop = iNumLine * myData.switcher.iNbColumns +iNumColumn;
-			*iNumViewportX = 0;
-			*iNumViewportY = 0;
-		}
-	}
-	else  // un seul bureau etendu.
-	{
-		*iNumDesktop = 0;
-		if (g_desktopGeometry.iNbViewportY > 1)  // desktop wall.
-		{
-			*iNumViewportX = iNumColumn;
-			*iNumViewportY = iNumLine;
-		}
-		else  // cube.
-		{
-			*iNumViewportX = iNumLine * myData.switcher.iNbColumns +iNumColumn;
-			*iNumViewportY = 0;
-		}
-	}*/
 }
 
 
 int cd_switcher_compute_index_from_desktop (int iNumDesktop, int iNumViewportX, int iNumViewportY)
 {
-	return iNumDesktop * g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY + iNumViewportX + iNumViewportY * g_desktopGeometry.iNbViewportX;
+	return iNumDesktop * g_desktopGeometry.pViewportsX[0] * g_desktopGeometry.pViewportsY[0] + iNumViewportX + iNumViewportY * g_desktopGeometry.pViewportsX[0];
 }
 
 int cd_switcher_compute_index_from_coordinates (int iNumLine, int iNumColumn)
@@ -238,26 +195,26 @@ int cd_switcher_compute_index_from_coordinates (int iNumLine, int iNumColumn)
 
 void cd_switcher_compute_desktop_from_index (int iIndex, int *iNumDesktop, int *iNumViewportX, int *iNumViewportY)
 {
-	if (g_desktopGeometry.iNbViewportX == 0 || g_desktopGeometry.iNbViewportY == 0)  // des fois (chgt de resolution sous Compiz), le rafraichissement se passe mal, on le force donc ici pour eviter une division par 0.
+	if (g_desktopGeometry.pViewportsX[0] == 0 || g_desktopGeometry.pViewportsY[0] == 0)  // des fois (chgt de resolution sous Compiz), le rafraichissement se passe mal, on le force donc ici pour eviter une division par 0.
 	{
 		cd_switcher_refresh_desktop_values (myApplet);
 	}
-	g_return_if_fail (g_desktopGeometry.iNbViewportX > 0 && g_desktopGeometry.iNbViewportY > 0);
+	g_return_if_fail (g_desktopGeometry.pViewportsX[0] > 0 && g_desktopGeometry.pViewportsY[0] > 0);
 	
-	*iNumDesktop = iIndex / (g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY);
-	int index2 = iIndex % (g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY);
-	*iNumViewportX = index2 % g_desktopGeometry.iNbViewportX;
-	*iNumViewportY = index2 / g_desktopGeometry.iNbViewportX;
-	cd_debug ("%d -> (%d, %d, %d) ; nX=%d ; nY=%d", iIndex, *iNumDesktop, *iNumViewportX, *iNumViewportY, g_desktopGeometry.iNbViewportX, g_desktopGeometry.iNbViewportY);
+	*iNumDesktop = iIndex / (g_desktopGeometry.pViewportsX[0] * g_desktopGeometry.pViewportsY[0]);
+	int index2 = iIndex % (g_desktopGeometry.pViewportsX[0] * g_desktopGeometry.pViewportsY[0]);
+	*iNumViewportX = index2 % g_desktopGeometry.pViewportsX[0];
+	*iNumViewportY = index2 / g_desktopGeometry.pViewportsX[0];
+	cd_debug ("%d -> (%d, %d, %d) ; nX=%d ; nY=%d", iIndex, *iNumDesktop, *iNumViewportX, *iNumViewportY, g_desktopGeometry.pViewportsX[0], g_desktopGeometry.pViewportsY[0]);
 }
 
 void cd_switcher_compute_coordinates_from_index (int iIndex, int *iNumLine, int *iNumColumn)
 {
-	if (g_desktopGeometry.iNbViewportX == 0 || g_desktopGeometry.iNbViewportY == 0)  // des fois (chgt de resolution sous Compiz), le rafraichissement se passe mal, on le force donc ici pour eviter une division par 0.
+	if (g_desktopGeometry.pViewportsX[0] == 0 || g_desktopGeometry.pViewportsY[0] == 0)  // des fois (chgt de resolution sous Compiz), le rafraichissement se passe mal, on le force donc ici pour eviter une division par 0.
 	{
 		cd_switcher_refresh_desktop_values (myApplet);
 	}
-	g_return_if_fail (g_desktopGeometry.iNbViewportX > 0 && g_desktopGeometry.iNbViewportY > 0);
+	g_return_if_fail (g_desktopGeometry.pViewportsX[0] > 0 && g_desktopGeometry.pViewportsY[0] > 0);
 	
 	*iNumLine = iIndex / myData.switcher.iNbColumns;
 	*iNumColumn = iIndex % myData.switcher.iNbColumns;

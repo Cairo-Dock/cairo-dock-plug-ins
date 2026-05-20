@@ -70,8 +70,8 @@ static void _cd_switcher_draw_windows_on_viewport (Icon *pIcon, CDSwitcherDeskto
 		{
 			x += myData.switcher.iCurrentViewportX * g_desktopGeometry.Xscreen.width;
 			y += myData.switcher.iCurrentViewportY * g_desktopGeometry.Xscreen.height;
-			if (x < 0) x += g_desktopGeometry.iNbViewportX * g_desktopGeometry.Xscreen.width;
-			if (y < 0) y += g_desktopGeometry.iNbViewportY * g_desktopGeometry.Xscreen.height;
+			if (x < 0) x += g_desktopGeometry.pViewportsX[0] * g_desktopGeometry.Xscreen.width;
+			if (y < 0) y += g_desktopGeometry.pViewportsY[0] * g_desktopGeometry.Xscreen.height;
 		}
 		else
 		{
@@ -266,7 +266,7 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 	
 	// chaque bureau/viewport.
 	int iNumDesktop=0, iNumViewportX=0, iNumViewportY=0;
-	int k = 0, N = g_desktopGeometry.iNbDesktops * g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY;
+	int k = 0, N = myData.switcher.iNbViewportTotal;
 	for (j = 0; j < myData.switcher.iNbLines && k < N; j ++)
 	{
 		for (i = 0; i < myData.switcher.iNbColumns && k < N; i ++)
@@ -333,11 +333,11 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 			}
 			
 			iNumViewportX ++;
-			if (iNumViewportX == g_desktopGeometry.iNbViewportX)
+			if (iNumViewportX == g_desktopGeometry.pViewportsX[0])
 			{
 				iNumViewportX = 0;
 				iNumViewportY ++;
-				if (iNumViewportY == g_desktopGeometry.iNbViewportY)
+				if (iNumViewportY == g_desktopGeometry.pViewportsY[0])
 				{
 					iNumViewportY = 0;
 					iNumDesktop ++;
@@ -348,7 +348,7 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 	}
 	
 	// dessin de l'indicateur sur le bureau courant (on le fait maintenant car dans le cas ou la ligne interieure est plus petite que la ligne de l'indicateur, les surfaces suivantes recouvreraient en partie la ligne.
-	if (myConfig.iDrawCurrentDesktopMode == SWICTHER_DRAW_FRAME)
+	if (myConfig.iDrawCurrentDesktopMode == SWICTHER_DRAW_FRAME && myData.switcher.iCurrentColumn >= 0 && myData.switcher.iCurrentLine >= 0)
 	{
 		i = myData.switcher.iCurrentColumn;
 		j = myData.switcher.iCurrentLine;
@@ -458,10 +458,10 @@ void cd_switcher_draw_main_icon_expanded_mode (void)
 			g_list_foreach (pWindowList, (GFunc) _cd_switcher_draw_windows_on_viewport, &data);
 			
 			iNumViewportX ++;
-			if (iNumViewportX == g_desktopGeometry.iNbViewportX)
+			if (iNumViewportX == g_desktopGeometry.pViewportsX[0])
 			{
 				iNumViewportY ++;
-				if (iNumViewportY == g_desktopGeometry.iNbViewportY)
+				if (iNumViewportY == g_desktopGeometry.pViewportsY[0])
 					iNumDesktop ++;
 			}
 			cairo_destroy (pCairoContext);
@@ -497,7 +497,7 @@ void cd_switcher_draw_desktops_bounding_box (CairoDesklet *pDesklet)
 	w = myData.switcher.fOneViewportWidth/2;
 	h = myData.switcher.fOneViewportHeight/2;
 	int i, j;
-	int k = 0, N = g_desktopGeometry.iNbDesktops * g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY;
+	int k = 0, N = myData.switcher.iNbViewportTotal;
 	
 	for (j = 0; j < myData.switcher.iNbLines; j ++)  // lignes horizontales.
 	{
@@ -604,7 +604,7 @@ void cd_switcher_build_windows_list (GtkWidget *pMenu)
 	
 	// chaque bureau/viewport.
 	int iNumDesktop=0, iNumViewportX=0, iNumViewportY=0;
-	int k = 0, N = g_desktopGeometry.iNbDesktops * g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY;
+	int k = 0, N = myData.switcher.iNbViewportTotal;
 	int iIndex = cd_switcher_compute_index_from_desktop (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
 	GString *sDesktopName = g_string_new ("");
 	int i, j;
@@ -650,11 +650,11 @@ void cd_switcher_build_windows_list (GtkWidget *pMenu)
 			
 			// on passe au viewport suivant.
 			iNumViewportX ++;
-			if (iNumViewportX == g_desktopGeometry.iNbViewportX)
+			if (iNumViewportX == g_desktopGeometry.pViewportsX[0])
 			{
 				iNumViewportX = 0;
 				iNumViewportY ++;
-				if (iNumViewportY == g_desktopGeometry.iNbViewportY)
+				if (iNumViewportY == g_desktopGeometry.pViewportsY[0])
 				{
 					iNumViewportY = 0;
 					iNumDesktop ++;

@@ -87,6 +87,7 @@ typedef struct
 {
 	gint iCurrentDesktop, iCurrentViewportX, iCurrentViewportY;
 	gint iNbViewportTotal;
+	gint iNbDesktopsPriv; // adjusted number of desktops, used instead of g_desktopGeometry.iNbDesktops
 	gint iNbLines, iNbColumns;
 	gint iCurrentLine, iCurrentColumn;
 	double fOneViewportWidth;
