@@ -89,6 +89,7 @@ extern gboolean my_bPanelPhysicalSeparator;
 CD_APPLET_GET_CONFIG_BEGIN
 	CD_CONFIG_RENAME_GROUP ("SimpleSlide", "Slide");
 	iVanishingPointY = cairo_dock_get_integer_key_value (pKeyFile, "Inclinated Plane", "vanishing point y", &bFlushConfFileNeeded, 0, NULL, NULL);
+	iVanishingPointY *= myDocksParam.fUIScale;
 
 	/**double fInclinationAngle  = cairo_dock_get_double_key_value (pKeyFile, "Caroussel", "inclination", &bFlushConfFileNeeded, 35, NULL, NULL);
 	my_fInclinationOnHorizon = tan (fInclinationAngle * G_PI / 180.);
