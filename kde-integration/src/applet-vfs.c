@@ -54,25 +54,9 @@ gboolean vfs_backend_delete_file (const gchar *cURI, gboolean bNoTrash)
 {
 	g_return_val_if_fail (cURI != NULL, FALSE);
 	
-	if (bNoTrash)
-	{
-		GError *erreur = NULL;
-		gchar *cFilePath = g_filename_from_uri (cURI, NULL, &erreur);
-		if (erreur != NULL)
-		{
-			cd_warning ("%s", erreur->message);
-			g_error_free (erreur);
-			return FALSE;
-		}
-		const gchar * const args[] = {"rm", "-rf", cFilePath, NULL};
-		cairo_dock_launch_command_argv (args);
-		g_free (cFilePath);
-	}
-	else
-	{
-		const gchar * const args[] = {_get_kioclient (), "move", cURI, "trash:/", NULL};
-		cairo_dock_launch_command_argv (args);
-	}
+	// note: bNoTrash == TRUE always
+	const gchar * const args[] = {_get_kioclient (), "move", cURI, "trash:/", NULL};
+	cairo_dock_launch_command_argv (args);
 	return TRUE;
 }
 
