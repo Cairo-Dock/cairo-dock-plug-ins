@@ -57,12 +57,6 @@ static void _show_monitor_system (GtkMenuItem *menu_item, GldiModuleInstance *my
 	{
 		cairo_dock_launch_command (myConfig.cSystemMonitorCommand);
 	}
-	else if (g_iDesktopEnv == CAIRO_DOCK_KDE)
-	{
-		int r = system ("kde-system-monitor &");
-		if (r < 0)
-			cd_warning ("Not able to launch this command: kde-system-monitor &");
-	}
 	else
 	{
 		cairo_dock_fm_show_system_monitor ();
