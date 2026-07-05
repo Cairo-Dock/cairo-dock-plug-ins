@@ -26,6 +26,7 @@
 #include "applet-calendar.h"
 
 #ifdef CD_CLOCK_ICAL_SUPPORT
+#include <libical/ical.h>
 #include <libical/icalfileset.h>
 #include <libical/icalset.h>
 #include <libical/icalcomponent.h>
@@ -201,10 +202,15 @@ static GList *get_tasks (GldiModuleInstance *myApplet)
 		pTask->iFrequency = CD_TASK_DONT_REPEAT;
 		// TODO: really do the frequency management. If possible.
 		icalproperty *rrule = NULL;
-		struct icalrecurrencetype recur;
 		rrule = icalcomponent_get_first_property(piCalComponent,ICAL_RRULE_PROPERTY);
-		recur = icalproperty_get_rrule(rrule);
+		
+#if ICAL_CHECK_VERSION(4,0,0)
+		struct icalrecurrencetype *recur = icalproperty_get_rrule(rrule);
+		switch( recur->freq )
+#else		
+		struct icalrecurrencetype recur = icalproperty_get_rrule(rrule);
 		switch( recur.freq )
+#endif
 		{
 			case ICAL_MONTHLY_RECURRENCE:pTask->iFrequency = CD_TASK_EACH_MONTH; break;
 			case ICAL_YEARLY_RECURRENCE:pTask->iFrequency = CD_TASK_EACH_YEAR; break;
@@ -266,19 +272,31 @@ static gboolean create_task (CDClockTask *pTask, GldiModuleInstance *myApplet)
 	icalcomponent_set_dtstart(piCalComponent, liCalStartDate);
 	
 	icalproperty *rrule = NULL;
-	struct icalrecurrencetype recur;
+	const char *freq_str = NULL;
 	switch( pTask->iFrequency )
 	{
 		case CD_TASK_EACH_MONTH:
-			recur = icalrecurrencetype_from_string("FREQ=MONTHLY");
-			rrule = icalproperty_new_rrule(recur);
+			freq_str = "FREQ=MONTHLY";
 			break;
 		case CD_TASK_EACH_YEAR:
-			recur = icalrecurrencetype_from_string("FREQ=YEARLY");
-			rrule = icalproperty_new_rrule(recur);
+			freq_str = "FREQ=YEARLY";
 			break;
 		default: break;
 	}
+
+	if( freq_str )
+	{
+#if ICAL_CHECK_VERSION(4,0,0)
+		struct icalrecurrencetype *recur = icalrecurrencetype_new_from_string(freq_str);
+#else
+		struct icalrecurrencetype recur = icalrecurrencetype_from_string(freq_str);
+#endif
+		rrule = icalproperty_new_rrule(recur);
+#if ICAL_CHECK_VERSION(4,0,0)
+		icalrecurrencetype_unref (recur);
+#endif
+	}
+
 	if( bIsModification == TRUE )
 	{
 		// we should remove the previous RECUR property
