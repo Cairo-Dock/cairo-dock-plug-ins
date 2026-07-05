@@ -52,33 +52,55 @@ static CDWM *_get_wm_by_index (CDWMIndex n)
 
 static void _set_metacity_composite (gboolean bActive)
 {
-	int r;
-	if (bActive)
-		r = system ("gconftool-2 -s '/apps/metacity/general/compositing_manager' --type bool true");
-	else
-		r = system ("gconftool-2 -s '/apps/metacity/general/compositing_manager' --type bool false");
-	if (r < 0)
-		cd_warning ("Not able to launch this command: gconftool-2");
+	if (! myData.pMetacitySettings)
+	{
+		GSettingsSchema *schema = g_settings_schema_source_lookup (
+			g_settings_schema_source_get_default (), "org.gnome.metacity", TRUE);
+		if (schema)
+		{
+			if (g_settings_schema_has_key (schema, "compositing-manager"))
+			{
+				myData.pMetacitySettings = g_settings_new_full (schema, NULL, NULL);
+				if (! myData.pMetacitySettings) cd_warning ("Cannot create GSettings for Metacity");
+			}
+			else cd_warning ("\"org.gnome.metacity.compositing-manager\" key does not exist");
+			g_settings_schema_unref (schema);
+		}
+		else cd_warning ("Cannot find GSettings schema for Metacity");
+		if (! myData.pMetacitySettings) return;
+	}
+	
+	g_settings_set_boolean (myData.pMetacitySettings, "compositing-manager", bActive);
 }
 static void _set_xfwm_composite (gboolean bActive)
 {
-	int r;
-	if (bActive)
-		r = system ("xfconf-query -c xfwm4 -p '/general/use_compositing' -t 'bool' -s 'true'");
+	GDBusConnection *conn = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, NULL);
+	if (!conn) cd_warning ("No DBus connection, cannot connect to xfconfd");
 	else
-		r = system ("xfconf-query -c xfwm4 -p '/general/use_compositing' -t 'bool' -s 'false'");
-	if (r < 0)
-		cd_warning ("Not able to launch this command: xfconf-query");
+	{
+		g_dbus_connection_call (conn, "org.xfce.Xfconf", "/org/xfce/Xfconf", "org.xfce.Xfconf", "SetProperty",
+			g_variant_new ("(ssv)", "xfwm4", "/general/use_compositing", g_variant_new ("b", bActive)),
+			NULL, G_DBUS_CALL_FLAGS_NO_AUTO_START | G_DBUS_CALL_FLAGS_ALLOW_INTERACTIVE_AUTHORIZATION,
+			-1, NULL, NULL, NULL);
+		g_object_unref (conn);
+	}
 }
 static void _set_kwin_composite (gboolean bActive)
 {
-	int r;
-	if (bActive)
-		r = system ("if test \"`qdbus org.kde.kwin /KWin compositingActive`\" = \"false\";then qdbus org.kde.kwin /KWin toggleCompositing; fi");  // not active, so activating
+	GDBusConnection *conn = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, NULL);
+	if (!conn) cd_warning ("No DBus connection, cannot connect to KWin");
 	else
-		r = system ("if test \"`qdbus org.kde.kwin /KWin compositingActive`\" = \"true\"; then qdbus org.kde.kwin /KWin toggleCompositing; fi");  // active, so deactivating
-	if (r < 0)
-		cd_warning ("Not able to launch this command: qdbus");
+	{
+		if (bActive)
+			g_dbus_connection_call (conn, "org.kde.KWin", "/Compositor", "org.kde.kwin.Compositing", "resume",
+				NULL, NULL, G_DBUS_CALL_FLAGS_NO_AUTO_START | G_DBUS_CALL_FLAGS_ALLOW_INTERACTIVE_AUTHORIZATION,
+				-1, NULL, NULL, NULL);
+		else
+			g_dbus_connection_call (conn, "org.kde.KWin", "/Compositor", "org.kde.kwin.Compositing", "suspend",
+				NULL, NULL, G_DBUS_CALL_FLAGS_NO_AUTO_START | G_DBUS_CALL_FLAGS_ALLOW_INTERACTIVE_AUTHORIZATION,
+				-1, NULL, NULL, NULL);
+		g_object_unref (conn);
+	}
 }
 static void _define_known_wms (void)
 {
@@ -88,7 +110,7 @@ static void _define_known_wms (void)
 	myData.pWmList[CD_COMPIZ].cConfigTool = "ccsm";
 	
 	myData.pWmList[CD_KWIN].cName = "KWin";
-	myData.pWmList[CD_KWIN].cCommand = "kwin --replace";
+	myData.pWmList[CD_KWIN].cCommand = "kwin_x11 --replace";
 	myData.pWmList[CD_KWIN].activate_composite = _set_kwin_composite;
 	myData.pWmList[CD_KWIN].cConfigTool = NULL;  /// TODO: find the config tool...
 	
@@ -122,7 +144,7 @@ static void _check_available_wms (gchar *cWhich)
 	wm = _get_wm_by_index (CD_COMPIZ);
 	wm->bIsAvailable = (strstr (cWhich, "compiz") != NULL);
 	wm = _get_wm_by_index (CD_KWIN);
-	wm->bIsAvailable = (strstr (cWhich, "kwin") != NULL);
+	wm->bIsAvailable = (strstr (cWhich, "kwin_x11") != NULL);
 	wm = _get_wm_by_index (CD_XFWM);
 	wm->bIsAvailable = (strstr (cWhich, "xfwm4") != NULL);
 	wm = _get_wm_by_index (CD_METACITY);
@@ -136,7 +158,7 @@ static CDWMIndex _check_current_wm (gchar *cPs)
 	
 	if (strstr (cPs, "compiz") != NULL)
 		return CD_COMPIZ;
-	if (strstr (cPs, "kwin") != NULL)
+	if (strstr (cPs, "kwin_x11") != NULL)
 		return CD_KWIN;
 	if (strstr (cPs, "xfwm4") != NULL)
 		return CD_XFWM;
@@ -294,7 +316,7 @@ static CDWM *_get_prefered_wmfb (CDWMIndex iCurrentWm)
 
 static inline gchar *_get_running_wm (void)
 {
-	return cairo_dock_launch_command_sync ("pgrep -l \"kwin$|compiz$|xfwm4$|metacity$\"");  // -l = write the name of the program (not the command next to the PID in 'ps -ef'. we add a '$' after the names to avoid listing things like compiz-decorator or xfwm4-settings
+	return cairo_dock_launch_command_sync ("pgrep -l \"kwin_x11$|compiz$|xfwm4$|metacity$\"");  // -l = write the name of the program (not the command next to the PID in 'ps -ef'. we add a '$' after the names to avoid listing things like compiz-decorator or xfwm4-settings
 }
 static void _define_prefered_wms (gchar *cPs)
 {
@@ -317,7 +339,7 @@ void cd_define_prefered_wms (void)
 
 static void _check_wms (CDSharedMemory *pSharedMemory)
 {
-	pSharedMemory->which = cairo_dock_launch_command_sync ("which compiz kwin xfwm4 metacity");
+	pSharedMemory->which = cairo_dock_launch_command_sync ("which compiz kwin_x11 xfwm4 metacity");
 	
 	pSharedMemory->ps = _get_running_wm ();
 }
@@ -361,6 +383,13 @@ void cd_stop_wms (void)
 	// stop listening
 	GdkScreen *pScreen = gdk_screen_get_default ();
 	g_signal_handlers_disconnect_by_func (G_OBJECT(pScreen), _on_composited_changed, NULL);
+	
+	// free settings
+	if (myData.pMetacitySettings)
+	{
+		g_object_unref (myData.pMetacitySettings);
+		myData.pMetacitySettings = NULL;
+	}
 	
 	// reset custom WMs.
 	CDWM *wm;
