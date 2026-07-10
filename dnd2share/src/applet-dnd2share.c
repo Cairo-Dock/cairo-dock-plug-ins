@@ -474,12 +474,8 @@ void cd_dnd2share_launch_upload (const gchar *cFilePath, CDFileType iFileType)
 void cd_dnd2share_clear_working_directory (void)
 {
 	g_return_if_fail (myData.cWorkingDirPath != NULL && *myData.cWorkingDirPath == '/');
-	gchar *cCommand = g_strdup_printf ("rm -rf '%s'/*", myData.cWorkingDirPath);
-	int r = system (cCommand);
-	if (r < 0)
-		cd_warning ("Not able to launch this command: %s", cCommand);
-	g_free (cCommand);
-
+	cairo_dock_fm_empty_directory (myData.cWorkingDirPath, TRUE, NULL, NULL);
+	
 	gchar *cConfFilePath = g_strdup_printf ("%s/%s", myData.cWorkingDirPath, "history.conf");
 	g_file_set_contents (cConfFilePath, "#dnd2share's history\n\n", -1, NULL);
 	g_free (cConfFilePath);
@@ -491,14 +487,16 @@ void cd_dnd2share_clear_working_directory (void)
 }
 
 
+static gboolean _exclude_conf (const char *fn, G_GNUC_UNUSED gconstpointer data)
+{
+	return !g_str_has_suffix (fn, ".conf");
+}
+
 void cd_dnd2share_clear_copies_in_working_directory (void)
 {
 	g_return_if_fail (myData.cWorkingDirPath != NULL && *myData.cWorkingDirPath == '/');
-	gchar *cCommand = g_strdup_printf ("find '%s' -mindepth 1 ! -name *.conf -exec rm -f '{}' \\;", myData.cWorkingDirPath);
-	int r = system (cCommand);
-	if (r < 0)
-		cd_warning ("Not able to launch this command: %s", cCommand);
-	g_free (cCommand);
+	
+	cairo_dock_fm_empty_directory (myData.cWorkingDirPath, TRUE, _exclude_conf, NULL);
 }
 
 void cd_dnd2share_set_working_directory_size (guint iNbItems)

@@ -88,11 +88,7 @@ gboolean cd_opengl_load_3D_theme (GldiModuleInstance *myApplet, gchar *cThemePat
 		
 		// on supprime le theme.
 		g_return_val_if_fail (cThemePath && *cThemePath == '/', FALSE);
-		gchar *cCommand = g_strdup_printf ("rm -rf '%s'", cThemePath);
-		int r = system (cCommand);
-		if (r < 0)
-			cd_warning ("Not able to launch this command: %s", cCommand);
-		g_free (cCommand);
+		cairo_dock_fm_delete_file (cThemePath, TRUE); // TRUE <-> avoid trash, will delete recursively
 		
 		// on recupere le theme distant.
 		pKeyFile = cairo_dock_open_key_file (myApplet->cConfFilePath);

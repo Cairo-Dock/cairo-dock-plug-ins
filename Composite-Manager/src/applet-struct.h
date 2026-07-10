@@ -78,6 +78,7 @@ struct _AppletData {
 	CDWM *wmc;
 	CDWM *wmfb;
 	GldiShortkey *cKeyBinding;
+	GSettings *pMetacitySettings;
 } ;
 
 

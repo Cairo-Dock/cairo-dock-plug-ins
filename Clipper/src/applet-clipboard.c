@@ -192,13 +192,8 @@ void _on_text_received (GtkClipboard *pClipBoard, const gchar *text, gpointer us
 			if (! g_file_test (cConfFilePath, G_FILE_TEST_EXISTS))
 			{
 				gchar *cDefaultConfFilePath = g_strdup_printf ("%s/Clipper-actions-%s.conf", MY_APPLET_SHARE_DATA_DIR, 
-				cEnvName[g_iDesktopEnv]);
-				gchar *cCommand = g_strdup_printf ("cp '%s' '%s'", cDefaultConfFilePath, cConfFilePath);
-				cd_message (cCommand);
-				int r = system (cCommand);
-				if (r < 0)
-					cd_warning ("Not able to launch this command: %s", cCommand);
-				g_free (cCommand);
+					cEnvName[g_iDesktopEnv]);
+				cairo_dock_copy_file (cDefaultConfFilePath, cConfFilePath);
 				g_free (cDefaultConfFilePath);
 			}
 			myData.pActions = cd_clipper_load_actions (cConfFilePath);

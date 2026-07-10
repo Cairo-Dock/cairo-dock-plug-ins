@@ -84,11 +84,11 @@ CD_APPLET_GET_CONFIG_BEGIN
 					*str = '\0';
 			}
 			else if (g_iDesktopEnv == CAIRO_DOCK_GNOME)
-				myConfig.cSystemMonitorClass = g_strdup ("gnome-system-monitor");
+				myConfig.cSystemMonitorClass = g_strdup ("org.gnome.systemmonitor");
 			else if (g_iDesktopEnv == CAIRO_DOCK_XFCE)
 				myConfig.cSystemMonitorClass = g_strdup ("xfce-system-monitor");
 			else if (g_iDesktopEnv == CAIRO_DOCK_KDE)
-				myConfig.cSystemMonitorClass = g_strdup ("kde-system-monitor");
+				myConfig.cSystemMonitorClass = g_strdup ("org.kde.plasma-systemmonitor");
 		}
 	}
 	myConfig.fUserHZ = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "HZ", 100);

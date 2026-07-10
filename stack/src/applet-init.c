@@ -67,14 +67,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	
 	if (! g_file_test (myApplet->cConfFilePath, G_FILE_TEST_EXISTS) && myConfig.cStackDir)  // on a efface notre instance, on efface donc aussi le repertoire.
-	{
-		gchar *cCommand = g_strdup_printf ("rm -rf \"%s\"", myConfig.cStackDir);
-		cd_debug ("Stack : %s", myConfig.cStackDir);
-		int r = system (cCommand);
-		if (r < 0)
-			cd_warning ("Not able to launch this command: %s", cCommand);
-		g_free (cCommand);
-	}
+		cairo_dock_fm_delete_file (myConfig.cStackDir, TRUE); // will delete recursively, TRUE <-> avoid trash
 	
 	g_list_foreach (myData.pGetPageTaskList, (GFunc)gldi_task_discard, NULL);
 	g_list_free (myData.pGetPageTaskList);
