@@ -30,8 +30,6 @@
 #define GAMMA_MAX 2.0
 
 #include <cairo-dock.h>
-#include <X11/Xlib.h>
-#include <X11/extensions/xf86vmode.h>
 
 struct _AppletConfig {
 	gint iScrollVariation;
@@ -40,6 +38,13 @@ struct _AppletConfig {
 	gchar *cShortkey;
 	gchar *cShortkey2;
 	} ;
+
+/// same as XF86VidModeGamma struct, but that might not be available
+typedef struct _CDGamma {
+	float red;
+	float green;
+	float blue;
+	} CDGamma;
 
 struct _AppletData {
 	gboolean bVideoExtensionOK;
@@ -53,8 +58,8 @@ struct _AppletData {
 	guint iRedScaleSignalID;
 	guint iGreenScaleSignalID;
 	guint iBlueScaleSignalID;
-	XF86VidModeGamma Xgamma;
-	XF86VidModeGamma XoldGamma;
+	CDGamma Xgamma;
+	CDGamma XoldGamma;
 	guint iSidScrollAction;
 	gint iScrollCount;
 	GldiShortkey *pKeyBinding;

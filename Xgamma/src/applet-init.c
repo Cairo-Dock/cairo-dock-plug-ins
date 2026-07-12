@@ -17,16 +17,6 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <stdio.h>
-#include <errno.h>
-#include <X11/Xos.h>
-#include <X11/Xlib.h>
-#include <X11/Xutil.h>
-#include <X11/extensions/xf86vmode.h>
-#include <ctype.h>
-#include <stdlib.h>
-#include <gdk/gdkx.h>
-
 #include <cairo-dock.h>
 
 #include "applet-config.h"
@@ -35,11 +25,9 @@
 #include "applet-struct.h"
 #include "applet-init.h"
 
-static gboolean s_bVideoExtensionChecked = FALSE;
-
 
 CD_APPLET_DEFINE2_BEGIN ("Xgamma",
-	CAIRO_DOCK_MODULE_SUPPORTS_X11,
+	CAIRO_DOCK_MODULE_DEFAULT_FLAGS,
 	CAIRO_DOCK_CATEGORY_APPLET_SYSTEM,
 	N_("Setup the luminosity of your screen directly from your dock.\n"
 	"Scroll up/down to increase/decrease the luminosity\n"
@@ -50,6 +38,26 @@ CD_APPLET_DEFINE2_BEGIN ("Xgamma",
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	CD_APPLET_ALLOW_EMPTY_TITLE
 	CD_APPLET_REDEFINE_TITLE (N_("Screen Luminosity"))
+	
+	if (gldi_container_is_wayland_backend ())
+	{
+#ifdef XGAMMA_WAYLAND
+		if (! xgamma_setup_wayland ())
+			gldi_module_disable (pModule, D_("You're running on a Wayland compositor that does not support the \"wlr-gamma-control\" protocol."));
+#else
+		gldi_module_disable (pModule, D_("Xgamma applet was not built with Wayland support."));
+#endif
+	}
+	else
+	{
+#ifdef XGAMMA_X11
+		if (! xgamma_setup_x11 ())
+			gldi_module_disable (pModule, D_("You're running on an X server without support for the \"XF86VidMode\" extension."));
+#else
+		gldi_module_disable (pModule, D_("Xgamma applet was not built with X11 support."));
+#endif
+	}
+	
 CD_APPLET_DEFINE2_END
 
 
@@ -69,48 +77,18 @@ CD_APPLET_INIT_BEGIN
 		"Configuration", "shortkey",
 		(CDBindkeyHandler) cd_xgamma_on_keybinding_pull2);
 	
-	if (! s_bVideoExtensionChecked)
+	xgamma_init ();
+	
+	if (myConfig.fInitialGamma != 0)
 	{
-		s_bVideoExtensionChecked = TRUE;
+		cd_message ("Applying luminosity as defined in config (gamma=%.2f)...", myConfig.fInitialGamma);
+		xgamma_get_gamma (&myData.Xgamma);
+		myConfig.fInitialGamma = MIN (GAMMA_MAX, MAX (myConfig.fInitialGamma, GAMMA_MIN));
+		myData.Xgamma.red = myConfig.fInitialGamma;
+		myData.Xgamma.blue = myConfig.fInitialGamma;
+		myData.Xgamma.green = myConfig.fInitialGamma;
+		xgamma_set_gamma (&myData.Xgamma);
 		
-		Display *dpy = gdk_x11_get_default_xdisplay ();
-		if (dpy == NULL)
-		{
-			cd_warning ("Xgamma : unable to get X display");
-			return ;
-		}
-		
-		//#ifdef XF86VidModeQueryVersion
-		int MajorVersion, MinorVersion;
-		if (!XF86VidModeQueryVersion(dpy, &MajorVersion, &MinorVersion))
-		{
-			cd_warning ("Xgamma : unable to query video extension version");
-			return ;
-		}
-		//#endif
-		
-		//#ifdef XF86VidModeQueryExtension
-		int EventBase, ErrorBase;
-		if (!XF86VidModeQueryExtension(dpy, &EventBase, &ErrorBase))
-		{
-			cd_warning ("Xgamma : unable to query video extension information");
-			return ;
-		}
-		//#endif
-		
-		myData.bVideoExtensionOK = TRUE;
-		
-		if (myConfig.fInitialGamma != 0)
-		{
-			cd_message ("Applying luminosity as defined in config (gamma=%.2f)...", myConfig.fInitialGamma);
-			xgamma_get_gamma (&myData.Xgamma);
-			myConfig.fInitialGamma = MIN (GAMMA_MAX, MAX (myConfig.fInitialGamma, GAMMA_MIN));
-			myData.Xgamma.red = myConfig.fInitialGamma;
-			myData.Xgamma.blue = myConfig.fInitialGamma;
-			myData.Xgamma.green = myConfig.fInitialGamma;
-			xgamma_set_gamma (&myData.Xgamma);
-			
-		}
 	}
 	
 	if (myDesklet)  // on cree le widget pour avoir qqch a afficher dans le desklet.
@@ -138,6 +116,8 @@ CD_APPLET_STOP_BEGIN
 	
 	gldi_object_unref (GLDI_OBJECT(myData.pKeyBinding));
 	gldi_object_unref (GLDI_OBJECT(myData.pKeyBinding2));
+	
+	xgamma_stop ();
 	
 	if (myData.iSidScrollAction != 0)
 		g_source_remove (myData.iSidScrollAction);
