@@ -47,8 +47,9 @@ CD_APPLET_DEFINE2_BEGIN ("kde integration",
 		VFSBackend.setup_time = env_backend_setup_time;
 		VFSBackend.show_system_monitor = env_backend_show_system_monitor;
 		cairo_dock_fm_register_vfs_backend (&VFSBackend, TRUE); // TRUE: overwrite previously registered functions
+		
+		CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_IS_PLUGIN);
 	}
-	else
-		return FALSE;
-	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_IS_PLUGIN);
+	else gldi_module_disable (pModule, _("This applet is only supported in a KDE (Plasma) session.\nIf you believe it should work in your setup, please open a bug report at:\nhttps://github.com/Cairo-Dock/cairo-dock-core/issues"));
+	
 CD_APPLET_DEFINE2_END
