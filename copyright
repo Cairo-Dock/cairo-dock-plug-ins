@@ -122,6 +122,10 @@ Files:  shared-images/*.svg
 Copyright: ccsm icons
 License: GPL-3+
 
+Files:  cosmic-integration/data/icon.svg
+Copyright: System76
+License: CC-SA-4.0
+
 Files: debian/*
 Copyright: 2009-2012 Nobuhiro Iwamatsu <iwamatsu@debian.org>
            2009-2012 Youhei SASAKI <uwabami@gfd-dennou.org>
@@ -134,8 +138,9 @@ License: GPL-3+
  the Free Software Foundation; either version 3 of the License, or
  (at your option) any later version.
  .
- On Debian systems, complete text of version 3 of the GNU General Public
- License can be found in `/usr/share/common-licenses/GPL-3'.
+ The complete text of version 3 of the GNU General Public License can
+ be found in the file `LICENSE` in this repository. On Debian systems,
+ the same is also available under `/usr/share/common-licenses/GPL-3'.
 
 License: LGPL-2+
  This library is free software; you can redistribute it and/or
@@ -153,5 +158,40 @@ License: LGPL-2+
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301
  USA.
  .
- On Debian systems, full text of the LGPL 2 can be found in
+ The full text of the LGPL 2 can be found in the file `LGPL-2` in this
+ repository. On Debian systems, it is also available under
  `/usr/share/common-licenses/LGPL-2'.
+
+License: CC-SA-4.0
+ This work is licensed under a Creative Commons Attribution-ShareAlike
+ 4.0 International License. You are free to share: copy and redistribute
+ the material in any medium or format for any purpose, even
+ commercially; adapt: remix, transform, and build upon the material for
+ any purpose, even commercially. The licensor cannot revoke these
+ freedoms as long as you follow the license terms.
+ .
+ Under the following terms:
+ .
+ Attribution: You must give appropriate credit, provide a link to the
+ license, and indicate if changes were made. You may do so in any
+ reasonable manner, but not in any way that suggests the licensor
+ endorses you or your use.
+ .
+ ShareAlike: If you remix, transform, or build upon the material, you
+ must distribute your contributions under the same license as the
+ original.
+ .
+ No additional restrictions: You may not apply legal terms or
+ technological measures that legally restrict others from doing
+ anything the license permits.
+ .
+ Notices: You do not have to comply with the license for elements of
+ the material in the public domain or where your use is permitted by an
+ applicable exception or limitation. No warranties are given. The
+ license may not give you all of the permissions necessary for your
+ intended use. For example, other rights such as publicity, privacy, or
+ moral rights may limit how you use the material.
+ .
+ The full text of the CC-SA-4.0 license is available in the file
+ `CC-SA-4.0` or at the URL
+ https://creativecommons.org/licenses/by-sa/4.0/
