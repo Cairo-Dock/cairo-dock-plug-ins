@@ -13,9 +13,9 @@ include (GNUInstallDirs)
 
 ########### project ###############
 
-set (VERSION "3.6.100")
+set (VERSION "3.6.101")
 # can be different from VERSION, e.g. if a new version of plugins does not depend on things added to core
-set (CORE_REQUIRED_VERSION "3.6.100")
+set (CORE_REQUIRED_VERSION "3.6.101")
 
 add_definitions (-std=gnu99 -Wall -Werror-implicit-function-declaration) # -Wextra -Wwrite-strings -Wuninitialized -Werror-implicit-function-declaration -Wstrict-prototypes -Wreturn-type -Wparentheses -Warray-bounds)
 if (NOT DEFINED CMAKE_BUILD_TYPE)
@@ -72,6 +72,7 @@ pkg_get_variable(localedir          gldi plugins_locale)
 pkg_get_variable(gettext_domain     gldi plugins_gettext)
 pkg_get_variable(gtkversion         gldi gtkversion)
 pkg_get_variable(pkgdatadir         gldi pkgdatadir)
+pkg_get_variable(HAVE_WAYLAND       gldi have_wayland)
 
 # check that installation dir matches with the core
 if (NOT "${CMAKE_INSTALL_PREFIX}" STREQUAL "${prefix}")
@@ -128,6 +129,7 @@ pkg_check_modules ("PACKAGE" REQUIRED "gldi" "glib-2.0>=2.36")  # we check first
 STRING (REGEX REPLACE "gldi;" "" PACKAGE_LIBRARIES "${PACKAGE_LIBRARIES}")  # but we don't want to link to gldi, since we are dl-opened by it.
 
 # add_definitions (-DGTK_DISABLE_DEPRECATED="1")
+
 
 ############# SHARED-FILES #################
 set (shared_filesdatadir "${pluginsdatadir}/shared-files")
@@ -307,6 +309,18 @@ if (EXISTS ${DEBIAN_VERSION})
 	set (DEBIAN_PKG_MANAGERS "/usr/bin/apt-get /usr/bin/dpkg /usr/bin/aptitude")
 endif()
 
+############# WAYLAND PROTOCOLS #################
+set (HAVE_WAYLAND_PROTOCOLS 0)
+if (HAVE_WAYLAND)
+	find_package(ECM NO_MODULE)
+	if (ECM_FOUND)
+		set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH})
+		include (FindWaylandScanner)
+		if (WaylandScanner_FOUND)
+			set (HAVE_WAYLAND_PROTOCOLS 1)
+		endif()
+	endif()
+endif()
 
 
 ################################################################################
@@ -1200,16 +1214,40 @@ message (STATUS "> XGamma:")
 enable_if_not_defined (enable-xgamma)
 if (enable-xgamma)
 	pkg_check_modules (XGAMMA_PACKAGE x11 xxf86vm)
-	if (NOT XGAMMA_PACKAGE_FOUND)
-		message (STATUS "Could not find xxf86vm; Cairo-Dock won't be built with Xgamma applet.")
-		message (WARNING "These modules are required to compile XGamma applet: x11 and xxf86vm")
-		set (MODULES_MISSING "${MODULES_MISSING} x11 xxf86vm")
-		set (with_xgamma no)
+	set (HAVE_XGAMMA 1)
+	if (XGAMMA_PACKAGE_FOUND AND HAVE_WAYLAND_PROTOCOLS)
+		set (with_xgamma "yes (X11 and Wayland)")
 	else()
+		if (HAVE_WAYLAND_PROTOCOLS)
+			set (with_xgamma "yes (Wayland)")
+		else()
+			if (HAVE_WAYLAND)
+				message (STATUS "Cannot find extra-cmake-modules or wayland-scanner; Xgamma applet will not be built with Wayland support.")
+				set (MODULES_MISSING "${MODULES_MISSING} wayland-scanner extra-cmake-modules")
+			else()
+				message (STATUS "Core does not support Wayland; Xgamma applet will not be built with Wayland support.")
+			endif()
+		endif()
+		
+		if (XGAMMA_PACKAGE_FOUND)
+			set (with_xgamma "yes (X11)")
+		else()
+			message (STATUS "Could not find xxf86vm; Xgamma applet will not support X11.")
+			message (WARNING "These modules are required to compile XGamma applet with X11 support: x11 and xxf86vm")
+			set (MODULES_MISSING "${MODULES_MISSING} x11 xxf86vm")
+		endif()
+		
+		if (NOT XGAMMA_PACKAGE_FOUND AND NOT HAVE_WAYLAND_PROTOCOLS)
+			set (with_xgamma no)
+			set (HAVE_XGAMMA 0)
+			message (STATUS "Xgamma applet will not be built (neither X11 nor Wayland supported)")
+		endif()
+	endif()
+	
+	if (HAVE_XGAMMA)
 		set (GETTEXT_XGAMMA ${GETTEXT_PLUGINS})
 		set (VERSION_XGAMMA "1.2.5")
 		set (PACKAGE_XGAMMA "cd-Xgamma")
-		set (with_xgamma yes)
 		set (xgammadatadir "${pluginsdatadir}/Xgamma")
 		configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Xgamma/data/Xgamma.conf.in ${CMAKE_CURRENT_BINARY_DIR}/Xgamma/data/Xgamma.conf)
 		add_subdirectory ("Xgamma")

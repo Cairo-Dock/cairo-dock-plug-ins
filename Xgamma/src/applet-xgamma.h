@@ -22,22 +22,30 @@
 
 #include <stdio.h>
 #include <errno.h>
-#include <X11/Xos.h>
-#include <X11/Xlib.h>
-#include <X11/Xutil.h>
-#include <X11/extensions/xf86vmode.h>
 #include <ctype.h>
 #include <stdlib.h>
+#include "applet-struct.h"
+
+#ifdef XGAMMA_WAYLAND
+gboolean xgamma_setup_wayland (void);
+#endif
+
+#ifdef XGAMMA_X11
+gboolean xgamma_setup_x11 (void);
+#endif
+
+void xgamma_init (void);
+
+void xgamma_stop (void);
+
+void xgamma_add_gamma (CDGamma *pGamma, gint iNbSteps);
+
+double xgamma_get_gamma (CDGamma *pGamma);
+
+void xgamma_set_gamma (CDGamma *pGamma);
 
 
-void xgamma_add_gamma (XF86VidModeGamma *pGamma, gint iNbSteps);
-
-double xgamma_get_gamma (XF86VidModeGamma *pGamma);
-
-void xgamma_set_gamma (XF86VidModeGamma *pGamma);
-
-
-void xgamma_create_scales_widget (double fGamma, XF86VidModeGamma *pGamma);
+void xgamma_create_scales_widget (double fGamma, CDGamma *pGamma);
 
 
 CairoDialog *xgamma_build_dialog (void);

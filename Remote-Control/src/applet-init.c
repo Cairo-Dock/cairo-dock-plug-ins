@@ -39,13 +39,17 @@ CD_APPLET_DEFINE2_BEGIN ("Remote-Control",
 	"Escape or the same shortkey will cancel."),
 	"Fabounet (Fabrice Rey)")
 	
+	CD_APPLET_REDEFINE_TITLE (N_("Control from keyboard"))
+	
 	if (gldi_container_is_wayland_backend ())
 		if (strcmp (gldi_wayland_get_detected_compositor(), "Wayfire"))
-			return FALSE;
+		{
+			gldi_module_disable (pModule, _("This applet requires global keyboard shortcuts. You are currently running Cairo-Dock in\na Wayland session where this functionality is not supported. See here for more information:\nhttps://github.com/Cairo-Dock/cairo-dock-core/wiki/Wayland-support"));
+			return;
+		}
 	
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_IS_PLUGIN);
-	CD_APPLET_REDEFINE_TITLE (N_("Control from keyboard"))
 CD_APPLET_DEFINE2_END
 
 static gboolean _menu_request (G_GNUC_UNUSED gpointer dummy, G_GNUC_UNUSED GldiManager* pManager)

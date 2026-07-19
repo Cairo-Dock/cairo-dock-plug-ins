@@ -13,6 +13,13 @@ SET(cd-Xgamma_LIB_SRCS
 	applet-xgamma.h
 )
 
+if (HAVE_WAYLAND_PROTOCOLS)
+	ecm_add_wayland_client_protocol(
+		cd-Xgamma_LIB_SRCS
+		PROTOCOL "wlr-gamma-control-unstable-v1.xml"
+		BASENAME "wlr-gamma-control")
+endif()
+
 add_library(${PACKAGE_XGAMMA} SHARED ${cd-Xgamma_LIB_SRCS})
 
 ########### compil ###############
@@ -25,9 +32,17 @@ add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_XGAMMA}")
 add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.png")
 
+if (XGAMMA_PACKAGE_FOUND)
+	add_definitions (-DXGAMMA_X11=1)
+endif()
+if (HAVE_WAYLAND_PROTOCOLS)
+	add_definitions (-DXGAMMA_WAYLAND=1)
+endif()
+
 include_directories (
 	${PACKAGE_INCLUDE_DIRS}
-	${XGAMMA_PACKAGE_INCLUDE_DIRS})
+	${XGAMMA_PACKAGE_INCLUDE_DIRS}
+	${CMAKE_CURRENT_BINARY_DIR})
 
 link_directories (
 	${PACKAGE_LIBRARY_DIRS}

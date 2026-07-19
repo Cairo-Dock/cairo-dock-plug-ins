@@ -43,5 +43,5 @@ CD_APPLET_INIT_BEGIN
 		// (this means that if GNOME environment is detected, this applet will always show as "enabled",
 		// but will only be active if the DBus session proxy have been found)
 	}
-	else gldi_module_disable (myApplet->pModule, D_("Not running in a GNOME or Cinnamon session."));
+	else gldi_module_disable (myApplet->pModule, D_("This applet is only supported in a GNOME or Cinnamon session.\nIf you believe it should work in your setup, please open a bug report at:\nhttps://github.com/Cairo-Dock/cairo-dock-core/issues"));
 CD_APPLET_INIT_END
