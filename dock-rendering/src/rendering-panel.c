@@ -84,7 +84,7 @@ static void cd_compute_size (CairoDock *pDock)
 	//g_print (" -> %d groups, %d/%d\nfGroupGap = %.2f\n", iNbGroups, (int)fGroupsWidth, (int)W, fGroupGap);
 	
 	double hicon = pDock->iMaxIconHeight;
-	pDock->iMaxDockHeight = iDockLineWidth + myDocksParam.iFrameMargin + hicon * pDock->container.fRatio + myDocksParam.iFrameMargin + iDockLineWidth + (pDock->container.bIsHorizontal ? myIconsParam.iLabelSize : 0);
+	pDock->iMaxDockHeight = iDockLineWidth + myDocksParam.iFrameMargin + hicon * pDock->container.fRatio + myDocksParam.iFrameMargin + iDockLineWidth + (pDock->container.bIsHorizontal ? myIconsParam.iLabelSize : 0) + 2;
 	pDock->iMaxDockHeight = MAX (pDock->iMaxDockHeight, hicon * (1 + myIconsParam.fAmplitude));  // au moins la taille du FBO.
 	//g_print ("panel view: pDock->iMaxIconHeight = %d\n", pDock->iMaxIconHeight);
 	
