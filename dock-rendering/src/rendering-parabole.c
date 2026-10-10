@@ -313,7 +313,7 @@ static void cd_rendering_calculate_max_dock_size_parabole (CairoDock *pDock)
 		//cd_debug ("=> %.2fx%.2f , %.2f", w, h, lambda);
 	}
 	
-	pDock->iMaxDockHeight = h + pDock->iMaxIconHeight * sqrt (5./4.) * (1 + my_fParaboleMagnitude * myIconsParam.fAmplitude);
+	pDock->iMaxDockHeight = (h + pDock->iMaxIconHeight * sqrt (5./4.)) * (1 + my_fParaboleMagnitude * myIconsParam.fAmplitude);
 	pDock->iMaxDockWidth = w + pDock->iMaxIconHeight * (.5+sqrt(5./4.)) * (1 + my_fParaboleMagnitude * myIconsParam.fAmplitude);  // ce serait plutot MaxIconWidth mais bon ...
 	
 	pDock->iMaxDockWidth += pDock->iMaxLabelWidth;  // theta(0) = 0 => texte horizontal.
