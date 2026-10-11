@@ -784,13 +784,27 @@ static Icon* _cd_rendering_calculate_icons_for_diapo_simple (CairoDock *pDock, g
 }
 static void _cd_rendering_check_if_mouse_inside_diapo_simple (CairoDock *pDock)
 {
+	pDock->iMousePositionType = CAIRO_DOCK_MOUSE_INSIDE; // default
+	
 	if ((pDock->container.iMouseX < 0) || (pDock->container.iMouseX > pDock->iMaxDockWidth - 1) || (pDock->container.iMouseY < 0) || (pDock->container.iMouseY > pDock->iMaxDockHeight - 0))
 	{
+		// simple case
 		pDock->iMousePositionType = CAIRO_DOCK_MOUSE_OUTSIDE;
 	}
-	else  // on fait simple.
+	else
 	{
-		pDock->iMousePositionType = CAIRO_DOCK_MOUSE_INSIDE;
+		// check if the mouse is within the left or right margin
+		CDSlideData *pData = pDock->pRendererData;  // non nul
+		if (pDock->container.iMouseX > pData->lmargin + pData->iFrameWidth + X_BORDER_SPACE)
+		{
+			if (pDock->container.bIsHorizontal || !pDock->container.bDirectionUp)
+				pDock->iMousePositionType = CAIRO_DOCK_MOUSE_OUTSIDE;
+		}
+		else if (pData->lmargin > X_BORDER_SPACE && pDock->container.iMouseX < pData->lmargin - X_BORDER_SPACE)
+		{
+			if (pDock->container.bIsHorizontal || pDock->container.bDirectionUp)
+				pDock->iMousePositionType = CAIRO_DOCK_MOUSE_OUTSIDE;
+		}
 	}
 }
 #define make_icon_avoid_mouse(icon, sens) do { \
