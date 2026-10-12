@@ -144,18 +144,6 @@ static void cd_rendering_calculate_max_dock_size_curve (CairoDock *pDock)
 	
 	int iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->fFlatDockWidth, 1., 2 * dw));  // on pourra optimiser, ce qui nous interesse ici c'est les fXMin/fXMax.
 	pDock->iMaxDockWidth = iMaxDockWidth;
-	double Ws = cairo_dock_get_max_authorized_dock_width (pDock);
-	///if (cairo_dock_is_extended_dock (pDock) && w + 2 * dw < Ws)  // alors on etend.
-	if (pDock->iRefCount == 0)
-	{
-		if (pDock->iMaxDockWidth < Ws)  // alors on etend.
-		{
-			pDock->iOffsetForExtend = (Ws - pDock->iMaxDockWidth) / 2;
-			double extra = Ws - w;
-			pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->fFlatDockWidth, 1., extra));  // on pourra optimiser, ce qui nous interesse ici c'est les fXMin/fXMax.
-		}
-	}
-	
 	pDock->iDecorationsWidth = pDock->iMaxDockWidth - 4 * fDeltaTip;  // 4 car 2*(interieur+exterieur).
 	
 	if (myIconsParam.iSeparatorType == CAIRO_DOCK_FLAT_SEPARATOR)
