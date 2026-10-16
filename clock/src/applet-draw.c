@@ -162,16 +162,16 @@ void cd_clock_draw_text (GldiModuleInstance *myApplet, int iWidth, int iHeight, 
 	if (myConfig.b24Mode)
 	{
 		if (myConfig.bShowSeconds)
-			cTimeFormat = "%T";
+			cTimeFormat = myConfig.bNoZeroPad ? "%-H:%M:%S" : "%T";
 		else
-			cTimeFormat = "%R";
+			cTimeFormat = myConfig.bNoZeroPad ? "%-H:%M" : "%R";
 	}
 	else
 	{
 		if (myConfig.bShowSeconds)
-			cTimeFormat = "%r";  // same as %I:%M:%S %p
+			cTimeFormat = myConfig.bNoZeroPad ? "%-I:%M:%S %p" : "%r";  // same as %I:%M:%S %p
 		else
-			cTimeFormat = "%I:%M %p";
+			cTimeFormat = myConfig.bNoZeroPad ? "%-I:%M %p" : "%I:%M %p";
 	}
 
 
