@@ -126,6 +126,18 @@ Files:  cosmic-integration/data/icon.svg
 Copyright: System76
 License: CC-SA-4.0
 
+Files:  de_integration/*
+Copyright: Fabounet (Fabrice Rey) 
+           Tofe (Christophe Chapuis)
+           Daniel Kondor
+License: GPL-3+
+
+Files:  de_integration/data/icon.png
+Copyright: MATE Contributors
+           KDE Contributors
+           Daniel Kondor
+License: CC-SA-3.0
+
 Files: debian/*
 Copyright: 2009-2012 Nobuhiro Iwamatsu <iwamatsu@debian.org>
            2009-2012 Youhei SASAKI <uwabami@gfd-dennou.org>
