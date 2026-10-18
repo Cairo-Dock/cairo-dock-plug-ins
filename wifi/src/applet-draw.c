@@ -125,6 +125,12 @@ void cd_wifi_draw_icon (void)
 
 void cd_wifi_bubble (void)
 {
+	if (!myData.pTask)
+	{
+		gldi_dialog_show_temporary  (D_("Cannot run \"iwconfig\"...\nPlease check that it is correctly installed"), myIcon, myContainer, 3000);
+		return ;
+	}
+	
 	if (gldi_task_is_running (myData.pTask))
 	{
 		gldi_dialog_show_temporary  (D_("Checking connection...\nPlease retry in a few seconds"), myIcon, myContainer, 3000);

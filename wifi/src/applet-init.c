@@ -97,8 +97,17 @@ static void _set_iwconfig_path (GldiModuleInstance *myApplet)
 	else
 	{
 		g_free (cResult);
-		// if '/sbin' is not in $PATH
-		myData.cIWConfigPath = g_strdup ("/sbin/iwconfig");
+		
+		const char *cPaths[] = {"/sbin/iwconfig", "/usr/sbin/iwconfig", NULL};
+		const char **x;
+		for (x = cPaths; *x; ++x)
+		{
+			if (g_file_test (*x, G_FILE_TEST_IS_EXECUTABLE))
+			{
+				myData.cIWConfigPath = g_strdup (*x);
+				break;
+			}
+		}
 	}
 }
 
@@ -115,16 +124,25 @@ CD_APPLET_INIT_BEGIN
 	// check iwconfig path
 	_set_iwconfig_path (myApplet);
 
-	// Initialisation of the periodic task
-	myData.iPreviousQuality = -2;  // force a redraw.
-	myData.pTask = gldi_task_new (myConfig.iCheckInterval,
-		(GldiGetDataAsyncFunc) cd_wifi_get_data,
-		(GldiUpdateSyncFunc) cd_wifi_update_from_data,
-		myApplet);
-	if (cairo_dock_is_loading ())
-		gldi_task_launch_delayed (myData.pTask, 2000);
+	if (myData.cIWConfigPath)
+	{
+		// Initialisation of the periodic task
+		myData.iPreviousQuality = -2;  // force a redraw.
+		myData.pTask = gldi_task_new (myConfig.iCheckInterval,
+			(GldiGetDataAsyncFunc) cd_wifi_get_data,
+			(GldiUpdateSyncFunc) cd_wifi_update_from_data,
+			myApplet);
+		if (cairo_dock_is_loading ())
+			gldi_task_launch_delayed (myData.pTask, 2000);
+		else
+			gldi_task_launch (myData.pTask);
+	}
 	else
-		gldi_task_launch (myData.pTask);
+	{
+		myData.iQuality = -1;
+		myData.bWirelessExt = FALSE;
+		cd_wifi_draw_no_wireless_extension ();
+	}
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
@@ -157,7 +175,7 @@ CD_APPLET_RELOAD_BEGIN
 		myData.iSignalLevel = -2;
 		
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
-		gldi_task_change_frequency_and_relaunch (myData.pTask, myConfig.iCheckInterval);
+		if (myData.pTask) gldi_task_change_frequency_and_relaunch (myData.pTask, myConfig.iCheckInterval);
 	}
 	else  // on redessine juste l'icone.
 	{
