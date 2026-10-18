@@ -32,6 +32,11 @@
 
 static GDBusProxy *s_pSessionProxy = NULL;
 static GCancellable *s_pCancel = NULL; // cancellable for creating the above proxy
+/* based on org.gnome.SessionManager.SessionName property if available (not available on MATE)
+ * Full logic:
+ * 		s_bIsCinnamon == TRUE => Cinnamon
+ * 		s_bIsCinnamon == FALSE => GNOME or MATE, check myData.iCurrentEnv
+ */
 static gboolean s_bIsCinnamon = FALSE;
 static GSettings *s_pSessionSettings = NULL;
 
@@ -89,7 +94,9 @@ static void _reboot_real (void)
 {
 	if (! s_pSessionProxy) return;
 	
-	g_dbus_proxy_call (s_pSessionProxy, "Reboot", NULL, // no parameters
+	g_dbus_proxy_call (s_pSessionProxy,
+		(myData.iCurrentEnv == CAIRO_DOCK_MATE) ? "RequestReboot" : "Reboot",
+		NULL, // no parameters
 		G_DBUS_CALL_FLAGS_NO_AUTO_START | G_DBUS_CALL_FLAGS_ALLOW_INTERACTIVE_AUTHORIZATION,
 		-1, // timeout (-1 : default)
 		NULL, // GCancellable
@@ -100,7 +107,7 @@ static void _reboot_real (void)
 static void _env_backend_reboot (CairoDockFMConfirmationFunc cb_confirm, gpointer data)
 {
 	if (! s_pSessionProxy) return;
-	if (cb_confirm && _need_confirmation ())
+	if (cb_confirm && (_need_confirmation () || myData.iCurrentEnv == CAIRO_DOCK_MATE)) // MATE never asks for confirmation for RequestReboot
 		cb_confirm (data, _reboot_real);
 	else _reboot_real ();
 }
@@ -116,8 +123,13 @@ static void _env_backend_setup_time (void)
 	}
 	else
 	{
-		args[0] = "gnome-control-center";
-		args[1] = "datetime";
+		if (myData.iCurrentEnv == CAIRO_DOCK_MATE)
+			args[0] = "mate-time-admin";
+		else // GNOME
+		{
+			args[0] = "gnome-control-center";
+			args[1] = "datetime";
+		}
 	}
 	
 	cairo_dock_launch_command_argv_full (args, NULL, GLDI_LAUNCH_GUI | GLDI_LAUNCH_SLICE);
@@ -145,7 +157,8 @@ static void _register_backend (void)
 		VFSBackend.reboot              = _env_backend_reboot;
 	}
 	VFSBackend.setup_time          = _env_backend_setup_time;
-	VFSBackend.show_system_monitor = _env_backend_show_system_monitor;
+	if (myData.iCurrentEnv == CAIRO_DOCK_GNOME)
+		VFSBackend.show_system_monitor = _env_backend_show_system_monitor;
 	
 	cairo_dock_fm_register_de_integration_override_backend (&VFSBackend);
 }
@@ -178,9 +191,13 @@ static void _proxy_connected (G_GNUC_UNUSED GObject *obj, GAsyncResult *res, G_G
 		}
 		
 		// set up our settings proxy
+		const char *cSchema;
+		if (s_bIsCinnamon) cSchema = "org.cinnamon.SessionManager";
+		else if (myData.iCurrentEnv == CAIRO_DOCK_MATE) cSchema = "org.mate.session";
+		else cSchema = "org.gnome.SessionManager";
 		GSettingsSchema *schema = g_settings_schema_source_lookup (
 			g_settings_schema_source_get_default (),
-			s_bIsCinnamon ? "org.cinnamon.SessionManager" : "org.gnome.SessionManager",
+			cSchema,
 			TRUE);
 		if (schema)
 		{
@@ -224,7 +241,7 @@ static void _on_name_vanished (G_GNUC_UNUSED GDBusConnection *connection, G_GNUC
 	else
 	{
 		// this can happen in other DEs if XDG_CURRENT_DESKTOP includes GNOME or if the user requested GNOME
-		cd_message ("Cannot connect to session manager, not a GNOME or Cinnamon session?");
+		cd_message ("Cannot connect to session manager, not a GNOME, MATE or Cinnamon session?");
 		// we should still register the supported functions
 		_register_backend ();
 	}
