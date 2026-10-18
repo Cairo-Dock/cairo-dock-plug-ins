@@ -26,7 +26,7 @@
 
 static GDBusProxy *s_pSessionProxy = NULL;
 static GCancellable *s_pCancel = NULL; // cancellable for creating the above proxy
-
+static unsigned int s_uWatch = 0; // ID for watching the bus name
 
 typedef enum {
 	CD_XFCE_CAN_SHUTDOWN=0,
@@ -315,8 +315,9 @@ static void _on_name_vanished (G_GNUC_UNUSED GDBusConnection *connection, G_GNUC
 
 void cd_xfce_integration_init (void)
 {
-	// Note: org.gnome.SessionManager is used by both GNOME and Cinnamon
-	g_bus_watch_name (G_BUS_TYPE_SESSION, "org.xfce.SessionManager", G_BUS_NAME_WATCHER_FLAGS_NONE,
+	if (s_uWatch) return; // already started
+	
+	s_uWatch = g_bus_watch_name (G_BUS_TYPE_SESSION, "org.xfce.SessionManager", G_BUS_NAME_WATCHER_FLAGS_NONE,
 		_on_name_appeared, _on_name_vanished, NULL, NULL);
 }
 
@@ -332,6 +333,11 @@ void cd_xfce_integration_stop (void)
 	{
 		g_object_unref (s_pSessionProxy);
 		s_pSessionProxy = NULL;
+	}
+	if (s_uWatch)
+	{
+		g_bus_unwatch_name (s_uWatch);
+		s_uWatch = 0;
 	}
 	s_bRegistered = FALSE; // the caller will unregister if needed
 }

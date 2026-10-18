@@ -29,6 +29,7 @@ CD_APPLET_H
 
 
 struct _AppletConfig {
+	gboolean bEnvOverride;
 	CairoDockDesktopEnv iEnvRequested;
 } ;
 

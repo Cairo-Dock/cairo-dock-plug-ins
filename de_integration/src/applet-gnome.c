@@ -32,6 +32,7 @@
 
 static GDBusProxy *s_pSessionProxy = NULL;
 static GCancellable *s_pCancel = NULL; // cancellable for creating the above proxy
+static unsigned int s_uWatch = 0; // ID for watching the bus name
 /* based on org.gnome.SessionManager.SessionName property if available (not available on MATE)
  * Full logic:
  * 		s_bIsCinnamon == TRUE => Cinnamon
@@ -255,8 +256,9 @@ static void _on_name_vanished (G_GNUC_UNUSED GDBusConnection *connection, G_GNUC
 
 void cd_gnome_integration_init (void)
 {
-	// Note: org.gnome.SessionManager is used by both GNOME and Cinnamon
-	g_bus_watch_name (G_BUS_TYPE_SESSION, "org.gnome.SessionManager", G_BUS_NAME_WATCHER_FLAGS_NONE,
+	if (s_uWatch) return; // already started
+	
+	s_uWatch = g_bus_watch_name (G_BUS_TYPE_SESSION, "org.gnome.SessionManager", G_BUS_NAME_WATCHER_FLAGS_NONE,
 		_on_name_appeared, _on_name_vanished, NULL, NULL);
 }
 
@@ -277,6 +279,11 @@ void cd_gnome_integration_stop (void)
 	{
 		g_object_unref (s_pSessionSettings);
 		s_pSessionSettings = NULL;
+	}
+	if (s_uWatch)
+	{
+		g_bus_unwatch_name (s_uWatch);
+		s_uWatch = 0;
 	}
 	
 	s_bRegistered = FALSE; // the caller will unregister if needed

@@ -3,8 +3,12 @@
 #[preferences-system]
 [Configuration]
 
-#l[Auto;GNOME;KDE / Plasma;Xfce;Cinnamon;MATE;COSMIC] Desktop environment to integrate with:
-#{Recommended to set to Auto to auto-detect the environment. You can set a specific DE if auto-detection does not work for some reason.}
+#B Override the detected desktop environment
+#{Use this option if you would like to manually set the desktop environment to integrate with or if auto-detection does not work for some reason.}
+use_de_override = false
+
+#l[Disabled;GNOME;KDE / Plasma;Xfce;Cinnamon;MATE;COSMIC] Desktop environment to integrate with:
+#{You can set a specific DE or disable the integration function.}
 de_override = 0
 
 #_
