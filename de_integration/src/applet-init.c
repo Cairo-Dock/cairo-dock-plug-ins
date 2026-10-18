@@ -40,6 +40,7 @@ static void _start_backend (void)
 	{
 		case CAIRO_DOCK_GNOME:
 		case CAIRO_DOCK_CINNAMON:
+		case CAIRO_DOCK_MATE:
 			cd_gnome_integration_init ();
 			break;
 		case CAIRO_DOCK_KDE:
@@ -65,17 +66,32 @@ CD_APPLET_INIT_BEGIN
 	_start_backend ();
 CD_APPLET_INIT_END
 
+
+static void _stop_backend (void)
+{
+	switch (myData.iCurrentEnv)
+	{
+		case CAIRO_DOCK_GNOME:
+		case CAIRO_DOCK_CINNAMON:
+		case CAIRO_DOCK_MATE:
+			cd_gnome_integration_stop ();
+			break;
+		case CAIRO_DOCK_XFCE:
+			cd_xfce_integration_stop ();
+		default:
+			break;
+	}
+}
+
 CD_APPLET_STOP_BEGIN
-	if (myData.iCurrentEnv == CAIRO_DOCK_GNOME || myData.iCurrentEnv == CAIRO_DOCK_CINNAMON)
-		cd_gnome_integration_stop ();
-	else cairo_dock_fm_register_de_integration_override_backend (NULL);
+	_stop_backend ();
+	cairo_dock_fm_register_de_integration_override_backend (NULL);
 CD_APPLET_STOP_END
 
 static gboolean s_bReloading = FALSE;
 
 CD_APPLET_RELOAD_BEGIN
-	if (myData.iCurrentEnv == CAIRO_DOCK_GNOME || myData.iCurrentEnv == CAIRO_DOCK_CINNAMON)
-		cd_gnome_integration_stop ();
+	_stop_backend ();
 	_start_backend ();
 	s_bReloading = TRUE;
 	CD_APPLET_RELOAD_CONFIG_PANEL;
@@ -105,8 +121,11 @@ static void _load_custom_widget (GldiModuleInstance *myApplet, GKeyFile* pKeyFil
 	{
 		case CAIRO_DOCK_GNOME:
 		case CAIRO_DOCK_CINNAMON:
+		case CAIRO_DOCK_MATE:
 			cStatus = cd_gnome_integration_get_status ();
 			break;
+		case CAIRO_DOCK_XFCE:
+			cStatus = cd_xfce_integration_get_status ();
 		default:
 			break;
 	}

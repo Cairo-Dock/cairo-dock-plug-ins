@@ -40,8 +40,13 @@ struct _AppletData {
 void cd_gnome_integration_init (void);
 void cd_gnome_integration_stop (void);
 const char *cd_gnome_integration_get_status (void);
+
 void cd_kde_integration_init (void);
+
 void cd_xfce_integration_init (void);
+void cd_xfce_integration_stop (void);
+const char *cd_xfce_integration_get_status (void);
+
 void cd_cosmic_integration_init (void);
 
 CD_APPLET_CONFIG_H
