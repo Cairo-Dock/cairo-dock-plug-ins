@@ -73,7 +73,6 @@ Copyright: Christophe Chapuis and Fabrice Rey
 License: GPL-3+
 
 Files:  weblets/*
-    xfce-integration/*
 Copyright: Christophe Chapuis
 License: GPL-3+
 
@@ -121,10 +120,6 @@ License: GPL-3+
 Files:  shared-images/*.svg
 Copyright: ccsm icons
 License: GPL-3+
-
-Files:  cosmic-integration/data/icon.svg
-Copyright: System76
-License: CC-SA-4.0
 
 Files:  de_integration/*
 Copyright: Fabounet (Fabrice Rey) 
