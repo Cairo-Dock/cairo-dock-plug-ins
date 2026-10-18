@@ -22,7 +22,7 @@
 #include <glib.h>
 #include <gio/gio.h>
 
-#include "applet-utils.h"
+#include "applet-init.h"
 
 /*
  * Notes on GNOME vs. Cinnamon:
@@ -138,13 +138,16 @@ static void _register_backend (void)
 	
 	CairoDockDesktopEnvBackend VFSBackend = { NULL };
 	
-	VFSBackend.logout              = _env_backend_logout;
-	VFSBackend.shutdown            = _env_backend_shutdown;
-	VFSBackend.reboot              = _env_backend_reboot;
+	if (s_pSessionProxy)
+	{
+		VFSBackend.logout              = _env_backend_logout;
+		VFSBackend.shutdown            = _env_backend_shutdown;
+		VFSBackend.reboot              = _env_backend_reboot;
+	}
 	VFSBackend.setup_time          = _env_backend_setup_time;
 	VFSBackend.show_system_monitor = _env_backend_show_system_monitor;
 	
-	cairo_dock_fm_register_vfs_backend (&VFSBackend, TRUE); // TRUE: overwrite previously registered functions
+	cairo_dock_fm_register_de_integration_override_backend (&VFSBackend);
 }
 
 static void _proxy_connected (G_GNUC_UNUSED GObject *obj, GAsyncResult *res, G_GNUC_UNUSED gpointer data)
@@ -153,12 +156,6 @@ static void _proxy_connected (G_GNUC_UNUSED GObject *obj, GAsyncResult *res, G_G
 	GError *erreur = NULL;
 	
 	s_pSessionProxy = g_dbus_proxy_new_finish (res, &erreur);
-	if (s_pCancel)
-	{
-		g_object_unref (G_OBJECT (s_pCancel));
-		s_pCancel = NULL;
-	}
-	
 	if (erreur)
 	{
 		cd_warning ("Error creating gnome-session proxy: %s", erreur->message);
@@ -167,7 +164,6 @@ static void _proxy_connected (G_GNUC_UNUSED GObject *obj, GAsyncResult *res, G_G
 	}
 	else 
 	{
-		_register_backend ();
 		GVariant *prop = g_dbus_proxy_get_cached_property (s_pSessionProxy, "SessionName");
 		if (prop)
 		{
@@ -194,6 +190,7 @@ static void _proxy_connected (G_GNUC_UNUSED GObject *obj, GAsyncResult *res, G_G
 		}
 		else cd_warning ("Cannot find GSettings schema for the session manager");
 	}
+	_register_backend ();
 	
 	CD_APPLET_LEAVE ();
 }
@@ -224,9 +221,36 @@ static void _on_name_vanished (G_GNUC_UNUSED GDBusConnection *connection, G_GNUC
 	CD_APPLET_ENTER;
 	
 	if (s_pCancel || s_pSessionProxy) cd_warning ("gnome-session proxy disappeared");
-	else cd_message ("Not a GNOME or Cinnamon session, not registering"); // this can happen in other DEs if XDG_CURRENT_DESKTOP includes GNOME
+	else
+	{
+		// this can happen in other DEs if XDG_CURRENT_DESKTOP includes GNOME or if the user requested GNOME
+		cd_message ("Cannot connect to session manager, not a GNOME or Cinnamon session?");
+		// we should still register the supported functions
+		_register_backend ();
+	}
+	cd_gnome_integration_stop (); // to clean up
 	
-	if (s_pCancel) g_cancellable_cancel (s_pCancel); // will be freed in _proxy_connected ()
+	CD_APPLET_RELOAD_CONFIG_PANEL; // in case the config panel is being displayed (e.g. the user just selected GNOME)
+	
+	CD_APPLET_LEAVE ();
+}
+
+
+void cd_gnome_integration_init (void)
+{
+	// Note: org.gnome.SessionManager is used by both GNOME and Cinnamon
+	g_bus_watch_name (G_BUS_TYPE_SESSION, "org.gnome.SessionManager", G_BUS_NAME_WATCHER_FLAGS_NONE,
+		_on_name_appeared, _on_name_vanished, NULL, NULL);
+}
+
+void cd_gnome_integration_stop (void)
+{
+	if (s_pCancel)
+	{
+		g_cancellable_cancel (s_pCancel);
+		g_object_unref (s_pCancel);
+		s_pCancel = NULL;
+	}
 	if (s_pSessionProxy)
 	{
 		g_object_unref (s_pSessionProxy);
@@ -237,19 +261,12 @@ static void _on_name_vanished (G_GNUC_UNUSED GDBusConnection *connection, G_GNUC
 		g_object_unref (s_pSessionSettings);
 		s_pSessionSettings = NULL;
 	}
-	//!! TODO: we cannot "unregister" our backend
-	// But we can disable the plugin, so it will not show up as enabled
-	// (note: having the setup_time and show_system_monitor functions could be useful though)
-	gldi_module_disable (myApplet->pModule, D_("Cannot connect to the GNOME or Cinnamon session manager via DBus."));
 	
-	CD_APPLET_LEAVE ();
+	s_bRegistered = FALSE; // the caller will unregister if needed
 }
 
-
-void env_backend_init (void)
+const char *cd_gnome_integration_get_status (void)
 {
-	// Note: org.gnome.SessionManager is used by both GNOME and Cinnamon
-	g_bus_watch_name (G_BUS_TYPE_SESSION, "org.gnome.SessionManager", G_BUS_NAME_WATCHER_FLAGS_NONE,
-		_on_name_appeared, _on_name_vanished, NULL, NULL);
+	return s_pSessionProxy ? NULL : "Error: cannot connect to org.gnome.SessionManager";
 }
 

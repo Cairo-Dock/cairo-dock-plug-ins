@@ -1,0 +1,12 @@
+#@VERSION_DE_INTEGRATION@
+
+#[preferences-system]
+[Configuration]
+
+#l[Auto;GNOME;KDE / Plasma;Xfce;Cinnamon;MATE;COSMIC] Desktop environment to integrate with:
+#{Recommended to set to Auto to auto-detect the environment. You can set a specific DE if auto-detection does not work for some reason.}
+de_override = 0
+
+#_
+de_detected = 
+

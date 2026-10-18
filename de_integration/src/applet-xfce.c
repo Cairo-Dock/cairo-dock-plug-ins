@@ -19,28 +19,41 @@
 
 #include <stdlib.h>
 
-#include "applet-utils.h"
+#include "applet-init.h"
 
 
-void env_backend_logout (G_GNUC_UNUSED CairoDockFMConfirmationFunc cb_confirm, G_GNUC_UNUSED gpointer data)
+static void _xfce_logout (G_GNUC_UNUSED CairoDockFMConfirmationFunc cb_confirm, G_GNUC_UNUSED gpointer data)
 {
 	// we ignore cb_confirm as the below command will ask for confirmation
 	cairo_dock_launch_command_single ("xfce4-session-logout");
 }
 
-void env_backend_lock_screen (void)
+static void _xfce_lock_screen (void)
 {
 	cairo_dock_launch_command_single (MY_APPLET_SHARE_DATA_DIR"/../shared-files/scripts/lock-screen.sh");
 }
 
-void env_backend_setup_time (void)
+static void _xfce_setup_time (void)
 {
 	const char * const args[] = {"gksu", "system-config-date", NULL}; // not installed by default + gksu does not work on newer systems and on Wayland
 	cairo_dock_launch_command_argv (args);
 }
 
-void env_backend_show_system_monitor (void)
+static void _xfce_show_system_monitor (void)
 {
 	cairo_dock_launch_command_single_gui ("xfce4-taskmanager");  // not installed by default
 }
+
+void cd_xfce_integration_init (void)
+{
+	CairoDockDesktopEnvBackend VFSBackend = { NULL };
+		
+	VFSBackend.logout = _xfce_logout;
+	VFSBackend.shutdown = _xfce_logout;
+	VFSBackend.reboot = _xfce_logout;
+	VFSBackend.lock_screen = _xfce_lock_screen;
+	VFSBackend.setup_time = _xfce_setup_time;
+	VFSBackend.show_system_monitor = _xfce_show_system_monitor;
+	cairo_dock_fm_register_de_integration_override_backend (&VFSBackend);
+}	
 
