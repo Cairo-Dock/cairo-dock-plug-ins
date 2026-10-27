@@ -20,7 +20,7 @@
 #include <stdlib.h>
 #include <cairo-dock.h>
 
-#include "applet-utils.h"
+#include "applet-kde.h"
 
 /* KDE 5 and 6:
  * org.kde.LogoutPrompt well-known name, not running by default (cannot detect easily if it will work), but activatable

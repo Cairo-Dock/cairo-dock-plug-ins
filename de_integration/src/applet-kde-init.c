@@ -1,0 +1,43 @@
+/**
+* This file is a part of the Cairo-Dock project
+*
+* Copyright : (C) see the 'copyright' file.
+* E-mail    : see the 'copyright' file.
+*
+* This program is free software; you can redistribute it and/or
+* modify it under the terms of the GNU General Public License
+* as published by the Free Software Foundation; either version 3
+* of the License, or (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+#include "stdlib.h"
+
+#include "applet-kde.h"
+#include "applet-init.h"
+
+void cd_kde_integration_init (void)
+{
+	CairoDockDesktopEnvBackend VFSBackend = { NULL };
+	
+	// here, we provide / override KDE-specific stuff (basics are provided by the GIO VFS backend in core)
+	VFSBackend.launch_uri = vfs_backend_launch_uri;
+	VFSBackend.delete_file = vfs_backend_delete_file;
+	VFSBackend.rename = vfs_backend_rename_file;
+	VFSBackend.move = vfs_backend_move_file;
+	VFSBackend.empty_trash = vfs_backend_empty_trash;
+	VFSBackend.logout = env_backend_logout;
+	VFSBackend.shutdown = env_backend_shutdown;
+	VFSBackend.reboot = env_backend_reboot;
+	VFSBackend.lock_screen = env_backend_lock_screen;
+	VFSBackend.setup_time = env_backend_setup_time;
+	VFSBackend.show_system_monitor = env_backend_show_system_monitor;
+	cairo_dock_fm_register_de_integration_override_backend (&VFSBackend);
+}
+

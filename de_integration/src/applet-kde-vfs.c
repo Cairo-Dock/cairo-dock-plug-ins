@@ -26,8 +26,7 @@
 #include <glib.h>
 #include <gio/gio.h>
 
-#include "applet-utils.h"
-#include "applet-vfs.h"
+#include "applet-kde.h"
 
 static gchar *s_kioclient = NULL;
 static const gchar *_get_kioclient (void)

@@ -1,0 +1,16 @@
+#@VERSION_DE_INTEGRATION@
+
+#[preferences-system]
+[Configuration]
+
+#B Override the detected desktop environment
+#{Use this option if you would like to manually set the desktop environment to integrate with or if auto-detection does not work for some reason.}
+use_de_override = false
+
+#l[Disabled;GNOME;KDE / Plasma;Xfce;Cinnamon;MATE;COSMIC] Desktop environment to integrate with:
+#{You can set a specific DE or disable the integration function.}
+de_override = 0
+
+#_
+de_detected = 
+

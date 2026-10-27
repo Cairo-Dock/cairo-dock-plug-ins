@@ -67,7 +67,7 @@ CD_APPLET_RESET_CONFIG_END
 
 
 CD_APPLET_RESET_DATA_BEGIN
-	gldi_task_free (myData.pTask);
+	if (myData.pTask) gldi_task_free (myData.pTask);
 	
 	CD_APPLET_REMOVE_MY_DATA_RENDERER;
 	

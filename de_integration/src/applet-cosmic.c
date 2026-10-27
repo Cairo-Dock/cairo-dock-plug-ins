@@ -19,37 +19,49 @@
 
 #include <stdlib.h>
 
-#include "applet-utils.h"
+#include "applet-init.h"
 
 
-void env_backend_logout (G_GNUC_UNUSED CairoDockFMConfirmationFunc cb_confirm, G_GNUC_UNUSED gpointer data)
+static void _cosmic_logout (G_GNUC_UNUSED CairoDockFMConfirmationFunc cb_confirm, G_GNUC_UNUSED gpointer data)
 {
 	// we ignore cb_confirm as the below command will ask for confirmation
 	const char * const args[] = {"cosmic-osd", "log-out", NULL};
 	cairo_dock_launch_command_argv (args); // no need for xdg-activation, will show on top anyway
 }
 
-void env_backend_shutdown (G_GNUC_UNUSED CairoDockFMConfirmationFunc cb_confirm, G_GNUC_UNUSED gpointer data)
+static void _cosmic_shutdown (G_GNUC_UNUSED CairoDockFMConfirmationFunc cb_confirm, G_GNUC_UNUSED gpointer data)
 {
 	const char * const args[] = {"cosmic-osd", "shutdown", NULL};
 	cairo_dock_launch_command_argv (args);
 }
 
-void env_backend_reboot (G_GNUC_UNUSED CairoDockFMConfirmationFunc cb_confirm, G_GNUC_UNUSED gpointer data)
+static void _cosmic_reboot (G_GNUC_UNUSED CairoDockFMConfirmationFunc cb_confirm, G_GNUC_UNUSED gpointer data)
 {
 	const char * const args[] = {"cosmic-osd", "restart", NULL};
 	cairo_dock_launch_command_argv (args);
 }
 
-void env_backend_lock_screen (void)
+static void _cosmic_lock_screen (void)
 {
 	const char * const args[] = {"loginctl", "lock-session", NULL}; // TODO: should use DBus?
 	cairo_dock_launch_command_argv (args);
 }
 
-void env_backend_setup_time (void)
+static void _cosmic_setup_time (void)
 {
 	const char * const args[] = {"cosmic-settings", "date-time", NULL};
 	cairo_dock_launch_command_argv_full (args, NULL, GLDI_LAUNCH_GUI | GLDI_LAUNCH_SLICE);
 }
+
+void cd_cosmic_integration_init (void)
+{
+	CairoDockDesktopEnvBackend VFSBackend = { NULL };
+
+	VFSBackend.logout = _cosmic_logout;
+	VFSBackend.shutdown = _cosmic_shutdown;
+	VFSBackend.reboot = _cosmic_reboot;
+	VFSBackend.lock_screen = _cosmic_lock_screen;
+	VFSBackend.setup_time = _cosmic_setup_time;
+	cairo_dock_fm_register_de_integration_override_backend (&VFSBackend);
+}	
 

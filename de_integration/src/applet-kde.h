@@ -18,23 +18,36 @@
 */
 
 
-#ifndef __KDE_INTEGRATION_INIT__
-#define  __KDE_INTEGRATION_INIT__
-
+#ifndef __KDE_INTEGRATION__
+#define __KDE_INTEGRATION__
 
 #include <cairo-dock.h>
 
+void vfs_backend_launch_uri (const gchar *cURI);
 
-CD_APPLET_H
+gboolean vfs_backend_delete_file (const gchar *cURI, gboolean bNoTrash);
 
+gboolean vfs_backend_rename_file (const gchar *cOldURI, const gchar *cNewName);
 
-struct _AppletConfig {
-	gint no_config_yet;
-} ;
+gboolean vfs_backend_move_file (const gchar *cURI, const gchar *cDirectoryURI);
 
-struct _AppletData {
-	gint no_data_yet;
-} ;
+void vfs_backend_empty_trash (void);
 
+void env_backend_logout (CairoDockFMConfirmationFunc cb_confirm, gpointer data);
+
+void env_backend_shutdown (CairoDockFMConfirmationFunc cb_confirm, gpointer data);
+
+void env_backend_reboot (CairoDockFMConfirmationFunc cb_confirm, gpointer data);
+
+void env_backend_lock_screen (void);
+
+void env_backend_setup_time (void);
+
+void env_backend_show_system_monitor (void);
+
+int get_kde_version (void);
+
+const gchar *get_kioclient_number (void);
 
 #endif
+
