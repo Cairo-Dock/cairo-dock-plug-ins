@@ -42,6 +42,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bShowSeconds 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "show seconds");
 	myConfig.iSmoothAnimationDuration = CD_CONFIG_GET_INTEGER_WITH_DEFAULT  ("Configuration", "smooth", 500);
 	myConfig.b24Mode 			= CD_CONFIG_GET_BOOLEAN ("Configuration", "24h mode");
+	myConfig.bNoZeroPad 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "no zero pad hours");
 	myConfig.cLocation 		= CD_CONFIG_GET_STRING ("Configuration", "location");
 	myConfig.cSetupTimeCommand 	= CD_CONFIG_GET_STRING ("Configuration", "setup command");
 	myConfig.cTaskMgrName	 	= CD_CONFIG_GET_STRING ("Configuration", "task mgr");

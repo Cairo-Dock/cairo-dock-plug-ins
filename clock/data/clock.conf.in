@@ -115,6 +115,10 @@ show date = 2
 #{for digital format only.}
 24h mode = true
 
+#b Avoid initial zero:
+#{for digital format only; does not zero-pad the hour if it is less than 10}
+no zero pad hours = false
+
 #B Show seconds?
 #{if not, then the applet will update the time once a minute, saving CPU power.}
 show seconds = false

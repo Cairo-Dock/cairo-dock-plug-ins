@@ -146,6 +146,7 @@ struct _AppletConfig {
 	gboolean bShowSeconds;
 	gboolean bOldStyle;
 	gboolean b24Mode;
+	gboolean bNoZeroPad;
 	CDClockTextLayout iPreferedTextLayout;
 	gboolean bUseDefaultColors;
 	double fOutlineColor[4];
