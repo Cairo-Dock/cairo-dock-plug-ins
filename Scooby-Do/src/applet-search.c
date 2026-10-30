@@ -300,7 +300,7 @@ void cd_do_append_entries_to_listing (GList *pEntries, gint iNbEntries)
 void cd_do_remove_entries_from_listing (CDBackend *pBackend)
 {
 	cd_debug ("%s (%s, %d)", __func__, pBackend->cName, pBackend->iNbLastShownResults);
-	g_return_if_fail (myData.pListing != NULL);
+	cd_return_if_fail (myData.pListing != NULL);
 	if (pBackend->pLastShownResults == NULL)
 		return ;
 	

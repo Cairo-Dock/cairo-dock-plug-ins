@@ -67,7 +67,7 @@ static void _menu_item_destroyed (gpointer data, G_GNUC_UNUSED GObject *pObj)
 }
 static void _open_file (GtkMenuItem *menu_item, gpointer ptr)
 {
-	g_return_if_fail (ptr != NULL);
+	cd_return_if_fail (ptr != NULL);
 	
 	struct _OpenFileData *pData = (struct _OpenFileData*)ptr;
 	cd_debug ("%s (%s)", __func__, pData->cURI ? pData->cURI : "(null)");

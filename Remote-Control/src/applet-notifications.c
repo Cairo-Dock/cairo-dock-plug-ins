@@ -35,7 +35,7 @@ const int s_iNbPromptAnimationSteps = 40;
 
 static void cd_do_simulate_click (GldiContainer *pContainer, Icon *pIcon, int iModifierType)
 {
-	g_return_if_fail (pIcon != NULL);
+	cd_return_if_fail (pIcon != NULL);
 	myData.bIgnoreClick = TRUE;  // -> ignore the "click" notification, which would close the session and remove the notification while in the loop. the caller of this method should ensure to close the session after.
 	gldi_object_notify (pContainer, NOTIFICATION_CLICK_ICON, pIcon, pContainer, iModifierType);
 	myData.bIgnoreClick = FALSE;
@@ -158,8 +158,8 @@ static void _activate_nth_icon (guint iKeyVal, guint iModifierType)  // iKeyVal 
 
 gboolean cd_do_key_pressed (gpointer pUserData, GldiContainer *pContainer, guint iKeyVal, guint iModifierType, const gchar *string, int iKeyCode)
 {
-	g_return_val_if_fail (cd_do_session_is_running (), GLDI_NOTIFICATION_LET_PASS);
-	g_return_val_if_fail (myData.pCurrentDock != NULL, GLDI_NOTIFICATION_LET_PASS);
+	cd_return_val_if_fail (cd_do_session_is_running (), GLDI_NOTIFICATION_LET_PASS);
+	cd_return_val_if_fail (myData.pCurrentDock != NULL, GLDI_NOTIFICATION_LET_PASS);
 	
 	const gchar *cKeyName = gdk_keyval_name (iKeyVal);
 	guint32 iUnicodeChar = gdk_keyval_to_unicode (iKeyVal);
@@ -395,7 +395,7 @@ void cd_do_on_shortkey_nav (const char *keystring, gpointer data)
 
 gboolean cd_do_update_container (gpointer pUserData, GldiContainer *pContainer, gboolean *bContinueAnimation)
 {
-	g_return_val_if_fail (!cd_do_session_is_off (), GLDI_NOTIFICATION_LET_PASS);
+	cd_return_val_if_fail (!cd_do_session_is_off (), GLDI_NOTIFICATION_LET_PASS);
 	
 	if (myData.iMotionCount != 0)
 	{
@@ -563,7 +563,7 @@ static void _render_opengl (GldiContainer *pContainer)
 
 gboolean cd_do_render (gpointer pUserData, GldiContainer *pContainer, cairo_t *pCairoContext)
 {
-	g_return_val_if_fail (!cd_do_session_is_off (), GLDI_NOTIFICATION_LET_PASS);
+	cd_return_val_if_fail (!cd_do_session_is_off (), GLDI_NOTIFICATION_LET_PASS);
 	
 	if (pCairoContext != NULL)
 	{
@@ -579,7 +579,7 @@ gboolean cd_do_render (gpointer pUserData, GldiContainer *pContainer, cairo_t *p
 
 gboolean cd_do_on_click (gpointer pUserData, Icon *icon, GldiContainer *pContainer)
 {
-	g_return_val_if_fail (!cd_do_session_is_off (), GLDI_NOTIFICATION_LET_PASS);
+	cd_return_val_if_fail (!cd_do_session_is_off (), GLDI_NOTIFICATION_LET_PASS);
 	
 	if (! myData.bIgnoreClick)
 		cd_do_close_session ();

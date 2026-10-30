@@ -87,7 +87,7 @@ gboolean cd_opengl_load_3D_theme (GldiModuleInstance *myApplet, gchar *cThemePat
 		pKeyFile = NULL;
 		
 		// on supprime le theme.
-		g_return_val_if_fail (cThemePath && *cThemePath == '/', FALSE);
+		cd_return_val_if_fail (cThemePath && *cThemePath == '/', FALSE);
 		cairo_dock_fm_delete_file (cThemePath, TRUE); // TRUE <-> avoid trash, will delete recursively
 		
 		// on recupere le theme distant.
@@ -107,7 +107,7 @@ gboolean cd_opengl_load_3D_theme (GldiModuleInstance *myApplet, gchar *cThemePat
 			if (pKeyFile == NULL)
 				return FALSE;
 		}
-		g_return_val_if_fail (pKeyFile != NULL, FALSE);
+		cd_return_val_if_fail (pKeyFile != NULL, FALSE);
 	}
 	
 	GError *erreur = NULL;

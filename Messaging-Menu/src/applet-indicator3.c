@@ -31,7 +31,7 @@ void _check_demanding_attention (const gchar *cName, const gchar *cAnimationName
 
 static void _icon_updated (GObject *pObject, G_GNUC_UNUSED GParamSpec *pParam, GldiModuleInstance *myApplet)
 {
-	g_return_if_fail (GTK_IS_IMAGE (pObject));
+	cd_return_if_fail (GTK_IS_IMAGE (pObject));
 	GtkImage *pImage = GTK_IMAGE (pObject);
 
 	gchar *cName = NULL;
@@ -53,7 +53,7 @@ void cd_messaging_accessible_desc_update (G_GNUC_UNUSED IndicatorObject *pIndica
 void cd_messaging_entry_added (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, GldiModuleInstance *myApplet)
 {
 	cd_debug ("Entry Added: %p", pEntry);
-	g_return_if_fail (myData.pEntry == NULL); // should not happen... only one entry
+	cd_return_if_fail (myData.pEntry == NULL); // should not happen... only one entry
 
 	myData.pEntry = pEntry;
 	GtkImage *pImage = cd_indicator3_get_image (pEntry);
@@ -97,7 +97,7 @@ void cd_messaging_destroy (IndicatorObject *pIndicator, IndicatorObjectEntry *pE
 void cd_messaging_reload (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, gpointer data)
 {
 	cd_debug ("Reload");
-	g_return_if_fail (pEntry != NULL);
+	cd_return_if_fail (pEntry != NULL);
 	cd_messaging_accessible_desc_update (pIndicator, pEntry, data);
 	_icon_updated (G_OBJECT (pEntry->image), NULL, data);
 }

@@ -39,7 +39,7 @@ static cairo_surface_t *cd_rendering_create_flat_separator_surface (int iWidth, 
 		iHeight,
 		0.,
 		0.);
-	g_return_val_if_fail (cairo_pattern_status (pStripesPattern) == CAIRO_STATUS_SUCCESS, NULL);
+	cd_return_val_if_fail (cairo_pattern_status (pStripesPattern) == CAIRO_STATUS_SUCCESS, NULL);
 	
 	cairo_pattern_set_extend (pStripesPattern, CAIRO_EXTEND_REPEAT);
 	

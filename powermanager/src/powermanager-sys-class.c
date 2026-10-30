@@ -111,11 +111,11 @@ gboolean cd_get_stats_from_sys_class (void)
 		erreur = NULL;
 		return FALSE;
 	}
-	g_return_val_if_fail (cContent != NULL, FALSE);
+	cd_return_val_if_fail (cContent != NULL, FALSE);
 	
 	//\_______________ check 'on battery' state.
 	gchar *str = strstr (cContent, "STATUS");
-	g_return_val_if_fail (str != NULL, FALSE);
+	cd_return_val_if_fail (str != NULL, FALSE);
 	str += 7;
 	gboolean bOnBattery = (*str == 'D');  // "Discharging"
 	if (bOnBattery != myData.bOnBattery)  // state changed
@@ -131,7 +131,7 @@ gboolean cd_get_stats_from_sys_class (void)
 	
 	//\_______________ check the battery presence.
 	str = strstr (cContent, "PRESENT");
-	g_return_val_if_fail (str != NULL, FALSE);
+	cd_return_val_if_fail (str != NULL, FALSE);
 	str += 8;
 	gboolean bBatteryPresent = (*str == '1');
 	if (bBatteryPresent != myData.bBatteryPresent)  // the battery has just been inserted/removed. 
@@ -162,10 +162,10 @@ gboolean cd_get_stats_from_sys_class (void)
 	if (myData.iCapacity == 0)  // not yet got
 	{
 		str = strstr (cContent, "CHARGE_FULL=");
-		g_return_val_if_fail (str != NULL, FALSE);
+		cd_return_val_if_fail (str != NULL, FALSE);
 		str += 12;
 		myData.iCapacity = atoi (str);
-		g_return_val_if_fail (myData.iCapacity != 0, FALSE);
+		cd_return_val_if_fail (myData.iCapacity != 0, FALSE);
 		// also get few other static params.
 		gchar *cr;
 		_get_static_value ("TECHNOLOGY", myData.cTechnology)
@@ -182,7 +182,7 @@ gboolean cd_get_stats_from_sys_class (void)
 	}
 	
 	str = strstr (cContent, "CHARGE_NOW");
-	g_return_val_if_fail (str != NULL, FALSE);
+	cd_return_val_if_fail (str != NULL, FALSE);
 	str += 11;
 	int iRemainingCapacity = atoi (str);
 	

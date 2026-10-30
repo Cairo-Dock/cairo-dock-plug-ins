@@ -368,7 +368,7 @@ void xgamma_add_gamma (CDGamma *pGamma, gint iNbSteps)
 
 double xgamma_get_gamma (CDGamma *pGamma)
 {
-	g_return_val_if_fail (pGamma != NULL, 1);
+	cd_return_val_if_fail (pGamma != NULL, 1);
 	
 #ifdef XGAMMA_WAYLAND
 	if (s_bWayland)
@@ -402,7 +402,7 @@ double xgamma_get_gamma (CDGamma *pGamma)
 
 void xgamma_set_gamma (CDGamma *pGamma)
 {
-	g_return_if_fail (pGamma != NULL);
+	cd_return_if_fail (pGamma != NULL);
 	
 	_clamp_gamma (&pGamma->red);
 	_clamp_gamma (&pGamma->green);
@@ -411,7 +411,7 @@ void xgamma_set_gamma (CDGamma *pGamma)
 #ifdef XGAMMA_WAYLAND
 	if (s_bWayland)
 	{
-		g_return_if_fail (s_pMonitors != NULL);
+		cd_return_if_fail (s_pMonitors != NULL);
 		s_gamma_req = *pGamma;
 		g_hash_table_foreach (s_pMonitors, _set_gamma_wayland2, NULL);
 	}
@@ -583,7 +583,7 @@ CairoDialog *xgamma_build_dialog (void)
 void xgamma_build_and_show_widget (void)
 {
 	double fGamma = xgamma_get_gamma (&myData.Xgamma);
-	g_return_if_fail (fGamma >= 0);
+	cd_return_if_fail (fGamma >= 0);
 	myData.XoldGamma = myData.Xgamma;
 	
 	xgamma_create_scales_widget (fGamma, &myData.Xgamma);
@@ -626,7 +626,7 @@ static void _xgamma_apply_value_simple (int iClickedButton, GtkWidget *pWidget, 
 CairoDialog *xgamma_build_dialog_simple (void)
 {
 	double fGamma = xgamma_get_gamma (&myData.Xgamma);
-	g_return_val_if_fail (fGamma >= 0, NULL);
+	cd_return_val_if_fail (fGamma >= 0, NULL);
 	double fGammaPercent = _gamma_to_percent (fGamma);
 	myData.XoldGamma = myData.Xgamma;
 	

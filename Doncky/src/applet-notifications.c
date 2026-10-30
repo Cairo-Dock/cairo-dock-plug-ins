@@ -247,14 +247,14 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 		// On va lire le contenu de myConfig.cXmlFilePath	
 		cd_debug ("Doncky-debug : ---------------------->  myConfig.cXmlFilePath = \"%s\"",myConfig.cXmlFilePath);
 			
-		g_return_val_if_fail (myConfig.cXmlFilePath != NULL, FALSE);
+		cd_return_val_if_fail (myConfig.cXmlFilePath != NULL, FALSE);
 		xmlInitParser ();
 		xmlDocPtr pXmlFile;
 		xmlNodePtr pXmlMainNode;
 		
 		pXmlFile = cairo_dock_open_xml_file (myConfig.cXmlFilePath, "doncky", &pXmlMainNode, NULL);
 		
-		g_return_val_if_fail (pXmlFile != NULL && pXmlMainNode != NULL, FALSE);
+		cd_return_val_if_fail (pXmlFile != NULL && pXmlMainNode != NULL, FALSE);
 			
 		xmlNodePtr pXmlNode;
 		

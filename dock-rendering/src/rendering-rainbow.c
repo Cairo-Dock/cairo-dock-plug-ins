@@ -207,7 +207,7 @@ static void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDoc
 			pDock->container.iWidth/2,
 			pDock->container.iHeight,
 			pDock->container.iHeight);
-		g_return_if_fail (cairo_pattern_status (pGradationPattern) == CAIRO_STATUS_SUCCESS);
+		cd_return_if_fail (cairo_pattern_status (pGradationPattern) == CAIRO_STATUS_SUCCESS);
 		
 		cairo_pattern_set_extend (pGradationPattern, CAIRO_EXTEND_NONE);
 		cairo_pattern_add_color_stop_rgba (pGradationPattern,

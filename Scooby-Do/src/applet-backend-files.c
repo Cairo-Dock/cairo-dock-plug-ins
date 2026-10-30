@@ -336,7 +336,7 @@ static void _cd_do_show_file_location (CDEntry *pEntry)
 {
 	cd_debug ("%s (%s)", __func__, pEntry->cPath);
 	gchar *cPathUp = g_path_get_dirname (pEntry->cPath);
-	g_return_if_fail (cPathUp != NULL);
+	cd_return_if_fail (cPathUp != NULL);
 	cairo_dock_fm_launch_uri (cPathUp);
 	g_free (cPathUp);
 }
@@ -405,7 +405,7 @@ static void _cd_do_move_file (CDEntry *pEntry)
 		
 		gchar *cFileName = g_path_get_basename (pEntry->cPath);
 		gchar *cNewFilePath = g_strdup_printf ("%s/%s", cDirPath, cFileName);
-		g_return_if_fail (! g_file_test (cNewFilePath, G_FILE_TEST_EXISTS));
+		cd_return_if_fail (! g_file_test (cNewFilePath, G_FILE_TEST_EXISTS));
 		g_free (cFileName);
 		g_free (cNewFilePath);
 		

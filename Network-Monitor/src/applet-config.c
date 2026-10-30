@@ -124,7 +124,7 @@ void cd_netmonitor_load_custom_widget (GldiModuleInstance *myApplet, GKeyFile* p
 	//\____________ On recupere la combo.
 	CairoDockGroupKeyWidget *pGroupKeyWidget = cairo_dock_gui_find_group_key_widget_in_list (pWidgetList, "Configuration", "interface");
 	GtkWidget *pCombo = cairo_dock_gui_get_first_widget (pGroupKeyWidget);
-	g_return_if_fail (pCombo != NULL);
+	cd_return_if_fail (pCombo != NULL);
 	
 	//\____________ On construit la liste interfaces disponibles.
 	GList *pWirelessInterfaces = cd_netmonitor_get_wireless_interfaces ();

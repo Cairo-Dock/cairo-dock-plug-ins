@@ -37,7 +37,7 @@ gboolean cd_xeyes_load_theme (GldiModuleInstance *myApplet)
 	g_string_printf (sPath, "%s/theme.conf", myConfig.cThemePath);
 	
 	GKeyFile *pKeyFile = cairo_dock_open_key_file (sPath->str);
-	g_return_val_if_fail (pKeyFile != NULL, FALSE);
+	cd_return_val_if_fail (pKeyFile != NULL, FALSE);
 	GError *erreur = NULL;
 	
 	gboolean bEyeVisible[2] = {FALSE, FALSE};
@@ -110,7 +110,7 @@ gboolean cd_xeyes_load_theme (GldiModuleInstance *myApplet)
 	myData.pToonImage = cairo_dock_create_image_buffer (sPath->str,
 		iWidth, iHeight,
 		myConfig.iLoadingModifier);
-	g_return_val_if_fail (myData.pToonImage != NULL, FALSE);
+	cd_return_val_if_fail (myData.pToonImage != NULL, FALSE);
 	
 	double fZoomX = myData.pToonImage->fZoomX, fZoomY = myData.pToonImage->fZoomY;
 	double dx = .5*(iWidth - myData.pToonImage->iWidth);  // offset du au 'keep ratio'.

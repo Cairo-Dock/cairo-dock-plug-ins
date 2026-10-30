@@ -91,7 +91,7 @@ void cd_weather_free_location_list (void)
 
 static void _cd_weather_location_choosed (GtkMenuItem *pMenuItem, gchar *cLocationCode)
 {
-	g_return_if_fail (cLocationCode != NULL);
+	cd_return_if_fail (cLocationCode != NULL);
 	
 	//\____________________ On met a jour le panneau de conf.
 	GldiModuleInstance *myApplet = g_object_get_data (G_OBJECT (pMenuItem), "cd-applet");
@@ -205,7 +205,7 @@ void cd_weather_load_custom_widget (GldiModuleInstance *myApplet, GKeyFile* pKey
 	CairoDockGroupKeyWidget *pGroupKeyWidget = cairo_dock_gui_find_group_key_widget_in_list (pWidgetList, "Configuration", "location code");
 	GtkWidget *pCodeEntry = cairo_dock_gui_get_first_widget (pGroupKeyWidget);
 	myData.pCodeEntry = pCodeEntry;
-	g_return_if_fail (pCodeEntry != NULL);
+	cd_return_if_fail (pCodeEntry != NULL);
 	g_signal_connect (myData.pCodeEntry, "delete", G_CALLBACK (_on_destroyed_code_entry), myApplet);  /// TODO: remove it on stop, to handle the case our applet is deactivated while the config window is opened.
 	
 	GtkWidget *pWidgetBox = gtk_widget_get_parent (pCodeEntry);

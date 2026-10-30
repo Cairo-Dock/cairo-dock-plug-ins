@@ -286,7 +286,7 @@ void cd_app_menu_load_button_images (void)
 {
 	int iWidth, iHeight;
 	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
-	g_return_if_fail (iHeight != 0);
+	cd_return_if_fail (iHeight != 0);
 	
 	cairo_dock_unload_image_buffer (&myData.minimizeButton);
 	cairo_dock_unload_image_buffer (&myData.maximizeButton);
@@ -326,7 +326,7 @@ void cd_app_menu_default_image (void)
 {
 	int iWidth, iHeight;
 	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
-	g_return_if_fail (iHeight != 0);
+	cd_return_if_fail (iHeight != 0);
 	
 	int w, h;
 	if (myConfig.bDisplayControls)
@@ -422,7 +422,7 @@ CDButtonEnum cd_app_menu_find_button (GldiModuleInstance *myApplet)
 		iMouseX = iMouseY;
 		iMouseY = tmp;
 	}
-	g_return_val_if_fail (w + h != 0, iNumButton); // it can crash with Arithmetic exception if we switch from the dock to a desklet
+	cd_return_val_if_fail (w + h != 0, iNumButton); // it can crash with Arithmetic exception if we switch from the dock to a desklet
 	if (w >= h)  // horizontal alignment
 	{
 		iNumButton = iMouseX / (w/myData.iNbButtons);

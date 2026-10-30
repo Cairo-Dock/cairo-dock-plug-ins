@@ -50,12 +50,12 @@ gboolean cd_NetworkMonitor_connect_to_bus (void)
 		"org.freedesktop.NetworkManager",
 		"/org/freedesktop/NetworkManager",
 		"org.freedesktop.NetworkManager");
-	g_return_val_if_fail (DBUS_IS_G_PROXY (myData.dbus_proxy_NM), FALSE);
+	cd_return_val_if_fail (DBUS_IS_G_PROXY (myData.dbus_proxy_NM), FALSE);
 	myData.dbus_proxy_NM_prop = cairo_dock_create_new_system_proxy (
 		"org.freedesktop.NetworkManager",
 		"/org/freedesktop/NetworkManager",
 		"org.freedesktop.DBus.Properties");
-	g_return_val_if_fail (DBUS_IS_G_PROXY (myData.dbus_proxy_NM_prop), FALSE);
+	cd_return_val_if_fail (DBUS_IS_G_PROXY (myData.dbus_proxy_NM_prop), FALSE);
 	
 	//\_____________ On se connecte aux signaux de base : wifi active (WirelessEnabled && WirelessHardwareEnabled ), etat de NM (State).
 	dbus_g_object_register_marshaller(g_cclosure_marshal_VOID__BOXED,
@@ -84,7 +84,7 @@ gboolean cd_NetworkMonitor_get_device (void)
 	cd_debug ("%s ()", __func__);
 	//\_____________ On recupere la liste des devices.
 	GPtrArray *paDevices = cairo_dock_dbus_get_array (myData.dbus_proxy_NM, "GetDevices");
-	g_return_val_if_fail (paDevices != NULL, FALSE);
+	cd_return_val_if_fail (paDevices != NULL, FALSE);
 	
 	//\_____________ On choisit celui defini en conf, ou un par defaut (wifi de preference).
 	cd_debug ("%d devices", paDevices->len);
@@ -160,7 +160,7 @@ gboolean cd_NetworkMonitor_get_device (void)
 		}
 	}
 	g_ptr_array_free (paDevices, TRUE);  // on suppose qu'une GDestroyFunc a ete assignee au tableau.
-	g_return_val_if_fail (myData.cDevice != NULL, FALSE);
+	cd_return_val_if_fail (myData.cDevice != NULL, FALSE);
 	
 	//\_____________ On complete le device.
 	myData.dbus_proxy_Device = cairo_dock_create_new_system_proxy (
@@ -446,7 +446,7 @@ void cd_NetworkMonitor_get_wireless_connection_infos (void)
 	
 	//\_____________ On recupere les proprietes du device "wireless".
 	hProperties = cairo_dock_dbus_get_all_properties (myData.dbus_proxy_Device_prop, "org.freedesktop.NetworkManager.Device.Wireless");
-	g_return_if_fail (hProperties != NULL);
+	cd_return_if_fail (hProperties != NULL);
 	
 	v = (GValue *)g_hash_table_lookup (hProperties, "Bitrate");
 	if (v && G_VALUE_HOLDS_UINT (v))
@@ -492,7 +492,7 @@ void cd_NetworkMonitor_get_wired_connection_infos (void)
 	
 	//\_____________ On recupere les proprietes du device "wired"
 	hProperties = cairo_dock_dbus_get_all_properties (myData.dbus_proxy_Device_prop, "org.freedesktop.NetworkManager.Device.Wired");
-	g_return_if_fail (hProperties != NULL);
+	cd_return_if_fail (hProperties != NULL);
 	
 	v = (GValue *)g_hash_table_lookup (hProperties, "Speed");
 	if (v != NULL && G_VALUE_HOLDS_UINT (v))
@@ -608,7 +608,7 @@ void cd_NetworkMonitor_get_access_point_properties (void)
 {
 	//\_____________ On recupere les proprietes associees.
 	GHashTable *hProperties = cairo_dock_dbus_get_all_properties (myData.dbus_proxy_ActiveAccessPoint_prop, "org.freedesktop.NetworkManager.AccessPoint");
-	g_return_if_fail (hProperties != NULL);
+	cd_return_if_fail (hProperties != NULL);
 	
 	myData.iQuality = WIFI_QUALITY_NO_SIGNAL;
 	cd_NetworkMonitor_fetch_access_point_properties (hProperties);

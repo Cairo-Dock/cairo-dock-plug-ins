@@ -149,7 +149,7 @@ void cd_xkbd_update_icon (const gchar *cGroupName, const gchar *cShortGroupName,
 
 gboolean cd_xkbd_render_step_opengl (Icon *pIcon, GldiModuleInstance *myApplet)
 {
-	g_return_val_if_fail (myData.pCurrentImage != NULL, FALSE);
+	cd_return_val_if_fail (myData.pCurrentImage != NULL, FALSE);
 	CD_APPLET_ENTER;
 	double f = CD_APPLET_GET_TRANSITION_FRACTION ();
 	cd_debug ("%s (%.2f; %.2fx%.2f)", __func__, f, myIcon->fWidth, myIcon->fHeight);

@@ -272,7 +272,7 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 
 void cd_shortcuts_remove_one_bookmark (const gchar *cURI, GldiModuleInstance *myApplet)
 {
-	g_return_if_fail (cURI != NULL);
+	cd_return_if_fail (cURI != NULL);
 	cd_message ("%s (%s)", __func__, cURI);
 	
 	gchar *cContent = NULL;
@@ -336,7 +336,7 @@ void cd_shortcuts_remove_one_bookmark (const gchar *cURI, GldiModuleInstance *my
 
 void cd_shortcuts_rename_one_bookmark (const gchar *cURI, const gchar *cName, GldiModuleInstance *myApplet)
 {
-	g_return_if_fail (cURI != NULL);
+	cd_return_if_fail (cURI != NULL);
 	cd_message ("%s (%s, %s)", __func__, cURI, cName);
 	
 	gchar *cContent = NULL;
@@ -390,7 +390,7 @@ void cd_shortcuts_rename_one_bookmark (const gchar *cURI, const gchar *cName, Gl
 
 void cd_shortcuts_add_one_bookmark (const gchar *cURI, GldiModuleInstance *myApplet)
 {
-	g_return_if_fail (cURI != NULL);
+	cd_return_if_fail (cURI != NULL);
 	cd_message ("%s (%s)", __func__, cURI);
 	
 	// see if we need to add a new line before the new URI.

@@ -155,7 +155,7 @@ static void _on_drop_data (const gchar *cMyData)
 		// ... but the applet will support the most common
 		
 		cFilePath = g_filename_from_uri (cMyData, NULL, NULL);  // switch to UTF-8.
-		g_return_if_fail (cFilePath != NULL);
+		cd_return_if_fail (cFilePath != NULL);
 		
 		if (strchr(cFilePath, ',') != NULL) // if there is a comma, curl doesn't like it
 		{
@@ -242,7 +242,7 @@ static void _on_drop_data (const gchar *cMyData)
 
 static void _get_image (GtkClipboard *clipboard, GdkPixbuf *pixbuf, gpointer data)
 {
-	g_return_if_fail (pixbuf != NULL);
+	cd_return_if_fail (pixbuf != NULL);
 	if (myData.cTmpFilePath != NULL)
 	{
 		cd_warning ("Please wait the current upload is finished before starting a new one.");
@@ -265,14 +265,14 @@ static void _get_image (GtkClipboard *clipboard, GdkPixbuf *pixbuf, gpointer dat
 		NULL,
 		NULL);
 	CD_APPLET_LEAVE_IF_FAIL (bSaved);
-	//g_return_if_fail (bSaved);
+	//cd_return_if_fail (bSaved);
 	
 	cd_dnd2share_launch_upload (myData.cTmpFilePath, CD_TYPE_IMAGE);
 	CD_APPLET_LEAVE ();
 }
 static void _get_text (GtkClipboard *clipboard, const gchar *cText, gpointer data)
 {
-	g_return_if_fail (cText != NULL);
+	cd_return_if_fail (cText != NULL);
 	CD_APPLET_ENTER;
 	gchar *cFilePath = NULL;
 	const gchar *cDropData = NULL;
@@ -289,7 +289,7 @@ static void _send_clipboard (GtkMenuItem *menu_item, gpointer *data)
 	CD_APPLET_ENTER;
 	GtkClipboard *pClipBoard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
 	gboolean bDataAvailable = gtk_clipboard_wait_is_image_available (pClipBoard);
-	g_return_if_fail (myIcon != NULL);  // protection, this function is blocked but the mainloop continue to run
+	cd_return_if_fail (myIcon != NULL);  // protection, this function is blocked but the mainloop continue to run
 	if (bDataAvailable)
 	{
 		gtk_clipboard_request_image (pClipBoard, (GtkClipboardImageReceivedFunc) _get_image, data);
@@ -297,7 +297,7 @@ static void _send_clipboard (GtkMenuItem *menu_item, gpointer *data)
 		//return;
 	}
 	bDataAvailable = gtk_clipboard_wait_is_text_available (pClipBoard);
-	g_return_if_fail (myIcon != NULL);
+	cd_return_if_fail (myIcon != NULL);
 	if (bDataAvailable)
 	{
 		gtk_clipboard_request_text (pClipBoard, (GtkClipboardTextReceivedFunc) _get_text, data);
@@ -360,7 +360,7 @@ CD_APPLET_ON_SCROLL_BEGIN
 	g_free (myData.cLastURL);
 	myData.cLastURL = NULL;
 	
-	g_return_val_if_fail (pItem != NULL, GLDI_NOTIFICATION_LET_PASS);  // parano
+	cd_return_val_if_fail (pItem != NULL, GLDI_NOTIFICATION_LET_PASS);  // parano
 	
 	myData.cLastURL = g_strdup (cd_dnd2share_get_prefered_url_from_item (pItem));
 	if (myConfig.bDisplayLastImage)

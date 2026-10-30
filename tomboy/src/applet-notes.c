@@ -51,19 +51,19 @@ extern struct tm *localtime_r (const time_t *timer, struct tm *tp);
 
 static Icon *_cd_tomboy_find_note_from_uri (const gchar *cNoteURI)
 {
-	g_return_val_if_fail (cNoteURI != NULL, NULL);
+	cd_return_val_if_fail (cNoteURI != NULL, NULL);
 	return g_hash_table_lookup (myData.hNoteTable, cNoteURI);
 }
 
 static void _cd_tomboy_register_note (Icon *pIcon)
 {
-	g_return_if_fail (pIcon != NULL && pIcon->cCommand != NULL);
+	cd_return_if_fail (pIcon != NULL && pIcon->cCommand != NULL);
 	g_hash_table_insert (myData.hNoteTable, pIcon->cCommand, pIcon);
 }
 
 static void _cd_tomboy_unregister_note (Icon *pIcon)
 {
-	g_return_if_fail (pIcon != NULL && pIcon->cCommand != NULL);
+	cd_return_if_fail (pIcon != NULL && pIcon->cCommand != NULL);
 	g_hash_table_remove (myData.hNoteTable, pIcon->cCommand);
 }
 
@@ -162,7 +162,7 @@ GList *cd_tomboy_find_notes_with_tag (const gchar *cTag)
 
 GList *cd_tomboy_find_notes_with_contents (const gchar **cContents)
 {
-	g_return_val_if_fail (cContents != NULL, NULL);
+	cd_return_val_if_fail (cContents != NULL, NULL);
 	GList *pList = CD_APPLET_MY_ICONS_LIST;
 	GList *pMatchList = NULL;
 	Icon *icon;
@@ -374,7 +374,7 @@ void cd_notes_store_add_note (CDNote *pNote)
 void cd_notes_store_remove_note (const gchar *cNoteID)
 {
 	Icon *pIcon = _cd_tomboy_find_note_from_uri (cNoteID);
-	g_return_if_fail (pIcon != NULL);
+	cd_return_if_fail (pIcon != NULL);
 	
 	_cd_tomboy_unregister_note (pIcon);
 	
@@ -391,7 +391,7 @@ static const gchar * _get_display_title (const gchar *cTitle)
 void cd_notes_store_update_note (CDNote *pUpdatedNote)
 {
 	Icon *pIcon = _cd_tomboy_find_note_from_uri (pUpdatedNote->cID);
-	g_return_if_fail (pIcon != NULL);
+	cd_return_if_fail (pIcon != NULL);
 	
 	cd_debug ("  %s -> %s", pUpdatedNote->cTitle, pIcon->cName);
 	if (g_strcmp0 (pUpdatedNote->cTitle, pIcon->cName) != 0)  // nouveau titre.
@@ -416,7 +416,7 @@ void cd_notes_store_update_note (CDNote *pUpdatedNote)
 		if (pIcon->image.pSurface)
 		{
 			cairo_t *pIconContext = cairo_dock_begin_draw_icon_cairo (pIcon, 0, NULL);
-			g_return_if_fail (pIconContext != NULL);
+			cd_return_if_fail (pIconContext != NULL);
 			if (myData.pSurfaceNote == NULL)
 			{
 				int iWidth, iHeight;

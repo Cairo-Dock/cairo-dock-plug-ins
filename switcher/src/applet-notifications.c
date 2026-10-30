@@ -390,7 +390,7 @@ gboolean on_change_desktop (GldiModuleInstance *myApplet)
 	{
 		GldiContainer *pContainer = (myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer);
 		CD_APPLET_LEAVE_IF_FAIL (pContainer != NULL, GLDI_NOTIFICATION_LET_PASS);
-		//g_return_val_if_fail (pContainer != NULL, GLDI_NOTIFICATION_LET_PASS);
+		//cd_return_val_if_fail (pContainer != NULL, GLDI_NOTIFICATION_LET_PASS);
 		
 		if (myDock && myConfig.bDisplayNumDesk)
 			CD_APPLET_REDRAW_MY_ICON;

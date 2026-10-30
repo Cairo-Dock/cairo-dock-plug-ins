@@ -61,7 +61,7 @@ CD_APPLET_ON_MIDDLE_CLICK_END
 
 static void _cd_weblets_set_current_URI (GldiModuleInstance *myApplet, const gchar *cURI)
 {
-	g_return_if_fail (cURI != NULL);
+	cd_return_if_fail (cURI != NULL);
 	
 	// on se souvient de la derniere URL chargee.
 	g_free (myConfig.cURI_to_load);

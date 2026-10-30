@@ -130,7 +130,7 @@ void cd_weather_show_forecast_dialog (GldiModuleInstance *myApplet, Icon *pIcon)
 	
 	// present the day's forecast.
 	int iNumDay = ((int) pIcon->fOrder) / 2;
-	g_return_if_fail (iNumDay < myConfig.iNbDays);
+	cd_return_if_fail (iNumDay < myConfig.iNbDays);
 	
 	Day *day = &myData.wdata.days[iNumDay];
 	gldi_dialog_show_temporary_with_icon_printf ("%s (%s) : %s\n %s : %s%s -> %s%s\n %s : %s",

@@ -230,7 +230,7 @@ static GtkListStore *_make_frequency_list_store (void)
 	gtk_tree_model_get (GTK_TREE_MODEL (model), &it, CD_TASK_ID, &cID, -1);\
 	CDClockTask *pTask = cd_clock_get_task_by_id (cID, myApplet);\
 	g_free (cID);\
-	g_return_if_fail (pTask != NULL);
+	cd_return_if_fail (pTask != NULL);
 	
 static void _on_change_title (GtkCellRendererText * cell, gchar * path_string, gchar * new_text, GldiModuleInstance *myApplet)
 {

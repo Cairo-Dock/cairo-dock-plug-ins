@@ -34,7 +34,7 @@ void penguin_move_in_dock (GldiModuleInstance *myApplet)
 		return ;
 	
 	PenguinAnimation *pAnimation = penguin_get_current_animation ();
-	g_return_if_fail (pAnimation != NULL);
+	cd_return_if_fail (pAnimation != NULL);
 	int iPreviousPositionX = myData.iCurrentPositionX, iPreviousPositionY = myData.iCurrentPositionY;
 	
 	Icon *pFirstDrawnIcon = cairo_dock_get_first_icon (myDock->icons);
@@ -83,7 +83,7 @@ void penguin_move_in_dock (GldiModuleInstance *myApplet)
 
 static void _penguin_draw_texture (GldiModuleInstance *myApplet, PenguinAnimation *pAnimation, double fOffsetX, double fOffsetY, double fScale)
 {
-	g_return_if_fail (pAnimation->iTexture != 0);
+	cd_return_if_fail (pAnimation->iTexture != 0);
 	int iIconWidth, iIconHeight;
 	CD_APPLET_GET_MY_ICON_EXTENT (&iIconWidth, &iIconHeight);
 	
@@ -128,7 +128,7 @@ void penguin_draw_on_dock (GldiModuleInstance *myApplet, GldiContainer *pContain
 	if (pAnimation == NULL)
 		return ;
 	
-	g_return_if_fail (pAnimation->pSurfaces != NULL);
+	cd_return_if_fail (pAnimation->pSurfaces != NULL);
 	cairo_surface_t *pSurface = pAnimation->pSurfaces[myData.iCurrentDirection][myData.iCurrentFrame];
 	
 	cairo_save (pCairoContext);
@@ -177,7 +177,7 @@ void penguin_move_in_icon (GldiModuleInstance *myApplet)
 		return ;
 	
 	PenguinAnimation *pAnimation = penguin_get_current_animation ();
-	g_return_if_fail (pAnimation != NULL);
+	cd_return_if_fail (pAnimation != NULL);
 	
 	double fScale = (pAnimation->iNbFrames > 1 || pAnimation->iSpeed != 0 || pAnimation->iAcceleration != 0 ? myIcon->fScale : 1.);  // s'il est a l'arret on le met a la taille de l'icone au repos.
 	int iWidth = myIcon->fWidth / myDock->container.fRatio * fScale;
@@ -196,7 +196,7 @@ void penguin_move_in_icon (GldiModuleInstance *myApplet)
 		int iIconWidth, iIconHeight;
 		CD_APPLET_GET_MY_ICON_EXTENT (&iIconWidth, &iIconHeight);
 		
-		g_return_if_fail (pAnimation->iTexture != 0);
+		cd_return_if_fail (pAnimation->iTexture != 0);
 		double f = (1 + myIconsParam.fAmplitude) / fScale;
 		double x, y;  // centre du pingouin, en coordonnées absolues.
 		x = myData.iCurrentPositionX - iXMin - iIconWidth/2 + pAnimation->iFrameWidth/2*f;
@@ -217,9 +217,9 @@ void penguin_move_in_icon (GldiModuleInstance *myApplet)
 	}
 	else
 	{
-		g_return_if_fail (pAnimation->pSurfaces != NULL);
+		cd_return_if_fail (pAnimation->pSurfaces != NULL);
 		cairo_surface_t *pSurface = pAnimation->pSurfaces[myData.iCurrentDirection][myData.iCurrentFrame];
-		g_return_if_fail (pSurface != NULL);
+		cd_return_if_fail (pSurface != NULL);
 		
 		CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN_CAIRO ();
 		//\________________ On efface l'ancienne image.

@@ -61,7 +61,7 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock, cairo_t
 			
 			cairo_translate (pCairoContext, 0, pData->iDropIndicatorOffset);
 			cairo_pattern_t* pPattern = cairo_pattern_create_for_surface (myData.dropIndicator.pSurface);
-			g_return_val_if_fail (cairo_pattern_status (pPattern) == CAIRO_STATUS_SUCCESS, GLDI_NOTIFICATION_LET_PASS);
+			cd_return_val_if_fail (cairo_pattern_status (pPattern) == CAIRO_STATUS_SUCCESS, GLDI_NOTIFICATION_LET_PASS);
 			cairo_pattern_set_extend (pPattern, CAIRO_EXTEND_REPEAT);
 			cairo_set_source (pCairoContext, pPattern);
 			
@@ -70,7 +70,7 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock, cairo_t
 				0.,
 				0.,
 				2*myData.dropIndicator.iHeight);  // de haut en bas.
-			g_return_val_if_fail (cairo_pattern_status (pGradationPattern) == CAIRO_STATUS_SUCCESS, GLDI_NOTIFICATION_LET_PASS);
+			cd_return_val_if_fail (cairo_pattern_status (pGradationPattern) == CAIRO_STATUS_SUCCESS, GLDI_NOTIFICATION_LET_PASS);
 		
 			cairo_pattern_set_extend (pGradationPattern, CAIRO_EXTEND_NONE);
 			cairo_pattern_add_color_stop_rgba (pGradationPattern,

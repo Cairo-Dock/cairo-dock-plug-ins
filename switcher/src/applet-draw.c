@@ -171,7 +171,7 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 	if (myData.switcher.iNbColumns == 0 || myData.switcher.iNbLines == 0)  // may happen in desklet mode with a cube desktop, when the desklet is still 0x0.
 		return;
 	CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN_CAIRO ();
-	///g_return_if_fail (myDrawContext != NULL);
+	///cd_return_if_fail (myDrawContext != NULL);
 	//g_print ("%s (%d;%d)\n", __func__, myData.switcher.iCurrentLine, myData.switcher.iCurrentColumn);
 	// On efface l'icone.
 	///cairo_dock_erase_cairo_context (myDrawContext);

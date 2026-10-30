@@ -92,7 +92,7 @@ static void set_icon_size (CairoDesklet *pDesklet, Icon *pIcon)
 
 static void calculate_icons (CairoDesklet *pDesklet)
 {
-	g_return_if_fail (pDesklet != NULL);
+	cd_return_if_fail (pDesklet != NULL);
 	CDTreeParameters *pTree = (CDTreeParameters *) pDesklet->pRendererData;
 	if (pTree == NULL)
 		return ;

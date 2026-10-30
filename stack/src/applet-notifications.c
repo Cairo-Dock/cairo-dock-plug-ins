@@ -71,7 +71,7 @@ CD_APPLET_ON_CLICK_END
 //\___________ Define here the entries you want to add to the menu when the user right-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons. The menu where you can add your entries is available throught the macro CD_APPLET_MY_MENU; you can add sub-menu to it if you want.
 static void _on_text_received (GtkClipboard *clipboard, const gchar *text, GldiModuleInstance *myApplet)
 {
-	g_return_if_fail (text != NULL);
+	cd_return_if_fail (text != NULL);
 	CD_APPLET_ENTER;
 	cd_stack_create_and_load_item (myApplet, text);
 	CD_APPLET_LEAVE ();
@@ -273,12 +273,12 @@ gboolean cd_stack_on_drop_data (gpointer data, const gchar *cReceivedData, Icon 
 	
 	// grab the first instance of the Stack applet (launch it if necessary)
 	GldiModule *pModule = gldi_module_get ("stack");
-	g_return_val_if_fail (pModule != NULL, GLDI_NOTIFICATION_LET_PASS);
+	cd_return_val_if_fail (pModule != NULL, GLDI_NOTIFICATION_LET_PASS);
 	
 	if (pModule->pInstancesList == NULL)  // no stack yet
 	{
 		gldi_module_activate (pModule);
-		g_return_val_if_fail (pModule->pInstancesList != NULL, GLDI_NOTIFICATION_LET_PASS);
+		cd_return_val_if_fail (pModule->pInstancesList != NULL, GLDI_NOTIFICATION_LET_PASS);
 	}
 	
 	// add the item to the instance.

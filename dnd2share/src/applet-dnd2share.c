@@ -454,7 +454,7 @@ void cd_dnd2share_launch_upload (const gchar *cFilePath, CDFileType iFileType)
 	pSharedMemory->iLimitRate = myConfig.iLimitRate;
 
 	CDSiteBackend *pCurrentBackend = myData.pCurrentBackend[pSharedMemory->iCurrentFileType];
-	g_return_if_fail (pCurrentBackend != NULL);
+	cd_return_if_fail (pCurrentBackend != NULL);
 	pSharedMemory->upload = pCurrentBackend->upload;
 	pSharedMemory->iNbUrls = pCurrentBackend->iNbUrls;
 
@@ -473,7 +473,7 @@ void cd_dnd2share_launch_upload (const gchar *cFilePath, CDFileType iFileType)
 
 void cd_dnd2share_clear_working_directory (void)
 {
-	g_return_if_fail (myData.cWorkingDirPath != NULL && *myData.cWorkingDirPath == '/');
+	cd_return_if_fail (myData.cWorkingDirPath != NULL && *myData.cWorkingDirPath == '/');
 	cairo_dock_fm_empty_directory (myData.cWorkingDirPath, TRUE, NULL, NULL);
 	
 	gchar *cConfFilePath = g_strdup_printf ("%s/%s", myData.cWorkingDirPath, "history.conf");
@@ -494,7 +494,7 @@ static gboolean _exclude_conf (const char *fn, G_GNUC_UNUSED gconstpointer data)
 
 void cd_dnd2share_clear_copies_in_working_directory (void)
 {
-	g_return_if_fail (myData.cWorkingDirPath != NULL && *myData.cWorkingDirPath == '/');
+	cd_return_if_fail (myData.cWorkingDirPath != NULL && *myData.cWorkingDirPath == '/');
 	
 	cairo_dock_fm_empty_directory (myData.cWorkingDirPath, TRUE, _exclude_conf, NULL);
 }
@@ -604,7 +604,7 @@ void cd_dnd2share_set_current_url_from_item (CDUploadedItem *pItem)
 
 void cd_dnd2share_remove_one_item (CDUploadedItem *pItem)
 {
-	g_return_if_fail (pItem != NULL);
+	cd_return_if_fail (pItem != NULL);
 
 	// we remove the corresponding group in the history file
 	gchar *cConfFilePath = g_strdup_printf ("%s/%s", myData.cWorkingDirPath, "history.conf");

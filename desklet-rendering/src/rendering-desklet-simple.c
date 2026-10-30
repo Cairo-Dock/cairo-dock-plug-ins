@@ -54,13 +54,13 @@ static void set_icon_size (CairoDesklet *pDesklet, Icon *pIcon)
 
 static void calculate_icons (CairoDesklet *pDesklet)
 {
-	g_return_if_fail (pDesklet != NULL);
+	cd_return_if_fail (pDesklet != NULL);
 	CDSimpleParameters *pSimple = (CDSimpleParameters *) pDesklet->pRendererData;
 	if (pSimple == NULL)
 		return ;
 	
 	Icon *pIcon = pDesklet->pIcon;
-	g_return_if_fail (pIcon != NULL);
+	cd_return_if_fail (pIcon != NULL);
 	pIcon->fWidth = MAX (1, pDesklet->container.iWidth - pSimple->iLeftMargin - pSimple->iRightMargin);
 	pIcon->fHeight = MAX (1, pDesklet->container.iHeight - pSimple->iTopMargin - pSimple->iBottomMargin);
 	cairo_dock_icon_set_allocated_size (pIcon, pIcon->fWidth, pIcon->fHeight);

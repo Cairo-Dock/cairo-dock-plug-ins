@@ -224,7 +224,7 @@ void cd_disks_get_data (GldiModuleInstance *myApplet)
 		gldi_task_downgrade_frequency (myData.pPeriodicTask);
 		cd_warning("Disks : No disk defined");
 	}
-	g_return_if_fail ((fTimeElapsed > 0.1) || (myConfig.iNumberParts + myData.iNumberDisks > 0));
+	cd_return_if_fail ((fTimeElapsed > 0.1) || (myConfig.iNumberParts + myData.iNumberDisks > 0));
 	
 	if (myConfig.iNumberParts > 0)
 	{

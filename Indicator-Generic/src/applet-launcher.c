@@ -37,7 +37,7 @@ static gboolean _is_an_exception (const gchar *cIndicatorName, gchar **cExceptio
 
 static void _on_file_event (CairoDockFMEventType iEventType, const gchar *cURI, GldiModuleInstance *myApplet)
 {
-	g_return_if_fail (cURI != NULL);
+	cd_return_if_fail (cURI != NULL);
 	CD_APPLET_ENTER;
 
 	/* No need to reload all indicators if one is modified:
