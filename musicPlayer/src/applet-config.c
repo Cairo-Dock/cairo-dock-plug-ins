@@ -189,7 +189,7 @@ void cd_musicplayer_load_custom_widget (GldiModuleInstance *myApplet, GKeyFile* 
 	if (s_pComboBox) return; // already loaded
 	
 	CairoDockGroupKeyWidget *pGroupKeyWidget = cairo_dock_gui_find_group_key_widget_in_list (pWidgetList, "Configuration", "current-player-selector");
-	g_return_if_fail (pGroupKeyWidget != NULL);
+	cd_return_if_fail (pGroupKeyWidget != NULL);
 	
 	if (s_pInfo) cd_musicplayer_info_free (s_pInfo);
 	s_pInfo = g_new0 (CDMPInfo, 1);

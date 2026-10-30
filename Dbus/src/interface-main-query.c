@@ -44,7 +44,7 @@ static gboolean _prepare_query (CDQuery *pQuery, const gchar *cKey, const gchar 
 	memset (pQuery, 0, sizeof (CDQuery));
 	pQuery->iPosition = -1;
 	
-	g_return_val_if_fail (cKey != NULL, FALSE);
+	cd_return_val_if_fail (cKey != NULL, FALSE);
 	if (cValue == NULL)  // use "none" keyword to look for "icons that don't have key".
 		return FALSE;
 	
@@ -281,7 +281,7 @@ static GList *_find_matching_icons_for_key (const gchar *cKey, const gchar *cVal
 	//g_print ("  %s (%s, %s)\n", __func__, cKey, cValue);
 	CDQuery query;
 	gboolean bValidQuery = _prepare_query (&query, cKey, cValue);
-	g_return_val_if_fail (bValidQuery, NULL);
+	cd_return_val_if_fail (bValidQuery, NULL);
 	
 	if (query.iPosition >= 0)
 	{
@@ -296,11 +296,11 @@ static GList *_find_matching_icons_for_key (const gchar *cKey, const gchar *cVal
 }
 static GList *_find_matching_icons_for_test (gchar *cTest)
 {
-	g_return_val_if_fail (cTest != NULL, NULL);
+	cd_return_val_if_fail (cTest != NULL, NULL);
 	//g_print (" %s (%s)\n", __func__, cTest);
 	
 	gchar *str = strchr (cTest, '=');
-	g_return_val_if_fail (str != NULL, NULL);
+	cd_return_val_if_fail (str != NULL, NULL);
 	
 	*str = '\0';
 	gchar *cKey = g_strstrip ((gchar*)cTest);  // g_strstrip modifies the string in place (by moving the rest of the characters forward and cutting the trailing spaces)
@@ -311,7 +311,7 @@ static GList *_find_matching_icons_for_test (gchar *cTest)
 
 GList *cd_dbus_find_matching_icons (gchar *cQuery)
 {
-	g_return_val_if_fail (cQuery != NULL, NULL);
+	cd_return_val_if_fail (cQuery != NULL, NULL);
 	
 	gchar *str;
 	str = strchr (cQuery, '|');  // a && b || c && d <=> (a && b) || (c && d)
@@ -397,7 +397,7 @@ static void _check_dock_matching (const gchar *cDockName, CairoDock *pDock, CDQu
 static gboolean _check_desklet_matching (CairoDesklet *pDesklet, CDQuery *pQuery)
 {
 	Icon *pIcon = pDesklet->pIcon;
-	g_return_val_if_fail (CAIRO_DOCK_ICON_TYPE_IS_APPLET (pIcon), FALSE);
+	cd_return_val_if_fail (CAIRO_DOCK_ICON_TYPE_IS_APPLET (pIcon), FALSE);
 	
 	const gchar *cConfFile = pIcon->pModuleInstance->cConfFilePath;
 	const gchar *cName = pIcon->pModuleInstance->pModule->pVisitCard->cModuleName;
@@ -416,7 +416,7 @@ static GList *_find_matching_containers_for_key (const gchar *cKey, const gchar 
 	//g_print ("  %s (%s, %s)\n", __func__, cKey, cValue);
 	CDQuery query;
 	gboolean bValidQuery = _prepare_query (&query, cKey, cValue);
-	g_return_val_if_fail (bValidQuery, NULL);
+	cd_return_val_if_fail (bValidQuery, NULL);
 	
 	gldi_docks_foreach ((GHFunc) _check_dock_matching, &query);
 	gldi_desklets_foreach ((GldiDeskletForeachFunc) _check_desklet_matching, &query);
@@ -425,11 +425,11 @@ static GList *_find_matching_containers_for_key (const gchar *cKey, const gchar 
 }
 static GList *_find_matching_containers_for_test (gchar *cTest)
 {
-	g_return_val_if_fail (cTest != NULL, NULL);
+	cd_return_val_if_fail (cTest != NULL, NULL);
 	//g_print (" %s (%s)\n", __func__, cTest);
 	
 	gchar *str = strchr (cTest, '=');
-	g_return_val_if_fail (str != NULL, NULL);
+	cd_return_val_if_fail (str != NULL, NULL);
 	
 	*str = '\0';
 	gchar *cKey = g_strstrip ((gchar*)cTest);  // g_strstrip modifies the string in place (by moving the rest of the characters forward and cutting the trailing spaces)
@@ -440,7 +440,7 @@ static GList *_find_matching_containers_for_test (gchar *cTest)
 
 GList *cd_dbus_find_matching_containers (gchar *cQuery)
 {
-	g_return_val_if_fail (cQuery != NULL, NULL);
+	cd_return_val_if_fail (cQuery != NULL, NULL);
 	//g_print ("%s (%s)\n", __func__, cQuery);
 	
 	gchar *str;
@@ -482,7 +482,7 @@ static GList *_find_matching_modules_for_key (const gchar *cKey, const gchar *cV
 	//g_print ("  %s (%s, %s)\n", __func__, cKey, cValue);
 	CDQuery query;
 	gboolean bValidQuery = _prepare_query (&query, cKey, cValue);
-	g_return_val_if_fail (bValidQuery, NULL);
+	cd_return_val_if_fail (bValidQuery, NULL);
 	
 	if (query.cType)
 	{
@@ -515,11 +515,11 @@ static GList *_find_matching_modules_for_key (const gchar *cKey, const gchar *cV
 }
 static GList *_find_matching_modules_for_test (gchar *cTest)
 {
-	g_return_val_if_fail (cTest != NULL, NULL);
+	cd_return_val_if_fail (cTest != NULL, NULL);
 	//g_print (" %s (%s)\n", __func__, cTest);
 	
 	gchar *str = strchr (cTest, '=');
-	g_return_val_if_fail (str != NULL, NULL);
+	cd_return_val_if_fail (str != NULL, NULL);
 	
 	*str = '\0';
 	gchar *cKey = g_strstrip ((gchar*)cTest);  // g_strstrip modifies the string in place (by moving the rest of the characters forward and cutting the trailing spaces)
@@ -530,7 +530,7 @@ static GList *_find_matching_modules_for_test (gchar *cTest)
 
 GList *cd_dbus_find_matching_modules (gchar *cQuery)
 {
-	g_return_val_if_fail (cQuery != NULL, NULL);
+	cd_return_val_if_fail (cQuery != NULL, NULL);
 	//g_print ("%s (%s)\n", __func__, cQuery);
 	
 	gchar *str;
@@ -608,7 +608,7 @@ static GList *_find_matching_module_instances_for_key (const gchar *cKey, const 
 	//g_print ("  %s (%s, %s)\n", __func__, cKey, cValue);
 	CDQuery query;
 	gboolean bValidQuery = _prepare_query (&query, cKey, cValue);
-	g_return_val_if_fail (bValidQuery, NULL);
+	cd_return_val_if_fail (bValidQuery, NULL);
 	
 	gldi_module_foreach ((GHRFunc)_check_module_instance_matching, &query);
 	
@@ -616,11 +616,11 @@ static GList *_find_matching_module_instances_for_key (const gchar *cKey, const 
 }
 static GList *_find_matching_module_instances_for_test (gchar *cTest)
 {
-	g_return_val_if_fail (cTest != NULL, NULL);
+	cd_return_val_if_fail (cTest != NULL, NULL);
 	//g_print (" %s (%s)\n", __func__, cTest);
 	
 	gchar *str = strchr (cTest, '=');
-	g_return_val_if_fail (str != NULL, NULL);
+	cd_return_val_if_fail (str != NULL, NULL);
 	
 	*str = '\0';
 	gchar *cKey = g_strstrip ((gchar*)cTest);  // g_strstrip modifies the string in place (by moving the rest of the characters forward and cutting the trailing spaces)
@@ -631,7 +631,7 @@ static GList *_find_matching_module_instances_for_test (gchar *cTest)
 
 GList *cd_dbus_find_matching_module_instances (gchar *cQuery)
 {
-	g_return_val_if_fail (cQuery != NULL, NULL);
+	cd_return_val_if_fail (cQuery != NULL, NULL);
 	//g_print ("%s (%s)\n", __func__, cQuery);
 	
 	gchar *str;

@@ -100,7 +100,7 @@ static gchar * _penguin_get_animation_properties (GKeyFile *pKeyFile, const gcha
 
 void penguin_load_theme (GldiModuleInstance *myApplet, gchar *cThemePath)
 {
-	g_return_if_fail (cThemePath != NULL);
+	cd_return_if_fail (cThemePath != NULL);
 	cd_message ("%s (%s)", __func__, cThemePath);
 	
 	//\___________________ On ouvre le fichier de conf.
@@ -128,7 +128,7 @@ void penguin_load_theme (GldiModuleInstance *myApplet, gchar *cThemePath)
 	
 	gsize length = 0;
 	gchar **pGroupList = g_key_file_get_groups (pKeyFile, &length);
-	g_return_if_fail (length > 0);
+	cd_return_if_fail (length > 0);
 	
 	g_free (myData.pAnimations);
 	myData.iNbAnimations = 0;

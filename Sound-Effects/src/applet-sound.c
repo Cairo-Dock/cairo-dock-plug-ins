@@ -102,7 +102,7 @@ static gboolean _parse_header (CDSoundFile *pSoundFile)
 			break;
 		ptr += sizeof (WaveChunkHeader) + len;
 	} while (ptr < end);
-	g_return_val_if_fail  (ptr < end, FALSE);
+	cd_return_val_if_fail  (ptr < end, FALSE);
 
 	ptr += sizeof (WaveChunkHeader);
 	WaveFmtBody *f = (WaveFmtBody*) ptr;
@@ -190,7 +190,7 @@ static gboolean _parse_header (CDSoundFile *pSoundFile)
 			break;
 		ptr += sizeof (WaveChunkHeader) + len;
 	};
-	g_return_val_if_fail  (ptr < end, FALSE);
+	cd_return_val_if_fail  (ptr < end, FALSE);
 	
 	cd_debug ("len = %d; file size = %d", len, pSoundFile->length);
 	pSoundFile->size = len;
@@ -218,7 +218,7 @@ CDSoundFile *cd_sound_load_sound_file (const gchar *cFilePath)
 		&buffer,
 		&length,
 		NULL);
-	g_return_val_if_fail (buffer != NULL, NULL);
+	cd_return_val_if_fail (buffer != NULL, NULL);
 	
 	CDSoundFile *pSoundFile = g_new0 (CDSoundFile, 1);
 	pSoundFile->buffer = buffer;
@@ -453,7 +453,7 @@ static gboolean _finish_play_sound (CDSharedMemory *pSharedMemory)
 static void _play_sound_async (CDSharedMemory *pSharedMemory)
 {
 	CDSoundFile *pSoundFile = pSharedMemory->pSoundFile;
-	g_return_if_fail (pSoundFile != NULL);
+	cd_return_if_fail (pSoundFile != NULL);
 	// open the device
 	snd_pcm_t *handle = NULL;
 	int err = snd_pcm_open (&handle, "default", SND_PCM_STREAM_PLAYBACK, 0);  // open-mode = 0

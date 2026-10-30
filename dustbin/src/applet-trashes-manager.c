@@ -87,7 +87,7 @@ static gboolean cd_dustbin_display_result (CDSharedMemory *pSharedMemory)
 
 static void cd_dustbin_on_file_event (CairoDockFMEventType iEventType, const gchar *cURI, GldiModuleInstance *myApplet)
 {
-	g_return_if_fail (cURI != NULL);
+	cd_return_if_fail (cURI != NULL);
 	//g_print ("%s (%s, %d)\n", __func__, cURI, myData.iMeasure);
 	switch (iEventType)
 	{

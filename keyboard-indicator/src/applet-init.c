@@ -55,7 +55,7 @@ static void _load_bg_image (void)
 static gboolean _init (gpointer data)
 {
 	cd_debug ("INIT XKBD");
-	g_return_val_if_fail (myApplet != NULL, FALSE);
+	cd_return_val_if_fail (myApplet != NULL, FALSE);
 	Display *pDisplay = gdk_x11_get_default_xdisplay ();
 	cd_xkbd_init (pDisplay);
 	return FALSE;

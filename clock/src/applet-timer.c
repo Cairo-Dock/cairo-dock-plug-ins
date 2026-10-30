@@ -98,9 +98,9 @@ static void _set_warning_repetition (int iClickedButton, GtkWidget *pInteractive
 {
 	cd_debug ("%s (%d)", __func__, iClickedButton);
 	GList *cl = gtk_container_get_children (GTK_CONTAINER (pInteractiveWidget));
-	g_return_if_fail (cl != NULL && cl->next != NULL);
+	cd_return_if_fail (cl != NULL && cl->next != NULL);
 	GtkWidget *pScale = cl->next->data;
-	g_return_if_fail (pScale != NULL);
+	cd_return_if_fail (pScale != NULL);
 	
 	int dt = gtk_range_get_value (GTK_RANGE (pScale));
 	if (dt == 0 || (iClickedButton != 0 && iClickedButton != -1))
@@ -191,7 +191,7 @@ static gchar *_make_missed_task_message (CDClockTask *pTask, GldiModuleInstance 
 }
 static void _on_next_missed_task (int iClickedButton, GtkWidget *pInteractiveWidget, GldiModuleInstance *myApplet, CairoDialog *pDialog)
 {
-	g_return_if_fail (myData.pMissedTasks != NULL);
+	cd_return_if_fail (myData.pMissedTasks != NULL);
 	//g_print ("%s ()\n", __func__);
 	
 	// acknowledge this task

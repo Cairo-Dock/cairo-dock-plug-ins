@@ -33,7 +33,7 @@
 
 gboolean cd_do_render (gpointer pUserData, GldiContainer *pContainer, cairo_t *pCairoContext)
 {
-	g_return_val_if_fail (!cd_do_session_is_off (), GLDI_NOTIFICATION_LET_PASS);
+	cd_return_val_if_fail (!cd_do_session_is_off (), GLDI_NOTIFICATION_LET_PASS);
 	
 	if (pCairoContext != NULL)
 	{
@@ -50,7 +50,7 @@ gboolean cd_do_render (gpointer pUserData, GldiContainer *pContainer, cairo_t *p
 
 gboolean cd_do_update_container (gpointer pUserData, GldiContainer *pContainer, gboolean *bContinueAnimation)
 {
-	g_return_val_if_fail (!cd_do_session_is_off (), GLDI_NOTIFICATION_LET_PASS);
+	cd_return_val_if_fail (!cd_do_session_is_off (), GLDI_NOTIFICATION_LET_PASS);
 	
 	int iDeltaT = cairo_dock_get_animation_delta_t (pContainer);
 	if (cd_do_session_is_closing ())
@@ -135,7 +135,7 @@ static void _check_dock_is_active (gchar *cDockName, CairoDock *pDock, gboolean 
 }
 gboolean cd_do_check_active_dock (gpointer pUserData, GldiWindowActor *actor)
 {
-	g_return_val_if_fail (cd_do_session_is_running (), GLDI_NOTIFICATION_LET_PASS);
+	cd_return_val_if_fail (cd_do_session_is_running (), GLDI_NOTIFICATION_LET_PASS);
 	
 	if (myData.sCurrentText == NULL)
 		return GLDI_NOTIFICATION_LET_PASS;
@@ -153,7 +153,7 @@ gboolean cd_do_check_active_dock (gpointer pUserData, GldiWindowActor *actor)
 
 gboolean cd_do_key_pressed (gpointer pUserData, GldiContainer *pContainer, guint iKeyVal, guint iModifierType, const gchar *string)
 {
-	g_return_val_if_fail (cd_do_session_is_running (), GLDI_NOTIFICATION_LET_PASS);
+	cd_return_val_if_fail (cd_do_session_is_running (), GLDI_NOTIFICATION_LET_PASS);
 
 	if (myData.sCurrentText == NULL)
 		return GLDI_NOTIFICATION_LET_PASS;

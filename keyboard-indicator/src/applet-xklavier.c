@@ -42,14 +42,14 @@ static void _state_changed (XklEngine *pEngine, XklEngineStateChange type,
 
 		// Get the current num group
 		guint n = xkl_engine_get_num_groups (myData.pEngine);
-		g_return_if_fail (n > 0);
+		cd_return_if_fail (n > 0);
 
 		int iNewGroup = MAX (0, MIN (n-1, state->group));  // workaround for 64bits to avoid strange numbers in 'state'
 		const gchar **pGroupNames = xkl_engine_get_groups_names (myData.pEngine);
-		g_return_if_fail (pGroupNames != NULL);
+		cd_return_if_fail (pGroupNames != NULL);
 
 		cCurrentGroup = pGroupNames[iNewGroup];
-		g_return_if_fail (cCurrentGroup != NULL);
+		cd_return_if_fail (cCurrentGroup != NULL);
 
 		cd_debug (" group name : %s (%d groups)", cCurrentGroup, n);
 
@@ -85,7 +85,7 @@ void cd_xkbd_set_prev_next_group (int iDelta)
 	cd_debug ("keyboard current state : %d;%d +%d", state->group, state->indicators, iDelta);
 	
 	int i = 0, n = xkl_engine_get_num_groups (myData.pEngine);
-	g_return_if_fail (n > 0);
+	cd_return_if_fail (n > 0);
 	int iCurrentGroup = MAX (0, MIN (n-1, state->group));  // on blinde car libxklavier peut bugger en 64bits.
 	const gchar **pGroupNames = xkl_engine_get_groups_names (myData.pEngine);
 	do  // on passe au groupe suivant/precedent en sautant les faux (-).
@@ -184,7 +184,7 @@ void cd_xkbd_force_redraw ()
 void cd_xkbd_init (Display *pDisplay)
 {
 	myData.pEngine = xkl_engine_get_instance (pDisplay);
-	g_return_if_fail (myData.pEngine != NULL);
+	cd_return_if_fail (myData.pEngine != NULL);
 
 	g_signal_connect (myData.pEngine, "X-state-changed",
 		G_CALLBACK(_state_changed), NULL); // notification for the group, we receive nothing for the indicators...
@@ -199,7 +199,7 @@ void cd_xkbd_init (Display *pDisplay)
 
 void cd_xkbd_stop ()
 {
-	g_return_if_fail (myData.pEngine != NULL);
+	cd_return_if_fail (myData.pEngine != NULL);
 
 	xkl_engine_stop_listen (myData.pEngine, XKLL_TRACK_KEYBOARD_STATE);
 

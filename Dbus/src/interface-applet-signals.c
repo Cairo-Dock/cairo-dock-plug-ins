@@ -58,7 +58,7 @@ gboolean cd_dbus_applet_emit_on_click_icon (gpointer data, Icon *pClickedIcon, G
 	
 	//g_print ("%s (%s, %d)\n", __func__, pAppletIcon->pModuleInstance->pModule->pVisitCard->cModuleName, iButtonState);
 	DBusAppletData *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pAppletIcon->pModuleInstance); // note: this never returns NULL
-	g_return_val_if_fail (pDbusApplet->uRegApplet != 0 && pDbusApplet->uRegSubApplet != 0, GLDI_NOTIFICATION_LET_PASS);
+	cd_return_val_if_fail (pDbusApplet->uRegApplet != 0 && pDbusApplet->uRegSubApplet != 0, GLDI_NOTIFICATION_LET_PASS);
 	
 	if (pClickedIcon == pAppletIcon)
 		g_dbus_connection_emit_signal (pDbusApplet->connection, NULL, pDbusApplet->cBusPath, "org.cairodock.CairoDock.applet",
@@ -84,7 +84,7 @@ gboolean cd_dbus_applet_emit_on_middle_click_icon (gpointer data, Icon *pClicked
 	
 	//g_print ("%s (%s)\n", __func__, pAppletIcon->pModuleInstance->pModule->pVisitCard->cModuleName);
 	DBusAppletData *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pAppletIcon->pModuleInstance); // note: this never returns NULL
-	g_return_val_if_fail (pDbusApplet->uRegApplet != 0 && pDbusApplet->uRegSubApplet != 0, GLDI_NOTIFICATION_LET_PASS);
+	cd_return_val_if_fail (pDbusApplet->uRegApplet != 0 && pDbusApplet->uRegSubApplet != 0, GLDI_NOTIFICATION_LET_PASS);
 	
 	if (pClickedIcon == pAppletIcon)
 		g_dbus_connection_emit_signal (pDbusApplet->connection, NULL, pDbusApplet->cBusPath, "org.cairodock.CairoDock.applet",
@@ -105,7 +105,7 @@ gboolean cd_dbus_applet_emit_on_scroll_icon (gpointer data, Icon *pClickedIcon, 
 	
 	//g_print ("%s (%s, %d)\n", __func__, pAppletIcon->pModuleInstance->pModule->pVisitCard->cModuleName, iDirection);
 	DBusAppletData *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pAppletIcon->pModuleInstance); // note: this never returns NULL
-	g_return_val_if_fail (pDbusApplet->uRegApplet != 0 && pDbusApplet->uRegSubApplet != 0, GLDI_NOTIFICATION_LET_PASS);
+	cd_return_val_if_fail (pDbusApplet->uRegApplet != 0 && pDbusApplet->uRegSubApplet != 0, GLDI_NOTIFICATION_LET_PASS);
 	
 	if (pClickedIcon == pAppletIcon)
 		g_dbus_connection_emit_signal (pDbusApplet->connection, NULL, pDbusApplet->cBusPath, "org.cairodock.CairoDock.applet",
@@ -146,7 +146,7 @@ gboolean cd_dbus_applet_emit_on_build_menu (gpointer data, Icon *pClickedIcon, G
 	
 	//g_print ("%s (%s)\n", __func__, pAppletIcon->pModuleInstance->pModule->pVisitCard->cModuleName);
 	DBusAppletData *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pAppletIcon->pModuleInstance); // note: this never returns NULL
-	g_return_val_if_fail (pDbusApplet->uRegApplet != 0 && pDbusApplet->uRegSubApplet != 0, GLDI_NOTIFICATION_LET_PASS);
+	cd_return_val_if_fail (pDbusApplet->uRegApplet != 0 && pDbusApplet->uRegSubApplet != 0, GLDI_NOTIFICATION_LET_PASS);
 	myData.pCurrentMenuDbusApplet = pDbusApplet;
 	
 	GList *pChildren = gtk_container_get_children (GTK_CONTAINER (pAppletMenu));
@@ -163,7 +163,7 @@ gboolean cd_dbus_applet_emit_on_build_menu (gpointer data, Icon *pClickedIcon, G
 
 void cd_dbus_emit_on_menu_select (GtkMenuItem *pMenuItem, gpointer data)
 {
-	g_return_if_fail (myData.pCurrentMenuDbusApplet != NULL);
+	cd_return_if_fail (myData.pCurrentMenuDbusApplet != NULL);
 	if (GTK_IS_RADIO_MENU_ITEM (pMenuItem))
 	{
 		if (!gtk_check_menu_item_get_active (GTK_CHECK_MENU_ITEM (pMenuItem)))
@@ -262,7 +262,7 @@ gboolean cd_dbus_applet_emit_on_drop_data (G_GNUC_UNUSED gpointer data, const gc
 	
 	cd_debug (" %s --> sur le bus !", cReceivedData);
 	DBusAppletData *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pAppletIcon->pModuleInstance); // note: this never returns NULL
-	g_return_val_if_fail (pDbusApplet->uRegApplet != 0 && pDbusApplet->uRegSubApplet != 0, GLDI_NOTIFICATION_LET_PASS);
+	cd_return_val_if_fail (pDbusApplet->uRegApplet != 0 && pDbusApplet->uRegSubApplet != 0, GLDI_NOTIFICATION_LET_PASS);
 	
 	if (pClickedIcon == pAppletIcon)
 		g_dbus_connection_emit_signal (pDbusApplet->connection, NULL, pDbusApplet->cBusPath, "org.cairodock.CairoDock.applet",
@@ -289,7 +289,7 @@ gboolean cd_dbus_applet_emit_on_change_focus (G_GNUC_UNUSED gpointer data, GldiW
 		if (CAIRO_DOCK_IS_EXTERNAL_APPLET (pPrevActiveIcon))
 		{
 			DBusAppletData *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pPrevActiveIcon->pModuleInstance); // note: this never returns NULL
-			g_return_val_if_fail (pDbusApplet->uRegApplet != 0 && pDbusApplet->uRegSubApplet != 0, GLDI_NOTIFICATION_LET_PASS);
+			cd_return_val_if_fail (pDbusApplet->uRegApplet != 0 && pDbusApplet->uRegSubApplet != 0, GLDI_NOTIFICATION_LET_PASS);
 			g_dbus_connection_emit_signal (pDbusApplet->connection, NULL, pDbusApplet->cBusPath, "org.cairodock.CairoDock.applet",
 				"on_change_focus", g_variant_new ("(b)", FALSE), NULL);
 		}
@@ -305,7 +305,7 @@ gboolean cd_dbus_applet_emit_on_change_focus (G_GNUC_UNUSED gpointer data, GldiW
 		if (CAIRO_DOCK_IS_EXTERNAL_APPLET (pNewActiveIcon))
 		{
 			DBusAppletData *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pNewActiveIcon->pModuleInstance); // note: this never returns NULL
-			g_return_val_if_fail (pDbusApplet->uRegApplet != 0 && pDbusApplet->uRegSubApplet != 0, GLDI_NOTIFICATION_LET_PASS);
+			cd_return_val_if_fail (pDbusApplet->uRegApplet != 0 && pDbusApplet->uRegSubApplet != 0, GLDI_NOTIFICATION_LET_PASS);
 			g_dbus_connection_emit_signal (pDbusApplet->connection, NULL, pDbusApplet->cBusPath, "org.cairodock.CairoDock.applet",
 				"on_change_focus", g_variant_new ("(b)", TRUE), NULL);
 		}
@@ -362,7 +362,7 @@ void cd_dbus_applet_emit_on_answer_buttons (int iClickedButton, GtkWidget *pInte
 void cd_dbus_applet_emit_on_answer_text_entry (int iClickedButton, GtkWidget *pInteractiveWidget, DBusAppletData *pDbusApplet, CairoDialog *pDialog)
 {
 	GtkWidget *pEntry = g_object_get_data (G_OBJECT (pInteractiveWidget), "cd-widget");
-	g_return_if_fail (pEntry != NULL);
+	cd_return_if_fail (pEntry != NULL);
 	
 	const gchar *cText = gtk_entry_get_text (GTK_ENTRY (pEntry));
 	_emit_answer_dialog (pDbusApplet, pDialog, iClickedButton, g_variant_new_string (cText ? cText : ""));
@@ -371,7 +371,7 @@ void cd_dbus_applet_emit_on_answer_text_entry (int iClickedButton, GtkWidget *pI
 void cd_dbus_applet_emit_on_answer_text_view (int iClickedButton, GtkWidget *pInteractiveWidget, DBusAppletData *pDbusApplet, CairoDialog *pDialog)
 {
 	GtkWidget *pTextView = g_object_get_data (G_OBJECT (pInteractiveWidget), "cd-widget");
-	g_return_if_fail (pTextView != NULL);
+	cd_return_if_fail (pTextView != NULL);
 	
 	GtkTextBuffer *pBuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (pTextView));
 	GtkTextIter start, end;
@@ -388,7 +388,7 @@ void cd_dbus_applet_emit_on_answer_text_view (int iClickedButton, GtkWidget *pIn
 void cd_dbus_applet_emit_on_answer_scale (int iClickedButton, GtkWidget *pInteractiveWidget, DBusAppletData *pDbusApplet, CairoDialog *pDialog)
 {
 	GtkWidget *pScale = g_object_get_data (G_OBJECT (pInteractiveWidget), "cd-widget");
-	g_return_if_fail (pScale != NULL);
+	cd_return_if_fail (pScale != NULL);
 	
 	double x = gtk_range_get_value (GTK_RANGE (pScale));
 	_emit_answer_dialog (pDbusApplet, pDialog, iClickedButton, g_variant_new_double (x));
@@ -474,7 +474,7 @@ gboolean cd_dbus_emit_on_reload_module (GldiModuleInstance *pModuleInstance, Gld
 	//g_print ("%s ()\n", __func__);
 	GldiVisitCard *pVisitCard = pModuleInstance->pModule->pVisitCard;
 	DBusAppletData *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pModuleInstance);
-	g_return_val_if_fail (pDbusApplet->uRegApplet != 0 && pDbusApplet->uRegSubApplet != 0, FALSE);
+	cd_return_val_if_fail (pDbusApplet->uRegApplet != 0 && pDbusApplet->uRegSubApplet != 0, FALSE);
 	g_dbus_connection_emit_signal (pDbusApplet->connection, NULL, pDbusApplet->cBusPath,
 		"org.cairodock.CairoDock.applet", "on_reload_module", 
 		g_variant_new ("(b)", (pKeyFile != NULL)), NULL);

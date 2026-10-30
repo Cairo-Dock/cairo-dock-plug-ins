@@ -287,7 +287,7 @@ static gboolean _cd_do_fill_bookmark_entry (CDEntry *pEntry)
 	//g_print ("icon : %s\n", pEntry->cIconName);
 	guchar *icon = g_base64_decode (pEntry->cIconName, &out_len);
 	//g_print ("-> out_len : %d\n", out_len);
-	g_return_val_if_fail (icon != NULL, FALSE);
+	cd_return_val_if_fail (icon != NULL, FALSE);
 	//g_print ("-> data : %d\n", icon);
 	
 	GInputStream * is = g_memory_input_stream_new_from_data (icon,
@@ -427,7 +427,7 @@ static GList *_cd_do_list_bookmarks_folder (CDEntry *pEntry, int *iNbEntries)
 	int i = 0;
 	GList *pEntries = NULL;
 	CDBookmarkItem *pFolderItem = pEntry->data;
-	g_return_val_if_fail (pFolderItem != NULL, NULL);
+	cd_return_val_if_fail (pFolderItem != NULL, NULL);
 	
 	CDBookmarkItem *pItem;
 	CDEntry *pSubEntry;

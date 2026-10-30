@@ -903,7 +903,7 @@ void cd_do_set_status (const gchar *cStatus)
 
 void cd_do_set_status_printf (const gchar *cStatusFormat, ...)
 {
-	g_return_if_fail (cStatusFormat != NULL);
+	cd_return_if_fail (cStatusFormat != NULL);
 	va_list args;
 	va_start (args, cStatusFormat);
 	gchar *cStatus = g_strdup_vprintf (cStatusFormat, args);

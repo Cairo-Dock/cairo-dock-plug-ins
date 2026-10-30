@@ -762,7 +762,7 @@ static void cd_update_input_shape (CairoDock *pDock)
 	if (pDock->pShapeBitmap != NULL)
 	{
 		CDPanelData *pData = pDock->pRendererData;
-		g_return_if_fail (pData != NULL);
+		cd_return_if_fail (pData != NULL);
 
 		gboolean bValidGroup = FALSE;  // valid = non-empty
 		gboolean bHasGroups = FALSE;

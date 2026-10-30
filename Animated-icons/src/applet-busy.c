@@ -51,7 +51,7 @@ static gboolean update (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, d
 
 static void post_render (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo_t *pCairoContext)
 {
-	g_return_if_fail (pData->pBusyImage);
+	cd_return_if_fail (pData->pBusyImage);
 	
 	double s = MIN (pIcon->fScale * pIcon->fWidth, pIcon->fScale * pIcon->fHeight) * myConfig.fBusySize;  // size of the drawing (square)
 	if (pCairoContext)

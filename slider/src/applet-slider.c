@@ -57,7 +57,7 @@ static void cd_slider_free_images_list (GList *pList) {
 
 static void _cd_slider_load_image (GldiModuleInstance *myApplet)
 {
-	g_return_if_fail (myData.pElement != NULL);
+	cd_return_if_fail (myData.pElement != NULL);
 	SliderImage *pImage = myData.pElement->data;
 	gchar *cImagePath = pImage->cPath;
 	if (!pImage->bGotExifData && myData.iSidExifIdle == 0)  // no exif data yet and no process currently retrieving them.

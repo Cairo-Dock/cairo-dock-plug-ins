@@ -269,7 +269,7 @@ static void _proxy_connected (G_GNUC_UNUSED GObject *obj, GAsyncResult *res, G_G
 static void _on_name_appeared (GDBusConnection *connection, G_GNUC_UNUSED const gchar *name,
 	G_GNUC_UNUSED const gchar *name_owner, G_GNUC_UNUSED gpointer data)
 {
-	g_return_if_fail (s_pSessionProxy == NULL && s_pCancel == NULL);
+	cd_return_if_fail (s_pSessionProxy == NULL && s_pCancel == NULL);
 	
 	CD_APPLET_ENTER;
 	

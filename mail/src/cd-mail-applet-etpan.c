@@ -391,7 +391,7 @@ void cd_mail_mark_all_mails_as_read(CDMailAccount *pMailAccount)
 
 void cd_mail_draw_main_icon (GldiModuleInstance *myApplet, gboolean bSignalNewMessages)
 {
-	g_return_if_fail (myDrawContext != NULL);
+	cd_return_if_fail (myDrawContext != NULL);
 	cd_debug ("%s ()", __func__);
 	
 	if (myData.iNbUnreadMails <= 0)  // plus de mail.

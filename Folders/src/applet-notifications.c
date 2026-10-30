@@ -216,7 +216,7 @@ static void _cd_folders_delete_file (GtkMenuItem *pMenuItem, gpointer *data)
 	cd_message ("%s (%s)", __func__, icon->cName);
 	
 	gchar *cPath = g_filename_from_uri (icon->cBaseURI, NULL, NULL);
-	g_return_if_fail (cPath != NULL);
+	cd_return_if_fail (cPath != NULL);
 	gchar *question = g_strdup_printf (D_("You're about deleting this file\n  (%s)\nfrom your hard-disk. Sure ?"), cPath);
 	g_free (cPath);
 	gldi_dialog_show_with_question (question,
@@ -432,7 +432,7 @@ static void _on_answer_import (int iClickedButton, GtkWidget *pInteractiveWidget
 	
 	// add a new conf file for the "Folders" module, with proper values.
 	GldiModule *pModule = gldi_module_get ("Folders");
-	g_return_if_fail (pModule != NULL);
+	cd_return_if_fail (pModule != NULL);
 
 	gchar *cConfFilePath = gldi_module_add_conf_file (pModule);  // we want to update the conf file before we instanciate the applet, so don't use high-level functions.
 	cairo_dock_update_conf_file (cConfFilePath,

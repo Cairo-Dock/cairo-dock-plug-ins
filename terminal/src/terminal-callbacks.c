@@ -103,7 +103,7 @@ void on_terminal_drag_data_received (GtkWidget *pWidget, GdkDragContext *dc, gin
 	g_free (cReceivedData);
 	cReceivedData = NULL;
 	gchar *cText = (gchar *)gtk_selection_data_get_data (selection_data);  // the data are actually 'const guchar*', but since we only allowed text and urls, it will be a string
-	g_return_if_fail (cText != NULL);
+	cd_return_if_fail (cText != NULL);
 	
 	int length = strlen (cText);
 	if (cText[length-1] == '\n')

@@ -33,7 +33,7 @@ gboolean cd_illusion_init_evaporate (Icon *pIcon, CairoDock *pDock, CDIllusionDa
 		myData.iEvaporateTexture,
 		pIcon->fWidth * pIcon->fScale,
 		pDock->container.bIsHorizontal ? pIcon->image.iHeight : pIcon->image.iWidth);
-	g_return_val_if_fail (pEvaporateParticleSystem != NULL, FALSE);
+	cd_return_val_if_fail (pEvaporateParticleSystem != NULL, FALSE);
 	double dt = pData->fDeltaT;
 	pEvaporateParticleSystem->dt = dt;
 	pEvaporateParticleSystem->bAddLuminance = TRUE;

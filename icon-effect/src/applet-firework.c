@@ -129,7 +129,7 @@ static gboolean init (Icon *pIcon, CairoDock *pDock, double dt, CDIconEffectData
 		pFirework = &pData->pFireworks[i];
 		
 		pFirework->pParticleSystem = cairo_dock_create_particle_system (myConfig.iNbFireworkParticles, myData.iFireTexture, pIcon->fWidth * fMaxScale, pIcon->fHeight * fMaxScale);
-		g_return_val_if_fail (pFirework->pParticleSystem != NULL, FALSE);
+		cd_return_val_if_fail (pFirework->pParticleSystem != NULL, FALSE);
 		pFirework->pParticleSystem->dt = dt;
 		if (myConfig.bRotateEffects && ! pDock->container.bDirectionUp && pDock->container.bIsHorizontal)
 			pFirework->pParticleSystem->bDirectionUp = FALSE;

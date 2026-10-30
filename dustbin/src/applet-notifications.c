@@ -118,7 +118,7 @@ static void _cd_dustbin_show_info (GtkMenuItem *menu_item, GldiModuleInstance *m
 		gldi_object_unref (GLDI_OBJECT(myData.pInfoDialog));
 		myData.pInfoDialog = NULL;
 	}
-	g_return_if_fail (myData.pInfoTask == NULL);
+	cd_return_if_fail (myData.pInfoTask == NULL);
 	
 	CairoDialogAttr attr;
 	memset (&attr, 0, sizeof (CairoDialogAttr));
@@ -156,7 +156,7 @@ CD_APPLET_ON_BUILD_MENU_END
 
 static void _cd_dustbin_action_after_unmount (gboolean bMounting, gboolean bSuccess, const gchar *cName, gpointer data)
 {
-	g_return_if_fail (myIcon != NULL && ! bMounting);
+	cd_return_if_fail (myIcon != NULL && ! bMounting);
 	gchar *cMessage;
 	if (bSuccess)
 	{

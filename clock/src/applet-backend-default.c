@@ -147,7 +147,7 @@ static gboolean delete_task (CDClockTask *pTask, GldiModuleInstance *myApplet)
 	
 	gchar *cFile = g_strdup_printf ("%s/%s/%s", g_cCairoDockDataDir, "clock", "tasks.conf");
 	GKeyFile *pKeyFile = cairo_dock_open_key_file (cFile);
-	g_return_val_if_fail (pKeyFile != NULL, FALSE);
+	cd_return_val_if_fail (pKeyFile != NULL, FALSE);
 	
 	g_key_file_remove_group (pKeyFile, pTask->cID, NULL);
 	cairo_dock_write_keys_to_file_full (pKeyFile, cFile, TRUE);
@@ -163,7 +163,7 @@ static gboolean update_task (CDClockTask *pTask, GldiModuleInstance *myApplet)
 	
 	gchar *cFile = g_strdup_printf ("%s/%s/%s", g_cCairoDockDataDir, "clock", "tasks.conf");
 	GKeyFile *pKeyFile = cairo_dock_open_key_file (cFile);
-	g_return_val_if_fail (pKeyFile != NULL, FALSE);
+	cd_return_val_if_fail (pKeyFile != NULL, FALSE);
 	
 	g_key_file_set_string (pKeyFile, pTask->cID, "title", pTask->cTitle?pTask->cTitle:"");
 	g_key_file_set_string (pKeyFile, pTask->cID, "text", pTask->cText?pTask->cText:"");

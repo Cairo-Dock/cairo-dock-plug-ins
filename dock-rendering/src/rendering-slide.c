@@ -88,7 +88,7 @@ static void _set_scroll (CairoDock *pDock, int iOffsetY)
 {
 	//g_print ("%s (%d)\n", __func__, iOffsetY);
 	CDSlideData *pData = pDock->pRendererData;
-	g_return_if_fail (pData != NULL);
+	cd_return_if_fail (pData != NULL);
 	
 	pData->iScrollOffset = MAX (0, MIN (iOffsetY, pData->iDeltaHeight));
 	cairo_dock_calculate_dock_icons (pDock);
@@ -98,7 +98,7 @@ static gboolean _add_scroll (CairoDock *pDock, int iDeltaOffsetY)
 {
 	//g_print ("%s (%d)\n", __func__, iDeltaOffsetY);
 	CDSlideData *pData = pDock->pRendererData;
-	g_return_val_if_fail (pData != NULL, FALSE);
+	cd_return_val_if_fail (pData != NULL, FALSE);
 	
 	if (iDeltaOffsetY < 0)
 	{
@@ -118,7 +118,7 @@ static gboolean _cd_slide_on_scroll (gpointer data, Icon *pClickedIcon, CairoDoc
 {
 	if (bEmulated) return GLDI_NOTIFICATION_INTERCEPT; // we already consumed the corresponding smooth scroll event
 	CDSlideData *pData = pDock->pRendererData;
-	g_return_val_if_fail (pData != NULL, GLDI_NOTIFICATION_LET_PASS);
+	cd_return_val_if_fail (pData != NULL, GLDI_NOTIFICATION_LET_PASS);
 	if (pData->iDeltaHeight == 0)
 		return GLDI_NOTIFICATION_LET_PASS;
 	
@@ -128,7 +128,7 @@ static gboolean _cd_slide_on_scroll (gpointer data, Icon *pClickedIcon, CairoDoc
 static gboolean _cd_slide_on_smooth_scroll (gpointer data, Icon *pClickedIcon, CairoDock *pDock, gdouble delta_x, gdouble delta_y)
 {
 	CDSlideData *pData = pDock->pRendererData;
-	g_return_val_if_fail (pData != NULL, GLDI_NOTIFICATION_LET_PASS);
+	cd_return_val_if_fail (pData != NULL, GLDI_NOTIFICATION_LET_PASS);
 	if (pData->iDeltaHeight == 0)
 		return GLDI_NOTIFICATION_LET_PASS;
 	
@@ -138,7 +138,7 @@ static gboolean _cd_slide_on_smooth_scroll (gpointer data, Icon *pClickedIcon, C
 static gboolean _cd_slide_on_click (gpointer data, Icon *pClickedIcon, CairoDock *pDock, guint iButtonState)
 {
 	CDSlideData *pData = pDock->pRendererData;
-	g_return_val_if_fail (pData != NULL, GLDI_NOTIFICATION_LET_PASS);
+	cd_return_val_if_fail (pData != NULL, GLDI_NOTIFICATION_LET_PASS);
 	if (pData->iDeltaHeight == 0)
 		return GLDI_NOTIFICATION_LET_PASS;
 	if (pData->bDraggingScrollbar)
@@ -149,7 +149,7 @@ static gboolean _cd_slide_on_click (gpointer data, Icon *pClickedIcon, CairoDock
 gboolean _cd_slide_on_press_button (GtkWidget* pWidget, GdkEventButton* pButton, CairoDock *pDock)
 {
 	CDSlideData *pData = pDock->pRendererData;
-	g_return_val_if_fail (pData != NULL, FALSE);
+	cd_return_val_if_fail (pData != NULL, FALSE);
 	if (pData->iDeltaHeight == 0)
 		return FALSE;
 	
@@ -193,7 +193,7 @@ gboolean _cd_slide_on_press_button (GtkWidget* pWidget, GdkEventButton* pButton,
 static gboolean _cd_slide_on_mouse_moved (gpointer data, CairoDock *pDock, gboolean *bStartAnimation)
 {
 	CDSlideData *pData = pDock->pRendererData;
-	g_return_val_if_fail (pData != NULL, GLDI_NOTIFICATION_LET_PASS);
+	cd_return_val_if_fail (pData != NULL, GLDI_NOTIFICATION_LET_PASS);
 	if (pData->iDeltaHeight == 0)
 		return GLDI_NOTIFICATION_LET_PASS;
 	
@@ -218,7 +218,7 @@ static gboolean _cd_slide_on_mouse_moved (gpointer data, CairoDock *pDock, gbool
 gboolean cd_slide_on_leave (gpointer data, CairoDock *pDock, gboolean *bStartAnimation)
 {
 	CDSlideData *pData = pDock->pRendererData;
-	//g_return_val_if_fail (pData != NULL, GLDI_NOTIFICATION_LET_PASS);
+	//cd_return_val_if_fail (pData != NULL, GLDI_NOTIFICATION_LET_PASS);
 	if (pData == NULL || ! pDock->pRenderer || pDock->pRenderer->render != cd_rendering_render_diapo_simple)  // pas nous
 		return GLDI_NOTIFICATION_LET_PASS;
 	
@@ -892,7 +892,7 @@ static Icon *cd_rendering_calculate_icons_diapo_simple (CairoDock *pDock)
 	if (pDock->icons == NULL)
 		return NULL;
 	CDSlideData *pData = pDock->pRendererData;
-	g_return_val_if_fail (pData != NULL, NULL);
+	cd_return_val_if_fail (pData != NULL, NULL);
 	
 	// On recupere la configuration de la grille
 	gint nRowsX = pData->nRowsX;
@@ -1117,7 +1117,7 @@ static void _render_separator (Icon *icon, CairoDock *pDock, cairo_t *pCairoCont
 static void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 {
 	CDSlideData *pData = pDock->pRendererData;
-	g_return_if_fail (pData != NULL);
+	cd_return_if_fail (pData != NULL);
 	
 	double fAlpha = (pDock->fFoldingFactor < .3 ? (.3 - pDock->fFoldingFactor) / .3 : 0.);  // apparition du cadre de 0.3 a 0
 	
@@ -1586,7 +1586,7 @@ static void _render_separator_opengl (Icon *icon, CairoDock *pDock)
 static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 {
 	CDSlideData *pData = pDock->pRendererData;
-	g_return_if_fail (pData != NULL);
+	cd_return_if_fail (pData != NULL);
 	static CairoDockGLPath *pScrollPath = NULL;
 	
 	//\____________________ On initialise le cadre.
@@ -1914,7 +1914,7 @@ static void cd_rendering_set_subdock_position_slide (Icon *pPointedIcon, CairoDo
 	CairoDock *pSubDock = pPointedIcon->pSubDock;
 	
 	CDSlideData *pData = pSubDock->pRendererData;
-	g_return_if_fail (pData != NULL);
+	cd_return_if_fail (pData != NULL);
 	
 	///int iX = pPointedIcon->fXAtRest - (pDock->fFlatDockWidth - pDock->iMaxDockWidth) / 2 + pPointedIcon->fWidth / 2 + (pDock->iOffsetForExtend * (pDock->fAlign - .5) * 2);
 	//int iX = pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2 + (pDock->iOffsetForExtend * (pDock->fAlign - .5) * 2);

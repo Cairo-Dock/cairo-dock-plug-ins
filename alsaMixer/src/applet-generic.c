@@ -111,7 +111,7 @@ static void on_change_capture_volume (GtkRange *range, gpointer data)
 }
 GtkWidget *mixer_build_widget (gboolean bHorizontal)
 {
-	g_return_val_if_fail (myData.playback.pControledElement != NULL, NULL);
+	cd_return_val_if_fail (myData.playback.pControledElement != NULL, NULL);
 	// build the playback volume scale
 	GtkWidget *pScale = gtk_scale_new_with_range (bHorizontal ? GTK_ORIENTATION_HORIZONTAL : GTK_ORIENTATION_VERTICAL, 0., 100., .5*myConfig.iScrollVariation);
 	if (! bHorizontal)

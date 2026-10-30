@@ -27,7 +27,7 @@
 
 void cd_animations_draw_unfolding_icon_cairo (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo_t *pCairoContext)
 {
-	g_return_if_fail (pIcon->pSubDock != NULL && pIcon->image.pSurface != NULL);
+	cd_return_if_fail (pIcon->pSubDock != NULL && pIcon->image.pSurface != NULL);
 	int w, h;
 	cairo_dock_get_icon_extent (pIcon, &w, &h);
 	double f = 1. - pIcon->pSubDock->fFoldingFactor;
@@ -142,7 +142,7 @@ void cd_animations_draw_unfolding_icon_cairo (Icon *pIcon, CairoDock *pDock, CDA
 
 void cd_animations_draw_unfolding_icon (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData)
 {
-	g_return_if_fail (pIcon->pSubDock != NULL);
+	cd_return_if_fail (pIcon->pSubDock != NULL);
 	int w, h;
 	cairo_dock_get_icon_extent (pIcon, &w, &h);
 	double f = 1. - pIcon->pSubDock->fFoldingFactor;

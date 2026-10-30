@@ -420,7 +420,7 @@ static void _proxy_connected (G_GNUC_UNUSED GObject *obj, GAsyncResult *res, G_G
 static void _on_name_appeared (GDBusConnection *connection, G_GNUC_UNUSED const gchar *name,
 	G_GNUC_UNUSED const gchar *name_owner, G_GNUC_UNUSED gpointer data)
 {
-	g_return_if_fail (dbus_proxy_tomboy == NULL && s_pCancel == NULL);
+	cd_return_if_fail (dbus_proxy_tomboy == NULL && s_pCancel == NULL);
 	
 	CD_APPLET_ENTER;
 	
@@ -474,7 +474,7 @@ static void _on_name_vanished (G_GNUC_UNUSED GDBusConnection *connection, G_GNUC
 
 static void start (void)
 {
-	g_return_if_fail (s_uWatch == 0);
+	cd_return_if_fail (s_uWatch == 0);
 	
 	// detect the service on the bus asynchronously (note: only Gnote is supported)
 	s_uWatch = g_bus_watch_name (G_BUS_TYPE_SESSION, "org.gnome.Gnote", G_BUS_NAME_WATCHER_FLAGS_NONE,
@@ -495,21 +495,21 @@ static void stop (void)
 
 static void show_note (const gchar *cNoteID)
 {
-	g_return_if_fail (dbus_proxy_tomboy != NULL);
+	cd_return_if_fail (dbus_proxy_tomboy != NULL);
 	g_dbus_proxy_call (dbus_proxy_tomboy, "DisplayNote", g_variant_new ("(s)", cNoteID),
 		G_DBUS_CALL_FLAGS_NONE, -1, NULL, NULL, NULL);
 }
 
 static void delete_note (const gchar *cNoteID)
 {
-	g_return_if_fail (dbus_proxy_tomboy != NULL);
+	cd_return_if_fail (dbus_proxy_tomboy != NULL);
 	g_dbus_proxy_call (dbus_proxy_tomboy, "DeleteNote", g_variant_new ("(s)", cNoteID),
 		G_DBUS_CALL_FLAGS_NONE, -1, NULL, NULL, NULL);
 }
 
 static gchar *create_note (const gchar *cTitle)
 {
-	g_return_val_if_fail (dbus_proxy_tomboy != NULL, NULL);
+	cd_return_val_if_fail (dbus_proxy_tomboy != NULL, NULL);
 	
 	GError *erreur = NULL;
 	gchar *cNoteID = NULL;
@@ -552,7 +552,7 @@ static void run_manager (void)
 
 static gchar **_get_note_names_with_tag (const gchar *cTag)
 {
-	g_return_val_if_fail (dbus_proxy_tomboy != NULL, NULL);
+	cd_return_val_if_fail (dbus_proxy_tomboy != NULL, NULL);
 	
 	GError *erreur = NULL;
 	gchar **cNoteNames = NULL;

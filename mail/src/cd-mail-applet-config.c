@@ -235,7 +235,7 @@ static void _cd_mail_add_new_account (GtkComboBox *pMailTypesCombo, GtkEntry *pM
 	
 	//\____________ On ouvre notre fichier de conf.
 	GKeyFile* pKeyFile = cairo_dock_open_key_file (CD_APPLET_MY_CONF_FILE);
-	g_return_if_fail (pKeyFile != NULL);
+	cd_return_if_fail (pKeyFile != NULL);
 	
 	if (g_key_file_has_group (pKeyFile, pMailAccountName))
 	{
@@ -278,13 +278,13 @@ static void _cd_mail_remove_account (GtkButton *pButton, GldiModuleInstance *myA
 	cd_debug ("");
 	//\____________ On supprime le groupe correspondant dans le fichier de conf.
 	GKeyFile* pKeyFile = cairo_dock_open_key_file (CD_APPLET_MY_CONF_FILE);
-	g_return_if_fail (pKeyFile != NULL);
+	cd_return_if_fail (pKeyFile != NULL);
 	
 	guint iNumAccount = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (pButton), "AccountIndex"));
-	g_return_if_fail (iNumAccount > 2);
+	cd_return_if_fail (iNumAccount > 2);
 	gsize length = 0;
 	gchar **pGroupList = g_key_file_get_groups (pKeyFile, &length);
-	g_return_if_fail (iNumAccount < length);
+	cd_return_if_fail (iNumAccount < length);
 	
 	gchar *cMailAccount = pGroupList[iNumAccount];
 	g_key_file_remove_group (pKeyFile, cMailAccount, NULL);
@@ -341,7 +341,7 @@ void cd_mail_load_custom_widget (GldiModuleInstance *myApplet, GKeyFile* pKeyFil
 	cd_debug ("");
 	//\____________ On recupere notre widget personnalise (un simple container vide qu'on va remplir avec nos trucs).
 	CairoDockGroupKeyWidget *pGroupKeyWidget = cairo_dock_gui_find_group_key_widget_in_list (pWidgetList, "Configuration", "add account");
-	g_return_if_fail (pGroupKeyWidget != NULL);
+	cd_return_if_fail (pGroupKeyWidget != NULL);
 
 	GtkWidget *pCustomWidgetBox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 3);
 	gtk_box_pack_end (GTK_BOX (pGroupKeyWidget->pKeyBox),
@@ -397,7 +397,7 @@ void cd_mail_load_custom_widget (GldiModuleInstance *myApplet, GKeyFile* pKeyFil
 		0);
 
 	//\____________ Pour chaque compte mail, on va creer un bouton "Remove" dans l'onglet correspondant
-	//g_return_if_fail (myData.pMailAccounts != NULL);
+	//cd_return_if_fail (myData.pMailAccounts != NULL);
 	//CDMailAccount *pMailAccount;
 	gsize length = 0;
 	gchar **pGroupList = g_key_file_get_groups (pKeyFile, &length);

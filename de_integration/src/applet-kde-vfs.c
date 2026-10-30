@@ -37,7 +37,7 @@ static const gchar *_get_kioclient (void)
 
 void vfs_backend_launch_uri (const gchar *cURI)
 {
-	g_return_if_fail (cURI != NULL);
+	cd_return_if_fail (cURI != NULL);
 
 	cd_debug ("%s (%s)", __func__, cURI);
 	const gchar * const args[] = {_get_kioclient (), "exec", cURI, NULL};
@@ -51,7 +51,7 @@ void vfs_backend_launch_uri (const gchar *cURI)
 
 gboolean vfs_backend_delete_file (const gchar *cURI, gboolean bNoTrash)
 {
-	g_return_val_if_fail (cURI != NULL, FALSE);
+	cd_return_val_if_fail (cURI != NULL, FALSE);
 	
 	// note: bNoTrash == TRUE always
 	const gchar * const args[] = {_get_kioclient (), "move", cURI, "trash:/", NULL};
@@ -61,7 +61,7 @@ gboolean vfs_backend_delete_file (const gchar *cURI, gboolean bNoTrash)
 
 gboolean vfs_backend_rename_file (const gchar *cOldURI, const gchar *cNewName)
 {
-	g_return_val_if_fail (cOldURI != NULL, FALSE);
+	cd_return_val_if_fail (cOldURI != NULL, FALSE);
 	
 	gboolean bSuccess = FALSE;
 	gchar *cPath = g_path_get_dirname (cOldURI);
@@ -79,7 +79,7 @@ gboolean vfs_backend_rename_file (const gchar *cOldURI, const gchar *cNewName)
 
 gboolean vfs_backend_move_file (const gchar *cURI, const gchar *cDirectoryURI)
 {
-	g_return_val_if_fail (cURI != NULL, FALSE);
+	cd_return_val_if_fail (cURI != NULL, FALSE);
 	cd_message (" %s -> %s", cURI, cDirectoryURI);
 	
 	gchar *cFileName = g_path_get_basename (cURI);

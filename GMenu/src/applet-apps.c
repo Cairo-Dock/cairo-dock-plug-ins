@@ -25,7 +25,7 @@ static gboolean s_bDesktopEnvDef = TRUE; // can we use g_app_info_should_show()?
 void cd_menu_register_app (GDesktopAppInfo *pAppInfo)
 {
 	const gchar *cDesktopFilePath = g_desktop_app_info_get_filename (pAppInfo);
-	g_return_if_fail (cDesktopFilePath != NULL);
+	cd_return_if_fail (cDesktopFilePath != NULL);
 	
 	if (! g_hash_table_lookup (myData.pKnownApplications, cDesktopFilePath))  // do it the first time too, to avoid doubles
 	{
@@ -73,7 +73,7 @@ static void _on_answer_launch_recent (int iClickedButton, GtkWidget *pInteractiv
 		{
 			pAppInfo = myData.pNewApps->data;
 		}
-		g_return_if_fail (pAppInfo != NULL);
+		cd_return_if_fail (pAppInfo != NULL);
 		gldi_launch_desktop_app_info (pAppInfo, NULL);
 	}
 	

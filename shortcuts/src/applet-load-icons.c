@@ -245,7 +245,7 @@ static void cd_shortcuts_get_shortcuts_data (CDSharedMemory *pSharedMemory)
 static gboolean cd_shortcuts_build_shortcuts_from_data (CDSharedMemory *pSharedMemory)
 {
 	GldiModuleInstance *myApplet = pSharedMemory->pApplet;
-	g_return_val_if_fail (myIcon != NULL, FALSE);  // paranoia
+	cd_return_val_if_fail (myIcon != NULL, FALSE);  // paranoia
 	CD_APPLET_ENTER;
 	
 	//\_______________________ get the result of the thread.

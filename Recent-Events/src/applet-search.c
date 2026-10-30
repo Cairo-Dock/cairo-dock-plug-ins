@@ -220,7 +220,7 @@ static ZeitgeistEvent *_get_event_template_for_category (CDEventType iCategory)
 		zeitgeist_event_add_subject (myData.pEvents[CD_EVENT_OTHER], subj);
 	}
 	
-	g_return_val_if_fail (iCategory < CD_NB_EVENT_TYPES, NULL);
+	cd_return_val_if_fail (iCategory < CD_NB_EVENT_TYPES, NULL);
 	g_object_ref (myData.pEvents[iCategory]);
 	return myData.pEvents[iCategory];
 }

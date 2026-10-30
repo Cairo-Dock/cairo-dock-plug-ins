@@ -132,10 +132,10 @@ static cairo_surface_t* cd_clock_create_bg_surface (GldiModuleInstance *myApplet
 {
 	//g_print ("%s (%dx%d)\n", __func__, iWidth, iHeight);
 	cairo_surface_t* pNewSurface = cairo_dock_create_blank_surface (iWidth, iHeight);
-	g_return_val_if_fail (cairo_surface_status (pNewSurface) == CAIRO_STATUS_SUCCESS, NULL);
+	cd_return_val_if_fail (cairo_surface_status (pNewSurface) == CAIRO_STATUS_SUCCESS, NULL);
 	
 	cairo_t* pDrawingContext = cairo_create (pNewSurface);
-	g_return_val_if_fail (cairo_status (pDrawingContext) == CAIRO_STATUS_SUCCESS, NULL);
+	cd_return_val_if_fail (cairo_status (pDrawingContext) == CAIRO_STATUS_SUCCESS, NULL);
 	
 	cairo_set_operator (pDrawingContext, CAIRO_OPERATOR_SOURCE);
 	cairo_set_source_rgba (pDrawingContext, 1.0f, 1.0f, 1.0f, 0.0f);
@@ -204,10 +204,10 @@ static void paint_second (GldiModuleInstance *myApplet, cairo_t* pDrawingContext
 static cairo_surface_t *create_needle_surface (GldiModuleInstance *myApplet, cairo_t* pSourceContext, SurfaceKind kind)
 {
 	cairo_surface_t* pNewSurface = cairo_dock_create_blank_surface (myData.iNeedleWidth, myData.iNeedleHeight + 0);  // +1 pour les ombres.
-	g_return_val_if_fail (cairo_surface_status (pNewSurface) == CAIRO_STATUS_SUCCESS, NULL);
+	cd_return_val_if_fail (cairo_surface_status (pNewSurface) == CAIRO_STATUS_SUCCESS, NULL);
 	
 	cairo_t* pDrawingContext = cairo_create (pNewSurface);
-	g_return_val_if_fail (cairo_status (pDrawingContext) == CAIRO_STATUS_SUCCESS, NULL);
+	cd_return_val_if_fail (cairo_status (pDrawingContext) == CAIRO_STATUS_SUCCESS, NULL);
 	
 	cairo_set_operator (pDrawingContext, CAIRO_OPERATOR_SOURCE);
 	cairo_set_source_rgba (pDrawingContext, 1.0f, 1.0f, 1.0f, 0.0f);

@@ -100,7 +100,7 @@ static void _cd_do_show_file_location (CDEntry *pEntry)
 {
 	cd_debug ("%s (%s)", __func__, pEntry->cPath);
 	gchar *cPathUp = g_path_get_dirname (pEntry->cPath);
-	g_return_if_fail (cPathUp != NULL);
+	cd_return_if_fail (cPathUp != NULL);
 	cairo_dock_fm_launch_uri (cPathUp);
 	g_free (cPathUp);
 }

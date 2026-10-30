@@ -261,7 +261,7 @@ void terminal_close_tab (GtkWidget *vterm)
 
 static void _term_apply_settings_on_vterm(GtkWidget *vterm)
 {
-	g_return_if_fail (vterm != NULL);
+	cd_return_if_fail (vterm != NULL);
 
 	#if VTE_CHECK_VERSION(0,38,0)
 	vte_terminal_set_colors (VTE_TERMINAL(vterm), &myConfig.forecolor.rgba, &myConfig.backcolor.rgba, NULL, 0);
@@ -367,7 +367,7 @@ static void on_terminal_child_exited(VteTerminal *vterm,
 		{
 			gldi_desklet_hide (myDesklet);
 			Icon *icon = gldi_icons_get_any_without_dialog ();
-			g_return_if_fail (icon != NULL);
+			cd_return_if_fail (icon != NULL);
 			gldi_dialog_show_temporary_with_icon_printf (D_("You can recall the Terminal desklet by typing %s"), icon, CAIRO_CONTAINER (g_pMainDock), 3500, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE, myConfig.shortcut);
 		}
 	}

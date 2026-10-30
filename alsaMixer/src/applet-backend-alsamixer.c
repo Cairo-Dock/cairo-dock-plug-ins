@@ -256,11 +256,11 @@ static void mixer_get_controlled_element (void)
 
 static int mixer_get_mean_volume (void)
 {
-	g_return_val_if_fail (myData.playback.pControledElement != NULL, 0);
+	cd_return_val_if_fail (myData.playback.pControledElement != NULL, 0);
 	long iVolumeLeft=0, iVolumeRight=0;
 	gboolean bHasLeft = snd_mixer_selem_has_playback_channel (myData.playback.pControledElement, SND_MIXER_SCHN_FRONT_LEFT);
 	gboolean bHasRight = snd_mixer_selem_has_playback_channel (myData.playback.pControledElement, SND_MIXER_SCHN_FRONT_RIGHT);
-	g_return_val_if_fail (bHasLeft || bHasRight, 0);  // Note: in case of a mono, Front_Left will be the equivalent channel
+	cd_return_val_if_fail (bHasLeft || bHasRight, 0);  // Note: in case of a mono, Front_Left will be the equivalent channel
 	
 	if (bHasLeft)
 		snd_mixer_selem_get_playback_volume (myData.playback.pControledElement, SND_MIXER_SCHN_FRONT_LEFT, &iVolumeLeft);
@@ -283,7 +283,7 @@ static void _set_mute (gboolean bMute)
 }
 static void mixer_set_volume (int iNewVolume)
 {
-	g_return_if_fail (myData.playback.pControledElement != NULL);
+	cd_return_if_fail (myData.playback.pControledElement != NULL);
 	cd_debug ("%s (%d)", __func__, iNewVolume);
 	int iVolume = ceil (myData.playback.iVolumeMin + (myData.playback.iVolumeMax - myData.playback.iVolumeMin) * iNewVolume / 100.);
 	snd_mixer_selem_set_playback_volume_all (myData.playback.pControledElement, iVolume);
@@ -299,11 +299,11 @@ static void mixer_set_volume (int iNewVolume)
 
 static int mixer_get_mean_capture_volume (void)
 {
-	g_return_val_if_fail (myData.capture.pControledElement != NULL, 0);
+	cd_return_val_if_fail (myData.capture.pControledElement != NULL, 0);
 	long iVolumeLeft=0, iVolumeRight=0;
 	gboolean bHasLeft = snd_mixer_selem_has_capture_channel (myData.capture.pControledElement, SND_MIXER_SCHN_FRONT_LEFT);
 	gboolean bHasRight = snd_mixer_selem_has_capture_channel (myData.capture.pControledElement, SND_MIXER_SCHN_FRONT_RIGHT);
-	g_return_val_if_fail (bHasLeft || bHasRight, 0);
+	cd_return_val_if_fail (bHasLeft || bHasRight, 0);
 	
 	if (bHasLeft)
 		snd_mixer_selem_get_capture_volume (myData.capture.pControledElement, SND_MIXER_SCHN_FRONT_LEFT, &iVolumeLeft);
@@ -319,7 +319,7 @@ static int mixer_get_mean_capture_volume (void)
 
 static void mixer_set_capture_volume (int iNewVolume)
 {
-	g_return_if_fail (myData.capture.pControledElement != NULL);
+	cd_return_if_fail (myData.capture.pControledElement != NULL);
 	int iVolume = ceil (myData.capture.iVolumeMin + (myData.capture.iVolumeMax - myData.capture.iVolumeMin) * iNewVolume / 100.);
 	snd_mixer_selem_set_capture_volume_all (myData.capture.pControledElement, iVolume);
 	myData.capture.iCurrentVolume = iNewVolume;
@@ -328,7 +328,7 @@ static void mixer_set_capture_volume (int iNewVolume)
 static gboolean mixer_is_mute (void)
 {
 	cd_debug ("");
-	g_return_val_if_fail (myData.playback.pControledElement != NULL, FALSE);
+	cd_return_val_if_fail (myData.playback.pControledElement != NULL, FALSE);
 	if (snd_mixer_selem_has_playback_switch (myData.playback.pControledElement))
 	{
 		int iSwitchLeft, iSwitchRight;
@@ -343,7 +343,7 @@ static gboolean mixer_is_mute (void)
 
 static void mixer_switch_mute (void)
 {
-	g_return_if_fail (myData.playback.pControledElement != NULL);
+	cd_return_if_fail (myData.playback.pControledElement != NULL);
 	gboolean bIsMute = mixer_is_mute ();
 	_set_mute (! bIsMute);
 	cd_update_icon ();  // on ne recoit pas d'evenements pour nos actions.

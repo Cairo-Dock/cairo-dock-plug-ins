@@ -30,7 +30,7 @@ static void (*_show_menu_parent) (void)  = NULL;
 static void _entry_added (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, GldiModuleInstance *myApplet)
 {
 	cd_debug ("Entry Added: %p", pEntry);
-	g_return_if_fail (myData.pEntry == NULL && pEntry != NULL); // should not happen... only one entry
+	cd_return_if_fail (myData.pEntry == NULL && pEntry != NULL); // should not happen... only one entry
 
 	myData.pEntry = pEntry;
 }

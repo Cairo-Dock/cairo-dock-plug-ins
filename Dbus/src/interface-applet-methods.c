@@ -40,7 +40,7 @@ dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock/demo
 static inline gboolean _get_icon_and_container_from_id (DBusAppletData *pDbusApplet, const gchar *cIconID, Icon **pIcon, GldiContainer **pContainer)
 {
 	GldiModuleInstance *pInstance = pDbusApplet->pModuleInstance;
-	g_return_val_if_fail (pInstance != NULL, FALSE);
+	cd_return_val_if_fail (pInstance != NULL, FALSE);
 	
 	if (cIconID == NULL)
 	{
@@ -53,7 +53,7 @@ static inline gboolean _get_icon_and_container_from_id (DBusAppletData *pDbusApp
 		*pIcon = cairo_dock_get_icon_with_command (piconsList, cIconID);
 		*pContainer = (pInstance->pDesklet ? CAIRO_CONTAINER (pInstance->pDesklet) : CAIRO_CONTAINER (pInstance->pIcon->pSubDock));
 	}
-	g_return_val_if_fail (pIcon != NULL && pContainer != NULL, FALSE);
+	cd_return_val_if_fail (pIcon != NULL && pContainer != NULL, FALSE);
 	return TRUE;
 }
 
@@ -105,7 +105,7 @@ static gboolean _applet_set_icon (DBusAppletData *pDbusApplet, const gchar *cIma
 	if (! _get_icon_and_container_from_id (pDbusApplet, cIconID, &pIcon, &pContainer))
 		return FALSE;
 	
-	g_return_val_if_fail (pIcon->image.pSurface != NULL, FALSE);
+	cd_return_val_if_fail (pIcon->image.pSurface != NULL, FALSE);
 	cairo_t *pIconContext = cairo_create (pIcon->image.pSurface);
 	cairo_dock_set_image_on_icon (pIconContext, cImage, pIcon, pContainer);
 	cairo_destroy (pIconContext);
@@ -121,7 +121,7 @@ static gboolean _applet_set_icon_with_default (dbusApplet *pDbusApplet, const gc
 	if (! _get_icon_and_container_from_id (pDbusApplet, cIconID, &pIcon, &pContainer))
 		return FALSE;
 	
-	g_return_val_if_fail (pIcon->image.pSurface != NULL, FALSE);
+	cd_return_val_if_fail (pIcon->image.pSurface != NULL, FALSE);
 	cairo_t *pIconContext = cairo_create (pIcon->image.pSurface);
 	int i;
 	for (i = 0; cImages[i] != NULL; i ++)
