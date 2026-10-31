@@ -196,7 +196,7 @@ static gchar *_hmac_crypt (const guchar *text, const gchar* key, GChecksumType i
 */
 static gchar *_url_encode (const gchar * str)
 {
-	g_return_val_if_fail (str != NULL, NULL);
+	cd_return_val_if_fail (str != NULL, NULL);
 	cd_debug ("%s (%s)", __func__, str);
 	const gchar * s = str;
 	gchar * t = NULL;
@@ -276,7 +276,7 @@ static gchar *_make_keywords (const gchar *artist, const gchar *album, const gch
 			cKeyWords = g_path_get_basename (cPath);
 			g_free (cPath);
 		}
-		g_return_val_if_fail (cKeyWords != NULL, NULL);
+		cd_return_val_if_fail (cKeyWords != NULL, NULL);
 		gchar *str = strrchr (cKeyWords, '.');
 		if (str)
 			*str = '\0';
@@ -305,7 +305,7 @@ static gchar *_build_url (const gchar *cArtist, const gchar *cAlbum, const gchar
 
 gboolean cd_amazon_dl_cover (const gchar *artist, const gchar *album, const gchar *cUri, const gchar *cLocalPath)
 {
-	g_return_val_if_fail ((artist != NULL && album != NULL) || (cUri != NULL), FALSE);
+	cd_return_val_if_fail ((artist != NULL && album != NULL) || (cUri != NULL), FALSE);
 	
 	// build the request to the Amazon Web Service.
 	gchar *cRequest = _build_url (artist, album, cUri);

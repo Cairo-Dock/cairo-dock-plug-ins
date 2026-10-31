@@ -358,7 +358,7 @@ static Icon *_cd_stack_create_new_item (GldiModuleInstance *myApplet, const gcha
 	{
 		cName = cairo_dock_cut_string (cContent, 20);  // we only display the first 20 chars.
 	}
-	g_return_val_if_fail (cName != NULL, NULL);
+	cd_return_val_if_fail (cName != NULL, NULL);
 	
 	//\_______________________ On ecrit toutes les infos dans un fichier de conf.
 	GList *pIconsList = CD_APPLET_MY_ICONS_LIST;

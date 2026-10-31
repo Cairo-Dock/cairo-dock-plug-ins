@@ -37,7 +37,7 @@ static gboolean init (Icon *pIcon, CairoDock *pDock, double dt, CDIconEffectData
 	
 	double fMaxScale = 1. + myIconsParam.fAmplitude * pDock->fMagnitudeMax;
 	CairoParticleSystem *pParticleSystem = cairo_dock_create_particle_system (myConfig.iNbStarParticles, myData.iStarTexture, pIcon->fWidth * pIcon->fScale, pIcon->fHeight * fMaxScale);
-	g_return_val_if_fail (pParticleSystem != NULL, FALSE);
+	cd_return_val_if_fail (pParticleSystem != NULL, FALSE);
 	pParticleSystem->dt = dt;
 	pParticleSystem->bAddLuminance = TRUE;
 	

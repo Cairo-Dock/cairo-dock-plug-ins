@@ -102,13 +102,13 @@ gboolean cd_find_battery_proc_acpi (void)
 
 #define go_to_next_line \
 	cCurLine = strchr (cCurVal, '\n'); \
-	g_return_val_if_fail (cCurLine != NULL, FALSE); \
+	cd_return_val_if_fail (cCurLine != NULL, FALSE); \
 	cCurLine ++; \
 	cCurVal = cCurLine;
 
 #define jump_to_value \
 	cCurVal = strchr (cCurLine, ':'); \
-	g_return_val_if_fail (cCurVal != NULL, FALSE); \
+	cd_return_val_if_fail (cCurVal != NULL, FALSE); \
 	cCurVal ++; \
 	while (*cCurVal == ' ') \
 		cCurVal ++;
@@ -127,7 +127,7 @@ gboolean cd_get_stats_from_proc_acpi (void)
 		erreur = NULL;
 		return FALSE;
 	}
-	g_return_val_if_fail (cContent != NULL, FALSE);
+	cd_return_val_if_fail (cContent != NULL, FALSE);
 	
 	gchar *cCurLine = cContent, *cCurVal = cContent;
 	

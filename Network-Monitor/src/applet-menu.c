@@ -26,7 +26,7 @@
 
 static GList *cd_NetworkMonitor_get_connections_for_access_point (const gchar *cAccessPoint, const gchar *cDevice, const gchar *cSsid, const gchar *cHwAddress, int iMode, int iWirelessCapabilities, GPtrArray *paConnections, GPtrArray *paSettings)
 {
-	g_return_val_if_fail (paConnections != NULL, NULL);
+	cd_return_val_if_fail (paConnections != NULL, NULL);
 	GList *pConnList = NULL;
 	gchar *cConnection;
 	GHashTable *pSettings, *pSubSettings;
@@ -267,7 +267,7 @@ GtkWidget * cd_NetworkMonitor_build_menu_with_access_points (void)
 	
 	//\_____________ On recupere la liste des devices.
 	GPtrArray *paDevices = cairo_dock_dbus_get_array (myData.dbus_proxy_NM, "GetDevices");
-	g_return_val_if_fail (paDevices != NULL, FALSE);
+	cd_return_val_if_fail (paDevices != NULL, FALSE);
 	cd_debug ("%d device(s)", paDevices->len);
 	
 	GtkWidget *pMenu = gldi_menu_new (myIcon);

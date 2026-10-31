@@ -106,7 +106,7 @@ static void _on_answer_delete (int iClickedButton, GtkWidget *pInteractiveWidget
 }
 static void _cd_tomboy_delete_note (GtkMenuItem *menu_item, Icon *pIcon)
 {
-	g_return_if_fail (pIcon != NULL);
+	cd_return_if_fail (pIcon != NULL);
 	if (myConfig.bAskBeforeDelete)
 	{
 		gchar *cQuestion = g_strdup_printf ("%s (%s)", D_("Delete this note?"), pIcon->cName);

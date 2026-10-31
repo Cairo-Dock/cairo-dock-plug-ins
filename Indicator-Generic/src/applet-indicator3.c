@@ -24,7 +24,7 @@
 
 static void _icon_updated (GObject *pObject, G_GNUC_UNUSED GParamSpec *pParam, GldiModuleInstance *myApplet)
 {
-	g_return_if_fail (GTK_IS_IMAGE (pObject));
+	cd_return_if_fail (GTK_IS_IMAGE (pObject));
 	GtkImage *pImage = GTK_IMAGE (pObject);
 
 	gchar *cName = NULL;
@@ -41,13 +41,13 @@ static void _accessible_desc_update (G_GNUC_UNUSED IndicatorObject *pIndicator, 
 static void _entry_added (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, GldiModuleInstance *myApplet)
 {
 	cd_debug ("Entry Added: %s", myConfig.cIndicatorName);
-	g_return_if_fail (myData.pEntry == NULL && pEntry != NULL); // should not happen...
+	cd_return_if_fail (myData.pEntry == NULL && pEntry != NULL); // should not happen...
 	// only one entry (or should we support more than one entry => ex: global-menu?)
 
 	myData.pEntry = pEntry;
 	GtkImage *pImage = cd_indicator3_get_image (pEntry);
 
-	g_return_if_fail (pImage != NULL);
+	cd_return_if_fail (pImage != NULL);
 
 	// signals
 	cd_indicator3_notify_image (pImage, G_CALLBACK (_icon_updated), myApplet);
@@ -90,7 +90,7 @@ static void _destroy (IndicatorObjectEntry *pEntry, GldiModuleInstance *myApplet
 
 void cd_indicator_generic_indicator_reload (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, gpointer data)
 {
-	g_return_if_fail (pEntry != NULL);
+	cd_return_if_fail (pEntry != NULL);
 	_accessible_desc_update (pIndicator, pEntry, data);
 	_icon_updated (G_OBJECT (pEntry->image), NULL, data);
 }

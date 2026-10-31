@@ -153,7 +153,7 @@ static void _set_scroll (CairoDesklet *pDesklet, int iOffsetY)
 {
 	//g_print ("%s (%d)\n", __func__, iOffsetY);
 	CDViewportParameters *pData = pDesklet->pRendererData;
-	g_return_if_fail (pData != NULL);
+	cd_return_if_fail (pData != NULL);
 	
 	pData->iScrollOffset = MAX (0, MIN (iOffsetY, pData->iDeltaHeight));
 	_compute_icons_position (pDesklet, pData);
@@ -164,7 +164,7 @@ static gboolean _add_scroll (CairoDesklet *pDesklet, int iDeltaOffsetY)
 {
 	//g_print ("%s (%d)\n", __func__, iDeltaOffsetY);
 	CDViewportParameters *pData = pDesklet->pRendererData;
-	g_return_val_if_fail (pData != NULL, FALSE);
+	cd_return_val_if_fail (pData != NULL, FALSE);
 	
 	if (iDeltaOffsetY < 0)
 	{
@@ -184,7 +184,7 @@ static gboolean _cd_slide_on_scroll (gpointer data, Icon *pClickedIcon, CairoDes
 {
 	if (bEmulated) return GLDI_NOTIFICATION_INTERCEPT; // we already consumed the corresponding smooth scroll event
 	CDViewportParameters *pData = pDesklet->pRendererData;
-	g_return_val_if_fail (pData != NULL, GLDI_NOTIFICATION_LET_PASS);
+	cd_return_val_if_fail (pData != NULL, GLDI_NOTIFICATION_LET_PASS);
 	if (pData->iDeltaHeight == 0)
 		return GLDI_NOTIFICATION_LET_PASS;
 	
@@ -194,7 +194,7 @@ static gboolean _cd_slide_on_scroll (gpointer data, Icon *pClickedIcon, CairoDes
 static gboolean _cd_slide_on_smooth_scroll (gpointer data, Icon *pClickedIcon, CairoDesklet *pDesklet, gdouble delta_x, gdouble delta_y)
 {
 	CDViewportParameters *pData = pDesklet->pRendererData;
-	g_return_val_if_fail (pData != NULL, GLDI_NOTIFICATION_LET_PASS);
+	cd_return_val_if_fail (pData != NULL, GLDI_NOTIFICATION_LET_PASS);
 	if (pData->iDeltaHeight == 0)
 		return GLDI_NOTIFICATION_LET_PASS;
 	
@@ -205,7 +205,7 @@ static gboolean _cd_slide_on_smooth_scroll (gpointer data, Icon *pClickedIcon, C
 static gboolean _cd_slide_on_press_button (GtkWidget* pWidget, GdkEventButton* pButton, CairoDesklet *pDesklet)
 {
 	CDViewportParameters *pData = pDesklet->pRendererData;
-	g_return_val_if_fail (pData != NULL, FALSE);
+	cd_return_val_if_fail (pData != NULL, FALSE);
 	if (pData->iDeltaHeight == 0)
 		return FALSE;
 	
@@ -253,7 +253,7 @@ static gboolean _cd_slide_on_press_button (GtkWidget* pWidget, GdkEventButton* p
 static gboolean _cd_slide_on_mouse_moved (gpointer data, CairoDesklet *pDesklet, gboolean *bStartAnimation)
 {
 	CDViewportParameters *pData = pDesklet->pRendererData;
-	g_return_val_if_fail (pData != NULL, GLDI_NOTIFICATION_LET_PASS);
+	cd_return_val_if_fail (pData != NULL, GLDI_NOTIFICATION_LET_PASS);
 	if (pData->iDeltaHeight == 0)
 		return GLDI_NOTIFICATION_LET_PASS;
 	

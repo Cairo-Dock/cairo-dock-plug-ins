@@ -227,7 +227,7 @@ static void _manage_event_on_file (CairoDockFMEventType iEventType, const gchar 
 
 static void _cd_folders_on_file_event (CairoDockFMEventType iEventType, const gchar *cURI, GldiModuleInstance *myApplet)
 {
-	g_return_if_fail (cURI != NULL);
+	cd_return_if_fail (cURI != NULL);
 	CD_APPLET_ENTER;
 	
 	//\________________ On gere l'evenement sur le fichier.
@@ -290,7 +290,7 @@ static void _cd_folders_get_data (CDSharedMemory *pSharedMemory)
 static gboolean _cd_folders_load_icons_from_data (CDSharedMemory *pSharedMemory)
 {
 	GldiModuleInstance *myApplet = pSharedMemory->pApplet;
-	g_return_val_if_fail (myIcon != NULL, FALSE);  // paranoia
+	cd_return_val_if_fail (myIcon != NULL, FALSE);  // paranoia
 	CD_APPLET_ENTER;
 	
 	//\_______________________ On efface l'ancienne liste.

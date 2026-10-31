@@ -28,7 +28,7 @@
 
 MusicPlayerHandler *cd_musicplayer_get_handler_by_name (const gchar *cName)
 {
-	g_return_val_if_fail (cName != NULL, NULL);
+	cd_return_val_if_fail (cName != NULL, NULL);
 	GList *h;
 	MusicPlayerHandler *handler;
 	for (h = myData.pHandlers; h != NULL; h = h->next)
@@ -605,7 +605,7 @@ static void _on_got_players_running (GObject *pObj, GAsyncResult *pRes, gpointer
 
 void cd_musicplayer_get_known_players (CDMPInfoCB cb, GCancellable *pCancel)
 {
-	g_return_if_fail (cb != NULL);
+	cd_return_if_fail (cb != NULL);
 	
 	GDBusConnection *pConn = cairo_dock_dbus_get_session_bus ();
 	if (!pConn)

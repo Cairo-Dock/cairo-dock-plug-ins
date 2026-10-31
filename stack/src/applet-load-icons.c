@@ -72,7 +72,7 @@ Icon *cd_stack_build_one_icon (GldiModuleInstance *myApplet, GKeyFile *pKeyFile)
 		g_error_free (erreur);
 		erreur = NULL;
 	}
-	g_return_val_if_fail (cContent != NULL, NULL);
+	cd_return_val_if_fail (cContent != NULL, NULL);
 	
 	Icon *pIcon = NULL;
 	if (cairo_dock_string_is_address (cContent))
@@ -167,7 +167,7 @@ Icon *cd_stack_build_one_icon (GldiModuleInstance *myApplet, GKeyFile *pKeyFile)
 Icon *cd_stack_build_one_icon_from_file (GldiModuleInstance *myApplet, gchar *cDesktopFilePath)
 {
 	GKeyFile *pKeyFile = cairo_dock_open_key_file (cDesktopFilePath);
-	g_return_val_if_fail (pKeyFile != NULL, NULL);
+	cd_return_val_if_fail (pKeyFile != NULL, NULL);
 	
 	Icon *pIcon = cd_stack_build_one_icon (myApplet, pKeyFile);
 	
@@ -179,7 +179,7 @@ GList *cd_stack_build_icons_list (GldiModuleInstance *myApplet, gchar *cStackDir
 {
 	// on parcourt tous les fichiers du repertoire.
 	GDir *dir = g_dir_open (cStackDir, 0, NULL);
-	g_return_val_if_fail (dir != NULL, NULL);
+	cd_return_val_if_fail (dir != NULL, NULL);
 	
 	GList *pIconsList = NULL;
 	Icon *pIcon;

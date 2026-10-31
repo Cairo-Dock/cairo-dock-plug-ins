@@ -430,7 +430,7 @@ static GList* _get_users_list_fallback (void)
 		&cContent,
 		&length,
 		NULL);
-	g_return_val_if_fail (cContent != NULL, NULL);
+	cd_return_val_if_fail (cContent != NULL, NULL);
 	
 	// parse eash user
 	gchar **cUsers = g_strsplit (cContent, "\n", 0);

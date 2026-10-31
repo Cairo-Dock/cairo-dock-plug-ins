@@ -32,7 +32,7 @@ static gchar * _get_name_from_gicon (GtkImage *pImage)
 {
 	GIcon *pIcon;
 	gtk_image_get_gicon (pImage, &pIcon, NULL);
-	g_return_val_if_fail (pIcon != NULL, NULL);
+	cd_return_val_if_fail (pIcon != NULL, NULL);
 
 	gchar *cName = NULL;
 	if (G_IS_THEMED_ICON (pIcon))
@@ -90,7 +90,7 @@ static gboolean _update_image_from_pixbuf (gpointer *data)
 static gboolean _set_new_image_pixbuf (GtkImage *pImage, GldiModuleInstance *myApplet)
 {
 	GdkPixbuf *pPixbuf = gtk_image_get_pixbuf (pImage);
-	g_return_val_if_fail (pPixbuf != NULL, FALSE);
+	cd_return_val_if_fail (pPixbuf != NULL, FALSE);
 
 	g_object_ref (pPixbuf); // to be sure that it will be available after the delay
 	gpointer *data = g_new (gpointer, 2);

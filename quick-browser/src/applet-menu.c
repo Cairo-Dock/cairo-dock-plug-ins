@@ -231,7 +231,7 @@ static gboolean _fill_submenu_idle (CDQuickBrowserItem *pItem)
 }
 static void _on_activate_item (GtkWidget *pMenuItem, CDQuickBrowserItem *pItem)
 {
-	g_return_if_fail (pItem != NULL);
+	cd_return_if_fail (pItem != NULL);
 	GldiModuleInstance *myApplet = pItem->pApplet;
 	CD_APPLET_ENTER;
 	if (pItem->pSubMenu != NULL)
@@ -272,14 +272,14 @@ static void _cd_copy_location (GtkMenuItem *pMenuItem, CDQuickBrowserItem *pItem
 }
 static gboolean _on_click_item (GtkWidget *pWidget, GdkEventButton* pButton, CDQuickBrowserItem *pItem)
 {
-	g_return_val_if_fail (pItem != NULL, FALSE);
+	cd_return_val_if_fail (pItem != NULL, FALSE);
 	GldiModuleInstance *myApplet = pItem->pApplet;
 	CD_APPLET_ENTER;
 
 	if (pButton->button == 3) // right click
 	{
 		gchar *cUri = g_filename_to_uri (pItem->cPath, NULL, NULL);
-		g_return_val_if_fail (cUri != NULL, FALSE);
+		cd_return_val_if_fail (cUri != NULL, FALSE);
 
 		GtkWidget *pMenu = gldi_menu_new (NULL);
 		
@@ -347,7 +347,7 @@ void cd_quick_browser_show_menu (GldiModuleInstance *myApplet)
 	cd_quick_browser_destroy_menu (myApplet);
 	
 	myData.pRootItem = cd_quick_browser_make_menu_from_dir (myConfig.cDirPath, myApplet);
-	g_return_if_fail (myData.pRootItem != NULL && myData.pRootItem->pSubMenu != NULL);
+	cd_return_if_fail (myData.pRootItem != NULL && myData.pRootItem->pSubMenu != NULL);
 	
 	CD_APPLET_POPUP_MENU_ON_MY_ICON (myData.pRootItem->pSubMenu);
 }

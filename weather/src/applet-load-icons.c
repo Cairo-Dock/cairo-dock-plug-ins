@@ -107,7 +107,7 @@ static void _weather_draw_current_conditions (GldiModuleInstance *myApplet)
 gboolean cd_weather_update_from_data (CDSharedMemory *pSharedMemory)
 {
 	GldiModuleInstance *myApplet = pSharedMemory->pApplet;
-	g_return_val_if_fail (myIcon != NULL, FALSE);  // paranoia
+	cd_return_val_if_fail (myIcon != NULL, FALSE);  // paranoia
 	CD_APPLET_ENTER;
 	
 	if (myData.bBusy)

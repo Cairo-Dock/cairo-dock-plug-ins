@@ -323,7 +323,7 @@ GList *cd_netmonitor_get_available_interfaces (GList *pWirelessInterfaces)
 		g_error_free(erreur);
 		return NULL;
 	}
-	g_return_val_if_fail (cContent != NULL, NULL);
+	cd_return_val_if_fail (cContent != NULL, NULL);
 	
 	// on extrait les interfaces de chaque ligne.
 	GList *wi;

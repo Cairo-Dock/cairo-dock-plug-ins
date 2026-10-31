@@ -63,7 +63,7 @@ static void _on_init_module (GldiModuleInstance *pModuleInstance, GKeyFile *pKey
 	//\_____________ On initialise l'icone.
 	cd_dbus_action_on_init_module (pModuleInstance);
 	//\_____________ On cree l'objet sur le bus.
-	g_return_if_fail (cd_dbus_create_remote_applet_object (pModuleInstance));
+	cd_return_if_fail (cd_dbus_create_remote_applet_object (pModuleInstance));
 	
 	//\____________ On met a jour le fichier de conf si necessaire, c'est plus simple pour les applets.
 	if (pKeyFile != NULL)
@@ -292,7 +292,7 @@ static gboolean _apply_package_update (gchar *cModuleName)
 		
 		// and activate it again.
 		pModule = gldi_module_get (cModuleName);  // the module has been destroyed previously, so grab it again.
-		g_return_val_if_fail (pModule != NULL, TRUE);
+		cd_return_val_if_fail (pModule != NULL, TRUE);
 		gldi_module_activate (pModule);
 	}
 	
@@ -450,12 +450,12 @@ void cd_dbus_clean_up_processes (gboolean bAll)
 
 void cd_dbus_launch_service (void)
 {
-	g_return_if_fail (myData.uRegMainObject == 0);
+	cd_return_if_fail (myData.uRegMainObject == 0);
 	cd_message ("dbus : launching service...");
 	
 	//\____________ define the base path on the bus. So each program built on gldi has its own path on the gldi bus, and will place its applets under its own path.
 	const gchar *cProgName = g_get_prgname ();
-	g_return_if_fail (cProgName != NULL);
+	cd_return_if_fail (cProgName != NULL);
 	int n = strlen (cProgName);
 	gchar *cName1 = g_new0 (gchar, n+1);  // prog name without '-' and '_'
 	gchar *cName2 = g_new0 (gchar, n+1);  // same but with upper char after the '-' and '_'

@@ -97,9 +97,9 @@ static void _display_disk_usage (Icon *pIcon, GldiContainer *pContainer, CDDiskU
 void cd_shortcuts_display_disk_usage (Icon *pIcon, GldiModuleInstance *myApplet)
 {
 	GldiContainer *pContainer = pIcon->pContainer;
-	g_return_if_fail (pContainer != NULL);
+	cd_return_if_fail (pContainer != NULL);
 	CDDiskUsage *pDiskUsage = CD_APPLET_GET_MY_ICON_DATA (pIcon);
-	g_return_if_fail (pDiskUsage != NULL);
+	cd_return_if_fail (pDiskUsage != NULL);
 	_display_disk_usage (pIcon, pContainer, pDiskUsage, myApplet);
 }
 

@@ -46,7 +46,7 @@ static void _cd_switcher_get_best_agencement (int iNbViewports, int *iBestNbLine
 {
 	*iBestNbLines = 0;
 	*iBestNbColumns = 0;
-	g_return_if_fail (iNbViewports != 0);
+	cd_return_if_fail (iNbViewports != 0);
 	//g_print ("%s (%d)\n", __func__, iNbViewports);
 	
 	int w, h;
@@ -242,7 +242,7 @@ void cd_switcher_compute_desktop_from_index (int iIndex, int *iNumDesktop, int *
 	{
 		cd_switcher_refresh_desktop_values (myApplet);
 	}
-	g_return_if_fail (g_desktopGeometry.iNbViewportX > 0 && g_desktopGeometry.iNbViewportY > 0);
+	cd_return_if_fail (g_desktopGeometry.iNbViewportX > 0 && g_desktopGeometry.iNbViewportY > 0);
 	
 	*iNumDesktop = iIndex / (g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY);
 	int index2 = iIndex % (g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY);
@@ -257,7 +257,7 @@ void cd_switcher_compute_coordinates_from_index (int iIndex, int *iNumLine, int 
 	{
 		cd_switcher_refresh_desktop_values (myApplet);
 	}
-	g_return_if_fail (g_desktopGeometry.iNbViewportX > 0 && g_desktopGeometry.iNbViewportY > 0);
+	cd_return_if_fail (g_desktopGeometry.iNbViewportX > 0 && g_desktopGeometry.iNbViewportY > 0);
 	
 	*iNumLine = iIndex / myData.switcher.iNbColumns;
 	*iNumColumn = iIndex % myData.switcher.iNbColumns;

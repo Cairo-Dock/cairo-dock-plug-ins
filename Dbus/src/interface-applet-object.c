@@ -37,9 +37,9 @@ DBusAppletData *cd_dbus_get_dbus_applet_from_instance (GldiModuleInstance *pModu
 
 gboolean cd_dbus_create_remote_applet_object (GldiModuleInstance *pModuleInstance)
 {
-	g_return_val_if_fail (pModuleInstance != NULL && myData.uRegMainObject != 0, FALSE);
+	cd_return_val_if_fail (pModuleInstance != NULL && myData.uRegMainObject != 0, FALSE);
 	const gchar *cModuleName = pModuleInstance->pModule->pVisitCard->cModuleName;
-	g_return_val_if_fail (cModuleName != NULL, FALSE);
+	cd_return_val_if_fail (cModuleName != NULL, FALSE);
 	cd_debug ("%s (%s)", __func__, cModuleName);
 	
 	GError *err = NULL;
@@ -50,7 +50,7 @@ gboolean cd_dbus_create_remote_applet_object (GldiModuleInstance *pModuleInstanc
 	pDbusApplet->pModuleInstance = pModuleInstance;
 	pDbusApplet->id = s_iModuleId++;
 	pDbusApplet->connection = cairo_dock_dbus_get_session_bus (); // should not be NULL if we are here
-	g_return_val_if_fail (pDbusApplet->connection != NULL, FALSE);
+	cd_return_val_if_fail (pDbusApplet->connection != NULL, FALSE);
 	
 	//\_____________ register it under a unique path.
 	gchar *cSuffix = NULL;

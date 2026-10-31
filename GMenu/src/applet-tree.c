@@ -342,7 +342,7 @@ static gboolean cd_populate_menu_from_directory (GtkWidget *menu, GMenuTreeDirec
 void cd_append_tree_in_menu (GMenuTree *tree, GtkWidget *pMenu)
 {
 	GMenuTreeDirectory *dir = gmenu_tree_get_root_directory (tree);
-	g_return_if_fail (dir);
+	cd_return_if_fail (dir);
 	
 	cd_populate_menu_from_directory (pMenu, dir);
 	gmenu_tree_item_unref (dir);

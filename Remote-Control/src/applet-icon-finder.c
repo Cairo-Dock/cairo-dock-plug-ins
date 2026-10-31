@@ -89,7 +89,7 @@ static void _find_icon_in_dock_with_command (Icon *pIcon, gpointer *data)
 }
 Icon *cd_do_search_icon_by_command (const gchar *cCommandPrefix, Icon *pAfterIcon, CairoDock **pDock)
 {
-	g_return_val_if_fail (cCommandPrefix != NULL, NULL);
+	cd_return_val_if_fail (cCommandPrefix != NULL, NULL);
 	
 	//\_________________ on cherche en premier dans le dock courant, car il est deja visible.
 	int length = strlen (cCommandPrefix);

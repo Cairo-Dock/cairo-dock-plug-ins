@@ -406,7 +406,7 @@ static void _on_item_name_owner_changed (G_GNUC_UNUSED GObject *pObj, G_GNUC_UNU
 
 gchar *cd_satus_notifier_search_item_icon_s_path (CDStatusNotifierItem *pItem, gint iSize)
 {
-	g_return_val_if_fail (pItem != NULL, NULL);
+	cd_return_val_if_fail (pItem != NULL, NULL);
 	gchar *cImageName = (pItem->iStatus == CD_STATUS_NEEDS_ATTENTION ? pItem->cAttentionIconName: pItem->cIconName);
 	
 	gchar *cIconPath = NULL;
@@ -1069,7 +1069,7 @@ static void _load_item_image (Icon *icon)
 }
 Icon *cd_satus_notifier_create_icon_for_item (CDStatusNotifierItem *pItem)
 {
-	g_return_val_if_fail (pItem != NULL, NULL);
+	cd_return_val_if_fail (pItem != NULL, NULL);
 	Icon *pIcon = cairo_dock_create_dummy_launcher (g_strdup (pItem->cTitle?pItem->cTitle:pItem->cId), // cName
 		g_strdup (pItem->cIconName), // cFileName
 		// cCommand -- this is only used for debugging, include both the DBus name and the object path
@@ -1109,7 +1109,7 @@ Icon *cd_satus_notifier_get_icon_from_item (CDStatusNotifierItem *pItem)
 
 static gboolean _on_draw_menu_reposition (GtkWidget *pWidget, G_GNUC_UNUSED gpointer useless, CDStatusNotifierItem *pItem)
 {
-	g_return_val_if_fail (pItem != NULL, FALSE);
+	cd_return_val_if_fail (pItem != NULL, FALSE);
 
 	int iMenuWidth = gtk_widget_get_allocated_width (pWidget);
 

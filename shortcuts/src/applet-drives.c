@@ -227,7 +227,7 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 
 void cd_shortcuts_on_drive_event (CairoDockFMEventType iEventType, const gchar *cURI, GldiModuleInstance *myApplet)
 {
-	g_return_if_fail (cURI != NULL);
+	cd_return_if_fail (cURI != NULL);
 	CD_APPLET_ENTER;
 	//\________________ Manage event about this mount point
 	GList *pIconsList = CD_APPLET_MY_ICONS_LIST;

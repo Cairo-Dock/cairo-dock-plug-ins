@@ -335,7 +335,7 @@ static void _free_shared_memory (CDTopSharedMemory *pSharedMemory)
 }
 static void cd_sysmonitor_launch_top_task (GldiModuleInstance *myApplet)
 {
-	g_return_if_fail (myData.pTopTask == NULL);
+	cd_return_if_fail (myData.pTopTask == NULL);
 	
 	myData.iNbProcesses = 0;
 	if (myData.iNbCPU == 0)
@@ -396,7 +396,7 @@ static void _on_dialog_destroyed (GldiModuleInstance *myApplet)
 }
 void cd_sysmonitor_start_top_dialog (GldiModuleInstance *myApplet)
 {
-	g_return_if_fail (myData.pTopDialog == NULL);
+	cd_return_if_fail (myData.pTopDialog == NULL);
 	gldi_dialogs_remove_on_icon (myIcon);
 	// build an interactive widget that will be used to display the top list.
 	gchar *cTitle = g_strdup_printf ("  [ Top %d ] :", myConfig.iNbDisplayedProcesses);
@@ -421,7 +421,7 @@ void cd_sysmonitor_start_top_dialog (GldiModuleInstance *myApplet)
 	myData.pTopDialog = gldi_dialog_new (&attr);
 	
 	g_free (cTitle);
-	g_return_if_fail (myData.pTopDialog != NULL);
+	cd_return_if_fail (myData.pTopDialog != NULL);
 	
 	// set a dialog renderer of type 'text'.
 	const gpointer pConfig[2] = {&myDialogsParam.dialogTextDescription, (const gpointer)D_("Loading")};

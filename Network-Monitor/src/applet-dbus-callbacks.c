@@ -152,7 +152,7 @@ void onChangeWiredDeviceProperties (DBusGProxy *dbus_proxy, GHashTable *hPropert
 
 void onChangeAccessPointProperties (DBusGProxy *dbus_proxy, GHashTable *hProperties, gpointer data)
 {
-	g_return_if_fail (myApplet != NULL && myApplet->pData != NULL); // called at the end?
+	cd_return_if_fail (myApplet != NULL && myApplet->pData != NULL); // called at the end?
 
 	cd_debug ("%s ()", __func__);
 	cd_NetworkMonitor_fetch_access_point_properties (hProperties);

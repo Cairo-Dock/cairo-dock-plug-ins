@@ -108,7 +108,7 @@ void cd_netspeed_get_data (GldiModuleInstance *myApplet)
 	g_timer_stop (myData.pClock);
 	double fTimeElapsed = g_timer_elapsed (myData.pClock, NULL);
 	g_timer_start (myData.pClock);
-	g_return_if_fail (fTimeElapsed > 0.1 || !myData.bInitialized);
+	cd_return_if_fail (fTimeElapsed > 0.1 || !myData.bInitialized);
 	myData.bAcquisitionOK = FALSE;
 	
 	#ifdef __FreeBSD__  // thanks to Max Power for the BSD port

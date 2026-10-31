@@ -109,7 +109,7 @@ static void _cd_connect_to_resuming_signal (GldiModuleInstance *myApplet)
 {
 	// currently, we only support logind -- just connect to the PrepareForSleep signal
 	myData.pConn = g_bus_get_sync (G_BUS_TYPE_SYSTEM, NULL, NULL); // we should already be connected, so this should return immediately
-	g_return_if_fail (myData.pConn != NULL);
+	cd_return_if_fail (myData.pConn != NULL);
 	
 	myData.uRegSleep = g_dbus_connection_signal_subscribe (myData.pConn,
 		"org.freedesktop.login1",
