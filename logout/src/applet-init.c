@@ -49,13 +49,6 @@ CD_APPLET_INIT_BEGIN
 	
 	CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 	
-	if (g_iDesktopEnv == CAIRO_DOCK_GNOME)  // on prend le controle de l'icone de la fenetre.
-		CD_APPLET_MANAGE_APPLICATION ("gnome-session");  // x-session-manager before 2.28
-	else if (g_iDesktopEnv == CAIRO_DOCK_XFCE)
-		CD_APPLET_MANAGE_APPLICATION ("xfce4-session-logout");  // x-session-manager before 4.8
-	else if (g_iDesktopEnv == CAIRO_DOCK_KDE)
-		CD_APPLET_MANAGE_APPLICATION ("ksmserver");  /// pas du tout sur...
-
 	myData.iDesiredIconSize = cairo_dock_search_icon_size (GTK_ICON_SIZE_MENU);
 	
 	//\_______________ On enregistre nos notifications.
@@ -96,9 +89,6 @@ CD_APPLET_STOP_BEGIN
 	gldi_object_unref (GLDI_OBJECT(myData.pKeyBinding));
 	gldi_object_unref (GLDI_OBJECT(myData.pKeyBinding2));
 
-	gchar *cNull = NULL;
-	CD_APPLET_MANAGE_APPLICATION (cNull);  // on relache le controle de l'icone de la fenetre.
-	
 	cd_logout_stop_watch_sessions ();
 	
 	if (myData.iSidTimer != 0)

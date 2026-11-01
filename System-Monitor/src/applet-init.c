@@ -146,7 +146,14 @@ CD_APPLET_INIT_BEGIN
 	
 	// On gere l'appli "moniteur systeme".
 	if (myConfig.cSystemMonitorClass)
-		CD_APPLET_MANAGE_APPLICATION (myConfig.cSystemMonitorClass);
+	{
+		gchar *cClass = cairo_dock_register_class (myConfig.cSystemMonitorClass);
+		if (cClass)
+		{
+			CD_APPLET_MANAGE_APPLICATION (cClass);
+			g_free (cClass);
+		}
+	}
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
