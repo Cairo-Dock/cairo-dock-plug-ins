@@ -40,9 +40,15 @@ link_directories (
 	${PACKAGE_LIBRARY_DIRS}
 	${LIBICAL_PACKAGE_LIBRARY_DIRS})
 
-target_link_libraries (${PACKAGE_CLOCK}
-	${PACKAGE_LIBRARIES}
-	${LIBICAL_PACKAGE_LIBRARIES})
+if (LIBICAL_PACKAGE_VERSION VERSION_GREATER_EQUAL "4.0.0")
+	target_link_libraries (${PACKAGE_CLOCK}
+		${PACKAGE_LIBRARIES}
+		${LIBICAL_PACKAGE_LIBRARIES} ${LIBICALSS_PACKAGE_LIBRARIES})
+else()
+	target_link_libraries (${PACKAGE_CLOCK}
+		${PACKAGE_LIBRARIES}
+		${LIBICAL_PACKAGE_LIBRARIES})
+endif()
 
 ########### install files ###############
 
