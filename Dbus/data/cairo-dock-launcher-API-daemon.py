@@ -20,9 +20,8 @@ import sys
 
 import re
 from os import popen, getpid
-import dbus, dbus.service
-from dbus.mainloop.glib import DBusGMainLoop
-from CairoDock import CairoDock
+import gi
+from gi.repository import GLib, Gio
 
 class Launcher:
 	has_count = False
@@ -36,6 +35,7 @@ class Launcher:
 	emblem_visible = False
 	menu_path = ''
 	urgent = False
+	EMBLEM_TOP_RIGHT = 3
 	
 	def __init__(self, app_uri=None, dock=None, dbus_name=None):
 		## initialize the properties of the launcher
@@ -47,130 +47,140 @@ class Launcher:
 		self.id = 'class='+app_name
 		
 		## watch for the deconnection of the distant app (we don't want to let an icon demanding attention or with an invalid menu).
-		bus = dbus.SessionBus()
-		bus.watch_name_owner(self.dbus_name, self.on_name_owner_changed)
+		self.watch_id = Gio.bus_watch_name(Gio.BusType.SESSION, self.dbus_name,
+			Gio.BusNameWatcherFlags.NONE, None, self.on_name_owner_vanished)
 	
 	def update_dbus_name(self, dbus_name):
 		if dbus_name != self.dbus_name:
+			Gio.bus_unwatch_name(self.watch_id)
 			self.dbus_name = dbus_name
-			bus = dbus.SessionBus()
-			bus.watch_name_owner(self.dbus_name, self.on_name_owner_changed)
+			self.watch_id = Gio.bus_watch_name(Gio.BusType.SESSION, self.dbus_name,
+				Gio.BusNameWatcherFlags.NONE, None, self.on_name_owner_vanished)
 	
-	def on_name_owner_changed(self,connection_name):
-		print("Launcher-API-Daemon: launcher bus name changed:",connection_name)
-		if len(connection_name) == 0:  # no more distant app -> reset the launcher and its icon.
-			print("Launcher-API-Daemon: -> the launcher "+ str (self.dbus_name) +" is no longer connected to its app.")
-			if self.has_count and self.count_visible:
-				self.dock.iface.SetQuickInfo('', self.id)
-				self.has_count = False
-				self.count_visible = False
-			if self.has_progress and self.progress_visible:
-				self.dock.iface.SetProgress (-1, self.id)
-				self.has_progress = False
-				self.progress_visible = False
-			if self.has_emblem and self.emblem_visible:
-				self.dock.iface.SetEmblem('', CairoDock.EMBLEM_TOP_RIGHT, self.id)
-				self.has_emblem = False
-				self.emblem_visible = False
-			if self.urgent:
-				self.dock.iface.DemandsAttention(False, 'default', self.id)
-				self.urgent = False
-			if self.menu_path != '':
-				self.dock.iface.SetMenu(self.dbus_name, '', self.id)
-				self.menu_path = ''
-			self.dbus_name = None
+	def on_name_owner_vanished(self):
+		print("Launcher-API-Daemon: launcher bus name vanished:", self.dbus_name)
+		# no more distant app -> reset the launcher and its icon.
+		if self.has_count and self.count_visible:
+			self.dock.SetQuickInfo('(ss)', '', self.id)
+			self.has_count = False
+			self.count_visible = False
+		if self.has_progress and self.progress_visible:
+			self.dock.SetProgress('(ds)', -1, self.id)
+			self.has_progress = False
+			self.progress_visible = False
+		if self.has_emblem and self.emblem_visible:
+			self.dock.SetEmblem('(sis)', '', self.EMBLEM_TOP_RIGHT, self.id)
+			self.has_emblem = False
+			self.emblem_visible = False
+		if self.urgent:
+			self.dock.DemandsAttention('(bss)', False, 'default', self.id)
+			self.urgent = False
+		if self.menu_path != '':
+			self.dock.SetMenu('(sss)', self.dbus_name, '', self.id)
+			self.menu_path = ''
+		self.dbus_name = None
 			
 	def set_count(self, x):
 		print('Launcher-API-Daemon: set_count (%d)'%x)
 		self.count = x
 		self.has_count = True
 		if self.count_visible:
-			self.dock.iface.SetQuickInfo(str(self.count), self.id)
+			self.dock.SetQuickInfo('(ss)', str(self.count), self.id)
 	
 	def set_count_visible(self, x):
 		print('Launcher-API-Daemon: set_count_visible (%d)'%x)
 		self.count_visible = x
 		if self.has_count:
 			if x:
-				self.dock.iface.SetQuickInfo(str(self.count), self.id)
+				self.dock.SetQuickInfo('(ss)', str(self.count), self.id)
 			else:
-				self.dock.iface.SetQuickInfo('', self.id)
+				self.dock.SetQuickInfo('(ss)', '', self.id)
 	
 	def set_progress(self, x):
 		print('Launcher-API-Daemon: set_progress (%.2f)'%x)
 		self.progress = x
 		self.has_progress = True
-		self.dock.iface.SetProgress (x, self.id)
+		self.dock.SetProgress('(ds)', x, self.id)
 	
 	def set_progress_visible(self, x):
 		print('Launcher-API-Daemon: set_progress_visible (%d)'%x)
 		self.progress_visible = x
 		if not x:
-			self.dock.iface.SetProgress (-1, self.id)
+			self.dock.SetProgress('(ds)', -1, self.id)
 		else:
-			self.dock.iface.SetProgress (self.progress, self.id)
+			self.dock.SetProgress('(ds)', self.progress, self.id)
 	
 	def set_urgent(self, x):
 		print('Launcher-API-Daemon: set_urgent (%d)'%x)
 		self.urgent = x
-		self.dock.iface.DemandsAttention(x, 'default', self.id)
+		self.dock.DemandsAttention('(bss)', x, 'default', self.id)
 	
 	def set_menu(self, menu_path):
 		print('Launcher-API-Daemon: set_menu (%s)'%menu_path)
 		self.menu_path = menu_path
-		self.dock.iface.SetMenu(self.dbus_name, menu_path, self.id)
+		self.dock.SetMenu('(sss)', self.dbus_name, menu_path, self.id)
 	
 	def set_emblem(self, x):
 		print('Launcher-API-Daemon: set_emblem (%s)'%x)
 		self.emblem = x
 		self.has_emblem = True
 		if self.emblem_visible:
-			self.dock.iface.SetEmblem(self.emblem, CairoDock.EMBLEM_TOP_RIGHT, self.id)
+			self.dock.SetEmblem('(sis)', self.emblem, self.EMBLEM_TOP_RIGHT, self.id)
 	
 	def set_emblem_visible(self, x):
 		print('Launcher-API-Daemon: set_emblem_visible (%d)'%x)
 		self.emblem_visible = x
 		if self.has_emblem:
 			if x:
-				self.dock.iface.SetEmblem(self.emblem, CairoDock.EMBLEM_TOP_RIGHT, self.id)
+				self.dock.SetEmblem('(sis)', self.emblem, self.EMBLEM_TOP_RIGHT, self.id)
 			else:
-				self.dock.iface.SetEmblem('', CairoDock.EMBLEM_TOP_RIGHT, self.id)
+				self.dock.SetEmblem('(sis)', '', self.EMBLEM_TOP_RIGHT, self.id)
 	
 
 class ULWatcher:
 	bus_iface_str = 'com.canonical.Unity.LauncherEntry'  # bus name to watch
 	bus_name_str = 'com.canonical.Unity'  # bus name to claim, to signal our presence on the bus.
+	dock_name = 'org.cairodock.CairoDock'
 	launchers = {}  # list of launchers that have been seen on the bus at least once.
 	
 	def __init__(self):
-		DBusGMainLoop(set_as_default=True)
+		self.loop = GLib.MainLoop()
+		self.dock = None
+		conn = Gio.bus_get_sync(Gio.BusType.SESSION, None)
 		
-		try: 
-			self.bus = dbus.SessionBus()
-		except Exception as exception:
-			print('Launcher-API-Daemon: Could not open dbus. Uncaught exception.')
-			return
+		# allow Unity shell to take ownership of the bus name; we only want to register on the bus so that other applications know they can send message on the LauncherEntry interface
+		Gio.bus_own_name_on_connection(conn, self.bus_name_str, Gio.BusNameOwnerFlags.ALLOW_REPLACEMENT, None, None)
+		Gio.bus_watch_name_on_connection(conn, self.dock_name, Gio.BusNameWatcherFlags.NONE,
+			self.on_dock_appeared, self.on_dock_disappeared)
+		self.loop.run()
 		
-		bus_name = dbus.service.BusName (self.bus_name_str, self.bus, allow_replacement=True)  # allow Unity shell to take ownership of the bus name; we only want to register on the bus so that other applications know they can send message on the LauncherEntry interface
-		print("Launcher-API-Daemon: registered as Unity:",bus_name)
+	def on_dock_appeared(self, conn, name, owner):
+		conn.signal_subscribe(None, self.bus_iface_str, None, None, None, Gio.DBusSignalFlags.NONE, self.on_launcher_entry_signal)
+		self.dock = Gio.DBusProxy.new_sync(conn, Gio.DBusProxyFlags.DO_NOT_AUTO_START, None,
+			self.dock_name, '/org/cairodock/CairoDock', self.dock_name, None)
 		
-		self.bus.add_signal_receiver (self.on_launcher_entry_signal, dbus_interface=self.bus_iface_str, member_keyword='member', sender_keyword='sender')
+	def on_dock_disappeared(self, conn, name):
+		self.loop.quit() # no CairoDock interface, no point in continuing
 		
-		self.dock = CairoDock()
-		if self.dock.iface:
-			self.dock.loop.run()
-	
-	def on_launcher_entry_signal(self, val1=None, val2=None, member=None, sender=None):  # application://evolution.desktop, dictionnary (sv)
-		if (member == 'Update'):
-			print('Launcher-API-Daemon: Update',val1,'with',val2)
+	def on_launcher_entry_signal(self, conn, sender, obj, iface, signal_name, par):
+		if (signal_name == 'Update'):
+			# par: application://evolution.desktop, dictionnary (sv)
+			#  => (sa{sv})
+			
+			if par.get_type_string() != '(sa{sv})':
+				print('Unexpected signal parameter: {}'.format(par.get_type_string()))
+				return
+			
+			launcher_name, val2 = par.unpack()
+			print('Launcher-API-Daemon: Update for {}'.format(launcher_name))
 			
 			launcher = None
-			if val1 in self.launchers:
-				launcher = self.launchers[val1]
+			if launcher_name in self.launchers:
+				launcher = self.launchers[launcher_name]
 				launcher.update_dbus_name(sender)
 			else:
-				launcher = Launcher(val1, self.dock, sender)
-				self.launchers[val1] = launcher
+				launcher = Launcher(launcher_name, self.dock, sender)
+				self.launchers[launcher_name] = launcher
 			
 			if 'count' in val2:
 				count = val2['count']
