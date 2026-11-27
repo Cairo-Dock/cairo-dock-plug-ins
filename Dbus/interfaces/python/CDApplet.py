@@ -1,6 +1,7 @@
 # This is a part of the external applets for Cairo-Dock
 # Copyright : (C) 2010-2011 by Fabounet
-# E-mail : fabounet@glx-dock.org
+#             2026 Daniel Kondor
+# E-mail : kondor.dani@gmail.com
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -21,26 +22,12 @@
 ####################
 import sys
 import os.path
-
-from gi.repository import GLib as glib
-from gi.repository import GObject as gobject
-g_bMainLoopInGObject = False
-
 import gettext
-import dbus
-from dbus.mainloop.glib import DBusGMainLoop
 import configparser
 
-# Enabling threading support (only for GLib < 2.32)
-if glib.glib_version[0] < 2 or (glib.glib_version[0] == 2 and glib.glib_version[1] < 32):
-	gobject.threads_init()
-else:
-	glib.threads_init()
+import gi
+from gi.repository import GLib, Gio
 
-# enable dbus thread support
-dbus.mainloop.glib.threads_init()
-
-DBusGMainLoop(set_as_default=True)
 
 INSTALL_PREFIX = os.path.abspath("..")  # applets are launched from their install directory, so ".." is the folder containing all applets.
 
@@ -54,6 +41,100 @@ try:
 		_ = translations.gettext
 except: # e.g. No translation file found for this domain
 	_ = lambda x: x
+
+
+#########################
+### Interface helpers ###
+#########################
+class CDAppletIconIface:
+	def __init__(self, proxy):
+		self.proxy = proxy
+	
+	def Get(self, cProperty : str):
+		return self.proxy.Get('(s)', cProperty).unpack()
+	
+	def GetAll(self):
+		return self.proxy.GetAll().unpack()
+	
+	def SetQuickInfo(self, cQuickInfo : str):
+		self.proxy.SetQuickInfo('(s)', cQuickInfo)
+	
+	def SetLabel(self, cLabel : str):
+		self.proxy.SetLabel('(s)', cLabel)
+	
+	def SetIcon(self, cImage : str):
+		self.proxy.SetIcon('(s)', cImage)
+	
+	def SetEmblem(self, cImage : str, iPosition : int):
+		self.proxy.SetEmblem('(si)', cImage, iPosition)
+	
+	def Animate(self, cAnimation : str, iNbRounds : int):
+		self.proxy.Animate('(si)', cAnimation, iNbRounds)
+	
+	def DemandsAttention(self, bStart : bool, cAnimation : str):
+		self.proxy.DemandsAttention('(bs)', bStart, cAnimation)
+	
+	def ShowDialog(self, cMessage : str, iDuration : int):
+		self.proxy.ShowDialog('(si)', cMessage, iDuration)
+	
+	def PopupDialog(self, hDialogAttributes : dict, hWidgetAttributes : dict):
+		self.proxy.PopupDialog('(a{sv}a{sv})', hDialogAttributes, hWidgetAttributes)
+	
+	def AddDataRenderer(self, cType : str, iNbValues : int, cTheme : int):
+		self.proxy.AddDataRenderer('(cii)', cType, iNbValues, cTheme)
+	
+	def RenderValues(self, pValues : list): # note: list of doubles
+		self.proxy.RenderValues('(ad)', pValues)
+	
+	def ControlAppli(self, cApplicationClass : str):
+		self.proxy.ControlAppli('(s)', cApplicationClass)
+	
+	def ActOnAppli(self, cAction : str):
+		self.proxy.ActOnAppli('(s)', cAction)
+	
+	def AddMenuItems(self, pItems : list):
+		self.proxy.AddMenuItems('(aa{sv})', pItems)
+	
+	# deprecated, not used: AskQuestion, AskValue, ShowAppli, PopulateMenu
+	
+	# deprecated, still used
+	def AskText(self, cMessage : str, cInitialText : str):
+		self.proxy.AskText('(ss)', cMessage, cInitialText)
+
+
+class CDAppletSubIconIface:
+	def __init__(self, proxy):
+		self.proxy = proxy
+	
+	def SetQuickInfo(self, cQuickInfo : str, cIconID : str):
+		self.proxy.SetQuickInfo('(ss)', cQuickInfo, cIconID)
+	
+	def SetLabel(self, cLabel : str, cIconID : str):
+		self.proxy.SetLabel('(ss)', cLabel, cIconID)
+	
+	def SetIcon(self, cImage : str, cIconID : str):
+		self.proxy.SetIcon('(ss)', cImage, cIconID)
+	
+	def SetEmblem(self, cImage : str, iPosition : int, cIconID : str):
+		self.proxy.SetEmblem('(sis)', cImage, iPosition, cIconID)
+	
+	def Animate(self, cAnimation : str, iNbRounds : int, cIconID : str):
+		self.proxy.Animate('(sis)', cAnimation, iNbRounds, cIconID)
+	
+	def ShowDialog(self, cMessage : str, iDuration : int, cIconID : str):
+		self.proxy.ShowDialog('(sis)', cMessage, iDuration, cIconID)
+	
+	# deprecated, not used: AskQuestion, AskValue, AskText
+	
+	def PopupDialog(self, hDialogAttributes : dict, hWidgetAttributes : dict, cIconID : str):
+		self.proxy.PopupDialog('(a{sv}a{sv}s)', hDialogAttributes, hWidgetAttributes, cIconID)
+	
+	def AddSubIcons(self, pIconFields : list):
+		self.proxy.AddSubIcons('(as)', pIconFields)
+	
+	def RemoveSubIcon(self, cIconID : str):
+		self.proxy.RemoveSubIcon('(s)', cIconID)
+
 
 ####################
 ### Applet class ###
@@ -111,7 +192,7 @@ class CDApplet:
 		self.icon = None
 		self.sub_icons = None
 		self.config = {}
-		self.loop = None
+		self.loop = GLib.MainLoop()
 		self._bEnded = False
 		self._cMenuIconId = None
 		self.cAppletName = sys.argv[0][2:]  # the command is ./applet_name
@@ -125,45 +206,36 @@ class CDApplet:
 		self._connect_to_dock()
 	
 	def _connect_to_dock(self):
-		# get our applet on the bus.
-		bus = dbus.SessionBus()
-		try:
-			applet_object = bus.get_object("org.cairodock.CairoDock", self.cBusPath)
-		except:
-			print(">>> object '"+self.cBusPath+"' can't be found on the bus, exit.\nMake sure that Cairo-Dock is running")
-			sys.exit(2)
-		self.icon = dbus.Interface(applet_object, "org.cairodock.CairoDock.applet")  # this object represents our icon inside the dock or a desklet.
-		sub_icons_object = bus.get_object("org.cairodock.CairoDock", self.cBusPath+"/sub_icons")
-		self.sub_icons = dbus.Interface(sub_icons_object, "org.cairodock.CairoDock.subapplet")  # this object represents the list of icons contained in our sub-dock, or in our desklet. We'll add them one by one later, giving them a unique ID, which will be used to identify each of them.
+		CD_BUS_NAME = 'org.cairodock.CairoDock'
+		CD_APPLET_IFACE_NAME = 'org.cairodock.CairoDock.applet'
+		CD_SUBICONS_IFACE_NAME = 'org.cairodock.CairoDock.subapplet'
+		
+		self.icon_proxy = Gio.DBusProxy.new_for_bus_sync(Gio.BusType.SESSION, Gio.DBusProxyFlags.DO_NOT_AUTO_START,
+			None, #!! TODO: load our interface info !!
+			CD_BUS_NAME, self.cBusPath, CD_APPLET_IFACE_NAME, None)
+		self.icon = CDAppletIconIface(self.icon_proxy)
+		
+		self.sub_icons_proxy = Gio.DBusProxy.new_for_bus_sync(Gio.BusType.SESSION, Gio.DBusProxyFlags.DO_NOT_AUTO_START,
+			None, #!! TODO: load our interface info !!
+			CD_BUS_NAME, self.cBusPath + '/sub_icons', CD_SUBICONS_IFACE_NAME, None)
+		self.sub_icons = CDAppletSubIconIface(self.sub_icons_proxy)
+		
 		# connect to signals.
-		self.icon.connect_to_signal("on_click", self.on_click)  # when the user left-clicks on our icon.
-		self.icon.connect_to_signal("on_middle_click", self.on_middle_click)  # when the user middle-clicks on our icon.
-		self.icon.connect_to_signal("on_build_menu", self._on_build_menu)  # when the user right-clicks on our applet (which builds the menu)
-		self.icon.connect_to_signal("on_menu_select", self._on_menu_select)  # when the user selects an entry of this menu.
-		self.icon.connect_to_signal("on_scroll", self.on_scroll)  # when the user scroll up or down on our icon.
-		self.icon.connect_to_signal("on_drop_data", self.on_drop_data)  # when the user drops something on our icon.
-		self.icon.connect_to_signal("on_answer_dialog", self.on_answer_dialog)  # when the user answer a question.
-		self.icon.connect_to_signal("on_shortkey", self.on_shortkey)  # when the user press the shortkey.
-		self.icon.connect_to_signal("on_change_focus", self.on_change_focus)  # when the window's focus changes.
-		self.icon.connect_to_signal("on_stop_module", self._on_stop)  # when the user deactivate our applet (or the DBus plug-in, or when the Cairo-Dock is stopped).
-		self.icon.connect_to_signal("on_reload_module", self._on_reload)  # when the user changes something in our config, or when the desklet is resized (with no change in the config).
-		self.sub_icons.connect_to_signal("on_click_sub_icon", self.on_click_sub_icon)  # when the user left-clicks on a sub-icon.
-		self.sub_icons.connect_to_signal("on_middle_click_sub_icon", self.on_middle_click_sub_icon)
-		self.sub_icons.connect_to_signal("on_scroll_sub_icon", self.on_scroll_sub_icon)
-		self.sub_icons.connect_to_signal("on_build_menu_sub_icon", self._on_build_menu_sub_icon)
-		self.sub_icons.connect_to_signal("on_drop_data_sub_icon", self.on_drop_data_sub_icon)
-	
+		self.icon_proxy.connect('g-signal', self.on_icon_signal)
+		self.sub_icons_proxy.connect('g-signal', self.on_sub_icon_signal)
+		
+		Gio.bus_watch_name(Gio.BusType.SESSION, CD_BUS_NAME, Gio.BusNameWatcherFlags.NONE, None, self._on_dock_vanished)
+		
 	def run(self):
 		""" start the applet and enter the main loop; we never get out of this function """
 		self.begin()
 		if not self._bEnded:  # _bEnded can be true if the applet runs its own main loop, in which case we stay stuck in the 'begin' function until the end of the applet; in this case, we don't want to run a main loop again!
-			if g_bMainLoopInGObject:
-				self.loop = gobject.MainLoop()
-			else:
-				self.loop = glib.MainLoop()
 			self.loop.run()
 		print(">>> applet '"+self.cAppletName+"' terminated.")
 		sys.exit(0)
+	
+	def _on_dock_vanished(self):
+		self.loop.quit()
 	
 	##################################
 	### callbacks on the main icon ###
@@ -187,7 +259,7 @@ class CDApplet:
 		pass
 	
 	def _on_menu_select(self,iNumEntry):
-		if self._cMenuIconId == None:
+		if self._cMenuIconId is None:
 			self.on_menu_select(iNumEntry)
 		else:
 			self.on_menu_select_sub_icon(iNumEntry,self._cMenuIconId)
@@ -295,3 +367,46 @@ class CDApplet:
 		keyfile.read(self.cConfFile)
 		self.get_config(keyfile)
 	
+	
+	#######################
+	### signal handlers ###
+	#######################
+	
+	def on_icon_signal(self, proxy : Gio.DBusProxy, sender_name: str | None, signal_name: str, par: GLib.Variant):
+		 # note: for all handlers, we just assume the pars are correct -- we will get an exception if not
+		if signal_name == 'on_click':
+			self.on_click(*par.unpack())  # when the user left-clicks on our icon.
+		elif signal_name == 'on_middle_click':
+			self.on_middle_click()  # when the user middle-clicks on our icon.
+		elif signal_name == 'on_build_menu':
+			self._on_build_menu()  # when the user right-clicks on our applet (which builds the menu)
+		elif signal_name == 'on_menu_select':
+			self._on_menu_select(*par.unpack())  # when the user selects an entry of this menu.
+		elif signal_name == 'on_scroll':
+			self.on_scroll(*par.unpack())  # when the user scroll up or down on our icon.
+		elif signal_name == 'on_drop_data':
+			self.on_drop_data(*par.unpack())  # when the user drops something on our icon.
+		elif signal_name == 'on_answer_dialog':
+			self.on_answer_dialog(*par.unpack())  # when the user answer a question.
+		elif signal_name == 'on_shortkey':
+			self.on_shortkey(*par.unpack())  # when the user press the shortkey.
+		elif signal_name == 'on_change_focus':
+			self.on_change_focus(*par.unpack())  # when the window's focus changes.
+		elif signal_name == 'on_stop_module':
+			self._on_stop()  # when the user deactivate our applet (or the DBus plug-in, or when the Cairo-Dock is stopped).
+		elif signal_name == 'on_reload_module':
+			self._on_reload(*par.unpack())  # when the user changes something in our config, or when the desklet is resized (with no change in the config).
+	
+	def on_sub_icon_signal(self, proxy : Gio.DBusProxy, sender_name: str | None, signal_name: str, par: GLib.Variant):
+		if signal_name == 'on_click_sub_icon':
+			self.on_click_sub_icon(*par.unpack())  # when the user left-clicks on a sub-icon.
+		if signal_name == 'on_middle_click_sub_icon':
+			self.on_middle_click_sub_icon(*par.unpack())
+		if signal_name == 'on_scroll_sub_icon':
+			self.on_scroll_sub_icon(*par.unpack())
+		if signal_name == 'on_build_menu_sub_icon':
+			self._on_build_menu_sub_icon(*par.unpack())
+		if signal_name == 'on_drop_data_sub_icon':
+			self.on_drop_data_sub_icon(*par.unpack())
+
+
