@@ -456,25 +456,8 @@ void cd_dbus_launch_service (void)
 	//\____________ define the base path on the bus. So each program built on gldi has its own path on the gldi bus, and will place its applets under its own path.
 	const gchar *cProgName = g_get_prgname ();
 	cd_return_if_fail (cProgName != NULL);
-	int n = strlen (cProgName);
-	gchar *cName1 = g_new0 (gchar, n+1);  // prog name without '-' and '_'
-	gchar *cName2 = g_new0 (gchar, n+1);  // same but with upper char after the '-' and '_'
-	int i, k=0;
-	for (i = 0; i < n; i ++)
-	{
-		if (cProgName[i] == '-' || cProgName[i] == '_')
-			continue;
-		cName1[k] = g_ascii_tolower (cProgName[i]);
-		if (i == 0 || cProgName[i-1] == '-' || cProgName[i-1] == '_')
-			cName2[k] = g_ascii_toupper (cProgName[i]);
-		else
-			cName2[k] = cName1[k];
-		k ++;
-	}
 	myData.cProgName = cProgName;
-	myData.cBasePath = g_strdup_printf ("/org/%s/%s", cName1, cName2);
-	g_free (cName1);
-	g_free (cName2);
+	myData.cBasePath = "/org/cairodock/CairoDock";
 	
 	//\____________ kill all the orphean applets (for instance if the dock has crashed, or if it was interrupted by a CTRL+C, or if it stopped and the applet was busy and didn't receive the stop event (dbus-timeout)).
 	cd_dbus_clean_up_processes (FALSE);  // FALSE <=> from old gldi instances
