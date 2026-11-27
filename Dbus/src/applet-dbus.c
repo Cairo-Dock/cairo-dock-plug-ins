@@ -569,8 +569,8 @@ void cd_dbus_launch_service (void)
 	#ifdef DBUSMENU_GTK_FOUND // need SetMenu => DBusMenu
 	if (!myData.bDisabled && myConfig.bLaunchLauncherAPIDaemon)
 	{
-		const char *tmp[] = {CD_PLUGINS_DIR"/cairo-dock-launcher-API-daemon", NULL};
-		cd_dbus_launch_subprocess (tmp, NULL);
+		// note: no need to set PYTHONPATH, this script no longer uses CairoDock.py
+		cairo_dock_launch_command_single (CD_PLUGINS_DIR"/cairo-dock-launcher-API-daemon");
 	}
 	#endif
 	
